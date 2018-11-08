@@ -15,6 +15,7 @@
 		922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */; };
 		922CA4A821945F2100FE66F1 /* TesseractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4A721945F2100FE66F1 /* TesseractTests.swift */; };
 		922CA4B321945F2100FE66F1 /* TesseractUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4B221945F2100FE66F1 /* TesseractUITests.swift */; };
+		922CA4C121945F8A00FE66F1 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA4C021945F8A00FE66F1 /* Registration.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		922CA4AE21945F2100FE66F1 /* TesseractUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesseractUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		922CA4B221945F2100FE66F1 /* TesseractUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractUITests.swift; sourceTree = "<group>"; };
 		922CA4B421945F2100FE66F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		922CA4C021945F8A00FE66F1 /* Registration.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49221945F1F00FE66F1 /* FirstViewController.swift */,
 				922CA49421945F1F00FE66F1 /* SecondViewController.swift */,
+				922CA4C021945F8A00FE66F1 /* Registration.storyboard */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
 				922CA49921945F2100FE66F1 /* Assets.xcassets */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
@@ -233,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
+				922CA4C121945F8A00FE66F1 /* Registration.storyboard in Resources */,
 				922CA49A21945F2100FE66F1 /* Assets.xcassets in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
 			);
