@@ -16,10 +16,9 @@
 		922CA4A821945F2100FE66F1 /* TesseractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4A721945F2100FE66F1 /* TesseractTests.swift */; };
 		922CA4B321945F2100FE66F1 /* TesseractUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4B221945F2100FE66F1 /* TesseractUITests.swift */; };
 		99CE954A9C34CCB4F6A6FE02 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D766B309DDF470F4EBEE /* Pods_Tesseract.framework */; };
-		D14B5F24219991CD006F387E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14B5F23219991CD006F387E /* Registration.storyboard */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
-		D1A16BB8219A1F2D008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */; };
+		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,10 +57,9 @@
 		922CA4B221945F2100FE66F1 /* TesseractUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractUITests.swift; sourceTree = "<group>"; };
 		922CA4B421945F2100FE66F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
-		D14B5F23219991CD006F387E /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ../../../../.Trash/Registration.storyboard; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
-		D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ../../../../.Trash/Registration.storyboard; sourceTree = "<group>"; };
+		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -133,14 +131,13 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49221945F1F00FE66F1 /* FirstViewController.swift */,
 				922CA49421945F1F00FE66F1 /* SecondViewController.swift */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
 				922CA49921945F2100FE66F1 /* Assets.xcassets */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
-				D14B5F23219991CD006F387E /* Registration.storyboard */,
-				D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
 				D14B5F272199ABF5006F387E /* NextResponderTextField.swift */,
@@ -273,9 +270,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1A16BB8219A1F2D008AEAD4 /* Registration.storyboard in Resources */,
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
-				D14B5F24219991CD006F387E /* Registration.storyboard in Resources */,
+				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
 				922CA49A21945F2100FE66F1 /* Assets.xcassets in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
 			);

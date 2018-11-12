@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xn2-M6-zD5">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="M3U-LD-T2c">
+            <objects>
+                <viewController id="CkB-v8-7KG" customClass="RegistrationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="center" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xti-Oz-qEW">
+                                <rect key="frame" x="20" y="44" width="374" height="798"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Mb-js-p0P">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="378"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="second" translatesAutoresizingMaskIntoConstraints="NO" id="O1V-a6-K5M">
+                                                <rect key="frame" x="137" y="139" width="100" height="100"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="100" id="WjN-8F-kdc"/>
+                                                    <constraint firstAttribute="height" constant="100" id="YmN-f0-lyn"/>
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="O1V-a6-K5M" firstAttribute="centerY" secondItem="3Mb-js-p0P" secondAttribute="centerY" id="51t-qn-sMX"/>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="NhE-S8-RcU"/>
+                                            <constraint firstItem="O1V-a6-K5M" firstAttribute="centerX" secondItem="3Mb-js-p0P" secondAttribute="centerX" id="jKs-Hf-Nud"/>
+                                        </constraints>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="cIq-xg-dkK">
+                                        <rect key="frame" x="0.0" y="378" width="374" height="420"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="center" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="I5i-pV-ajv">
+                                                <rect key="frame" x="0.0" y="0.0" width="374" height="100"/>
+                                                <subviews>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="boP-Jv-ldG" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="45"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isClearIconButtonEnabled" value="YES"/>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="dividerColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="isDividerHidden" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="dividerThickness">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your Password"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="dividerNormalHeight">
+                                                                <real key="value" value="1"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
+                                                                <real key="value" value="2"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="nextResponderView" destination="8wX-ft-38H" id="PHI-Am-EOR"/>
+                                                        </connections>
+                                                    </textField>
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-ft-38H" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="55" width="374" height="45"/>
+                                                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                        <connections>
+                                                            <outlet property="nextResponderView" destination="AbA-dT-H7q" id="rjd-HQ-T7v"/>
+                                                        </connections>
+                                                    </textField>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="100" id="HKS-2b-c0V"/>
+                                                </constraints>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-ue-ER6">
+                                                <rect key="frame" x="0.0" y="300" width="374" height="120"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbA-dT-H7q" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
+                                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="Create Key">
+                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="creteKey:" destination="CkB-v8-7KG" eventType="touchUpInside" id="XYS-h8-qmH"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r11-Cf-4ka" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="60" width="374" height="60"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <state key="normal" title="Restore Key">
+                                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </state>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="4"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="restoreKey:" destination="CkB-v8-7KG" eventType="touchUpInside" id="mxj-lb-nNm"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="AbA-dT-H7q" firstAttribute="height" secondItem="r11-Cf-4ka" secondAttribute="height" id="0vZ-Vk-Ad9"/>
+                                                    <constraint firstAttribute="height" constant="120" id="XfL-5D-D57"/>
+                                                </constraints>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="A0P-6C-V0B"/>
+                                            <constraint firstAttribute="height" priority="749" constant="420" id="cYM-Ll-5Zu"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3Mb-js-p0P" firstAttribute="leading" secondItem="xti-Oz-qEW" secondAttribute="leading" id="L8U-aa-DHf"/>
+                                    <constraint firstAttribute="trailing" secondItem="3Mb-js-p0P" secondAttribute="trailing" id="dmw-na-IJN"/>
+                                    <constraint firstAttribute="trailing" secondItem="cIq-xg-dkK" secondAttribute="trailing" id="pHb-AI-E6U"/>
+                                    <constraint firstItem="cIq-xg-dkK" firstAttribute="leading" secondItem="xti-Oz-qEW" secondAttribute="leading" id="rNf-Ar-9Mi"/>
+                                    <constraint firstAttribute="bottom" secondItem="cIq-xg-dkK" secondAttribute="bottom" id="tnB-kw-vIa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="xti-Oz-qEW" firstAttribute="leading" secondItem="eXX-7g-cig" secondAttribute="leading" constant="20" id="4Eq-RV-7qf"/>
+                            <constraint firstItem="eXX-7g-cig" firstAttribute="bottom" secondItem="xti-Oz-qEW" secondAttribute="bottom" constant="20" id="Cqp-37-9ci"/>
+                            <constraint firstItem="3Mb-js-p0P" firstAttribute="top" secondItem="eXX-7g-cig" secondAttribute="top" id="XRI-IG-sDA"/>
+                            <constraint firstItem="xti-Oz-qEW" firstAttribute="top" secondItem="eXX-7g-cig" secondAttribute="top" id="d8L-po-9mQ"/>
+                            <constraint firstItem="eXX-7g-cig" firstAttribute="trailing" secondItem="xti-Oz-qEW" secondAttribute="trailing" constant="20" id="quj-EY-f3j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="eXX-7g-cig"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="HTj-bq-RXF"/>
+                    <connections>
+                        <outlet property="confirmPasswordField" destination="8wX-ft-38H" id="oSX-j4-zj6"/>
+                        <outlet property="createKeyButton" destination="AbA-dT-H7q" id="r05-Ty-aTa"/>
+                        <outlet property="restoreKeyButton" destination="r11-Cf-4ka" id="Z71-DD-qEq"/>
+                        <outlet property="yourPasswordField" destination="boP-Jv-ldG" id="fE5-jY-5Am"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bp2-FQ-TbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="828.98550724637687" y="-529.01785714285711"/>
+        </scene>
+        <!--Registration-->
+        <scene sceneID="YVH-9X-b4x">
+            <objects>
+                <navigationController title="Registration" automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="xn2-M6-zD5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="xRp-Bx-Fzs">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CkB-v8-7KG" kind="relationship" relationship="rootViewController" id="1Yf-fl-LQY"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3YP-Ke-JPJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-18.399999999999999" y="-528.48575712143929"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="second" width="30" height="30"/>
+    </resources>
+</document>
