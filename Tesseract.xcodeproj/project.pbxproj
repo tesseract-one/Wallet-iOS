@@ -19,6 +19,7 @@
 		D14B5F24219991CD006F387E /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14B5F23219991CD006F387E /* Registration.storyboard */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
+		D1A16BB8219A1F2D008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +61,7 @@
 		D14B5F23219991CD006F387E /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ../../../../.Trash/Registration.storyboard; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Registration.storyboard; path = ../../../../.Trash/Registration.storyboard; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -138,6 +140,7 @@
 				922CA49921945F2100FE66F1 /* Assets.xcassets */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				D14B5F23219991CD006F387E /* Registration.storyboard */,
+				D1A16BB7219A1F2D008AEAD4 /* Registration.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
 				D14B5F272199ABF5006F387E /* NextResponderTextField.swift */,
@@ -270,6 +273,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A16BB8219A1F2D008AEAD4 /* Registration.storyboard in Resources */,
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
 				D14B5F24219991CD006F387E /* Registration.storyboard in Resources */,
 				922CA49A21945F2100FE66F1 /* Assets.xcassets in Resources */,
