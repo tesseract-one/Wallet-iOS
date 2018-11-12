@@ -1,0 +1,36 @@
+PODS:
+  - Material (2.17.0):
+    - Material/Core (= 2.17.0)
+  - Material/Core (2.17.0):
+    - Motion (~> 1.5.0)
+  - Motion (1.5.0):
+    - Motion/Core (= 1.5.0)
+  - Motion/Core (1.5.0)
+
+DEPENDENCIES:
+  - Material (from `https://github.com/CosmicMind/Material.git`, branch `development`)
+  - Motion (from `https://github.com/CosmicMind/Motion.git`, branch `development`)
+
+EXTERNAL SOURCES:
+  Material:
+    :branch: development
+    :git: https://github.com/CosmicMind/Material.git
+  Motion:
+    :branch: development
+    :git: https://github.com/CosmicMind/Motion.git
+
+CHECKOUT OPTIONS:
+  Material:
+    :commit: 0ebb473e35bc3fe43058d9df401863433e4167b8
+    :git: https://github.com/CosmicMind/Material.git
+  Motion:
+    :commit: 3141bdb87e30b4aa899a22562194a221ea2da388
+    :git: https://github.com/CosmicMind/Motion.git
+
+SPEC CHECKSUMS:
+  Material: 856e0168ab93fc477f875577c152c9e62f4ab869
+  Motion: 3acabedc5a499f6b12deaa34deb68b425b005720
+
+PODFILE CHECKSUM: 79c67026c5f68fb7eba33aa5261eeec7ed123338
+
+COCOAPODS: 1.5.3
