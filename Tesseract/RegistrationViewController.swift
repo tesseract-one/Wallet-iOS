@@ -8,7 +8,17 @@
 
 import UIKit
 
+enum PasswordsErrorPhrases: String {
+  case noPassword = "Please, enter password!"
+  case differentPasswords = "Passwords are different!"
+  case shortPasswords = "Passwords should be at least 8 symbols!"
+}
+
 class RegistrationViewController: UIViewController {
+  
+  // MARK: Properties
+  //
+  var password: String = ""
   
   // MARK: Outlets
   //
@@ -22,18 +32,6 @@ class RegistrationViewController: UIViewController {
   //
   override func viewDidLoad() {
     super.viewDidLoad()
-    yourPasswordField.isPlaceholderUppercasedWhenEditing = true
-    yourPasswordField.placeholderActiveColor = UIColor.white
-    yourPasswordField.placeholderNormalColor = UIColor.white
-    yourPasswordField.placeholderLabel.fontSize = 25
-    yourPasswordField.dividerColor = UIColor.white
-    yourPasswordField.dividerActiveColor = UIColor.white
-    yourPasswordField.dividerNormalColor = UIColor.white
-    yourPasswordField.textColor = UIColor.white
-    yourPasswordField.font = UIFont.systemFont(ofSize: 25)
-    yourPasswordField.isClearIconButtonEnabled = true
-    yourPasswordField.isClearIconButtonAutoHandled = true
-    yourPasswordField.clearIconButton?.tintColor = UIColor.white
   }
   
   // MARK: Default values
@@ -46,14 +44,51 @@ class RegistrationViewController: UIViewController {
   // MARK: Actions
   //
   @IBAction func creteKey(_ sender: UIButton) {
-    print("Created Key")
+    view.endEditing(true)
+    
+    if validateTextFields() {
+      password = yourPasswordField.text!
+      print("Create Key")
+    }
   }
   
   @IBAction func restoreKey(_ sender: UIButton) {
+    view.endEditing(true)
     print("Restore Key")
   }
   
   
   // MARK: Private functions
   //
+  private func validateTextFields() -> Bool {
+    // Check errors in one field
+    guard yourPasswordField.text != "", let yourPassword = yourPasswordField.text else {
+      yourPasswordField.error = PasswordsErrorPhrases.noPassword.rawValue
+      return false
+    }
+    
+    guard confirmPasswordField.text != "", let confirmPassword = confirmPasswordField.text else {
+      confirmPasswordField.error = PasswordsErrorPhrases.noPassword.rawValue
+      return false
+    }
+    
+    // Check errors in both fields
+    if yourPassword != confirmPassword {
+      yourPasswordField.error = PasswordsErrorPhrases.differentPasswords.rawValue
+      confirmPasswordField.error = PasswordsErrorPhrases.differentPasswords.rawValue
+    } else if yourPassword.count < 8 {
+      yourPasswordField.error = PasswordsErrorPhrases.shortPasswords.rawValue
+      confirmPasswordField.error = PasswordsErrorPhrases.shortPasswords.rawValue
+    } else {
+      return true
+    }
+    
+    wipeTextFields()
+    return false
+  }
+  
+  private func wipeTextFields() {
+    yourPasswordField.text = ""
+    confirmPasswordField.text = ""
+  }
 }
