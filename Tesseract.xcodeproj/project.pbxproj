@@ -17,11 +17,14 @@
 		99CE954A9C34CCB4F6A6FE02 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D766B309DDF470F4EBEE /* Pods_Tesseract.framework */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
+		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
+		D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */; };
+		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
+		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
-		D1E2F548219B100A004C46C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1E2F547219B100A004C46C3 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,11 +63,14 @@
 		B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
+		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		D1E2F547219B100A004C46C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,8 +141,9 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
-				D1E2F547219B100A004C46C3 /* Assets.xcassets */,
+				D171DE49219DA36A003134DD /* Resources */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
+				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49221945F1F00FE66F1 /* FirstViewController.swift */,
 				922CA49421945F1F00FE66F1 /* SecondViewController.swift */,
@@ -148,6 +155,7 @@
 				D14B5F292199B75D006F387E /* BorderedButton.swift */,
 				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
 				D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */,
+				D171DE4D219DAAD4003134DD /* GradientView.swift */,
 			);
 			path = Tesseract;
 			sourceTree = "<group>";
@@ -168,6 +176,23 @@
 				922CA4B421945F2100FE66F1 /* Info.plist */,
 			);
 			path = TesseractUITests;
+			sourceTree = "<group>";
+		};
+		D171DE49219DA36A003134DD /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D171DE4A219DA37E003134DD /* fonts */,
+				D171DE47219DA2C4003134DD /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		D171DE4A219DA37E003134DD /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */,
+			);
+			path = fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -278,7 +303,8 @@
 			files = (
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
 				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
-				D1E2F548219B100A004C46C3 /* Assets.xcassets in Resources */,
+				D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */,
+				D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +387,8 @@
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,
 				922CA49321945F1F00FE66F1 /* FirstViewController.swift in Sources */,
+				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
+				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +563,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				INFOPLIST_FILE = Tesseract/Info.plist;
@@ -555,7 +582,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F64CD0370B4673F8BA8AEB9 /* Pods-Tesseract.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				INFOPLIST_FILE = Tesseract/Info.plist;

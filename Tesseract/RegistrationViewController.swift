@@ -21,10 +21,7 @@ class RegistrationViewController: UIViewController {
   var password: String = ""
   
   // MARK: Outlets
-  //
-  @IBOutlet weak var createKeyButton: UIButton!
-  @IBOutlet weak var restoreKeyButton: UIButton!
-  
+  //  
   @IBOutlet weak var yourPasswordField: NextResponderTextField!
   @IBOutlet weak var confirmPasswordField: NextResponderTextField!
   
@@ -48,7 +45,7 @@ class RegistrationViewController: UIViewController {
     
     if validateTextFields() {
       password = yourPasswordField.text!
-      print("Create Key")
+      performSegue(withIdentifier: "ShowTermsOfService", sender: self)
     }
   }
   

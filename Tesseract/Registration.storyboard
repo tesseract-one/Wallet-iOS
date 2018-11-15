@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -179,14 +182,129 @@
                     <navigationItem key="navigationItem" id="HTj-bq-RXF"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="8wX-ft-38H" id="oSX-j4-zj6"/>
-                        <outlet property="createKeyButton" destination="AbA-dT-H7q" id="r05-Ty-aTa"/>
-                        <outlet property="restoreKeyButton" destination="r11-Cf-4ka" id="Z71-DD-qEq"/>
                         <outlet property="yourPasswordField" destination="boP-Jv-ldG" id="fE5-jY-5Am"/>
+                        <segue destination="TOP-Zx-po9" kind="show" identifier="ShowTermsOfService" id="MLY-hU-8ED"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bp2-FQ-TbA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="687" y="-529"/>
+            <point key="canvasLocation" x="693" y="-529"/>
+        </scene>
+        <!--Terms Of Service View Controller-->
+        <scene sceneID="oqW-Xw-iXk">
+            <objects>
+                <viewController id="TOP-Zx-po9" customClass="TermsOfServiceViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5WJ-mF-x2A">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-5q-8QY" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="638" width="382" height="50"/>
+                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="fUU-St-jTN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <state key="normal" title="Accept">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="agreeWithTerms:" destination="TOP-Zx-po9" eventType="touchUpInside" id="d2Z-tx-9U4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Service" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fAI-1f-DlE">
+                                <rect key="frame" x="16" y="88" width="382" height="40.666666666666657"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="34"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bMK-Pn-epb">
+                                <rect key="frame" x="16" y="163.66666666666666" width="382" height="474.33333333333337"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Terms of Service">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="17" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" paragraphSpacing="26" lineHeightMultiple="1.53" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P3o-vM-bK3" customClass="GradientView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="603" width="382" height="35"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fromColorAlpha">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="toColorAlpha">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="toColor">
+                                        <color key="value" red="0.047058823529411764" green="0.039215686274509803" blue="0.047058823529411764" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wax-hT-eLh" customClass="GradientView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="163.66666666666666" width="382" height="35"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="7cw-jS-aHd"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fromColorAlpha">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="toColor">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="toColorAlpha">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
+                                        <color key="value" red="0.047058823530000002" green="0.039215686270000001" blue="0.047058823530000002" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.054901960784313725" green="0.047058823529411764" blue="0.054901960784313725" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="GAM-ic-5dC" firstAttribute="trailing" secondItem="qMR-5q-8QY" secondAttribute="trailing" constant="16" id="0L9-Xu-sr5"/>
+                            <constraint firstItem="GAM-ic-5dC" firstAttribute="bottom" secondItem="qMR-5q-8QY" secondAttribute="bottom" constant="48" id="2fc-17-yy4"/>
+                            <constraint firstItem="bMK-Pn-epb" firstAttribute="leading" secondItem="qMR-5q-8QY" secondAttribute="leading" id="3Xm-nY-xg0"/>
+                            <constraint firstItem="Wax-hT-eLh" firstAttribute="top" secondItem="fAI-1f-DlE" secondAttribute="bottom" constant="35" id="8uG-1d-QLA"/>
+                            <constraint firstItem="qMR-5q-8QY" firstAttribute="top" secondItem="bMK-Pn-epb" secondAttribute="bottom" id="FSZ-WX-O9J"/>
+                            <constraint firstItem="bMK-Pn-epb" firstAttribute="trailing" secondItem="qMR-5q-8QY" secondAttribute="trailing" id="GCA-Ec-l2T"/>
+                            <constraint firstItem="bMK-Pn-epb" firstAttribute="top" secondItem="fAI-1f-DlE" secondAttribute="bottom" constant="35" id="HO5-dA-ndi"/>
+                            <constraint firstItem="P3o-vM-bK3" firstAttribute="height" secondItem="Wax-hT-eLh" secondAttribute="height" id="IJv-sB-s9a"/>
+                            <constraint firstItem="fAI-1f-DlE" firstAttribute="trailing" secondItem="bMK-Pn-epb" secondAttribute="trailing" id="ISD-hs-XSE"/>
+                            <constraint firstItem="fAI-1f-DlE" firstAttribute="leading" secondItem="bMK-Pn-epb" secondAttribute="leading" id="Paj-Bu-oKc"/>
+                            <constraint firstItem="qMR-5q-8QY" firstAttribute="leading" secondItem="GAM-ic-5dC" secondAttribute="leading" constant="16" id="RZG-f9-hmm"/>
+                            <constraint firstItem="Wax-hT-eLh" firstAttribute="trailing" secondItem="bMK-Pn-epb" secondAttribute="trailing" id="S0O-K0-ttH"/>
+                            <constraint firstItem="P3o-vM-bK3" firstAttribute="trailing" secondItem="bMK-Pn-epb" secondAttribute="trailing" id="f03-ie-mMc"/>
+                            <constraint firstItem="fAI-1f-DlE" firstAttribute="top" secondItem="GAM-ic-5dC" secondAttribute="top" constant="68" id="fJa-3F-Y4v"/>
+                            <constraint firstItem="qMR-5q-8QY" firstAttribute="top" secondItem="P3o-vM-bK3" secondAttribute="bottom" id="hWB-Aj-JsY"/>
+                            <constraint firstItem="P3o-vM-bK3" firstAttribute="leading" secondItem="bMK-Pn-epb" secondAttribute="leading" id="k2k-EW-RnZ"/>
+                            <constraint firstItem="Wax-hT-eLh" firstAttribute="leading" secondItem="bMK-Pn-epb" secondAttribute="leading" id="zBE-eO-BCi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="GAM-ic-5dC"/>
+                    </view>
+                    <connections>
+                        <outlet property="termsTextView" destination="bMK-Pn-epb" id="fwV-7p-bPB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="760-kM-EOL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1425" y="-529"/>
         </scene>
         <!--Registration-->
         <scene sceneID="YVH-9X-b4x">
