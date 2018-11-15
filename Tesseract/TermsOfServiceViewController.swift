@@ -35,7 +35,7 @@ class TermsOfServiceViewController: UIViewController {
   // MARK: Actions
   //
   @IBAction func agreeWithTerms(_ sender: UIButton) {
-    print("Agree with Terms of Service")
+    performSegue(withIdentifier: "ShowMnemonics", sender: self)
   }
 
   

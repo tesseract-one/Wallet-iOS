@@ -21,6 +21,7 @@
 		D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */; };
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
+		D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
@@ -67,6 +68,7 @@
 		D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
+		D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewController.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				D171DE49219DA36A003134DD /* Resources */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
+				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
 				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49221945F1F00FE66F1 /* FirstViewController.swift */,
@@ -382,6 +385,7 @@
 				922CA49521945F1F00FE66F1 /* SecondViewController.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
+				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
