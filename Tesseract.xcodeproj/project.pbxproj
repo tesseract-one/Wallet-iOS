@@ -22,9 +22,13 @@
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */; };
+		D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */; };
+		D171DE56219EE887003134DD /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE55219EE887003134DD /* NextResponderTextView.swift */; };
+		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
+		D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,9 +73,13 @@
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewController.swift; sourceTree = "<group>"; };
+		D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsVerificationViewController.swift; sourceTree = "<group>"; };
+		D171DE55219EE887003134DD /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
+		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -143,6 +151,7 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1AE725821A2C28000CA1C17 /* UIHelpers */,
 				D171DE49219DA36A003134DD /* Resources */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
 				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
@@ -154,11 +163,7 @@
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
-				D14B5F272199ABF5006F387E /* NextResponderTextField.swift */,
-				D14B5F292199B75D006F387E /* BorderedButton.swift */,
-				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
-				D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */,
-				D171DE4D219DAAD4003134DD /* GradientView.swift */,
+				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
 			);
 			path = Tesseract;
 			sourceTree = "<group>";
@@ -196,6 +201,21 @@
 				D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		D1AE725821A2C28000CA1C17 /* UIHelpers */ = {
+			isa = PBXGroup;
+			children = (
+				D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */,
+				D14B5F272199ABF5006F387E /* NextResponderTextField.swift */,
+				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
+				D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */,
+				D171DE55219EE887003134DD /* NextResponderTextView.swift */,
+				D14B5F292199B75D006F387E /* BorderedButton.swift */,
+				D171DE4D219DAAD4003134DD /* GradientView.swift */,
+				D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */,
+			);
+			path = UIHelpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -385,14 +405,18 @@
 				922CA49521945F1F00FE66F1 /* SecondViewController.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
+				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
+				D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,
 				922CA49321945F1F00FE66F1 /* FirstViewController.swift in Sources */,
+				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
+				D171DE56219EE887003134DD /* NextResponderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

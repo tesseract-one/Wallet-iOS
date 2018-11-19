@@ -22,13 +22,23 @@ class RegistrationViewController: UIViewController {
   
   // MARK: Outlets
   //  
-  @IBOutlet weak var yourPasswordField: NextResponderTextField!
+  @IBOutlet weak var yourPasswordField: UITextField!
   @IBOutlet weak var confirmPasswordField: NextResponderTextField!
   
   // MARK: Lifecycle hooks
   //
   override func viewDidLoad() {
     super.viewDidLoad()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    navigationController?.isNavigationBarHidden = true
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    navigationController?.isNavigationBarHidden = false
   }
   
   // MARK: Default values
@@ -60,7 +70,7 @@ class RegistrationViewController: UIViewController {
   private func validateTextFields() -> Bool {
     // Check errors in one field
     guard yourPasswordField.text != "", let yourPassword = yourPasswordField.text else {
-      yourPasswordField.error = PasswordsErrorPhrases.noPassword.rawValue
+      confirmPasswordField.error = PasswordsErrorPhrases.noPassword.rawValue
       return false
     }
     
@@ -71,10 +81,8 @@ class RegistrationViewController: UIViewController {
     
     // Check errors in both fields
     if yourPassword != confirmPassword {
-      yourPasswordField.error = PasswordsErrorPhrases.differentPasswords.rawValue
       confirmPasswordField.error = PasswordsErrorPhrases.differentPasswords.rawValue
     } else if yourPassword.count < 8 {
-      yourPasswordField.error = PasswordsErrorPhrases.shortPasswords.rawValue
       confirmPasswordField.error = PasswordsErrorPhrases.shortPasswords.rawValue
     } else {
       return true
