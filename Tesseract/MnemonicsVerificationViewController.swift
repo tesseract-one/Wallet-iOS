@@ -16,7 +16,7 @@ class MnemonicsVerificationViewController: UIViewController {
  
   // MARK: Outlets
   //
-  @IBOutlet weak var mnemonicsVerificationTextView: UITextView!
+  @IBOutlet weak var mnemonicsVerificationTextView: NextResponderTextView!
   
   // MARK: Lifecycle
   //
@@ -43,7 +43,13 @@ class MnemonicsVerificationViewController: UIViewController {
   // MARK: Actions
   //
   @IBAction func doneWithMnemonicsVerification(_ sender: UIButton) {
-    print("Done with Mnemonics Verification")
+    view.endEditing(true)
+
+    if mnemonic != mnemonicsVerificationTextView.text {
+      mnemonicsVerificationTextView.text = ""
+      mnemonicsVerificationTextView.textViewDidChange(mnemonicsVerificationTextView)
+      mnemonicsVerificationTextView.error = "Mnemonics are different!"
+    }
   }
   
   @IBAction func skipMnemonicsVerification(_ sender: UIButton) {

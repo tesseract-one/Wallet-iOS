@@ -15,6 +15,8 @@
 		922CA4A821945F2100FE66F1 /* TesseractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4A721945F2100FE66F1 /* TesseractTests.swift */; };
 		922CA4B321945F2100FE66F1 /* TesseractUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4B221945F2100FE66F1 /* TesseractUITests.swift */; };
 		99CE954A9C34CCB4F6A6FE02 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D766B309DDF470F4EBEE /* Pods_Tesseract.framework */; };
+		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
+		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
@@ -23,7 +25,6 @@
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */; };
 		D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */; };
-		D171DE56219EE887003134DD /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE55219EE887003134DD /* NextResponderTextView.swift */; };
 		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
@@ -66,6 +67,8 @@
 		922CA4B221945F2100FE66F1 /* TesseractUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractUITests.swift; sourceTree = "<group>"; };
 		922CA4B421945F2100FE66F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
+		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
+		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewController.swift; sourceTree = "<group>"; };
 		D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsVerificationViewController.swift; sourceTree = "<group>"; };
-		D171DE55219EE887003134DD /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
@@ -210,10 +212,11 @@
 				D14B5F272199ABF5006F387E /* NextResponderTextField.swift */,
 				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
 				D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */,
-				D171DE55219EE887003134DD /* NextResponderTextView.swift */,
 				D14B5F292199B75D006F387E /* BorderedButton.swift */,
 				D171DE4D219DAAD4003134DD /* GradientView.swift */,
 				D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */,
+				D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */,
+				D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -411,12 +414,13 @@
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
+				D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,
 				922CA49321945F1F00FE66F1 /* FirstViewController.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
+				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
-				D171DE56219EE887003134DD /* NextResponderTextView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

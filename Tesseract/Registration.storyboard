@@ -339,13 +339,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPL-P7-DuK">
-                                <rect key="frame" x="16" y="84.666666666666657" width="382" height="21"/>
+                                <rect key="frame" x="16" y="100.66666666666666" width="382" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.4823529411764706" green="0.4823529411764706" blue="0.50588235294117645" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-s6-gJg">
-                                <rect key="frame" x="16" y="0.0" width="382" height="51.666666666666664"/>
+                                <rect key="frame" x="16" y="15.999999999999996" width="382" height="51.666666666666657"/>
                                 <attributedString key="attributedText">
                                     <fragment content="We’ve all heard how crucial it is to set intentions, goals and targets.">
                                         <attributes>
@@ -357,8 +357,8 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSV-xw-IQW" customClass="ShadowedTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128.66666666666666" width="414" height="54.333333333333343"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSV-xw-IQW" customClass="CustomInsetsTextView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="129.66666666666666" width="414" height="54.333333333333343"/>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.047058823529411764" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Mnemonics">
@@ -371,27 +371,13 @@
                                     </fragment>
                                 </attributedString>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                        <size key="value" width="0.0" height="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </textView>
                         </subviews>
-                        <color key="backgroundColor" red="0.054901960784313725" green="0.047058823529411764" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="gwI-Af-fdI" firstAttribute="bottom" secondItem="s0j-pk-iE2" secondAttribute="bottom" constant="48" id="4vO-r3-Ozy"/>
-                            <constraint firstItem="xSV-xw-IQW" firstAttribute="top" secondItem="vPL-P7-DuK" secondAttribute="bottom" constant="23" id="6sY-5L-gnb"/>
-                            <constraint firstItem="7SB-s6-gJg" firstAttribute="top" secondItem="gwI-Af-fdI" secondAttribute="top" id="7Py-wQ-vHp"/>
+                            <constraint firstItem="xSV-xw-IQW" firstAttribute="top" secondItem="vPL-P7-DuK" secondAttribute="bottom" constant="8" id="6sY-5L-gnb"/>
+                            <constraint firstItem="7SB-s6-gJg" firstAttribute="top" secondItem="gwI-Af-fdI" secondAttribute="top" constant="16" id="7Py-wQ-vHp"/>
                             <constraint firstItem="vPL-P7-DuK" firstAttribute="leading" secondItem="s0j-pk-iE2" secondAttribute="leading" id="CAy-5t-NcD"/>
                             <constraint firstItem="vPL-P7-DuK" firstAttribute="top" secondItem="7SB-s6-gJg" secondAttribute="bottom" constant="33" id="E3P-t3-1Cm"/>
                             <constraint firstItem="vPL-P7-DuK" firstAttribute="trailing" secondItem="s0j-pk-iE2" secondAttribute="trailing" id="I61-Jy-Qqa"/>
@@ -450,93 +436,109 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-bF-Du2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="522" width="382" height="50"/>
-                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbo-JU-TKW" customClass="KeyboardScrollViewToTop" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cKe-PO-5pr">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-bF-Du2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="522" width="382" height="50"/>
+                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="50" id="C9p-rE-rlx"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                <state key="normal" title="Done">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="doneWithMnemonicsVerification:" destination="Y3x-gO-Oc3" eventType="touchUpInside" id="5SN-6g-qMM"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
+                                                <rect key="frame" x="16" y="100.66666666666666" width="382" height="21"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-92-xAd">
+                                                <rect key="frame" x="16" y="15.999999999999996" width="382" height="51.666666666666657"/>
+                                                <attributedString key="attributedText">
+                                                    <fragment content="We’ve all heard how crucial it is to set intentions, goals and targets.">
+                                                        <attributes>
+                                                            <color key="NSColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <font key="NSFont" size="15" name=".SFNSText"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.47" tighteningFactorForTruncation="0.0"/>
+                                                        </attributes>
+                                                    </fragment>
+                                                </attributedString>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="BeD-OW-Eev" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="129.66666666666666" width="414" height="54.333333333333343"/>
+                                                <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" enablesReturnKeyAutomatically="YES" textContentType="name"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your mnemonics"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="nextResponderView" destination="KOX-bF-Du2" id="Mow-7e-7L1"/>
+                                                </connections>
+                                            </textView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="BeD-OW-Eev" secondAttribute="trailing" id="K5c-tJ-P5Z"/>
+                                            <constraint firstItem="bBV-7A-zhK" firstAttribute="leading" secondItem="KOX-bF-Du2" secondAttribute="leading" id="OMI-Qw-jbE"/>
+                                            <constraint firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" constant="16" id="PuX-al-lsH"/>
+                                            <constraint firstItem="bBV-7A-zhK" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" id="Qby-Pr-8Wp"/>
+                                            <constraint firstItem="BeD-OW-Eev" firstAttribute="leading" secondItem="cKe-PO-5pr" secondAttribute="leading" id="RXt-gh-Cd6"/>
+                                            <constraint firstItem="L7R-92-xAd" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" id="Uv2-zh-S3k"/>
+                                            <constraint firstItem="KOX-bF-Du2" firstAttribute="leading" secondItem="cKe-PO-5pr" secondAttribute="leading" constant="16" id="cOW-li-ngn"/>
+                                            <constraint firstAttribute="bottom" secondItem="KOX-bF-Du2" secondAttribute="bottom" constant="48" id="cpx-Mq-Qam"/>
+                                            <constraint firstItem="L7R-92-xAd" firstAttribute="leading" secondItem="KOX-bF-Du2" secondAttribute="leading" id="fLJ-lX-Pj4"/>
+                                            <constraint firstItem="L7R-92-xAd" firstAttribute="top" secondItem="cKe-PO-5pr" secondAttribute="top" constant="16" id="oOU-LT-znP"/>
+                                            <constraint firstItem="BeD-OW-Eev" firstAttribute="top" secondItem="bBV-7A-zhK" secondAttribute="bottom" constant="8" id="oxf-Ao-hVw"/>
+                                            <constraint firstItem="bBV-7A-zhK" firstAttribute="top" secondItem="L7R-92-xAd" secondAttribute="bottom" constant="33" id="vbh-Co-dle"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C9p-rE-rlx"/>
+                                    <constraint firstItem="cKe-PO-5pr" firstAttribute="leading" secondItem="fbo-JU-TKW" secondAttribute="leading" id="9Im-ic-9Wl"/>
+                                    <constraint firstAttribute="bottom" secondItem="cKe-PO-5pr" secondAttribute="bottom" id="Flh-Kr-If1"/>
+                                    <constraint firstAttribute="trailing" secondItem="cKe-PO-5pr" secondAttribute="trailing" id="Zge-fJ-iZb"/>
+                                    <constraint firstItem="cKe-PO-5pr" firstAttribute="top" secondItem="fbo-JU-TKW" secondAttribute="top" id="kXZ-xH-gVP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="8"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="doneWithMnemonicsVerification:" destination="Y3x-gO-Oc3" eventType="touchUpInside" id="5SN-6g-qMM"/>
+                                    <outlet property="scrollableView" destination="BeD-OW-Eev" id="b0l-ug-jxv"/>
                                 </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
-                                <rect key="frame" x="16" y="84.666666666666657" width="382" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.4823529412" green="0.4823529412" blue="0.50588235290000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-92-xAd">
-                                <rect key="frame" x="16" y="0.0" width="382" height="51.666666666666664"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="We’ve all heard how crucial it is to set intentions, goals and targets.">
-                                        <attributes>
-                                            <color key="NSColor" red="0.59607843140000005" green="0.59607843140000005" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="15" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.47" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BeD-OW-Eev" customClass="ShadowedTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="128.66666666666666" width="414" height="54.333333333333343"/>
-                                <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <attributedString key="attributedText">
-                                    <fragment content=" ">
-                                        <attributes>
-                                            <color key="NSBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                            <font key="NSFont" size="32" name=".SFNSText"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" returnKeyType="continue" enablesReturnKeyAutomatically="YES" textContentType="name"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
-                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                        <real key="value" value="2"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                        <real key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                        <size key="value" width="0.0" height="0.0"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="bBV-7A-zhK" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" id="14w-nV-MWV"/>
-                            <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" constant="16" id="1qi-M1-qMl"/>
-                            <constraint firstItem="bBV-7A-zhK" firstAttribute="top" secondItem="L7R-92-xAd" secondAttribute="bottom" constant="33" id="3Z3-xc-dEw"/>
-                            <constraint firstItem="BeD-OW-Eev" firstAttribute="top" secondItem="bBV-7A-zhK" secondAttribute="bottom" constant="23" id="8i2-4e-PAk"/>
-                            <constraint firstItem="L7R-92-xAd" firstAttribute="leading" secondItem="KOX-bF-Du2" secondAttribute="leading" id="CG9-2z-rzQ"/>
-                            <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="BeD-OW-Eev" secondAttribute="trailing" id="FlX-85-bh5"/>
-                            <constraint firstItem="BeD-OW-Eev" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" id="OmU-9N-5sD"/>
-                            <constraint firstItem="KOX-bF-Du2" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="fFy-Uh-ryu"/>
-                            <constraint firstItem="bBV-7A-zhK" firstAttribute="leading" secondItem="KOX-bF-Du2" secondAttribute="leading" id="k2I-ES-q47"/>
-                            <constraint firstItem="L7R-92-xAd" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" id="mzh-c4-hNa"/>
-                            <constraint firstItem="L7R-92-xAd" firstAttribute="top" secondItem="usD-ei-tZ3" secondAttribute="top" id="n6l-ZN-rgo"/>
-                            <constraint firstItem="usD-ei-tZ3" firstAttribute="bottom" secondItem="KOX-bF-Du2" secondAttribute="bottom" constant="48" id="yyM-F2-dFa"/>
+                            <constraint firstItem="fbo-JU-TKW" firstAttribute="leading" secondItem="Ubl-XX-NKV" secondAttribute="leading" id="CLV-OU-JrT"/>
+                            <constraint firstItem="cKe-PO-5pr" firstAttribute="width" secondItem="Ubl-XX-NKV" secondAttribute="width" id="ECl-nQ-mw4"/>
+                            <constraint firstItem="cKe-PO-5pr" firstAttribute="height" secondItem="Ubl-XX-NKV" secondAttribute="height" id="Ff3-wH-VaJ"/>
+                            <constraint firstAttribute="trailing" secondItem="fbo-JU-TKW" secondAttribute="trailing" id="g0i-Pj-gX2"/>
+                            <constraint firstItem="fbo-JU-TKW" firstAttribute="top" secondItem="Ubl-XX-NKV" secondAttribute="top" id="kwy-TS-hpo"/>
+                            <constraint firstAttribute="bottom" secondItem="fbo-JU-TKW" secondAttribute="bottom" id="rDR-gx-6kH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="usD-ei-tZ3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verify" largeTitleDisplayMode="always" id="v5E-I8-qbb">
-                        <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln"/>
+                        <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln">
+                            <connections>
+                                <action selector="skipMnemonicsVerification:" destination="Y3x-gO-Oc3" id="0vl-9X-ium"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mnemonicsVerificationTextView" destination="BeD-OW-Eev" id="ZQh-0b-IxD"/>
@@ -544,7 +546,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNA-bl-XWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2875" y="-529"/>
+            <point key="canvasLocation" x="2874" y="-529"/>
         </scene>
     </scenes>
     <resources>
