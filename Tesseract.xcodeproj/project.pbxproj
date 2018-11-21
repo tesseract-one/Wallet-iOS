@@ -30,6 +30,7 @@
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */; };
+		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
+		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,6 +168,7 @@
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
 				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
+				D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */,
 			);
 			path = Tesseract;
 			sourceTree = "<group>";
@@ -411,6 +414,7 @@
 				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
 				D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
+				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,

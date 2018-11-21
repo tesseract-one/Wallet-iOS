@@ -403,7 +403,7 @@
         <!--Registration-->
         <scene sceneID="YVH-9X-b4x">
             <objects>
-                <navigationController title="Registration" automaticallyAdjustsScrollViewInsets="NO" id="xn2-M6-zD5" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="RootControllerID" title="Registration" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="xn2-M6-zD5" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="xRp-Bx-Fzs" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
