@@ -92,9 +92,16 @@ open class NextResponderTextField: ErrorTextField {
   }
   
   @IBInspectable
-  open var fontSize: CGFloat = 14.0 {
-    didSet {
-      font = UIFont.systemFont(ofSize: fontSize)
+  open var fontSize: CGFloat {
+    get {
+      if let font = font {
+        return font.pointSize
+      }
+      font = UIFont.systemFont(ofSize: 14.0)
+      return 14.0
+    }
+    set {
+      font = UIFont.systemFont(ofSize: newValue)
     }
   }
   
