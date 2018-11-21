@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Login-->
+        <!--Register-->
         <scene sceneID="M3U-LD-T2c">
             <objects>
                 <viewController id="CkB-v8-7KG" customClass="RegistrationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
@@ -46,7 +46,10 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="boP-Jv-ldG" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="248" width="382" height="30"/>
+                                                <rect key="frame" x="16" y="248" width="382" height="40"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="40" id="Ve5-Us-UKe"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
@@ -73,7 +76,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-ft-38H" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="308" width="382" height="20"/>
+                                                <rect key="frame" x="16" y="318" width="382" height="40"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
@@ -147,6 +150,7 @@
                                             <constraint firstAttribute="bottom" secondItem="IuL-ue-ER6" secondAttribute="bottom" constant="33" id="CRm-yl-OBK"/>
                                             <constraint firstAttribute="trailing" secondItem="IuL-ue-ER6" secondAttribute="trailing" constant="16" id="Cwj-Ml-mvv"/>
                                             <constraint firstItem="8wX-ft-38H" firstAttribute="top" secondItem="boP-Jv-ldG" secondAttribute="bottom" constant="30" id="Kaa-tq-yzT"/>
+                                            <constraint firstItem="8wX-ft-38H" firstAttribute="height" secondItem="boP-Jv-ldG" secondAttribute="height" id="PO6-qT-8BE"/>
                                             <constraint firstItem="8wX-ft-38H" firstAttribute="trailing" secondItem="IuL-ue-ER6" secondAttribute="trailing" id="V3u-xi-oTk"/>
                                             <constraint firstItem="fu7-We-gLb" firstAttribute="leading" secondItem="boP-Jv-ldG" secondAttribute="leading" id="cEO-R0-HXt"/>
                                             <constraint firstItem="fu7-We-gLb" firstAttribute="height" secondItem="h2D-To-CtD" secondAttribute="height" multiplier="0.4" id="d0F-be-BpO"/>
@@ -177,7 +181,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eXX-7g-cig"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Login" largeTitleDisplayMode="always" id="HTj-bq-RXF"/>
+                    <navigationItem key="navigationItem" title="Register" largeTitleDisplayMode="always" id="HTj-bq-RXF"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="8wX-ft-38H" id="oSX-j4-zj6"/>
                         <outlet property="yourPasswordField" destination="boP-Jv-ldG" id="fE5-jY-5Am"/>
