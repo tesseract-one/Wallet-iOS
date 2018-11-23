@@ -15,6 +15,7 @@
 		99CE954A9C34CCB4F6A6FE02 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D766B309DDF470F4EBEE /* Pods_Tesseract.framework */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
+		D125143C21A8123E0077E04A /* materialdesignicons-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
@@ -24,6 +25,10 @@
 		D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */; };
 		D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */; };
 		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
+		D1746A3A21A6CA7E0045F0AE /* HomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A3921A6CA7E0045F0AE /* HomePageViewController.swift */; };
+		D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */; };
+		D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */; };
+		D1746A4621A70B7F0045F0AE /* Coin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A4521A70B7F0045F0AE /* Coin.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
@@ -67,6 +72,7 @@
 		B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
+		D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "materialdesignicons-webfont.ttf"; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -76,6 +82,10 @@
 		D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewController.swift; sourceTree = "<group>"; };
 		D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsVerificationViewController.swift; sourceTree = "<group>"; };
 		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
+		D1746A3921A6CA7E0045F0AE /* HomePageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePageViewController.swift; sourceTree = "<group>"; };
+		D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveCoinsViewController.swift; sourceTree = "<group>"; };
+		D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveCoinsTableViewCell.swift; sourceTree = "<group>"; };
+		D1746A4521A70B7F0045F0AE /* Coin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coin.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -153,6 +163,7 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1746A4421A70B1C0045F0AE /* Models */,
 				D1AE725821A2C28000CA1C17 /* UIHelpers */,
 				D171DE49219DA36A003134DD /* Resources */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
@@ -161,6 +172,9 @@
 				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
+				D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */,
+				D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */,
+				D1746A3921A6CA7E0045F0AE /* HomePageViewController.swift */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
@@ -200,9 +214,18 @@
 		D171DE4A219DA37E003134DD /* fonts */ = {
 			isa = PBXGroup;
 			children = (
+				D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */,
 				D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */,
 			);
 			path = fonts;
+			sourceTree = "<group>";
+		};
+		D1746A4421A70B1C0045F0AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1746A4521A70B7F0045F0AE /* Coin.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D1AE725821A2C28000CA1C17 /* UIHelpers */ = {
@@ -329,6 +352,7 @@
 			files = (
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
 				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
+				D125143C21A8123E0077E04A /* materialdesignicons-webfont.ttf in Resources */,
 				D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */,
 				D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
@@ -407,6 +431,7 @@
 			files = (
 				D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
+				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
 				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
 				D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */,
@@ -418,8 +443,11 @@
 				D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
+				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
+				D1746A3A21A6CA7E0045F0AE /* HomePageViewController.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
+				D1746A4621A70B7F0045F0AE /* Coin.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

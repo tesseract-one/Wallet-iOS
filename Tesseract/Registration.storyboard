@@ -546,11 +546,20 @@
                     </navigationItem>
                     <connections>
                         <outlet property="mnemonicsVerificationTextView" destination="BeD-OW-Eev" id="ZQh-0b-IxD"/>
+                        <segue destination="v0H-ih-ywI" kind="show" identifier="ShowHome" id="mqy-Cw-goK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNA-bl-XWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2874" y="-529"/>
+        </scene>
+        <!--HomeControllerID-->
+        <scene sceneID="TkT-va-LxJ">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" referencedIdentifier="HomeControllerID" id="v0H-ih-ywI" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="i9m-nd-C3Y" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3432" y="-529"/>
         </scene>
     </scenes>
     <resources>

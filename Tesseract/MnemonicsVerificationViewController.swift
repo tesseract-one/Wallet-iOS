@@ -28,16 +28,6 @@ class MnemonicsVerificationViewController: UIViewController {
   //
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     super.prepare(for: segue, sender: sender)
-    
-    guard segue.destination is MnemonicsVerificationViewController else {
-      fatalError("Unexpected destination: \(segue.destination)")
-    }
-    
-    guard let mnemonicViewController = sender as? MnemonicsViewController  else {
-      fatalError("Unexpected sender: \(String(describing: sender))")
-    }
-    
-    mnemonic = mnemonicViewController.mnemonic
   }
   
   // MARK: Actions
@@ -49,10 +39,12 @@ class MnemonicsVerificationViewController: UIViewController {
       mnemonicsVerificationTextView.text = ""
       mnemonicsVerificationTextView.textViewDidChange(mnemonicsVerificationTextView)
       mnemonicsVerificationTextView.error = "Mnemonics are different!"
+    } else {
+      performSegue(withIdentifier: "ShowHome", sender: self)
     }
   }
   
   @IBAction func skipMnemonicsVerification(_ sender: UIButton) {
-    print("Skip Mnemonics Verification")
+    performSegue(withIdentifier: "ShowHome", sender: self)
   }
 }

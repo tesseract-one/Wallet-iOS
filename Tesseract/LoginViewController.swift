@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
   //
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    navigationController?.isToolbarHidden = true
   }
   
   // MARK: Default values
