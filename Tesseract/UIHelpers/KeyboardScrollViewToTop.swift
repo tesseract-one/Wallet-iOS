@@ -26,7 +26,7 @@ class KeyboardScrollViewToTop: UIScrollView {
       scrollIndicatorInsets = contentInsets
       
       let position = scrollableView.convert(CGPoint.zero, to: self)
-      setContentOffset(CGPoint(x: 0, y: position.y), animated: true)
+      scrollToDestination(position)
     }
   }
   
@@ -37,7 +37,18 @@ class KeyboardScrollViewToTop: UIScrollView {
     setContentOffset(CGPoint(x: contentOffset.x, y: -1), animated: true)
   }
   
+  public func scrollToDestination(_ position: CGPoint) {
+    setContentOffset(CGPoint(x: 0, y: position.y), animated: true)
+  }
+  
   deinit {
     NotificationCenter.default.removeObserver(self)
+  }
+}
+
+class KeyboardScrollViewToCenter: KeyboardScrollViewToTop {
+  override public func scrollToDestination(_ position: CGPoint) {
+    let centerOfVisibleRect = (contentSize.height - contentInset.bottom) / 2
+    setContentOffset(CGPoint(x: 0, y: position.y - centerOfVisibleRect + scrollableView.bounds.height / 2), animated: true)
   }
 }

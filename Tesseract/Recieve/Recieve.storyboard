@@ -18,12 +18,12 @@
         <!--Recieve-->
         <scene sceneID="pnJ-2Q-ZeX">
             <objects>
-                <viewController storyboardIdentifier="RootControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jmn-Rm-5dG" customClass="RecieveCoinsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="RecieveController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jmn-Rm-5dG" customClass="RecieveCoinsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kFF-MA-NKt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="NAC-Ji-tfN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-code" translatesAutoresizingMaskIntoConstraints="NO" id="NAC-Ji-tfN">
                                 <rect key="frame" x="87.5" y="52" width="200" height="200"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NAC-Ji-tfN" secondAttribute="height" multiplier="1:1" id="Dgy-Yd-haF"/>
@@ -251,6 +251,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="140.80000305175781" height="145.60000610351562"/>
+        <image name="qr-code" width="402" height="402"/>
     </resources>
 </document>

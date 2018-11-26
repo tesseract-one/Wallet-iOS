@@ -39,6 +39,8 @@
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 		D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */; };
 		D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */; };
+		D1F9869E21AC486F000B4C3C /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1F9869D21AC486F000B4C3C /* Send.storyboard */; };
+		D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869F21AC4D10000B4C3C /* SendAddressViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -99,6 +101,8 @@
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesTableViewCell.swift; sourceTree = "<group>"; };
+		D1F9869D21AC486F000B4C3C /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
+		D1F9869F21AC4D10000B4C3C /* SendAddressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendAddressViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1F9869C21AC4855000B4C3C /* Send */,
 				D125143E21A82F6D0077E04A /* Recieve */,
 				D125143D21A82D570077E04A /* Registration */,
 				D1746A4421A70B1C0045F0AE /* Models */,
@@ -267,6 +272,15 @@
 				D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */,
 			);
 			path = UIHelpers;
+			sourceTree = "<group>";
+		};
+		D1F9869C21AC4855000B4C3C /* Send */ = {
+			isa = PBXGroup;
+			children = (
+				D1F9869D21AC486F000B4C3C /* Send.storyboard */,
+				D1F9869F21AC4D10000B4C3C /* SendAddressViewController.swift */,
+			);
+			path = Send;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -375,6 +389,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1F9869E21AC486F000B4C3C /* Send.storyboard in Resources */,
 				D125144021A830DF0077E04A /* Recieve.storyboard in Resources */,
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
 				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
@@ -477,6 +492,7 @@
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1746A4621A70B7F0045F0AE /* Coin.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
+				D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
