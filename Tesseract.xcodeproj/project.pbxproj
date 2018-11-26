@@ -16,6 +16,7 @@
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
 		D125143C21A8123E0077E04A /* materialdesignicons-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */; };
+		D125144021A830DF0077E04A /* Recieve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D125143F21A830DF0077E04A /* Recieve.storyboard */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
@@ -36,6 +37,8 @@
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* LoginViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
+		D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */; };
+		D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,7 @@
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "materialdesignicons-webfont.ttf"; sourceTree = "<group>"; };
+		D125143F21A830DF0077E04A /* Recieve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recieve.storyboard; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -93,6 +97,8 @@
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
+		D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
+		D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,22 +169,17 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D125143E21A82F6D0077E04A /* Recieve */,
+				D125143D21A82D570077E04A /* Registration */,
 				D1746A4421A70B1C0045F0AE /* Models */,
 				D1AE725821A2C28000CA1C17 /* UIHelpers */,
 				D171DE49219DA36A003134DD /* Resources */,
-				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
-				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
 				D1B2D3D821A5A7070095A17F /* LoginViewController.swift */,
-				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
-				D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */,
-				D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */,
 				D1746A3921A6CA7E0045F0AE /* HomePageViewController.swift */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
-				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
-				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
 				D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */,
 			);
 			path = Tesseract;
@@ -200,6 +201,30 @@
 				922CA4B421945F2100FE66F1 /* Info.plist */,
 			);
 			path = TesseractUITests;
+			sourceTree = "<group>";
+		};
+		D125143D21A82D570077E04A /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
+				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
+				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
+				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
+				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		D125143E21A82F6D0077E04A /* Recieve */ = {
+			isa = PBXGroup;
+			children = (
+				D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */,
+				D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */,
+				D125143F21A830DF0077E04A /* Recieve.storyboard */,
+				D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */,
+				D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */,
+			);
+			path = Recieve;
 			sourceTree = "<group>";
 		};
 		D171DE49219DA36A003134DD /* Resources */ = {
@@ -350,6 +375,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D125144021A830DF0077E04A /* Recieve.storyboard in Resources */,
 				922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */,
 				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
 				D125143C21A8123E0077E04A /* materialdesignicons-webfont.ttf in Resources */,
@@ -429,6 +455,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */,
 				D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,
@@ -439,6 +466,7 @@
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
+				D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,

@@ -54,10 +54,6 @@ class RecieveCoinsViewController: UIViewController, UITableViewDataSource, UITab
     return cell
   }
   
-  func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-    return "COIN"
-  }
-  
   func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
     let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 38))
     header.backgroundColor = UIColor.init(red: 0.05, green: 0.05, blue: 0.05, alpha: 1.0)
@@ -71,12 +67,6 @@ class RecieveCoinsViewController: UIViewController, UITableViewDataSource, UITab
     header.addSubview(label)
     
     return header
-  }
-  
-  // MARK: Actions
-  //
-  @IBAction func cancel(_ sender: UIButton) {
-    dismiss(animated: true, completion: nil)
   }
   
   // MARK: Private Methods
