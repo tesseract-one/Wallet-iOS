@@ -10,10 +10,6 @@ import UIKit
 
 class MnemonicsViewController: UIViewController {
   
-  // MARK: Properties
-  //
-  let mnemonic: String = "we have all heard how crucial it is to set intentions goals and targets"
-  
   // MARK: Outlets
   //
   @IBOutlet weak var mnemonicsTextView: UITextView!
@@ -35,7 +31,10 @@ class MnemonicsViewController: UIViewController {
   // MARK: Private functions
   //
   private func setUp() {
+    // Create Wallet
+    AppState.shared.createWallet()
+
     // Set up TextView
-    mnemonicsTextView.text = mnemonic
+    mnemonicsTextView.text = AppState.shared.wallet?.mnemonic
   }
 }

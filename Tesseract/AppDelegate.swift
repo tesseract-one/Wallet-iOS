@@ -14,16 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    let isAlreadyRegistered: Bool = true
-    var rootController: UIViewController
+    var rootViewController: UIViewController
     
-    if isAlreadyRegistered {
-      rootController = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "RootControllerID")
+    // Temprorary
+    AppState.shared.createWallet()
+    
+    if AppState.shared.wallet != nil {
+      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "SignInController")
     } else {
-      rootController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "RootControllerID")
+      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "RegistrationController")
     }
     
-    self.window?.rootViewController = rootController
+    self.window?.rootViewController = rootViewController
+    
+    NotificationCenter.default.addObserver(self, selector: #selector(self.showMainStoryboard), name: NSNotification.Name(rawValue: "UnblockedWallet"), object: nil)
     
     return true
   }
@@ -50,6 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
   }
 
-
+  @objc private func showMainStoryboard() {
+    UIView.transition(with: self.window!, duration: 0.5, options: UIView.AnimationOptions.transitionFlipFromLeft, animations: {
+     self.window?.rootViewController = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "HomeController")
+    }, completion: nil)
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+  }
 }
 

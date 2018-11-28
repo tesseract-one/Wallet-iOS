@@ -40,11 +40,11 @@ class MnemonicsVerificationViewController: UIViewController {
       mnemonicsVerificationTextView.textViewDidChange(mnemonicsVerificationTextView)
       mnemonicsVerificationTextView.error = "Mnemonics are different!"
     } else {
-      performSegue(withIdentifier: "ShowHome", sender: self)
+      AppState.shared.unblockWallet()
     }
   }
   
   @IBAction func skipMnemonicsVerification(_ sender: UIButton) {
-    performSegue(withIdentifier: "ShowHome", sender: self)
+    AppState.shared.unblockWallet()
   }
 }

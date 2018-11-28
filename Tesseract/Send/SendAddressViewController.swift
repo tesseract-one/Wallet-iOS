@@ -29,7 +29,7 @@ class SendAddressViewController: UIViewController {
       return
     }
     
-    print(address)
+    performSegue(withIdentifier: "ShowSendAmount", sender: self)
   }
   
   @IBAction func scan(_ sender: UIButton) {

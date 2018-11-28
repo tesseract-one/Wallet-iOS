@@ -41,7 +41,7 @@ class LoginViewController: UIViewController {
       passwordField.text = ""
       passwordField.error = "Wrong password!"
     } else {
-      performSegue(withIdentifier: "ShowHome", sender: self)
+      AppState.shared.unblockWallet()
     }
   }
   
