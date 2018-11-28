@@ -69,6 +69,12 @@ class RecieveCoinsViewController: UIViewController, UITableViewDataSource, UITab
     return header
   }
   
+  // MARK: Actions
+  //
+  @IBAction func cancel(_ sender: UIBarButtonItem) {
+    self.navigationController?.dismiss(animated: true, completion: nil)
+  }
+  
   // MARK: Private Methods
   //
   private func loadCoins() {

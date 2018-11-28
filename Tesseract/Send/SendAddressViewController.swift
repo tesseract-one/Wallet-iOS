@@ -20,6 +20,10 @@ class SendAddressViewController: UIViewController {
   
   // MARK: Actions
   //
+  @IBAction func cancel(_ sender: UIBarButtonItem) {
+    self.navigationController?.dismiss(animated: true, completion: nil)
+  }
+  
   @IBAction func next(_ sender: UIButton) {
     view.endEditing(true)
     

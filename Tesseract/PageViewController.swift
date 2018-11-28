@@ -1,5 +1,5 @@
 //
-//  HomePageViewController.swift
+//  PageViewController.swift
 //  Tesseract
 //
 //  Created by Yura Kulynych on 11/22/18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HomePageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
+class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource {
   
   // MARK: Props
   //

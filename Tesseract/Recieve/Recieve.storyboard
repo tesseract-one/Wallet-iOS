@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Jmn-Rm-5dG">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="17B-F0-uST">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -18,19 +18,19 @@
         <!--Recieve-->
         <scene sceneID="pnJ-2Q-ZeX">
             <objects>
-                <viewController storyboardIdentifier="RecieveController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Jmn-Rm-5dG" customClass="RecieveCoinsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Jmn-Rm-5dG" customClass="RecieveCoinsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kFF-MA-NKt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qr-code" translatesAutoresizingMaskIntoConstraints="NO" id="NAC-Ji-tfN">
-                                <rect key="frame" x="87.5" y="52" width="200" height="200"/>
+                                <rect key="frame" x="97" y="32" width="181" height="181"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="NAC-Ji-tfN" secondAttribute="height" multiplier="1:1" id="Dgy-Yd-haF"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="7g9-9n-qT8">
-                                <rect key="frame" x="16" y="268" width="343" height="22"/>
+                                <rect key="frame" x="16" y="229" width="343" height="22"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="0x2313123350as212dasdasdas3bwerlk" textAlignment="natural" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9M-Sg-TP0">
                                         <rect key="frame" x="0.0" y="0.0" width="277" height="22"/>
@@ -57,13 +57,13 @@
                                         <fontDescription key="fontDescription" name="Material-Design-Icons" family="Material Design Icons" pointSize="17"/>
                                         <state key="normal" title=""/>
                                         <connections>
-                                            <segue destination="R0g-hj-vMH" kind="showDetail" id="hNd-am-FR5"/>
+                                            <segue destination="R0g-hj-vMH" kind="show" id="hNd-am-FR5"/>
                                         </connections>
                                     </button>
                                 </subviews>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="38" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Ema-Gg-pwZ">
-                                <rect key="frame" x="0.0" y="310" width="375" height="357"/>
+                                <rect key="frame" x="0.0" y="271" width="375" height="332"/>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -135,6 +135,11 @@
                     </view>
                     <navigationItem key="navigationItem" title="Recieve" id="U9U-ij-OZ2">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="uVd-44-Nfr"/>
+                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="1X5-FT-Sft">
+                            <connections>
+                                <action selector="cancel:" destination="Jmn-Rm-5dG" id="WYs-UX-oNN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="88O-3G-MMY"/>
                     </navigationItem>
                     <connections>
@@ -143,35 +148,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qTE-wp-kqF" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="407" y="1415"/>
+            <point key="canvasLocation" x="1344.8" y="1414.5427286356824"/>
         </scene>
-        <!--Addresses View Controller-->
+        <!--Addresses-->
         <scene sceneID="Ekq-tc-Ga5">
             <objects>
                 <viewController id="R0g-hj-vMH" customClass="AddressesViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="APd-Kb-pjB">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cDi-3Q-P49" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="9YV-Kt-qQf"/>
-                                </constraints>
-                                <color key="barTintColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <items>
-                                    <navigationItem title="Addresses" id="ydl-xg-bK6">
-                                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="EzD-BE-Udq">
-                                            <connections>
-                                                <action selector="cancel:" destination="R0g-hj-vMH" id="Hun-Cf-8DV"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="dYK-xP-geu"/>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="38" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9gm-ws-7nN">
-                                <rect key="frame" x="0.0" y="83" width="375" height="584"/>
+                                <rect key="frame" x="0.0" y="19" width="375" height="584"/>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
@@ -232,22 +220,41 @@
                         <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="9gm-ws-7nN" firstAttribute="leading" secondItem="APd-Kb-pjB" secondAttribute="leading" id="0bx-ym-nc3"/>
-                            <constraint firstItem="9gm-ws-7nN" firstAttribute="top" secondItem="cDi-3Q-P49" secondAttribute="bottom" constant="19" id="BOA-rg-k7B"/>
-                            <constraint firstItem="cDi-3Q-P49" firstAttribute="trailing" secondItem="fUb-Dx-dDx" secondAttribute="trailing" id="E8e-vp-XEM"/>
-                            <constraint firstItem="cDi-3Q-P49" firstAttribute="leading" secondItem="fUb-Dx-dDx" secondAttribute="leading" id="RbF-pj-pYH"/>
+                            <constraint firstItem="9gm-ws-7nN" firstAttribute="top" secondItem="fUb-Dx-dDx" secondAttribute="top" constant="19" id="4ce-Xh-yHi"/>
                             <constraint firstItem="fUb-Dx-dDx" firstAttribute="trailing" secondItem="9gm-ws-7nN" secondAttribute="trailing" id="ioU-ha-bHN"/>
-                            <constraint firstItem="cDi-3Q-P49" firstAttribute="top" secondItem="fUb-Dx-dDx" secondAttribute="top" id="lVR-M4-XB2"/>
                             <constraint firstItem="fUb-Dx-dDx" firstAttribute="bottom" secondItem="9gm-ws-7nN" secondAttribute="bottom" id="mjV-6o-02m"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fUb-Dx-dDx"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Addresses" id="7FG-UA-CbS">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="29a-AM-Kke"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="addressesTableView" destination="9gm-ws-7nN" id="CWY-8z-Wu7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cQT-9C-CyL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1129" y="1417"/>
+            <point key="canvasLocation" x="2068" y="1416.3418290854574"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Psw-Yp-F6B">
+            <objects>
+                <navigationController storyboardIdentifier="RecieveController" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="17B-F0-uST" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="VQr-V6-lg3" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Jmn-Rm-5dG" kind="relationship" relationship="rootViewController" id="FNm-nw-afp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PYD-Gs-pYL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="612" y="1415"/>
         </scene>
     </scenes>
     <resources>
