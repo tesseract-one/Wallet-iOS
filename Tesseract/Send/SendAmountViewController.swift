@@ -78,11 +78,11 @@ class SendAmountViewController: UIViewController, UITableViewDataSource, UITable
   // MARK: Private Methods
   //
   private func loadCoins() {
-    let coin1 = Coin(name: "Ethereum", abbreviation: "ETH", balance: 1.645, icon: nil)!
-    let coin2 = Coin(name: "Cardano", abbreviation: "ADA", balance: 322, icon: nil)!
-    let coin3 = Coin(name: "Bitcoin", abbreviation: "BTC", balance: 33.78, icon: nil)!
-    let coin4 = Coin(name: "Colu", abbreviation: "CLN", balance: 621, icon: nil)!
-    let coin5 = Coin(name: "EOS.IO", abbreviation: "EOS", balance: 82.821, icon: nil)!
+    let coin1 = Coin("Ethereum", "ETH", 1.645, nil)!
+    let coin2 = Coin("Cardano", "ADA", 322, nil)!
+    let coin3 = Coin("Bitcoin", "BTC", 33.78, nil)!
+    let coin4 = Coin("Colu", "CLN", 621, nil)!
+    let coin5 = Coin("EOS.IO", "EOS", 82.821, nil)!
     
     coins += [coin1, coin2, coin3, coin4, coin5]
   }

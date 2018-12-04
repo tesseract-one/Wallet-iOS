@@ -19,7 +19,7 @@ class Coin {
 
   //MARK: Initialization
   //
-  init?(name: String, abbreviation: String, balance: Double, icon: UIImage?) {
+  init?(_ name: String, _ abbreviation: String, _ balance: Double, _ icon: UIImage?) {
     
     guard !name.isEmpty else {
       return nil
