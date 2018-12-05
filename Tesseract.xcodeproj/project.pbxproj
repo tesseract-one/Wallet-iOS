@@ -47,8 +47,11 @@
 		D1D292E721B16329000DA665 /* Round.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D292E621B16329000DA665 /* Round.swift */; };
 		D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */; };
 		D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */; };
-		D1D9A6CD21B546EE00D237E6 /* TokensTableViewExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1D9A6CC21B546EE00D237E6 /* TokensTableViewExpandedCell.xib */; };
-		D1D9A6CF21B548D100D237E6 /* TokensTableViewExpandedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9A6CE21B548D100D237E6 /* TokensTableViewExpandedCell.swift */; };
+		D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84E21B80347007D0433 /* AssetsTemplateTableViewController.swift */; };
+		D1D5F85321B8339B007D0433 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85221B8339B007D0433 /* Asset.swift */; };
+		D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85621B834C6007D0433 /* AssetsTemplateTableViewCell.swift */; };
+		D1D9A6CD21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */; };
+		D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */; };
 		D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */; };
 		D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */; };
 		D1F9869E21AC486F000B4C3C /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1F9869D21AC486F000B4C3C /* Send.storyboard */; };
@@ -123,8 +126,11 @@
 		D1D292E621B16329000DA665 /* Round.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Round.swift; sourceTree = "<group>"; };
 		D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachBarTextFieldBackground.swift; sourceTree = "<group>"; };
 		D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBackgroundTableView.swift; sourceTree = "<group>"; };
-		D1D9A6CC21B546EE00D237E6 /* TokensTableViewExpandedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TokensTableViewExpandedCell.xib; sourceTree = "<group>"; };
-		D1D9A6CE21B548D100D237E6 /* TokensTableViewExpandedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokensTableViewExpandedCell.swift; sourceTree = "<group>"; };
+		D1D5F84E21B80347007D0433 /* AssetsTemplateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTemplateTableViewController.swift; sourceTree = "<group>"; };
+		D1D5F85221B8339B007D0433 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
+		D1D5F85621B834C6007D0433 /* AssetsTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTemplateTableViewCell.swift; sourceTree = "<group>"; };
+		D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetsTableViewExpandedCell.xib; sourceTree = "<group>"; };
+		D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTableViewExpandedCell.swift; sourceTree = "<group>"; };
 		D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesTableViewCell.swift; sourceTree = "<group>"; };
 		D1F9869D21AC486F000B4C3C /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
@@ -208,9 +214,11 @@
 				D1AE725821A2C28000CA1C17 /* UIHelpers */,
 				D171DE49219DA36A003134DD /* Resources */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
+				D1D5F85621B834C6007D0433 /* AssetsTemplateTableViewCell.swift */,
+				D1D5F84E21B80347007D0433 /* AssetsTemplateTableViewController.swift */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
-				D1D9A6CC21B546EE00D237E6 /* TokensTableViewExpandedCell.xib */,
-				D1D9A6CE21B548D100D237E6 /* TokensTableViewExpandedCell.swift */,
+				D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */,
+				D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */,
 				D1D292E021AF06E9000DA665 /* TokensTableViewController.swift */,
 				D1D292E421B15496000DA665 /* TokensTableViewCell.swift */,
 				D1746A3921A6CA7E0045F0AE /* PageViewController.swift */,
@@ -289,6 +297,7 @@
 			children = (
 				D1746A4521A70B7F0045F0AE /* Coin.swift */,
 				D1D292E221AF0897000DA665 /* Token.swift */,
+				D1D5F85221B8339B007D0433 /* Asset.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -439,7 +448,7 @@
 				D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */,
 				D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
-				D1D9A6CD21B546EE00D237E6 /* TokensTableViewExpandedCell.xib in Resources */,
+				D1D9A6CD21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -517,6 +526,7 @@
 				D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */,
 				D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */,
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
+				D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
@@ -536,11 +546,12 @@
 				D1F986A621AC7053000B4C3C /* SendAmountTableViewCell.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
 				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
-				D1D9A6CF21B548D100D237E6 /* TokensTableViewExpandedCell.swift in Sources */,
+				D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				D1746A3A21A6CA7E0045F0AE /* PageViewController.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* Round.swift in Sources */,
+				D1D5F85321B8339B007D0433 /* Asset.swift in Sources */,
 				D1746A4621A70B7F0045F0AE /* Coin.swift in Sources */,
 				D1D292E321AF0897000DA665 /* Token.swift in Sources */,
 				D1D292DF21AEE056000DA665 /* ReviewTableViewController.swift in Sources */,
@@ -548,6 +559,7 @@
 				D13255A921AD7E840099A668 /* AppState.swift in Sources */,
 				D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */,
 				D1F986A421AC6FFB000B4C3C /* SendAmountViewController.swift in Sources */,
+				D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */,
 				D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

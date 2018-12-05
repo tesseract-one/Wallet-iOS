@@ -1,5 +1,5 @@
 //
-//  TokensTableViewExpandedCell.swift
+//  AssetsTableViewExpandedCell.swift
 //  Tesseract
 //
 //  Created by Yura Kulynych on 12/3/18.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-class TokensTableViewExpandedCell: UIView {
+class AssetsTableViewExpandedCell: UIView {
 
   //MARK: Properties
   //
-  @IBOutlet weak var appLabel: UILabel!
+  @IBOutlet weak var assetLabel: UILabel!
   @IBOutlet weak var balanceLabel: UILabel!
 }

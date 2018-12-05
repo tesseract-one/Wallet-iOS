@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TokensTableViewCell: UITableViewCell {
+class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
 
   //MARK: Properties
   @IBOutlet weak var nameLabel: UILabel!
@@ -16,38 +16,11 @@ class TokensTableViewCell: UITableViewCell {
   @IBOutlet weak var balanceUSDLabel: UILabel!
   @IBOutlet weak var balanceUpdateLabel: UILabel!
   @IBOutlet weak var tokenImageView: UIImageView!
-  @IBOutlet weak var stackView: UIStackView!
-  @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
-  
-  var token: Token?
-  var wasSelected: Bool = false
-  var currentHeight: CGFloat = 60
-  var extendedHeight: CGFloat = 60
-  var appCellHeight: Double = 36
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-
-    if !selected {
-      removeApps()
-      wasSelected = false
-      currentHeight = 60
-    } else if !wasSelected {
-      addApps()
-      currentHeight = extendedHeight
-      wasSelected = true
-    }
-  }
   
   // MARK: Public functions
   //
-  func setUp(_ token: Token) {
-    self.token = token
+  override func setUp(_ token: Token) {
+    asset = token
     
     nameLabel.text = token.name
     balanceLabel.text = "\(String(token.balance)) \(token.abbreviation)"
@@ -66,7 +39,7 @@ class TokensTableViewCell: UITableViewCell {
   // MARK: Private functions
   //
   private func addApps() {
-    guard let token = self.token else {
+    guard let token = self.asset else {
       fatalError("Token is missed in TokensTableViewCell")
     }
     
@@ -84,7 +57,7 @@ class TokensTableViewCell: UITableViewCell {
     let shownApps = apps.prefix(3)
     
     for app in shownApps {
-      addAppView(app.name, app.balance, token.abbreviation)
+      addAssetSubView(app.name, app.balance, token.abbreviation)
     }
     
     if apps.count > 3 {
@@ -93,20 +66,7 @@ class TokensTableViewCell: UITableViewCell {
         acc + hiddenApp.balance
       })
       
-      addAppView("…and \(hiddenApps.count) more Apps", hiddenAppsBalance, token.abbreviation)
+      addAssetSubView("…and \(hiddenApps.count) more Apps", hiddenAppsBalance, token.abbreviation)
     }
-  }
-  
-  private func removeApps() {
-    stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-  }
-  
-  private func addAppView(_ appName: String, _ appBalance: Double, _ tokenAbbreviation: String) {
-    let appView = UINib(nibName: "TokensTableViewExpandedCell", bundle: nil).instantiate(withOwner: nil, options: nil).first as! TokensTableViewExpandedCell
-    
-    appView.appLabel.text = appName
-    appView.balanceLabel.text = "\(String(Double(appBalance).rounded(toPlaces: 2))) \(tokenAbbreviation)"
-    
-    stackView.addArrangedSubview(appView)
   }
 }

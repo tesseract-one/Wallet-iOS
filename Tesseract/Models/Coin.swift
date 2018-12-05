@@ -8,11 +8,10 @@
 
 import UIKit
 
-class Coin {
+class Coin: Asset {
 
   //MARK: Properties
   //
-  var name: String
   var abbreviation: String
   var balance: Double
   var icon: UIImage?
@@ -20,10 +19,6 @@ class Coin {
   //MARK: Initialization
   //
   init?(_ name: String, _ abbreviation: String, _ balance: Double, _ icon: UIImage?) {
-    
-    guard !name.isEmpty else {
-      return nil
-    }
     
     guard !abbreviation.isEmpty else {
       return nil
@@ -33,9 +28,10 @@ class Coin {
       return nil
     }
     
-    self.name = name
     self.abbreviation = abbreviation
     self.balance = balance
     self.icon = icon
+    
+    super.init(name)
   }
 }
