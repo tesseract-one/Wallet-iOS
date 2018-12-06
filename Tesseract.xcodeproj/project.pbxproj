@@ -50,6 +50,10 @@
 		D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84E21B80347007D0433 /* AssetsTemplateTableViewController.swift */; };
 		D1D5F85321B8339B007D0433 /* Asset.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85221B8339B007D0433 /* Asset.swift */; };
 		D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85621B834C6007D0433 /* AssetsTemplateTableViewCell.swift */; };
+		D1D5F85921B8428A007D0433 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85821B8428A007D0433 /* App.swift */; };
+		D1D5F85B21B84374007D0433 /* AppsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85A21B84374007D0433 /* AppsTableViewController.swift */; };
+		D1D5F85D21B84397007D0433 /* AppsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85C21B84397007D0433 /* AppsTableViewCell.swift */; };
+		D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85E21B8494F007D0433 /* RoundedImage.swift */; };
 		D1D9A6CD21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */; };
 		D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */; };
 		D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */; };
@@ -129,6 +133,10 @@
 		D1D5F84E21B80347007D0433 /* AssetsTemplateTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTemplateTableViewController.swift; sourceTree = "<group>"; };
 		D1D5F85221B8339B007D0433 /* Asset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Asset.swift; sourceTree = "<group>"; };
 		D1D5F85621B834C6007D0433 /* AssetsTemplateTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTemplateTableViewCell.swift; sourceTree = "<group>"; };
+		D1D5F85821B8428A007D0433 /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
+		D1D5F85A21B84374007D0433 /* AppsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsTableViewController.swift; sourceTree = "<group>"; };
+		D1D5F85C21B84397007D0433 /* AppsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsTableViewCell.swift; sourceTree = "<group>"; };
+		D1D5F85E21B8494F007D0433 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetsTableViewExpandedCell.xib; sourceTree = "<group>"; };
 		D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTableViewExpandedCell.swift; sourceTree = "<group>"; };
 		D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
@@ -220,6 +228,8 @@
 				D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */,
 				D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */,
 				D1D292E021AF06E9000DA665 /* TokensTableViewController.swift */,
+				D1D5F85C21B84397007D0433 /* AppsTableViewCell.swift */,
+				D1D5F85A21B84374007D0433 /* AppsTableViewController.swift */,
 				D1D292E421B15496000DA665 /* TokensTableViewCell.swift */,
 				D1746A3921A6CA7E0045F0AE /* PageViewController.swift */,
 				D1D292DA21AEB77F000DA665 /* HomeViewController.swift */,
@@ -298,6 +308,7 @@
 				D1746A4521A70B7F0045F0AE /* Coin.swift */,
 				D1D292E221AF0897000DA665 /* Token.swift */,
 				D1D5F85221B8339B007D0433 /* Asset.swift */,
+				D1D5F85821B8428A007D0433 /* App.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -317,6 +328,7 @@
 				D1D292E621B16329000DA665 /* Round.swift */,
 				D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */,
 				D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */,
+				D1D5F85E21B8494F007D0433 /* RoundedImage.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -523,6 +535,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */,
+				D1D5F85D21B84397007D0433 /* AppsTableViewCell.swift in Sources */,
 				D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */,
 				D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */,
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
@@ -535,10 +548,12 @@
 				D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
+				D1D5F85921B8428A007D0433 /* App.swift in Sources */,
 				D1D292E521B15496000DA665 /* TokensTableViewCell.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */,
+				D1D5F85B21B84374007D0433 /* AppsTableViewController.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */,
 				D1D292DB21AEB77F000DA665 /* HomeViewController.swift in Sources */,
@@ -551,6 +566,7 @@
 				D1746A3A21A6CA7E0045F0AE /* PageViewController.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* Round.swift in Sources */,
+				D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */,
 				D1D5F85321B8339B007D0433 /* Asset.swift in Sources */,
 				D1746A4621A70B7F0045F0AE /* Coin.swift in Sources */,
 				D1D292E321AF0897000DA665 /* Token.swift in Sources */,

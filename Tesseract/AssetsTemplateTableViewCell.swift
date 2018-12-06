@@ -11,8 +11,9 @@ import UIKit
 class AssetsTemplateTableViewCell<A>: UITableViewCell {
 
   //MARK: Properties
-  @IBOutlet weak var stackView: UIStackView!
-  @IBOutlet weak var stackViewHeight: NSLayoutConstraint!
+  //
+  var stackView: UIStackView?
+  var stackViewHeight: NSLayoutConstraint?
   
   var asset: A?
   var wasSelected: Bool = false
@@ -23,6 +24,8 @@ class AssetsTemplateTableViewCell<A>: UITableViewCell {
   override func awakeFromNib() {
     super.awakeFromNib()
     // Initialization code
+    
+    setUpStackView()
   }
   
   override func setSelected(_ selected: Bool, animated: Bool) {
@@ -42,7 +45,7 @@ class AssetsTemplateTableViewCell<A>: UITableViewCell {
   // MARK: Public functions
   //
   public func removeAssets() {
-    stackView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
+    stackView!.arrangedSubviews.forEach({ $0.removeFromSuperview() })
   }
   
   public func addAssetSubView(_ assetName: String, _ assetBalance: Double, _ tokenAbbreviation: String) {
@@ -51,7 +54,30 @@ class AssetsTemplateTableViewCell<A>: UITableViewCell {
     assetSubView.assetLabel.text = assetName
     assetSubView.balanceLabel.text = "\(String(Double(assetBalance).rounded(toPlaces: 2))) \(tokenAbbreviation)"
     
-    stackView.addArrangedSubview(assetSubView)
+    stackView!.addArrangedSubview(assetSubView)
+  }
+  
+  // MARK: Private functions
+  //
+  private func setUpStackView() {
+    
+    let stackView = UIStackView()
+    
+    addSubview(stackView)
+    
+    stackView.axis = .vertical
+    stackView.alignment = .fill
+    stackView.distribution = .fillProportionally
+    stackView.spacing = 0
+    
+    stackView.translatesAutoresizingMaskIntoConstraints = false
+    stackView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
+    stackView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
+    stackView.topAnchor.constraint(equalTo: self.topAnchor, constant: 60).isActive = true
+    stackViewHeight = stackView.heightAnchor.constraint(equalToConstant: 0)
+    stackViewHeight?.isActive = true
+    
+    self.stackView = stackView
   }
   
   // MARK: Internal functions

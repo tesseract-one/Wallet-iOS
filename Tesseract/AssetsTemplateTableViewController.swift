@@ -78,7 +78,7 @@ class AssetsTemplateTableViewController<A: Asset, C: AssetsTemplateTableViewCell
   }
   
   override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    let cell = tableView.cellForRow(at: indexPath) as? TokensTableViewCell
+    let cell = tableView.cellForRow(at: indexPath) as? C
     return cell?.currentHeight ?? assetCellHeight
   }
   

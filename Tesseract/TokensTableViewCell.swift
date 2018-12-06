@@ -17,7 +17,7 @@ class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
   @IBOutlet weak var balanceUpdateLabel: UILabel!
   @IBOutlet weak var tokenImageView: UIImageView!
   
-  // MARK: Public functions
+  // MARK: Override functions
   //
   override func setUp(_ token: Token) {
     asset = token
@@ -35,10 +35,8 @@ class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
       balanceUpdateLabel.text = "+\(tokenBalanceUpdateText)"
     }
   }
-  
-  // MARK: Private functions
-  //
-  private func addApps() {
+
+  override func addAssets() {
     guard let token = self.asset else {
       fatalError("Token is missed in TokensTableViewCell")
     }
@@ -49,10 +47,13 @@ class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
       return
     }
     
-    stackViewHeight.constant = CGFloat(apps.count >= 4 ? appCellHeight * 4 : appCellHeight * Double(apps.count))
-    stackView.updateConstraints()
+    let stackViewHeightValue = CGFloat(apps.count >= 4 ? appCellHeight * 4 : appCellHeight * Double(apps.count))
     
-    extendedHeight = stackViewHeight.constant + 60
+    stackViewHeight?.isActive = false
+    stackViewHeight = stackView?.heightAnchor.constraint(equalToConstant: stackViewHeightValue)
+    stackViewHeight?.isActive = true
+    
+    extendedHeight = stackViewHeightValue + 60
     
     let shownApps = apps.prefix(3)
     
