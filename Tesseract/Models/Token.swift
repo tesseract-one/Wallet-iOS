@@ -8,36 +8,35 @@
 
 import UIKit
 
-class Token: Coin {
+class Token {
   
   //MARK: Properties
   //
+  var name: String
+  var abbreviation: String
+  var icon: UIImage?
   var price: Double
-  var balanceUpdate: Double?
-  var apps: [(name: String, balance: Double)]
   
   //MARK: Initialization
   //
-  init?(name: String, abbreviation: String, icon: UIImage?, price: Double, balanceUpdate: Double?, apps: [(name: String, balance: Double)]) {
+  init?(name: String, abbreviation: String, icon: UIImage?, price: Double) {
+    
+    guard !name.isEmpty else {
+      return nil
+    }
+    
+    guard !abbreviation.isEmpty else {
+      return nil
+    }
     
     guard price >= 0 else {
       return nil
     }
     
+    self.name = name
+    self.abbreviation = abbreviation
+    self.icon = icon
     self.price = price
-    self.balanceUpdate = balanceUpdate ?? 0
-    
-    let balance = apps.reduce(0, { (acc, app) -> Double? in
-      guard app.balance >= 0 else {
-        fatalError("App balance can't be less than 0. In app \(app.name)")
-      }
-      
-      return acc! + app.balance
-    })
-    
-    self.apps = apps
-    
-    super.init(name, abbreviation, balance!, icon)
   }
 
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AppsTableViewCell: AssetsTemplateTableViewCell<App> {
+class AppsTableViewCell: AssetsTemplateTableViewCell<AppAsset> {
   
   //MARK: Properties
   @IBOutlet weak var nameLabel: UILabel!
@@ -17,7 +17,7 @@ class AppsTableViewCell: AssetsTemplateTableViewCell<App> {
   
   // MARK: Override functions
   //
-  override func setUp(_ app: App) {
+  override func setUp(_ app: AppAsset) {
     asset = app
     
     nameLabel.text = app.name

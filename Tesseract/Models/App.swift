@@ -8,26 +8,44 @@
 
 import UIKit
 
-class App: Asset {
+class App {
   
   //MARK: Properties
   //
-  var abbreviation: String
+  var name: String
   var icon: UIImage?
-  var accounts: [(name: String, balance: Double)]
+  var token: Token
+  var accounts: [Account] = []
   
   //MARK: Initialization
   //
-  init?(_ name: String, _ abbreviation: String, _ icon: UIImage?, _ accounts: [(name: String, balance: Double)]) {
+  init?(_ name: String, _ icon: UIImage?, _ token: Token, _ accounts: [Account] ) {
     
-    guard !abbreviation.isEmpty else {
+    guard !name.isEmpty else {
       return nil
     }
     
-    self.abbreviation = abbreviation
+    self.name = name
     self.icon = icon
+    self.token = token
     self.accounts = accounts
+  }
+  
+  // MARK: Public functions
+  //
+  public func getBalance() -> Double {
+    return accounts.reduce(0, { (balance, account) -> Double? in
+      guard account.balance >= 0 else {
+        fatalError("Account balance can't be less than 0. In app \(account.name)")
+      }
     
-    super.init(name)
+      return balance! + account.balance
+    }) ?? 0
+  }
+  
+  public func getBalanceUpdate() -> Double {
+    return accounts.reduce(0, { (balanceUpdate, account) -> Double in
+      return balanceUpdate + account.balanceUpdate
+    })
   }
 }

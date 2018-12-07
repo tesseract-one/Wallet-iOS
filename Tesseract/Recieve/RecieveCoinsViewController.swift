@@ -78,12 +78,18 @@ class RecieveCoinsViewController: UIViewController, UITableViewDataSource, UITab
   // MARK: Private Methods
   //
   private func loadCoins() {
-    let coin1 = Coin("Ethereum", "ETH", 1.645, nil)!
-    let coin2 = Coin("Cardano", "ADA", 322, nil)!
-    let coin3 = Coin("Bitcoin", "BTC", 33.78, nil)!
-    let coin4 = Coin("Colu", "CLN", 621, nil)!
-    let coin5 = Coin("EOS.IO", "EOS", 82.821, nil)!
-
-    coins += [coin1, coin2, coin3, coin4, coin5]
+    coins = AppState.shared.wallet?.stub.apps.reduce([], { (acc, app) -> [Coin] in
+      let coinHaveTokenIndex = acc.firstIndex(where: { $0.name == app.token.name })
+      
+      if coinHaveTokenIndex != nil {
+        var acc = acc
+        acc[coinHaveTokenIndex!].balance = app.getBalance()
+        return acc
+      }
+      
+      let coin = Coin.init(name: app.token.name, abbreviation: app.token.abbreviation, balance: app.getBalance())
+      
+      return acc + [coin]
+    }) ?? []
   }
 }

@@ -23,6 +23,7 @@ class AppState {
         }
       }
     }
+    var stub: Stub
   }
   
   var wallet: Wallet?
@@ -34,7 +35,7 @@ class AppState {
   // MARK: Methods
   //
   func createWallet() {
-    wallet = Wallet(mnemonic: "we have all heard how crucial it is to set intentions goals and targets", unblocked: false)
+    wallet = Wallet(mnemonic: "we have all heard how crucial it is to set intentions goals and targets", unblocked: false, stub: Stub())
   }
   
   func unblockWallet() {

@@ -8,7 +8,11 @@
 
 import UIKit
 
-class AssetsTemplateTableViewController<A: Asset, C: AssetsTemplateTableViewCell<A>>: UITableViewController, UISearchResultsUpdating {
+protocol NamedAsset {
+  var name: String { get set }
+}
+
+class AssetsTemplateTableViewController<A: NamedAsset, C: AssetsTemplateTableViewCell<A>>: UITableViewController, UISearchResultsUpdating {
   
   // MARK: Properties
   //

@@ -14,8 +14,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDelegate, UI
   //
   lazy var orderedViewControllers: [UIViewController] = {
     return [
-      getViewControllerByID(viewController: "GreenID"),
-      getViewControllerByID(viewController: "RedID")
+      getViewControllerByID(viewController: "CTRL1"),
+      getViewControllerByID(viewController: "CTRL2")
     ]
   }()
   var pageControl = UIPageControl()

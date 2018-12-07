@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
+class TokensTableViewCell: AssetsTemplateTableViewCell<TokenAsset> {
 
   //MARK: Properties
   @IBOutlet weak var nameLabel: UILabel!
@@ -19,7 +19,7 @@ class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
   
   // MARK: Override functions
   //
-  override func setUp(_ token: Token) {
+  override func setUp(_ token: TokenAsset) {
     asset = token
     
     nameLabel.text = token.name
@@ -27,9 +27,9 @@ class TokensTableViewCell: AssetsTemplateTableViewCell<Token> {
     balanceUSDLabel.text = "$\(String(Double(token.balance * token.price).rounded(toPlaces: 2)))"
     tokenImageView.image = token.icon
     
-    let tokenBalanceUpdateText = "\(String(Double(token.balanceUpdate ?? 0).rounded(toPlaces: 2))) \(token.abbreviation)"
+    let tokenBalanceUpdateText = "\(String(Double(token.balanceUpdate).rounded(toPlaces: 2))) \(token.abbreviation)"
     
-    if token.balanceUpdate == nil || token.balanceUpdate! <= 0.0 {
+    if token.balanceUpdate <= 0.0 {
       balanceUpdateLabel.text = tokenBalanceUpdateText
     } else {
       balanceUpdateLabel.text = "+\(tokenBalanceUpdateText)"
