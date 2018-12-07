@@ -177,10 +177,10 @@
             </objects>
             <point key="canvasLocation" x="-271" y="680"/>
         </scene>
-        <!--View Controller-->
+        <!--Cards View Controller-->
         <scene sceneID="hvP-gz-OjQ">
             <objects>
-                <viewController id="gcu-95-NeE" sceneMemberID="viewController">
+                <viewController id="gcu-95-NeE" customClass="CardsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="foh-i2-lEx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -190,9 +190,10 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEH-mY-Jg0">
                                         <rect key="frame" x="0.0" y="0.0" width="1125" height="192"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                                     </view>
                                 </subviews>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="cEH-mY-Jg0" firstAttribute="top" secondItem="JSm-xL-hhe" secondAttribute="top" id="D97-L1-mWC"/>
                                     <constraint firstAttribute="bottom" secondItem="cEH-mY-Jg0" secondAttribute="bottom" id="NXA-Ar-aMi"/>
@@ -201,7 +202,7 @@
                                 </constraints>
                             </scrollView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JSm-xL-hhe" firstAttribute="top" secondItem="SQg-xP-HEd" secondAttribute="top" id="1oQ-oY-m1B"/>
                             <constraint firstItem="cEH-mY-Jg0" firstAttribute="height" secondItem="foh-i2-lEx" secondAttribute="height" id="EVH-99-ZzG"/>
@@ -212,6 +213,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SQg-xP-HEd"/>
                     </view>
+                    <connections>
+                        <outlet property="innerView" destination="cEH-mY-Jg0" id="7FK-Fa-IrJ"/>
+                        <outlet property="scrollView" destination="JSm-xL-hhe" id="Pre-zK-b1X"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEE-NU-i24" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

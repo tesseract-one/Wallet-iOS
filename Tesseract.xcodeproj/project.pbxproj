@@ -34,9 +34,11 @@
 		D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */; };
 		D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */; };
 		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
-		D1746A3A21A6CA7E0045F0AE /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A3921A6CA7E0045F0AE /* PageViewController.swift */; };
 		D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */; };
 		D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */; };
+		D17E6F3621BAB311002A0A4C /* CardAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D17E6F3421BAB311002A0A4C /* CardAccountView.xib */; };
+		D17E6F3721BAB311002A0A4C /* CardAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E6F3521BAB311002A0A4C /* CardAccountView.swift */; };
+		D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E6F3821BAB836002A0A4C /* CardsViewController.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
@@ -122,9 +124,11 @@
 		D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewController.swift; sourceTree = "<group>"; };
 		D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsVerificationViewController.swift; sourceTree = "<group>"; };
 		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
-		D1746A3921A6CA7E0045F0AE /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		D1746A4021A6FEE40045F0AE /* RecieveCoinsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveCoinsViewController.swift; sourceTree = "<group>"; };
 		D1746A4221A7085A0045F0AE /* RecieveCoinsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecieveCoinsTableViewCell.swift; sourceTree = "<group>"; };
+		D17E6F3421BAB311002A0A4C /* CardAccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardAccountView.xib; sourceTree = "<group>"; };
+		D17E6F3521BAB311002A0A4C /* CardAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAccountView.swift; sourceTree = "<group>"; };
+		D17E6F3821BAB836002A0A4C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -234,9 +238,11 @@
 				D171DE49219DA36A003134DD /* Resources */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49621945F1F00FE66F1 /* Main.storyboard */,
+				D17E6F3821BAB836002A0A4C /* CardsViewController.swift */,
 				D131639E21B981F40066FB4A /* CardView.xib */,
+				D17E6F3421BAB311002A0A4C /* CardAccountView.xib */,
+				D17E6F3521BAB311002A0A4C /* CardAccountView.swift */,
 				D131639F21B981F40066FB4A /* CardView.swift */,
-				D1746A3921A6CA7E0045F0AE /* PageViewController.swift */,
 				D1D292DA21AEB77F000DA665 /* HomeViewController.swift */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
@@ -508,6 +514,7 @@
 				D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */,
 				D131639D21B973540066FB4A /* Apps.storyboard in Resources */,
 				D13163A021B981F40066FB4A /* CardView.xib in Resources */,
+				D17E6F3621BAB311002A0A4C /* CardAccountView.xib in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
 				D131639B21B972AF0066FB4A /* Tokens.storyboard in Resources */,
 				D1D9A6CD21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib in Resources */,
@@ -584,6 +591,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D17E6F3721BAB311002A0A4C /* CardAccountView.swift in Sources */,
 				D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */,
 				D1D5F85D21B84397007D0433 /* AppsTableViewCell.swift in Sources */,
 				D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */,
@@ -617,7 +625,7 @@
 				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
 				D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
-				D1746A3A21A6CA7E0045F0AE /* PageViewController.swift in Sources */,
+				D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */,
 				D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */,

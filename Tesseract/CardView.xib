@@ -75,6 +75,14 @@
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <connections>
+                <outlet property="accountsStackView" destination="nUV-wr-iUu" id="TNw-Ah-blp"/>
+                <outlet property="accountsStackViewHeight" destination="INC-1I-yeh" id="Qgu-fe-gZd"/>
+                <outlet property="backgroundImageView" destination="NHk-Mh-pvf" id="PrW-AW-EVD"/>
+                <outlet property="balanceLabel" destination="t4I-4I-ecz" id="Rhj-1s-YPO"/>
+                <outlet property="balanceUpdateLabel" destination="8yL-dZ-0h3" id="6e0-VE-qvE"/>
+                <outlet property="tokenNameLabel" destination="Giq-uJ-A67" id="T4B-0y-ieu"/>
+            </connections>
         </view>
     </objects>
     <resources>
