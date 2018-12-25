@@ -15,10 +15,11 @@ class Account {
   var name: String
   var balance: Double
   var balanceUpdate: Double
+  var icon: UIImage?
   
   //MARK: Initialization
   //
-  init?(_ name: String, _ balance: Double, _ balanceUpdate: Double?) {
+  init?(_ name: String, _ balance: Double, _ balanceUpdate: Double?, _ icon: UIImage?) {
     
     guard !name.isEmpty else {
       return nil
@@ -31,5 +32,6 @@ class Account {
     self.name = name
     self.balance = balance
     self.balanceUpdate = balanceUpdate ?? 0
+    self.icon = icon
   }
 }

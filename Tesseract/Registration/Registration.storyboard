@@ -20,7 +20,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="RegistrationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8R7-x6-NKM" customClass="KeyboardInputScrollView" customModule="Tesseract" customModuleProvider="target">
@@ -197,7 +197,7 @@
             <objects>
                 <viewController id="TOP-Zx-po9" customClass="TermsOfServiceViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bG2-8s-dpE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bMK-Pn-epb" customClass="CustomInsetsTextView" customModule="Tesseract" customModuleProvider="target">
@@ -320,7 +320,7 @@
             <objects>
                 <viewController id="AsG-nN-6DF" customClass="MnemonicsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOL-u6-Bef">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0j-pk-iE2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
@@ -437,7 +437,7 @@
             <objects>
                 <viewController id="Y3x-gO-Oc3" customClass="MnemonicsVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ubl-XX-NKV">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fbo-JU-TKW" customClass="KeyboardScrollViewToTop" customModule="Tesseract" customModuleProvider="target">

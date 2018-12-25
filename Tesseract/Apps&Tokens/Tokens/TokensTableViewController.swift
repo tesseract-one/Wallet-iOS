@@ -21,7 +21,7 @@ struct TokenAsset: NamedAsset {
 class TokensTableViewController: AssetsTemplateTableViewController<TokenAsset, TokensTableViewCell> {
   
   override func loadAssets() {
-    assets  = AppState.shared.wallet?.stub.apps.reduce([], { (acc, app) -> [TokenAsset] in
+    assets = AppState.shared.wallet?.stub.apps.reduce([], { (acc, app) -> [TokenAsset] in
       let appHaveTokenIndex = acc.firstIndex(where: { $0.name == app.token.name })
       
       if appHaveTokenIndex != nil {

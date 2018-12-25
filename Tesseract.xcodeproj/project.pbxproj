@@ -14,6 +14,7 @@
 		922CA4B321945F2100FE66F1 /* TesseractUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4B221945F2100FE66F1 /* TesseractUITests.swift */; };
 		99CE954A9C34CCB4F6A6FE02 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6A29D766B309DDF470F4EBEE /* Pods_Tesseract.framework */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
+		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
 		D125143C21A8123E0077E04A /* materialdesignicons-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */; };
 		D125144021A830DF0077E04A /* Recieve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D125143F21A830DF0077E04A /* Recieve.storyboard */; };
@@ -104,6 +105,7 @@
 		922CA4B421945F2100FE66F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B3D5048D197D2FB6BB12E2B7 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
+		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D125143B21A8123E0077E04A /* materialdesignicons-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "materialdesignicons-webfont.ttf"; sourceTree = "<group>"; };
 		D125143F21A830DF0077E04A /* Recieve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Recieve.storyboard; sourceTree = "<group>"; };
@@ -300,6 +302,7 @@
 			children = (
 				D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */,
 				D1D292E621B16329000DA665 /* RoundDouble.swift */,
+				D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -599,6 +602,7 @@
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
 				D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
+				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
 				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
@@ -748,6 +752,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -802,6 +807,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -821,6 +827,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Tesseract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -840,6 +847,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.Tesseract;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

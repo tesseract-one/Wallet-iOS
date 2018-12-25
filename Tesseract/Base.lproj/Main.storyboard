@@ -24,20 +24,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Zf-RQ-6o2">
-                                <rect key="frame" x="0.0" y="75.5" width="375" height="192"/>
+                                <rect key="frame" x="0.0" y="75.5" width="375" height="231"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="7Zf-RQ-6o2" secondAttribute="height" multiplier="375:192" id="yhQ-QZ-iPu"/>
+                                    <constraint firstAttribute="width" secondItem="7Zf-RQ-6o2" secondAttribute="height" multiplier="375:231" id="yhQ-QZ-iPu"/>
                                 </constraints>
                                 <connections>
-                                    <segue destination="gcu-95-NeE" kind="embed" id="W1m-S7-gvk"/>
+                                    <segue destination="gcu-95-NeE" kind="embed" identifier="ShowCards" id="W1m-S7-gvk"/>
                                 </connections>
                             </containerView>
-                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="QBU-NG-OeO">
-                                <rect key="frame" x="0.0" y="267.5" width="375" height="39"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="39" id="d00-yM-59o"/>
-                                </constraints>
-                            </pageControl>
                             <stackView opaque="NO" contentMode="center" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZlU-Js-od0">
                                 <rect key="frame" x="16" y="35" width="150" height="21.5"/>
                                 <subviews>
@@ -63,13 +57,12 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cxf-6B-qja" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="6g6-qa-k6D"/>
                                                     <constraint firstAttribute="height" constant="64" id="slY-uq-6Sf"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" name="Material-Design-Icons" family="Material Design Icons" pointSize="24"/>
-                                                <state key="normal" title="">
+                                                <state key="normal" title="" backgroundImage="rounded-button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -94,9 +87,8 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rL-Nk-nZy" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Material-Design-Icons" family="Material Design Icons" pointSize="24"/>
-                                                <state key="normal" title="">
+                                                <state key="normal" title="" backgroundImage="rounded-button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -121,9 +113,8 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0C0-Pp-6Qv" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="64" height="64"/>
-                                                <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="Material-Design-Icons" family="Material Design Icons" pointSize="24"/>
-                                                <state key="normal" title="">
+                                                <state key="normal" title="" backgroundImage="rounded-button">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <userDefinedRuntimeAttributes>
@@ -154,24 +145,21 @@
                         </subviews>
                         <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="HH7-OE-Lnu" firstAttribute="trailing" secondItem="QBU-NG-OeO" secondAttribute="trailing" id="3Gg-CZ-7aR"/>
+                            <constraint firstItem="eSJ-s1-Sg4" firstAttribute="top" secondItem="7Zf-RQ-6o2" secondAttribute="bottom" constant="8" id="7Hh-OI-sZ3"/>
                             <constraint firstItem="HH7-OE-Lnu" firstAttribute="trailing" secondItem="N4j-9f-siW" secondAttribute="trailing" id="Ga8-Ug-MnN"/>
                             <constraint firstItem="7Zf-RQ-6o2" firstAttribute="leading" secondItem="HH7-OE-Lnu" secondAttribute="leading" id="Hhg-bN-mOV"/>
-                            <constraint firstItem="eSJ-s1-Sg4" firstAttribute="top" secondItem="QBU-NG-OeO" secondAttribute="bottom" constant="8" id="Mh5-4p-8nj"/>
                             <constraint firstItem="HH7-OE-Lnu" firstAttribute="trailing" secondItem="7Zf-RQ-6o2" secondAttribute="trailing" id="N9r-8I-IcS"/>
                             <constraint firstItem="ZlU-Js-od0" firstAttribute="leading" secondItem="HH7-OE-Lnu" secondAttribute="leading" constant="16" id="OjM-tZ-eAt"/>
-                            <constraint firstItem="QBU-NG-OeO" firstAttribute="leading" secondItem="HH7-OE-Lnu" secondAttribute="leading" id="XAK-7f-R6o"/>
                             <constraint firstItem="ZlU-Js-od0" firstAttribute="top" secondItem="HH7-OE-Lnu" secondAttribute="top" constant="15" id="XEz-hA-hwz"/>
                             <constraint firstItem="N4j-9f-siW" firstAttribute="top" secondItem="eSJ-s1-Sg4" secondAttribute="bottom" constant="24" id="lg5-NO-HOz"/>
                             <constraint firstItem="N4j-9f-siW" firstAttribute="leading" secondItem="HH7-OE-Lnu" secondAttribute="leading" id="nof-Hg-Idc"/>
                             <constraint firstItem="HH7-OE-Lnu" firstAttribute="bottom" secondItem="N4j-9f-siW" secondAttribute="bottom" id="pBj-OB-hI2"/>
                             <constraint firstItem="eSJ-s1-Sg4" firstAttribute="centerX" secondItem="py1-1l-Gzx" secondAttribute="centerX" id="shX-CU-oaa"/>
-                            <constraint firstItem="QBU-NG-OeO" firstAttribute="top" secondItem="7Zf-RQ-6o2" secondAttribute="bottom" id="sm8-au-dWv"/>
                             <constraint firstItem="7Zf-RQ-6o2" firstAttribute="top" secondItem="ZlU-Js-od0" secondAttribute="bottom" constant="19" id="uJf-wh-WaL"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HH7-OE-Lnu"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Home" image="ic_home_white" id="8UB-Ie-DhH"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="menu-home" id="8UB-Ie-DhH"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JX6-Ca-XJm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -182,45 +170,72 @@
             <objects>
                 <viewController id="gcu-95-NeE" customClass="CardsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="foh-i2-lEx">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="231"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSm-xL-hhe">
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="QBU-NG-OeO">
+                                <rect key="frame" x="0.0" y="192" width="375" height="39"/>
+                                <connections>
+                                    <action selector="showRandomCard:" destination="gcu-95-NeE" eventType="touchUpInside" id="IYq-It-k2J"/>
+                                </connections>
+                            </pageControl>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JSm-xL-hhe">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="192"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cEH-mY-Jg0">
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="O6z-hv-eMg">
                                         <rect key="frame" x="0.0" y="0.0" width="1125" height="192"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
-                                    </view>
+                                        <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
+                                    </stackView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstItem="cEH-mY-Jg0" firstAttribute="top" secondItem="JSm-xL-hhe" secondAttribute="top" id="D97-L1-mWC"/>
-                                    <constraint firstAttribute="bottom" secondItem="cEH-mY-Jg0" secondAttribute="bottom" id="NXA-Ar-aMi"/>
-                                    <constraint firstAttribute="trailing" secondItem="cEH-mY-Jg0" secondAttribute="trailing" id="YUX-AS-wPT"/>
-                                    <constraint firstItem="cEH-mY-Jg0" firstAttribute="leading" secondItem="JSm-xL-hhe" secondAttribute="leading" id="hal-7f-IU5"/>
+                                    <constraint firstAttribute="width" secondItem="JSm-xL-hhe" secondAttribute="height" multiplier="375:192" id="2zp-ap-gGn"/>
+                                    <constraint firstAttribute="trailing" secondItem="O6z-hv-eMg" secondAttribute="trailing" id="Ck2-uo-wvG"/>
+                                    <constraint firstAttribute="bottom" secondItem="O6z-hv-eMg" secondAttribute="bottom" id="Tca-4J-Wuv"/>
+                                    <constraint firstItem="O6z-hv-eMg" firstAttribute="height" secondItem="JSm-xL-hhe" secondAttribute="height" id="gRQ-fK-UWv"/>
+                                    <constraint firstItem="O6z-hv-eMg" firstAttribute="top" secondItem="JSm-xL-hhe" secondAttribute="top" id="pyi-Ec-CMs"/>
+                                    <constraint firstItem="O6z-hv-eMg" firstAttribute="leading" secondItem="JSm-xL-hhe" secondAttribute="leading" id="sWL-PN-Di1"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="9YQ-I5-qMk" appends="YES" id="4vG-Em-cWt"/>
+                                    <outletCollection property="gestureRecognizers" destination="sjQ-gH-WjX" appends="YES" id="p2e-Zg-chf"/>
+                                </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="JSm-xL-hhe" firstAttribute="top" secondItem="SQg-xP-HEd" secondAttribute="top" id="1oQ-oY-m1B"/>
-                            <constraint firstItem="cEH-mY-Jg0" firstAttribute="height" secondItem="foh-i2-lEx" secondAttribute="height" id="EVH-99-ZzG"/>
+                            <constraint firstItem="QBU-NG-OeO" firstAttribute="top" secondItem="JSm-xL-hhe" secondAttribute="bottom" id="9vR-VZ-G4d"/>
+                            <constraint firstItem="SQg-xP-HEd" firstAttribute="bottom" secondItem="QBU-NG-OeO" secondAttribute="bottom" id="Ev6-CS-Lha"/>
                             <constraint firstItem="JSm-xL-hhe" firstAttribute="leading" secondItem="SQg-xP-HEd" secondAttribute="leading" id="KwQ-MN-IkQ"/>
                             <constraint firstItem="SQg-xP-HEd" firstAttribute="trailing" secondItem="JSm-xL-hhe" secondAttribute="trailing" id="Si9-uM-zW0"/>
-                            <constraint firstItem="SQg-xP-HEd" firstAttribute="bottom" secondItem="JSm-xL-hhe" secondAttribute="bottom" id="dJa-Xp-F4k"/>
-                            <constraint firstItem="cEH-mY-Jg0" firstAttribute="width" secondItem="foh-i2-lEx" secondAttribute="width" multiplier="3" id="oiU-7o-TT6"/>
+                            <constraint firstItem="O6z-hv-eMg" firstAttribute="width" secondItem="foh-i2-lEx" secondAttribute="width" multiplier="3" id="aQU-YU-NuH"/>
+                            <constraint firstItem="QBU-NG-OeO" firstAttribute="trailing" secondItem="SQg-xP-HEd" secondAttribute="trailing" id="ben-bJ-DQq"/>
+                            <constraint firstItem="QBU-NG-OeO" firstAttribute="leading" secondItem="SQg-xP-HEd" secondAttribute="leading" id="izK-aY-1TA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="SQg-xP-HEd"/>
                     </view>
                     <connections>
-                        <outlet property="innerView" destination="cEH-mY-Jg0" id="7FK-Fa-IrJ"/>
+                        <outlet property="innerView" destination="O6z-hv-eMg" id="GA1-gG-jwp"/>
+                        <outlet property="outerView" destination="foh-i2-lEx" id="eFn-L8-aRv"/>
+                        <outlet property="pageControl" destination="QBU-NG-OeO" id="fV9-OE-Ddz"/>
                         <outlet property="scrollView" destination="JSm-xL-hhe" id="Pre-zK-b1X"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oEE-NU-i24" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="sjQ-gH-WjX">
+                    <connections>
+                        <action selector="showNextCard:" destination="gcu-95-NeE" id="OEy-Ck-sNM"/>
+                    </connections>
+                </swipeGestureRecognizer>
+                <swipeGestureRecognizer direction="right" id="9YQ-I5-qMk">
+                    <connections>
+                        <action selector="showPrevCard:" destination="gcu-95-NeE" id="ELt-aI-Qqp"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="518" y="528"/>
+            <point key="canvasLocation" x="518" y="550"/>
         </scene>
         <!--RecieveController-->
         <scene sceneID="X4j-xz-TRc">
@@ -264,7 +279,7 @@
         <scene sceneID="bzO-dT-DH6">
             <objects>
                 <viewControllerPlaceholder storyboardName="Tokens" referencedIdentifier="TokensController" id="mwt-lV-dCg" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Py8-AC-pbe"/>
+                    <tabBarItem key="tabBarItem" title="Tokens" image="menu-tokens" id="Py8-AC-pbe"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aiq-Td-8OD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -274,7 +289,7 @@
         <scene sceneID="c0p-pB-apd">
             <objects>
                 <viewControllerPlaceholder storyboardName="Apps" referencedIdentifier="AppsController" id="8eF-jh-YIm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="i2r-Fj-W8e"/>
+                    <tabBarItem key="tabBarItem" title="Apps" image="menu-apps" id="i2r-Fj-W8e"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nIc-oc-4QI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -282,6 +297,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_home_white" width="24" height="24"/>
+        <image name="menu-apps" width="14" height="13"/>
+        <image name="menu-home" width="16" height="15"/>
+        <image name="menu-tokens" width="18" height="13"/>
+        <image name="rounded-button" width="66" height="66"/>
     </resources>
 </document>
