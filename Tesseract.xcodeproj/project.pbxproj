@@ -23,6 +23,9 @@
 		9299321622245B75000EAD47 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320B22245B74000EAD47 /* BigInt.framework */; };
 		9299321722245B75000EAD47 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320C22245B74000EAD47 /* Differ.framework */; };
 		9299321822245B75000EAD47 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320D22245B74000EAD47 /* Material.framework */; };
+		9299323522248422000EAD47 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299323422248422000EAD47 /* ShareViewController.swift */; };
+		9299323822248422000EAD47 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9299323622248422000EAD47 /* MainInterface.storyboard */; };
+		9299323C22248422000EAD47 /* Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9299323222248422000EAD47 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -100,7 +103,28 @@
 			remoteGlobalIDString = 922CA48C21945F1F00FE66F1;
 			remoteInfo = Tesseract;
 		};
+		9299323A22248422000EAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 922CA48521945F1F00FE66F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9299323122248422000EAD47;
+			remoteInfo = Extension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		9299322D2224828F000EAD47 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				9299323C22248422000EAD47 /* Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		922CA48D21945F1F00FE66F1 /* Tesseract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tesseract.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,6 +149,10 @@
 		9299320B22245B74000EAD47 /* BigInt.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BigInt.framework; sourceTree = "<group>"; };
 		9299320C22245B74000EAD47 /* Differ.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Differ.framework; sourceTree = "<group>"; };
 		9299320D22245B74000EAD47 /* Material.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Material.framework; sourceTree = "<group>"; };
+		9299323222248422000EAD47 /* Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		9299323422248422000EAD47 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		9299323722248422000EAD47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		9299323922248422000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -220,6 +248,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9299322F22248422000EAD47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -239,6 +274,7 @@
 				922CA48D21945F1F00FE66F1 /* Tesseract.app */,
 				922CA4A321945F2100FE66F1 /* TesseractTests.xctest */,
 				922CA4AE21945F2100FE66F1 /* TesseractUITests.xctest */,
+				9299323222248422000EAD47 /* Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -291,6 +327,7 @@
 		92993200222458ED000EAD47 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				9299323322248422000EAD47 /* Extension */,
 				922CA48F21945F1F00FE66F1 /* Tesseract */,
 			);
 			path = Sources;
@@ -322,6 +359,17 @@
 			);
 			name = Frameworks;
 			path = Carthage/Build/iOS;
+			sourceTree = "<group>";
+		};
+		9299323322248422000EAD47 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				9299323422248422000EAD47 /* ShareViewController.swift */,
+				9299323622248422000EAD47 /* MainInterface.storyboard */,
+				9299323922248422000EAD47 /* Info.plist */,
+			);
+			name = Extension;
+			path = ../Extension;
 			sourceTree = "<group>";
 		};
 		D125143D21A82D570077E04A /* Registration */ = {
@@ -475,10 +523,12 @@
 				922CA48A21945F1F00FE66F1 /* Frameworks */,
 				922CA48B21945F1F00FE66F1 /* Resources */,
 				E2177A8CF2D417B4B29CD666 /* Carthage Copy Frameworks */,
+				9299322D2224828F000EAD47 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				9299323B22248422000EAD47 /* PBXTargetDependency */,
 			);
 			name = Tesseract;
 			productName = Tesseract;
@@ -521,6 +571,23 @@
 			productReference = 922CA4AE21945F2100FE66F1 /* TesseractUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		9299323122248422000EAD47 /* Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9299323D22248422000EAD47 /* Build configuration list for PBXNativeTarget "Extension" */;
+			buildPhases = (
+				9299322E22248422000EAD47 /* Sources */,
+				9299322F22248422000EAD47 /* Frameworks */,
+				9299323022248422000EAD47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Extension;
+			productName = Extension;
+			productReference = 9299323222248422000EAD47 /* Extension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -542,6 +609,9 @@
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 922CA48C21945F1F00FE66F1;
 					};
+					9299323122248422000EAD47 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 922CA48821945F1F00FE66F1 /* Build configuration list for PBXProject "Tesseract" */;
@@ -560,6 +630,7 @@
 				922CA48C21945F1F00FE66F1 /* Tesseract */,
 				922CA4A221945F2100FE66F1 /* TesseractTests */,
 				922CA4AD21945F2100FE66F1 /* TesseractUITests */,
+				9299323122248422000EAD47 /* Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -597,6 +668,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9299323022248422000EAD47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9299323822248422000EAD47 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -708,6 +787,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9299322E22248422000EAD47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9299323522248422000EAD47 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -720,6 +807,11 @@
 			isa = PBXTargetDependency;
 			target = 922CA48C21945F1F00FE66F1 /* Tesseract */;
 			targetProxy = 922CA4AF21945F2100FE66F1 /* PBXContainerItemProxy */;
+		};
+		9299323B22248422000EAD47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9299323122248422000EAD47 /* Extension */;
+			targetProxy = 9299323A22248422000EAD47 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -738,6 +830,14 @@
 				922CA49C21945F2100FE66F1 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		9299323622248422000EAD47 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9299323722248422000EAD47 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -864,6 +964,7 @@
 		922CA4B821945F2100FE66F1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -871,7 +972,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Sources/Tesseract/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -887,6 +987,7 @@
 		922CA4B921945F2100FE66F1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -894,7 +995,6 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = Sources/Tesseract/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -989,6 +1089,44 @@
 			};
 			name = Release;
 		};
+		9299323E22248422000EAD47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.wallet.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9299323F22248422000EAD47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				INFOPLIST_FILE = Extension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.wallet.extension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1024,6 +1162,15 @@
 			buildConfigurations = (
 				922CA4BE21945F2100FE66F1 /* Debug */,
 				922CA4BF21945F2100FE66F1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9299323D22248422000EAD47 /* Build configuration list for PBXNativeTarget "Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9299323E22248422000EAD47 /* Debug */,
+				9299323F22248422000EAD47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
