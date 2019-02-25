@@ -40,6 +40,9 @@
 		D17E6F3621BAB311002A0A4C /* CardAccountView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D17E6F3421BAB311002A0A4C /* CardAccountView.xib */; };
 		D17E6F3721BAB311002A0A4C /* CardAccountView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E6F3521BAB311002A0A4C /* CardAccountView.swift */; };
 		D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D17E6F3821BAB836002A0A4C /* CardsViewController.swift */; };
+		D182AC4021E4CD900013AF02 /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D182AC3F21E4CD900013AF02 /* More.storyboard */; };
+		D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182AC4121E4E16D0013AF02 /* MoreTableViewController.swift */; };
+		D182AC4421E4E1E30013AF02 /* MoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D182AC4321E4E1E30013AF02 /* MoreTableViewCell.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
@@ -131,6 +134,9 @@
 		D17E6F3421BAB311002A0A4C /* CardAccountView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CardAccountView.xib; sourceTree = "<group>"; };
 		D17E6F3521BAB311002A0A4C /* CardAccountView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardAccountView.swift; sourceTree = "<group>"; };
 		D17E6F3821BAB836002A0A4C /* CardsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardsViewController.swift; sourceTree = "<group>"; };
+		D182AC3F21E4CD900013AF02 /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
+		D182AC4121E4E16D0013AF02 /* MoreTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewController.swift; sourceTree = "<group>"; };
+		D182AC4321E4E1E30013AF02 /* MoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreTableViewCell.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D182AC3E21E4CD640013AF02 /* More */,
 				D131639921B972790066FB4A /* Apps&Tokens */,
 				D1F9869C21AC4855000B4C3C /* Send */,
 				D125143E21A82F6D0077E04A /* Recieve */,
@@ -367,6 +374,16 @@
 				D13163A421B98DCA0066FB4A /* Account.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		D182AC3E21E4CD640013AF02 /* More */ = {
+			isa = PBXGroup;
+			children = (
+				D182AC3F21E4CD900013AF02 /* More.storyboard */,
+				D182AC4121E4E16D0013AF02 /* MoreTableViewController.swift */,
+				D182AC4321E4E1E30013AF02 /* MoreTableViewCell.swift */,
+			);
+			path = More;
 			sourceTree = "<group>";
 		};
 		D1AE725821A2C28000CA1C17 /* UIHelpers */ = {
@@ -517,6 +534,7 @@
 				D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */,
 				D131639D21B973540066FB4A /* Apps.storyboard in Resources */,
 				D13163A021B981F40066FB4A /* CardView.xib in Resources */,
+				D182AC4021E4CD900013AF02 /* More.storyboard in Resources */,
 				D17E6F3621BAB311002A0A4C /* CardAccountView.xib in Resources */,
 				922CA49821945F1F00FE66F1 /* Main.storyboard in Resources */,
 				D131639B21B972AF0066FB4A /* Tokens.storyboard in Resources */,
@@ -612,6 +630,7 @@
 				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
 				D1D5F85921B8428A007D0433 /* App.swift in Sources */,
+				D182AC4421E4E1E30013AF02 /* MoreTableViewCell.swift in Sources */,
 				D1D292E521B15496000DA665 /* TokensTableViewCell.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
@@ -628,6 +647,7 @@
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
 				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
 				D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */,
+				D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,

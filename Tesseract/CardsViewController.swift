@@ -18,6 +18,12 @@ struct Card {
   var accounts: [Account]
 }
 
+enum CardPos {
+  case center
+  case right
+  case left
+}
+
 class CardsViewController: UIViewController {
   
   // MARK: Properties
@@ -53,30 +59,30 @@ class CardsViewController: UIViewController {
   //
   @IBAction func showPrevCard(_ sender: Any) {
     activeCardIndex = getPrevCardIndex(activeCardIndex)
-    scrollToCard(0)
+    scrollCard(.left)
   }
   
   @IBAction func showNextCard(_ sender: Any) {
     activeCardIndex = getNextCardIndex(activeCardIndex)
-    scrollToCard(cardWidth * 2)
+    scrollCard(.right)
   }
   
-  @IBAction func showRandomCard(_ sender: UIPageControl) {
-    let randomCardIndex = sender.currentPage
+  @IBAction func showChoosenCard(_ sender: UIPageControl) {
+    let choosenCardIndex = sender.currentPage
     
-    if randomCardIndex > activeCardIndex {
-      if randomCardIndex > activeCardIndex + 1 {
-        redrawNextCard(randomCardIndex)
-        activeCardIndex = randomCardIndex
-        scrollToCard(cardWidth * 2)
+    if choosenCardIndex > activeCardIndex {
+      if choosenCardIndex > activeCardIndex + 1 {
+        redrawNextCard(choosenCardIndex)
+        activeCardIndex = choosenCardIndex
+        scrollCard(.right)
       } else {
         showNextCard(sender)
       }
-    } else if randomCardIndex < activeCardIndex {
-      if randomCardIndex + 1 < activeCardIndex {
-        redrawPrevCard(randomCardIndex)
-        activeCardIndex = randomCardIndex
-        scrollToCard(0)
+    } else if choosenCardIndex < activeCardIndex {
+      if choosenCardIndex + 1 < activeCardIndex {
+        redrawPrevCard(choosenCardIndex)
+        activeCardIndex = choosenCardIndex
+        scrollCard(.left)
       } else {
         showPrevCard(sender)
       }
@@ -172,9 +178,18 @@ class CardsViewController: UIViewController {
   
   private func redrawCards() {
     innerView.arrangedSubviews.forEach({ $0.removeFromSuperview() })
-    innerView.addArrangedSubview(cardsViews[getPrevCardIndex(activeCardIndex)])
-    innerView.addArrangedSubview(cardsViews[activeCardIndex])
-    innerView.addArrangedSubview(cardsViews[getNextCardIndex(activeCardIndex)])
+    
+    var leftCard = cardsViews[getPrevCardIndex(activeCardIndex)]
+    let centralCard = cardsViews[activeCardIndex]
+    var rightCard = cardsViews[getNextCardIndex(activeCardIndex)]
+    
+    innerView.addArrangedSubview(leftCard)
+    innerView.addArrangedSubview(centralCard)
+    innerView.addArrangedSubview(rightCard)
+    
+    leftCard = transformToSidecard(.left, leftCard)
+    rightCard = transformToSidecard(.right, rightCard)
+    
     scrollView.layoutSubviews()
   }
   
@@ -188,9 +203,27 @@ class CardsViewController: UIViewController {
     innerView.insertArrangedSubview(cardsViews[index], at: 2)
   }
   
-  private func scrollToCard(_ x: CGFloat) {
+  private func scrollCard(_ cardPos: CardPos) {
     UIView.animate(withDuration: 1.0, animations: {
-      self.scrollView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
+      if cardPos == CardPos.left {
+        self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        
+        let leftCard = self.innerView.arrangedSubviews[0]
+        leftCard.transform = .identity
+        leftCard.alpha = 1
+        
+        var centralCard = self.innerView.arrangedSubviews[1] as! CardView
+        centralCard = self.transformToSidecard(.right, centralCard)
+      } else if cardPos == CardPos.right {
+        self.scrollView.setContentOffset(CGPoint(x: self.cardWidth * 2, y: 0), animated: false)
+        
+        let rightCard = self.innerView.arrangedSubviews[2]
+        rightCard.transform = .identity
+        rightCard.alpha = 1
+        
+        var centralCard = self.innerView.arrangedSubviews[1] as! CardView
+        centralCard = self.transformToSidecard(.left, centralCard)
+      }
     }, completion: { (finished: Bool) in
       self.scrollCardsToDefaultPosition()
     })
@@ -210,5 +243,20 @@ class CardsViewController: UIViewController {
     } else {
       return 0
     }
+  }
+  
+  private func transformToSidecard(_ pos: CardPos, _ card: CardView) -> CardView {
+    // we can't transform cards until we calculate their height
+    let scale = (card.frame.height - 32)/card.frame.height
+    let scaledCardDifferenceX = (1 - scale) * card.frame.width / 2
+    let transformX = (24 / scale + scaledCardDifferenceX) // transform will be scaled?
+    
+    var cardTransform = CGAffineTransform.identity
+    cardTransform = cardTransform.scaledBy(x: scale, y: scale)
+    cardTransform = cardTransform.translatedBy(x: pos == .left ? transformX : -transformX, y: 0)
+    card.transform = cardTransform
+    card.alpha = 0.5
+    
+    return card
   }
 }

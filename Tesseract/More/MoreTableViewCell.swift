@@ -1,15 +1,15 @@
 //
-//  SendAmountTableViewCell.swift
+//  MoreTableViewCell.swift
 //  Tesseract
 //
-//  Created by Yura Kulynych on 11/26/18.
-//  Copyright © 2018 Crossroad Labs s.r.o. All rights reserved.
+//  Created by Yura Kulynych on 1/8/19.
+//  Copyright © 2019 Crossroad Labs s.r.o. All rights reserved.
 //
 
 import UIKit
 
-class SendAmountTableViewCell: UITableViewCell {
-    
+class MoreTableViewCell: UITableViewCell {
+  
   //MARK: Properties
   @IBOutlet weak var nameLabel: UILabel!
   @IBOutlet weak var balanceLabel: UILabel!
@@ -26,4 +26,3 @@ class SendAmountTableViewCell: UITableViewCell {
     isSelectedLabel.isHidden = !selected
   }
 }
-

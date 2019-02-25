@@ -49,7 +49,7 @@
                     </subviews>
                 </stackView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="nUV-wr-iUu">
-                    <rect key="frame" x="30" y="81.5" width="160" height="0.0"/>
+                    <rect key="frame" x="30" y="97.5" width="160" height="0.0"/>
                     <constraints>
                         <constraint firstAttribute="height" id="INC-1I-yeh"/>
                         <constraint firstAttribute="width" constant="160" id="xs5-uq-U3p"/>
@@ -61,7 +61,7 @@
                 <constraint firstItem="UMo-Cm-VOr" firstAttribute="top" secondItem="Giq-uJ-A67" secondAttribute="bottom" id="4Sf-4m-eJo"/>
                 <constraint firstItem="NHk-Mh-pvf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="G1G-7D-2qm"/>
                 <constraint firstItem="Giq-uJ-A67" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="32" id="MUD-8c-Yv6"/>
-                <constraint firstItem="nUV-wr-iUu" firstAttribute="top" secondItem="UMo-Cm-VOr" secondAttribute="bottom" id="Oxn-Ty-hrs"/>
+                <constraint firstItem="nUV-wr-iUu" firstAttribute="top" secondItem="UMo-Cm-VOr" secondAttribute="bottom" constant="16" id="Oxn-Ty-hrs"/>
                 <constraint firstItem="Giq-uJ-A67" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="VJ3-Gd-jao"/>
                 <constraint firstItem="UMo-Cm-VOr" firstAttribute="leading" secondItem="Giq-uJ-A67" secondAttribute="leading" id="aKf-1R-VdW"/>
                 <constraint firstItem="NHk-Mh-pvf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="cHS-7E-rje"/>
