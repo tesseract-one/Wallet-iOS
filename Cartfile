@@ -1,0 +1,4 @@
+github "CosmicMind/Material"
+github "DeclarativeHub/ReactiveKit"
+github "DeclarativeHub/Bond"
+github "crossroadlabs/Web3.swift" "master"

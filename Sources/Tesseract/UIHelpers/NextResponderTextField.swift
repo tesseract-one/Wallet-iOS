@@ -123,13 +123,20 @@ open class NextResponderTextField: ErrorTextField {
       }
     }
   }
-  
+
   @IBInspectable
-  open var textInsetsIB: CGRect = CGRect(x: 0, y: 6.0, width: 0, height: 6.0) { // width == right, height == bottom
+  open var textInsetIB: CGFloat = 6.0 {
     didSet {
-      textInsets = UIEdgeInsets(top: textInsetsIB.origin.y, left: textInsetsIB.origin.x, bottom: textInsetsIB.height, right: textInsetsIB.width)
+      textInset = textInsetIB
     }
   }
+  
+//  @IBInspectable
+//  open var textInsetsIB: CGRect = CGRect(x: 0, y: 6.0, width: 0, height: 6.0) { // width == right, height == bottom
+//    didSet {
+//      textInsets = UIEdgeInsets(top: textInsetsIB.origin.y, left: textInsetsIB.origin.x, bottom: textInsetsIB.height, right: textInsetsIB.width)
+//    }
+//  }
   
   @IBInspectable
   open var errorColorIB: UIColor {
