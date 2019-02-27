@@ -26,6 +26,20 @@
 		9299323522248422000EAD47 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299323422248422000EAD47 /* ShareViewController.swift */; };
 		9299323822248422000EAD47 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9299323622248422000EAD47 /* MainInterface.storyboard */; };
 		9299323C22248422000EAD47 /* Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9299323222248422000EAD47 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		9299324E22248908000EAD47 /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
+		9299325322248908000EAD47 /* TesSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325222248908000EAD47 /* TesSDKTests.swift */; };
+		9299325D222489F4000EAD47 /* dAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325C222489F4000EAD47 /* dAPI.swift */; };
+		9299325F22248A73000EAD47 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325E22248A73000EAD47 /* Ethereum.swift */; };
+		92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
+		92FB84972225823200447653 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84952225819D00447653 /* Keychain.swift */; };
+		92FB849A222589AA00447653 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8499222589AA00447653 /* Data.swift */; };
+		92FB849C22259E4200447653 /* Result+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849B22259E4200447653 /* Result+Promise.swift */; };
+		92FB849E2225A21A00447653 /* HDWallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849D2225A21A00447653 /* HDWallet.swift */; };
+		92FB84A02225A27600447653 /* HDWalletKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849F2225A27600447653 /* HDWalletKey.swift */; };
+		92FB84A22225A2FA00447653 /* EthereumKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84A12225A2FA00447653 /* EthereumKey.swift */; };
+		92FB84A42226DE9700447653 /* Mnemonic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FB84A32226DE9700447653 /* Mnemonic.framework */; };
+		92FB84A52226DEA900447653 /* Web3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320622245B74000EAD47 /* Web3.framework */; };
+		92FB84A72226EBA300447653 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84A62226EBA300447653 /* Wallet.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -110,6 +124,13 @@
 			remoteGlobalIDString = 9299323122248422000EAD47;
 			remoteInfo = Extension;
 		};
+		9299324F22248908000EAD47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 922CA48521945F1F00FE66F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9299324422248908000EAD47;
+			remoteInfo = TesSDK;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -153,6 +174,21 @@
 		9299323422248422000EAD47 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		9299323722248422000EAD47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9299323922248422000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9299324522248908000EAD47 /* TesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9299324822248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9299324D22248908000EAD47 /* TesSDKTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesSDKTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9299325222248908000EAD47 /* TesSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesSDKTests.swift; sourceTree = "<group>"; };
+		9299325422248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9299325C222489F4000EAD47 /* dAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dAPI.swift; sourceTree = "<group>"; };
+		9299325E22248A73000EAD47 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
+		92FB84952225819D00447653 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
+		92FB8499222589AA00447653 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
+		92FB849B22259E4200447653 /* Result+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Promise.swift"; sourceTree = "<group>"; };
+		92FB849D2225A21A00447653 /* HDWallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDWallet.swift; sourceTree = "<group>"; };
+		92FB849F2225A27600447653 /* HDWalletKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HDWalletKey.swift; sourceTree = "<group>"; };
+		92FB84A12225A2FA00447653 /* EthereumKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKey.swift; sourceTree = "<group>"; };
+		92FB84A32226DE9700447653 /* Mnemonic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mnemonic.framework; sourceTree = "<group>"; };
+		92FB84A62226EBA300447653 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -255,6 +291,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9299324222248908000EAD47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FB84A42226DE9700447653 /* Mnemonic.framework in Frameworks */,
+				92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */,
+				92FB84A52226DEA900447653 /* Web3.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9299324A22248908000EAD47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9299324E22248908000EAD47 /* TesSDK.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -275,6 +329,8 @@
 				922CA4A321945F2100FE66F1 /* TesseractTests.xctest */,
 				922CA4AE21945F2100FE66F1 /* TesseractUITests.xctest */,
 				9299323222248422000EAD47 /* Extension.appex */,
+				9299324522248908000EAD47 /* TesSDK.framework */,
+				9299324D22248908000EAD47 /* TesSDKTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -327,8 +383,9 @@
 		92993200222458ED000EAD47 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				9299323322248422000EAD47 /* Extension */,
+				9299324622248908000EAD47 /* TesSDK */,
 				922CA48F21945F1F00FE66F1 /* Tesseract */,
+				9299323322248422000EAD47 /* Extension */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -336,6 +393,7 @@
 		929932012224591E000EAD47 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				9299325122248908000EAD47 /* TesSDKTests */,
 				922CA4A621945F2100FE66F1 /* TesseractTests */,
 				922CA4B121945F2100FE66F1 /* TesseractUITests */,
 			);
@@ -345,6 +403,7 @@
 		9299320222245B27000EAD47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92FB84A32226DE9700447653 /* Mnemonic.framework */,
 				9299320B22245B74000EAD47 /* BigInt.framework */,
 				9299320422245B74000EAD47 /* Bond.framework */,
 				9299320822245B74000EAD47 /* CryptoSwift.framework */,
@@ -370,6 +429,40 @@
 			);
 			name = Extension;
 			path = ../Extension;
+			sourceTree = "<group>";
+		};
+		9299324622248908000EAD47 /* TesSDK */ = {
+			isa = PBXGroup;
+			children = (
+				92FB84982225899600447653 /* Keychain */,
+				9299324822248908000EAD47 /* Info.plist */,
+				9299325C222489F4000EAD47 /* dAPI.swift */,
+				9299325E22248A73000EAD47 /* Ethereum.swift */,
+				92FB849B22259E4200447653 /* Result+Promise.swift */,
+				92FB84A62226EBA300447653 /* Wallet.swift */,
+			);
+			path = TesSDK;
+			sourceTree = "<group>";
+		};
+		9299325122248908000EAD47 /* TesSDKTests */ = {
+			isa = PBXGroup;
+			children = (
+				9299325222248908000EAD47 /* TesSDKTests.swift */,
+				9299325422248908000EAD47 /* Info.plist */,
+			);
+			path = TesSDKTests;
+			sourceTree = "<group>";
+		};
+		92FB84982225899600447653 /* Keychain */ = {
+			isa = PBXGroup;
+			children = (
+				92FB84952225819D00447653 /* Keychain.swift */,
+				92FB8499222589AA00447653 /* Data.swift */,
+				92FB849D2225A21A00447653 /* HDWallet.swift */,
+				92FB849F2225A27600447653 /* HDWalletKey.swift */,
+				92FB84A12225A2FA00447653 /* EthereumKey.swift */,
+			);
+			path = Keychain;
 			sourceTree = "<group>";
 		};
 		D125143D21A82D570077E04A /* Registration */ = {
@@ -514,6 +607,16 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		9299324022248908000EAD47 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		922CA48C21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXNativeTarget;
@@ -588,6 +691,42 @@
 			productReference = 9299323222248422000EAD47 /* Extension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		9299324422248908000EAD47 /* TesSDK */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9299325622248908000EAD47 /* Build configuration list for PBXNativeTarget "TesSDK" */;
+			buildPhases = (
+				9299324022248908000EAD47 /* Headers */,
+				9299324122248908000EAD47 /* Sources */,
+				9299324222248908000EAD47 /* Frameworks */,
+				9299324322248908000EAD47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = TesSDK;
+			productName = TesSDK;
+			productReference = 9299324522248908000EAD47 /* TesSDK.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		9299324C22248908000EAD47 /* TesSDKTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9299325922248908000EAD47 /* Build configuration list for PBXNativeTarget "TesSDKTests" */;
+			buildPhases = (
+				9299324922248908000EAD47 /* Sources */,
+				9299324A22248908000EAD47 /* Frameworks */,
+				9299324B22248908000EAD47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9299325022248908000EAD47 /* PBXTargetDependency */,
+			);
+			name = TesSDKTests;
+			productName = TesSDKTests;
+			productReference = 9299324D22248908000EAD47 /* TesSDKTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -612,6 +751,13 @@
 					9299323122248422000EAD47 = {
 						CreatedOnToolsVersion = 10.1;
 					};
+					9299324422248908000EAD47 = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1010;
+					};
+					9299324C22248908000EAD47 = {
+						CreatedOnToolsVersion = 10.1;
+					};
 				};
 			};
 			buildConfigurationList = 922CA48821945F1F00FE66F1 /* Build configuration list for PBXProject "Tesseract" */;
@@ -631,6 +777,8 @@
 				922CA4A221945F2100FE66F1 /* TesseractTests */,
 				922CA4AD21945F2100FE66F1 /* TesseractUITests */,
 				9299323122248422000EAD47 /* Extension */,
+				9299324422248908000EAD47 /* TesSDK */,
+				9299324C22248908000EAD47 /* TesSDKTests */,
 			);
 		};
 /* End PBXProject section */
@@ -676,6 +824,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9299323822248422000EAD47 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9299324322248908000EAD47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9299324B22248908000EAD47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -795,6 +957,30 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9299324122248908000EAD47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				92FB84A22225A2FA00447653 /* EthereumKey.swift in Sources */,
+				92FB849E2225A21A00447653 /* HDWallet.swift in Sources */,
+				9299325F22248A73000EAD47 /* Ethereum.swift in Sources */,
+				9299325D222489F4000EAD47 /* dAPI.swift in Sources */,
+				92FB84972225823200447653 /* Keychain.swift in Sources */,
+				92FB849A222589AA00447653 /* Data.swift in Sources */,
+				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
+				92FB849C22259E4200447653 /* Result+Promise.swift in Sources */,
+				92FB84A02225A27600447653 /* HDWalletKey.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9299324922248908000EAD47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9299325322248908000EAD47 /* TesSDKTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -812,6 +998,11 @@
 			isa = PBXTargetDependency;
 			target = 9299323122248422000EAD47 /* Extension */;
 			targetProxy = 9299323A22248422000EAD47 /* PBXContainerItemProxy */;
+		};
+		9299325022248908000EAD47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9299324422248908000EAD47 /* TesSDK */;
+			targetProxy = 9299324F22248908000EAD47 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1127,6 +1318,115 @@
 			};
 			name = Release;
 		};
+		9299325722248908000EAD47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Sources/TesSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.TesSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		9299325822248908000EAD47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = Sources/TesSDK/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.TesSDK;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9299325A22248908000EAD47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				INFOPLIST_FILE = TesSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.TesSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9299325B22248908000EAD47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = Y92JL37YF3;
+				INFOPLIST_FILE = TesSDKTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = xyz.crossroadlabs.TesSDKTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1171,6 +1471,24 @@
 			buildConfigurations = (
 				9299323E22248422000EAD47 /* Debug */,
 				9299323F22248422000EAD47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9299325622248908000EAD47 /* Build configuration list for PBXNativeTarget "TesSDK" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9299325722248908000EAD47 /* Debug */,
+				9299325822248908000EAD47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9299325922248908000EAD47 /* Build configuration list for PBXNativeTarget "TesSDKTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9299325A22248908000EAD47 /* Debug */,
+				9299325B22248908000EAD47 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
