@@ -75,6 +75,8 @@ class Wallet {
     let hdWallet: HDWallet
     let keychain: Keychain
     
+    let accountsLock: NSLock = NSLock()
+    
     public fileprivate(set) var accounts: Array<Account>
     
     private init(storage: StorageProtocol, hdWallet: HDWallet, keychain: Keychain) {
@@ -91,8 +93,12 @@ class Wallet {
     static func newWallet(name: String, password: String, storage: StorageProtocol) -> Promise<(mnemonic: String, wallet: Wallet)> {
         let keychain = Keychain(storage: storage)
         return keychain.createWallet(name: Wallet.walletPrefix + name, password: password)
-            .map { (mnemonic: $0.mnemonic, wallet: Wallet(storage: storage, hdWallet: $0.wallet, keychain: keychain)) }
-            .then { arg in arg.wallet.save().map { arg } }
+            .map {
+                let wallet = Wallet(storage: storage, hdWallet: $0.wallet, keychain: keychain)
+                let _ = try wallet.addAccount()
+                return (mnemonic: $0.mnemonic, wallet: wallet)
+            }
+            .then { (mnemonic: String, wallet: Wallet) in wallet.save().map { (mnemonic: mnemonic, wallet: wallet) } }
     }
     
     static func restoreWallet(name: String, mnemonic: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
@@ -115,9 +121,15 @@ class Wallet {
             }
     }
     
-//    func addAccount() throws -> Account {
-//
-//    }
+    func addAccount() throws -> Account {
+        accountsLock.lock()
+        defer {
+            accountsLock.unlock()
+        }
+        let account = try Account(index: UInt32(accounts.count), hdWallet: hdWallet)
+        accounts.append(account)
+        return account
+    }
     
     func save() -> Promise<Void> {
         let data = storageData
@@ -142,6 +154,10 @@ extension Wallet {
     }
     
     var storageData: StorageData {
+        accountsLock.lock()
+        defer {
+            accountsLock.unlock()
+        }
         return StorageData(accounts: accounts.map { $0.storageData })
     }
 }
