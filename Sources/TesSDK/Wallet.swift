@@ -42,12 +42,12 @@ extension Account {
         return EthereumKeyPath(account: index)
     }
     
-    func eth_signTx(tx: EthereumTransaction) -> Promise<EthereumSignedTransaction> {
+    func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
         //TODO: Rewrite this SHIT to secure methods
         return Promise()
             .map { try self.hdWallet.privateKey(network: .Ethereum, keyPath: self.keyPath) }
             .map { try EthereumPrivateKey(bytes: $0) }
-            .map { try tx.sign(with: $0) }
+            .map { try tx.sign(with: $0, chainId: chainId) }
     }
     
     func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
@@ -172,9 +172,9 @@ extension Wallet: EthereumSignProvider {
         return Promise().map { self.accounts.map { $0.address } }
     }
     
-    func eth_signTx(account: String, tx: EthereumTransaction) -> Promise<EthereumSignedTransaction> {
+    func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
         return self.eth_account(address: account)
-            .then { $0.eth_signTx(tx: tx) }
+            .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
     
     func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
