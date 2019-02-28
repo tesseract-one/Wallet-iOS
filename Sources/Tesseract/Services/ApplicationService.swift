@@ -35,7 +35,7 @@ class ApplicationService {
     }
     
     private func bindRegistration() {
-        combineLatest(walletService.wallet, walletService.isWalletLocked)
+        combineLatest(walletService.wallet.distinct(), walletService.isWalletLocked.distinct())
             .map { [weak self] wallet, isLocked in
                 if wallet != nil && !isLocked {
                     return try! self?.walletViewFactory.viewController(for: .root)

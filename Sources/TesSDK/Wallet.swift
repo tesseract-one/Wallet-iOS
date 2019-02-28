@@ -246,3 +246,11 @@ extension Wallet {
         return dapi
     }
 }
+
+
+extension Wallet: Equatable {
+    //TODO: Write proper equatable
+    public static func == (lhs: Wallet, rhs: Wallet) -> Bool {
+        return lhs.name == rhs.name
+    }
+}
