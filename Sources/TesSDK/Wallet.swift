@@ -10,30 +10,48 @@ import Foundation
 import PromiseKit
 import Web3
 
+enum AccountError: Error {
+    case addressAndWalletIsNil
+    case walletIsNil
+}
+
 class Account {
     let index: UInt32
-    let address: String
     
-    fileprivate let hdWallet: HDWallet
+    private(set) var address: String
+    private var hdWallet: HDWallet? = nil
     
-    init(index: UInt32, hdWallet: HDWallet) throws {
+    init(index: UInt32, address: String? = nil, hdWallet: HDWallet? = nil) throws {
+        guard address != nil || hdWallet != nil else {
+            throw AccountError.addressAndWalletIsNil
+        }
+        
         self.index = index
-        self.hdWallet = hdWallet
-        self.address = try hdWallet.address(network: .Ethereum, path: EthereumKeyPath(account: index))
+        self.address = address ?? ""
+        
+        try setHdWallet(wallet: hdWallet)
+    }
+    
+    fileprivate func setHdWallet(wallet: HDWallet?) throws {
+        if let wallet = wallet {
+            address = try wallet.address(network: .Ethereum, path: keyPath)
+        }
+        hdWallet = wallet
     }
 }
 
 extension Account {
     struct StorageData: Codable {
         let index: UInt32
+        let address: String
     }
     
-    convenience init(storageData: StorageData, hdWallet: HDWallet) throws {
-        try self.init(index: storageData.index, hdWallet: hdWallet)
+    convenience init(storageData: StorageData) throws {
+        try self.init(index: storageData.index, address: storageData.address)
     }
     
     var storageData: StorageData {
-        return StorageData(index: index)
+        return StorageData(index: index, address: address)
     }
 }
 
@@ -44,46 +62,53 @@ extension Account {
     
     func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
         //TODO: Rewrite this SHIT to secure methods
-        return Promise()
-            .map { try self.hdWallet.privateKey(network: .Ethereum, keyPath: self.keyPath) }
+        return eth_wallet()
+            .map { try $0.privateKey(network: .Ethereum, keyPath: self.keyPath) }
             .map { try EthereumPrivateKey(bytes: $0) }
             .map { try tx.sign(with: $0, chainId: chainId) }
     }
     
     func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
-        return Promise()
-            .map { try self.hdWallet.verify(network: .Ethereum, data: data, signature: signature, path: self.keyPath) }
+        return eth_wallet()
+            .map { try $0.verify(network: .Ethereum, data: data, signature: signature, path: self.keyPath) }
     }
     
     func eth_signData(data: Data) -> Promise<String> {
-        return Promise()
+        return eth_wallet()
             .map {
                 var signData = "\u{19}Ethereum Signed Message:\n".data(using: .utf8)!
                 signData.append(String(describing: data.count).data(using: .utf8)!)
                 signData.append(data)
-                let signature = try self.hdWallet.sign(network: .Ethereum, data: signData, path: self.keyPath)
+                let signature = try $0.sign(network: .Ethereum, data: signData, path: self.keyPath)
                 return signature.reduce("0x") {$0 + String(format: "%02x", $1)}
         }
+    }
+    
+    private func eth_wallet() -> Promise<HDWallet> {
+        return hdWallet != nil ? Promise.value(hdWallet!) : Promise(error: AccountError.walletIsNil)
     }
 }
 
 class Wallet {
     static let walletPublicDataPrefix = "PUBLIC_DATA__"
-    static let walletPrefix = "WALLET__"
+    static let walletPrefix = "PRIVATE_DATA__"
     
-    let storage: StorageProtocol
-    let hdWallet: HDWallet
-    let keychain: Keychain
+    private let storage: StorageProtocol
+    private let keychain: Keychain
+    
+    private var name: String
+    private var hdWallet: HDWallet?
     
     let accountsLock: NSLock = NSLock()
     
-    public fileprivate(set) var accounts: Array<Account>
+    private(set) var accounts: Array<Account>
     
-    private init(storage: StorageProtocol, hdWallet: HDWallet, keychain: Keychain) {
+    private init(name: String, storage: StorageProtocol, keychain: Keychain, accounts: Array<Account> = [], hdWallet: HDWallet? = nil) {
         self.storage = storage
         self.hdWallet = hdWallet
         self.keychain = keychain
-        self.accounts = []
+        self.name = name
+        self.accounts = accounts
     }
     
     static func hasWallet(name: String, storage: StorageProtocol) -> Promise<Bool> {
@@ -94,7 +119,7 @@ class Wallet {
         let keychain = Keychain(storage: storage)
         return keychain.createWallet(name: Wallet.walletPrefix + name, password: password)
             .map {
-                let wallet = Wallet(storage: storage, hdWallet: $0.wallet, keychain: keychain)
+                let wallet = Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0.wallet)
                 let _ = try wallet.addAccount()
                 return (mnemonic: $0.mnemonic, wallet: wallet)
             }
@@ -104,28 +129,32 @@ class Wallet {
     static func restoreWallet(name: String, mnemonic: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
         return keychain.restoreWallet(name: Wallet.walletPrefix + name, mnemonic: mnemonic, password: password)
-            .map { Wallet(storage: storage, hdWallet: $0, keychain: keychain) }
+            .map { Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0) }
             .then { wallet in wallet.save().map { wallet } }
     }
     
-    static func loadWallet(name: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
+    static func loadWallet(name: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
+        return storage
+            .loadData(key: Wallet.walletPublicDataPrefix + name)
+            .map { try JSONDecoder().decode(StorageData.self, from: $0) }
+            .map { try Wallet(name: name, data: $0, storage: storage, keychain: keychain) }
+    }
+    
+    var isLocked: Bool {
+        return hdWallet == nil
+    }
+    
+    func unlock(password: String) -> Promise<Void> {
         return keychain.loadWallet(name: Wallet.walletPrefix + name, password: password)
-            .then { wallet in
-                storage
-                    .loadData(key: Wallet.walletPublicDataPrefix + wallet.name)
-                    .map { (wallet, try JSONDecoder().decode(StorageData.self, from: $0)) }
-            }
-            .map { wallet, data in
-                try Wallet(data: data, storage: storage, hdWallet: wallet, keychain: keychain)
+            .done {
+                try self.setHdWallet(wallet: $0)
             }
     }
     
     func addAccount() throws -> Account {
         accountsLock.lock()
-        defer {
-            accountsLock.unlock()
-        }
+        defer { accountsLock.unlock() }
         let account = try Account(index: UInt32(accounts.count), hdWallet: hdWallet)
         accounts.append(account)
         return account
@@ -134,10 +163,21 @@ class Wallet {
     func save() -> Promise<Void> {
         let data = storageData
         let storage = self.storage
-        let key = Wallet.walletPublicDataPrefix + hdWallet.name
+        let key = Wallet.walletPublicDataPrefix + name
         return Promise()
             .map { try JSONEncoder().encode(data) }
             .then { storage.saveData(key: key, data: $0) }
+    }
+    
+    private func setHdWallet(wallet: HDWallet?) throws {
+        hdWallet = wallet
+        if let wallet = wallet {
+            accountsLock.lock()
+            defer { accountsLock.unlock() }
+            for acc in accounts {
+                try acc.setHdWallet(wallet: wallet)
+            }
+        }
     }
 }
 
@@ -146,18 +186,14 @@ extension Wallet {
         let accounts: Array<Account.StorageData>
     }
     
-    fileprivate convenience init(data: StorageData, storage: StorageProtocol, hdWallet: HDWallet, keychain: Keychain) throws {
-        self.init(storage: storage, hdWallet: hdWallet, keychain: keychain)
-        self.accounts = try data.accounts.map {
-            try Account(storageData: $0, hdWallet: hdWallet)
-        }
+    fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
+        let accounts = try data.accounts.map { try Account(storageData: $0) }
+        self.init(name: name, storage: storage, keychain: keychain, accounts: accounts)
     }
     
     var storageData: StorageData {
         accountsLock.lock()
-        defer {
-            accountsLock.unlock()
-        }
+        defer { accountsLock.unlock() }
         return StorageData(accounts: accounts.map { $0.storageData })
     }
 }
@@ -173,17 +209,17 @@ extension Wallet: EthereumSignProvider {
     }
     
     func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
-        return self.eth_account(address: account)
+        return eth_account(address: account)
             .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
     
     func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
-        return self.eth_account(address: account)
+        return eth_account(address: account)
             .then { $0.eth_verify(data: data, signature: signature) }
     }
     
     func eth_signData(account: String, data: Data) -> Promise<String> {
-        return self.eth_account(address: account)
+        return eth_account(address: account)
             .then { $0.eth_signData(data: data) }
     }
     
