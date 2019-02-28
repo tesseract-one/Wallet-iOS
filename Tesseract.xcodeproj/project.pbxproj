@@ -75,7 +75,7 @@
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */; };
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
-		D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* LoginViewController.swift */; };
+		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */; };
 		D1D292DB21AEB77F000DA665 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D292DA21AEB77F000DA665 /* HomeViewController.swift */; };
 		D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D292DC21AED57B000DA665 /* ReviewViewController.swift */; };
@@ -94,6 +94,9 @@
 		D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85E21B8494F007D0433 /* RoundedImage.swift */; };
 		D1D9A6CD21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */; };
 		D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */; };
+		D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */; };
+		D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */; };
+		D1F76CA32226BA9900BFBB6B /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76CA22226BA9900BFBB6B /* ViewModel.swift */; };
 		D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */; };
 		D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */; };
 		D1F9869E21AC486F000B4C3C /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1F9869D21AC486F000B4C3C /* Send.storyboard */; };
@@ -224,7 +227,7 @@
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
-		D1B2D3D821A5A7070095A17F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
 		D1D292DA21AEB77F000DA665 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D1D292DC21AED57B000DA665 /* ReviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewViewController.swift; sourceTree = "<group>"; };
@@ -243,6 +246,9 @@
 		D1D5F85E21B8494F007D0433 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
 		D1D9A6CC21B546EE00D237E6 /* AssetsTableViewExpandedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AssetsTableViewExpandedCell.xib; sourceTree = "<group>"; };
 		D1D9A6CE21B548D100D237E6 /* AssetsTableViewExpandedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssetsTableViewExpandedCell.swift; sourceTree = "<group>"; };
+		D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
+		D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+Extensions.swift"; sourceTree = "<group>"; };
+		D1F76CA22226BA9900BFBB6B /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D1F9869821AC3B13000B4C3C /* AddressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesViewController.swift; sourceTree = "<group>"; };
 		D1F9869A21AC3CCE000B4C3C /* AddressesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressesTableViewCell.swift; sourceTree = "<group>"; };
 		D1F9869D21AC486F000B4C3C /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
@@ -338,6 +344,8 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1F76C9F2226A4F000BFBB6B /* Helpers */,
+				D1F76C9C2226889900BFBB6B /* ViewModels */,
 				D182AC3E21E4CD640013AF02 /* More */,
 				D131639921B972790066FB4A /* Apps&Tokens */,
 				D1F9869C21AC4855000B4C3C /* Send */,
@@ -468,9 +476,9 @@
 		D125143D21A82D570077E04A /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				D1F76C992225894B00BFBB6B /* SignIn */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
 				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
-				D1B2D3D821A5A7070095A17F /* LoginViewController.swift */,
 				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				D1B99EF92194B41200AAA97F /* RegistrationViewController.swift */,
 				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
@@ -590,6 +598,31 @@
 				D1D5F85E21B8494F007D0433 /* RoundedImage.swift */,
 			);
 			path = UIHelpers;
+			sourceTree = "<group>";
+		};
+		D1F76C992225894B00BFBB6B /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				D1B2D3D821A5A7070095A17F /* SignInViewController.swift */,
+				D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */,
+			);
+			path = SignIn;
+			sourceTree = "<group>";
+		};
+		D1F76C9C2226889900BFBB6B /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				D1F76CA22226BA9900BFBB6B /* ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D1F76C9F2226A4F000BFBB6B /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		D1F9869C21AC4855000B4C3C /* Send */ = {
@@ -885,7 +918,7 @@
 				D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */,
 				D1D5F85D21B84397007D0433 /* AppsTableViewCell.swift in Sources */,
 				D1F9869B21AC3CCE000B4C3C /* AddressesTableViewCell.swift in Sources */,
-				D1B2D3D921A5A7070095A17F /* LoginViewController.swift in Sources */,
+				D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */,
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
 				D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
@@ -909,6 +942,7 @@
 				D13163A521B98DCA0066FB4A /* Account.swift in Sources */,
 				D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */,
 				D1D292DB21AEB77F000DA665 /* HomeViewController.swift in Sources */,
+				D1F76CA32226BA9900BFBB6B /* ViewModel.swift in Sources */,
 				D13163A121B981F40066FB4A /* CardView.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* RegistrationViewController.swift in Sources */,
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,
@@ -919,6 +953,7 @@
 				D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */,
+				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */,
 				D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */,
@@ -930,6 +965,7 @@
 				D1F986A421AC6FFB000B4C3C /* SendAmountViewController.swift in Sources */,
 				D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */,
 				D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */,
+				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -555,7 +554,7 @@
         <!--SignIn-->
         <scene sceneID="bCm-Hl-hqv">
             <objects>
-                <viewController storyboardIdentifier="SignInController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="LoginViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="SignInViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpN-zK-av5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -607,7 +606,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
-                                                    <outlet property="nextResponderView" destination="V3v-qf-LkC" id="dtI-HY-8hc"/>
+                                                    <outlet property="nextResponderView" destination="V3v-qf-LkC" id="Ugw-qj-yWf"/>
                                                 </connections>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
@@ -625,9 +624,6 @@
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="signIn:" destination="DMU-LD-TUJ" eventType="touchUpInside" id="7jY-wm-2Ke"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="65" width="382" height="55"/>
@@ -641,9 +637,6 @@
                                                                 <real key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="restoreKey:" destination="DMU-LD-TUJ" eventType="touchUpInside" id="xHV-Va-YjU"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -690,6 +683,8 @@
                     <navigationItem key="navigationItem" title="SignIn" id="exG-wb-nkA"/>
                     <connections>
                         <outlet property="passwordField" destination="ngg-r1-3jz" id="CpX-fb-9ps"/>
+                        <outlet property="restoreKeyButton" destination="h7y-Me-OLL" id="SdZ-vs-Zuj"/>
+                        <outlet property="signInButton" destination="V3v-qf-LkC" id="CbN-cF-5Ed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtG-uz-gCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
