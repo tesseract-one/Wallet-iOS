@@ -11,7 +11,7 @@ import ReactiveKit
 import TesSDK
 
 class ApplicationContext: RouterContextProtocol {
-    let bag = DisposeBag()
+    // let bag = DisposeBag()
     // Injected //
     weak var rootContainer: ViewControllerContainer!
     
@@ -30,15 +30,18 @@ class ApplicationContext: RouterContextProtocol {
     let walletService = WalletService()
     
     func bootstrap() {
+        walletService.wallet = wallet
+        walletService.errorNode = errorNode
+        
         applicationService.walletService = walletService
         applicationService.errorNode = errorNode
-        applicationService.wallet = wallet
         
         applicationService.rootContainer = rootContainer
         
         applicationService.registrationViewFactory = registrationViewFactory
         applicationService.walletViewFactory = walletViewFactory
         
+        walletService.bootstrap()
         applicationService.bootstrap()
     }
 }
