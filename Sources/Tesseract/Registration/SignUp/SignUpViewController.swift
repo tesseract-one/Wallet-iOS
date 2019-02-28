@@ -10,9 +10,10 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SignUpViewController: UIViewController, RouterView, ViewFactoryProtocol {
+class SignUpViewController: UIViewController, ModelVCProtocol {
+  typealias ViewModel = SignUpViewModel
   
-  private var viewModel: SignUpViewModelProtocol!
+  private(set) var model: ViewModel!
   
   // MARK: Outlets
   //  
@@ -27,49 +28,51 @@ class SignUpViewController: UIViewController, RouterView, ViewFactoryProtocol {
     super.viewDidLoad()
     
     passwordField.reactive.text.map{ $0 ?? ""}
-      .bind(to: viewModel.password).dispose(in: bag)
+      .bind(to: model.password).dispose(in: bag)
     confirmPasswordField.reactive.text.map{ $0 ?? ""}
-      .bind(to: viewModel.confirmPassword).dispose(in: bag)
+      .bind(to: model.confirmPassword).dispose(in: bag)
     
     passwordField.reactive.controlEvents(.editingDidBegin)
       .merge(with: confirmPasswordField.reactive.controlEvents(.editingDidBegin))
-      .with(latestFrom: viewModel.passwordError)
-      .with(weak: confirmPasswordField)
-      .observeNext { _, confirmPasswordField in
-        confirmPasswordField.error = ""
-      }.dispose(in: bag)
+      .map { _ in "" }
+      .bind(to: confirmPasswordField.reactive.error)
+      .dispose(in: bag)
     
-    signUpButton.reactive.tap.bind(to: viewModel.signUpAction).dispose(in: bag)
+    signUpButton.reactive.tap.bind(to: model.signUpAction).dispose(in: bag)
     signUpButton.reactive.tap.with(weak: view).observeNext { view in
       view.endEditing(true)
     }.dispose(in: bag)
     
-    restoreKeyButton.reactive.tap.bind(to: viewModel.restoreKeyAction).dispose(in: bag)
+    restoreKeyButton.reactive.tap.bind(to: model.restoreKeyAction).dispose(in: bag)
     restoreKeyButton.reactive.tap.with(weak: view).observeNext { view in
       view.endEditing(true)
     }.dispose(in: bag)
     
-//    viewModel.signUpSuccessfully
-//      .filter { $0 == true }
-//      .with(weak: self)
-//      .observeNext { _, sself in
-//        sself.performSegue(withIdentifier: "ShowTermsOfService", sender: sself)
-//      }.dispose(in: bag)
-    viewModel.routeTo.observeNext { [weak self] name, context in
+    model.signUpSuccessfully
+      .with(latestFrom: model.passwordError)
+      .filter { !$0 && $1 != nil }
+      .map { $1!.rawValue }
+      .bind(to: confirmPasswordField.reactive.error)
+      .dispose(in: bag)
+    
+    model.signUpSuccessfully
+      .with(latestFrom: model.passwordError)
+      .filter { !$0 && $1 != nil }
+      .map { _ in "" }
+      .bind(to: passwordField.reactive.text)
+      .dispose(in: bag)
+    
+    model.signUpSuccessfully
+      .with(latestFrom: model.passwordError)
+      .filter { !$0 && $1 != nil }
+      .map { _ in "" }
+      .bind(to: confirmPasswordField.reactive.text)
+      .dispose(in: bag)
+    
+    goToViewAction.observeNext { [weak self] name, context in
       let vc = try! self?.viewController(for: .named(name: name), context: context)
       self?.navigationController?.pushViewController(vc!, animated: true)
-    }.dispose(in: bag)
-    
-    viewModel.signUpSuccessfully
-      .filter { $0 == false }
-      .with(latestFrom: viewModel.passwordError)
-      .with(weak: passwordField, confirmPasswordField)
-      .observeNext { passwordErrorTouple, passwordField, confirmPasswordField in
-        confirmPasswordField.error = passwordErrorTouple.1?.rawValue
-        passwordField.text = ""
-        confirmPasswordField.text = ""
       }.dispose(in: bag)
-    
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -93,7 +96,6 @@ class SignUpViewController: UIViewController, RouterView, ViewFactoryProtocol {
 extension SignUpViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
     let appCtx = context.get(context: ApplicationContext.self)!
-    let vm = SignUpViewModel(appService: appCtx.applicationService)
-    self.viewModel = vm
+    self.model = SignUpViewModel(walletService: appCtx.walletService)
   }
 }

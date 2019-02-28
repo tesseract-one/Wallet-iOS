@@ -15,7 +15,7 @@ protocol ViewControllerContainer: class {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
 
-  var window: UIWindow?
+  let window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
   let context = ApplicationContext()
     
   var view:UIViewController? {

@@ -9,10 +9,18 @@
 import UIKit
 import ReactiveKit
 
+protocol ViewModelProtocol {
+  var bag: DisposeBag { get }
+}
+
+class ViewModel: ViewModelProtocol {
+  let bag = DisposeBag()
+}
+
 protocol ForwardRoutableViewModelProtocol: ViewModelProtocol {
-    typealias Route = (name: String, context: RouterContextProtocol?)
+    typealias ToView = (name: String, context: RouterContextProtocol?)
     
-    var goToView: SafePublishSubject<Route> { get }
+    var goToView: SafePublishSubject<ToView> { get }
 }
 
 protocol BackRoutableViewModelProtocol: ViewModelProtocol {
@@ -22,13 +30,13 @@ protocol BackRoutableViewModelProtocol: ViewModelProtocol {
 typealias RoutableViewModelProtocol = BackRoutableViewModelProtocol & ForwardRoutableViewModelProtocol
 
 protocol ModelVCProtocol: RouterViewProtocol {
-    associatedtype ViewModel: ViewModelProtocol
+  associatedtype ViewModel
     
-    var model: ViewModel { get }
+    var model: ViewModel! { get }
 }
 
 extension ModelVCProtocol where Self: UIViewController, Self.ViewModel: ForwardRoutableViewModelProtocol {
-    var goToViewAction: SafePublishSubject<ViewModel.Route> {
+    var goToViewAction: SafePublishSubject<ViewModel.ToView> {
         return model.goToView
     }
 }

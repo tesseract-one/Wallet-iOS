@@ -8,34 +8,39 @@
 
 import ReactiveKit
 import Bond
+import PromiseKit
 
 enum SignInPasswordErrors: String {
   case short = "Password should be at least 8 characters long"
   case wrong = "Password is incorrect"
 }
 
-protocol SignInViewModelProtocol: ViewModelProtocol {
+protocol SignInViewModelProtocol: ForwardRoutableViewModelProtocol {
   var signInAction: SafePublishSubject<Void> { get }
   var restoreKeyAction: SafePublishSubject<Void> { get }
   var password: Property<String?> { get }
   var passwordError: Property<SignInPasswordErrors?> { get }
+  var signUpSuccessfully: Property<Bool?> { get }
 }
 
 class SignInViewModel: ViewModel, SignInViewModelProtocol {
-  private let appService: ApplicationService
+  private let walletService: WalletService
   
   let signInAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
   let password = Property<String?>(nil) // to avoid first call
   let passwordError = Property<SignInPasswordErrors?>(nil)
+  let signUpSuccessfully = Property<Bool?>(nil)
   
-  init (appService: ApplicationService) {
-    self.appService = appService
-    
+  let goToView = SafePublishSubject<ToView>()
+  
+  init (walletService: WalletService) {
+    self.walletService = walletService
+  
     super.init()
     
     passwordValidator().bind(to: passwordError).dispose(in: bag)
-    passwordChecker().bind(to: passwordError).dispose(in: bag)
+    passwordChecker()
     
     restoreKeyAction.observeNext { _ in
       print("Restore Key")
@@ -56,17 +61,18 @@ extension SignInViewModel {
     }
   }
   
-  private func passwordChecker() -> SafeSignal<SignInPasswordErrors?> {
+  private func passwordChecker() {
     return signInAction
-      .with(latestFrom: passwordError)
-      .filter { $0.1 == nil }
+      .with(weak: passwordError)
+      .filter { $1.value == nil }
       .with(latestFrom: password)
-      .map { _, password -> SignInPasswordErrors? in
-        if password == "qweqweqwe" {
-          AppState.shared.unblockWallet()
-          return nil
+      .with(weak: walletService)
+      .observeNext { touple, walletService in
+        let (( _, passwordError ), password) = touple
+        walletService.unlockWallet(password: password!)
+        .catch { _ in
+           passwordError.next(SignInPasswordErrors.wrong)
         }
-        return SignInPasswordErrors.wrong
-      }
+      }.dispose(in: bag)
   }
 }

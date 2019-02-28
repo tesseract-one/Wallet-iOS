@@ -10,9 +10,10 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SignInViewController: UIViewController, RouterView {
+class SignInViewController: UIViewController, ModelVCProtocol {
+  typealias ViewModel = SignInViewModel
   
-  private var viewModel: SignInViewModelProtocol!
+  private(set) var model: ViewModel!
   
   // MARK: Outlets
   //
@@ -29,17 +30,17 @@ class SignInViewController: UIViewController, RouterView {
       .controlEvents(.editingDidEnd)
       .with(weak: passwordField)
       .map { $0.text ?? "" }
-      .bind(to: viewModel.password)
+      .bind(to: model.password)
       .dispose(in: bag)
     passwordField.reactive
       .controlEvents(.editingDidBegin) // .text fires additional events when tap button
-      .with(latestFrom: viewModel.passwordError)
+      .with(latestFrom: model.passwordError)
       .with(weak: passwordField)
       .observeNext { _, passwordField in
         passwordField.error = ""
       }.dispose(in: bag)
     
-    viewModel.passwordError
+    model.passwordError
       .filter { $0 != nil }
       .with(weak: passwordField)
       .observeNext { passwordError, passwordField in
@@ -50,12 +51,12 @@ class SignInViewController: UIViewController, RouterView {
     signInButton.reactive.tap.with(weak: view).observeNext { view in // should be before signInAction [passwordValidation --> passwordCheck]
       view.endEditing(true)
     }.dispose(in: bag)
-    signInButton.reactive.tap.bind(to: viewModel.signInAction).dispose(in: bag)
+    signInButton.reactive.tap.bind(to: model.signInAction).dispose(in: bag)
     
     restoreKeyButton.reactive.tap.with(weak: view).observeNext { view in
       view.endEditing(true)
       }.dispose(in: bag)
-    restoreKeyButton.reactive.tap.bind(to: viewModel.restoreKeyAction).dispose(in: bag)
+    restoreKeyButton.reactive.tap.bind(to: model.restoreKeyAction).dispose(in: bag)
     
     navigationController?.isToolbarHidden = true
   }
@@ -70,7 +71,6 @@ class SignInViewController: UIViewController, RouterView {
 extension SignInViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
     let appCtx = context.get(context: ApplicationContext.self)!
-    let vm = SignInViewModel(appService: appCtx.applicationService)
-    self.viewModel = vm
+    self.model = SignInViewModel(walletService: appCtx.walletService)
   }
 }
