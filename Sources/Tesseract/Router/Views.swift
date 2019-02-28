@@ -21,22 +21,6 @@ enum ViewError : Error {
     case notFound(view: ViewId)
 }
 
-
-extension RouterView where Self: NSObject {
-    var r_context: RouterContextProtocol {
-        return objc_getAssociatedObject(self, _r_context_key)! as! RouterContextProtocol
-    }
-    
-    var r_resolver: ViewResolverProtocol {
-        return objc_getAssociatedObject(self, _r_resolver_key)! as! ViewResolverProtocol
-    }
-    
-    func r_inject(context: RouterContextProtocol, resolver: ViewResolverProtocol) {
-        objc_setAssociatedObject(self, _r_context_key, context, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        objc_setAssociatedObject(self, _r_resolver_key, resolver, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-}
-
 protocol ViewFactoryProtocol {
     func viewController(for view: ViewId, context:RouterContextProtocol?) throws -> UIViewController
 }
@@ -55,14 +39,30 @@ extension ViewFactoryProtocol {
     }
 }
 
-protocol RouterView: ViewFactoryProtocol {
+protocol RouterViewProtocol: ViewFactoryProtocol {
     var r_context: RouterContextProtocol { get }
     var r_resolver: ViewResolverProtocol { get }
     
     func r_inject(context: RouterContextProtocol, resolver: ViewResolverProtocol)
 }
 
-extension RouterView {
+
+extension RouterViewProtocol where Self: NSObject {
+    var r_context: RouterContextProtocol {
+        return objc_getAssociatedObject(self, _r_context_key)! as! RouterContextProtocol
+    }
+    
+    var r_resolver: ViewResolverProtocol {
+        return objc_getAssociatedObject(self, _r_resolver_key)! as! ViewResolverProtocol
+    }
+    
+    func r_inject(context: RouterContextProtocol, resolver: ViewResolverProtocol) {
+        objc_setAssociatedObject(self, _r_context_key, context, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(self, _r_resolver_key, resolver, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+}
+
+extension RouterViewProtocol {
     func viewController(for view: ViewId, context: RouterContextProtocol?) throws -> UIViewController {
         let vf = ViewFactory(resolver: r_resolver, context: r_context)
         return try vf.viewController(for: view, context: context)
@@ -150,7 +150,7 @@ class ViewFactory : ViewFactoryProtocol {
             ctx.push(context: co)
         }
         
-        if let rvw = controller as? RouterView {
+        if let rvw = controller as? RouterViewProtocol {
             rvw.r_inject(context: ctx, resolver: _resolver)
         }
         
