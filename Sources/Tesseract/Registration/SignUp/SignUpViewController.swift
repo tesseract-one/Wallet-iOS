@@ -10,9 +10,9 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SignUpViewController: UIViewController {
+class SignUpViewController: UIViewController, RouterView, ViewFactoryProtocol {
   
-  private var viewModel: SignUpViewModelProtocol = SignUpViewModel()
+  private var viewModel: SignUpViewModelProtocol!
   
   // MARK: Outlets
   //  
@@ -49,12 +49,17 @@ class SignUpViewController: UIViewController {
       view.endEditing(true)
     }.dispose(in: bag)
     
-    viewModel.signUpSuccessfully
-      .filter { $0 == true }
-      .with(weak: self)
-      .observeNext { _, sself in
-        sself.performSegue(withIdentifier: "ShowTermsOfService", sender: sself)
-      }.dispose(in: bag)
+//    viewModel.signUpSuccessfully
+//      .filter { $0 == true }
+//      .with(weak: self)
+//      .observeNext { _, sself in
+//        sself.performSegue(withIdentifier: "ShowTermsOfService", sender: sself)
+//      }.dispose(in: bag)
+    viewModel.routeTo.observeNext { [weak self] name, context in
+      let vc = try! self?.viewController(for: .named(name: name), context: context)
+      self?.navigationController?.pushViewController(vc!, animated: true)
+    }.dispose(in: bag)
+    
     viewModel.signUpSuccessfully
       .filter { $0 == false }
       .with(latestFrom: viewModel.passwordError)
@@ -82,5 +87,13 @@ class SignUpViewController: UIViewController {
   // Make the Status Bar Light/Dark Content for this View
   override var preferredStatusBarStyle : UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
+  }
+}
+
+extension SignUpViewController: ContextSubject {
+  func apply(context: RouterContextProtocol) {
+    let appCtx = context.get(context: ApplicationContext.self)!
+    let vm = SignUpViewModel(appService: appCtx.applicationService)
+    self.viewModel = vm
   }
 }

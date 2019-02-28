@@ -22,6 +22,7 @@ protocol SignUpViewModelProtocol: ViewModelProtocol {
   var confirmPassword: Property<String?> { get }
   var passwordError: Property<SignUpPasswordErrors?> { get }
   var signUpSuccessfully: Property<Bool?> { get }
+  var routeTo: SafePublishSubject<(name: String, context: RouterContextProtocol?)> { get }
 }
 
 class SignUpViewModel: ViewModel, SignUpViewModelProtocol {
@@ -32,7 +33,13 @@ class SignUpViewModel: ViewModel, SignUpViewModelProtocol {
   let passwordError = Property<SignUpPasswordErrors?>(nil)
   let signUpSuccessfully = Property<Bool?>(nil)
   
-  override init () {
+  private let appService: ApplicationService
+  
+  let routeTo = SafePublishSubject<(name: String, context: RouterContextProtocol?)>()
+  
+  init (appService: ApplicationService) {
+    self.appService = appService
+    
     super.init()
     
     passwordValidator().bind(to: passwordError).dispose(in: bag)
@@ -63,11 +70,13 @@ extension SignUpViewModel {
     return signUpAction
       .with(latestFrom: passwordError)
       .with(latestFrom: password)
-      .map { pwdErrorTouple, pwd -> Bool? in
+      .with(weak: routeTo)
+      .map { pwdErrorTouple, pwd, routeTo -> Bool? in
         if pwdErrorTouple.1 != nil {
           return false
         }
         print("Sign Up")
+        routeTo.next("NAME")
         return true // add more logic
       }
   }

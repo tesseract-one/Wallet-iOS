@@ -65,6 +65,7 @@
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpModelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpModelView.swift */; };
+		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
 		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
 		D171DE4C219DA3CE003134DD /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */; };
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
@@ -227,6 +228,7 @@
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpModelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpModelView.swift; sourceTree = "<group>"; };
+		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
 		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D171DE4B219DA3CE003134DD /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -518,11 +520,11 @@
 		D125143D21A82D570077E04A /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				D168B55822284A17008DBFB0 /* TermsOfService */,
 				D168B5552227FAD9008DBFB0 /* SignUp */,
 				D1F76C992225894B00BFBB6B /* SignIn */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
 				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
-				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
 				92CB1991222840B300407F9A /* RegistrationViewFactory.swift */,
 			);
@@ -591,6 +593,15 @@
 				D168B5562227FBBA008DBFB0 /* SignUpModelView.swift */,
 			);
 			path = SignUp;
+			sourceTree = "<group>";
+		};
+		D168B55822284A17008DBFB0 /* TermsOfService */ = {
+			isa = PBXGroup;
+			children = (
+				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
+				D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */,
+			);
+			path = TermsOfService;
 			sourceTree = "<group>";
 		};
 		D171DE49219DA36A003134DD /* Resources */ = {
@@ -1009,6 +1020,7 @@
 				D1F986A621AC7053000B4C3C /* SendAmountTableViewCell.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
 				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
+				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,
 				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
 				D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */,
 				D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */,

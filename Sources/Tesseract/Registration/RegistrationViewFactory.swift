@@ -10,10 +10,10 @@ import UIKit
 
 class RegistrationViewFactory: WeakContextViewFactory {
     var registrationView: UIViewController {
-        return try! viewController(for: .named(name: "RegistrationController"))
+        return try! viewController(for: .named(name: "Registration"))
     }
     
     var unlockView: UIViewController {
-        return try! viewController(for: .named(name: "SignInController"))
+        return try! viewController(for: .named(name: "SignIn"))
     }
 }

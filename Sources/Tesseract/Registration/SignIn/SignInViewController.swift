@@ -10,9 +10,9 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, RouterView {
   
-  private var viewModel: SignInViewModelProtocol = SignInViewModel()
+  private var viewModel: SignInViewModelProtocol!
   
   // MARK: Outlets
   //
@@ -64,5 +64,13 @@ class SignInViewController: UIViewController {
   // Make the Status Bar Light/Dark Content for this View
   override var preferredStatusBarStyle : UIStatusBarStyle {
     return UIStatusBarStyle.lightContent
+  }
+}
+
+extension SignInViewController: ContextSubject {
+  func apply(context: RouterContextProtocol) {
+    let appCtx = context.get(context: ApplicationContext.self)!
+    let vm = SignInViewModel(appService: appCtx.applicationService)
+    self.viewModel = vm
   }
 }

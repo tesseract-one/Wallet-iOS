@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveKit
 
 class TermsOfServiceViewController: UIViewController {
   
@@ -18,15 +19,15 @@ class TermsOfServiceViewController: UIViewController {
   //
   override func viewDidLoad() {
     super.viewDidLoad()
+    
+    acceptButton.reactive.tap
+      .with(weak: self)
+      .observeNext { sself in
+        sself.performSegue(withIdentifier: "ShowMnemonics", sender: sself)
+      }.dispose(in: bag)
   }
   
   override func viewDidLayoutSubviews() {
     termsTextView.setContentOffset(.zero, animated: false)
-  }
-  
-  // MARK: Actions
-  //
-  @IBAction func agreeWithTerms(_ sender: UIButton) {
-    performSegue(withIdentifier: "ShowMnemonics", sender: self)
   }
 }

@@ -22,12 +22,16 @@ protocol SignInViewModelProtocol: ViewModelProtocol {
 }
 
 class SignInViewModel: ViewModel, SignInViewModelProtocol {
+  private let appService: ApplicationService
+  
   let signInAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
   let password = Property<String?>(nil) // to avoid first call
   let passwordError = Property<SignInPasswordErrors?>(nil)
   
-  override init () {
+  init (appService: ApplicationService) {
+    self.appService = appService
+    
     super.init()
     
     passwordValidator().bind(to: passwordError).dispose(in: bag)
