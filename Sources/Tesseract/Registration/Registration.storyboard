@@ -17,7 +17,7 @@
         <!--Register-->
         <scene sceneID="M3U-LD-T2c">
             <objects>
-                <viewController storyboardIdentifier="SignUpController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="RegistrationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="620"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -114,9 +114,6 @@
                                                                 <real key="value" value="8"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="creteKey:" destination="CkB-v8-7KG" eventType="touchUpInside" id="XYS-h8-qmH"/>
-                                                        </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r11-Cf-4ka" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="65" width="382" height="55"/>
@@ -130,9 +127,6 @@
                                                                 <real key="value" value="4"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
-                                                        <connections>
-                                                            <action selector="restoreKey:" destination="CkB-v8-7KG" eventType="touchUpInside" id="mxj-lb-nNm"/>
-                                                        </connections>
                                                     </button>
                                                 </subviews>
                                                 <constraints>
@@ -183,7 +177,9 @@
                     <navigationItem key="navigationItem" title="Register" largeTitleDisplayMode="always" id="HTj-bq-RXF"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="8wX-ft-38H" id="oSX-j4-zj6"/>
-                        <outlet property="yourPasswordField" destination="boP-Jv-ldG" id="fE5-jY-5Am"/>
+                        <outlet property="passwordField" destination="boP-Jv-ldG" id="tmB-RJ-RCC"/>
+                        <outlet property="restoreKeyButton" destination="r11-Cf-4ka" id="IsQ-P9-f28"/>
+                        <outlet property="signUpButton" destination="AbA-dT-H7q" id="c2o-Dn-fXW"/>
                         <segue destination="TOP-Zx-po9" kind="show" identifier="ShowTermsOfService" id="MLY-hU-8ED"/>
                     </connections>
                 </viewController>

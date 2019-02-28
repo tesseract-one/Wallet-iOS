@@ -9,18 +9,23 @@
 import ReactiveKit
 import Bond
 
+enum SignInPasswordErrors: String {
+  case short = "Password should be at least 8 characters long"
+  case wrong = "Password is incorrect"
+}
+
 protocol SignInViewModelProtocol: ViewModelProtocol {
   var signInAction: SafePublishSubject<Void> { get }
   var restoreKeyAction: SafePublishSubject<Void> { get }
   var password: Property<String?> { get }
-  var passwordError: Property<String?> { get }
+  var passwordError: Property<SignInPasswordErrors?> { get }
 }
 
 class SignInViewModel: ViewModel, SignInViewModelProtocol {
   let signInAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
   let password = Property<String?>(nil) // to avoid first call
-  let passwordError = Property<String?>(nil)
+  let passwordError = Property<SignInPasswordErrors?>(nil)
   
   override init () {
     super.init()
@@ -36,26 +41,28 @@ class SignInViewModel: ViewModel, SignInViewModelProtocol {
 
 extension SignInViewModel {
   
-  private func passwordValidator() -> SafeSignal<String?> {
+  private func passwordValidator() -> SafeSignal<SignInPasswordErrors?> {
     return password
       .filter { $0 != nil }
-      .map { pwd -> String? in
+      .map { pwd -> SignInPasswordErrors? in
         if pwd!.count < 8 {
-          return "Password should be at least 8 characters long"
+          return SignInPasswordErrors.short
         }
         return nil
     }
   }
   
-  private func passwordChecker() -> SafeSignal<String?> {
-    return signInAction.with(weak: passwordError, password)
-      .filter { $0.1.value == nil }
-      .map { _, pe, password -> String? in
-        if password.value == "qweqweqwe" {
+  private func passwordChecker() -> SafeSignal<SignInPasswordErrors?> {
+    return signInAction
+      .with(latestFrom: passwordError)
+      .filter { $0.1 == nil }
+      .with(latestFrom: password)
+      .map { _, password -> SignInPasswordErrors? in
+        if password == "qweqweqwe" {
           AppState.shared.unblockWallet()
           return nil
         }
-        return "Password is incorrect"
+        return SignInPasswordErrors.wrong
       }
   }
 }

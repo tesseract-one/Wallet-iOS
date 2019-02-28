@@ -19,10 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // Temprorary
     AppState.shared.createWallet()
     
-    if AppState.shared.wallet != nil {
+    if AppState.shared.wallet == nil {
       rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "SignInController")
     } else {
-      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "RegistrationController")
+      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "SignUpController")
     }
     
     self.window?.rootViewController = rootViewController

@@ -33,17 +33,18 @@ class SignInViewController: UIViewController {
       .dispose(in: bag)
     passwordField.reactive
       .controlEvents(.editingDidBegin) // .text fires additional events when tap button
+      .with(latestFrom: viewModel.passwordError)
       .with(weak: passwordField)
-      .observeNext { passwordField in
+      .observeNext { _, passwordField in
         passwordField.error = ""
-        passwordField.text = ""
       }.dispose(in: bag)
     
     viewModel.passwordError
-      .filter{$0 != nil}
+      .filter { $0 != nil }
       .with(weak: passwordField)
       .observeNext { passwordError, passwordField in
-        passwordField.error = passwordError
+        passwordField.error = passwordError?.rawValue
+        passwordField.text = ""
       }.dispose(in: bag)
     
     signInButton.reactive.tap.with(weak: view).observeNext { view in // should be before signInAction [passwordValidation --> passwordCheck]
