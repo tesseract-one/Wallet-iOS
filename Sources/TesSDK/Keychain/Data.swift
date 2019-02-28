@@ -9,6 +9,11 @@
 import Foundation
 import PromiseKit
 
+enum StorageError: Error {
+    case noData(forKey: String)
+    case internalError(err: Error)
+}
+
 public protocol StorageProtocol {
     func hasData(key: String) -> Promise<Bool>
     func loadData(key: String) -> Promise<Data>

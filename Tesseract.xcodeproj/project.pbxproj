@@ -31,6 +31,7 @@
 		9299325D222489F4000EAD47 /* dAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325C222489F4000EAD47 /* dAPI.swift */; };
 		9299325F22248A73000EAD47 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325E22248A73000EAD47 /* Ethereum.swift */; };
 		92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
+		92CB197B222808DC00407F9A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* Storage.swift */; };
 		92FB84972225823200447653 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84952225819D00447653 /* Keychain.swift */; };
 		92FB849A222589AA00447653 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8499222589AA00447653 /* Data.swift */; };
 		92FB849C22259E4200447653 /* Result+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849B22259E4200447653 /* Result+Promise.swift */; };
@@ -184,6 +185,7 @@
 		9299325422248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9299325C222489F4000EAD47 /* dAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dAPI.swift; sourceTree = "<group>"; };
 		9299325E22248A73000EAD47 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
+		92CB197A222808DC00407F9A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		92FB84952225819D00447653 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		92FB8499222589AA00447653 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		92FB849B22259E4200447653 /* Result+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Promise.swift"; sourceTree = "<group>"; };
@@ -448,6 +450,7 @@
 				9299325E22248A73000EAD47 /* Ethereum.swift */,
 				92FB849B22259E4200447653 /* Result+Promise.swift */,
 				92FB84A62226EBA300447653 /* Wallet.swift */,
+				92CB197A222808DC00407F9A /* Storage.swift */,
 			);
 			path = TesSDK;
 			sourceTree = "<group>";
@@ -1006,6 +1009,7 @@
 				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
 				92FB849C22259E4200447653 /* Result+Promise.swift in Sources */,
 				92FB84A02225A27600447653 /* HDWalletKey.swift in Sources */,
+				92CB197B222808DC00407F9A /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
