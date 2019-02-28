@@ -21,13 +21,6 @@ enum ViewError : Error {
     case notFound(view: ViewId)
 }
 
-protocol RouterView {
-    var r_context: RouterContextProtocol { get }
-    var r_resolver: ViewResolverProtocol { get }
-    
-    func r_inject(context: RouterContextProtocol, resolver: ViewResolverProtocol)
-}
-
 
 extension RouterView where Self: NSObject {
     var r_context: RouterContextProtocol {
@@ -62,7 +55,14 @@ extension ViewFactoryProtocol {
     }
 }
 
-extension ViewFactoryProtocol where Self : RouterView {
+protocol RouterView: ViewFactoryProtocol {
+    var r_context: RouterContextProtocol { get }
+    var r_resolver: ViewResolverProtocol { get }
+    
+    func r_inject(context: RouterContextProtocol, resolver: ViewResolverProtocol)
+}
+
+extension RouterView {
     func viewController(for view: ViewId, context: RouterContextProtocol?) throws -> UIViewController {
         let vf = ViewFactory(resolver: r_resolver, context: r_context)
         return try vf.viewController(for: view, context: context)
