@@ -15,12 +15,7 @@
 		9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		9299320F22245B75000EAD47 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320422245B74000EAD47 /* Bond.framework */; };
 		9299321022245B75000EAD47 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320522245B74000EAD47 /* Motion.framework */; };
-		9299321122245B75000EAD47 /* Web3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320622245B74000EAD47 /* Web3.framework */; };
-		9299321222245B75000EAD47 /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320722245B74000EAD47 /* SipHash.framework */; };
-		9299321322245B75000EAD47 /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320822245B74000EAD47 /* CryptoSwift.framework */; };
 		9299321422245B75000EAD47 /* ReactiveKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320922245B74000EAD47 /* ReactiveKit.framework */; };
-		9299321522245B75000EAD47 /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320A22245B74000EAD47 /* secp256k1.framework */; };
-		9299321622245B75000EAD47 /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320B22245B74000EAD47 /* BigInt.framework */; };
 		9299321722245B75000EAD47 /* Differ.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320C22245B74000EAD47 /* Differ.framework */; };
 		9299321822245B75000EAD47 /* Material.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320D22245B74000EAD47 /* Material.framework */; };
 		9299323522248422000EAD47 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299323422248422000EAD47 /* ShareViewController.swift */; };
@@ -32,6 +27,19 @@
 		9299325F22248A73000EAD47 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325E22248A73000EAD47 /* Ethereum.swift */; };
 		92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		92CB197B222808DC00407F9A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* Storage.swift */; };
+		92CB197C222819FF00407F9A /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320A22245B74000EAD47 /* secp256k1.framework */; };
+		92CB197D22281A0200407F9A /* SipHash.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320722245B74000EAD47 /* SipHash.framework */; };
+		92CB197E22281A0B00407F9A /* CryptoSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320822245B74000EAD47 /* CryptoSwift.framework */; };
+		92CB197F22281A0F00407F9A /* BigInt.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320B22245B74000EAD47 /* BigInt.framework */; };
+		92CB198022281A6A00407F9A /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
+		92CB198322281E0D00407F9A /* Views.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198222281E0D00407F9A /* Views.swift */; };
+		92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198422281E2600407F9A /* ApplicationContext.swift */; };
+		92CB198722281EA400407F9A /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198622281EA400407F9A /* Context.swift */; };
+		92CB198A22282ED000407F9A /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198922282ED000407F9A /* WalletService.swift */; };
+		92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198B2228312A00407F9A /* Promise+Extensions.swift */; };
+		92CB198E2228323300407F9A /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198D2228323300407F9A /* AnyError.swift */; };
+		92CB199022283B9200407F9A /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198F22283B9200407F9A /* ApplicationService.swift */; };
+		92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1991222840B300407F9A /* RegistrationViewFactory.swift */; };
 		92FB84972225823200447653 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84952225819D00447653 /* Keychain.swift */; };
 		92FB849A222589AA00447653 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8499222589AA00447653 /* Data.swift */; };
 		92FB849C22259E4200447653 /* Result+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849B22259E4200447653 /* Result+Promise.swift */; };
@@ -187,6 +195,14 @@
 		9299325C222489F4000EAD47 /* dAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dAPI.swift; sourceTree = "<group>"; };
 		9299325E22248A73000EAD47 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
 		92CB197A222808DC00407F9A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		92CB198222281E0D00407F9A /* Views.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Views.swift; sourceTree = "<group>"; };
+		92CB198422281E2600407F9A /* ApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
+		92CB198622281EA400407F9A /* Context.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
+		92CB198922282ED000407F9A /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
+		92CB198B2228312A00407F9A /* Promise+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Extensions.swift"; sourceTree = "<group>"; };
+		92CB198D2228323300407F9A /* AnyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyError.swift; sourceTree = "<group>"; };
+		92CB198F22283B9200407F9A /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
+		92CB1991222840B300407F9A /* RegistrationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewFactory.swift; sourceTree = "<group>"; };
 		92FB84952225819D00447653 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		92FB8499222589AA00447653 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		92FB849B22259E4200447653 /* Result+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Promise.swift"; sourceTree = "<group>"; };
@@ -266,16 +282,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92CB198022281A6A00407F9A /* TesSDK.framework in Frameworks */,
 				9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */,
-				9299321622245B75000EAD47 /* BigInt.framework in Frameworks */,
 				9299320F22245B75000EAD47 /* Bond.framework in Frameworks */,
-				9299321222245B75000EAD47 /* SipHash.framework in Frameworks */,
-				9299321522245B75000EAD47 /* secp256k1.framework in Frameworks */,
-				9299321322245B75000EAD47 /* CryptoSwift.framework in Frameworks */,
 				9299321722245B75000EAD47 /* Differ.framework in Frameworks */,
 				9299321822245B75000EAD47 /* Material.framework in Frameworks */,
 				9299321022245B75000EAD47 /* Motion.framework in Frameworks */,
-				9299321122245B75000EAD47 /* Web3.framework in Frameworks */,
 				9299321422245B75000EAD47 /* ReactiveKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,6 +319,10 @@
 			files = (
 				92FB84A42226DE9700447653 /* Mnemonic.framework in Frameworks */,
 				92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */,
+				92CB197C222819FF00407F9A /* secp256k1.framework in Frameworks */,
+				92CB197D22281A0200407F9A /* SipHash.framework in Frameworks */,
+				92CB197E22281A0B00407F9A /* CryptoSwift.framework in Frameworks */,
+				92CB197F22281A0F00407F9A /* BigInt.framework in Frameworks */,
 				92FB84A52226DEA900447653 /* Web3.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,6 +364,8 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				92CB198822282E9B00407F9A /* Services */,
+				92CB198122281DE100407F9A /* Router */,
 				D1F76C9F2226A4F000BFBB6B /* Helpers */,
 				D1F76C9C2226889900BFBB6B /* ViewModels */,
 				D182AC3E21E4CD640013AF02 /* More */,
@@ -370,6 +388,7 @@
 				922CA49E21945F2100FE66F1 /* Info.plist */,
 				D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */,
 				D13255A821AD7E840099A668 /* AppState.swift */,
+				92CB198422281E2600407F9A /* ApplicationContext.swift */,
 			);
 			path = Tesseract;
 			sourceTree = "<group>";
@@ -466,6 +485,24 @@
 			path = TesSDKTests;
 			sourceTree = "<group>";
 		};
+		92CB198122281DE100407F9A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				92CB198622281EA400407F9A /* Context.swift */,
+				92CB198222281E0D00407F9A /* Views.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		92CB198822282E9B00407F9A /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				92CB198922282ED000407F9A /* WalletService.swift */,
+				92CB198F22283B9200407F9A /* ApplicationService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		92FB84982225899600447653 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
@@ -487,6 +524,7 @@
 				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
 				D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */,
 				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
+				92CB1991222840B300407F9A /* RegistrationViewFactory.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -635,6 +673,8 @@
 			isa = PBXGroup;
 			children = (
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
+				92CB198B2228312A00407F9A /* Promise+Extensions.swift */,
+				92CB198D2228323300407F9A /* AnyError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -910,6 +950,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/secp256k1.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SipHash.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Web3.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Mnemonic.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputFileListPaths = (
@@ -936,12 +977,14 @@
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
 				D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
+				92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */,
 				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
 				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
 				D1D292E121AF06E9000DA665 /* TokensTableViewController.swift in Sources */,
 				D13163A321B98C090066FB4A /* Stub.swift in Sources */,
+				92CB198322281E0D00407F9A /* Views.swift in Sources */,
 				D171DE54219DE3A5003134DD /* MnemonicsVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicsViewController.swift in Sources */,
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
@@ -951,7 +994,9 @@
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
 				D168B5572227FBBA008DBFB0 /* SignUpModelView.swift in Sources */,
+				92CB199022283B9200407F9A /* ApplicationService.swift in Sources */,
 				D1F9869921AC3B13000B4C3C /* AddressesViewController.swift in Sources */,
+				92CB198E2228323300407F9A /* AnyError.swift in Sources */,
 				D1D5F85B21B84374007D0433 /* AppsTableViewController.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				D13163A521B98DCA0066FB4A /* Account.swift in Sources */,
@@ -963,11 +1008,13 @@
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,
 				D1F986A621AC7053000B4C3C /* SendAmountTableViewCell.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
+				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
 				D1746A4121A6FEE40045F0AE /* RecieveCoinsViewController.swift in Sources */,
 				D1D9A6CF21B548D100D237E6 /* AssetsTableViewExpandedCell.swift in Sources */,
 				D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */,
+				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */,
@@ -976,10 +1023,12 @@
 				D1D292DF21AEE056000DA665 /* ReviewTableViewController.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,
 				D13255A921AD7E840099A668 /* AppState.swift in Sources */,
+				92CB198722281EA400407F9A /* Context.swift in Sources */,
 				D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */,
 				D1F986A421AC6FFB000B4C3C /* SendAmountViewController.swift in Sources */,
 				D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */,
 				D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */,
+				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1388,7 +1437,6 @@
 				);
 				INFOPLIST_FILE = Sources/TesSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1423,7 +1471,6 @@
 				);
 				INFOPLIST_FILE = Sources/TesSDK/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

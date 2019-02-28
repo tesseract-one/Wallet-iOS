@@ -15,10 +15,10 @@ enum AccountError: Error {
     case walletIsNil
 }
 
-class Account {
-    let index: UInt32
+public class Account {
+    public let index: UInt32
+    public private(set) var address: String
     
-    private(set) var address: String
     private var hdWallet: HDWallet? = nil
     
     init(index: UInt32, address: String? = nil, hdWallet: HDWallet? = nil) throws {
@@ -89,7 +89,7 @@ extension Account {
     }
 }
 
-class Wallet {
+public class Wallet {
     static let walletPublicDataPrefix = "PUBLIC_DATA__"
     static let walletPrefix = "PRIVATE_DATA__"
     
@@ -111,11 +111,11 @@ class Wallet {
         self.accounts = accounts
     }
     
-    static func hasWallet(name: String, storage: StorageProtocol) -> Promise<Bool> {
+    public static func hasWallet(name: String, storage: StorageProtocol) -> Promise<Bool> {
         return storage.hasData(key: Wallet.walletPrefix + name)
     }
     
-    static func newWallet(name: String, password: String, storage: StorageProtocol) -> Promise<(mnemonic: String, wallet: Wallet)> {
+    public static func newWallet(name: String, password: String, storage: StorageProtocol) -> Promise<(mnemonic: String, wallet: Wallet)> {
         let keychain = Keychain(storage: storage)
         return keychain.createWallet(name: Wallet.walletPrefix + name, password: password)
             .map {
@@ -126,14 +126,14 @@ class Wallet {
             .then { (mnemonic: String, wallet: Wallet) in wallet.save().map { (mnemonic: mnemonic, wallet: wallet) } }
     }
     
-    static func restoreWallet(name: String, mnemonic: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
+    public static func restoreWallet(name: String, mnemonic: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
         return keychain.restoreWallet(name: Wallet.walletPrefix + name, mnemonic: mnemonic, password: password)
             .map { Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0) }
             .then { wallet in wallet.save().map { wallet } }
     }
     
-    static func loadWallet(name: String, storage: StorageProtocol) -> Promise<Wallet> {
+    public static func loadWallet(name: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
         return storage
             .loadData(key: Wallet.walletPublicDataPrefix + name)
@@ -141,18 +141,18 @@ class Wallet {
             .map { try Wallet(name: name, data: $0, storage: storage, keychain: keychain) }
     }
     
-    var isLocked: Bool {
+    public var isLocked: Bool {
         return hdWallet == nil
     }
     
-    func unlock(password: String) -> Promise<Void> {
+    public func unlock(password: String) -> Promise<Void> {
         return keychain.loadWallet(name: Wallet.walletPrefix + name, password: password)
             .done {
                 try self.setHdWallet(wallet: $0)
             }
     }
     
-    func addAccount() throws -> Account {
+    public func addAccount() throws -> Account {
         accountsLock.lock()
         defer { accountsLock.unlock() }
         let account = try Account(index: UInt32(accounts.count), hdWallet: hdWallet)
@@ -160,7 +160,7 @@ class Wallet {
         return account
     }
     
-    func save() -> Promise<Void> {
+    public func save() -> Promise<Void> {
         let data = storageData
         let storage = self.storage
         let key = Wallet.walletPublicDataPrefix + name
@@ -200,25 +200,25 @@ extension Wallet {
 
 
 extension Wallet: EthereumSignProvider {
-    var networks: Array<Network> {
+    public var networks: Array<Network> {
         return [.Ethereum]
     }
     
-    func eth_accounts() -> Promise<Array<String>> {
+    public func eth_accounts() -> Promise<Array<String>> {
         return Promise().map { self.accounts.map { $0.address } }
     }
     
-    func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+    public func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
         return eth_account(address: account)
             .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
     
-    func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
+    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
         return eth_account(address: account)
             .then { $0.eth_verify(data: data, signature: signature) }
     }
     
-    func eth_signData(account: String, data: Data) -> Promise<String> {
+    public func eth_signData(account: String, data: Data) -> Promise<String> {
         return eth_account(address: account)
             .then { $0.eth_signData(data: data) }
     }
@@ -240,7 +240,7 @@ extension Wallet: EthereumSignProvider {
 }
 
 extension Wallet {
-    var distributedAPI: dAPI {
+    public var distributedAPI: dAPI {
         let dapi = dAPI()
         dapi.signProvider = self
         return dapi

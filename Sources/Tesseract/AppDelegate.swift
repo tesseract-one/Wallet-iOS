@@ -8,27 +8,35 @@
 
 import UIKit
 
+protocol ViewControllerContainer: class {
+    var view:UIViewController? {get set}
+}
+
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
 
   var window: UIWindow?
+  let context = ApplicationContext()
+    
+  var view:UIViewController? {
+    get {
+        return window?.rootViewController
+    }
+    set {
+        window?.rootViewController = newValue
+        if newValue != nil && window != nil && !window!.isKeyWindow {
+            window?.makeKeyAndVisible()
+        }
+    }
+  }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-    var rootViewController: UIViewController
+    context.rootContainer = self
     
-    // Temprorary
-    AppState.shared.createWallet()
+    context.registrationViewFactory = RegistrationViewFactory(resolver: UIStoryboard(name: "Registration", bundle: nil), context: context)
+    context.walletViewFactory = WeakContextViewFactory(resolver: UIStoryboard(name: "Main", bundle: nil), context: context)
     
-    if AppState.shared.wallet == nil {
-      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "SignInController")
-    } else {
-      rootViewController = AppStoryboard.Registration.instance.instantiateViewController(withIdentifier: "SignUpController")
-    }
-    
-    self.window?.rootViewController = rootViewController
-    
-    NotificationCenter.default.addObserver(self, selector: #selector(self.showMainStoryboard), name: NSNotification.Name(rawValue: "UnblockedWallet"), object: nil)
-    
+    context.bootstrap()
     return true
   }
 
@@ -52,16 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(_ application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-  }
-
-  @objc private func showMainStoryboard() {
-    UIView.transition(with: self.window!, duration: 0.5, options: UIView.AnimationOptions.transitionFlipFromLeft, animations: {
-     self.window?.rootViewController = AppStoryboard.Main.instance.instantiateViewController(withIdentifier: "HomeController")
-    }, completion: nil)
-  }
-  
-  deinit {
-    NotificationCenter.default.removeObserver(self)
   }
 }
 
