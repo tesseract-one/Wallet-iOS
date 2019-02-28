@@ -15,8 +15,6 @@ class ApplicationService {
     let bag = DisposeBag()
     
     var walletService: WalletService!
-    var wallet: Property<Wallet?>!
-    let isWalletLocked: Property<Bool> = Property(true)
     
     var errorNode: SafePublishSubject<AnyError>!
     
@@ -27,27 +25,17 @@ class ApplicationService {
     var walletViewFactory: ViewFactoryProtocol!
     
     func bootstrap() {
-        wallet.map { $0 == nil || $0!.isLocked }.bind(to: isWalletLocked).dispose(in: bag)
         bindRegistration()
-        
+        // Bootstrap Step 2
         exec()
     }
     
-    func unlockWallet(password: String) -> Promise<Void> {
-        return wallet.value!.unlock(password: password)
-            .done { [weak self] in
-                self?.isWalletLocked.next(false)
-            }
-    }
-    
     private func exec() {
-        walletService.loadWallet().signal
-            .suppressAndFeedError(into: errorNode)
-            .bind(to: wallet)
+        let _ = walletService.loadWallet()
     }
     
     private func bindRegistration() {
-        combineLatest(wallet, isWalletLocked)
+        combineLatest(walletService.wallet, walletService.isWalletLocked)
             .map { [weak self] wallet, isLocked in
                 if wallet != nil && !isLocked {
                     return try! self?.walletViewFactory.viewController(for: .root)
