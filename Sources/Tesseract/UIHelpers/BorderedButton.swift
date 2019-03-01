@@ -7,15 +7,15 @@
 //
 
 import UIKit
+import Foundation
 
 @IBDesignable
 class BorderedButton: UIButton {
-  
-//  @IBInspectable override var borderColor: UIColor? = UIColor.clear {
-//    didSet {
-//      layer.borderColor = self.borderColor?.cgColor
-//    }
-//  }
+  @IBInspectable override var borderColor: UIColor? {
+    didSet {
+      layer.borderColor = self.borderColor?.cgColor
+    }
+  }
   
   @IBInspectable var borderWidth: CGFloat = 0.0 {
     didSet {

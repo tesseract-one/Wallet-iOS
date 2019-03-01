@@ -17,7 +17,6 @@ class MnemonicViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   init (mnemonic: String) {
     super.init()
     
-    print("mnemonic", mnemonic)
     mnemonicProp.next(mnemonic)
     
     doneMnemonicAction.map { _ in (name: "MnemonicVerification", context: nil) }

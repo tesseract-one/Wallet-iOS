@@ -419,7 +419,7 @@
         <!--Verify-->
         <scene sceneID="7Pz-CT-fVo">
             <objects>
-                <viewController storyboardIdentifier="CheckMnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y3x-gO-Oc3" customClass="MnemonicVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MnemonicVerification" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y3x-gO-Oc3" customClass="MnemonicVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ubl-XX-NKV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -522,6 +522,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="doneButton" destination="KOX-bF-Du2" id="2Ns-eZ-xB7"/>
                         <outlet property="mnemonicVerificationTextView" destination="BeD-OW-Eev" id="Bmu-J4-KmL"/>
                     </connections>
                 </viewController>

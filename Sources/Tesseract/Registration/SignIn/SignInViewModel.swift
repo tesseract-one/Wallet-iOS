@@ -20,8 +20,9 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   
   let signInAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
-  let password = Property<String?>(nil) // to avoid first call
+  let password = Property<String>("")
   let passwordError = Property<SignInPasswordErrors?>(nil)
+  let signInSuccessfully = Property<Bool?>(nil)
   
   let goToView = SafePublishSubject<ToView>()
   
@@ -43,9 +44,8 @@ extension SignInViewModel {
   
   private func passwordValidator() -> SafeSignal<SignInPasswordErrors?> {
     return password
-      .filter { $0 != nil }
       .map { pwd -> SignInPasswordErrors? in
-        if pwd!.count < 8 {
+        if pwd.count < 8 {
           return SignInPasswordErrors.short
         }
         return nil
@@ -54,17 +54,26 @@ extension SignInViewModel {
   
   private func setUpSignIn() {
     let errors = SafePublishSubject<AnyError>()
+    
+    signInAction
+      .with(weak: passwordError)
+      .filter { $1.value != nil }
+      .map { _ in false }
+      .bind(to: signInSuccessfully)
+      .dispose(in: bag)
+    
     signInAction
       .with(weak: passwordError)
       .filter { $1.value == nil }
       .map { _ in }
       .with(latestFrom: password)
       .with(weak: walletService)
-      .flatMapLatest { pwdTuple, walletService in
-        walletService.unlockWallet(password: pwdTuple.1!).signal
+      .flatMapLatest { pwdTuple, walletService -> Signal<Void, AnyError> in
+        return walletService.unlockWallet(password: pwdTuple.1).signal
       }
-      .toErrorSignal()
-      .bind(to: errors)
+      .suppressAndFeedError(into: errors)
+      .map { _ in true }
+      .bind(to: signInSuccessfully)
       .dispose(in: bag)
     
     errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)

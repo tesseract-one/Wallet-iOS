@@ -127,6 +127,7 @@ public class Wallet {
         return keychain.createWallet(name: Wallet.walletPrefix + name, password: password)
             .map {
                 let wallet = Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0.wallet)
+                wallet.password = password
                 let _ = try wallet.addAccount()
                 return (mnemonic: $0.mnemonic, wallet: wallet)
             }

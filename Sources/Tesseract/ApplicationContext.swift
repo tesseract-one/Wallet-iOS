@@ -22,6 +22,7 @@ class ApplicationContext: RouterContextProtocol {
     // State
     let wallet: Property<Wallet?> = Property(nil)
     let ethereumNetwork: Property<Int> = Property(4)
+    let activeAccount: Property<TesSDK.Account?> = Property(nil)
     
     // Node to send critical errors
     public let errorNode = SafePublishSubject<AnyError>()
@@ -34,6 +35,7 @@ class ApplicationContext: RouterContextProtocol {
     func bootstrap() {
         walletService.wallet = wallet
         walletService.errorNode = errorNode
+        walletService.activeAccount = activeAccount
         
         applicationService.walletService = walletService
         applicationService.errorNode = errorNode

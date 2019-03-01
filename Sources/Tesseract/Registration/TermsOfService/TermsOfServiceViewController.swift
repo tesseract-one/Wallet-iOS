@@ -8,7 +8,6 @@
 
 import UIKit
 import ReactiveKit
-import TesSDK
 
 class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
   typealias ViewModel = TermsOfServiceViewModel
