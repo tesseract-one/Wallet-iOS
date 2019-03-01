@@ -21,13 +21,16 @@ public class Account {
     
     private var hdWallet: HDWallet? = nil
     
-    init(index: UInt32, address: String? = nil, hdWallet: HDWallet? = nil) throws {
+    public var name: String
+    
+    init(index: UInt32, name: String, address: String? = nil, hdWallet: HDWallet? = nil) throws {
         guard address != nil || hdWallet != nil else {
             throw AccountError.addressAndWalletIsNil
         }
         
         self.index = index
         self.address = address ?? ""
+        self.name = name
         
         try setHdWallet(wallet: hdWallet)
     }
@@ -44,14 +47,15 @@ extension Account {
     struct StorageData: Codable {
         let index: UInt32
         let address: String
+        let name: String
     }
     
     convenience init(storageData: StorageData) throws {
-        try self.init(index: storageData.index, address: storageData.address)
+        try self.init(index: storageData.index, name: storageData.name, address: storageData.address)
     }
     
     var storageData: StorageData {
-        return StorageData(index: index, address: address)
+        return StorageData(index: index, address: address, name: name)
     }
 }
 
@@ -161,7 +165,8 @@ public class Wallet {
     public func addAccount() throws -> Account {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        let account = try Account(index: UInt32(accounts.count), hdWallet: hdWallet)
+        let name = "Account \(accounts.count)"
+        let account = try Account(index: UInt32(accounts.count), name: name, hdWallet: hdWallet)
         accounts.append(account)
         return account
     }
