@@ -308,7 +308,7 @@
         <!--Mnemonics-->
         <scene sceneID="8Xj-lC-o8B">
             <objects>
-                <viewController storyboardIdentifier="ShowMnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AsG-nN-6DF" customClass="MnemonicsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Mnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AsG-nN-6DF" customClass="MnemonicsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOL-u6-Bef">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

@@ -26,10 +26,10 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
   //
   override func viewDidLoad() {
     super.viewDidLoad()
-    
-    passwordField.reactive.text.map{ $0 ?? ""}
+
+    passwordField.reactive.text.map { $0 ?? "" } // useless map actually, its already empty string
       .bind(to: model.password).dispose(in: bag)
-    confirmPasswordField.reactive.text.map{ $0 ?? ""}
+    confirmPasswordField.reactive.text.map { $0 ?? "" }
       .bind(to: model.confirmPassword).dispose(in: bag)
     
     passwordField.reactive.controlEvents(.editingDidBegin)
@@ -48,23 +48,21 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
       view.endEditing(true)
     }.dispose(in: bag)
     
-    model.signUpSuccessfully
-      .with(latestFrom: model.passwordError)
-      .filter { !$0 && $1 != nil }
+    let signUpUnsuccessfull =
+      model.signUpSuccessfully
+        .filter { $0 != nil }
+        .with(latestFrom: model.passwordError)
+        .filter { $0 != true && $1 != nil }
+
+    signUpUnsuccessfull
       .map { $1!.rawValue }
       .bind(to: confirmPasswordField.reactive.error)
       .dispose(in: bag)
-    
-    model.signUpSuccessfully
-      .with(latestFrom: model.passwordError)
-      .filter { !$0 && $1 != nil }
+    signUpUnsuccessfull
       .map { _ in "" }
       .bind(to: passwordField.reactive.text)
       .dispose(in: bag)
-    
-    model.signUpSuccessfully
-      .with(latestFrom: model.passwordError)
-      .filter { !$0 && $1 != nil }
+    signUpUnsuccessfull
       .map { _ in "" }
       .bind(to: confirmPasswordField.reactive.text)
       .dispose(in: bag)

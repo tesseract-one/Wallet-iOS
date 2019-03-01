@@ -15,22 +15,13 @@ enum SignInPasswordErrors: String {
   case wrong = "Password is incorrect"
 }
 
-protocol SignInViewModelProtocol: ForwardRoutableViewModelProtocol {
-  var signInAction: SafePublishSubject<Void> { get }
-  var restoreKeyAction: SafePublishSubject<Void> { get }
-  var password: Property<String?> { get }
-  var passwordError: Property<SignInPasswordErrors?> { get }
-  var signUpSuccessfully: Property<Bool?> { get }
-}
-
-class SignInViewModel: ViewModel, SignInViewModelProtocol {
+class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   private let walletService: WalletService
   
   let signInAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
   let password = Property<String?>(nil) // to avoid first call
   let passwordError = Property<SignInPasswordErrors?>(nil)
-  let signUpSuccessfully = Property<Bool?>(nil)
   
   let goToView = SafePublishSubject<ToView>()
   
@@ -40,11 +31,11 @@ class SignInViewModel: ViewModel, SignInViewModelProtocol {
     super.init()
     
     passwordValidator().bind(to: passwordError).dispose(in: bag)
-    passwordChecker()
     
-    restoreKeyAction.observeNext { _ in
-      print("Restore Key")
-    }.dispose(in: bag)
+    setUpSignIn()
+    
+    restoreKeyAction.map { _ in (name: "RestoreFromMnemonic", context: nil) }
+      .bind(to: goToView).dispose(in: bag)
   }
 }
 
@@ -61,18 +52,21 @@ extension SignInViewModel {
     }
   }
   
-  private func passwordChecker() {
-    return signInAction
+  private func setUpSignIn() {
+    let errors = SafePublishSubject<AnyError>()
+    signInAction
       .with(weak: passwordError)
       .filter { $1.value == nil }
+      .map { _ in }
       .with(latestFrom: password)
       .with(weak: walletService)
-      .observeNext { touple, walletService in
-        let (( _, passwordError ), password) = touple
-        walletService.unlockWallet(password: password!)
-        .catch { _ in
-           passwordError.next(SignInPasswordErrors.wrong)
-        }
-      }.dispose(in: bag)
+      .flatMapLatest { pwdTuple, walletService in
+        walletService.unlockWallet(password: pwdTuple.1!).signal
+      }
+      .toErrorSignal()
+      .bind(to: errors)
+      .dispose(in: bag)
+    
+    errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
   }
 }

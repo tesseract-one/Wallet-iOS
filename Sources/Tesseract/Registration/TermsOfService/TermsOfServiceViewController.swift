@@ -8,8 +8,12 @@
 
 import UIKit
 import ReactiveKit
+import TesSDK
 
-class TermsOfServiceViewController: UIViewController {
+class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
+  typealias ViewModel = TermsOfServiceViewModel
+  
+  private(set) var model: ViewModel!
   
   // MARK: Outlets
   @IBOutlet weak var termsTextView: UITextView!
@@ -20,14 +24,32 @@ class TermsOfServiceViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    acceptButton.reactive.tap
-      .with(weak: self)
-      .observeNext { sself in
-        sself.performSegue(withIdentifier: "ShowMnemonics", sender: sself)
-      }.dispose(in: bag)
+    model.termsOfService.bind(to: termsTextView.reactive.text)
+    
+    acceptButton.reactive.tap.bind(to: model.acceptTermsAction).dispose(in: bag)
+    
+    goToViewAction.observeNext { [weak self] name, context in
+      let vc = try! self?.viewController(for: .named(name: name), context: context)
+      self?.navigationController?.pushViewController(vc!, animated: true)
+    }.dispose(in: bag)
   }
   
   override func viewDidLayoutSubviews() {
     termsTextView.setContentOffset(.zero, animated: false)
+  }
+}
+
+extension TermsOfServiceViewController: ContextSubject {
+  func apply(context: RouterContextProtocol) {
+//    guard let mnemonic = context.get(bean: "mnemonic") as? String else {
+//      print("Router context don't contain mnemonic", self)
+//      return
+//    }
+//    guard let wallet = context.get(bean: "wallet") as? Wallet else {
+//      print("Router context don't contain mnemonic", self)
+//      return
+//    }
+//    self.model = TermsOfServiceViewModel(mnemonic: mnemonic, wallet: wallet)
+    self.model = TermsOfServiceViewModel()
   }
 }

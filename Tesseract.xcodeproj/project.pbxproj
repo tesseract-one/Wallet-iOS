@@ -64,6 +64,7 @@
 		D13163A321B98C090066FB4A /* Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13163A221B98C090066FB4A /* Stub.swift */; };
 		D13163A521B98DCA0066FB4A /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13163A421B98DCA0066FB4A /* Account.swift */; };
 		D13255A921AD7E840099A668 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = D13255A821AD7E840099A668 /* AppState.swift */; };
+		D14A5010222964F00069A262 /* MnemonicsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A500F222964F00069A262 /* MnemonicsViewModel.swift */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
@@ -230,6 +231,7 @@
 		D13163A221B98C090066FB4A /* Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stub.swift; sourceTree = "<group>"; };
 		D13163A421B98DCA0066FB4A /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		D13255A821AD7E840099A668 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
+		D14A500F222964F00069A262 /* MnemonicsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicsViewModel.swift; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -527,11 +529,11 @@
 		D125143D21A82D570077E04A /* Registration */ = {
 			isa = PBXGroup;
 			children = (
+				D14A500E222964A50069A262 /* Mnemonic */,
 				D168B55822284A17008DBFB0 /* TermsOfService */,
 				D168B5552227FAD9008DBFB0 /* SignUp */,
 				D1F76C992225894B00BFBB6B /* SignIn */,
 				D1A16BBB219A2077008AEAD4 /* Registration.storyboard */,
-				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
 				D171DE53219DE3A5003134DD /* MnemonicsVerificationViewController.swift */,
 				92CB1991222840B300407F9A /* RegistrationViewFactory.swift */,
 				D168B55D22289151008DBFB0 /* RegistrationRootViewController.swift */,
@@ -593,6 +595,15 @@
 				D131639821B970920066FB4A /* Apps */,
 			);
 			path = "Apps&Tokens";
+			sourceTree = "<group>";
+		};
+		D14A500E222964A50069A262 /* Mnemonic */ = {
+			isa = PBXGroup;
+			children = (
+				D171DE51219DD0B3003134DD /* MnemonicsViewController.swift */,
+				D14A500F222964F00069A262 /* MnemonicsViewModel.swift */,
+			);
+			path = Mnemonic;
 			sourceTree = "<group>";
 		};
 		D168B5552227FAD9008DBFB0 /* SignUp */ = {
@@ -1029,6 +1040,7 @@
 				D182AC4221E4E16D0013AF02 /* MoreTableViewController.swift in Sources */,
 				D168B55E22289151008DBFB0 /* RegistrationRootViewController.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
+				D14A5010222964F00069A262 /* MnemonicsViewModel.swift in Sources */,
 				D17E6F3921BAB836002A0A4C /* CardsViewController.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,

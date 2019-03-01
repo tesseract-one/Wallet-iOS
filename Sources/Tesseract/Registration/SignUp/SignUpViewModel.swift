@@ -18,10 +18,10 @@ enum SignUpPasswordErrors: String {
 class SignUpViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   let signUpAction = SafePublishSubject<Void>()
   let restoreKeyAction = SafePublishSubject<Void>()
-  let password = Property<String?>(nil)
-  let confirmPassword = Property<String?>(nil)
+  let password = Property<String>("")
+  let confirmPassword = Property<String>("")
   let passwordError = Property<SignUpPasswordErrors?>(nil)
-  let signUpSuccessfully = Property<Bool>(false)
+  let signUpSuccessfully = Property<Bool?>(nil)
   
   let goToView = SafePublishSubject<ToView>()
   
@@ -45,9 +45,8 @@ extension SignUpViewModel {
   
   private func passwordValidator() -> SafeSignal<SignUpPasswordErrors?> {
     return combineLatest(password, confirmPassword)
-      .filter { $0 != nil && $1 != nil  }
       .map { pwd1, pwd2 -> SignUpPasswordErrors? in
-        if pwd1!.count < 8 || pwd2!.count < 8 {
+        if pwd1.count < 8 || pwd2.count < 8 {
           return SignUpPasswordErrors.short
         } else if pwd1 != pwd2 {
           return SignUpPasswordErrors.different
@@ -59,7 +58,8 @@ extension SignUpViewModel {
   private func setupSignUp() {
     signUpAction
       .with(latestFrom: passwordError)
-      .map { $0.1 != nil }
+      .filter { $0.1 != nil }
+      .map { _ in false }
       .bind(to: signUpSuccessfully)
       .dispose(in: bag)
     
@@ -71,12 +71,15 @@ extension SignUpViewModel {
       .with(latestFrom: password)
       .with(weak: walletService)
       .flatMapLatest { pwdTuple, walletService in
-        walletService.unlockWallet(password: pwdTuple.1!).signal
+        walletService.createWallet(password: pwdTuple.1).signal
       }
       .suppressAndFeedError(into: errors)
     
-    action.map { true }.bind(to: signUpSuccessfully).dispose(in: bag)
-    action.map { (name: "TermsOfService", context: nil) }.bind(to: goToView).dispose(in: bag)
+    action.map { _ in true }.bind(to: signUpSuccessfully).dispose(in: bag)
+    action.map { (mnemonic, wallet) in
+      let context = DictionaryRouterContext(dictionaryLiteral: ("mnemonic", mnemonic), ("wallet", wallet))
+      return (name: "TermsOfService", context: context)
+    }.bind(to: goToView).dispose(in: bag)
     
     errors.map { _ in SignUpPasswordErrors.server }.bind(to: passwordError).dispose(in: bag)
     errors.map { _ in false }.bind(to: signUpSuccessfully).dispose(in: bag)

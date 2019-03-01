@@ -12,8 +12,8 @@ import Material
 
 extension ReactiveExtensions where Base: ErrorTextField {
   var error: Bond<String?> {
-    return bond { label, text in
-      label.text = text
+    return bond { errorField, text in
+      errorField.errorLabel.text = text
     }
   }
 }

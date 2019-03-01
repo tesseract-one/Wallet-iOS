@@ -34,19 +34,21 @@ class SignInViewController: UIViewController, ModelVCProtocol {
       .dispose(in: bag)
     passwordField.reactive
       .controlEvents(.editingDidBegin) // .text fires additional events when tap button
-      .with(latestFrom: model.passwordError)
-      .with(weak: passwordField)
-      .observeNext { _, passwordField in
-        passwordField.error = ""
-      }.dispose(in: bag)
+      .map { _ in "" }
+      .bind(to: passwordField.reactive.error)
+      .dispose(in: bag)
     
     model.passwordError
       .filter { $0 != nil }
-      .with(weak: passwordField)
-      .observeNext { passwordError, passwordField in
-        passwordField.error = passwordError?.rawValue
-        passwordField.text = ""
-      }.dispose(in: bag)
+      .map { $0?.rawValue }
+      .bind(to: passwordField.reactive.error)
+      .dispose(in: bag)
+    model.passwordError
+      .filter { $0 != nil }
+      .map { _ in "" }
+      .bind(to: passwordField.reactive.text)
+      .dispose(in: bag)
+    
     
     signInButton.reactive.tap.with(weak: view).observeNext { view in // should be before signInAction [passwordValidation --> passwordCheck]
       view.endEditing(true)
@@ -57,6 +59,11 @@ class SignInViewController: UIViewController, ModelVCProtocol {
       view.endEditing(true)
       }.dispose(in: bag)
     restoreKeyButton.reactive.tap.bind(to: model.restoreKeyAction).dispose(in: bag)
+    
+    goToViewAction.observeNext { [weak self] name, context in
+      let vc = try! self?.viewController(for: .named(name: name), context: context)
+      self?.navigationController?.pushViewController(vc!, animated: true)
+    }.dispose(in: bag)
     
     navigationController?.isToolbarHidden = true
   }
