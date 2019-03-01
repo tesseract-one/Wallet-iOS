@@ -9,8 +9,36 @@
 import Foundation
 import ReactiveKit
 import PromiseKit
+import PMKFoundation
 import Web3
 import TesSDK
+
+private struct ESResponse: Codable {
+    let status: String
+    let message: String
+    let result: Array<Transaction>
+}
+
+struct Transaction: Codable {
+    let blockNumber: String
+    let timeStamp: String
+    let hash: String
+    let nonce: String
+    let blockHash: String
+    let transactionIndex: String
+    let from: String
+    let to: String
+    let value: String
+    let gas: String
+    let gasPrice: String
+    let isError: String
+    let txreceipt_status: String
+    let input: String
+    let contractAddress: String
+    let cumulativeGasUsed: String
+    let gasUsed: String
+    let confirmations: String
+}
 
 class EthereumWeb3Service {
     let bag = DisposeBag()
@@ -23,6 +51,14 @@ class EthereumWeb3Service {
         2: "https://ropsten.infura.io/v3/f20390fe230e46608572ac4378b70668",
         3: "https://kovan.infura.io/v3/f20390fe230e46608572ac4378b70668",
         4: "https://rinkeby.infura.io/v3/f20390fe230e46608572ac4378b70668"
+    ]
+    
+    var etherscanApiToken = "B7F32GXMBH169BF1SKBYPG4K8SKGSJGDGV"
+    var etherscanEndpoints: Dictionary<Int, String> = [
+        1: "https://api.etherscan.io/api",
+        2: "https://api-ropsten.etherscan.io/api",
+        3: "https://api-kovan.etherscan.io/api",
+        4: "https://api-rinkeby.etherscan.io/api"
     ]
     
     func bootstrap() {
@@ -54,5 +90,17 @@ class EthereumWeb3Service {
             value: EthereumQuantity(integerLiteral: UInt64(amountEth * pow(10.0, 18)))
         )
         return web3.eth.sendTransaction(transaction: tx).asVoid()
+    }
+    
+    func getTransactions(account: Int, networkId: Int) -> Promise<Array<Transaction>> {
+        let address = wallet.value!.accounts[account].address
+        let url = etherscanEndpoints[networkId]! +
+            "?module=account&action=txlist&address=\(address)&startblock=0&endblock=99999999&sort=asc&apikey=\(etherscanApiToken)"
+        return URLSession.shared.dataTask(.promise, with: URL(string: url)!)
+            .validate()
+            .map {
+                try JSONDecoder().decode(ESResponse.self, from: $0.data) //.decode(Array<Any>.self, with: $0.data)
+            }
+            .map { $0.result }
     }
 }

@@ -42,6 +42,7 @@
 		92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1991222840B300407F9A /* RegistrationViewFactory.swift */; };
 		92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199322286EBF00407F9A /* RouterViewModel.swift */; };
 		92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
+		92CB19982229C2E200407F9A /* PMKFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92CB19972229C2E200407F9A /* PMKFoundation.framework */; };
 		92FB84972225823200447653 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84952225819D00447653 /* Keychain.swift */; };
 		92FB849A222589AA00447653 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8499222589AA00447653 /* Data.swift */; };
 		92FB849C22259E4200447653 /* Result+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849B22259E4200447653 /* Result+Promise.swift */; };
@@ -210,6 +211,7 @@
 		92CB1991222840B300407F9A /* RegistrationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewFactory.swift; sourceTree = "<group>"; };
 		92CB199322286EBF00407F9A /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
 		92CB199522294FA100407F9A /* EthereumWeb3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3Service.swift; sourceTree = "<group>"; };
+		92CB19972229C2E200407F9A /* PMKFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PMKFoundation.framework; sourceTree = "<group>"; };
 		92FB84952225819D00447653 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		92FB8499222589AA00447653 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		92FB849B22259E4200447653 /* Result+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Promise.swift"; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 			files = (
 				92CB198022281A6A00407F9A /* TesSDK.framework in Frameworks */,
 				9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */,
+				92CB19982229C2E200407F9A /* PMKFoundation.framework in Frameworks */,
 				9299320F22245B75000EAD47 /* Bond.framework in Frameworks */,
 				9299321722245B75000EAD47 /* Differ.framework in Frameworks */,
 				9299321822245B75000EAD47 /* Material.framework in Frameworks */,
@@ -443,6 +446,7 @@
 		9299320222245B27000EAD47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92CB19972229C2E200407F9A /* PMKFoundation.framework */,
 				92FB84A32226DE9700447653 /* Mnemonic.framework */,
 				9299320B22245B74000EAD47 /* BigInt.framework */,
 				9299320422245B74000EAD47 /* Bond.framework */,
@@ -974,6 +978,7 @@
 				"$(SRCROOT)/Carthage/Build/iOS/SipHash.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Web3.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Mnemonic.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/PMKFoundation.framework",
 			);
 			name = "Carthage Copy Frameworks";
 			outputFileListPaths = (

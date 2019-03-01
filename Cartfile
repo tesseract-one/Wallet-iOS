@@ -3,3 +3,5 @@ github "DeclarativeHub/ReactiveKit"
 github "DeclarativeHub/Bond"
 github "crossroadlabs/Web3.swift" "master"
 github "OnerootProject/Mnemonic"
+github "PromiseKit/Foundation" ~> 3.0
+github "crossroadlabs/BigInt" "f6ab3a53ff1e14e9545fded5fe33347ce46e4106"
