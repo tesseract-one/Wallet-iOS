@@ -10,6 +10,10 @@ import Foundation
 import PromiseKit
 import Mnemonic
 
+enum KeychainError: Error {
+    case wrongPassword
+}
+
 class Keychain {
     private let storage: StorageProtocol
     private var factories: Array<HDWalletKeyFactory> = []

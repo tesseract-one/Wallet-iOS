@@ -10,12 +10,13 @@ import Foundation
 import Web3
 import CryptoSwift
 
+// "44'/60'/index'/0/0"
 struct EthereumKeyPath: KeyPath {
     let account: UInt32
     
     var change: UInt32 { return 0 }
     var address: UInt32 { return 0 }
-    var purpose: UInt32 { return 0x8000002C } // BIP44
+    var purpose: UInt32 { return BIP44_KEY_PATH_PURPOSE } // BIP44
     var coin: UInt32 { return Network.Ethereum.nId } // ETH Coin Type
 }
 

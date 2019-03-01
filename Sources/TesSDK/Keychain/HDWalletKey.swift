@@ -16,6 +16,8 @@ public protocol KeyPath {
     var address: UInt32 { get }
 }
 
+public let BIP44_KEY_PATH_PURPOSE: UInt32 = 0x8000002C
+
 public protocol HDWalletKeyFactory {
     var network: Network { get }
     

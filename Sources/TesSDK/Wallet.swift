@@ -103,6 +103,9 @@ public class Wallet {
     
     public private(set) var accounts: Array<Account>
     
+    // TODO: Remove this SHIT. This is really a TEMPORARY solution.
+    var password: String!
+    
     private init(name: String, storage: StorageProtocol, keychain: Keychain, accounts: Array<Account> = [], hdWallet: HDWallet? = nil) {
         self.storage = storage
         self.hdWallet = hdWallet
@@ -146,6 +149,9 @@ public class Wallet {
     }
     
     public func unlock(password: String) -> Promise<Void> {
+        if password != self.password {
+            return Promise(error: KeychainError.wrongPassword)
+        }
         return keychain.loadWallet(name: Wallet.walletPrefix + name, password: password)
             .done {
                 try self.setHdWallet(wallet: $0)
@@ -184,17 +190,20 @@ public class Wallet {
 extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
+        // TEMPORARY KLUDGE
+        let password: String
     }
     
     fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
         self.init(name: name, storage: storage, keychain: keychain, accounts: accounts)
+        password = data.password
     }
     
     var storageData: StorageData {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        return StorageData(accounts: accounts.map { $0.storageData })
+        return StorageData(accounts: accounts.map { $0.storageData }, password: password)
     }
 }
 
