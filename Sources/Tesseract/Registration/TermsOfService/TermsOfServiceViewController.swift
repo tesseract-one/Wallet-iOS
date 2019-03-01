@@ -41,15 +41,6 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
 
 extension TermsOfServiceViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
-//    guard let mnemonic = context.get(bean: "mnemonic") as? String else {
-//      print("Router context don't contain mnemonic", self)
-//      return
-//    }
-//    guard let wallet = context.get(bean: "wallet") as? Wallet else {
-//      print("Router context don't contain mnemonic", self)
-//      return
-//    }
-//    self.model = TermsOfServiceViewModel(mnemonic: mnemonic, wallet: wallet)
     self.model = TermsOfServiceViewModel()
   }
 }

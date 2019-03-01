@@ -308,7 +308,7 @@
         <!--Mnemonics-->
         <scene sceneID="8Xj-lC-o8B">
             <objects>
-                <viewController storyboardIdentifier="Mnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AsG-nN-6DF" customClass="MnemonicsViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Mnemonic" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AsG-nN-6DF" customClass="MnemonicViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOL-u6-Bef">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -328,9 +328,6 @@
                                         <real key="value" value="8"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="doneWithMnemonic:" destination="AsG-nN-6DF" eventType="touchUpInside" id="PPS-Z6-kre"/>
-                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPL-P7-DuK">
                                 <rect key="frame" x="16" y="120.66666666666669" width="382" height="21"/>
@@ -386,7 +383,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Mnemonics" largeTitleDisplayMode="always" id="Umb-px-Jzt"/>
                     <connections>
-                        <outlet property="mnemonicsTextView" destination="xSV-xw-IQW" id="8tq-zb-CAH"/>
+                        <outlet property="doneButton" destination="s0j-pk-iE2" id="zlI-0Q-GNb"/>
+                        <outlet property="mnemonicTextView" destination="xSV-xw-IQW" id="dRH-ua-Je8"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cFC-zp-XgH" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -421,7 +419,7 @@
         <!--Verify-->
         <scene sceneID="7Pz-CT-fVo">
             <objects>
-                <viewController storyboardIdentifier="CheckMnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y3x-gO-Oc3" customClass="MnemonicsVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CheckMnemonics" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y3x-gO-Oc3" customClass="MnemonicVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ubl-XX-NKV">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -447,9 +445,6 @@
                                                         <real key="value" value="8"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <action selector="doneWithMnemonicsVerification:" destination="Y3x-gO-Oc3" eventType="touchUpInside" id="5SN-6g-qMM"/>
-                                                </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WORDS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
                                                 <rect key="frame" x="16" y="100.66666666666667" width="382" height="21"/>
@@ -524,14 +519,10 @@
                         <viewLayoutGuide key="safeArea" id="usD-ei-tZ3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verify" largeTitleDisplayMode="always" id="v5E-I8-qbb">
-                        <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln">
-                            <connections>
-                                <action selector="skipMnemonicsVerification:" destination="Y3x-gO-Oc3" id="0vl-9X-ium"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="mnemonicsVerificationTextView" destination="BeD-OW-Eev" id="ZQh-0b-IxD"/>
+                        <outlet property="mnemonicVerificationTextView" destination="BeD-OW-Eev" id="Bmu-J4-KmL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNA-bl-XWO" userLabel="First Responder" sceneMemberID="firstResponder"/>
