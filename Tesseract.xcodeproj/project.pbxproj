@@ -41,6 +41,7 @@
 		92CB199022283B9200407F9A /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198F22283B9200407F9A /* ApplicationService.swift */; };
 		92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1991222840B300407F9A /* RegistrationViewFactory.swift */; };
 		92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199322286EBF00407F9A /* RouterViewModel.swift */; };
+		92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
 		92FB84972225823200447653 /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84952225819D00447653 /* Keychain.swift */; };
 		92FB849A222589AA00447653 /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB8499222589AA00447653 /* Data.swift */; };
 		92FB849C22259E4200447653 /* Result+Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB849B22259E4200447653 /* Result+Promise.swift */; };
@@ -207,6 +208,7 @@
 		92CB198F22283B9200407F9A /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		92CB1991222840B300407F9A /* RegistrationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewFactory.swift; sourceTree = "<group>"; };
 		92CB199322286EBF00407F9A /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
+		92CB199522294FA100407F9A /* EthereumWeb3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3Service.swift; sourceTree = "<group>"; };
 		92FB84952225819D00447653 /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		92FB8499222589AA00447653 /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		92FB849B22259E4200447653 /* Result+Promise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Result+Promise.swift"; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 			children = (
 				92CB198922282ED000407F9A /* WalletService.swift */,
 				92CB198F22283B9200407F9A /* ApplicationService.swift */,
+				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -986,6 +989,7 @@
 				D1D292DD21AED57B000DA665 /* ReviewViewController.swift in Sources */,
 				D1D5F85721B834C6007D0433 /* AssetsTemplateTableViewCell.swift in Sources */,
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
+				92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */,
 				92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */,
 				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1746A4321A7085A0045F0AE /* RecieveCoinsTableViewCell.swift in Sources */,

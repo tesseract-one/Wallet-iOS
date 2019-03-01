@@ -99,9 +99,9 @@ public class Wallet {
     private var name: String
     private var hdWallet: HDWallet?
     
-    let accountsLock: NSLock = NSLock()
+    private let accountsLock: NSLock = NSLock()
     
-    private(set) var accounts: Array<Account>
+    public private(set) var accounts: Array<Account>
     
     private init(name: String, storage: StorageProtocol, keychain: Keychain, accounts: Array<Account> = [], hdWallet: HDWallet? = nil) {
         self.storage = storage
