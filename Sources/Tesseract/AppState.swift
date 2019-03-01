@@ -6,6 +6,8 @@
 //  Copyright © 2018 Crossroad Labs s.r.o. All rights reserved.
 //
 
+//TODO: Remove this SHIT
+
 import Foundation
 
 class AppState {

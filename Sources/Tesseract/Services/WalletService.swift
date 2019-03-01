@@ -43,4 +43,17 @@ class WalletService {
                 self?.isWalletLocked.next(false)
         }
     }
+    
+    func createWallet(password: String) -> Promise<(mnemonic: String, wallet: Wallet)> {
+        return Wallet
+            .newWallet(name: WalletService.WALLET_KEY, password: password, storage: storage)
+    }
+    
+    func saveWallet() -> Promise<Void> {
+        return wallet.value!.save()
+    }
+    
+    func setWallet(wallet: Wallet) {
+        self.wallet.next(wallet)
+    }
 }
