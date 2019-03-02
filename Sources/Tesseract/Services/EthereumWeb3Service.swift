@@ -28,10 +28,10 @@ class EthereumWeb3Service {
     
     var etherscanApiToken = "B7F32GXMBH169BF1SKBYPG4K8SKGSJGDGV"
     var etherscanEndpoints: Dictionary<Int, String> = [
-        1: "https://api.etherscan.io/api",
-        2: "https://api-ropsten.etherscan.io/api",
-        3: "https://api-kovan.etherscan.io/api",
-        4: "https://api-rinkeby.etherscan.io/api"
+        1: "https://api.etherscan.io",
+        2: "https://api-ropsten.etherscan.io",
+        3: "https://api-kovan.etherscan.io",
+        4: "https://api-rinkeby.etherscan.io"
     ]
     
     func bootstrap() {
