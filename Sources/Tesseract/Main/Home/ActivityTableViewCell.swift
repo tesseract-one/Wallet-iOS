@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TesSDK
 
 class ActivityTableViewCell: UITableViewCell {
   
@@ -24,7 +25,7 @@ class ActivityTableViewCell: UITableViewCell {
   @IBOutlet weak var amountLabel: UILabel!
   @IBOutlet weak var dateLabel: UILabel!
   
-  func setModel(model: Transaction, address: String) {
+  func setModel(model: EthereumTransactionLog, address: String) {
     if model.from == address {
       titleLabel.text = "Transaction Sent"
       descriptionLabel.text = "Horay"

@@ -12,6 +12,11 @@
 		922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */; };
 		922CA4A821945F2100FE66F1 /* TesseractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4A721945F2100FE66F1 /* TesseractTests.swift */; };
 		922CA4B321945F2100FE66F1 /* TesseractUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4B221945F2100FE66F1 /* TesseractUITests.swift */; };
+		92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */; };
+		92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */; };
+		92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */; };
+		92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9F222ABBF500CB8A18 /* EthereumTransaction+Auto.swift */; };
+		92655AA2222ABC5400CB8A18 /* EthereumEtherscanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */; };
 		9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		9299320F22245B75000EAD47 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320422245B74000EAD47 /* Bond.framework */; };
 		9299321022245B75000EAD47 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320522245B74000EAD47 /* Motion.framework */; };
@@ -24,7 +29,6 @@
 		9299324E22248908000EAD47 /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
 		9299325322248908000EAD47 /* TesSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325222248908000EAD47 /* TesSDKTests.swift */; };
 		9299325D222489F4000EAD47 /* dAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325C222489F4000EAD47 /* dAPI.swift */; };
-		9299325F22248A73000EAD47 /* Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325E22248A73000EAD47 /* Ethereum.swift */; };
 		92993260222494E8000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		92CB197B222808DC00407F9A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* Storage.swift */; };
 		92CB197C222819FF00407F9A /* secp256k1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320A22245B74000EAD47 /* secp256k1.framework */; };
@@ -183,6 +187,11 @@
 		922CA4AE21945F2100FE66F1 /* TesseractUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesseractUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		922CA4B221945F2100FE66F1 /* TesseractUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesseractUITests.swift; sourceTree = "<group>"; };
 		922CA4B421945F2100FE66F1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumSignProvider.swift; sourceTree = "<group>"; };
+		92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAPIs.swift; sourceTree = "<group>"; };
+		92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3SignProvider.swift; sourceTree = "<group>"; };
+		92655A9F222ABBF500CB8A18 /* EthereumTransaction+Auto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EthereumTransaction+Auto.swift"; sourceTree = "<group>"; };
+		92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumEtherscanAPI.swift; sourceTree = "<group>"; };
 		9299320322245B74000EAD47 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = "<group>"; };
 		9299320422245B74000EAD47 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bond.framework; sourceTree = "<group>"; };
 		9299320522245B74000EAD47 /* Motion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Motion.framework; sourceTree = "<group>"; };
@@ -204,7 +213,6 @@
 		9299325222248908000EAD47 /* TesSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesSDKTests.swift; sourceTree = "<group>"; };
 		9299325422248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9299325C222489F4000EAD47 /* dAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dAPI.swift; sourceTree = "<group>"; };
-		9299325E22248A73000EAD47 /* Ethereum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ethereum.swift; sourceTree = "<group>"; };
 		92CB197A222808DC00407F9A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		92CB198222281E0D00407F9A /* RouterViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterViews.swift; sourceTree = "<group>"; };
 		92CB198422281E2600407F9A /* ApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
@@ -424,6 +432,18 @@
 			path = TesseractUITests;
 			sourceTree = "<group>";
 		};
+		92655A97222ABA2500CB8A18 /* Ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */,
+				92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */,
+				92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */,
+				92655A9F222ABBF500CB8A18 /* EthereumTransaction+Auto.swift */,
+				92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */,
+			);
+			path = Ethereum;
+			sourceTree = "<group>";
+		};
 		92993200222458ED000EAD47 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,10 +499,10 @@
 		9299324622248908000EAD47 /* TesSDK */ = {
 			isa = PBXGroup;
 			children = (
+				92655A97222ABA2500CB8A18 /* Ethereum */,
 				92FB84982225899600447653 /* Keychain */,
 				9299324822248908000EAD47 /* Info.plist */,
 				9299325C222489F4000EAD47 /* dAPI.swift */,
-				9299325E22248A73000EAD47 /* Ethereum.swift */,
 				92FB849B22259E4200447653 /* Result+Promise.swift */,
 				92FB84A62226EBA300447653 /* Wallet.swift */,
 				92CB197A222808DC00407F9A /* Storage.swift */,
@@ -1147,13 +1167,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				92FB84A22225A2FA00447653 /* EthereumKey.swift in Sources */,
+				92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */,
 				92FB849E2225A21A00447653 /* HDWallet.swift in Sources */,
-				9299325F22248A73000EAD47 /* Ethereum.swift in Sources */,
 				9299325D222489F4000EAD47 /* dAPI.swift in Sources */,
 				92FB84972225823200447653 /* Keychain.swift in Sources */,
+				92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */,
+				92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */,
 				92FB849A222589AA00447653 /* Data.swift in Sources */,
 				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
+				92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */,
 				92FB849C22259E4200447653 /* Result+Promise.swift in Sources */,
+				92655AA2222ABC5400CB8A18 /* EthereumEtherscanAPI.swift in Sources */,
 				92FB84A02225A27600447653 /* HDWalletKey.swift in Sources */,
 				92CB197B222808DC00407F9A /* Storage.swift in Sources */,
 			);

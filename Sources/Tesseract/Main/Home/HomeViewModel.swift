@@ -19,7 +19,7 @@ class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   let ethWeb3Service: EthereumWeb3Service
   
   let balance = Property<String>("")
-  let transactions = MutableObservableArray<Transaction>()
+  let transactions = MutableObservableArray<EthereumTransactionLog>()
   
   init(ethWeb3Service: EthereumWeb3Service) {
     self.ethWeb3Service = ethWeb3Service
@@ -41,11 +41,11 @@ class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     activeAccount.filter { $0 == nil }.map { _ in "unknown" }.bind(to: balance).dispose(in: bag)
     
     let txs = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-      .flatMapLatest { accoundAndNet -> Signal<Array<Transaction>, AnyError> in
+      .flatMapLatest { accoundAndNet -> Signal<Array<EthereumTransactionLog>, AnyError> in
         service.getTransactions(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
       }
     
-    txs.toErrorSignal().map { _ in Array<Transaction>() }.bind(to: transactions).dispose(in: bag)
+    txs.toErrorSignal().map { _ in Array<EthereumTransactionLog>() }.bind(to: transactions).dispose(in: bag)
     
     txs.suppressError(logging: true).bind(to: transactions).dispose(in: bag)
   }
