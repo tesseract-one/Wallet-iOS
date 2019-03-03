@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		92029DC3222C55790069B362 /* EthereumHDNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92029DC2222C55790069B362 /* EthereumHDNode.swift */; };
 		922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA49021945F1F00FE66F1 /* AppDelegate.swift */; };
 		922CA49821945F1F00FE66F1 /* OutdatedMain.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA49621945F1F00FE66F1 /* OutdatedMain.storyboard */; };
 		922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */; };
@@ -19,6 +20,7 @@
 		92655AA2222ABC5400CB8A18 /* EthereumEtherscanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */; };
 		92655AA7222C262100CB8A18 /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
 		92655AA8222C262100CB8A18 /* TesSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		92655AAD222C492100CB8A18 /* RIPEMD160.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655AAC222C492100CB8A18 /* RIPEMD160.swift */; };
 		9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		9299320F22245B75000EAD47 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320422245B74000EAD47 /* Bond.framework */; };
 		9299321022245B75000EAD47 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320522245B74000EAD47 /* Motion.framework */; };
@@ -196,6 +198,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		92029DC2222C55790069B362 /* EthereumHDNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumHDNode.swift; sourceTree = "<group>"; };
 		922CA48D21945F1F00FE66F1 /* Tesseract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tesseract.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		922CA49021945F1F00FE66F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		922CA49721945F1F00FE66F1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/OutdatedMain.storyboard; sourceTree = "<group>"; };
@@ -212,6 +215,7 @@
 		92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3SignProvider.swift; sourceTree = "<group>"; };
 		92655A9F222ABBF500CB8A18 /* EthereumTransaction+Auto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EthereumTransaction+Auto.swift"; sourceTree = "<group>"; };
 		92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumEtherscanAPI.swift; sourceTree = "<group>"; };
+		92655AAC222C492100CB8A18 /* RIPEMD160.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RIPEMD160.swift; sourceTree = "<group>"; };
 		9299320322245B74000EAD47 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = PromiseKit.framework; sourceTree = "<group>"; };
 		9299320422245B74000EAD47 /* Bond.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bond.framework; sourceTree = "<group>"; };
 		9299320522245B74000EAD47 /* Motion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Motion.framework; sourceTree = "<group>"; };
@@ -563,11 +567,13 @@
 		92FB84982225899600447653 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
+				92655AAC222C492100CB8A18 /* RIPEMD160.swift */,
 				92FB84952225819D00447653 /* Keychain.swift */,
 				92FB8499222589AA00447653 /* Data.swift */,
 				92FB849D2225A21A00447653 /* HDWallet.swift */,
 				92FB849F2225A27600447653 /* HDWalletKey.swift */,
 				92FB84A12225A2FA00447653 /* EthereumKey.swift */,
+				92029DC2222C55790069B362 /* EthereumHDNode.swift */,
 			);
 			path = Keychain;
 			sourceTree = "<group>";
@@ -1189,8 +1195,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92029DC3222C55790069B362 /* EthereumHDNode.swift in Sources */,
 				92FB84A22225A2FA00447653 /* EthereumKey.swift in Sources */,
 				92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */,
+				92655AAD222C492100CB8A18 /* RIPEMD160.swift in Sources */,
 				92FB849E2225A21A00447653 /* HDWallet.swift in Sources */,
 				9299325D222489F4000EAD47 /* dAPI.swift in Sources */,
 				92FB84972225823200447653 /* Keychain.swift in Sources */,

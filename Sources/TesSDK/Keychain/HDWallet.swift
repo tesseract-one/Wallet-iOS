@@ -13,6 +13,8 @@ import Mnemonic
 enum HDWalletError: Error {
     case networkIsNotSupported(Network)
     case wrongKeyPath
+    case dataError
+    case keyGenerationError
 }
 
 class HDWallet {
