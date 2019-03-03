@@ -17,6 +17,8 @@
 		92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */; };
 		92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9F222ABBF500CB8A18 /* EthereumTransaction+Auto.swift */; };
 		92655AA2222ABC5400CB8A18 /* EthereumEtherscanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */; };
+		92655AA7222C262100CB8A18 /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
+		92655AA8222C262100CB8A18 /* TesSDK.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320322245B74000EAD47 /* PromiseKit.framework */; };
 		9299320F22245B75000EAD47 /* Bond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320422245B74000EAD47 /* Bond.framework */; };
 		9299321022245B75000EAD47 /* Motion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320522245B74000EAD47 /* Motion.framework */; };
@@ -145,6 +147,13 @@
 			remoteGlobalIDString = 922CA48C21945F1F00FE66F1;
 			remoteInfo = Tesseract;
 		};
+		92655AA5222C25F600CB8A18 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 922CA48521945F1F00FE66F1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9299324422248908000EAD47;
+			remoteInfo = TesSDK;
+		};
 		9299323A22248422000EAD47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 922CA48521945F1F00FE66F1 /* Project object */;
@@ -162,6 +171,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		92655AA9222C262100CB8A18 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				92655AA8222C262100CB8A18 /* TesSDK.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9299322D2224828F000EAD47 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -312,6 +332,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92655AA7222C262100CB8A18 /* TesSDK.framework in Frameworks */,
 				92CB198022281A6A00407F9A /* TesSDK.framework in Frameworks */,
 				9299320E22245B75000EAD47 /* PromiseKit.framework in Frameworks */,
 				92CB19982229C2E200407F9A /* PMKFoundation.framework in Frameworks */,
@@ -808,10 +829,12 @@
 				922CA48B21945F1F00FE66F1 /* Resources */,
 				E2177A8CF2D417B4B29CD666 /* Carthage Copy Frameworks */,
 				9299322D2224828F000EAD47 /* Embed App Extensions */,
+				92655AA9222C262100CB8A18 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				92655AA6222C25F600CB8A18 /* PBXTargetDependency */,
 				9299323B22248422000EAD47 /* PBXTargetDependency */,
 			);
 			name = Tesseract;
@@ -1203,6 +1226,11 @@
 			isa = PBXTargetDependency;
 			target = 922CA48C21945F1F00FE66F1 /* Tesseract */;
 			targetProxy = 922CA4AF21945F2100FE66F1 /* PBXContainerItemProxy */;
+		};
+		92655AA6222C25F600CB8A18 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9299324422248908000EAD47 /* TesSDK */;
+			targetProxy = 92655AA5222C25F600CB8A18 /* PBXContainerItemProxy */;
 		};
 		9299323B22248422000EAD47 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
