@@ -60,6 +60,8 @@
 		92FB84A42226DE9700447653 /* Mnemonic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FB84A32226DE9700447653 /* Mnemonic.framework */; };
 		92FB84A52226DEA900447653 /* Web3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299320622245B74000EAD47 /* Web3.framework */; };
 		92FB84A72226EBA300447653 /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FB84A62226EBA300447653 /* Wallet.swift */; };
+		92FE9725222C9B02007DB61C /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FE9723222C9B02007DB61C /* Crashlytics.framework */; };
+		92FE9726222C9B03007DB61C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FE9724222C9B02007DB61C /* Fabric.framework */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -257,6 +259,8 @@
 		92FB84A12225A2FA00447653 /* EthereumKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKey.swift; sourceTree = "<group>"; };
 		92FB84A32226DE9700447653 /* Mnemonic.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Mnemonic.framework; sourceTree = "<group>"; };
 		92FB84A62226EBA300447653 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		92FE9723222C9B02007DB61C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		92FE9724222C9B02007DB61C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -342,9 +346,11 @@
 				92CB19982229C2E200407F9A /* PMKFoundation.framework in Frameworks */,
 				9299320F22245B75000EAD47 /* Bond.framework in Frameworks */,
 				9299321722245B75000EAD47 /* Differ.framework in Frameworks */,
+				92FE9725222C9B02007DB61C /* Crashlytics.framework in Frameworks */,
 				9299321822245B75000EAD47 /* Material.framework in Frameworks */,
 				9299321022245B75000EAD47 /* Motion.framework in Frameworks */,
 				9299321422245B75000EAD47 /* ReactiveKit.framework in Frameworks */,
+				92FE9726222C9B03007DB61C /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -492,6 +498,8 @@
 		9299320222245B27000EAD47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92FE9723222C9B02007DB61C /* Crashlytics.framework */,
+				92FE9724222C9B02007DB61C /* Fabric.framework */,
 				92CB19972229C2E200407F9A /* PMKFoundation.framework */,
 				92FB84A32226DE9700447653 /* Mnemonic.framework */,
 				9299320B22245B74000EAD47 /* BigInt.framework */,
@@ -836,6 +844,7 @@
 				E2177A8CF2D417B4B29CD666 /* Carthage Copy Frameworks */,
 				9299322D2224828F000EAD47 /* Embed App Extensions */,
 				92655AA9222C262100CB8A18 /* Embed Frameworks */,
+				92FE9722222C9714007DB61C /* Run Fabric */,
 			);
 			buildRules = (
 			);
@@ -1055,6 +1064,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		92FE9722222C9714007DB61C /* Run Fabric */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Fabric";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Carthage/Build/iOS/Fabric.framework/run 33c4fb8064b7a2725726db37d1b7f2137d1ee41f 0d8c7accbfb49d4c1e02e785e20dd055a1ff61226587b5ae40b27851dcdb8072\n";
+		};
 		E2177A8CF2D417B4B29CD666 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1402,7 +1429,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1415,6 +1446,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1425,7 +1457,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = Y92JL37YF3;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1438,6 +1474,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";

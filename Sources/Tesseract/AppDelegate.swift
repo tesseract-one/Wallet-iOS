@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Fabric
+import Crashlytics
 
 protocol ViewControllerContainer: class {
     var view:UIViewController? {get set}
@@ -31,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
   }
 
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    Fabric.with([Crashlytics.self])
+
     context.rootContainer = self
     
     context.registrationViewFactory = RegistrationViewFactory(resolver: UIStoryboard(name: "Registration", bundle: nil), context: context)
