@@ -67,6 +67,23 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             .dispose(in: reactive.bag)
         
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
+        
+        model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
+        model.balanceUSD.bind(to: balanceInUSDLabel.reactive.text).dispose(in: reactive.bag)
+        
+        sendAmountField.reactive.text
+            .map { $0 == nil || $0 == "" ? 0.0 : Double($0!) ?? 0.0  }
+            .bind(to: model.sendAmount)
+            .dispose(in: reactive.bag)
+        
+        model.gasAmount
+            .map{String(format: "%f", $0) + " ETH"}
+            .bind(to: gasAmountField.reactive.text)
+            .dispose(in: reactive.bag)
+        model.receiveAmount
+            .map{"\($0) ETH"}
+            .bind(to: recieverGetsAmountField.reactive.text)
+            .dispose(in: reactive.bag)
     }
 }
 
@@ -78,6 +95,12 @@ extension SendFundsViewController: ContextSubject {
             ethWeb3Service: appCtx.ethereumWeb3Service,
             changeRateService: appCtx.changeRatesService
         )
+        
+        appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
+        appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
+        
         closeAction = context.get(context: SendFundsViewControllerContext.self)!.closeAction
+        
+        model.bootstrap()
     }
 }
