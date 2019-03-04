@@ -66,6 +66,8 @@
 		92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9730222D88DE007DB61C /* QRCodeView.swift */; };
 		92FE9733222D8D8E007DB61C /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */; };
 		92FE9735222D9651007DB61C /* ChangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9734222D9651007DB61C /* ChangeRateService.swift */; };
+		92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9736222DB292007DB61C /* SendFundsViewModel.swift */; };
+		92FE973A222DB2BA007DB61C /* ScanQRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9739222DB2BA007DB61C /* ScanQRViewController.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D1201FE5222D87DA0030C2C2 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1201FE4222D87DA0030C2C2 /* Send.storyboard */; };
@@ -241,6 +243,8 @@
 		92FE9730222D88DE007DB61C /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
 		92FE9734222D9651007DB61C /* ChangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateService.swift; sourceTree = "<group>"; };
+		92FE9736222DB292007DB61C /* SendFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFundsViewModel.swift; sourceTree = "<group>"; };
+		92FE9739222DB2BA007DB61C /* ScanQRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanQRViewController.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D1201FE4222D87DA0030C2C2 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
@@ -546,9 +550,18 @@
 			path = Ethereum;
 			sourceTree = "<group>";
 		};
+		92FE9738222DB2A6007DB61C /* ScanQR */ = {
+			isa = PBXGroup;
+			children = (
+				92FE9739222DB2BA007DB61C /* ScanQRViewController.swift */,
+			);
+			path = ScanQR;
+			sourceTree = "<group>";
+		};
 		D1201FE3222D87C00030C2C2 /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				92FE9738222DB2A6007DB61C /* ScanQR */,
 				D1201FE6222D99AB0030C2C2 /* SendFunds */,
 				D1201FE4222D87DA0030C2C2 /* Send.storyboard */,
 			);
@@ -559,6 +572,7 @@
 			isa = PBXGroup;
 			children = (
 				D1201FE7222D99CE0030C2C2 /* SendFundsViewController.swift */,
+				92FE9736222DB292007DB61C /* SendFundsViewModel.swift */,
 			);
 			path = SendFunds;
 			sourceTree = "<group>";
@@ -1058,6 +1072,7 @@
 				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
 				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
+				92FE973A222DB2BA007DB61C /* ScanQRViewController.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,
@@ -1072,6 +1087,7 @@
 				D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */,
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
+				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

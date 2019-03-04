@@ -30,7 +30,7 @@ protocol BackRoutableViewModelProtocol: ViewModelProtocol {
 typealias RoutableViewModelProtocol = BackRoutableViewModelProtocol & ForwardRoutableViewModelProtocol
 
 protocol ModelVCProtocol: RouterViewProtocol {
-  associatedtype ViewModel
+    associatedtype ViewModel
     
     var model: ViewModel! { get }
 }

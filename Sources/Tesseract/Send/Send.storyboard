@@ -233,25 +233,61 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <connections>
+                        <outlet property="addressField" destination="RNW-vB-Wfi" id="FhO-xz-j8x"/>
+                        <outlet property="scanQrButton" destination="SeX-BN-2wq" id="iNO-kZ-Y62"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqQ-uV-LSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="578" y="11"/>
         </scene>
-        <!--View Controller-->
+        <!--ScanQR View Controller-->
         <scene sceneID="KJK-Yh-lUX">
             <objects>
-                <viewController id="EJF-jH-n1c" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ScanQR" useStoryboardIdentifierAsRestorationIdentifier="YES" id="EJF-jH-n1c" customClass="ScanQRViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hmQ-Tv-aCU">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mkc-Jt-Suc" customClass="QRCodeScannerView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="15" y="51" width="343" height="307"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-mg-Paa" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="597" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MVU-su-qQ2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="bottom" secondItem="hIS-mg-Paa" secondAttribute="bottom" constant="20" id="IC6-Ms-uAv"/>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="trailing" secondItem="hIS-mg-Paa" secondAttribute="trailing" constant="16" id="PHV-iQ-DTG"/>
+                            <constraint firstItem="hIS-mg-Paa" firstAttribute="leading" secondItem="PVW-i4-CQ6" secondAttribute="leading" constant="16" id="QXX-N9-ytm"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="PVW-i4-CQ6"/>
                     </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="hIS-mg-Paa" id="MWa-wP-EpM"/>
+                        <outlet property="qrCodeScannerView" destination="Mkc-Jt-Suc" id="N7r-R3-v1t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpJ-ft-wOw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="577" y="797"/>
+            <point key="canvasLocation" x="576.79999999999995" y="796.55172413793105"/>
         </scene>
     </scenes>
 </document>
