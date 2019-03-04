@@ -66,18 +66,36 @@ class EthereumWeb3Service {
     }
     
     func estimateGas(call: EthereumCall, networkId: Int) -> Promise<Double> {
-        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
-        return web3.eth.estimateGas(call: call).map { Double($0.quantity) / pow(10.0, 18) }
+        return _estimateGasWei(call: call, networkId: networkId).map{Double($0) / pow(10.0, 18)}
     }
     
-    func estimateGas(account: Int, to: String, amountEth: Double, networkId: Int) -> Promise<Double> {
+    func estimateSendTxGas(account: Int, to: String, amountEth: Double, networkId: Int) -> Promise<Double> {
         let account = wallet.value!.accounts[account]
+        let gasPrice = _estimateGasPriceWei(networkId: networkId)
+        
         let call = EthereumCall(
             from: try! EthereumAddress(hex: account.address, eip55: false),
             to: EthereumAddress(hexString: to)!,
             value: EthereumQuantity(integerLiteral: UInt64(amountEth * pow(10.0, 18)))
         )
-        return estimateGas(call: call, networkId: networkId)
+        let gasAmount = _estimateGasWei(call: call, networkId: networkId)
+        return when(fulfilled: gasPrice, gasAmount)
+            .map { $0.0 * $0.1 }
+            .map{Double($0) / pow(10.0, 18)}
+    }
+    
+    func estimateGasPrice(networkId: Int) -> Promise<Double> {
+        return _estimateGasPriceWei(networkId: networkId).map{Double($0) / pow(10.0, 18)}
+    }
+    
+    private func _estimateGasWei(call: EthereumCall, networkId: Int) -> Promise<BigUInt> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+        return web3.eth.estimateGas(call: call).map{$0.quantity}
+    }
+    
+    private func _estimateGasPriceWei(networkId: Int) -> Promise<BigUInt> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+        return web3.eth.gasPrice().map{$0.quantity}
     }
     
     func getTransactions(account: Int, networkId: Int) -> Promise<Array<EthereumTransactionLog>> {
