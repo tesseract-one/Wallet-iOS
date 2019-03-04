@@ -122,22 +122,22 @@ public class Wallet {
         return storage.hasData(key: Wallet.walletPrefix + name)
     }
     
-    public static func newWalletData(name: String) -> Promise<NewWalletData> {
-        return Keychain.newWalletData(name: name)
+    public static func newWalletData() -> Promise<NewWalletData> {
+        return Keychain.newWalletData()
     }
     
-    public static func restoreWalletData(name: String, mnemonic: String) -> Promise<NewWalletData> {
-        return Keychain.restoreWalletData(name:name, mnemonic:mnemonic)
+    public static func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
+        return Keychain.restoreWalletData(mnemonic:mnemonic)
     }
     
-    public static func saveWalletData(data: NewWalletData, password: String, storage: StorageProtocol) -> Promise<Wallet> {
+    public static func saveWalletData(name: String, data: NewWalletData, password: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
-        return keychain.saveWalletData(data: data, password: password)
-            .map {
-                let wallet = Wallet(name: data.name, storage: storage, keychain: keychain, hdWallet: $0)
+        return keychain.saveWalletData(name: Wallet.walletPrefix + name, data: data, password: password)
+            .then { (hd) -> Promise<Wallet> in
+                let wallet = Wallet(name: name, storage: storage, keychain: keychain, hdWallet: hd)
                 wallet.password = password
                 let _ = try wallet.addAccount()
-                return wallet
+                return wallet.save().map { wallet }
             }
     }
     

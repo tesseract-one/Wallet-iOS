@@ -50,15 +50,15 @@ class WalletService {
     }
     
     func createWalletData() -> Promise<NewWalletData> {
-        return Wallet.newWalletData(name: WalletService.WALLET_KEY)
+        return Wallet.newWalletData()
     }
     
     func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
-        return Wallet.restoreWalletData(name: WalletService.WALLET_KEY, mnemonic: mnemonic)
+        return Wallet.restoreWalletData(mnemonic: mnemonic)
     }
     
     func saveWalletData(data: NewWalletData, password: String) -> Promise<Wallet> {
-        return Wallet.saveWalletData(data: data, password: password, storage: storage)
+        return Wallet.saveWalletData(name:WalletService.WALLET_KEY, data: data, password: password, storage: storage)
     }
     
     func saveWallet() -> Promise<Void> {

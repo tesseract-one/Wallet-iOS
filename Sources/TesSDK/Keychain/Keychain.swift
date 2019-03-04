@@ -36,32 +36,32 @@ class Keychain {
             .map { try HDWallet(name: name, data: $0, factories: self.factories) }
     }
     
-    static func newWalletData(name: String) -> Promise<NewWalletData> {
+    static func newWalletData() -> Promise<NewWalletData> {
         let factories = self.factories
         return Promise().map {
             let mnemonic = Mnemonic(language: .english)
             let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(name: name, mnemonic: mnemonic.toString(), keys: keys)
+            return NewWalletData(mnemonic: mnemonic.toString(), keys: keys)
         }
     }
     
-    static func restoreWalletData(name: String, mnemonic: String) -> Promise<NewWalletData> {
+    static func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
         let factories = self.factories
         return Promise().map {
             let mnemonic = Mnemonic(phrase: mnemonic, language: .english)
             let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(name: name, mnemonic: mnemonic.toString(), keys: keys)
+            return NewWalletData(mnemonic: mnemonic.toString(), keys: keys)
         }
     }
     
-    func saveWalletData(data: NewWalletData, password: String) -> Promise<HDWallet> {
+    func saveWalletData(name: String, data: NewWalletData, password: String) -> Promise<HDWallet> {
         let factories = self.factories
         return Promise.value(data.walletData).then { v1 in
             self.storage
-                .saveData(key: data.name, data: try WalletVersionedData(v1: v1).toData())
+                .saveData(key: name, data: try WalletVersionedData(v1: v1).toData())
                 .map { v1 }
         }
-        .map { try HDWallet(name: data.name, data: $0, factories: factories) }
+        .map { try HDWallet(name: name, data: $0, factories: factories) }
     }
     
     func renameWallet(name: String, to: String, password: String) -> Promise<HDWallet> {

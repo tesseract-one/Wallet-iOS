@@ -12,12 +12,10 @@ public struct NewWalletData {
     private let keys: Dictionary<Network, Data>
     
     public let mnemonic: String
-    public let name: String
     
-    internal init(name: String, mnemonic: String, keys: Dictionary<Network, Data>) {
+    internal init(mnemonic: String, keys: Dictionary<Network, Data>) {
         self.mnemonic = mnemonic
         self.keys = keys
-        self.name = name
     }
     
     internal var walletData: WalletDataV1 {
