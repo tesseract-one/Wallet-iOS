@@ -261,6 +261,8 @@
 		92FB84A62226EBA300447653 /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
 		92FE9723222C9B02007DB61C /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		92FE9724222C9B02007DB61C /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		92FE9727222CAFD1007DB61C /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
+		92FE9728222CAFE4007DB61C /* Tesseract.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tesseract.entitlements; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -438,6 +440,7 @@
 				D14A50192229A1C20069A262 /* OutdatedMain */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
 				922CA49E21945F2100FE66F1 /* Info.plist */,
+				92FE9728222CAFE4007DB61C /* Tesseract.entitlements */,
 				D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */,
 				D13255A821AD7E840099A668 /* AppState.swift */,
 				92CB198422281E2600407F9A /* ApplicationContext.swift */,
@@ -521,12 +524,12 @@
 		9299323322248422000EAD47 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				92FE9727222CAFD1007DB61C /* Extension.entitlements */,
 				9299323422248422000EAD47 /* ShareViewController.swift */,
 				9299323622248422000EAD47 /* MainInterface.storyboard */,
 				9299323922248422000EAD47 /* Info.plist */,
 			);
-			name = Extension;
-			path = ../Extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		9299324622248908000EAD47 /* TesSDK */ = {
@@ -958,6 +961,11 @@
 				TargetAttributes = {
 					922CA48C21945F1F00FE66F1 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					922CA4A221945F2100FE66F1 = {
 						CreatedOnToolsVersion = 10.1;
@@ -969,6 +977,11 @@
 					};
 					9299323122248422000EAD47 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					9299324422248908000EAD47 = {
 						CreatedOnToolsVersion = 10.1;
@@ -1431,6 +1444,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Sources/Tesseract/Tesseract.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1459,6 +1473,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Sources/Tesseract/Tesseract.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -1566,9 +1581,11 @@
 		9299323E22248422000EAD47 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Extension/Extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
-				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_FILE = Sources/Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1576,6 +1593,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1585,9 +1603,11 @@
 		9299323F22248422000EAD47 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = Sources/Extension/Extension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y92JL37YF3;
-				INFOPLIST_FILE = Extension/Info.plist;
+				INFOPLIST_FILE = Sources/Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1595,6 +1615,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
