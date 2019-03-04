@@ -37,6 +37,7 @@ class WalletService {
                     : Promise<Wallet?>.value(nil)
             }
         promise.signal
+            .executeIn(.immediateOnMain)
             .suppressAndFeedError(into: errorNode)
             .bind(to: wallet)
         return promise.asVoid()
