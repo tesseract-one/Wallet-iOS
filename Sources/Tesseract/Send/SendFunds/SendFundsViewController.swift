@@ -19,11 +19,21 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     
     var model: ViewModel!
     
+    // MARK: Outlets
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var balanceInUSDLabel: UILabel!
+    
     @IBOutlet weak var addressField: UITextField!
+    @IBOutlet weak var sendAmountField: UITextField!
+    @IBOutlet weak var gasAmountField: UITextField!
+    @IBOutlet weak var recieverGetsAmountField: UITextField!
+    
     @IBOutlet weak var scanQrButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var reviewButton: UIButton!
     
     var closeAction: SafePublishSubject<Void>!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -50,6 +60,13 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         }.dispose(in: reactive.bag)
         
         model.address.bidirectionalBind(to: addressField.reactive.text).dispose(in: reactive.bag)
+        
+        cancelButton.reactive.tap
+            .throttle(seconds: 0.3)
+            .bind(to: closeAction)
+            .dispose(in: reactive.bag)
+        
+        goBack.bind(to: closeAction).dispose(in: reactive.bag)
     }
 }
 

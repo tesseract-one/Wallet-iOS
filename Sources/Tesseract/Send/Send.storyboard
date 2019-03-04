@@ -60,14 +60,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uL-yr-cGB">
                                                         <rect key="frame" x="133.5" y="0.0" width="209.5" height="44"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-1j-4Km">
-                                                                <rect key="frame" x="157.5" y="0.0" width="52" height="28.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-1j-4Km">
+                                                                <rect key="frame" x="157" y="0.0" width="52.5" height="28.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AmountInUSD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9m-0U-Pvo">
-                                                                <rect key="frame" x="142" y="15.5" width="67.5" height="28.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BalanceInUSD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9m-0U-Pvo">
+                                                                <rect key="frame" x="141" y="15.5" width="68.5" height="28.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -235,7 +235,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="addressField" destination="RNW-vB-Wfi" id="FhO-xz-j8x"/>
+                        <outlet property="balanceInUSDLabel" destination="N9m-0U-Pvo" id="kCQ-dl-6N2"/>
+                        <outlet property="balanceLabel" destination="CHH-1j-4Km" id="yIO-a8-VoF"/>
+                        <outlet property="cancelButton" destination="ANf-O9-zbw" id="Mad-fK-hcW"/>
+                        <outlet property="gasAmountField" destination="YJl-nF-yPC" id="Bem-3u-i5r"/>
+                        <outlet property="recieverGetsAmountField" destination="svo-RL-bve" id="RdR-zs-l5d"/>
+                        <outlet property="reviewButton" destination="HYd-1E-yM2" id="QXu-Tx-N5y"/>
                         <outlet property="scanQrButton" destination="SeX-BN-2wq" id="iNO-kZ-Y62"/>
+                        <outlet property="sendAmountField" destination="avx-FJ-lIa" id="4LT-Hp-0l6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqQ-uV-LSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -250,33 +257,80 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mkc-Jt-Suc" customClass="QRCodeScannerView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="15" y="51" width="343" height="307"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-mg-Paa" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="597" width="343" height="50"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU3-oK-37Z" customClass="BorderedView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="64" width="343" height="571"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkc-Jt-Suc" customClass="QRCodeScannerView" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="149.5" width="311" height="269"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Mkc-Jt-Suc" secondAttribute="height" multiplier="311:269" id="Za1-jO-TCf"/>
+                                        </constraints>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-mg-Paa" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="481" width="311" height="50"/>
+                                        <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="MVU-su-qQ2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR Code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3U-Tf-HJH">
+                                        <rect key="frame" x="68.5" y="32" width="206" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will sent our best courier rabbit to deliver your money!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-wN-bNp">
+                                        <rect key="frame" x="31.5" y="79" width="280" height="38.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="280" id="sp6-8d-tKj"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
+                                        <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="MVU-su-qQ2"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mkc-Jt-Suc" secondAttribute="trailing" constant="16" id="1Wt-Xn-mwh"/>
+                                    <constraint firstItem="l3U-Tf-HJH" firstAttribute="centerX" secondItem="UU3-oK-37Z" secondAttribute="centerX" id="7zF-KX-SNX"/>
+                                    <constraint firstItem="hIS-mg-Paa" firstAttribute="trailing" secondItem="Mkc-Jt-Suc" secondAttribute="trailing" id="O1j-JJ-wzX"/>
+                                    <constraint firstItem="BVZ-wN-bNp" firstAttribute="centerX" secondItem="UU3-oK-37Z" secondAttribute="centerX" id="Oca-rJ-4Vp"/>
+                                    <constraint firstItem="hIS-mg-Paa" firstAttribute="leading" secondItem="Mkc-Jt-Suc" secondAttribute="leading" id="Wme-Mf-5PO"/>
+                                    <constraint firstItem="Mkc-Jt-Suc" firstAttribute="top" secondItem="BVZ-wN-bNp" secondAttribute="bottom" constant="32" id="bcT-fb-66L"/>
+                                    <constraint firstItem="Mkc-Jt-Suc" firstAttribute="leading" secondItem="UU3-oK-37Z" secondAttribute="leading" constant="16" id="cPv-ic-MYw"/>
+                                    <constraint firstItem="BVZ-wN-bNp" firstAttribute="top" secondItem="l3U-Tf-HJH" secondAttribute="bottom" constant="8" id="eWg-0x-rEm"/>
+                                    <constraint firstItem="l3U-Tf-HJH" firstAttribute="top" secondItem="UU3-oK-37Z" secondAttribute="top" constant="32" id="foc-3G-1YR"/>
+                                    <constraint firstAttribute="bottom" secondItem="hIS-mg-Paa" secondAttribute="bottom" constant="40" id="tzt-YL-Qqo"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <state key="normal" title="Cancel">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                        <color key="value" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </button>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="bottom" secondItem="hIS-mg-Paa" secondAttribute="bottom" constant="20" id="IC6-Ms-uAv"/>
-                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="trailing" secondItem="hIS-mg-Paa" secondAttribute="trailing" constant="16" id="PHV-iQ-DTG"/>
-                            <constraint firstItem="hIS-mg-Paa" firstAttribute="leading" secondItem="PVW-i4-CQ6" secondAttribute="leading" constant="16" id="QXX-N9-ytm"/>
+                            <constraint firstItem="UU3-oK-37Z" firstAttribute="leading" secondItem="PVW-i4-CQ6" secondAttribute="leading" constant="16" id="RQD-jk-yBj"/>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="bottom" secondItem="UU3-oK-37Z" secondAttribute="bottom" constant="32" id="TlJ-rz-DCW"/>
+                            <constraint firstItem="UU3-oK-37Z" firstAttribute="top" secondItem="PVW-i4-CQ6" secondAttribute="top" constant="44" id="d2i-ol-eY5"/>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="trailing" secondItem="UU3-oK-37Z" secondAttribute="trailing" constant="16" id="hq8-Xs-f6Z"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PVW-i4-CQ6"/>
                     </view>
