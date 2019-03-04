@@ -122,23 +122,23 @@ public class Wallet {
         return storage.hasData(key: Wallet.walletPrefix + name)
     }
     
-    public static func newWallet(name: String, password: String, storage: StorageProtocol) -> Promise<(mnemonic: String, wallet: Wallet)> {
-        let keychain = Keychain(storage: storage)
-        return keychain.createWallet(name: Wallet.walletPrefix + name, password: password)
-            .map {
-                let wallet = Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0.wallet)
-                wallet.password = password
-                let _ = try wallet.addAccount()
-                return (mnemonic: $0.mnemonic, wallet: wallet)
-            }
-            .then { (mnemonic: String, wallet: Wallet) in wallet.save().map { (mnemonic: mnemonic, wallet: wallet) } }
+    public static func newWalletData(name: String) -> Promise<NewWalletData> {
+        return Keychain.newWalletData(name: name)
     }
     
-    public static func restoreWallet(name: String, mnemonic: String, password: String, storage: StorageProtocol) -> Promise<Wallet> {
+    public static func restoreWalletData(name: String, mnemonic: String) -> Promise<NewWalletData> {
+        return Keychain.restoreWalletData(name:name, mnemonic:mnemonic)
+    }
+    
+    public static func saveWalletData(data: NewWalletData, password: String, storage: StorageProtocol) -> Promise<Wallet> {
         let keychain = Keychain(storage: storage)
-        return keychain.restoreWallet(name: Wallet.walletPrefix + name, mnemonic: mnemonic, password: password)
-            .map { Wallet(name: name, storage: storage, keychain: keychain, hdWallet: $0) }
-            .then { wallet in wallet.save().map { wallet } }
+        return keychain.saveWalletData(data: data, password: password)
+            .map {
+                let wallet = Wallet(name: data.name, storage: storage, keychain: keychain, hdWallet: $0)
+                wallet.password = password
+                let _ = try wallet.addAccount()
+                return wallet
+            }
     }
     
     public static func loadWallet(name: String, storage: StorageProtocol) -> Promise<Wallet> {

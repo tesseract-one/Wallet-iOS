@@ -15,12 +15,16 @@ enum KeychainError: Error {
 }
 
 class Keychain {
+    private static let factories: Array<HDWalletKeyFactory> = [EthereumHDWalletKeyFactory()]
+    
     private let storage: StorageProtocol
-    private var factories: Array<HDWalletKeyFactory> = []
+    
+    private var factories: Array<HDWalletKeyFactory> {
+        return Keychain.factories
+    }
     
     init(storage: StorageProtocol) {
         self.storage = storage
-        factories.append(EthereumHDWalletKeyFactory())
     }
     
     func hasWallet(name: String) -> Promise<Bool> {
@@ -32,15 +36,32 @@ class Keychain {
             .map { try HDWallet(name: name, data: $0, factories: self.factories) }
     }
     
-    func createWallet(name: String, password: String) -> Promise<(mnemonic: String, wallet: HDWallet)> {
-        let mnemonic = Mnemonic(language: .english)
-        return _newWalletFromMnemonic(name: name, mnemonic: mnemonic)
-            .map { (mnemonic: mnemonic.toString(), wallet: $0) }
+    static func newWalletData(name: String) -> Promise<NewWalletData> {
+        let factories = self.factories
+        return Promise().map {
+            let mnemonic = Mnemonic(language: .english)
+            let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
+            return NewWalletData(name: name, mnemonic: mnemonic.toString(), keys: keys)
+        }
     }
     
-    func restoreWallet(name: String, mnemonic: String, password: String) -> Promise<HDWallet> {
-        let mnemonicObj = Mnemonic(phrase: mnemonic, language: .english)
-        return _newWalletFromMnemonic(name: name, mnemonic: mnemonicObj)
+    static func restoreWalletData(name: String, mnemonic: String) -> Promise<NewWalletData> {
+        let factories = self.factories
+        return Promise().map {
+            let mnemonic = Mnemonic(phrase: mnemonic, language: .english)
+            let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
+            return NewWalletData(name: name, mnemonic: mnemonic.toString(), keys: keys)
+        }
+    }
+    
+    func saveWalletData(data: NewWalletData, password: String) -> Promise<HDWallet> {
+        let factories = self.factories
+        return Promise.value(data.walletData).then { v1 in
+            self.storage
+                .saveData(key: data.name, data: try WalletVersionedData(v1: v1).toData())
+                .map { v1 }
+        }
+        .map { try HDWallet(name: data.name, data: $0, factories: factories) }
     }
     
     func renameWallet(name: String, to: String, password: String) -> Promise<HDWallet> {
@@ -53,18 +74,6 @@ class Keychain {
     
     func removeWallet(name: String) -> Promise<Void> {
         return self.storage.removeData(key: name)
-    }
-    
-    private func _newWalletFromMnemonic(name: String, mnemonic: Mnemonic) -> Promise<HDWallet> {
-        do {
-            let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            let data = try WalletVersionedData(v1: WalletDataV1(keys: keys)).toData()
-            return self.storage
-                .saveData(key: name, data: data)
-                .map { try HDWallet(factories: self.factories, name: name, pkeys: keys) }
-        } catch(let err) {
-            return Promise(error: err)
-        }
     }
     
     private func _loadWalletData(name: String, password: String) -> Promise<WalletDataV1> {

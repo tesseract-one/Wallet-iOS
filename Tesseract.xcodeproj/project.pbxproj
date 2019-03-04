@@ -63,6 +63,7 @@
 		92FE9726222C9B03007DB61C /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FE9724222C9B02007DB61C /* Fabric.framework */; };
 		92FE972A222D4C28007DB61C /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9729222D4C28007DB61C /* RouterTabBarController.swift */; };
 		92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */; };
+		92FE972F222D6C8D007DB61C /* NewWalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972E222D6C8D007DB61C /* NewWalletData.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -264,6 +265,7 @@
 		92FE9728222CAFE4007DB61C /* Tesseract.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tesseract.entitlements; sourceTree = "<group>"; };
 		92FE9729222D4C28007DB61C /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
 		92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
+		92FE972E222D6C8D007DB61C /* NewWalletData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletData.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -578,15 +580,24 @@
 		92FB84982225899600447653 /* Keychain */ = {
 			isa = PBXGroup;
 			children = (
+				92FE972D222D6C17007DB61C /* Ethereum */,
 				92655AAC222C492100CB8A18 /* RIPEMD160.swift */,
 				92FB84952225819D00447653 /* Keychain.swift */,
 				92FB8499222589AA00447653 /* Data.swift */,
 				92FB849D2225A21A00447653 /* HDWallet.swift */,
 				92FB849F2225A27600447653 /* HDWalletKey.swift */,
-				92FB84A12225A2FA00447653 /* EthereumKey.swift */,
-				92029DC2222C55790069B362 /* EthereumHDNode.swift */,
+				92FE972E222D6C8D007DB61C /* NewWalletData.swift */,
 			);
 			path = Keychain;
+			sourceTree = "<group>";
+		};
+		92FE972D222D6C17007DB61C /* Ethereum */ = {
+			isa = PBXGroup;
+			children = (
+				92029DC2222C55790069B362 /* EthereumHDNode.swift */,
+				92FB84A12225A2FA00447653 /* EthereumKey.swift */,
+			);
+			path = Ethereum;
 			sourceTree = "<group>";
 		};
 		D125143D21A82D570077E04A /* Registration */ = {
@@ -1242,6 +1253,7 @@
 				92FB84972225823200447653 /* Keychain.swift in Sources */,
 				92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */,
 				92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */,
+				92FE972F222D6C8D007DB61C /* NewWalletData.swift in Sources */,
 				92FB849A222589AA00447653 /* Data.swift in Sources */,
 				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
 				92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */,
