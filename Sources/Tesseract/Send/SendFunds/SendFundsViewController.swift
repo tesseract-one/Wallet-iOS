@@ -15,9 +15,20 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     
     var model: ViewModel!
     
-    @IBOutlet weak var addressField: UITextField!
-    @IBOutlet weak var scanQrButton: UIBarButtonItem!
+    // MARK: Outlets
+    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var balanceInUSDLabel: UILabel!
     
+    @IBOutlet weak var addressField: UITextField!
+    @IBOutlet weak var sendAmountField: UITextField!
+    @IBOutlet weak var gasAmountField: UITextField!
+    @IBOutlet weak var recieverGetsAmountField: UITextField!
+    
+    @IBOutlet weak var scanQrButton: UIBarButtonItem!
+    @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var reviewButton: UIButton!
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         

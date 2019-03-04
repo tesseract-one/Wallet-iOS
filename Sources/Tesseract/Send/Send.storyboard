@@ -60,14 +60,14 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="bottom" baselineRelativeArrangement="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5uL-yr-cGB">
                                                         <rect key="frame" x="133.5" y="0.0" width="209.5" height="44"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-1j-4Km">
-                                                                <rect key="frame" x="157.5" y="0.0" width="52" height="28.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CHH-1j-4Km">
+                                                                <rect key="frame" x="157" y="0.0" width="52.5" height="28.5"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
                                                                 <color key="textColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AmountInUSD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9m-0U-Pvo">
-                                                                <rect key="frame" x="142" y="15.5" width="67.5" height="28.5"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BalanceInUSD" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N9m-0U-Pvo">
+                                                                <rect key="frame" x="141" y="15.5" width="68.5" height="28.5"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                                 <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -235,7 +235,14 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="addressField" destination="RNW-vB-Wfi" id="FhO-xz-j8x"/>
+                        <outlet property="balanceInUSDLabel" destination="N9m-0U-Pvo" id="kCQ-dl-6N2"/>
+                        <outlet property="balanceLabel" destination="CHH-1j-4Km" id="yIO-a8-VoF"/>
+                        <outlet property="cancelButton" destination="ANf-O9-zbw" id="Mad-fK-hcW"/>
+                        <outlet property="gasAmountField" destination="YJl-nF-yPC" id="Bem-3u-i5r"/>
+                        <outlet property="recieverGetsAmountField" destination="svo-RL-bve" id="RdR-zs-l5d"/>
+                        <outlet property="reviewButton" destination="HYd-1E-yM2" id="QXu-Tx-N5y"/>
                         <outlet property="scanQrButton" destination="SeX-BN-2wq" id="iNO-kZ-Y62"/>
+                        <outlet property="sendAmountField" destination="avx-FJ-lIa" id="4LT-Hp-0l6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MqQ-uV-LSX" userLabel="First Responder" sceneMemberID="firstResponder"/>
