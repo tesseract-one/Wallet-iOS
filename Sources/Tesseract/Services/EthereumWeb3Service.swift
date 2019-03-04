@@ -65,6 +65,21 @@ class EthereumWeb3Service {
         return web3.eth.sendTransaction(transaction: tx).asVoid()
     }
     
+    func estimateGas(call: EthereumCall, networkId: Int) -> Promise<Double> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+        return web3.eth.estimateGas(call: call).map { Double($0.quantity) / pow(10.0, 18) }
+    }
+    
+    func estimateGas(account: Int, to: String, amountEth: Double, networkId: Int) -> Promise<Double> {
+        let account = wallet.value!.accounts[account]
+        let call = EthereumCall(
+            from: try! EthereumAddress(hex: account.address, eip55: false),
+            to: EthereumAddress(hexString: to)!,
+            value: EthereumQuantity(integerLiteral: UInt64(amountEth * pow(10.0, 18)))
+        )
+        return estimateGas(call: call, networkId: networkId)
+    }
+    
     func getTransactions(account: Int, networkId: Int) -> Promise<Array<EthereumTransactionLog>> {
         let etherscan = ethereumAPIs.value!.etherscan(apiUrl: etherscanEndpoints[networkId]!, apiToken: etherscanApiToken)
         return etherscan.getTransactions(address: wallet.value!.accounts[account].address)

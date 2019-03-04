@@ -47,7 +47,7 @@ extension EthereumTransaction {
         }
     }
     
-    func toCall() throws -> EthereumCall {
+    public func toCall() throws -> EthereumCall {
         guard let to = self.to else {
             throw EthereumSignProviderError.mandatoryFieldMissing("to")
         }
