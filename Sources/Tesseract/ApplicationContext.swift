@@ -31,6 +31,7 @@ class ApplicationContext: RouterContextProtocol {
     let applicationService = ApplicationService()
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
+    let changeRatesService = ChangeRateService()
     
     func bootstrap() {
         walletService.wallet = wallet
@@ -50,5 +51,6 @@ class ApplicationContext: RouterContextProtocol {
         walletService.bootstrap()
         applicationService.bootstrap()
         ethereumWeb3Service.bootstrap()
+        changeRatesService.bootstrap()
     }
 }

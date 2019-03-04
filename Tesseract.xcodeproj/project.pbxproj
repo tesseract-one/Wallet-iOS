@@ -66,6 +66,7 @@
 		92FE972F222D6C8D007DB61C /* NewWalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972E222D6C8D007DB61C /* NewWalletData.swift */; };
 		92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9730222D88DE007DB61C /* QRCodeView.swift */; };
 		92FE9733222D8D8E007DB61C /* QRCodeScannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */; };
+		92FE9735222D9651007DB61C /* ChangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9734222D9651007DB61C /* ChangeRateService.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -270,6 +271,7 @@
 		92FE972E222D6C8D007DB61C /* NewWalletData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletData.swift; sourceTree = "<group>"; };
 		92FE9730222D88DE007DB61C /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeScannerView.swift; sourceTree = "<group>"; };
+		92FE9734222D9651007DB61C /* ChangeRateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeRateService.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -577,6 +579,7 @@
 				92CB198922282ED000407F9A /* WalletService.swift */,
 				92CB198F22283B9200407F9A /* ApplicationService.swift */,
 				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
+				92FE9734222D9651007DB61C /* ChangeRateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1170,6 +1173,7 @@
 				D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */,
 				D1D292E121AF06E9000DA665 /* TokensTableViewController.swift in Sources */,
 				D13163A321B98C090066FB4A /* Stub.swift in Sources */,
+				92FE9735222D9651007DB61C /* ChangeRateService.swift in Sources */,
 				92CB198322281E0D00407F9A /* RouterViews.swift in Sources */,
 				D171DE54219DE3A5003134DD /* MnemonicVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */,

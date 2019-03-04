@@ -55,7 +55,10 @@ extension HomeViewController: UITableViewDelegate {
 extension HomeViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
     let appCtx = context.get(context: ApplicationContext.self)!
-    model = HomeViewModel(ethWeb3Service: appCtx.ethereumWeb3Service)
+    model = HomeViewModel(
+        ethWeb3Service: appCtx.ethereumWeb3Service,
+        changeRateService: appCtx.changeRatesService
+    )
     
     appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
     appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
