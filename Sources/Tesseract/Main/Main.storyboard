@@ -220,6 +220,7 @@
                     <connections>
                         <outlet property="activityTableView" destination="PLg-ga-E6f" id="WMw-4x-BC2"/>
                         <outlet property="balanceLabel" destination="Plr-XI-78v" id="cvG-2Z-TLC"/>
+                        <outlet property="sendButton" destination="0nk-2D-vpx" id="57w-Rb-sxS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gOm-i6-hST" userLabel="First Responder" sceneMemberID="firstResponder"/>

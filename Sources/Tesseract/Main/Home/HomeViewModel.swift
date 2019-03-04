@@ -11,20 +11,24 @@ import Bond
 import TesSDK
 
 class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-  let goToView = SafePublishSubject<ToView>()
+  let sendAction = SafePublishSubject<Void>()
   
   let activeAccount = Property<TesSDK.Account?>(nil)
   let ethereumNetwork = Property<Int>(0)
+  let transactions = MutableObservableArray<EthereumTransactionLog>()
+  let balance = Property<String>("")
+  
+  let goToView = SafePublishSubject<ToView>()
   
   let ethWeb3Service: EthereumWeb3Service
-  
-  let balance = Property<String>("")
-  let transactions = MutableObservableArray<EthereumTransactionLog>()
   
   init(ethWeb3Service: EthereumWeb3Service) {
     self.ethWeb3Service = ethWeb3Service
     
     super.init()
+    
+    sendAction.map { _ in (name: "SendFunds", context: nil) }
+      .bind(to: goToView).dispose(in: bag)
   }
   
   func bootstrap() {
