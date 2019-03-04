@@ -64,6 +64,7 @@
 		92FE972A222D4C28007DB61C /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9729222D4C28007DB61C /* RouterTabBarController.swift */; };
 		92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */; };
 		92FE972F222D6C8D007DB61C /* NewWalletData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972E222D6C8D007DB61C /* NewWalletData.swift */; };
+		92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9730222D88DE007DB61C /* QRCodeView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D122E99A21A417BE004B2AA7 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */; };
@@ -266,6 +267,7 @@
 		92FE9729222D4C28007DB61C /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
 		92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterNavigationController.swift; sourceTree = "<group>"; };
 		92FE972E222D6C8D007DB61C /* NewWalletData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewWalletData.swift; sourceTree = "<group>"; };
+		92FE9730222D88DE007DB61C /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D122E99921A417BE004B2AA7 /* NextResponderTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -797,6 +799,7 @@
 				D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */,
 				D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */,
 				D1D5F85E21B8494F007D0433 /* RoundedImage.swift */,
+				92FE9730222D88DE007DB61C /* QRCodeView.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1212,6 +1215,7 @@
 				D1D5F84F21B80347007D0433 /* AssetsTemplateTableViewController.swift in Sources */,
 				D1F986A021AC4D10000B4C3C /* SendAddressViewController.swift in Sources */,
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
+				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
