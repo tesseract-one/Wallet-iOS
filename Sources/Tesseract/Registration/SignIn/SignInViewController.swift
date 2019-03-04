@@ -34,13 +34,15 @@ class SignInViewController: UIViewController, ModelVCProtocol {
       .bind(to: passwordField.reactive.error)
       .dispose(in: bag)
     
-    signInButton.reactive.tap.bind(to: model.signInAction).dispose(in: bag)
-    signInButton.reactive.tap.with(weak: view).observeNext { view in // should be before signInAction [passwordValidation --> passwordCheck]
+    let signInTap = signInButton.reactive.tap.throttle(seconds: 0.5)
+    signInTap.bind(to: model.signInAction).dispose(in: bag)
+    signInTap.with(weak: view).observeNext { view in // should be before signInAction [passwordValidation --> passwordCheck]
       view.endEditing(true)
     }.dispose(in: bag)
     
-    restoreKeyButton.reactive.tap.bind(to: model.restoreKeyAction).dispose(in: bag)
-    restoreKeyButton.reactive.tap.with(weak: view).observeNext { view in
+    let restoreKeyTap = restoreKeyButton.reactive.tap.throttle(seconds: 0.5)
+    restoreKeyTap.bind(to: model.restoreKeyAction).dispose(in: bag)
+    restoreKeyTap.with(weak: view).observeNext { view in
       view.endEditing(true)
     }.dispose(in: bag)
     

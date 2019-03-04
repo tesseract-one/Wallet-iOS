@@ -25,11 +25,7 @@ class SignUpViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   
   let goToView = SafePublishSubject<ToView>()
   
-  private let walletService: WalletService
-  
-  init (walletService: WalletService) {
-    self.walletService = walletService
-    
+  override init () {
     super.init()
     
     passwordValidator().bind(to: passwordError).dispose(in: bag)
@@ -63,25 +59,16 @@ extension SignUpViewModel {
       .bind(to: signUpSuccessfully)
       .dispose(in: bag)
     
-    let errors = SafePublishSubject<AnyError>()
     let action = signUpAction
       .with(latestFrom: passwordError)
       .filter { $0.1 == nil }
       .map { _ in }
       .with(latestFrom: password)
-      .with(weak: walletService)
-      .flatMapLatest { pwdTuple, walletService in
-        walletService.createWallet(password: pwdTuple.1).signal
-      }
-      .suppressAndFeedError(into: errors)
     
     action.map { _ in true }.bind(to: signUpSuccessfully).dispose(in: bag)
-    action.map { (mnemonic, wallet) in
-      let context = DictionaryRouterContext(dictionaryLiteral: ("mnemonic", mnemonic), ("wallet", wallet))
+    action.map { _, password in
+      let context = DictionaryRouterContext(dictionaryLiteral: ("password", password))
       return (name: "TermsOfService", context: context)
     }.bind(to: goToView).dispose(in: bag)
-    
-    errors.map { _ in SignUpPasswordErrors.server }.bind(to: passwordError).dispose(in: bag)
-    errors.map { _ in false }.bind(to: signUpSuccessfully).dispose(in: bag)
   }
 }

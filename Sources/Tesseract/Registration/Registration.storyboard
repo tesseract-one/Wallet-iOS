@@ -65,7 +65,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="errorVerticalOffset">
                                                         <real key="value" value="4.5"/>
                                                     </userDefinedRuntimeAttribute>
@@ -87,7 +87,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>
@@ -320,7 +320,7 @@
                                     <constraint firstAttribute="height" constant="50" id="gor-HF-M62"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <state key="normal" title="Done">
+                                <state key="normal" title="Next">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>
@@ -349,14 +349,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xSV-xw-IQW" customClass="CustomInsetsTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="149.66666666666666" width="414" height="54.333333333333343"/>
+                                <rect key="frame" x="0.0" y="149.66666666666666" width="414" height="50.666666666666657"/>
                                 <color key="backgroundColor" red="0.054901960784313725" green="0.047058823529411764" blue="0.054901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Mnemonics">
                                         <attributes>
                                             <color key="NSBackgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="NSColor" white="1" alpha="1" colorSpace="deviceWhite"/>
-                                            <font key="NSFont" size="32" name=".SFNSText"/>
+                                            <font key="NSFont" size="28" name=".SFNSText"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
                                     </fragment>
@@ -524,9 +524,11 @@
                     <navigationItem key="navigationItem" title="Verify" largeTitleDisplayMode="always" id="v5E-I8-qbb">
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln"/>
                     </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="doneButton" destination="KOX-bF-Du2" id="2Ns-eZ-xB7"/>
                         <outlet property="mnemonicVerificationTextView" destination="BeD-OW-Eev" id="Bmu-J4-KmL"/>
+                        <outlet property="skipButton" destination="iYf-1q-7ln" id="0Ns-k4-Qzs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZNA-bl-XWO" userLabel="First Responder" sceneMemberID="firstResponder"/>

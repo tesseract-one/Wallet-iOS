@@ -15,18 +15,19 @@ enum MnemonicVerificationError: String {
 }
 
 class MnemonicVerificationViewModel: ViewModel {
-  private let mnemonic: String
-  private let wallet: Wallet
+  private let password: String
+  private let newWalletData: NewWalletData
   private let walletService: WalletService
   
   let doneMnemonicVerificationAction = SafePublishSubject<Void>()
+  let skipMnemonicVerificationAction = SafePublishSubject<Void>()
   let mnemonicText = Property<String>("")
   let mnemonicError = Property<MnemonicVerificationError?>(nil)
   let mnemonicVerifiedSuccessfully = Property<Bool?>(nil)
   
-  init (mnemonic: String, wallet: Wallet, walletService: WalletService) {
-    self.mnemonic = mnemonic
-    self.wallet = wallet
+  init (password: String, newWalletData: NewWalletData, walletService: WalletService) {
+    self.password = password
+    self.newWalletData = newWalletData
     self.walletService = walletService
     
     super.init()
@@ -40,7 +41,7 @@ class MnemonicVerificationViewModel: ViewModel {
 extension MnemonicVerificationViewModel {
   
   private func mnemonicValidator() -> SafeSignal<MnemonicVerificationError?> {
-    let mnemonic = self.mnemonic
+    let mnemonic = self.newWalletData.mnemonic
     
     return mnemonicText
       .map { mnemonicText -> MnemonicVerificationError? in
@@ -54,7 +55,8 @@ extension MnemonicVerificationViewModel {
   }
   
   private func setUpMnemonicVerification() {
-    let wallet = self.wallet
+    let password = self.password
+    let newWalletData = self.newWalletData
     let errors = SafePublishSubject<AnyError>()
     
     doneMnemonicVerificationAction
@@ -64,19 +66,38 @@ extension MnemonicVerificationViewModel {
       .bind(to: mnemonicVerifiedSuccessfully)
       .dispose(in: bag)
     
-    
-    doneMnemonicVerificationAction
+    let saveWallet =
+      doneMnemonicVerificationAction
       .with(weak: mnemonicError)
       .filter { $1.value == nil }
       .map { _ in }
       .with(weak: walletService)
-      .flatMapLatest { (walletService) -> Signal<Void, AnyError> in
-        walletService.setWallet(wallet: wallet)
-        return walletService.saveWallet().signal
+      .flatMapLatest { walletService -> Signal<Wallet, AnyError> in
+        walletService.saveWalletData(data: newWalletData, password: password).signal
       }.suppressAndFeedError(into: errors)
+      
+    saveWallet
+      .with(weak: walletService)
+      .observeNext { wallet, walletService in
+        walletService.setWallet(wallet: wallet)
+      }.dispose(in: bag)
+      
+    saveWallet
       .map { _ in true }
       .bind(to: mnemonicVerifiedSuccessfully)
       .dispose(in: bag)
+    
+    skipMnemonicVerificationAction
+      .with(weak: walletService)
+      .flatMapLatest { walletService -> Signal<Wallet, AnyError> in
+        walletService.saveWalletData(data: newWalletData, password: password).signal
+      }
+      .observeIn(.immediateOnMain)
+      .suppressAndFeedError(into: errors)
+      .with(weak: walletService)
+      .observeNext { wallet, walletService in
+        walletService.setWallet(wallet: wallet)
+      }.dispose(in: bag)
 
     errors.map { _ in MnemonicVerificationError.server }
       .bind(to: mnemonicError).dispose(in: bag)

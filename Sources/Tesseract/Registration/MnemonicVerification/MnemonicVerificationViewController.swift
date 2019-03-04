@@ -18,6 +18,7 @@ class MnemonicVerificationViewController: UIViewController, ModelVCProtocol {
   //
   @IBOutlet weak var mnemonicVerificationTextView: NextResponderTextView!
   @IBOutlet weak var doneButton: UIButton!
+  @IBOutlet weak var skipButton: UIBarButtonItem!
   
   // MARK: Lifecycle
   //
@@ -33,22 +34,23 @@ class MnemonicVerificationViewController: UIViewController, ModelVCProtocol {
         mnemonicVerificationTextView.error = ""
       }.dispose(in: bag)
 
-    let mnemonicVerifiedSuccessfull =
-      model.mnemonicVerifiedSuccessfully
-        .filter { $0 != nil }
-        .with(latestFrom: model.mnemonicError)
-        .filter { $0 == false && $1 != nil }
-    
-    mnemonicVerifiedSuccessfull
+    model.mnemonicVerifiedSuccessfully
+      .filter { $0 != nil }
+      .with(latestFrom: model.mnemonicError)
+      .filter { $0 == false && $1 != nil }
       .with(weak: mnemonicVerificationTextView)
       .observeNext { mnemonicErrorTuple, mnemonicVerificationTextView in
-        mnemonicVerificationTextView.error = mnemonicErrorTuple.1?.rawValue
+        mnemonicVerificationTextView.error = mnemonicErrorTuple.1!.rawValue
       }.dispose(in: bag)
     
-    doneButton.reactive.tap.bind(to: model.doneMnemonicVerificationAction).dispose(in: bag)
-    doneButton.reactive.tap.with(weak: view).observeNext { view in
+    let doneTap = doneButton.reactive.tap.throttle(seconds: 0.5)
+    doneTap.bind(to: model.doneMnemonicVerificationAction).dispose(in: bag)
+    doneTap.with(weak: view).observeNext { view in
       view.endEditing(true)
-    }.dispose(in: bag)
+      }.dispose(in: bag)
+    
+    skipButton.reactive.tap.throttle(seconds: 0.5)
+      .bind(to: model.skipMnemonicVerificationAction).dispose(in: bag)
   }
 }
 
@@ -56,15 +58,15 @@ extension MnemonicVerificationViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
     let appCtx = context.get(context: ApplicationContext.self)!
 
-    guard let mnemonic = context.get(bean: "mnemonic") as? String else {
-      print("Router context don't contain mnemonic", self)
+    guard let password = context.get(bean: "password") as? String else {
+      print("Router context don't contain password", self)
       return
     }
-    guard let wallet = context.get(bean: "wallet") as? Wallet else {
-      print("Router context don't contain wallet", self)
+    guard let newWalletData = context.get(bean: "newWalletData") as? NewWalletData else {
+      print("Router context don't contain newWalletData", self)
       return
     }
     
-    self.model = MnemonicVerificationViewModel(mnemonic: mnemonic, wallet: wallet, walletService: appCtx.walletService)
+    self.model = MnemonicVerificationViewModel(password: password, newWalletData: newWalletData, walletService: appCtx.walletService)
   }
 }

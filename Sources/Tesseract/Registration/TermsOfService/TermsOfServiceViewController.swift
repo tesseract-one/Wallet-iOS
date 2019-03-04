@@ -25,7 +25,8 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
     
     model.termsOfService.bind(to: termsTextView.reactive.text)
     
-    acceptButton.reactive.tap.bind(to: model.acceptTermsAction).dispose(in: bag)
+    acceptButton.reactive.tap.throttle(seconds: 0.5)
+      .bind(to: model.acceptTermsAction).dispose(in: bag)
     
     goToViewAction.observeNext { [weak self] name, context in
       let vc = try! self?.viewController(for: .named(name: name), context: context)
@@ -40,6 +41,8 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
 
 extension TermsOfServiceViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
-    self.model = TermsOfServiceViewModel()
+    let appCtx = context.get(context: ApplicationContext.self)!
+    
+    self.model = TermsOfServiceViewModel(walletService: appCtx.walletService)
   }
 }

@@ -56,15 +56,15 @@ extension SignInViewModel {
     let errors = SafePublishSubject<AnyError>()
     
     signInAction
-      .with(weak: passwordError)
-      .filter { $1.value != nil }
+      .with(latestFrom: passwordError)
+      .filter { $1 != nil }
       .map { _ in false }
       .bind(to: signInSuccessfully)
       .dispose(in: bag)
     
     signInAction
-      .with(weak: passwordError)
-      .filter { $1.value == nil }
+      .with(latestFrom: passwordError)
+      .filter { $1 == nil }
       .map { _ in }
       .with(latestFrom: password)
       .with(weak: walletService)
@@ -77,5 +77,6 @@ extension SignInViewModel {
       .dispose(in: bag)
     
     errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
+    errors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
   }
 }

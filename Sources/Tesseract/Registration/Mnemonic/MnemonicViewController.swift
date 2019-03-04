@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import TesSDK
 
 class MnemonicViewController: UIViewController, ModelVCProtocol {
   typealias ViewModel = MnemonicViewModel
@@ -25,7 +26,8 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
     
     model.mnemonicProp.bind(to: mnemonicTextView.reactive.text).dispose(in: bag)
     
-    doneButton.reactive.tap.bind(to: model.doneMnemonicAction).dispose(in: bag)
+    doneButton.reactive.tap.throttle(seconds: 0.5)
+      .bind(to: model.doneMnemonicAction).dispose(in: bag)
     
     goToViewAction.observeNext { [weak self] name, context in
       let vc = try! self?.viewController(for: .named(name: name), context: context)
@@ -36,11 +38,11 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
 
 extension MnemonicViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
-    guard let mnemonic = context.get(bean: "mnemonic") as? String else {
-      print("Router context don't contain mnemonic", self)
+    guard let newWalletData = context.get(bean: "newWalletData") as? NewWalletData else {
+      print("Router context don't contain newWalletData", self)
       return
     }
 
-    self.model = MnemonicViewModel(mnemonic: mnemonic)
+    self.model = MnemonicViewModel(mnemonic: newWalletData.mnemonic)
   }
 }

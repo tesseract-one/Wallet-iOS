@@ -38,13 +38,15 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
       .bind(to: confirmPasswordField.reactive.error)
       .dispose(in: bag)
     
-    signUpButton.reactive.tap.bind(to: model.signUpAction).dispose(in: bag)
-    signUpButton.reactive.tap.with(weak: view).observeNext { view in
+    let signUpTap = signUpButton.reactive.tap.throttle(seconds: 0.5)
+    signUpTap.bind(to: model.signUpAction).dispose(in: bag)
+    signUpTap.with(weak: view).observeNext { view in
       view.endEditing(true)
     }.dispose(in: bag)
     
-    restoreKeyButton.reactive.tap.bind(to: model.restoreKeyAction).dispose(in: bag)
-    restoreKeyButton.reactive.tap.with(weak: view).observeNext { view in
+    let restoreKeyTap = restoreKeyButton.reactive.tap.throttle(seconds: 0.5)
+    restoreKeyTap.bind(to: model.restoreKeyAction).dispose(in: bag)
+    restoreKeyTap.with(weak: view).observeNext { view in
       view.endEditing(true)
     }.dispose(in: bag)
     
@@ -93,7 +95,6 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
 
 extension SignUpViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
-    let appCtx = context.get(context: ApplicationContext.self)!
-    self.model = SignUpViewModel(walletService: appCtx.walletService)
+    self.model = SignUpViewModel()
   }
 }
