@@ -21,6 +21,7 @@ class HomeViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var activityTableView: UITableView!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var receiveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,15 +35,24 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         
         sendButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.sendAction).dispose(in: bag)
+        receiveButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.receiveAction).dispose(in: bag)
         
-        activityTableView.delegate = self
-        
-        goToViewAction.observeNext { [weak self] name, context in
+        model.goToSendView.observeNext { [weak self] name, context in
             let vc = try? UIStoryboard(name: "Send", bundle: nil)
                 .viewFactory(context: self?.r_context)
                 .viewController(for: .root, context: context)
             self?.show(vc!, sender: self!)
         }.dispose(in: bag)
+        
+        model.goToReceiveView.observeNext { [weak self] name, context in
+            let vc = try? UIStoryboard(name: "Receive", bundle: nil)
+                .viewFactory(context: self?.r_context)
+                .viewController(for: .root, context: context)
+            self?.show(vc!, sender: self!)
+        }.dispose(in: bag)
+        
+        activityTableView.delegate = self
     }
 }
 

@@ -220,6 +220,7 @@
                     <connections>
                         <outlet property="activityTableView" destination="PLg-ga-E6f" id="WMw-4x-BC2"/>
                         <outlet property="balanceLabel" destination="Plr-XI-78v" id="cvG-2Z-TLC"/>
+                        <outlet property="receiveButton" destination="cUW-ON-zON" id="N9T-Nx-ZNi"/>
                         <outlet property="sendButton" destination="0nk-2D-vpx" id="57w-Rb-sxS"/>
                     </connections>
                 </viewController>
