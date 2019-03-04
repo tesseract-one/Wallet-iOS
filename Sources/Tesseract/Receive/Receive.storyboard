@@ -125,6 +125,13 @@
                             <color key="tintColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addressTextField" destination="w2A-Np-cI5" id="OJw-at-22d"/>
+                        <outlet property="balanceLabel" destination="fDJ-LR-L1I" id="Bfo-5u-6gR"/>
+                        <outlet property="balanceUSDLabel" destination="lf4-sg-dj5" id="Z2v-jm-qsr"/>
+                        <outlet property="cancelButton" destination="MzY-Zi-Mzn" id="Bfo-Cm-BeC"/>
+                        <outlet property="qrCodeImageView" destination="HJB-sR-Dc0" id="hVW-xI-vIJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LV2-Ep-NMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
