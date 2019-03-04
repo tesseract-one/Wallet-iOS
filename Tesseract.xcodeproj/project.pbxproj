@@ -98,6 +98,7 @@
 		D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1AE725A21A2C33700CA1C17 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */; };
+		D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */; };
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* SignUpViewController.swift */; };
@@ -273,6 +274,7 @@
 		D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInputScrollView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1AE725921A2C33700CA1C17 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
+		D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		D1201FE9222DA9D00030C2C2 /* Receive */ = {
 			isa = PBXGroup;
 			children = (
+				D1B13CC8222DBCC3005213F7 /* ReceiveFunds */,
 				D1201FEA222DA9E70030C2C2 /* Receive.storyboard */,
 			);
 			path = Receive;
@@ -699,6 +702,14 @@
 				92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */,
 			);
 			path = UIHelpers;
+			sourceTree = "<group>";
+		};
+		D1B13CC8222DBCC3005213F7 /* ReceiveFunds */ = {
+			isa = PBXGroup;
+			children = (
+				D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */,
+			);
+			path = ReceiveFunds;
 			sourceTree = "<group>";
 		};
 		D1F76C992225894B00BFBB6B /* SignIn */ = {
@@ -1064,6 +1075,7 @@
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
 				D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */,
 				D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */,
+				D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */,
 				D1201FE8222D99CE0030C2C2 /* SendFundsViewController.swift in Sources */,
 				92FE972A222D4C28007DB61C /* RouterTabBarController.swift in Sources */,
 				D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */,

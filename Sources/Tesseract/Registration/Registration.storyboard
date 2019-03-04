@@ -581,7 +581,7 @@
                                                     <userDefinedRuntimeAttribute type="number" keyPath="dividerActiveHeight">
                                                         <real key="value" value="1"/>
                                                     </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="YES"/>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isPlaceholderUppercasedWhenEditingIB" value="NO"/>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="placeholderVerticalOffset">
                                                         <real key="value" value="0.0"/>
                                                     </userDefinedRuntimeAttribute>

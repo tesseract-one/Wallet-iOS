@@ -10,8 +10,11 @@ import ReactiveKit
 import Bond
 import TesSDK
 
-class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
+class HomeViewModel: ViewModel {
+    typealias ToView = (name: String, context: RouterContextProtocol?)
+    
     let sendAction = SafePublishSubject<Void>()
+    let receiveAction = SafePublishSubject<Void>()
     
     let activeAccount = Property<TesSDK.Account?>(nil)
     let ethereumNetwork = Property<Int>(0)
@@ -20,7 +23,8 @@ class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let ethBalance = Property<Double?>(nil)
     let balanceUSD = Property<String>("")
     
-    let goToView = SafePublishSubject<ToView>()
+    let goToSendView = SafePublishSubject<ToView>()
+    let goToReceiveView = SafePublishSubject<ToView>()
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
@@ -32,8 +36,9 @@ class HomeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         super.init()
         
         sendAction.map { _ in (name: "SendFunds", context: nil) }
-            .bind(to: goToView).dispose(in: bag)
-
+            .bind(to: goToSendView).dispose(in: bag)
+        receiveAction.map { _ in (name: "ReceiveFunds", context: nil) }
+            .bind(to: goToReceiveView).dispose(in: bag)
     }
         
     func bootstrap() {
