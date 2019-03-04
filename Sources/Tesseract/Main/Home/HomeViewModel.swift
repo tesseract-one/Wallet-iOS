@@ -25,6 +25,7 @@ class HomeViewModel: ViewModel {
     
     let goToSendView = SafePublishSubject<ToView>()
     let goToReceiveView = SafePublishSubject<ToView>()
+    let closePopupView = SafePublishSubject<Void>()
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
@@ -35,10 +36,16 @@ class HomeViewModel: ViewModel {
         
         super.init()
         
-        sendAction.map { _ in (name: "SendFunds", context: nil) }
+        let sendContext = SendFundsViewControllerContext()
+        sendContext.closeAction.bind(to: closePopupView).dispose(in: bag)
+        sendAction.map { _ in (name: "SendFunds", context: sendContext) }
             .bind(to: goToSendView).dispose(in: bag)
-        receiveAction.map { _ in (name: "ReceiveFunds", context: nil) }
+        
+        let receiveContext = ReceiveFundsViewControllerContext()
+        receiveContext.closeAction.bind(to: closePopupView).dispose(in: bag)
+        receiveAction.map { _ in (name: "ReceiveFunds", context: receiveContext) }
             .bind(to: goToReceiveView).dispose(in: bag)
+        
     }
         
     func bootstrap() {

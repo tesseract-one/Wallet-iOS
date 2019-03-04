@@ -52,6 +52,12 @@ class HomeViewController: UIViewController, ModelVCProtocol {
             self?.show(vc!, sender: self!)
         }.dispose(in: bag)
         
+        model.closePopupView.with(weak: self).observeNext { sself in
+            if sself.presentedViewController != nil {
+                sself.dismiss(animated: true, completion: nil)
+            }
+        }.dispose(in: bag)
+        
         activityTableView.delegate = self
     }
 }

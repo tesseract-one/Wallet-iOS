@@ -10,10 +10,18 @@ import ReactiveKit
 import Bond
 import TesSDK
 
-class ReceiveFundsViewModel: ViewModel {
+class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<TesSDK.Account?>(nil)
+    
     let address = Property<String?>(nil)
+    let qrCodeAddress = Property<String>("ethereum:")
+    
     let ethereumNetwork = Property<Int>(0)
+    
+    let goBack = SafePublishSubject<Void>()
+    
+    let closeButtonAction = SafePublishSubject<Void>()
+    
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
     let balanceUSD = Property<String>("")
@@ -26,6 +34,8 @@ class ReceiveFundsViewModel: ViewModel {
         self.changeRateService = changeRateService
         
         super.init()
+        
+        closeButtonAction.bind(to: goBack).dispose(in: bag)
     }
     
     func bootstrap() {
@@ -39,6 +49,9 @@ class ReceiveFundsViewModel: ViewModel {
             .dispose(in: bag)
         
         activeAccount.filter { $0 == nil }.map { _ in nil }.bind(to: ethBalance).dispose(in: bag)
+        
+        activeAccount.map {$0?.address}.bind(to: address).dispose(in: bag)
+        activeAccount.map {$0?.address ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
         
         ethBalance
             .map { $0 == nil ? "unknown" : "\($0!) ETH" }

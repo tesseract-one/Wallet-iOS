@@ -10,6 +10,10 @@ import UIKit
 import ReactiveKit
 import Bond
 
+class SendFundsViewControllerContext: RouterContextProtocol {
+    let closeAction = SafePublishSubject<Void>()
+}
+
 class SendFundsViewController: UIViewController, ModelVCProtocol {
     typealias ViewModel = SendFundsViewModel
     
@@ -17,6 +21,8 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     
     @IBOutlet weak var addressField: UITextField!
     @IBOutlet weak var scanQrButton: UIBarButtonItem!
+    
+    var closeAction: SafePublishSubject<Void>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,5 +61,6 @@ extension SendFundsViewController: ContextSubject {
             ethWeb3Service: appCtx.ethereumWeb3Service,
             changeRateService: appCtx.changeRatesService
         )
+        closeAction = context.get(context: SendFundsViewControllerContext.self)!.closeAction
     }
 }
