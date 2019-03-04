@@ -101,6 +101,8 @@
 		D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */; };
 		D1B13CCC222DC3A8005213F7 /* ReceiveFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */; };
 		D1B13CCE222DD05E005213F7 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCD222DD05E005213F7 /* BorderedView.swift */; };
+		D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */; };
+		D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */; };
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* SignUpViewController.swift */; };
@@ -279,6 +281,8 @@
 		D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewModel.swift; sourceTree = "<group>"; };
 		D1B13CCD222DD05E005213F7 /* BorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
+		D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewController.swift; sourceTree = "<group>"; };
+		D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewModel.swift; sourceTree = "<group>"; };
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -563,6 +567,7 @@
 		D1201FE3222D87C00030C2C2 /* Send */ = {
 			isa = PBXGroup;
 			children = (
+				D1B13CCF222DD63B005213F7 /* ReviewSendTransaction */,
 				92FE9738222DB2A6007DB61C /* ScanQR */,
 				D1201FE6222D99AB0030C2C2 /* SendFunds */,
 				D1201FE4222D87DA0030C2C2 /* Send.storyboard */,
@@ -716,6 +721,15 @@
 				D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */,
 			);
 			path = ReceiveFunds;
+			sourceTree = "<group>";
+		};
+		D1B13CCF222DD63B005213F7 /* ReviewSendTransaction */ = {
+			isa = PBXGroup;
+			children = (
+				D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */,
+				D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */,
+			);
+			path = ReviewSendTransaction;
 			sourceTree = "<group>";
 		};
 		D1F76C992225894B00BFBB6B /* SignIn */ = {
@@ -1049,6 +1063,8 @@
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */,
 				92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */,
+				D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */,
+				D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */,
 				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
 				92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */,
