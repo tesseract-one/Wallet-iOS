@@ -13,7 +13,7 @@ import PromiseKit
 
 class WalletService {
     private let bag = DisposeBag()
-    private let storage: StorageProtocol = UserDefaults.standard
+    private let storage: StorageProtocol = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
     private static let WALLET_KEY = "WALLET"
     
     var wallet: Property<Wallet?>!

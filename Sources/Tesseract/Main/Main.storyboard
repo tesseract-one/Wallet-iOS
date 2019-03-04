@@ -14,7 +14,7 @@
             <objects>
                 <viewController storyboardIdentifier="Home" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JZT-Uu-Wt2" customClass="HomeViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OgW-Di-jrO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="center" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VwD-1J-4Ej">
@@ -121,7 +121,7 @@
                                 </constraints>
                             </stackView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="PLg-ga-E6f">
-                                <rect key="frame" x="16" y="378" width="343" height="289"/>
+                                <rect key="frame" x="16" y="378" width="343" height="240"/>
                                 <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="60" id="bnC-9V-bpi" customClass="ActivityTableViewCell" customModule="Tesseract" customModuleProvider="target">
@@ -226,10 +226,10 @@
             </objects>
             <point key="canvasLocation" x="-306" y="680"/>
         </scene>
-        <!--Main Tab Bar View Controller-->
+        <!--Router Tab Bar Controller-->
         <scene sceneID="25X-vW-Gxc">
             <objects>
-                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JfT-fh-RVi" customClass="MainTabBarViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JfT-fh-RVi" customClass="RouterTabBarController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Jq4-eW-CKS">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
@@ -238,6 +238,9 @@
                         <color key="barTintColor" red="0.054901960780000002" green="0.047058823530000002" blue="0.054901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
+                    <connections>
+                        <segue destination="JZT-Uu-Wt2" kind="relationship" relationship="viewControllers" id="qzG-IA-RgP"/>
+                    </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pw-RM-QGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

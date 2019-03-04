@@ -11,7 +11,7 @@ import ReactiveKit
 import Bond
 import TesSDK
 
-class HomeViewController: UIViewController {
+class HomeViewController: UIViewController, ModelVCProtocol {
   typealias ViewModel = HomeViewModel
   
   private(set) var model: ViewModel!
