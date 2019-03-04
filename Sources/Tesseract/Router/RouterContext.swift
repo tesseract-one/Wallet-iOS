@@ -76,3 +76,13 @@ class DictionaryRouterContext : ExpressibleByDictionaryLiteral, RouterContextPro
         return _ctx[name]
     }
 }
+
+extension RouterContextProtocol {
+    func concat(_ other: RouterContextProtocol?) -> RouterContextProtocol {
+        guard let context = other else { return self }
+        let combined = CombinedRouterContext()
+        combined.push(context: self)
+        combined.push(context: context)
+        return combined
+    }
+}

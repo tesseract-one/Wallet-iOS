@@ -172,3 +172,13 @@ extension ViewFactoryProtocol {
         return try viewController(for: view, context: ctx)
     }
 }
+
+extension UIStoryboard {
+    func viewFactory(context: RouterContextProtocol? = nil) -> ViewFactoryProtocol {
+        return ViewFactory(resolver: self, context: context)
+    }
+    
+    func weakContextViewFactory(context: RouterContextProtocol? = nil) -> ViewFactoryProtocol {
+        return WeakContextViewFactory(resolver: self, context: context)
+    }
+}
