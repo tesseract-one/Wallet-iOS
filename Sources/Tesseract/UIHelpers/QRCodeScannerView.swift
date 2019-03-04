@@ -72,19 +72,20 @@ class QRCodeScannerView: UIView {
     
     private func setupView() {
         AVCaptureDevice.requestAccess(for: .video) { [weak self] (hasAccess) in
-            if hasAccess {
-                self?.setupCamera()
-            } else if let sself = self {
-                let layer = CATextLayer()
-                layer.string = "NO CAMERA ACCESS"
-                layer.alignmentMode = .center
-                layer.foregroundColor = UIColor.white.cgColor
-                layer.frame = sself.bounds
-                sself.subLayer = layer
-                sself.layer.addSublayer(layer)
+            DispatchQueue.main.async { [weak self] in
+                if hasAccess {
+                    self?.setupCamera()
+                } else if let sself = self {
+                    let layer = CATextLayer()
+                    layer.string = "NO CAMERA ACCESS"
+                    layer.alignmentMode = .center
+                    layer.foregroundColor = UIColor.white.cgColor
+                    layer.frame = sself.bounds
+                    sself.subLayer = layer
+                    sself.layer.addSublayer(layer)
+                }
             }
         }
-        
     }
 }
 
