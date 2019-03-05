@@ -90,6 +90,12 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             .bind(to: recieverGetsAmountField.reactive.text)
             .dispose(in: reactive.bag)
     }
+    
+    // MARK: Default values
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }
 
 extension SendFundsViewController: ContextSubject {

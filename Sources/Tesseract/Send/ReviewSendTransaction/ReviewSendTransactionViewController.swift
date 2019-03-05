@@ -55,6 +55,12 @@ class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
         model.address.bind(to: address.reactive.text).dispose(in: reactive.bag)
         model.balanceString.bind(to: balance.reactive.text).dispose(in: reactive.bag)
     }
+    
+    // MARK: Default values
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }
 
 

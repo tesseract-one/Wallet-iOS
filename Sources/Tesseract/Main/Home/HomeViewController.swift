@@ -60,6 +60,12 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         
         activityTableView.delegate = self
     }
+    
+    // MARK: Default values
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }
 
 extension HomeViewController: UITableViewDelegate {
