@@ -24,7 +24,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     // MARK: Outlets
     //
     @IBOutlet weak var qrCodeImageView: QRCodeView!
-    @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balanceUSDLabel: UILabel!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
@@ -32,11 +32,16 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        addressLabel.reactive.tapGesture().with(latestFrom: model.address)
+            .observeNext { _, address in
+                UIPasteboard.general.string = address
+            }.dispose(in: reactive.bag)
+        
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
         cancelButton.reactive.tap.bind(to: model.closeButtonAction).dispose(in: reactive.bag)
         
         model.qrCodeAddress.bind(to: qrCodeImageView.data).dispose(in: reactive.bag)
-        model.address.bind(to: addressTextField.reactive.text).dispose(in: reactive.bag)
+        model.address.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)
