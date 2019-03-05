@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         
         model.transactions.bind(to: activityTableView, cellType: TransactionTableViewCell.self) { (cell, tx) in
             cell.setModel(model: tx, address: accountProp.value!.address)
-            print("Color", cell.backgroundView, cell.backgroundView?.backgroundColor)
         }.dispose(in: bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
