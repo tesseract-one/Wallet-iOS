@@ -54,6 +54,12 @@ class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
         
         model.address.bind(to: address.reactive.text).dispose(in: reactive.bag)
         model.balanceString.bind(to: balance.reactive.text).dispose(in: reactive.bag)
+        
+        model.error.observeNext { [weak self] error in
+            let alert = UIAlertController(title: "Error", message: error.description, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self?.present(alert, animated: true, completion: nil)
+        }.dispose(in: reactive.bag)
     }
     
     // MARK: Default values
