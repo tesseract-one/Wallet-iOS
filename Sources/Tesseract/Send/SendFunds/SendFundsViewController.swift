@@ -32,7 +32,7 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var reviewButton: UIButton!
     
-    var closeAction: SafePublishSubject<Void>!
+    let closeAction = SafePublishSubject<Void>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -110,7 +110,7 @@ extension SendFundsViewController: ContextSubject {
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
         
-        closeAction = context.get(context: SendFundsViewControllerContext.self)!.closeAction
+        closeAction.bind(to: context.get(context: SendFundsViewControllerContext.self)!.closeAction).dispose(in: reactive.bag)
         
         model.bootstrap()
     }

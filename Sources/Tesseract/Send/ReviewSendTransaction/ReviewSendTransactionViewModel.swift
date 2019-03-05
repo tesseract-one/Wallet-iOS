@@ -65,7 +65,9 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         gasAmount.map{String(format: "%f", $0)+" ETH"}.bind(to: gasAmountString).dispose(in: bag)
         
         balance.map{"\($0) ETH"}.bind(to: balanceString).dispose(in: bag)
-        
+    }
+    
+    func bootstrap() {
         let tx = sendTransaction.with(weak: self)
             .flatMapLatest { (password, sself) -> ResultSignal<ReviewSendTransactionViewModel> in
                 sself.walletService.wallet.value!.checkPassword(password: password).map{sself}.signal
@@ -78,11 +80,11 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
                         to: sself.address.value,
                         amountEth: sself.amount.value,
                         networkId: sself.ethereumNetwork.value
-                    ).signal
+                        ).signal
                 case .rejected(let err):
                     return ResultSignal<Void>.rejected(err)
                 }
-            }
+        }
         
         tx.filter{$0.isFulfilled}
             .map{$0.value!}

@@ -111,8 +111,7 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
                     ("network", sself.ethereumNetwork.value),
                     ("balance", sself.ethBalance.value ?? 0.0),
                     ("gasAmount", sself.gasAmount.value),
-                    ("amount", sself.sendAmount.value),
-                    ("closeModal", sself.closeModal)
+                    ("amount", sself.sendAmount.value)
                 )
                 return (name: "ReviewSendTransaction", context: context)
             }
