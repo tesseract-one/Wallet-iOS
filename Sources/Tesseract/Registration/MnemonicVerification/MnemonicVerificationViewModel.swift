@@ -24,6 +24,8 @@ class MnemonicVerificationViewModel: ViewModel {
   let mnemonicText = Property<String>("")
   let mnemonicError = Property<MnemonicVerificationError?>(nil)
   let mnemonicVerifiedSuccessfully = Property<Bool?>(nil)
+    
+  let errors = SafePublishSubject<AnyError>()
   
   init (password: String, newWalletData: NewWalletData, walletService: WalletService) {
     self.password = password
@@ -57,7 +59,6 @@ extension MnemonicVerificationViewModel {
   private func setUpMnemonicVerification() {
     let password = self.password
     let newWalletData = self.newWalletData
-    let errors = SafePublishSubject<AnyError>()
     
     doneMnemonicVerificationAction
       .with(weak: mnemonicError)

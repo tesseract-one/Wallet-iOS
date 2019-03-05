@@ -26,6 +26,8 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let goToView = SafePublishSubject<ToView>()
     
+    let errors = SafePublishSubject<AnyError>()
+    
     init (walletService: WalletService) {
         self.walletService = walletService
         
@@ -52,33 +54,38 @@ extension SignInViewModel {
         }
     }
     
-private func setUpSignIn() {
-    let errors = SafePublishSubject<AnyError>()
+    private func setUpSignIn() {
+        signInAction
+            .with(latestFrom: passwordError)
+            .filter { $1 != nil }
+            .map { _ in false }
+            .bind(to: signInSuccessfully)
+            .dispose(in: bag)
+        
+        let signInTx = signInAction
+            .with(latestFrom: passwordError)
+            .filter { $1 == nil }
+            .map { _ in }
+            .with(latestFrom: password)
+            .with(weak: walletService)
+            .flatMapLatest { pwdTuple, walletService -> ResultSignal<Void> in
+                walletService.unlockWallet(password: pwdTuple.1).signal
+            }
+        
+        signInTx
+            .filter{$0.isRejected}
+            .map{AnyError($0.error!)}
+            .bind(to: errors)
+            .dispose(in: bag)
+        
+        signInTx
+            .filter{$0.isFulfilled}
+            .map{_ in true}
+            .bind(to: signInSuccessfully)
+            .dispose(in: bag)
+        
+        errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
+        errors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
+    }
     
-    let signInTx = signInAction
-      .with(latestFrom: passwordError)
-      .filter { $1 == nil }
-      .map { _ in }
-      .with(latestFrom: password)
-      .with(weak: walletService)
-      .flatMapLatest { pwdTuple, walletService -> ResultSignal<Void> in
-        walletService.unlockWallet(password: pwdTuple.1).signal
-      }
-    
-    signInTx
-        .filter{$0.isFulfilled}
-        .map{_ in true}
-        .bind(to: signInSuccessfully)
-        .dispose(in: bag)
-    
-    signInTx
-        .filter{$0.isRejected}
-        .map{AnyError($0.error!)}
-        .bind(to: errors)
-        .dispose(in: bag)
-    
-    errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
-    errors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
-  }
-
 }

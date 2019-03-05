@@ -43,6 +43,8 @@ extension TermsOfServiceViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
     let appCtx = context.get(context: ApplicationContext.self)!
     
-    self.model = TermsOfServiceViewModel(walletService: appCtx.walletService)
+    model = TermsOfServiceViewModel(walletService: appCtx.walletService)
+    
+    model.errors.bind(to: appCtx.errorNode).dispose(in: model.bag)
   }
 }

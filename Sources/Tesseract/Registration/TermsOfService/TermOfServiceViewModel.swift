@@ -14,6 +14,8 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
   let termsOfService = Property<String>("")
   
   let goToView = SafePublishSubject<ToView>()
+    
+  let errors = SafePublishSubject<AnyError>()
   
   private let walletService: WalletService
   
@@ -33,12 +35,15 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
 extension TermsOfServiceViewModel {
   private func setupTermsAccept() {
 
-    acceptTermsAction
+    let tx = acceptTermsAction
       .with(weak: walletService)
       .flatMapLatest { _, walletService in
         walletService.createWalletData().signal
       }
-      .suppressError(logging: true)
+    
+    tx.filter{$0.isRejected}.map{AnyError($0.error!)}.bind(to: errors).dispose(in: bag)
+    
+    tx.filter{$0.isFulfilled}.map{$0.value!}
       .map { NewWalletData in
         let context = DictionaryRouterContext(dictionaryLiteral: ("newWalletData", NewWalletData))
         return (name: "Mnemonic", context: context)
