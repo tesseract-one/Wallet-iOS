@@ -29,7 +29,6 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         
         model.transactions.bind(to: activityTableView, cellType: TransactionTableViewCell.self) { (cell, tx) in
             cell.setModel(model: tx, address: accountProp.value!.address)
-            print("Color", cell.backgroundView, cell.backgroundView?.backgroundColor)
         }.dispose(in: bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
@@ -56,16 +55,14 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         model.closePopupView.with(weak: self).observeNext { sself in
             if sself.presentedViewController != nil {
                 sself.dismiss(animated: true, completion: nil)
+                sself.model.updateTransactions()
+                sself.model.updateBalance()
             }
         }.dispose(in: bag)
         
         activityTableView.delegate = self
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        model.updateBalance()
-    }
     // MARK: Default values
     // Make the Status Bar Light/Dark Content for this View
     override var preferredStatusBarStyle : UIStatusBarStyle {

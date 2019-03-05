@@ -102,4 +102,16 @@ class HomeViewModel: ViewModel {
                 }
         }
     }
+    
+    func updateTransactions() {
+        if let account = activeAccount.value, ethereumNetwork.value > 0 {
+            ethWeb3Service.getTransactions(account: Int(account.index), networkId: ethereumNetwork.value)
+                .done { [weak self] in
+                    self?.transactions.replace(with: $0)
+                }
+                .catch { [weak self] _ in
+                    self?.transactions.replace(with: [])
+            }
+        }
+    }
 }
