@@ -41,7 +41,13 @@ extension EthereumTransaction {
                 .map {
                     tx.gas = $0
                     return tx
-            }
+                }.then { (tx: EthereumTransaction) -> Promise<EthereumTransaction> in
+                    var tx2 = tx
+                    return web3.eth.gasPrice().map { (price) -> EthereumTransaction in
+                        tx2.gasPrice = price
+                        return tx2
+                    }
+                }
         } catch let e {
             return Promise(error: e)
         }

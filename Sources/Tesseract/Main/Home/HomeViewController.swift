@@ -27,9 +27,10 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         super.viewDidLoad()
         let accountProp = self.model.activeAccount
         
-        model.transactions.bind(to: activityTableView, cellType: ActivityTableViewCell.self) { (cell, tx) in
+        model.transactions.bind(to: activityTableView, cellType: TransactionTableViewCell.self) { (cell, tx) in
             cell.setModel(model: tx, address: accountProp.value!.address)
-            }.dispose(in: bag)
+            print("Color", cell.backgroundView, cell.backgroundView?.backgroundColor)
+        }.dispose(in: bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
         
@@ -61,6 +62,10 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         activityTableView.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        model.updateBalance()
+    }
     // MARK: Default values
     // Make the Status Bar Light/Dark Content for this View
     override var preferredStatusBarStyle : UIStatusBarStyle {

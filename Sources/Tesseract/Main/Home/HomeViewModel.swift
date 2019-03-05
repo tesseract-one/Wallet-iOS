@@ -90,4 +90,16 @@ class HomeViewModel: ViewModel {
         txs.filter{$0.isFulfilled}.map{$0.value!}.bind(to: transactions).dispose(in: bag)
         txs.filter{$0.isRejected}.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
     }
+    
+    func updateBalance() {
+        if let account = activeAccount.value, ethereumNetwork.value > 0 {
+            ethWeb3Service.getBalance(account: Int(account.index), networkId: ethereumNetwork.value)
+                .done { [weak self] in
+                    self?.ethBalance.next($0)
+                }
+                .catch { [weak self] _ in
+                    self?.ethBalance.next(nil)
+                }
+        }
+    }
 }
