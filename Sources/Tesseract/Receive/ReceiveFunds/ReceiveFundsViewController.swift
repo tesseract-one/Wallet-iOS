@@ -41,6 +41,12 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)
     }
+    
+    // MARK: Default values
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }
 
 extension ReceiveFundsViewController: ContextSubject {

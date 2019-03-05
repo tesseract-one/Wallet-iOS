@@ -193,9 +193,9 @@ open class NextResponderTextField: ErrorTextField {
     isPlaceholderUppercasedWhenEditingIB = true
     placeholderActiveColorIB = UIColor.init(white: 1.0, alpha: 0.5)
     placeholderNormalColorIB = UIColor.init(white: 1.0, alpha: 0.75)
-    dividerColorIB = UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-    dividerActiveColorIB = UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
-    dividerNormalColorIB = UIColor.init(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+    dividerColorIB = UIColor.init(red: 0.24, green: 0.24, blue: 0.24, alpha: 1.0)
+    dividerActiveColorIB = UIColor.init(red: 0.24, green: 0.24, blue: 0.24, alpha: 1.0)
+    dividerNormalColorIB = UIColor.init(red: 0.24, green: 0.24, blue: 0.24, alpha: 1.0)
     textColorIB = UIColor.white
     isClearIconButtonEnabled = true
     isClearIconButtonAutoHandledIB = true
