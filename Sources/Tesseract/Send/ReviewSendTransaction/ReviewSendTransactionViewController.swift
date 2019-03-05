@@ -7,8 +7,14 @@
 //
 
 import UIKit
+import TesSDK
+import ReactiveKit
+import Bond
 
-class ReviewSendTransactionViewController: UIViewController {
+class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
+    typealias ViewModel = ReviewSendTransactionViewModel
+    
+    var model: ViewModel!
     
     // MARK: Outlets
     @IBOutlet weak var balance: UILabel!
@@ -26,18 +32,44 @@ class ReviewSendTransactionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        goBack.observeNext { [weak self] in
+            self?.navigationController?.popViewController(animated: true)
+        }.dispose(in: reactive.bag)
+        
+        confirmButton.reactive.tap
+            .throttle(seconds: 0.3)
+            .with(latestFrom: passwordField.reactive.text)
+            .map { _, password in password ?? "" }
+            .bind(to: model.sendTransaction)
+            .dispose(in: reactive.bag)
+        
+        model.amountString.bind(to: sentAmount.reactive.text).dispose(in: reactive.bag)
+        model.amountUSD.bind(to: sentAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        
+        model.receiveAmountString.bind(to: recieveAmount.reactive.text).dispose(in: reactive.bag)
+        model.receiveAmountUSD.bind(to: recieveAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        
+        model.gasAmountString.bind(to: gasAmount.reactive.text).dispose(in: reactive.bag)
+        model.gasAmountUSD.bind(to: gasAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        
+        model.address.bind(to: address.reactive.text).dispose(in: reactive.bag)
+        model.balanceString.bind(to: balance.reactive.text).dispose(in: reactive.bag)
     }
-    
+}
 
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+extension ReviewSendTransactionViewController: ContextSubject {
+    func apply(context: RouterContextProtocol) {
+        let appCtx = context.get(context: ApplicationContext.self)!
+        model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService)
+        model.account.next(context.get(bean: "account")! as? Account)
+        model.address.next(context.get(bean: "address")! as! String)
+        model.ethereumNetwork.next(context.get(bean: "network")! as! Int)
+        model.amount.next(context.get(bean: "amount")! as! Double)
+        model.gasAmount.next(context.get(bean: "gasAmount")! as! Double)
+        model.balance.next(context.get(bean: "balance")! as! Double)
+        
+        let closeModal = context.get(bean: "closeModal")! as! SafePublishSubject<Void>
+        model.closeModal.bind(to: closeModal).dispose(in: model.bag)
     }
-    */
-
 }

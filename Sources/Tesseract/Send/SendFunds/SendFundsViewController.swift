@@ -42,7 +42,7 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             .bind(to: model.scanQr)
             .dispose(in: reactive.bag)
         
-        model.goToView.observeNext { [weak self] name, context in
+        goToViewAction.observeNext { [weak self] name, context in
             switch name {
             case "ScanQR":
                 let vc = try! self?.viewController(for: .named(name: name), context: context)
@@ -64,6 +64,11 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         cancelButton.reactive.tap
             .throttle(seconds: 0.3)
             .bind(to: closeAction)
+            .dispose(in: reactive.bag)
+        
+        reviewButton.reactive.tap
+            .throttle(seconds: 0.3)
+            .bind(to: model.reviewAction)
             .dispose(in: reactive.bag)
         
         goBack.bind(to: closeAction).dispose(in: reactive.bag)

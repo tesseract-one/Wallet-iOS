@@ -62,19 +62,27 @@ extension SignInViewModel {
       .bind(to: signInSuccessfully)
       .dispose(in: bag)
     
-    signInAction
+    let signInTx = signInAction
       .with(latestFrom: passwordError)
       .filter { $1 == nil }
       .map { _ in }
       .with(latestFrom: password)
       .with(weak: walletService)
-      .flatMapLatest { pwdTuple, walletService -> Signal<Void, AnyError> in
-        return walletService.unlockWallet(password: pwdTuple.1).signal
+      .flatMapLatest { pwdTuple, walletService -> ResultSignal<Void> in
+        walletService.unlockWallet(password: pwdTuple.1).signal
       }
-      .suppressAndFeedError(into: errors)
-      .map { _ in true }
-      .bind(to: signInSuccessfully)
-      .dispose(in: bag)
+    
+    signInTx
+        .filter{$0.isFulfilled}
+        .map{_ in true}
+        .bind(to: signInSuccessfully)
+        .dispose(in: bag)
+    
+    signInTx
+        .filter{$0.isRejected}
+        .map{AnyError($0.error!)}
+        .bind(to: errors)
+        .dispose(in: bag)
     
     errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
     errors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)

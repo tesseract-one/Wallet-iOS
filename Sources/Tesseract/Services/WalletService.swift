@@ -40,7 +40,8 @@ class WalletService {
             }
         promise.signal
             .executeIn(.immediateOnMain)
-            .suppressAndFeedError(into: errorNode)
+            .filter{$0.isFulfilled}
+            .map{$0.value!}
             .bind(to: wallet)
         return promise.asVoid()
     }

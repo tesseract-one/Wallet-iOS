@@ -163,6 +163,13 @@ public class Wallet {
             }
     }
     
+    public func checkPassword(password: String) -> Promise<Void> {
+        if password != self.password {
+            return Promise(error: KeychainError.wrongPassword)
+        }
+        return Promise.value(())
+    }
+    
     public func addAccount() throws -> Account {
         accountsLock.lock()
         defer { accountsLock.unlock() }

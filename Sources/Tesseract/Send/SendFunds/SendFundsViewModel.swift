@@ -15,6 +15,7 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     let goToView = SafePublishSubject<ToView>()
     
     let scanQr = SafePublishSubject<Void>()
+    let reviewAction = SafePublishSubject<Void>()
     
     let closeModal = SafePublishSubject<Void>()
     
@@ -69,15 +70,18 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
             }
             .bind(to: balanceUSD)
             .dispose(in: bag)
+        
+        setupReview()
     }
     
     func bootstrap() {
         let service = ethWeb3Service
         combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { (account, net) -> Signal<Double, AnyError> in
+            .flatMapLatest { (account, net) -> ResultSignal<Double> in
                 service.getBalance(account: Int(account!.index), networkId: net).signal
             }
-            .suppressError(logging: true)
+            .filter{$0.isFulfilled}
+            .map{$0.value!}
             .bind(to: ethBalance)
             .dispose(in: bag)
         
@@ -86,13 +90,33 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
             activeAccount.filter { $0 != nil },
             address.filter {$0 != nil && $0!.count == 42}.debounce(interval: 0.5),
             ethereumNetwork.distinct()
-        ).flatMapLatest { (amount, account, address, network) -> Signal<Double, AnyError> in
+        ).flatMapLatest { (amount, account, address, network) -> ResultSignal<Double> in
             service.estimateSendTxGas(account: Int(account!.index), to: address!, amountEth: amount, networkId: network).signal
         }
-        .suppressError(logging: true)
+        .filter{$0.isFulfilled}
+        .map{$0.value!}
         .bind(to: gasAmount)
         .dispose(in: bag)
         
         combineLatest(sendAmount, gasAmount).map {$0 - $1}.bind(to: receiveAmount).dispose(in: bag)
+    }
+    
+    func setupReview() {
+        reviewAction
+            .with(weak: self)
+            .map { sself in
+                let context = DictionaryRouterContext(dictionaryLiteral:
+                    ("account", sself.activeAccount.value!),
+                    ("address", sself.address.value!),
+                    ("network", sself.ethereumNetwork.value),
+                    ("balance", sself.ethBalance.value ?? 0.0),
+                    ("gasAmount", sself.gasAmount.value),
+                    ("amount", sself.sendAmount.value),
+                    ("closeModal", sself.closeModal)
+                )
+                return (name: "ReviewSendTransaction", context: context)
+            }
+            .bind(to: goToView)
+            .dispose(in: bag)
     }
 }

@@ -9,6 +9,7 @@
 import ReactiveKit
 import Bond
 import TesSDK
+import PromiseKit
 
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
@@ -50,11 +51,20 @@ class HomeViewModel: ViewModel {
         
     func bootstrap() {
         let service = ethWeb3Service
-        combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { accoundAndNet -> Signal<Double, AnyError> in
-                service.getBalance(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
+        let balReq = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
+            .flatMapLatest { (accound, net) -> ResultSignal<Double> in
+                service.getBalance(account: Int(accound!.index), networkId: net).signal
             }
-            .suppressError(logging: true)
+        
+        balReq
+            .filter{$0.isFulfilled}
+            .map{$0.value!}
+            .bind(to: ethBalance)
+            .dispose(in: bag)
+        
+        balReq
+            .filter{$0.isRejected}
+            .map{_ in nil}
             .bind(to: ethBalance)
             .dispose(in: bag)
         
@@ -73,12 +83,11 @@ class HomeViewModel: ViewModel {
             .dispose(in: bag)
         
         let txs = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { accoundAndNet -> Signal<Array<EthereumTransactionLog>, AnyError> in
+            .flatMapLatest { accoundAndNet -> ResultSignal<Array<EthereumTransactionLog>> in
                 service.getTransactions(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
-        }
+            }
         
-        txs.toErrorSignal().map { _ in Array<EthereumTransactionLog>() }.bind(to: transactions).dispose(in: bag)
-        
-        txs.suppressError(logging: true).bind(to: transactions).dispose(in: bag)
+        txs.filter{$0.isFulfilled}.map{$0.value!}.bind(to: transactions).dispose(in: bag)
+        txs.filter{$0.isRejected}.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
     }
 }

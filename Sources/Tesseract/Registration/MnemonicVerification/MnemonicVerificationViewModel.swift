@@ -72,32 +72,50 @@ extension MnemonicVerificationViewModel {
       .filter { $1.value == nil }
       .map { _ in }
       .with(weak: walletService)
-      .flatMapLatest { walletService -> Signal<Wallet, AnyError> in
+      .flatMapLatest { walletService -> ResultSignal<Wallet> in
         walletService.saveWalletData(data: newWalletData, password: password).signal
-      }.suppressAndFeedError(into: errors)
-      
-    saveWallet
-      .with(weak: walletService)
-      .observeNext { wallet, walletService in
-        walletService.setWallet(wallet: wallet)
-      }.dispose(in: bag)
-      
-    saveWallet
-      .map { _ in true }
-      .bind(to: mnemonicVerifiedSuccessfully)
-      .dispose(in: bag)
+      }
     
-    skipMnemonicVerificationAction
+    saveWallet
+        .filter{$0.isRejected}
+        .map{AnyError($0.error!)}
+        .bind(to: errors)
+        .dispose(in: bag)
+      
+    saveWallet
+        .filter{$0.isFulfilled}
+        .map{$0.value!}
+        .with(weak: walletService)
+        .observeNext { wallet, walletService in
+            walletService.setWallet(wallet: wallet)
+        }.dispose(in: bag)
+      
+    saveWallet
+        .filter{$0.isFulfilled}
+        .map { _ in true }
+        .bind(to: mnemonicVerifiedSuccessfully)
+        .dispose(in: bag)
+    
+    let skipTx = skipMnemonicVerificationAction
       .with(weak: walletService)
-      .flatMapLatest { walletService -> Signal<Wallet, AnyError> in
+      .flatMapLatest { walletService -> ResultSignal<Wallet> in
         walletService.saveWalletData(data: newWalletData, password: password).signal
       }
       .observeIn(.immediateOnMain)
-      .suppressAndFeedError(into: errors)
-      .with(weak: walletService)
-      .observeNext { wallet, walletService in
-        walletService.setWallet(wallet: wallet)
-      }.dispose(in: bag)
+
+    skipTx
+        .filter{$0.isFulfilled}
+        .map{$0.value!}
+        .with(weak: walletService)
+        .observeNext { wallet, walletService in
+            walletService.setWallet(wallet: wallet)
+        }.dispose(in: bag)
+    
+    skipTx
+        .filter{$0.isRejected}
+        .map{AnyError($0.error!)}
+        .bind(to: errors)
+        .dispose(in: bag)
 
     errors.map { _ in MnemonicVerificationError.server }
       .bind(to: mnemonicError).dispose(in: bag)
