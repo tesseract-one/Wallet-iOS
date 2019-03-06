@@ -41,11 +41,10 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     func bootstrap() {
         let service = ethWeb3Service
         combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { (account, net) -> ResultSignal<Double> in
+            .flatMapLatest { account, net in
                 service.getBalance(account: Int(account!.index), networkId: net).signal
             }
-            .filter{$0.isFulfilled}
-            .map{$0.value!}
+            .suppressedErrors
             .bind(to: ethBalance)
             .dispose(in: bag)
         

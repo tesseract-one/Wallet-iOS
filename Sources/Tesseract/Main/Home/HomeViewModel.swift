@@ -52,18 +52,17 @@ class HomeViewModel: ViewModel {
     func bootstrap() {
         let service = ethWeb3Service
         let balReq = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { (accound, net) -> ResultSignal<Double> in
+            .flatMapLatest { accound, net in
                 service.getBalance(account: Int(accound!.index), networkId: net).signal
             }
         
         balReq
-            .filter{$0.isFulfilled}
-            .map{$0.value!}
+            .suppressedErrors
             .bind(to: ethBalance)
             .dispose(in: bag)
         
         balReq
-            .filter{$0.isRejected}
+            .errorNode
             .map{_ in nil}
             .bind(to: ethBalance)
             .dispose(in: bag)
@@ -83,12 +82,12 @@ class HomeViewModel: ViewModel {
             .dispose(in: bag)
         
         let txs = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { accoundAndNet -> ResultSignal<Array<EthereumTransactionLog>> in
+            .flatMapLatest { accoundAndNet in
                 service.getTransactions(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
             }
         
-        txs.filter{$0.isFulfilled}.map{$0.value!}.bind(to: transactions).dispose(in: bag)
-        txs.filter{$0.isRejected}.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
+        txs.suppressedErrors.bind(to: transactions).dispose(in: bag)
+        txs.errorNode.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
     }
     
     func updateBalance() {

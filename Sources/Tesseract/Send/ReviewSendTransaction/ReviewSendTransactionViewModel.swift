@@ -68,32 +68,20 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     }
     
     func bootstrap() {
-        let tx = sendTransaction.with(weak: self)
-            .flatMapLatest { (password, sself) -> ResultSignal<ReviewSendTransactionViewModel> in
+        sendTransaction.with(weak: self)
+            .flatMapLatest { password, sself in
                 sself.walletService.wallet.value!.checkPassword(password: password).map{sself}.signal
             }
-            .flatMapLatest { (result) -> ResultSignal<Void> in
-                switch result {
-                case .fulfilled(let sself):
-                    return sself.ethWeb3Service.sendEthereum(
-                        account: Int(sself.account.value!.index),
-                        to: sself.address.value,
-                        amountEth: sself.amount.value,
-                        networkId: sself.ethereumNetwork.value
-                        ).signal
-                case .rejected(let err):
-                    return ResultSignal<Void>.rejected(err)
-                }
-        }
-        
-        tx.filter{$0.isFulfilled}
-            .map{$0.value!}
+            .flatMapLatest { sself in
+                sself.ethWeb3Service.sendEthereum(
+                    account: Int(sself.account.value!.index),
+                    to: sself.address.value,
+                    amountEth: sself.amount.value,
+                    networkId: sself.ethereumNetwork.value
+                ).signal
+            }
+            .pourError(into: error)
             .bind(to: closeModal)
-            .dispose(in: bag)
-        
-        tx.filter{$0.isRejected}
-            .map{AnyError($0.error!)}
-            .bind(to: error)
             .dispose(in: bag)
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 import PromiseKit
 import TesSDK
+import UIKit
 
 class ApplicationService {
     let bag = DisposeBag()
@@ -37,7 +38,7 @@ class ApplicationService {
     private func bindRegistration() {
         combineLatest(walletService.wallet.distinct(), walletService.isWalletLocked.distinct())
             .observeIn(.immediateOnMain)
-            .map { [weak self] wallet, isLocked in
+            .map { [weak self] (wallet, isLocked) -> UIViewController? in
                 if wallet != nil && !isLocked {
                     return try! self?.walletViewFactory.viewController(for: .root)
                 } else if wallet == nil {
@@ -47,7 +48,11 @@ class ApplicationService {
             }
             .with(weak: self)
             .observeNext { view, sself in
-                sself.rootContainer.view = view
+                if sself.rootContainer.view != nil && sself.rootContainer.view!.storyboard != view?.storyboard {
+                    sself.rootContainer.setViewController(vc: view!, animated: true)
+                } else {
+                    sself.rootContainer.setViewController(vc: view!, animated: false)
+                }
             }
             .dispose(in: bag)
     }
