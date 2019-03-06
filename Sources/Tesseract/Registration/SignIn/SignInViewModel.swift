@@ -37,7 +37,7 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         setUpSignIn()
         
-        restoreKeyAction.map { _ in (name: "RestoreFromMnemonic", context: nil) }
+        restoreKeyAction.map { _ in (name: "RestoreWallet", context: nil) }
             .bind(to: goToView).dispose(in: bag)
     }
 }

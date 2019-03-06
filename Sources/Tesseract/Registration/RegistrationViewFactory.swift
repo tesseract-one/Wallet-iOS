@@ -14,6 +14,6 @@ class RegistrationViewFactory: WeakContextViewFactory {
     }
     
     var unlockView: UIViewController {
-        return try! viewController(for: .named(name: "SignIn"))
+        return try! viewController(for: .named(name: "SignInNC"))
     }
 }

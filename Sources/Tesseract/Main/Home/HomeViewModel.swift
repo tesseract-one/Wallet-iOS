@@ -46,7 +46,6 @@ class HomeViewModel: ViewModel {
         receiveContext.closeAction.bind(to: closePopupView).dispose(in: bag)
         receiveAction.map { _ in (name: "ReceiveFunds", context: receiveContext) }
             .bind(to: goToReceiveView).dispose(in: bag)
-        
     }
         
     func bootstrap() {

@@ -11,73 +11,84 @@ import ReactiveKit
 import Bond
 
 class SignInViewController: UIViewController, ModelVCProtocol {
-  typealias ViewModel = SignInViewModel
-  
-  private(set) var model: ViewModel!
-  
-  // MARK: Outlets
-  //
-  @IBOutlet weak var passwordField: NextResponderTextField!
-  @IBOutlet weak var signInButton: UIButton!
-  @IBOutlet weak var restoreKeyButton: UIButton!
-  
-  // MARK: Lifecycle
-  //
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    typealias ViewModel = SignInViewModel
     
-    passwordField.reactive.text.map { $0 ?? "" }
-      .bind(to: model.password).dispose(in: bag)
-    passwordField.reactive.controlEvents(.editingDidBegin)
-      .map { _ in "" }
-      .bind(to: passwordField.reactive.error)
-      .dispose(in: bag)
+    private(set) var model: ViewModel!
     
-    let signInTap = signInButton.reactive.tap.throttle(seconds: 0.5)
-    signInTap.bind(to: model.signInAction).dispose(in: bag)
-    signInTap.with(weak: view).observeNext { view in
-      view.endEditing(true)
-    }.dispose(in: bag)
+    // MARK: Outlets
+    //
+    @IBOutlet weak var passwordField: NextResponderTextField!
+    @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var restoreKeyButton: UIButton!
     
-    let restoreKeyTap = restoreKeyButton.reactive.tap.throttle(seconds: 0.5)
-    restoreKeyTap.bind(to: model.restoreKeyAction).dispose(in: bag)
-    restoreKeyTap.with(weak: view).observeNext { view in
-      view.endEditing(true)
-    }.dispose(in: bag)
+    // MARK: Lifecycle
+    //
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        passwordField.reactive.text.map { $0 ?? "" }
+            .bind(to: model.password).dispose(in: bag)
+        passwordField.reactive.controlEvents(.editingDidBegin)
+            .map { _ in "" }
+            .bind(to: passwordField.reactive.error)
+            .dispose(in: bag)
+        
+        let signInTap = signInButton.reactive.tap.throttle(seconds: 0.5)
+        signInTap.bind(to: model.signInAction).dispose(in: bag)
+        signInTap.with(weak: view).observeNext { view in
+            view.endEditing(true)
+            }.dispose(in: bag)
+        
+        let restoreKeyTap = restoreKeyButton.reactive.tap.throttle(seconds: 0.5)
+        restoreKeyTap.bind(to: model.restoreKeyAction).dispose(in: bag)
+        restoreKeyTap.with(weak: view).observeNext { view in
+            view.endEditing(true)
+            }.dispose(in: bag)
+        
+        let signInUnsuccessfull =
+            model.signInSuccessfully
+                .filter { $0 != nil }
+                .with(latestFrom: model.passwordError)
+                .filter { $0 == false && $1 != nil }
+        
+        signInUnsuccessfull
+            .map { $1!.rawValue }
+            .bind(to: passwordField.reactive.error)
+            .dispose(in: bag)
+        signInUnsuccessfull
+            .map { _ in "" }
+            .bind(to: passwordField.reactive.text)
+            .dispose(in: bag)
+        
+        goToViewAction.observeNext { [weak self] name, context in
+            let vc = try! self?.viewController(for: .named(name: name), context: context)
+            print("NC", self!.navigationController)
+            self?.navigationController?.pushViewController(vc!, animated: true)
+        }.dispose(in: bag)
+        
+        navigationController?.isToolbarHidden = true
+    }
     
-    let signInUnsuccessfull =
-      model.signInSuccessfully
-        .filter { $0 != nil }
-        .with(latestFrom: model.passwordError)
-        .filter { $0 == false && $1 != nil }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.isNavigationBarHidden = true
+    }
     
-    signInUnsuccessfull
-      .map { $1!.rawValue }
-      .bind(to: passwordField.reactive.error)
-      .dispose(in: bag)
-    signInUnsuccessfull
-      .map { _ in "" }
-      .bind(to: passwordField.reactive.text)
-      .dispose(in: bag)
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.isNavigationBarHidden = false
+    }
     
-    goToViewAction.observeNext { [weak self] name, context in
-      let vc = try! self?.viewController(for: .named(name: name), context: context)
-      self?.navigationController?.pushViewController(vc!, animated: true)
-      }.dispose(in: bag)
-    
-    navigationController?.isToolbarHidden = true
-  }
-  
-  // MARK: Default values
-  // Make the Status Bar Light/Dark Content for this View
-  override var preferredStatusBarStyle : UIStatusBarStyle {
-    return UIStatusBarStyle.lightContent
-  }
+    // MARK: Default values
+    // Make the Status Bar Light/Dark Content for this View
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }
 
 extension SignInViewController: ContextSubject {
-  func apply(context: RouterContextProtocol) {
-    let appCtx = context.get(context: ApplicationContext.self)!
-    self.model = SignInViewModel(walletService: appCtx.walletService)
-  }
+    func apply(context: RouterContextProtocol) {
+        let appCtx = context.get(context: ApplicationContext.self)!
+        self.model = SignInViewModel(walletService: appCtx.walletService)
+    }
 }

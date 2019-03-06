@@ -9,81 +9,102 @@
 import ReactiveKit
 
 extension SignalProtocol {
-  func with<T:AnyObject>(weak: T) -> Signal<(Element, T), Error> {
-    weak var w = weak
-    return Signal { observer in
-      return self.observe { event in
-        switch event {
-        case .next(let element):
-          if let w = w {
-            observer.next((element, w))
-          }
-        case .completed:
-          observer.completed()
-        case .failed(let err):
-          observer.failed(err)
+    func with<T:AnyObject>(weak: T) -> Signal<(Element, T), Error> {
+        weak var w = weak
+        return Signal { observer in
+            return self.observe { event in
+                switch event {
+                case .next(let element):
+                    if let w = w {
+                        observer.next((element, w))
+                    }
+                case .completed:
+                    observer.completed()
+                case .failed(let err):
+                    observer.failed(err)
+                }
+            }
         }
-      }
     }
-  }
-  
-  func with<T1:AnyObject, T2: AnyObject>(weak t1: T1, _ t2: T2) -> Signal<(Element, T1, T2), Error> {
-    weak var wt1 = t1
-    weak var wt2 = t2
-    return Signal { observer in
-      return self.observe { event in
-        switch event {
-        case .next(let element):
-          if let t1 = wt1, let t2 = wt2 {
-            observer.next((element, t1, t2))
-          }
-        case .completed:
-          observer.completed()
-        case .failed(let err):
-          observer.failed(err)
+    
+    func with<T1:AnyObject, T2: AnyObject>(weak t1: T1, _ t2: T2) -> Signal<(Element, T1, T2), Error> {
+        weak var wt1 = t1
+        weak var wt2 = t2
+        return Signal { observer in
+            return self.observe { event in
+                switch event {
+                case .next(let element):
+                    if let t1 = wt1, let t2 = wt2 {
+                        observer.next((element, t1, t2))
+                    }
+                case .completed:
+                    observer.completed()
+                case .failed(let err):
+                    observer.failed(err)
+                }
+            }
         }
-      }
     }
-  }
+    
+    
+    func with<T1:AnyObject, T2: AnyObject, T3: AnyObject>(weak t1: T1, _ t2: T2, _ t3: T3) -> Signal<(Element, T1, T2, T3), Error> {
+        weak var wt1 = t1
+        weak var wt2 = t2
+        weak var wt3 = t3
+        return Signal { observer in
+            return self.observe { event in
+                switch event {
+                case .next(let element):
+                    if let t1 = wt1, let t2 = wt2, let t3 = wt3 {
+                        observer.next((element, t1, t2, t3))
+                    }
+                case .completed:
+                    observer.completed()
+                case .failed(let err):
+                    observer.failed(err)
+                }
+            }
+        }
+    }
 }
 
 extension SignalProtocol where Element == Void {
-  func with<T:AnyObject>(weak: T) -> Signal<T, Error> {
-    weak var w = weak
-    return Signal { observer in
-      return self.observe { event in
-        switch event {
-        case .next(_):
-          if let w = w {
-            observer.next(w)
-          }
-        case .completed:
-          observer.completed()
-        case .failed(let err):
-          observer.failed(err)
+    func with<T:AnyObject>(weak: T) -> Signal<T, Error> {
+        weak var w = weak
+        return Signal { observer in
+            return self.observe { event in
+                switch event {
+                case .next(_):
+                    if let w = w {
+                        observer.next(w)
+                    }
+                case .completed:
+                    observer.completed()
+                case .failed(let err):
+                    observer.failed(err)
+                }
+            }
         }
-      }
     }
-  }
-  
-  func with<T1:AnyObject, T2: AnyObject>(weak t1: T1, _ t2: T2) -> Signal<(T1, T2), Error> {
-    weak var wt1 = t1
-    weak var wt2 = t2
-    return Signal { observer in
-      return self.observe { event in
-        switch event {
-        case .next(_):
-          if let t1 = wt1, let t2 = wt2 {
-            observer.next((t1, t2))
-          }
-        case .completed:
-          observer.completed()
-        case .failed(let err):
-          observer.failed(err)
+    
+    func with<T1:AnyObject, T2: AnyObject>(weak t1: T1, _ t2: T2) -> Signal<(T1, T2), Error> {
+        weak var wt1 = t1
+        weak var wt2 = t2
+        return Signal { observer in
+            return self.observe { event in
+                switch event {
+                case .next(_):
+                    if let t1 = wt1, let t2 = wt2 {
+                        observer.next((t1, t2))
+                    }
+                case .completed:
+                    observer.completed()
+                case .failed(let err):
+                    observer.failed(err)
+                }
+            }
         }
-      }
     }
-  }
 }
 
 extension SignalProtocol where Self.Element: ResultProtocol {
@@ -123,7 +144,7 @@ extension SignalProtocol where Self.Element: ResultProtocol {
                 return transform(val).mapWrapped{$0}
             }
             return Signal.just(Result<O.Element.Value, O.Element.Error>.failure(res.error!))
-        }.flatten(strategy)
+            }.flatten(strategy)
     }
     
     func flatMapLatest<O: SignalProtocol>(_ transform: @escaping (Element.Value) -> O) -> Signal<Result<O.Element.Value, O.Element.Error>, O.Error> where O.Element: ResultProtocol, O.Error == Error, O.Element.Error == Element.Error {
