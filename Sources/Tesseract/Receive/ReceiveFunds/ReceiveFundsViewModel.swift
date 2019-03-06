@@ -50,8 +50,8 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         activeAccount.filter { $0 == nil }.map { _ in nil }.bind(to: ethBalance).dispose(in: bag)
         
-        activeAccount.map {$0?.address}.bind(to: address).dispose(in: bag)
-        activeAccount.map {$0?.address ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
+        activeAccount.map {try! $0?.eth_address()}.bind(to: address).dispose(in: bag)
+        activeAccount.map {try! $0?.eth_address() ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
         
         ethBalance
             .map { $0 == nil ? "unknown" : "\($0!) ETH" }

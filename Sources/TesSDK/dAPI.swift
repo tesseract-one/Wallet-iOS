@@ -17,7 +17,7 @@ public protocol NetworkAPI {
 }
 
 public protocol SignProvider {
-    var networks: Array<Network> { get }
+    var networks: Set<Network> { get }
 }
 
 open class dAPI {

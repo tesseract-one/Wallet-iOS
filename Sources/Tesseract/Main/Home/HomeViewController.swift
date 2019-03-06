@@ -27,8 +27,10 @@ class HomeViewController: UIViewController, ModelVCProtocol {
         super.viewDidLoad()
         let accountProp = self.model.activeAccount
         
-        model.transactions.bind(to: activityTableView, cellType: TransactionTableViewCell.self) { (cell, tx) in
-            cell.setModel(model: tx, address: accountProp.value!.address)
+        
+        model.transactions.bind(to: activityTableView, cellType: TransactionTableViewCell.self) { cell, tx in
+            cell.setModel(model: tx, address: try! accountProp.value!.eth_address())
+            return
         }.dispose(in: bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)

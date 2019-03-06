@@ -18,16 +18,14 @@ extension RouterContextProtocol {
         let m = Mirror(reflecting: self)
         return m.descendant(bean)
     }
+    
+    func get<T>(context type: T.Type) -> T? {
+        return self as? T
+    }
 }
 
 protocol ContextSubject {
     func apply(context: RouterContextProtocol)
-}
-
-extension RouterContextProtocol {
-    func get<T>(context type: T.Type) -> T? {
-        return self as? T
-    }
 }
 
 class CombinedRouterContext : RouterContextProtocol {

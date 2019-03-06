@@ -8,20 +8,25 @@
 
 import Foundation
 import PromiseKit
-import Mnemonic
+import CKMnemonic
 
 enum HDWalletError: Error {
     case networkIsNotSupported(Network)
     case wrongKeyPath
     case dataError
     case keyGenerationError
+    case mnemonicError
 }
 
-class HDWallet {
+public class HDWallet {
     let name: String
     
     private let keys: Dictionary<Network, HDWalletKey>
     private let factories: Dictionary<Network, HDWalletKeyFactory>
+    
+    public var networks: Set<Network> {
+        return Set(factories.keys).intersection(keys.keys)
+    }
     
     init(factories: Array<HDWalletKeyFactory>, name: String, pkeys: Dictionary<Network, Data>) throws {
         self.name = name
@@ -73,8 +78,10 @@ class HDWallet {
         throw HDWalletError.networkIsNotSupported(net)
     }
     
-    static func keysFromMnemonic(mnemonic: Mnemonic, factories: Array<HDWalletKeyFactory>) throws -> Dictionary<Network, Data> {
-        let seed = try mnemonic.toSeed(passphrase: "").ck_mnemonicData()
+    static func keysFromMnemonic(mnemonic: String, factories: Array<HDWalletKeyFactory>) throws -> Dictionary<Network, Data> {
+        let seedStr = try CKMnemonic.deterministicSeedString(from: mnemonic, passphrase: "", language: .english)
+        guard seedStr != "" else { throw HDWalletError.mnemonicError }
+        let seed = seedStr.ck_mnemonicData()
         let keys = try factories.map { fact in
             return (fact.network, try fact.keyDataFrom(seed: seed))
         }

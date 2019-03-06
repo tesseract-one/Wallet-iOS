@@ -23,6 +23,10 @@ class WalletService {
     
     var errorNode: SafePublishSubject<AnyError>!
     
+    init() {
+        Wallet.addNetworkSupport(lib: EthereumWalletNetwork())
+    }
+    
     func bootstrap() {
         wallet.map {
           $0 == nil || $0!.isLocked

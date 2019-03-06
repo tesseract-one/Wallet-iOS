@@ -10,7 +10,6 @@ import Foundation
 import ReactiveKit
 import TesSDK
 import PromiseKit
-import PMKFoundation
 
 private struct PResponse: Codable {
     let data: Array<PCoin>

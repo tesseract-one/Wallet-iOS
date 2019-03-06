@@ -84,7 +84,7 @@ extension RestoreWalletViewModel {
             .pourError(into: errors)
             .with(latestFrom: password)
             .map { walletData, password in
-                let context = DictionaryRouterContext(dictionaryLiteral: ("newWalletData", walletData), ("password", password))
+                let context = TermsOfServiceViewControllerContext(password: password, data: walletData)
                 return (name: "TermsOfService", context: context)
             }.bind(to: goToView).dispose(in: bag)
         

@@ -8,7 +8,7 @@
 
 import Foundation
 import PromiseKit
-import Mnemonic
+import CKMnemonic
 
 enum KeychainError: Error {
     case wrongPassword
@@ -39,18 +39,17 @@ class Keychain {
     static func newWalletData() -> Promise<NewWalletData> {
         let factories = self.factories
         return Promise().map {
-            let mnemonic = Mnemonic(language: .english)
+            let mnemonic = try CKMnemonic.generateMnemonic(strength: 128, language: .english)
             let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(mnemonic: mnemonic.toString(), keys: keys)
+            return NewWalletData(mnemonic: mnemonic, keys: keys)
         }
     }
     
     static func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
         let factories = self.factories
         return Promise().map {
-            let mnemonic = Mnemonic(phrase: mnemonic, language: .english)
             let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(mnemonic: mnemonic.toString(), keys: keys)
+            return NewWalletData(mnemonic: mnemonic, keys: keys)
         }
     }
     

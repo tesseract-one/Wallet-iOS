@@ -67,7 +67,7 @@ extension SignUpViewModel {
     
     action.map { _ in true }.bind(to: signUpSuccessfully).dispose(in: bag)
     action.map { _, password in
-      let context = DictionaryRouterContext(dictionaryLiteral: ("password", password))
+      let context = TermsOfServiceViewControllerContext(password: password)
       return (name: "TermsOfService", context: context)
     }.bind(to: goToView).dispose(in: bag)
   }

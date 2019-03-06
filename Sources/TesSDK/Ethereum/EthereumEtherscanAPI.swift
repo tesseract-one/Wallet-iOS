@@ -8,7 +8,6 @@
 
 import Foundation
 import PromiseKit
-import PMKFoundation
 
 private struct ESResponse: Codable {
     let status: String

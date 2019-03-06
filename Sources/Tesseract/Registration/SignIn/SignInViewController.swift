@@ -62,7 +62,6 @@ class SignInViewController: UIViewController, ModelVCProtocol {
         
         goToViewAction.observeNext { [weak self] name, context in
             let vc = try! self?.viewController(for: .named(name: name), context: context)
-            print("NC", self!.navigationController)
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
         
