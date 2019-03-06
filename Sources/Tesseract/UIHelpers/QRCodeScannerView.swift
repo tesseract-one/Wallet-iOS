@@ -76,11 +76,14 @@ class QRCodeScannerView: UIView {
                 if hasAccess {
                     self?.setupCamera()
                 } else if let sself = self {
-                    let layer = CATextLayer()
+                    let layer = VerticallyCenteredTextLayer()
+                    
                     layer.string = "NO CAMERA ACCESS"
+                    layer.fontSize = 24
                     layer.alignmentMode = .center
                     layer.foregroundColor = UIColor.white.cgColor
                     layer.frame = sself.bounds
+                    
                     sself.subLayer = layer
                     sself.layer.addSublayer(layer)
                 }

@@ -66,7 +66,7 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
         
         combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
             .map { balance, rate in
-                balance == nil ? "unknown" : "$ \(balance! * rate)"
+                balance == nil ? "unknown" : "$ \((balance! * rate).rounded(toPlaces: 2))"
             }
             .bind(to: balanceUSD)
             .dispose(in: bag)

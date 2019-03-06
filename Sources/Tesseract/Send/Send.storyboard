@@ -669,7 +669,7 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkc-Jt-Suc" customClass="QRCodeScannerView" customModule="Tesseract" customModuleProvider="target">
                                         <rect key="frame" x="16" y="149.5" width="311" height="269"/>
-                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Mkc-Jt-Suc" secondAttribute="height" multiplier="311:269" id="Za1-jO-TCf"/>
                                         </constraints>

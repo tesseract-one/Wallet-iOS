@@ -111,6 +111,7 @@
 		D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */; };
 		D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */; };
 		D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F85E21B8494F007D0433 /* RoundedImage.swift */; };
+		D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */; };
 		D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */; };
 		D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */; };
 /* End PBXBuildFile section */
@@ -292,6 +293,7 @@
 		D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachBarTextFieldBackground.swift; sourceTree = "<group>"; };
 		D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBackgroundTableView.swift; sourceTree = "<group>"; };
 		D1D5F85E21B8494F007D0433 /* RoundedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedImage.swift; sourceTree = "<group>"; };
+		D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticallyCenteredTextLayer.swift; sourceTree = "<group>"; };
 		D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Signal+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -713,6 +715,7 @@
 				92FE9730222D88DE007DB61C /* QRCodeView.swift */,
 				92FE9732222D8D8E007DB61C /* QRCodeScannerView.swift */,
 				D1B13CCD222DD05E005213F7 /* BorderedView.swift */,
+				D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1111,6 +1114,7 @@
 				D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */,
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
+				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 			);

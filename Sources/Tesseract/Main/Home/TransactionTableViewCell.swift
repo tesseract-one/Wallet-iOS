@@ -28,10 +28,12 @@ class TransactionTableViewCell: UITableViewCell {
     func setModel(model: EthereumTransactionLog, address: String) {
         if model.from == address {
             titleLabel.text = "Transaction Sent"
-            descriptionLabel.text = "Horay"
+            descriptionLabel.text = "To: " + model.to
+            amountLabel.textColor = UIColor(red: 1, green: 0.58, blue: 0, alpha: 1)
         } else {
             titleLabel.text = "Transaction Received"
-            descriptionLabel.text = "Horay"
+            descriptionLabel.text = "From: " + model.from
+            amountLabel.textColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1)
         }
         
         amountLabel.text = String(Double(UInt64(model.value)!) / pow(10.0, 18)) + " ETH"
