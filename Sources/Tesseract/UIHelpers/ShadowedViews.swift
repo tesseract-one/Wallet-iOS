@@ -8,9 +8,16 @@
 
 import UIKit
 
-class ShadowedUIView: UIView {
-    
-    // MARK: Inspectable vars
+extension UIView {
+    @IBInspectable
+    var maskToBounds: Bool {
+        get {
+            return self.layer.masksToBounds
+        }
+        set {
+            layer.masksToBounds = newValue
+        }
+    }
     @IBInspectable
     var shadowOpacity: Float {
         get {
@@ -56,12 +63,5 @@ class ShadowedUIView: UIView {
                 layer.shadowColor = nil
             }
         }
-    }
-    
-    // MARK: Lifecycle
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        
-        layer.masksToBounds = false
     }
 }

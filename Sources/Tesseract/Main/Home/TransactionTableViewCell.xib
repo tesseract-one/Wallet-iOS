@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -19,14 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="token-ethereum" translatesAutoresizingMaskIntoConstraints="NO" id="Pc7-kg-KVP">
-                        <rect key="frame" x="5" y="18" width="15" height="24"/>
+                        <rect key="frame" x="21" y="18" width="15" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="15" id="L29-Gt-goI"/>
                             <constraint firstAttribute="height" constant="24" id="q5T-Km-qWo"/>
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QhF-je-Is3">
-                        <rect key="frame" x="40" y="8" width="280" height="44"/>
+                        <rect key="frame" x="56" y="8" width="248" height="44"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-j4-dLP">
                                 <rect key="frame" x="0.0" y="1" width="150" height="42"/>
@@ -56,7 +57,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-mE-a2L">
-                                <rect key="frame" x="221.5" y="1" width="58.5" height="42"/>
+                                <rect key="frame" x="189.5" y="1" width="58.5" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0c-ju-jnz">
                                         <rect key="frame" x="0.0" y="0.0" width="58.5" height="24"/>
@@ -95,10 +96,10 @@
                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstItem="QhF-je-Is3" firstAttribute="leading" secondItem="Pc7-kg-KVP" secondAttribute="trailing" constant="20" id="TQt-yl-imp"/>
-                    <constraint firstItem="Pc7-kg-KVP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="5" id="WI9-CN-JoX"/>
+                    <constraint firstItem="Pc7-kg-KVP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="WI9-CN-JoX"/>
                     <constraint firstItem="Pc7-kg-KVP" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="e5n-ba-VhC"/>
                     <constraint firstItem="QhF-je-Is3" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="g3i-cg-xrN"/>
-                    <constraint firstAttribute="trailing" secondItem="QhF-je-Is3" secondAttribute="trailing" id="qJT-GN-Ic3"/>
+                    <constraint firstAttribute="trailing" secondItem="QhF-je-Is3" secondAttribute="trailing" constant="16" id="qJT-GN-Ic3"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

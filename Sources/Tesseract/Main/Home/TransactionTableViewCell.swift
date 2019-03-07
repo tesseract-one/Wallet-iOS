@@ -13,20 +13,22 @@ class TransactionTableViewCell: UITableViewCell {
 
     private static let dateFormatter: DateFormatter = {
         let fmt = DateFormatter()
-        fmt.dateStyle = .short
-        fmt.timeStyle = .short
+//        fmt.timeStyle = .short
+//        fmt.dateStyle = .short
+        fmt.dateFormat = "h:mm a, MMM d"
         return fmt
     }()
-    
-    //MARK: Properties
-    //
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var amountLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
     func setModel(model: EthereumTransactionLog, address: String) {
-        if model.from == address {
+        if model.from == model.to && model.from == address {
+            titleLabel.text = "Transaction"
+            descriptionLabel.text = "From: me, to: me. 🙃"
+        } else if model.from == address {
             titleLabel.text = "Transaction Sent"
             descriptionLabel.text = "To: " + model.to
             amountLabel.textColor = UIColor(red: 1, green: 0.58, blue: 0, alpha: 1)

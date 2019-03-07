@@ -74,7 +74,7 @@
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
 		D11FEE5922305D4900738AAD /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = D11FEE5822305D4800738AAD /* SF-Pro-Display-Semibold.otf */; };
 		D11FEE5E2230644900738AAD /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = D11FEE5D2230644900738AAD /* SF-Pro-Display-Medium.otf */; };
-		D11FEE6022306CB400738AAD /* ShadowedUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FEE5F22306CB400738AAD /* ShadowedUIView.swift */; };
+		D11FEE6022306CB400738AAD /* ShadowedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FEE5F22306CB400738AAD /* ShadowedViews.swift */; };
 		D1201FE5222D87DA0030C2C2 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1201FE4222D87DA0030C2C2 /* Send.storyboard */; };
 		D1201FE8222D99CE0030C2C2 /* SendFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1201FE7222D99CE0030C2C2 /* SendFundsViewController.swift */; };
 		D1201FEB222DA9E70030C2C2 /* Receive.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1201FEA222DA9E70030C2C2 /* Receive.storyboard */; };
@@ -268,7 +268,7 @@
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
 		D11FEE5822305D4800738AAD /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		D11FEE5D2230644900738AAD /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
-		D11FEE5F22306CB400738AAD /* ShadowedUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedUIView.swift; sourceTree = "<group>"; };
+		D11FEE5F22306CB400738AAD /* ShadowedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedViews.swift; sourceTree = "<group>"; };
 		D1201FE4222D87DA0030C2C2 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		D1201FE7222D99CE0030C2C2 /* SendFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFundsViewController.swift; sourceTree = "<group>"; };
 		D1201FEA222DA9E70030C2C2 /* Receive.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Receive.storyboard; sourceTree = "<group>"; };
@@ -741,7 +741,7 @@
 				D1B13CCD222DD05E005213F7 /* BorderedView.swift */,
 				D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */,
 				92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */,
-				D11FEE5F22306CB400738AAD /* ShadowedUIView.swift */,
+				D11FEE5F22306CB400738AAD /* ShadowedViews.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1233,7 +1233,7 @@
 				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,
 				D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */,
 				92FE973A222DB2BA007DB61C /* ScanQRViewController.swift in Sources */,
-				D11FEE6022306CB400738AAD /* ShadowedUIView.swift in Sources */,
+				D11FEE6022306CB400738AAD /* ShadowedViews.swift in Sources */,
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
