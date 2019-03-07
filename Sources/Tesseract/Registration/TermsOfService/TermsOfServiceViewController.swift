@@ -13,7 +13,7 @@ import TesSDK
 class TermsOfServiceViewControllerContext: RouterContextProtocol {
     let password: String
     let newWalletData: NewWalletData?
-
+    
     init(password: String, data: NewWalletData? = nil) {
         self.password = password
         self.newWalletData = data
@@ -21,43 +21,68 @@ class TermsOfServiceViewControllerContext: RouterContextProtocol {
 }
 
 class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
-  typealias ViewModel = TermsOfServiceViewModel
-  
-  private(set) var model: ViewModel!
-  
-  // MARK: Outlets
-  @IBOutlet weak var termsTextView: UITextView!
-  @IBOutlet weak var acceptButton: UIButton!
-  
-  // MARK: Lifecycle hooks
-  override func viewDidLoad() {
-    super.viewDidLoad()
+    typealias ViewModel = TermsOfServiceViewModel
     
-    model.termsOfService.bind(to: termsTextView.reactive.text)
+    private(set) var model: ViewModel!
     
-    acceptButton.reactive.tap.throttle(seconds: 0.5)
-      .bind(to: model.acceptTermsAction).dispose(in: bag)
+    // MARK: Outlets
+    @IBOutlet weak var blurredView: UIView!
+    @IBOutlet weak var termsTextView: UITextView!
+    @IBOutlet weak var acceptButton: UIButton!
     
-    goToViewAction.observeNext { [weak self] name, context in
-      let vc = try! self?.viewController(for: .named(name: name), context: context)
-      self?.navigationController?.pushViewController(vc!, animated: true)
-    }.dispose(in: bag)
-  }
-  
-  override func viewDidLayoutSubviews() {
-    termsTextView.setContentOffset(.zero, animated: false)
-  }
+    // MARK: Lifecycle hooks
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        model.termsOfService.bind(to: termsTextView.reactive.text)
+        
+        acceptButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.acceptTermsAction).dispose(in: bag)
+        
+        goToViewAction.observeNext { [weak self] name, context in
+            let vc = try! self?.viewController(for: .named(name: name), context: context)
+            self?.navigationController?.pushViewController(vc!, animated: true)
+            }.dispose(in: bag)
+        
+        blurView()
+        
+        termsTextView.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        termsTextView.setContentOffset(.zero, animated: false)
+    }
+}
+
+extension TermsOfServiceViewController {
+    private func blurView() {
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        visualEffectView.frame = blurredView.bounds
+        blurredView.addSubview(visualEffectView)
+    }
+}
+
+extension TermsOfServiceViewController: UITextViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
+            if !acceptButton.isEnabled {
+                acceptButton.isEnabled = true
+                acceptButton.setTitleColor(.white, for: .normal)
+                acceptButton.backgroundColor = UIColor(red: 74.0 / 255.0, green: 148.0 / 255.0, blue: 227.0 / 255.0, alpha: 1.0)
+            }
+        }
+    }
 }
 
 extension TermsOfServiceViewController: ContextSubject {
-  func apply(context: RouterContextProtocol) {
-    let appCtx = context.get(context: ApplicationContext.self)!
-    let toeCtx = context.get(context: TermsOfServiceViewControllerContext.self)!
-
-    if let newWalletData = toeCtx.newWalletData {
-        model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password)
-    } else {
-        model = TermsOfServiceFromSignInViewModel(walletService: appCtx.walletService)
+    func apply(context: RouterContextProtocol) {
+        let appCtx = context.get(context: ApplicationContext.self)!
+        let toeCtx = context.get(context: TermsOfServiceViewControllerContext.self)!
+        
+        if let newWalletData = toeCtx.newWalletData {
+            model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password)
+        } else {
+            model = TermsOfServiceFromSignInViewModel(walletService: appCtx.walletService)
+        }
     }
-  }
 }

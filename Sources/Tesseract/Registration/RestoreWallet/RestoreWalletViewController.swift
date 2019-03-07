@@ -62,10 +62,6 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
             .dispose(in: bag)
         restoreWalletSuccessfull
             .map { _ in "" }
-            .bind(to: mnemonicTextView.reactive.text)
-            .dispose(in: bag)
-        restoreWalletSuccessfull
-            .map { _ in "" }
             .bind(to: passwordField.reactive.text)
             .dispose(in: bag)
         restoreWalletSuccessfull

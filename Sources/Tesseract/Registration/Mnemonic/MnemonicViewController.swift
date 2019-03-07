@@ -16,7 +16,7 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
 
   // MARK: Outlets
   //
-  @IBOutlet weak var mnemonicTextView: UITextView!
+  @IBOutlet weak var mnemonicLabel: UILabel!
   @IBOutlet weak var doneButton: UIButton!
 
   // MARK: Lifecycle
@@ -24,7 +24,7 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
   override func viewDidLoad() {
     super.viewDidLoad()
     
-    model.mnemonicProp.bind(to: mnemonicTextView.reactive.text).dispose(in: bag)
+    model.mnemonicProp.bind(to: mnemonicLabel.reactive.text).dispose(in: bag)
     
     doneButton.reactive.tap.throttle(seconds: 0.5)
       .bind(to: model.doneMnemonicAction).dispose(in: bag)

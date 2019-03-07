@@ -39,7 +39,7 @@ class NextResponderTextView: CustomInsetsTextView, UITextViewDelegate {
       if let placeholderLabel = viewWithTag(100) as! UILabel? {
         return placeholderLabel.textColor
       }
-      return UIColor(red: 0.39, green: 0.39, blue: 0.39, alpha: 1.0)
+      return UIColor(white: 100.0 / 255.0, alpha: 1.0)
     }
     set {
       if let placeholderLabel = viewWithTag(100) as! UILabel? {
