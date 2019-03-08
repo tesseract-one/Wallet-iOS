@@ -62,7 +62,7 @@ struct EthereumHDWalletKey: HDWalletKey {
         var signData = Data(bytes: signature.r)
         signData.append(Data(bytes: signature.s))
         signData.append(UInt8(signature.v + 27))
-        return data
+        return signData
     }
     
     func verify(data: Data, signature: Data, path: KeyPath) throws -> Bool {

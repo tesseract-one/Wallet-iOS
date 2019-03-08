@@ -9,7 +9,7 @@
 import UIKit
 import TesSDK
 
-class EthereumKeychainViewController<Request: OpenWalletRequestDataProtocol>: UIViewController {
+class EthereumKeychainViewController<Request: OpenWalletRequestDataProtocol>: ExtensionViewController {
     var responseCb: ((Error?, Request.Response?) -> Void)!
     var request: Request!
     

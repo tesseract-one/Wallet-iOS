@@ -30,15 +30,22 @@ public class Wallet: SignProvider {
         return Set(networkSupport.keys)
     }
     
+    public static func initialize() {
+        AnySerializableObject.initialize()
+    }
+    
+    public var associatedData: Dictionary<String, AnySerializableObject>
+    
     // TODO: Remove this SHIT. This is really a TEMPORARY solution.
     var password: String!
     
-    private init(name: String, storage: StorageProtocol, keychain: Keychain, accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
+    private init(name: String, storage: StorageProtocol, keychain: Keychain, associatedData: Dictionary<String, AnySerializableObject> = [:], accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
         self.storage = storage
         self.keychain = keychain
         self.name = name
         self.accounts = accounts
         self.networkSupport = [:]
+        self.associatedData = associatedData
         
         if let wallet = hdWallet {
             try setHdWallet(wallet: wallet)
@@ -110,8 +117,7 @@ public class Wallet: SignProvider {
     public func addAccount() throws -> Account {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        let name = "Account \(accounts.count)"
-        let account = try Account(index: UInt32(accounts.count), name: name, networkSupport: networkSupport)
+        let account = try Account(index: UInt32(accounts.count), networkSupport: networkSupport)
         accounts.append(account)
         return account
     }
@@ -144,21 +150,26 @@ public class Wallet: SignProvider {
 extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
+        let associatedData: Dictionary<String, AnySerializableObject>
         // TEMPORARY KLUDGE
         let password: String
     }
     
     fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
-        try self.init(name: name, storage: storage, keychain: keychain, accounts: accounts)
+        try self.init(name: name, storage: storage, keychain: keychain, associatedData: data.associatedData, accounts: accounts)
         password = data.password
     }
     
     var storageData: StorageData {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        return StorageData(accounts: accounts.map { $0.storageData }, password: password)
+        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: associatedData, password: password)
     }
+    
+    // Override this methods if you need to store some data with wallet. Not encrypted
+    public var additionalData: String? { return nil }
+    public func updateAdditionalData(data: String) {}
 }
 
 extension Wallet {

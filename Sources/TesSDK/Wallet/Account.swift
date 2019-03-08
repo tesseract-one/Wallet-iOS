@@ -16,21 +16,21 @@ public struct Address: Codable {
 
 public class Account {
     public let index: UInt32
-    public var name: String
     public private(set) var addresses: Dictionary<Network, Array<Address>>
+    public var associatedData: Dictionary<String, AnySerializableObject>
     
     public private(set) var networkSupport: Dictionary<Network, WalletNetworkSupport> = [:]
     
-    init(index: UInt32, name: String, addresses: Dictionary<Network, Array<Address>>) {
+    init(index: UInt32, addresses: Dictionary<Network, Array<Address>>, associatedData: Dictionary<String, AnySerializableObject>) {
         self.index = index
         self.addresses = addresses
-        self.name = name
+        self.associatedData = associatedData
     }
     
-    init(index: UInt32, name: String, networkSupport: Dictionary<Network, WalletNetworkSupport>? = nil) throws {
+    init(index: UInt32, networkSupport: Dictionary<Network, WalletNetworkSupport>? = nil) throws {
         self.index = index
         self.addresses = [:]
-        self.name = name
+        self.associatedData = [:]
         
         if let supported = networkSupport {
             try setNetworkSupport(supported: supported)
@@ -56,15 +56,15 @@ public class Account {
 extension Account {
     struct StorageData: Codable {
         let index: UInt32
-        let name: String
         let addresses: Dictionary<Network, Array<Address>>
+        let associatedData: Dictionary<String, AnySerializableObject>
     }
     
     convenience init(storageData: StorageData) throws {
-        self.init(index: storageData.index, name: storageData.name, addresses: storageData.addresses)
+        self.init(index: storageData.index, addresses: storageData.addresses, associatedData: storageData.associatedData)
     }
     
     var storageData: StorageData {
-        return StorageData(index: index, name: name, addresses: addresses)
+        return StorageData(index: index, addresses: addresses, associatedData: associatedData)
     }
 }

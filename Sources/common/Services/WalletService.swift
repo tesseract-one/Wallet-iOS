@@ -24,6 +24,7 @@ class WalletService {
     var errorNode: SafePublishSubject<AnyError>!
     
     init() {
+        Wallet.initialize()
         Wallet.addNetworkSupport(lib: EthereumWalletNetwork())
     }
     
@@ -36,7 +37,7 @@ class WalletService {
         }.bind(to: activeAccount).dispose(in: bag)
     }
     
-    func loadWallet() -> Promise<Void> {
+    func loadWallet() -> Promise<Wallet?> {
         let promise = Wallet.hasWallet(name: WalletService.WALLET_KEY, storage: storage)
             .then {
                 $0 ? Wallet.loadWallet(name: WalletService.WALLET_KEY, storage: self.storage).map { $0 as Wallet? }
@@ -46,7 +47,7 @@ class WalletService {
             .executeIn(.immediateOnMain)
             .suppressedErrors
             .bind(to: wallet)
-        return promise.asVoid()
+        return promise
     }
     
     func unlockWallet(password: String) -> Promise<Void> {

@@ -9,10 +9,10 @@
 import UIKit
 import TesSDK
 
-let walletService = WalletService()
-
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
+    
+    let context = ExtensionContext()
     
     override var handlers: Array<OpenWalletRequestHandler> {
         return [
@@ -22,7 +22,15 @@ class MainViewController: OpenWalletExtensionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        walletService.bootstrap()
+        
+        context.errors
+            .observeIn(.immediateOnMain)
+            .with(weak: self)
+            .observeNext { err, sself in
+                sself.extensionContext!.cancelRequest(withError: err)
+            }.dispose(in: reactive.bag)
+        
+        context.bootstrap()
     }
     
     @IBAction func cancel() {
@@ -33,7 +41,12 @@ class MainViewController: OpenWalletExtensionViewController {
         for view in containerView.subviews {
             view.removeFromSuperview()
         }
+        
+        if let contexted = vc as? ExtensionViewController {
+            contexted.context = context
+        }
         containerView.addSubview(vc.view)
+        
         for child in children {
             child.removeFromParent()
         }
