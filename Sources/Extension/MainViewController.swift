@@ -9,6 +9,8 @@
 import UIKit
 import TesSDK
 
+let walletService = WalletService()
+
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
     
@@ -16,6 +18,11 @@ class MainViewController: OpenWalletExtensionViewController {
         return [
             OpenWalletEthereumKeychainRequestHandler(viewProvider: EthereumKeychainViewProvider())
         ]
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        walletService.bootstrap()
     }
     
     @IBAction func cancel() {

@@ -9,7 +9,7 @@
 import UIKit
 import TesSDK
 
-class EthereumKeychainViewProvider: OpenWalletEthereumKeychainViewProvider {    
+class EthereumKeychainViewProvider: OpenWalletEthereumKeychainViewProvider {
     let storyboard = UIStoryboard(name: "EthereumKeychain", bundle: nil)
     
     func accountRequestView(req: OpenWalletEthereumAccountKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumAccountKeychainRequest.Response?) -> Void) -> UIViewController {
