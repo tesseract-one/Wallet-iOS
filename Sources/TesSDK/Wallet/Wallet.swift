@@ -174,10 +174,6 @@ extension Wallet {
         defer { accountsLock.unlock() }
         return StorageData(accounts: accounts.map { $0.storageData }, associatedData: associatedData, password: password)
     }
-    
-    // Override this methods if you need to store some data with wallet. Not encrypted
-    public var additionalData: String? { return nil }
-    public func updateAdditionalData(data: String) {}
 }
 
 extension Wallet {
