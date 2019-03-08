@@ -15,13 +15,21 @@ public struct Address: Codable {
 }
 
 public class Account {
+    public struct AssociatedKeys: RawRepresentable, Codable, Hashable {
+        public typealias RawValue = String
+        public let rawValue: RawValue
+        public init(rawValue: RawValue) {
+            self.rawValue = rawValue
+        }
+    }
+    
     public let index: UInt32
     public private(set) var addresses: Dictionary<Network, Array<Address>>
-    public var associatedData: Dictionary<String, AnySerializableObject>
+    public var associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
     
     public private(set) var networkSupport: Dictionary<Network, WalletNetworkSupport> = [:]
     
-    init(index: UInt32, addresses: Dictionary<Network, Array<Address>>, associatedData: Dictionary<String, AnySerializableObject>) {
+    init(index: UInt32, addresses: Dictionary<Network, Array<Address>>, associatedData: Dictionary<AssociatedKeys, AnySerializableObject>) {
         self.index = index
         self.addresses = addresses
         self.associatedData = associatedData
@@ -57,7 +65,7 @@ extension Account {
     struct StorageData: Codable {
         let index: UInt32
         let addresses: Dictionary<Network, Array<Address>>
-        let associatedData: Dictionary<String, AnySerializableObject>
+        let associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
     }
     
     convenience init(storageData: StorageData) throws {
