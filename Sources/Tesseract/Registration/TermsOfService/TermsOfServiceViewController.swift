@@ -50,7 +50,9 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
     }
     
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         termsTextView.setContentOffset(.zero, animated: false)
+        scrollViewDidScroll(termsTextView)
     }
 }
 

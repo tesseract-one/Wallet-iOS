@@ -22,7 +22,7 @@ public class OpenWalletKeychainRequest<Request: OpenWalletRequestDataProtocol>: 
     }
     
     open override func dataTypeUTI() -> String {
-        return "\(self.activityType().rawValue).\(network.name)"
+        return "\(self.activityType().rawValue).\(OpenWallet.networkUTIs[network]!)"
     }
 }
 

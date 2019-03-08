@@ -8,9 +8,14 @@
 
 import Foundation
 
-public struct Network: Hashable, Codable {
-    public let nId: UInt32
-    public let name: String
+public struct Network: Hashable, Codable, RawRepresentable {
+    public typealias RawValue = UInt32
+
+    public let rawValue: UInt32
+    
+    public init(rawValue: UInt32) {
+        self.rawValue = rawValue
+    }
 }
 
 public protocol NetworkAPI {

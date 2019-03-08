@@ -29,7 +29,13 @@ public class OpenWallet: SignProvider {
     private var requestCounter: UInt32
     private let lock = NSLock()
     
-    public let networks: Set<Network> = Set([.Ethereum])
+    public static var networkUTIs: Dictionary<Network, String> = [
+        .Ethereum: "ethereum"
+    ]
+    
+    public var networks: Set<Network> {
+        return Set(OpenWallet.networkUTIs.keys)
+    }
     
     public init(appDelegate: UIApplicationDelegate) {
         self.appDelegate = appDelegate

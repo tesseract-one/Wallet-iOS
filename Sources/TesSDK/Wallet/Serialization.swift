@@ -20,7 +20,7 @@ extension AnySerializable {
         if serializable.type != Self.serializableType {
             return nil
         }
-        self = serializable.payload as! Self
+        self = serializable.value as! Self
     }
     
     public var serialized: AnySerializableObject {
@@ -30,11 +30,11 @@ extension AnySerializable {
 
 public struct AnySerializableObject: Codable {
     let type: String
-    let payload: AnySerializable
+    let value: AnySerializable
     
     private enum CodingKeys: String, CodingKey {
         case type
-        case payload
+        case value
     }
     
     private typealias AttachmentDecoder = (KeyedDecodingContainer<CodingKeys>) throws -> AnySerializable
@@ -45,16 +45,16 @@ public struct AnySerializableObject: Codable {
     
     static func register<A: AnySerializable>(_ type: A.Type) {
         decoders[type.serializableType] = { container in
-            try container.decode(A.self, forKey: .payload)
+            try container.decode(A.self, forKey: .value)
         }
         encoders[type.serializableType] = { payload, container in
-            try container.encode(payload as! A, forKey: .payload)
+            try container.encode(payload as! A, forKey: .value)
         }
     }
     
     init<S: AnySerializable>(_ serializable: S) {
         type = S.serializableType
-        payload = serializable
+        value = serializable
     }
     
     public init(from decoder: Decoder) throws {
@@ -62,7 +62,7 @@ public struct AnySerializableObject: Codable {
         type = try container.decode(String.self, forKey: .type)
         
         if let decode = AnySerializableObject.decoders[type] {
-            payload = try decode(container)
+            value = try decode(container)
         } else {
             let context = DecodingError.Context(codingPath: [], debugDescription: "Invalid attachment: \(type).")
             throw DecodingError.dataCorrupted(context)
@@ -79,7 +79,7 @@ public struct AnySerializableObject: Codable {
             throw EncodingError.invalidValue(self, context)
         }
             
-        try encode(payload, &container)
+        try encode(value, &container)
     }
 }
 

@@ -18,7 +18,7 @@ struct EthereumKeyPath: KeyPath {
     var change: UInt32 { return 0 }
     var address: UInt32 { return 0 }
     var purpose: UInt32 { return BIP44_KEY_PATH_PURPOSE } // BIP44
-    var coin: UInt32 { return Network.Ethereum.nId } // ETH Coin Type
+    var coin: UInt32 { return Network.Ethereum.rawValue } // ETH Coin Type
 }
 
 struct EthereumHDWalletKeyFactory: HDWalletKeyFactory {
@@ -40,7 +40,7 @@ struct EthereumHDWalletKey: HDWalletKey {
     init(data: Data) throws {
         let key =  EthereumHDNode(data)?
             .derive(index: BIP44_KEY_PATH_PURPOSE, derivePrivateKey: true, hardened: true)?
-            .derive(index: Network.Ethereum.nId, derivePrivateKey: true, hardened: true)
+            .derive(index: Network.Ethereum.rawValue, derivePrivateKey: true, hardened: true)
         guard let newkey = key else { throw HDWalletError.dataError }
         pk = newkey
     }
@@ -75,7 +75,7 @@ struct EthereumHDWalletKey: HDWalletKey {
     }
     
     private func _pKey(for path: KeyPath) throws -> EthereumHDNode {
-        guard path.address == 0 && path.change == 0 && path.coin == Network.Ethereum.nId && path.purpose == BIP44_KEY_PATH_PURPOSE else {
+        guard path.address == 0 && path.change == 0 && path.coin == Network.Ethereum.rawValue && path.purpose == BIP44_KEY_PATH_PURPOSE else {
             throw HDWalletError.wrongKeyPath
         }
         let key = pk
