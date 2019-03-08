@@ -10,6 +10,7 @@ import Foundation
 
 public struct Network: Hashable, Codable {
     public let nId: UInt32
+    public let name: String
 }
 
 public protocol NetworkAPI {
