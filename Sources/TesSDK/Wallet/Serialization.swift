@@ -11,11 +11,19 @@ import Foundation
 public protocol AnySerializable: Codable {
     static var serializableType: String { get }
     
-    var sObject: AnySerializableObject { get }
+    init?(_ serializable: AnySerializableObject)
+    var serialized: AnySerializableObject { get }
 }
 
 extension AnySerializable {
-    public var sObject: AnySerializableObject {
+    public init?(_ serializable: AnySerializableObject) {
+        if serializable.type != Self.serializableType {
+            return nil
+        }
+        self = serializable.payload as! Self
+    }
+    
+    public var serialized: AnySerializableObject {
         return AnySerializableObject(self)
     }
 }
@@ -66,7 +74,6 @@ public struct AnySerializableObject: Codable {
         
         try container.encode(type, forKey: .type)
         
-        
         guard let encode = AnySerializableObject.encoders[type] else {
             let context = EncodingError.Context(codingPath: [], debugDescription: "Invalid attachment: \(type).")
             throw EncodingError.invalidValue(self, context)
@@ -90,53 +97,23 @@ extension AnySerializableObject {
 extension Int: AnySerializable {
     public static let serializableType: String = "integer"
 }
-extension AnySerializableObject {
-    public var intValue: Int? {
-        return type == Int.serializableType ? (payload as! Int) : nil
-    }
-}
 
 extension Double: AnySerializable {
     public static let serializableType: String = "double"
-}
-extension AnySerializableObject {
-    public var dobuleValue: Double? {
-        return type == Double.serializableType ? (payload as! Double) : nil
-    }
 }
 
 extension String: AnySerializable {
     public static let serializableType: String = "string"
 }
-extension AnySerializableObject {
-    public var stringValue: String? {
-        return type == String.serializableType ? (payload as! String) : nil
-    }
-}
 
 extension Data: AnySerializable {
     public static let serializableType: String = "data"
-}
-extension AnySerializableObject {
-    public var dataValue: Data? {
-        return type == Data.serializableType ? (payload as! Data) : nil
-    }
 }
 
 extension Dictionary: AnySerializable where Key == String, Value == AnySerializableObject {
     public static let serializableType: String = "dictionary"
 }
-extension AnySerializableObject {
-    public var dictionaryValue: Dictionary<String, AnySerializableObject>? {
-        return type == Dictionary.serializableType ? (payload as! Dictionary<String, AnySerializableObject>) : nil
-    }
-}
 
 extension Array: AnySerializable where Element == AnySerializableObject {
     public static let serializableType: String = "array"
-}
-extension AnySerializableObject {
-    public var arrayValue:Array<AnySerializableObject>? {
-        return type == Array.serializableType ? (payload as! Array<AnySerializableObject>) : nil
-    }
 }

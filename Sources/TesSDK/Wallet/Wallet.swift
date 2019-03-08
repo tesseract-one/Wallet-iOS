@@ -11,6 +11,14 @@ import PromiseKit
 import Web3
 
 public class Wallet: SignProvider {
+    public struct AssociatedKeys: RawRepresentable, Codable, Hashable {
+        public typealias RawValue = String
+        public let rawValue: RawValue
+        public init(rawValue: RawValue) {
+            self.rawValue = rawValue
+        }
+    }
+    
     private static let walletPublicDataPrefix = "PUBLIC_DATA__"
     private static let walletPrefix = "PRIVATE_DATA__"
     
@@ -34,12 +42,12 @@ public class Wallet: SignProvider {
         AnySerializableObject.initialize()
     }
     
-    public var associatedData: Dictionary<String, AnySerializableObject>
+    public var associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
     
     // TODO: Remove this SHIT. This is really a TEMPORARY solution.
     var password: String!
     
-    private init(name: String, storage: StorageProtocol, keychain: Keychain, associatedData: Dictionary<String, AnySerializableObject> = [:], accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
+    private init(name: String, storage: StorageProtocol, keychain: Keychain, associatedData: Dictionary<AssociatedKeys, AnySerializableObject> = [:], accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
         self.storage = storage
         self.keychain = keychain
         self.name = name
@@ -150,7 +158,7 @@ public class Wallet: SignProvider {
 extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
-        let associatedData: Dictionary<String, AnySerializableObject>
+        let associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
         // TEMPORARY KLUDGE
         let password: String
     }

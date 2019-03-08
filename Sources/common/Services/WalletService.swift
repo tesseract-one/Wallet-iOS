@@ -11,6 +11,11 @@ import TesSDK
 import ReactiveKit
 import PromiseKit
 
+extension Account.AssociatedKeys {
+    static let name = Account.AssociatedKeys(rawValue: "name")
+    static let emoji = Account.AssociatedKeys(rawValue: "emoji")
+}
+
 class WalletService {
     private let bag = DisposeBag()
     private let storage: StorageProtocol = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
@@ -67,6 +72,11 @@ class WalletService {
     
     func saveWalletData(data: NewWalletData, password: String) -> Promise<Wallet> {
         return Wallet.saveWalletData(name:WalletService.WALLET_KEY, data: data, password: password, storage: storage)
+            .then { wallet -> Promise<Wallet> in
+                wallet.accounts[0].associatedData[.name] = "Main Account".serialized
+                wallet.accounts[0].associatedData[.emoji] = "🦹‍♂️".serialized
+                return wallet.save().map { wallet }
+            }
     }
     
     func saveWallet() -> Promise<Void> {
