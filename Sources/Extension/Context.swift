@@ -20,6 +20,8 @@ class ExtensionContext {
     let errors = SafePublishSubject<AnyError>()
     
     func bootstrap() {
+        walletService.errorNode = errors
+        
         walletService.bootstrap()
         
         walletService
