@@ -29,12 +29,12 @@ extension Wallet: EthereumSignProvider {
             .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
     
-    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
-        return eth_account(address: account)
-            .then { $0.eth_verify(data: data, signature: signature) }
-    }
+//    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
+//        return eth_account(address: account)
+//            .then { $0.eth_verify(data: data, signature: signature) }
+//    }
     
-    public func eth_signData(account: String, data: Data) -> Promise<String> {
+    public func eth_signData(account: String, data: Data) -> Promise<Data> {
         return eth_account(address: account)
             .then { $0.eth_signData(data: data) }
     }
@@ -64,19 +64,18 @@ extension Account {
             .map { try tx.sign(with: $0, chainId: chainId) }
     }
     
-    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
-        return eth_hdwallet()
-            .map { try $0.verify(network: .Ethereum, data: data, signature: signature, path: self.keyPath) }
-    }
+//    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
+//        return eth_hdwallet()
+//            .map { try $0.verify(network: .Ethereum, data: data, signature: signature, path: self.keyPath) }
+//    }
     
-    fileprivate func eth_signData(data: Data) -> Promise<String> {
+    fileprivate func eth_signData(data: Data) -> Promise<Data> {
         return eth_hdwallet()
             .map {
                 var signData = "\u{19}Ethereum Signed Message:\n".data(using: .utf8)!
                 signData.append(String(describing: data.count).data(using: .utf8)!)
                 signData.append(data)
-                let signature = try $0.sign(network: .Ethereum, data: signData, path: self.keyPath)
-                return signature.reduce("0x") {$0 + String(format: "%02x", $1)}
+                return try $0.sign(network: .Ethereum, data: signData, path: self.keyPath)
         }
     }
     

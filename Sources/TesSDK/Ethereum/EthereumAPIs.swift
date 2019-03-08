@@ -10,7 +10,7 @@ import Foundation
 import Web3
 
 extension Network {
-    public static let Ethereum = Network(nId: 0x8000003c)
+    public static let Ethereum = Network(nId: 0x8000003c, name: "ethereum")
 }
 
 public class EthereumAPIs: NetworkAPI {
