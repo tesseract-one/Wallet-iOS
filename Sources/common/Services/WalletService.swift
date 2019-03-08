@@ -74,7 +74,7 @@ class WalletService {
         return Wallet.saveWalletData(name:WalletService.WALLET_KEY, data: data, password: password, storage: storage)
             .then { wallet -> Promise<Wallet> in
                 wallet.accounts[0].associatedData[.name] = "Main Account".serialized
-                wallet.accounts[0].associatedData[.emoji] = "🦹‍♂️".serialized
+                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}".serialized
                 return wallet.save().map { wallet }
             }
     }
