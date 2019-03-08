@@ -10,4 +10,8 @@ import UIKit
 
 class ExtensionViewController: UIViewController {
     var context: ExtensionContext!
+    
+    override var preferredStatusBarStyle : UIStatusBarStyle {
+        return UIStatusBarStyle.lightContent
+    }
 }

@@ -11,6 +11,7 @@ import TesSDK
 
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var subTitle: UILabel!
     
     let context = ExtensionContext()
     
@@ -51,5 +52,6 @@ class MainViewController: OpenWalletExtensionViewController {
             child.removeFromParent()
         }
         addChild(vc)
+        subTitle.text = vc.title
     }
 }
