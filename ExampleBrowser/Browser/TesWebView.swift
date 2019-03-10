@@ -8,6 +8,7 @@
 
 import Foundation
 import WebKit
+import Web3
 
 public enum TesWebMessage {
     case message(id: Int, jsonrpc:String, method: String, params: [Any])
@@ -131,7 +132,7 @@ public class TesWebView : WKWebView, TesWebSink {
             case _ as NSNull:
                 return nil
             case let err as Error:
-                return "\"\(err)\"".data(using: .utf8)
+                return "\"\(err.localizedDescription)\"".data(using: .utf8)
             default:
                 return try? JSONSerialization.data(withJSONObject: object, options: [])
             }

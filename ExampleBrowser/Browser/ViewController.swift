@@ -118,7 +118,12 @@ class Wallet {
             web3.eth.sendTransaction(transaction: tx) { res in
                 switch res.status {
                 case .success(let txData): callback(id, nil, txData.hex())
-                case .failure(let err): callback(id, err, nil)
+                case .failure(let err):
+                    if let web3Err = err as? RPCResponse<EthereumData>.Error {
+                        callback(id, ["code": web3Err.code, "message": web3Err.message], nil)
+                    } else {
+                        callback(id, err, nil)
+                    }
                 }
             }
         default:
