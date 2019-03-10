@@ -11,12 +11,11 @@ import Web3
 
 class EthereumSignWeb3Provider: Web3Provider {
     private let provider: Web3Provider
-    private let sign: EthereumSignProvider
-    private let chainId: EthereumQuantity
-    
     private let web3: Web3
     
     public var account: String? = nil
+    public let chainId: EthereumQuantity
+    public let sign: EthereumSignProvider
     
     init(rpcId: Int, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
         provider = web3Provider
@@ -25,11 +24,11 @@ class EthereumSignWeb3Provider: Web3Provider {
         chainId = EthereumQuantity(quantity: BigUInt(rpcId))
     }
     
-    private func signTransaction(account: String, request: RPCRequest<[EthereumTransaction]>) -> Promise<EthereumSignedTransaction> {
+    private func signTransaction(request: RPCRequest<[EthereumTransaction]>) -> Promise<EthereumSignedTransaction> {
         return request.params[0]
             .autononce(web3: web3)
             .then { $0.autogas(web3: self.web3) }
-            .then { self.sign.eth_signTx(account: account, tx: $0, chainId: self.chainId) }
+            .then { self.sign.eth_signTx(tx: $0, chainId: self.chainId) }
     }
     
     func send<Params, Result>(request: RPCRequest<Params>, response: @escaping Web3ResponseCompletion<Result>) {
@@ -54,11 +53,7 @@ class EthereumSignWeb3Provider: Web3Provider {
                 .done { response(Web3Response(status: .success($0)) as! Web3Response<Result>) }
                 .catch { response(Web3Response(error: $0))}
         case "eth_sendTransaction":
-            guard let account = account else {
-                response(Web3Response(error: EthereumSignProviderError.emptyAccount))
-                return
-            }
-            signTransaction(account: account, request: request as! RPCRequest<[EthereumTransaction]>)
+            signTransaction(request: request as! RPCRequest<[EthereumTransaction]>)
                 .then { self.web3.eth.sendRawTransaction(transaction: $0) }
                 .done { response(Web3Response(status: .success($0)) as! Web3Response<Result>) }
                 .catch { response(Web3Response(error: $0)) }

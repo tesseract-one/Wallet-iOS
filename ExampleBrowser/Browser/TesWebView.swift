@@ -130,6 +130,8 @@ public class TesWebView : WKWebView, TesWebSink {
                 return "\"\(string)\"".data(using: .utf8)
             case _ as NSNull:
                 return nil
+            case let err as Error:
+                return "\"\(err)\"".data(using: .utf8)
             default:
                 return try? JSONSerialization.data(withJSONObject: object, options: [])
             }

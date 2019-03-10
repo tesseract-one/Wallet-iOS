@@ -522,7 +522,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uqe-DX-m6J">
                                                 <rect key="frame" x="16" y="244" width="343" height="44"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recipient gets" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYE-JZ-SBT">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount with fee" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YYE-JZ-SBT">
                                                         <rect key="frame" x="0.0" y="-7.5" width="343" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="QkT-4P-hfg"/>
@@ -538,8 +538,8 @@
                                                             <constraint firstAttribute="height" constant="1" id="UM1-97-fLi"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RecieveAmount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-9L-Emz">
-                                                        <rect key="frame" x="0.0" y="10" width="109.5" height="24"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NetworkAmount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqZ-9L-Emz">
+                                                        <rect key="frame" x="0.0" y="10" width="114" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="zHy-yG-kDx"/>
                                                         </constraints>
@@ -704,9 +704,9 @@
                     <connections>
                         <outlet property="acceptButton" destination="4sR-Xk-UrV" id="TjY-sF-VpO"/>
                         <outlet property="address" destination="39A-4X-skD" id="jYL-fV-bPW"/>
+                        <outlet property="amountWithFee" destination="xqZ-9L-Emz" id="tLc-Du-ZeU"/>
                         <outlet property="data" destination="Vjt-eE-DCm" id="gdp-a5-6wi"/>
                         <outlet property="passwordField" destination="1a5-HF-awJ" id="hWT-8E-Xnd"/>
-                        <outlet property="recieveAmount" destination="xqZ-9L-Emz" id="S2f-P0-vdD"/>
                         <outlet property="sendAmount" destination="lfZ-gh-zjR" id="AW6-jl-xSY"/>
                     </connections>
                 </viewController>

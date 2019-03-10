@@ -16,7 +16,7 @@ import Web3
 class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var sendAmount: UILabel!
-    @IBOutlet weak var recieveAmount: UILabel!
+    @IBOutlet weak var amountWithFee: UILabel!
     @IBOutlet weak var data: UILabel!
     
     @IBOutlet weak var acceptButton: UIButton!
@@ -28,9 +28,12 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         title = "New Transaction"
         
         address.text = request.to
-        sendAmount.text = String(EthereumQuantity.bytes(Bytes(hex: request.value)).ethValue())
-        let recieveAmountInWei = EthereumQuantity.bytes(Bytes(hex: request.value)).quantity - EthereumQuantity.bytes(Bytes(hex: request.gas)).quantity * EthereumQuantity.bytes(Bytes(hex: request.gasPrice)).quantity
-        recieveAmount.text = String(recieveAmountInWei.ethValue())
+        let sendQuantity = EthereumQuantity.bytes(Bytes(hex: request.value)).quantity
+        sendAmount.text = String(sendQuantity.ethValue())
+        
+        let withFee = sendQuantity + EthereumQuantity.bytes(Bytes(hex: request.gas)).quantity * EthereumQuantity.bytes(Bytes(hex: request.gasPrice)).quantity
+        amountWithFee.text = String(withFee.ethValue())
+        
         data.text = request.data
         
         let req = self.request!
@@ -52,7 +55,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                         data: EthereumData(raw: Bytes(hex: req.data))
                     )
                     let chainId = EthereumQuantity.bytes(Bytes(hex: req.chainId))
-                    return wallet.eth_signTx(account: req.from.lowercased(), tx: transaction, chainId: chainId).signal
+                    return wallet.eth_signTx(tx: transaction, chainId: chainId).signal
                 } catch (let err) {
                     return ResultSignal<EthereumSignedTransaction, AnyError>.failure(AnyError(err))
                 }

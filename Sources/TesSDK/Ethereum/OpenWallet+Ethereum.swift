@@ -34,15 +34,23 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletRequestDataProt
     
     public let chainId: String
     
+    public init(nonce: String, from: String, to: String,
+                gas: String, gasPrice: String, value: String,
+                data: String, chainId: String) {
+        self.nonce = nonce
+        self.from = from
+        self.to = to
+        self.gas = gas
+        self.gasPrice = gasPrice
+        self.value = value
+        self.data = data
+        self.chainId = chainId
+    }
+    
     public init(tx: EthereumTransaction, chainId: EthereumQuantity) {
-        from = tx.from!.hex(eip55: false)
-        to = tx.to!.hex(eip55: false)
-        gas = tx.gas!.hex()
-        gasPrice = tx.gas!.hex()
-        value = tx.value!.hex()
-        data = tx.data.hex()
-        nonce = tx.nonce!.hex()
-        self.chainId = chainId.hex()
+        self.init(nonce: tx.nonce!.hex(), from: tx.from!.hex(eip55: false), to: tx.to!.hex(eip55: false),
+                  gas: tx.gas!.hex(), gasPrice: tx.gasPrice!.hex(), value: tx.value!.hex(),
+                  data: tx.data.hex(), chainId: chainId.hex())
     }
 }
 
@@ -75,18 +83,19 @@ extension OpenWallet: EthereumSignProvider {
             .map { [$0] }
     }
     
-    public func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+    public func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
         return keychain(net: .Ethereum, request: OpenWalletEthereumSignTxKeychainRequest(tx: tx, chainId: chainId))
             .map { Data(hex: $0) }
-            .map { data in
-                let r = data[0..<32]
-                let s = data[32..<64]
-                let v = data[64]
+            .map { data -> EthereumSignedTransaction in
+                let bytes = data.makeBytes()
+                let r = EthereumQuantity.bytes(Bytes(bytes[0..<32]))
+                let s = EthereumQuantity.bytes(Bytes(bytes[32..<64]))
+                let v = EthereumQuantity(integerLiteral: UInt64(bytes[64]) - 27)
                 return EthereumSignedTransaction(
                     nonce: tx.nonce!, gasPrice: tx.gasPrice!, gasLimit: tx.gas!,
                     to: tx.to!, value: tx.value!, data: tx.data,
-                    v: EthereumQuantity(integerLiteral: UInt64(v)), r: try EthereumQuantity(bytes: r),
-                    s: try EthereumQuantity(bytes: s), chainId: chainId
+                    v: v, r: r,
+                    s: s, chainId: chainId
                 )
             }
     }

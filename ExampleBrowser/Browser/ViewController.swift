@@ -21,13 +21,13 @@ public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<Int, String> = [
 ]
 
 class Wallet {
-    private var accounts:[String]? = nil
-    private let subnet:Int
     private let endpoint:String
     
-    init(subnet: Int) {
-        self.subnet = subnet
-        self.endpoint = TESSERACT_ETHEREUM_ENDPOINTS[subnet]!
+    private let web3: Web3
+    
+    init(web3: Web3, endpoint: String) {
+        self.web3 = web3
+        self.endpoint = endpoint
     }
     
     private func rpcRequest(id:Int, jsonrpc:String, method:String, params: [Any], callback: @escaping (Any?, Any?)->Void) {
@@ -70,93 +70,59 @@ class Wallet {
     //rewrite to processors
     func request(id:Int, jsonrpc:String, method:String, params: [Any], callback: @escaping (Int, Any?, Any?)->Void) {
 //        let payload = WalletPayload.request(id: id, jsonrpc: jsonrpc, method: method, params: params)
-        
-        let openWallet = (UIApplication.shared.delegate! as! AppDelegate).openWallet!
-        
+       
         switch method {
-        case "net_version":
-            //we always reply from subnet defined by the app (IDEA: request from wallet if nil)
-            callback(id, nil, String(subnet))
         case "eth_accounts":
-            guard let accounts = self.accounts else {
-                openWallet
-                    .eth_accounts()
-                    .done { [weak self] accs in
-                        self?.accounts = accs
-                        print("My address: \(accs.first!)")
-                        callback(id, nil, accs)
-                    }
-                    .catch { err in
-                        print("My address error: \(err)")
-                        callback(id, err, nil)
-                    }
-                return
+            web3.eth.accounts() { res in
+                switch res.status {
+                case .success(let accounts): callback(id, nil, accounts.map{$0.hex(eip55: false)})
+                case .failure(let err): callback(id, err, nil)
+                }
             }
-            callback(id, nil, accounts)
         case "eth_coinbase":
-            //TODO: merge with eth_accounts
-            guard let accounts = self.accounts else {
-                openWallet
-                    .eth_accounts()
-                    .done { [weak self] accs in
-                        self?.accounts = accs
-                        print("My address: \(accs.first!)")
-                        callback(id, nil, accs.first)
-                    }
-                    .catch { err in
-                        print("My address error: \(err)")
-                        callback(id, err, nil)
-                    }
-                return
+            web3.eth.accounts() { res in
+                switch res.status {
+                case .success(let accounts): callback(id, nil, accounts.map{$0.hex(eip55: false)}.first)
+                case .failure(let err): callback(id, err, nil)
+                }
             }
-            
-            callback(id, nil, accounts.first)
         case "eth_signTypedData":
             print("eth_signTypedData is not supported!")
             callback(id, "eth_signTypedData is not supported!", nil)
         case "personal_sign":
-            let account = params.count > 1 ? params[1] as! String : self.accounts!.first!
-            openWallet
-                .eth_signData(account: account, data: Data(hex: params[0] as! String))
-                .done { callback(id, nil, "0x"+$0.toHexString()) }
+            let account = params.count > 1 ? try! EthereumAddress(hex: params[1] as! String, eip55: false) : nil
+            web3.personal.sign(data: try! EthereumData(bytes: Data(hex: params[0] as! String)), account: account)
+                .done { callback(id, nil, $0.hex()) }
                 .catch { callback(id, $0, nil) }
         case "eth_sign":
-            openWallet
-                .eth_signData(account: params[0] as! String, data: Data(hex: params[1] as! String))
-                .done { callback(id, nil, "0x"+$0.toHexString()) }
+            let account = try! EthereumAddress(hex: params[0] as! String, eip55: false)
+            web3.personal.sign(data: try! EthereumData(bytes: Data(hex: params[1] as! String)), account: account)
+                .done { callback(id, nil, $0.hex()) }
                 .catch { callback(id, $0, nil) }
         case "eth_sendTransaction":
             let txDict = params[0] as! NSDictionary
-            let account = txDict["from"] as? String ?? accounts!.first!
+            print("TX DICT", txDict)
             
-            let nonce = EthereumQuantity.bytes(Bytes(hex: txDict["nonce"] as! String))
-            let gasPrice = EthereumQuantity.bytes(Bytes(hex: txDict["gasPrice"] as! String))
-            let gas = EthereumQuantity.bytes(Bytes(hex: txDict["gas"] as! String))
-            let value = EthereumQuantity.bytes(Bytes(hex: txDict["value"] as! String))
-            
-            let from = try! EthereumAddress(hex: txDict["from"] as! String, eip55: false)
-            let to = try! EthereumAddress(hex: txDict["to"] as! String, eip55: false)
-            
-            let data = EthereumData(raw: Bytes(hex: txDict["data"] as! String))
-            
-            let tx = EthereumTransaction(nonce: nonce, gasPrice: gasPrice, gas: gas, from: from, to: to, value: value, data: data)
-            
-            openWallet.eth_signTx(account: account, tx: tx, chainId: EthereumQuantity(integerLiteral: UInt64(subnet)))
-                .done { signedTx in
-                    let params = [signedTx.rlp()]
-                    self.rpcRequest(id: id, jsonrpc: jsonrpc, method: method, params: params) { error, result in
-                        callback(id, error, result)
-                    }
-                }.catch { err in
-                    callback(id, err, nil)
+            let nonce = txDict["nonce"] != nil ? EthereumQuantity.bytes(Bytes(hex: txDict["nonce"] as! String)) : nil
+            let gas = txDict["gas"] != nil ? EthereumQuantity.bytes(Bytes(hex: txDict["gas"] as! String)) : nil
+            let gasPrice = txDict["gasPrice"] != nil ? EthereumQuantity.bytes(Bytes(hex: txDict["gasPrice"] as! String)) : nil
+            let tx = EthereumTransaction(
+                nonce: nonce,
+                gasPrice: gasPrice,
+                gas: gas,
+                from: try! EthereumAddress(hex: txDict["from"] as! String, eip55: false),
+                to:  try! EthereumAddress(hex: txDict["to"] as! String, eip55: false),
+                value: EthereumQuantity.bytes(Bytes(hex: txDict["value"] as! String)),
+                data: EthereumData(raw: Bytes(hex: txDict["data"] as! String))
+            )
+            web3.eth.sendTransaction(transaction: tx) { res in
+                switch res.status {
+                case .success(let txData): callback(id, nil, txData.hex())
+                case .failure(let err): callback(id, err, nil)
                 }
-//        case "__external_wallet__":
-//
-//            externalRequest(payload: payload) { error, result in
-//                callback(id, error, result)
-//            }
+            }
         default:
-            print(method)
+            print("BYPASS:", method)
             //TODO: add from to calls
             rpcRequest(id: id, jsonrpc: jsonrpc, method: method, params: params) { error, result in
                 callback(id, error, result)
@@ -275,7 +241,10 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         
         let webView = TesWebView(frame: self.view.frame)
         
-        wallet = Wallet(subnet: netVersion!)
+        let openWallet = (UIApplication.shared.delegate! as! AppDelegate).openWallet!
+        let endpoint = TESSERACT_ETHEREUM_ENDPOINTS[netVersion!]!
+        
+        wallet = Wallet(web3: openWallet.distributedAPI.Ethereum.web3(rpcUrl: endpoint, chainId: netVersion!), endpoint: endpoint)
         
         let myRequest = URLRequest(url: appUrl!)
         

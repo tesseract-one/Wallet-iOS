@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		54E9691EB130112B959F80AA /* Pods_Browser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B2610C289D211FFD6ED1E /* Pods_Browser.framework */; };
 		65223F71214D986200D937A9 /* Web3Provider.js in Resources */ = {isa = PBXBuildFile; fileRef = 65223F70214D986200D937A9 /* Web3Provider.js */; };
 		65223F73214D9AE200D937A9 /* TesWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65223F72214D9AE200D937A9 /* TesWebView.swift */; };
 		65223F75214DA9F700D937A9 /* web3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 65223F74214DA9F700D937A9 /* web3.min.js */; };
@@ -15,11 +16,11 @@
 		65BC9CD9214179F6005D496C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CD7214179F6005D496C /* Main.storyboard */; };
 		65BC9CDB214179F7005D496C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CDA214179F7005D496C /* Assets.xcassets */; };
 		65BC9CDE214179F7005D496C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CDC214179F7005D496C /* LaunchScreen.storyboard */; };
-		7C3BF1005680C90FDEC434AD /* libPods-Browser.a in Frameworks */ = {isa = PBXBuildFile; fileRef = AA8B44953B9F79F070D57F78 /* libPods-Browser.a */; };
 		92E5132121815FD3006184A5 /* SiteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E5132021815FD3006184A5 /* SiteListViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3E9B2610C289D211FFD6ED1E /* Pods_Browser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Browser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65223F70214D986200D937A9 /* Web3Provider.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Web3Provider.js; sourceTree = "<group>"; };
 		65223F72214D9AE200D937A9 /* TesWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesWebView.swift; sourceTree = "<group>"; };
 		65223F74214DA9F700D937A9 /* web3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = web3.min.js; sourceTree = "<group>"; };
@@ -32,7 +33,6 @@
 		65BC9CDF214179F7005D496C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71FAEA16BB87082841DFD4F1 /* Pods-Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Browser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Browser/Pods-Browser.debug.xcconfig"; sourceTree = "<group>"; };
 		92E5132021815FD3006184A5 /* SiteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteListViewController.swift; sourceTree = "<group>"; };
-		AA8B44953B9F79F070D57F78 /* libPods-Browser.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Browser.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD19D6605D9F4D863AEC6335 /* Pods-Browser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Browser.release.xcconfig"; path = "Pods/Target Support Files/Pods-Browser/Pods-Browser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,7 +41,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C3BF1005680C90FDEC434AD /* libPods-Browser.a in Frameworks */,
+				54E9691EB130112B959F80AA /* Pods_Browser.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -95,7 +95,7 @@
 		D21AA81160389222522E8332 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA8B44953B9F79F070D57F78 /* libPods-Browser.a */,
+				3E9B2610C289D211FFD6ED1E /* Pods_Browser.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -112,6 +112,7 @@
 				65BC9CCE214179F6005D496C /* Frameworks */,
 				65BC9CCF214179F6005D496C /* Resources */,
 				92E5131F21815477006184A5 /* Run Crashlytics */,
+				6CCD5A986C482A1D48027715 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -192,6 +193,44 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6CCD5A986C482A1D48027715 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Browser/Pods-Browser-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BigInt/BigInt.framework",
+				"${BUILT_PRODUCTS_DIR}/CKMnemonic/CKMnemonic.framework",
+				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/TesSDK/TesSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Web3/Web3.framework",
+				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BigInt.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CKMnemonic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Browser/Pods-Browser-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		92E5131F21815477006184A5 /* Run Crashlytics */ = {

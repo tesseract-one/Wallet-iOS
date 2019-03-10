@@ -24,7 +24,10 @@ extension Wallet: EthereumSignProvider {
         return Promise().map { try self.accounts.map { try $0.eth_address() } }
     }
     
-    public func eth_signTx(account: String, tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+    public func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+        guard let account = tx.from?.hex(eip55: false) else {
+            return Promise(error: EthereumSignProviderError.emptyAccount)
+        }
         return eth_account(address: account)
             .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
