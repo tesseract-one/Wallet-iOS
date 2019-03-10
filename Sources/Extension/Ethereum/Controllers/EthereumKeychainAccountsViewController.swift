@@ -9,20 +9,24 @@
 import UIKit
 import TesSDK
 import ReactiveKit
+import Material
 import Bond
 
-class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>, UITableViewDelegate {
+class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>, UITableViewDelegate, EthereumKeychainViewControllerBaseControls {
+   
     let accounts = MutableObservableArray<Account>()
     let activeAccountIndex = Property<UInt32>(0)
 
     @IBOutlet weak var chooseAccountTableView: UITableView!
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var passwordField: ErrorTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "Access Request"
         
-        context.walletService.wallet!
+        context.wallet
             .map{$0?.accounts ?? []}
             .bind(to: accounts)
             .dispose(in: reactive.bag)
@@ -32,17 +36,17 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             return
         }.dispose(in: bag)
         
-        context.walletService.activeAccount!.map{$0?.index ?? 0}.bind(to: activeAccountIndex).dispose(in: reactive.bag)
+        context.activeAccount.map{$0?.index ?? 0}.bind(to: activeAccountIndex).dispose(in: reactive.bag)
         
-        activeAccountIndex.with(weak: self).observeNext { index, sself in
-            sself.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
-        }.dispose(in: reactive.bag)
+//        activeAccountIndex.with(weak: self).observeNext { index, sself in
+//            sself.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
+//        }.dispose(in: reactive.bag)
         
         chooseAccountTableView.delegate = self
         chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5).map{UInt32($0.item)}.bind(to: activeAccountIndex)
         
         runWalletOperation
-            .with(latestFrom: context.walletService.wallet)
+            .with(latestFrom: context.wallet)
             .with(latestFrom: activeAccountIndex)
             .map { (arg, accountIndex) -> String in
                 let (_, wallet) = arg

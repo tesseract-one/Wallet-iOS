@@ -8,15 +8,19 @@
 
 import UIKit
 import TesSDK
+import Material
 import ReactiveKit
 import Bond
 import Web3
 
-class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest> {
+class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var sendAmount: UILabel!
     @IBOutlet weak var recieveAmount: UILabel!
     @IBOutlet weak var data: UILabel!
+    
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var passwordField: ErrorTextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +36,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         let req = self.request!
         
         runWalletOperation
-            .with(latestFrom: context.walletService.wallet)
+            .with(latestFrom: context.wallet)
             .flatMapLatest { (_, wallet) -> ResultSignal<EthereumSignedTransaction, AnyError> in
                 guard let wallet = wallet else {
                     return ResultSignal<EthereumSignedTransaction, AnyError>.failure(AnyError(NSError()))

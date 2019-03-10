@@ -29,7 +29,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mN-fH-hKb" customClass="KeyboardInputScrollView" customModule="Tesseract">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6mN-fH-hKb" customClass="KeyboardInputScrollView" customModule="Extension" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h09-1i-L7N">
@@ -68,7 +68,7 @@
                                                 </attributedString>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-K3-vjp" customClass="BorderedButton" customModule="Tesseract">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-K3-vjp" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="593" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -152,7 +152,9 @@
                         <viewLayoutGuide key="safeArea" id="z4G-8r-hwg"/>
                     </view>
                     <connections>
+                        <outlet property="acceptButton" destination="F9M-K3-vjp" id="dxw-xJ-PYQ"/>
                         <outlet property="chooseAccountTableView" destination="wcz-Kg-dIR" id="phj-3A-mOz"/>
+                        <outlet property="passwordField" destination="kil-c0-tqK" id="9Tr-uM-ciG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62w-ch-Omg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -167,7 +169,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-cO-ibU" customClass="KeyboardInputScrollView" customModule="Tesseract">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-cO-ibU" customClass="KeyboardInputScrollView" customModule="Extension" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uaQ-pR-hug">
@@ -267,7 +269,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="zwS-Zm-ZdJ" secondAttribute="trailing" id="uN8-D4-9Oy"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup" customClass="BorderedButton" customModule="Tesseract">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="593" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -342,6 +344,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m7C-lp-isU"/>
                     </view>
+                    <connections>
+                        <outlet property="acceptButton" destination="9rQ-xw-Eup" id="xVi-Ww-6Ev"/>
+                        <outlet property="passwordField" destination="Cw1-ym-dKY" id="jIK-jn-2BP"/>
+                        <outlet property="signData" destination="wZZ-lK-8K5" id="JuZ-PQ-ygB"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wvv-m2-1yd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -355,7 +362,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhg-PJ-thQ" customClass="KeyboardInputScrollView" customModule="Tesseract">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hhg-PJ-thQ" customClass="KeyboardInputScrollView" customModule="Extension" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="la9-Jf-EeC">
@@ -564,7 +571,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="uAa-J7-QsU" secondAttribute="trailing" id="uyp-Nt-fMX"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sR-Xk-UrV" customClass="BorderedButton" customModule="Tesseract">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sR-Xk-UrV" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
                                                 <rect key="frame" x="16" y="593" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -695,9 +702,10 @@
                         <viewLayoutGuide key="safeArea" id="6cU-9m-v01"/>
                     </view>
                     <connections>
+                        <outlet property="acceptButton" destination="4sR-Xk-UrV" id="TjY-sF-VpO"/>
                         <outlet property="address" destination="39A-4X-skD" id="jYL-fV-bPW"/>
                         <outlet property="data" destination="Vjt-eE-DCm" id="gdp-a5-6wi"/>
-                        <outlet property="passwordField" destination="1a5-HF-awJ" id="8e8-PP-U9g"/>
+                        <outlet property="passwordField" destination="1a5-HF-awJ" id="hWT-8E-Xnd"/>
                         <outlet property="recieveAmount" destination="xqZ-9L-Emz" id="S2f-P0-vdD"/>
                         <outlet property="sendAmount" destination="lfZ-gh-zjR" id="AW6-jl-xSY"/>
                     </connections>

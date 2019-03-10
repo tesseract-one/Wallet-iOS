@@ -22,7 +22,7 @@ class WalletService {
     private static let WALLET_KEY = "WALLET"
     
     var wallet: Property<Wallet?>!
-    var activeAccount: Property<TesSDK.Account?>!
+    var activeAccount: Property<Account?>!
   
     let isWalletLocked: Property<Bool> = Property(true)
     

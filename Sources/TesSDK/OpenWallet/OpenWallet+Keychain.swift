@@ -10,19 +10,13 @@ import UIKit
 import PromiseKit
 
 public class OpenWalletKeychainRequest<Request: OpenWalletRequestDataProtocol>: OpenWalletRequest<Request> {
-    public let network: Network
-    
-    init(network: Network, id: UInt32, request: Request) {
-        self.network = network
-        super.init(id: id, request: request)
+
+    public init(network: Network, id: UInt32, request: Request) {
+        super.init(id: id, request: request, uti: "org.openwallet.keychain.\(OpenWallet.networkUTIs[network]!)")
     }
     
-    open override func activityType() -> UIActivity.ActivityType {
-        return UIActivity.ActivityType(rawValue: "\(super.activityType().rawValue).keychain")
-    }
-    
-    open override func dataTypeUTI() -> String {
-        return "\(self.activityType().rawValue).\(OpenWallet.networkUTIs[network]!)"
+    required public init(json: String, uti: String) throws {
+        try super.init(json: json, uti: uti)
     }
 }
 

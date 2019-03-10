@@ -15,12 +15,17 @@ enum ExtensionErrors: Error {
 }
 
 class ExtensionContext {
+    let wallet = Property<Wallet?>(nil)
+    let activeAccount = Property<Account?>(nil)
+    
     let walletService = WalletService()
     
     let errors = SafePublishSubject<AnyError>()
     
     func bootstrap() {
         walletService.errorNode = errors
+        walletService.wallet = wallet
+        walletService.activeAccount = activeAccount
         
         walletService.bootstrap()
         

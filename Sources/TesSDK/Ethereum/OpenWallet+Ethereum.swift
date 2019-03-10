@@ -13,11 +13,15 @@ import Web3
 public struct OpenWalletEthereumAccountKeychainRequest: OpenWalletRequestDataProtocol {
     public typealias Response = String
     public static let type: String = "eth_account"
+    public let type: String = "eth_account"
+    
+    public init() {}
 }
 
 public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletRequestDataProtocol {
     public typealias Response = String
     public static let type: String = "eth_signTransaction"
+    public let type: String = "eth_signTransaction"
     
     // From TX
     public let nonce: String
@@ -30,7 +34,7 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletRequestDataProt
     
     public let chainId: String
     
-    init(tx: EthereumTransaction, chainId: EthereumQuantity) {
+    public init(tx: EthereumTransaction, chainId: EthereumQuantity) {
         from = tx.from!.hex(eip55: false)
         to = tx.to!.hex(eip55: false)
         gas = tx.gas!.hex()
@@ -54,9 +58,15 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletRequestDataProt
 public struct OpenWalletEthereumSignDataKeychainRequest: OpenWalletRequestDataProtocol {
     public typealias Response = String
     public static let type: String = "eth_signData"
+    public let type: String = "eth_signData"
     
     public let account: String
     public let data: String
+    
+    public init(account: String, data: String) {
+        self.account = account
+        self.data = data
+    }
 }
 
 extension OpenWallet: EthereumSignProvider {
@@ -116,31 +126,31 @@ public class OpenWalletEthereumKeychainRequestHandler: OpenWalletRequestHandler 
         self.viewProvider = viewProvider
     }
     
-    public func viewContoller(for type: String, request: String, cb: @escaping Completion) throws -> UIViewController {
+    public func viewContoller(for type: String, request: String, uti: String, cb: @escaping Completion) throws -> UIViewController {
         switch type {
         case OpenWalletEthereumAccountKeychainRequest.type:
-            let req = try OpenWalletRequest<OpenWalletEthereumAccountKeychainRequest>(json: request)
+            let req = try OpenWalletRequest<OpenWalletEthereumAccountKeychainRequest>(json: request, uti: uti)
             return viewProvider.accountRequestView(req: req.data.request) { err, res in
                 if let res = res {
-                    cb(nil, try! req.response(data: res).serialize())
+                    cb(nil, req.response(data: res))
                 } else {
                     cb(err, nil)
                 }
             }
         case OpenWalletEthereumSignTxKeychainRequest.type:
-            let req = try OpenWalletRequest<OpenWalletEthereumSignTxKeychainRequest>(json: request)
+            let req = try OpenWalletRequest<OpenWalletEthereumSignTxKeychainRequest>(json: request, uti: uti)
             return viewProvider.signTransactionView(req: req.data.request) { err, res in
                 if let res = res {
-                    cb(nil, try! req.response(data: res).serialize())
+                    cb(nil, req.response(data: res))
                 } else {
                     cb(err, nil)
                 }
             }
         case OpenWalletEthereumSignDataKeychainRequest.type:
-            let req = try OpenWalletRequest<OpenWalletEthereumSignDataKeychainRequest>(json: request)
+            let req = try OpenWalletRequest<OpenWalletEthereumSignDataKeychainRequest>(json: request, uti: uti)
             return viewProvider.signDataView(req: req.data.request) { err, res in
                 if let res = res {
-                    cb(nil, try! req.response(data: res).serialize())
+                    cb(nil, req.response(data: res))
                 } else {
                     cb(err, nil)
                 }

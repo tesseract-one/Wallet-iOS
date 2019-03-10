@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.ios.gettes.wallet.shared</string>
+		<string>group.io.gettes.wallet.shared</string>
 	</array>
 </dict>
 </plist>

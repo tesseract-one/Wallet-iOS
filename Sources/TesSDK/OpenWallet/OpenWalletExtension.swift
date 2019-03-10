@@ -19,8 +19,8 @@ private struct OpenWalletBaseMessageData: OpenWalletRequestDataProtocol {
 public protocol OpenWalletRequestHandler {
     var supportedUTI: Array<String> { get }
     
-    typealias Completion = (Error?, String?) -> Void
-    func viewContoller(for type: String, request: String, cb: @escaping Completion) throws -> UIViewController
+    typealias Completion = (Error?, OpenWalletResponseProtocol?) -> Void
+    func viewContoller(for type: String, request: String, uti: String, cb: @escaping Completion) throws -> UIViewController
 }
 
 open class OpenWalletExtensionViewController: UIViewController {
@@ -54,21 +54,25 @@ open class OpenWalletExtensionViewController: UIViewController {
         }
         
         item.loadItem(forTypeIdentifier: requestUTI, options: nil) { [unowned self] request, error in
-            guard let dataStr = request as? String, let base = try? OpenWalletRequest<OpenWalletBaseMessageData>(json: dataStr) else {
+            guard let dataStr = request as? String, let base = try? OpenWalletRequest<OpenWalletBaseMessageData>(json: dataStr, uti: requestUTI) else {
                 self.extensionContext!.cancelRequest(withError: OpenWalletError.wrongRequest(item))
                 return
             }
             DispatchQueue.main.async {
                 do {
-                    let vc = try handler.viewContoller(for: base.data.request.type, request: dataStr) { err, res in
+                    let vc = try handler.viewContoller(for: base.data.request.type, request: dataStr, uti: requestUTI) { err, res in
                         if let err = err {
                             self.extensionContext!.cancelRequest(withError: err)
                         } else if let res = res {
-                            let reply = NSExtensionItem()
-                            reply.attachments = [
-                                NSItemProvider(item: res as NSSecureCoding, typeIdentifier: requestUTI)
-                            ]
-                            self.extensionContext!.completeRequest(returningItems: [reply], completionHandler: nil)
+                            do {
+                                let reply = NSExtensionItem()
+                                reply.attachments = [
+                                    NSItemProvider(item: try res.serialize() as NSSecureCoding, typeIdentifier: res.uti)
+                                ]
+                                self.extensionContext!.completeRequest(returningItems: [reply], completionHandler: nil)
+                            } catch (let err) {
+                                self.extensionContext!.cancelRequest(withError: err)
+                            }
                         } else {
                             self.extensionContext!.cancelRequest(withError: OpenWalletError.emptyResponse)
                         }

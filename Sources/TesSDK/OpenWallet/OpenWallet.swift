@@ -14,7 +14,6 @@ import Darwin
 enum OpenWalletError: Error {
     case emptyRootView
     case cancelled
-    case wrongActivityType(UIActivity.ActivityType?)
     case cantHandleAPI(String)
     case emptyRequest
     case emptyResponse
@@ -24,8 +23,7 @@ enum OpenWalletError: Error {
 }
 
 public class OpenWallet: SignProvider {
-    private let appDelegate: UIApplicationDelegate
-    
+    private let window: UIWindow
     private var requestCounter: UInt32
     private let lock = NSLock()
     
@@ -37,8 +35,9 @@ public class OpenWallet: SignProvider {
         return Set(OpenWallet.networkUTIs.keys)
     }
     
-    public init(appDelegate: UIApplicationDelegate) {
-        self.appDelegate = appDelegate
+    public init(window: UIWindow) {
+        // TODO: Remove this
+        self.window = window
         self.requestCounter = 0
     }
     
@@ -49,12 +48,12 @@ public class OpenWallet: SignProvider {
                 resolver.reject(OpenWalletError.emptyResponse)
                 return
             }
-            item.loadItem(forTypeIdentifier: req.dataTypeUTI(), options: nil) { result, error in
+            item.loadItem(forTypeIdentifier: req.uti, options: nil) { result, error in
                 if let error = error {
                     resolver.reject(error)
-                } else if let result = result as? [String], let string = result.first, let data = string.data(using: .utf8) {
+                } else if let data = result as? String {
                     do {
-                        resolver.fulfill(try JSONDecoder().decode(R.Response.self, from: data))
+                        resolver.fulfill(try req.parseResponse(json: data).data.response)
                     } catch(let err) {
                         resolver.reject(OpenWalletError.decodeError(err))
                     }
@@ -84,17 +83,13 @@ public class OpenWallet: SignProvider {
                     resolver.reject(OpenWalletError.cancelled)
                     return
                 }
-                if activityType != request.activityType() {
-                    resolver.reject(OpenWalletError.wrongActivityType(activityType))
-                    return
-                }
                 OpenWallet
                     .response(req: request, items: returnedItems)
                     .done { resolver.fulfill($0) }
                     .catch { resolver.reject($0) }
             }
             
-            guard let window = self?.appDelegate.window, let rootView = window?.rootViewController else {
+            guard let window = self?.window, let rootView = window.rootViewController else {
                 return resolver.reject(OpenWalletError.emptyRootView)
             }
             
