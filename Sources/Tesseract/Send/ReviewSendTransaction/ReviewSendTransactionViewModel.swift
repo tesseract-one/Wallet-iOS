@@ -52,19 +52,19 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         super.init()
         
-        combineLatest(amount, gasAmount).map{"\($0 - $1) ETH"}.bind(to: receiveAmountString).dispose(in: bag)
+        combineLatest(amount, gasAmount).map{"\(($0 - $1).rounded(toPlaces: 10)) ETH"}.bind(to: receiveAmountString).dispose(in: bag)
         combineLatest(amount, gasAmount, changeRateService.changeRates[.Ethereum]!)
-            .map{"\(($0 - $1)*$2) USD"}.bind(to: receiveAmountUSD).dispose(in: bag)
+            .map{"\((($0 - $1)*$2).rounded(toPlaces: 2)) USD"}.bind(to: receiveAmountUSD).dispose(in: bag)
         
         combineLatest(amount, changeRateService.changeRates[.Ethereum]!)
-            .map{"\($0 * $1) USD"}.bind(to: amountUSD).dispose(in: bag)
+            .map{"\(($0 * $1).rounded(toPlaces: 2)) USD"}.bind(to: amountUSD).dispose(in: bag)
         amount.map{"\($0) ETH"}.bind(to: amountString).dispose(in: bag)
         
         combineLatest(gasAmount, changeRateService.changeRates[.Ethereum]!)
-            .map{"\($0 * $1) USD"}.bind(to: gasAmountUSD).dispose(in: bag)
+            .map{"\(($0 * $1).rounded(toPlaces: 2)) USD"}.bind(to: gasAmountUSD).dispose(in: bag)
         gasAmount.map{String(format: "%f", $0)+" ETH"}.bind(to: gasAmountString).dispose(in: bag)
         
-        balance.map{"\($0) ETH"}.bind(to: balanceString).dispose(in: bag)
+        balance.map{"\($0.rounded(toPlaces: 4)) ETH"}.bind(to: balanceString).dispose(in: bag)
     }
     
     func bootstrap() {
