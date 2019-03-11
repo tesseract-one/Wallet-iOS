@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SignInViewController: UIViewController, ModelVCProtocol {
+class SignInViewController: KeyboardScrollViewFromBoth, ModelVCProtocol {
     typealias ViewModel = SignInViewModel
     
     private(set) var model: ViewModel!

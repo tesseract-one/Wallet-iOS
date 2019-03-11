@@ -26,20 +26,20 @@
             <objects>
                 <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="8R7-x6-NKM" customClass="KeyboardInputScrollView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h2D-To-CtD">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-Tt-Ehc">
-                                                <rect key="frame" x="0.0" y="20" width="320" height="114"/>
+                                                <rect key="frame" x="0.0" y="20" width="320" height="126"/>
                                                 <subviews>
                                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wIJ-Dj-xQx">
-                                                        <rect key="frame" x="123" y="20" width="74" height="74"/>
+                                                        <rect key="frame" x="119" y="22" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="wIJ-Dj-xQx" secondAttribute="height" multiplier="1:1" id="l66-7z-BXI"/>
                                                         </constraints>
@@ -52,7 +52,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-GL-UP9">
-                                                <rect key="frame" x="39.5" y="134" width="241" height="48"/>
+                                                <rect key="frame" x="39.5" y="146" width="241" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="yGV-wL-SLm"/>
                                                 </constraints>
@@ -61,7 +61,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwF-BI-OU2">
-                                                <rect key="frame" x="15" y="190" width="290" height="24"/>
+                                                <rect key="frame" x="15" y="202" width="290" height="24"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="24" id="hpv-Nw-eM6"/>
                                                 </constraints>
@@ -70,7 +70,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="boP-Jv-ldG" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="203.5" width="288" height="40"/>
+                                                <rect key="frame" x="16" y="252" width="288" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="iDD-0g-V4Q"/>
                                                 </constraints>
@@ -100,7 +100,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-ft-38H" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="267.5" width="288" height="40"/>
+                                                <rect key="frame" x="16" y="316" width="288" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="oHJ-Dl-i1Q"/>
                                                 </constraints>
@@ -128,7 +128,7 @@
                                                 </connections>
                                             </textField>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-ue-ER6">
-                                                <rect key="frame" x="16" y="339.5" width="288" height="108"/>
+                                                <rect key="frame" x="16" y="388" width="288" height="108"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbA-dT-H7q" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
@@ -207,7 +207,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="eXX-7g-cig"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Register" largeTitleDisplayMode="always" id="HTj-bq-RXF"/>
+                    <navigationItem key="navigationItem" title="Register" largeTitleDisplayMode="never" id="HTj-bq-RXF"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="8wX-ft-38H" id="oSX-j4-zj6"/>
                         <outlet property="passwordField" destination="boP-Jv-ldG" id="tmB-RJ-RCC"/>
@@ -462,7 +462,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
-                                                <rect key="frame" x="16" y="96" width="288" height="20"/>
+                                                <rect key="frame" x="16" y="96" width="288" height="19"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -481,7 +481,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D4f-hf-0jP" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="13" y="124" width="291" height="200"/>
+                                                <rect key="frame" x="13" y="123" width="291" height="200"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="uat-Jw-gbH"/>
                                                 </constraints>
@@ -569,48 +569,101 @@
             <objects>
                 <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="SignInViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpN-zK-av5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="jrk-K5-HPf" customClass="KeyboardInputScrollView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-2k-pAp">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="267"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OCu-fg-gHd">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujy-H1-l28">
+                                        <rect key="frame" x="0.0" y="34.5" width="320" height="126"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujy-H1-l28">
-                                                <rect key="frame" x="0.0" y="20" width="320" height="114"/>
-                                                <subviews>
-                                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="6bO-lU-xEu">
-                                                        <rect key="frame" x="123" y="20" width="74" height="74"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" secondItem="6bO-lU-xEu" secondAttribute="height" multiplier="1:1" id="xC1-JN-Bix"/>
-                                                        </constraints>
-                                                    </imageView>
-                                                </subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="6bO-lU-xEu">
+                                                <rect key="frame" x="119" y="22" width="82" height="82"/>
                                                 <constraints>
-                                                    <constraint firstItem="6bO-lU-xEu" firstAttribute="centerY" secondItem="ujy-H1-l28" secondAttribute="centerY" id="5Bm-j8-Uaf"/>
-                                                    <constraint firstItem="6bO-lU-xEu" firstAttribute="centerX" secondItem="ujy-H1-l28" secondAttribute="centerX" id="CYx-vV-cPr"/>
-                                                    <constraint firstItem="6bO-lU-xEu" firstAttribute="height" secondItem="ujy-H1-l28" secondAttribute="height" multiplier="0.65" id="NNf-ym-L1l"/>
+                                                    <constraint firstAttribute="width" secondItem="6bO-lU-xEu" secondAttribute="height" multiplier="1:1" id="xC1-JN-Bix"/>
                                                 </constraints>
-                                            </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26K-vS-IBg">
-                                                <rect key="frame" x="39.5" y="134" width="241" height="48"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="48" id="bb6-mV-Kkm"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="36"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-uV-EnZ">
-                                                <rect key="frame" x="15" y="190" width="290" height="20.5"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="6bO-lU-xEu" firstAttribute="centerY" secondItem="ujy-H1-l28" secondAttribute="centerY" id="5Bm-j8-Uaf"/>
+                                            <constraint firstItem="6bO-lU-xEu" firstAttribute="centerX" secondItem="ujy-H1-l28" secondAttribute="centerX" id="CYx-vV-cPr"/>
+                                            <constraint firstItem="6bO-lU-xEu" firstAttribute="height" secondItem="ujy-H1-l28" secondAttribute="height" multiplier="0.65" id="NNf-ym-L1l"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26K-vS-IBg">
+                                        <rect key="frame" x="39.5" y="190.5" width="241" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="bb6-mV-Kkm"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="36"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-uV-EnZ">
+                                        <rect key="frame" x="15" y="246.5" width="290" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="26K-vS-IBg" firstAttribute="centerX" secondItem="ENg-2k-pAp" secondAttribute="centerX" id="1YS-JQ-AgZ"/>
+                                    <constraint firstItem="w1j-uV-EnZ" firstAttribute="centerX" secondItem="ENg-2k-pAp" secondAttribute="centerX" id="3Aq-mH-cGc"/>
+                                    <constraint firstItem="26K-vS-IBg" firstAttribute="top" secondItem="ujy-H1-l28" secondAttribute="bottom" constant="30" id="NyX-hk-wLg"/>
+                                    <constraint firstItem="w1j-uV-EnZ" firstAttribute="top" secondItem="26K-vS-IBg" secondAttribute="bottom" constant="8" id="Qcz-Xz-2pI"/>
+                                    <constraint firstItem="ujy-H1-l28" firstAttribute="leading" secondItem="ENg-2k-pAp" secondAttribute="leading" id="eKe-rO-Vgh"/>
+                                    <constraint firstAttribute="bottom" secondItem="w1j-uV-EnZ" secondAttribute="bottom" id="jL3-6Q-c9d"/>
+                                    <constraint firstAttribute="trailing" secondItem="ujy-H1-l28" secondAttribute="trailing" id="rgj-8b-WOz"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P80-32-YRo">
+                                <rect key="frame" x="0.0" y="267" width="320" height="237"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
+                                        <rect key="frame" x="16" y="105" width="288" height="108"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
+                                                <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                                <state key="normal" title="Unlock">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="58" width="288" height="50"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                                <state key="normal" title="Restore Key">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="V3v-qf-LkC" firstAttribute="height" secondItem="h7y-Me-OLL" secondAttribute="height" id="Qo8-12-Akq"/>
+                                            <constraint firstAttribute="height" constant="108" id="ZIw-OR-fwn"/>
+                                        </constraints>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxb-a9-DHO">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="105"/>
+                                        <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-r1-3jz" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="287.5" width="288" height="20"/>
+                                                <rect key="frame" x="16" y="30.5" width="288" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="flg-aA-B31"/>
+                                                </constraints>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <textInputTraits key="textInputTraits" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
@@ -634,93 +687,55 @@
                                                     <outlet property="nextResponderView" destination="V3v-qf-LkC" id="Ugw-qj-yWf"/>
                                                 </connections>
                                             </textField>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
-                                                <rect key="frame" x="16" y="339.5" width="288" height="108"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
-                                                        <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                                        <state key="normal" title="Unlock">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="4"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="58" width="288" height="50"/>
-                                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                                        <state key="normal" title="Restore Key">
-                                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        </state>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="4"/>
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </button>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="V3v-qf-LkC" firstAttribute="height" secondItem="h7y-Me-OLL" secondAttribute="height" id="Qo8-12-Akq"/>
-                                                    <constraint firstAttribute="height" constant="108" id="ZIw-OR-fwn"/>
-                                                </constraints>
-                                            </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="26K-vS-IBg" firstAttribute="top" secondItem="ujy-H1-l28" secondAttribute="bottom" id="4w9-yO-pb1"/>
-                                            <constraint firstItem="w1j-uV-EnZ" firstAttribute="centerX" secondItem="OCu-fg-gHd" secondAttribute="centerX" id="BKl-jQ-iPx"/>
-                                            <constraint firstItem="uK0-wJ-naJ" firstAttribute="leading" secondItem="OCu-fg-gHd" secondAttribute="leading" constant="16" id="EDB-dS-WYp"/>
-                                            <constraint firstItem="uK0-wJ-naJ" firstAttribute="top" secondItem="ngg-r1-3jz" secondAttribute="bottom" constant="32" id="EWE-hH-a7J"/>
-                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="leading" secondItem="uK0-wJ-naJ" secondAttribute="leading" id="Eb7-55-aTH"/>
-                                            <constraint firstAttribute="trailing" secondItem="uK0-wJ-naJ" secondAttribute="trailing" constant="16" id="Q4f-RC-CRW"/>
-                                            <constraint firstItem="ujy-H1-l28" firstAttribute="leading" secondItem="OCu-fg-gHd" secondAttribute="leading" id="V7T-cq-Ffv"/>
-                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="trailing" secondItem="uK0-wJ-naJ" secondAttribute="trailing" id="Zgg-vN-4zQ"/>
-                                            <constraint firstItem="w1j-uV-EnZ" firstAttribute="top" secondItem="26K-vS-IBg" secondAttribute="bottom" constant="8" id="erx-np-CeF"/>
-                                            <constraint firstAttribute="bottom" secondItem="uK0-wJ-naJ" secondAttribute="bottom" constant="8" id="ij3-j0-7Wk"/>
-                                            <constraint firstAttribute="trailing" secondItem="ujy-H1-l28" secondAttribute="trailing" id="oi6-lr-0k8"/>
-                                            <constraint firstItem="ujy-H1-l28" firstAttribute="height" secondItem="OCu-fg-gHd" secondAttribute="height" multiplier="0.25" id="w4H-vW-ex0"/>
-                                            <constraint firstItem="ujy-H1-l28" firstAttribute="top" secondItem="OCu-fg-gHd" secondAttribute="top" constant="20" id="zBg-R9-Q9s"/>
-                                            <constraint firstItem="26K-vS-IBg" firstAttribute="centerX" secondItem="OCu-fg-gHd" secondAttribute="centerX" id="zV2-gI-DWx"/>
+                                            <constraint firstAttribute="trailing" secondItem="ngg-r1-3jz" secondAttribute="trailing" constant="16" id="4BT-nQ-Z64"/>
+                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="leading" secondItem="vxb-a9-DHO" secondAttribute="leading" constant="16" id="GCK-wx-Ya9"/>
+                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="centerY" secondItem="vxb-a9-DHO" secondAttribute="centerY" id="JdW-P7-2fm"/>
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="OCu-fg-gHd" secondAttribute="trailing" id="9rF-dP-pdo"/>
-                                    <constraint firstItem="OCu-fg-gHd" firstAttribute="top" secondItem="jrk-K5-HPf" secondAttribute="top" id="fos-ZE-AQd"/>
-                                    <constraint firstItem="OCu-fg-gHd" firstAttribute="leading" secondItem="jrk-K5-HPf" secondAttribute="leading" id="hg5-SJ-RyA"/>
-                                    <constraint firstAttribute="bottom" secondItem="OCu-fg-gHd" secondAttribute="bottom" id="wAd-cl-juQ"/>
+                                    <constraint firstItem="vxb-a9-DHO" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" id="Pra-w7-3G0"/>
+                                    <constraint firstItem="uK0-wJ-naJ" firstAttribute="top" secondItem="vxb-a9-DHO" secondAttribute="bottom" id="SQE-hK-TNZ"/>
+                                    <constraint firstItem="uK0-wJ-naJ" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" constant="16" id="YDf-I6-lUO"/>
+                                    <constraint firstAttribute="trailing" secondItem="vxb-a9-DHO" secondAttribute="trailing" id="adS-Uf-KA5"/>
+                                    <constraint firstAttribute="trailing" secondItem="uK0-wJ-naJ" secondAttribute="trailing" constant="16" id="f9X-pm-Qyq"/>
+                                    <constraint firstItem="vxb-a9-DHO" firstAttribute="top" secondItem="P80-32-YRo" secondAttribute="top" id="g21-GR-QJE"/>
+                                    <constraint firstAttribute="bottom" secondItem="uK0-wJ-naJ" secondAttribute="bottom" constant="24" id="k8e-O3-2q9"/>
                                 </constraints>
-                            </scrollView>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="jrk-K5-HPf" firstAttribute="leading" secondItem="lpN-zK-av5" secondAttribute="leading" id="MsZ-zP-mNd"/>
-                            <constraint firstItem="OCu-fg-gHd" firstAttribute="height" secondItem="lpN-zK-av5" secondAttribute="height" id="P7N-mn-znf"/>
-                            <constraint firstItem="jrk-K5-HPf" firstAttribute="bottom" secondItem="lpN-zK-av5" secondAttribute="bottom" id="aSl-2y-Ju3"/>
-                            <constraint firstAttribute="trailing" secondItem="jrk-K5-HPf" secondAttribute="trailing" id="cZa-3T-r1Z"/>
-                            <constraint firstItem="jrk-K5-HPf" firstAttribute="top" secondItem="lpN-zK-av5" secondAttribute="top" id="fRl-ga-PJz"/>
-                            <constraint firstItem="OCu-fg-gHd" firstAttribute="width" secondItem="lpN-zK-av5" secondAttribute="width" id="xH3-23-Gmr"/>
+                            <constraint firstItem="ENg-2k-pAp" firstAttribute="top" secondItem="lpN-zK-av5" secondAttribute="top" id="0wm-VB-B9E"/>
+                            <constraint firstItem="ENg-2k-pAp" firstAttribute="leading" secondItem="lpN-zK-av5" secondAttribute="leading" id="5Ak-dl-XYd"/>
+                            <constraint firstItem="P80-32-YRo" firstAttribute="leading" secondItem="lpN-zK-av5" secondAttribute="leading" id="WPQ-8U-14R"/>
+                            <constraint firstAttribute="trailing" secondItem="P80-32-YRo" secondAttribute="trailing" id="WnK-IX-Nqq"/>
+                            <constraint firstItem="P80-32-YRo" firstAttribute="top" secondItem="ENg-2k-pAp" secondAttribute="bottom" id="eYr-3R-sGr"/>
+                            <constraint firstAttribute="trailing" secondItem="ENg-2k-pAp" secondAttribute="trailing" id="fsV-f1-hPt"/>
+                            <constraint firstItem="P80-32-YRo" firstAttribute="bottom" secondItem="lpN-zK-av5" secondAttribute="bottom" id="hdm-c1-bva"/>
+                            <constraint firstItem="ujy-H1-l28" firstAttribute="height" secondItem="lpN-zK-av5" secondAttribute="height" multiplier="0.25" id="lRq-zh-GwO"/>
+                            <constraint firstItem="ENg-2k-pAp" firstAttribute="height" secondItem="lpN-zK-av5" secondAttribute="height" multiplier="0.53" id="wCP-0S-LLS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K6Y-7p-U9g"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SignIn" id="exG-wb-nkA">
+                    <navigationItem key="navigationItem" title="SignIn" largeTitleDisplayMode="never" id="exG-wb-nkA">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="AN7-gA-Eux"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="bottomConstraint" destination="k8e-O3-2q9" id="Gjy-Ol-ruR"/>
                         <outlet property="passwordField" destination="ngg-r1-3jz" id="CpX-fb-9ps"/>
                         <outlet property="restoreKeyButton" destination="h7y-Me-OLL" id="SdZ-vs-Zuj"/>
                         <outlet property="signInButton" destination="V3v-qf-LkC" id="CbN-cF-5Ed"/>
+                        <outlet property="topConstraint" destination="0wm-VB-B9E" id="UpE-Wg-733"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RtG-uz-gCR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="693" y="158"/>
+            <point key="canvasLocation" x="691.875" y="157.3943661971831"/>
         </scene>
         <!--Restore Wallet-->
         <scene sceneID="rtT-b9-nAu">

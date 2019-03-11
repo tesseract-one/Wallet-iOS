@@ -23,12 +23,20 @@ class KeyboardScrollViewFromBottom: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.onKeyboardClosed), name: UIResponder.keyboardWillHideNotification, object: nil);
     }
     
+    func moveConstraints(keyboardHeight: CGFloat?) {
+        if let height = keyboardHeight {
+            self.bottomConstraint.constant = self.bottomConstraintInitial + height
+        } else {
+           self.bottomConstraint.constant = self.bottomConstraintInitial
+        }
+    }
+    
     @objc func onKeyboardOpened(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.view.layoutIfNeeded()
-            self.bottomConstraint.constant = self.bottomConstraintInitial + keyboardHeight
+            moveConstraints(keyboardHeight: keyboardHeight)
             UIView.animate(withDuration: 1.0) {
                 self.view.layoutIfNeeded()
             }
@@ -38,18 +46,36 @@ class KeyboardScrollViewFromBottom: UIViewController {
     
     @objc func onKeyboardClosed(notification: NSNotification) {
         self.view.layoutIfNeeded()
-        self.bottomConstraint.constant = self.bottomConstraintInitial
+        moveConstraints(keyboardHeight: nil)
         UIView.animate(withDuration: 1.0) {
             self.view.layoutIfNeeded()
         }
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+class KeyboardScrollViewFromBoth: KeyboardScrollViewFromBottom {
+    
+    private var topConstraintInitial: CGFloat = 0.0
+    
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.topConstraintInitial = self.topConstraint.constant
+    }
+    
+    override func moveConstraints(keyboardHeight: CGFloat?) {
+        super.moveConstraints(keyboardHeight: keyboardHeight)
+        
+        if let height = keyboardHeight {
+            self.topConstraint.constant = self.topConstraintInitial - height
+        } else {
+            self.topConstraint.constant = self.topConstraintInitial
+        }
     }
 }
