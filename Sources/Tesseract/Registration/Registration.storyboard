@@ -280,7 +280,7 @@
                                     <constraint firstAttribute="height" constant="50" id="fUU-St-jTN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                <state key="normal" title="I'm Agree">
+                                <state key="normal" title="I Agree">
                                     <color key="titleColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <userDefinedRuntimeAttributes>

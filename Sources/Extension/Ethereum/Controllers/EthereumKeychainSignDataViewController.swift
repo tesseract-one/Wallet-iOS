@@ -14,9 +14,11 @@ import Bond
 
 class EthereumKeychainSignDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignDataKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     @IBOutlet weak var signData: UILabel!
+    @IBOutlet weak var blurredView: UIView!
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,5 +40,14 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Ope
             .observeNext { signedData, sself in
                 sself.succeed(response: "0x" + signedData.toHexString())
             }.dispose(in: reactive.bag)
+        
+        blurView()
+    }
+    
+    private func blurView() {
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurredView.layout(visualEffectView).edges()
+        blurredView.sendSubviewToBack(visualEffectView)
+        
     }
 }

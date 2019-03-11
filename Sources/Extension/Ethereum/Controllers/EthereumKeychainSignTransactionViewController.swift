@@ -14,27 +14,32 @@ import Bond
 import Web3
 
 class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
-    @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var sendAmount: UILabel!
-    @IBOutlet weak var amountWithFee: UILabel!
-    @IBOutlet weak var data: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var sendAmountLabel: UILabel!
+    @IBOutlet weak var gasFeeLabel: UILabel!
+    @IBOutlet weak var totalAmountLabel: UILabel!
+    @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var blurredView: UIView!
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         title = "New Transaction"
         
-        address.text = request.to
+        addressLabel.text = request.to
         let sendQuantity = EthereumQuantity.bytes(Bytes(hex: request.value)).quantity
-        sendAmount.text = String(sendQuantity.ethValue())
+        sendAmountLabel.text = String(sendQuantity.ethValue())
         
         let withFee = sendQuantity + EthereumQuantity.bytes(Bytes(hex: request.gas)).quantity * EthereumQuantity.bytes(Bytes(hex: request.gasPrice)).quantity
-        amountWithFee.text = String(withFee.ethValue())
+        gasFeeLabel.text = String(withFee.ethValue())
         
-        data.text = request.data
+        totalAmountLabel.text = String(sendQuantity.ethValue() + withFee.ethValue())
+        
+        dataLabel.text = request.data
         
         let req = self.request!
         
@@ -68,6 +73,15 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                 signData.append(UInt8(signedTx.v.quantity) + 27)
                 sself.succeed(response: "0x" + signData.toHexString())
             }
-            .dispose(in: reactive.bag)        
+            .dispose(in: reactive.bag)
+        
+        blurView()
+    }
+    
+    private func blurView() {
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurredView.layout(visualEffectView).edges()
+        blurredView.sendSubviewToBack(visualEffectView)
+
     }
 }

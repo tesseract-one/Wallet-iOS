@@ -12,7 +12,8 @@ import ReactiveKit
 import Material
 import Bond
 
-class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>, UITableViewDelegate, EthereumKeychainViewControllerBaseControls {
+class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>,
+    EthereumKeychainViewControllerBaseControls {
    
     let accounts = MutableObservableArray<Account>()
     let activeAccountIndex = Property<UInt32>(0)
@@ -20,6 +21,8 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
     @IBOutlet weak var chooseAccountTableView: UITableView!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var blurredView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,7 +45,6 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
 //            sself.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
 //        }.dispose(in: reactive.bag)
         
-        chooseAccountTableView.delegate = self
         chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5).map{UInt32($0.item)}.bind(to: activeAccountIndex)
         
         runWalletOperation
@@ -57,20 +59,13 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             .observeNext { address, sself in
                 sself.succeed(response: address)
             }.dispose(in: reactive.bag)
+        
+        blurView()
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
-        header.backgroundColor = UIColor.init(red: 255, green: 255, blue: 255, alpha: 0.0)
-        
-        let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32, height: 16))
-        label.text = "Accounts"
-        label.sizeToFit()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.textColor = UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0)
-        
-        header.addSubview(label)
-        
-        return header
+    private func blurView() {
+        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+        blurredView.layout(visualEffectView).edges()
+        blurredView.sendSubviewToBack(visualEffectView)
     }
 }

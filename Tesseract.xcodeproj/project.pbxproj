@@ -91,6 +91,7 @@
 		92FE9741222E334D007DB61C /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FE973F222E334D007DB61C /* TransactionTableViewCell.xib */; };
 		92FE9742222E334D007DB61C /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9740222E334D007DB61C /* TransactionTableViewCell.swift */; };
 		92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */; };
+		D108644722370294005B10CB /* KeyboardScrollViewFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */; };
 		D1170BED22302CC500ECB398 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEC22302CC400ECB398 /* CustomInsetsTextView.swift */; };
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
@@ -109,7 +110,6 @@
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
 		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
-		D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D171DE47219DA2C4003134DD /* Assets.xcassets */; };
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicViewController.swift */; };
@@ -123,6 +123,10 @@
 		D1B13CCE222DD05E005213F7 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCD222DD05E005213F7 /* BorderedView.swift */; };
 		D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */; };
 		D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */; };
+		D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
+		D1B1E1DE2236B7C1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
+		D1B1E1E02236B812008E4CE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DF2236B812008E4CE8 /* Assets.xcassets */; };
+		D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */; };
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* SignUpViewController.swift */; };
@@ -326,7 +330,6 @@
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
-		D171DE47219DA2C4003134DD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D171DE51219DD0B3003134DD /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +343,9 @@
 		D1B13CCD222DD05E005213F7 /* BorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
 		D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewController.swift; sourceTree = "<group>"; };
 		D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewModel.swift; sourceTree = "<group>"; };
+		D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D1B1E1DF2236B812008E4CE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewFromBottom.swift; sourceTree = "<group>"; };
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -510,6 +516,7 @@
 			isa = PBXGroup;
 			children = (
 				92564D3222356BFA00319D8E /* Fonts */,
+				D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -818,7 +825,7 @@
 		D171DE49219DA36A003134DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				D171DE47219DA2C4003134DD /* Assets.xcassets */,
+				D1B1E1DF2236B812008E4CE8 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -871,6 +878,7 @@
 				D1958B04219B417100113CAA /* KeyboardInputScrollView.swift */,
 				D14B5F292199B75D006F387E /* BorderedButton.swift */,
 				D11FEE5F22306CB400738AAD /* ShadowedViews.swift */,
+				D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1125,7 +1133,8 @@
 				92564D3D22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */,
 				D1201FEB222DA9E70030C2C2 /* Receive.storyboard in Resources */,
 				92564D3B22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */,
-				D171DE48219DA2C4003134DD /* Assets.xcassets in Resources */,
+				D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */,
+				D1B1E1E02236B812008E4CE8 /* Assets.xcassets in Resources */,
 				D14A50222229B1A40069A262 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1148,6 +1157,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B1E1DE2236B7C1008E4CE8 /* Images.xcassets in Resources */,
 				92564D3E22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */,
 				D1D82F5622330944003BDFE2 /* ChooseAccountTableViewCell.xib in Resources */,
 				9299323822248422000EAD47 /* MainInterface.storyboard in Resources */,
@@ -1331,6 +1341,7 @@
 				D171DE54219DE3A5003134DD /* MnemonicVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */,
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
+				D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardInputScrollView.swift in Sources */,
 				D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
@@ -1412,6 +1423,7 @@
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,
 				928A916F2232DC08005DA7B4 /* ExtensionViewController.swift in Sources */,
+				D108644722370294005B10CB /* KeyboardScrollViewFromBottom.swift in Sources */,
 				928A915E22329F96005DA7B4 /* EthereumKeychainViewProvider.swift in Sources */,
 				D1D82F462232E0BF003BDFE2 /* ErrorTextField+Bind.swift in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 import UIKit
 import TesSDK
+import Material
 
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
@@ -46,12 +47,16 @@ class MainViewController: OpenWalletExtensionViewController {
         if let contexted = vc as? ExtensionViewController {
             contexted.context = context
         }
-        containerView.addSubview(vc.view)
+        containerView.layout(vc.view).edges()
         
         for child in children {
             child.removeFromParent()
         }
         addChild(vc)
         subTitle.text = vc.title
+    }
+    
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 }
