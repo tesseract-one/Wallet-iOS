@@ -91,13 +91,5 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         context.changeRateService.changeRates[.Ethereum]!
             .bind(to: usdChangeRate)
             .dispose(in: reactive.bag)
-
-        blurView()
-    }
-    
-    private func blurView() {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurredView.layout(visualEffectView).edges()
-        blurredView.sendSubviewToBack(visualEffectView)
     }
 }

@@ -59,13 +59,5 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             .observeNext { address, sself in
                 sself.succeed(response: address)
             }.dispose(in: reactive.bag)
-        
-        blurView()
-    }
-    
-    private func blurView() {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurredView.layout(visualEffectView).edges()
-        blurredView.sendSubviewToBack(visualEffectView)
     }
 }

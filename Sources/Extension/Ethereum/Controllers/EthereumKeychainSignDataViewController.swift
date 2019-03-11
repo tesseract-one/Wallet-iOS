@@ -41,14 +41,5 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Ope
             .observeNext { signedData, sself in
                 sself.succeed(response: "0x" + signedData.toHexString())
             }.dispose(in: reactive.bag)
-        
-        blurView()
-    }
-    
-    private func blurView() {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurredView.layout(visualEffectView).edges()
-        blurredView.sendSubviewToBack(visualEffectView)
-        
     }
 }
