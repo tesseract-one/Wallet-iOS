@@ -85,7 +85,7 @@ class HomeViewModel: ViewModel {
                 service.getTransactions(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
             }
         
-        txs.suppressedErrors.bind(to: transactions).dispose(in: bag)
+        txs.suppressedErrors.map{ $0.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! }) }.bind(to: transactions).dispose(in: bag)
         txs.errorNode.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
     }
     
