@@ -27,12 +27,15 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balanceUSDLabel: UILabel!
+    
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var copyButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addressLabel.reactive.tapGesture().with(latestFrom: model.address)
+        copyButton.reactive.tap.throttle(seconds: 0.5)
+            .with(latestFrom: model.address)
             .observeNext { _, address in
                 UIPasteboard.general.string = address
             }.dispose(in: reactive.bag)
