@@ -14,14 +14,10 @@ class MnemonicVerificationViewController: UIViewController, ModelVCProtocol {
   
   private(set) var model: ViewModel!
  
-  // MARK: Outlets
-  //
   @IBOutlet weak var mnemonicVerificationTextView: NextResponderTextView!
   @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var skipButton: UIBarButtonItem!
   
-  // MARK: Lifecycle
-  //
   override func viewDidLoad() {
     super.viewDidLoad()
     

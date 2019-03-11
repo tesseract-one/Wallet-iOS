@@ -105,7 +105,7 @@ class HomeViewModel: ViewModel {
         if let account = activeAccount.value, ethereumNetwork.value > 0 {
             ethWeb3Service.getTransactions(account: Int(account.index), networkId: ethereumNetwork.value)
                 .done { [weak self] in
-                    self?.transactions.replace(with: $0)
+                    self?.transactions.replace(with: $0.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! }))
                 }
                 .catch { [weak self] _ in
                     self?.transactions.replace(with: [])

@@ -15,15 +15,11 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
   
   private(set) var model: ViewModel!
   
-  // MARK: Outlets
-  //  
   @IBOutlet weak var passwordField: UITextField!
   @IBOutlet weak var confirmPasswordField: NextResponderTextField!
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var restoreKeyButton: UIButton!
   
-  // MARK: Lifecycle hooks
-  //
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -83,13 +79,6 @@ class SignUpViewController: UIViewController, ModelVCProtocol {
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
     navigationController?.isNavigationBarHidden = false
-  }
-  
-  // MARK: Default values
-  //
-  // Make the Status Bar Light/Dark Content for this View
-  override var preferredStatusBarStyle : UIStatusBarStyle {
-    return UIStatusBarStyle.lightContent
   }
 }
 

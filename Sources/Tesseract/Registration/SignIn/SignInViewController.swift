@@ -15,14 +15,10 @@ class SignInViewController: UIViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    // MARK: Outlets
-    //
     @IBOutlet weak var passwordField: NextResponderTextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var restoreKeyButton: UIButton!
     
-    // MARK: Lifecycle
-    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -76,12 +72,6 @@ class SignInViewController: UIViewController, ModelVCProtocol {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         navigationController?.isNavigationBarHidden = false
-    }
-    
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
     }
 }
 

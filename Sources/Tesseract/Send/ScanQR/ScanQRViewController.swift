@@ -44,12 +44,6 @@ class ScanQRViewController: UIViewController, RouterViewProtocol {
         super.viewWillDisappear(animated)
         qrCodeScannerView.isWorking.next(false)
     }
-    
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
 }
 
 extension ScanQRViewController: ContextSubject {

@@ -21,8 +21,6 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     
     var closeAction: SafePublishSubject<Void>!
     
-    // MARK: Outlets
-    //
     @IBOutlet weak var qrCodeImageView: QRCodeView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
@@ -48,12 +46,6 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)
-    }
-    
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
     }
 }
 

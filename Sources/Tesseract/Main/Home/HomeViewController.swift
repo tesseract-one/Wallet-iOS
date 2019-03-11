@@ -16,8 +16,6 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    // MARK: Outlets
-    //
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var sendButton: UIButton!
     @IBOutlet weak var receiveButton: UIButton!
@@ -67,12 +65,6 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
 }
 
 extension HomeViewController {
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
-    }
-    
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
         header.backgroundColor = UIColor.init(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)

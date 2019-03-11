@@ -16,7 +16,6 @@ class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
     
     var model: ViewModel!
     
-    // MARK: Outlets
     @IBOutlet weak var balance: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var sentAmount: UILabel!
@@ -60,12 +59,6 @@ class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }.dispose(in: reactive.bag)
-    }
-    
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
     }
 }
 

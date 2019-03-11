@@ -14,13 +14,9 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
   
   private(set) var model: ViewModel!
 
-  // MARK: Outlets
-  //
   @IBOutlet weak var mnemonicLabel: UILabel!
   @IBOutlet weak var doneButton: UIButton!
 
-  // MARK: Lifecycle
-  //
   override func viewDidLoad() {
     super.viewDidLoad()
     

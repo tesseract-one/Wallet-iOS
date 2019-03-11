@@ -25,12 +25,10 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    // MARK: Outlets
     @IBOutlet weak var blurredView: UIView!
     @IBOutlet weak var termsTextView: UITextView!
     @IBOutlet weak var acceptButton: UIButton!
     
-    // MARK: Lifecycle hooks
     override func viewDidLoad() {
         super.viewDidLoad()
         

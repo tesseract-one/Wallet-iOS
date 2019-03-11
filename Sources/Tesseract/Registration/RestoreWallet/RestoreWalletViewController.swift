@@ -15,15 +15,11 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    // MARK: Outlets
-    //
     @IBOutlet weak var mnemonicTextView: UITextView!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
     
-    // MARK: Lifecycle hooks
-    //
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -73,12 +69,6 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
             let vc = try! self?.viewController(for: .named(name: name), context: context)
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
-    }
-
-    // MARK: Default values
-    // Make the Status Bar Light/Dark Content for this View
-    override var preferredStatusBarStyle : UIStatusBarStyle {
-        return UIStatusBarStyle.lightContent
     }
 }
 
