@@ -19,10 +19,10 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     
     let closeModal = SafePublishSubject<Void>()
     
-    let activeAccount = Property<TesSDK.Account?>(nil)
+    let activeAccount = Property<Account?>(nil)
     
     let address = Property<String?>(nil)
-    let ethereumNetwork = Property<Int>(0)
+    let ethereumNetwork = Property<UInt64>(0)
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)

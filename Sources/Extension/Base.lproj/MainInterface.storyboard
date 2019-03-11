@@ -129,7 +129,8 @@
                     </view>
                     <connections>
                         <outlet property="containerView" destination="QDZ-Cb-ClW" id="IGq-6r-HvP"/>
-                        <outlet property="subTitle" destination="RQG-89-gFP" id="vLA-CU-BCt"/>
+                        <outlet property="subTitleLabel" destination="RQG-89-gFP" id="eZ1-Pu-BRV"/>
+                        <outlet property="titleLabel" destination="beN-Yp-vh0" id="CQg-Tw-pCq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CEy-Cv-SGf" userLabel="First Responder" sceneMemberID="firstResponder"/>

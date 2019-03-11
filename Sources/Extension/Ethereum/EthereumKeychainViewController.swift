@@ -18,7 +18,14 @@ protocol EthereumKeychainViewControllerBaseControls  {
     var bottomConstraint: NSLayoutConstraint! { get set }
 }
 
-class EthereumKeychainViewController<Request: OpenWalletRequestDataProtocol>: ExtensionViewController {
+private let NETWORK_NAMES: Dictionary<UInt64, String> = [
+    1: "Main Ethereum Network",
+    2: "Ropsten Test Network",
+    3: "Kovan Test Network",
+    4: "Rinkeby Test Network"
+]
+
+class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProtocol>: ExtensionViewController {
     var responseCb: ((Error?, Request.Response?) -> Void)!
     var request: Request!
     
@@ -40,6 +47,8 @@ class EthereumKeychainViewController<Request: OpenWalletRequestDataProtocol>: Ex
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        subTitle = NETWORK_NAMES[request.networkId] ?? "Unknown Ethereum Network"
         
         _passwordField.reactive.controlEvents(.editingDidBegin).map{_ in ""}.bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
         

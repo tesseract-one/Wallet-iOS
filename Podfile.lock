@@ -82,7 +82,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Material:
-    :commit: 233691ca936f5faeeb148124e4d6c4c0cd4730c4
+    :commit: b9f3ff1504468c1b69eaa1acba62b647768b7a1e
     :git: https://github.com/CosmicMind/Material.git
   Motion:
     :commit: edc38b64f2e814c22989f1412674ee719f64e3de
@@ -107,6 +107,6 @@ SPEC CHECKSUMS:
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: 01fb991557755ea803fe250127a112f0eefe4d14
+PODFILE CHECKSUM: 7f3608730c04361e4f23f912179046668591dfb3
 
 COCOAPODS: 1.6.1

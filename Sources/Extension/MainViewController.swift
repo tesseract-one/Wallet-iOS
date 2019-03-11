@@ -12,7 +12,9 @@ import Material
 
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var subTitle: UILabel!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subTitleLabel: UILabel!
     
     let context = ExtensionContext()
     
@@ -53,7 +55,13 @@ class MainViewController: OpenWalletExtensionViewController {
             child.removeFromParent()
         }
         addChild(vc)
-        subTitle.text = vc.title
+        
+        titleLabel.text = vc.title
+        if let extVc = vc as? ExtensionViewController {
+            subTitleLabel.text = extVc.subTitle
+        } else {
+            subTitleLabel.text = nil
+        }
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {

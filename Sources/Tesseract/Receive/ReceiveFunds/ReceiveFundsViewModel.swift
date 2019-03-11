@@ -11,12 +11,12 @@ import Bond
 import TesSDK
 
 class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
-    let activeAccount = Property<TesSDK.Account?>(nil)
+    let activeAccount = Property<Account?>(nil)
     
     let address = Property<String?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
-    let ethereumNetwork = Property<Int>(0)
+    let ethereumNetwork = Property<UInt64>(0)
     
     let goBack = SafePublishSubject<Void>()
     

@@ -21,14 +21,14 @@ public struct EthereumPersonal {
         let accAddr = account != nil ? account!.hex(eip55: false) : signProvider.account
         if let addr = accAddr {
             return signProvider.sign
-                .eth_signData(account: addr, data: Data(data.bytes))
+                .eth_signData(account: addr, data: Data(data.bytes), networkId: signProvider.networkId)
                 .map{try EthereumData(bytes: $0)}
         }
         return Promise(error: EthereumSignProviderError.emptyAccount)
     }
     
     public func signTransaction(tx: EthereumTransaction) -> Promise<EthereumSignedTransaction> {
-        return signProvider.sign.eth_signTx(tx: tx, chainId: signProvider.chainId)
+        return signProvider.sign.eth_signTx(tx: tx, networkId: signProvider.networkId, chainId: signProvider.chainId)
     }
 }
 

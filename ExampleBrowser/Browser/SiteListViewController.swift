@@ -8,12 +8,12 @@
 
 import UIKit
 
-private let networkNames = [
+private let networkNames: Dictionary<UInt64, String> = [
     1: "Mainnet",
     4: "Rinkeby"
 ]
 
-private let applications = [
+private let applications: Array<(URL?, UInt64)> = [
     //(URL(string:"https://www.cryptokitties.co"), "1")
     //(URL(string:"https://blockchaincuties.co/"), "1")
     //(URL(string:"https://0xuniverse.com"), "1")

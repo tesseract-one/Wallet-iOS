@@ -14,28 +14,30 @@ class EthereumSignWeb3Provider: Web3Provider {
     private let web3: Web3
     
     public var account: String? = nil
-    public let chainId: EthereumQuantity
+    public let networkId: UInt64
+    public let chainId: UInt64
     public let sign: EthereumSignProvider
     
-    init(rpcId: Int, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
+    init(rpcId: UInt64, chainId: UInt64, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
         provider = web3Provider
         sign = signProvider
-        web3 = Web3(provider: web3Provider, rpcId: rpcId)
-        chainId = EthereumQuantity(quantity: BigUInt(rpcId))
+        web3 = Web3(provider: web3Provider, rpcId: Int(rpcId))
+        networkId = rpcId
+        self.chainId = chainId
     }
     
     private func signTransaction(request: RPCRequest<[EthereumTransaction]>) -> Promise<EthereumSignedTransaction> {
         return request.params[0]
             .autononce(web3: web3)
             .then { $0.autogas(web3: self.web3) }
-            .then { self.sign.eth_signTx(tx: $0, chainId: self.chainId) }
+            .then { self.sign.eth_signTx(tx: $0, networkId: self.networkId, chainId: self.chainId) }
     }
     
     func send<Params, Result>(request: RPCRequest<Params>, response: @escaping Web3ResponseCompletion<Result>) {
         switch request.method {
         case "eth_accounts":
             sign
-                .eth_accounts()
+                .eth_accounts(networkId: networkId)
                 .done { accounts in
                     let addresses = try accounts.map { try EthereumAddress(hex: $0, eip55: false) }
                     response(Web3Response(status: .success(addresses)) as! Web3Response<Result>)
@@ -48,7 +50,7 @@ class EthereumSignWeb3Provider: Web3Provider {
             }
             let req = request as! RPCRequest<[String]>
             sign
-                .eth_signData(account: account, data: Data(bytes: req.params[0].hexToBytes()))
+                .eth_signData(account: account, data: Data(bytes: req.params[0].hexToBytes()), networkId: networkId)
                 .map { $0.bytes.reduce("0x") {$0 + String(format: "%02x", $1)} }
                 .done { response(Web3Response(status: .success($0)) as! Web3Response<Result>) }
                 .catch { response(Web3Response(error: $0))}

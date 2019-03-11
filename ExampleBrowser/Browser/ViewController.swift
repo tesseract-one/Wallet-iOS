@@ -13,7 +13,7 @@ import TesSDK
 import Web3
 import PromiseKit
 
-public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<Int, String> = [
+public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<UInt64, String> = [
     1: "https://mainnet.infura.io/v3/f20390fe230e46608572ac4378b70668",
     2: "https://ropsten.infura.io/v3/f20390fe230e46608572ac4378b70668",
     3: "https://kovan.infura.io/v3/f20390fe230e46608572ac4378b70668",
@@ -155,7 +155,7 @@ extension Wallet {
 
 class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
     var appUrl: URL? = nil
-    var netVersion: Int? = nil
+    var netVersion: UInt64? = nil
     
     var wallet:Wallet? = nil
     
@@ -249,7 +249,7 @@ class ViewController: UIViewController, WKUIDelegate, WKNavigationDelegate {
         let openWallet = (UIApplication.shared.delegate! as! AppDelegate).openWallet!
         let endpoint = TESSERACT_ETHEREUM_ENDPOINTS[netVersion!]!
         
-        wallet = Wallet(web3: openWallet.distributedAPI.Ethereum.web3(rpcUrl: endpoint, chainId: netVersion!), endpoint: endpoint)
+        wallet = Wallet(web3: openWallet.distributedAPI.Ethereum.web3(rpcUrl: endpoint, networkId: netVersion!, chainId: netVersion!), endpoint: endpoint)
         
         let myRequest = URLRequest(url: appUrl!)
         

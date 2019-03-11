@@ -25,10 +25,13 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     @IBOutlet weak var passwordField: ErrorTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
+    let isContract = Property<Bool>(false)
+    let usdChangeRate = Property<Double>(0.0)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "New Transaction"
+        title = "Sign Transaction"
         
         addressLabel.text = request.to
         let sendQuantity = EthereumQuantity.bytes(Bytes(hex: request.value)).quantity
@@ -59,8 +62,8 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                         value: EthereumQuantity.bytes(Bytes(hex: req.value)),
                         data: EthereumData(raw: Bytes(hex: req.data))
                     )
-                    let chainId = EthereumQuantity.bytes(Bytes(hex: req.chainId))
-                    return wallet.eth_signTx(tx: transaction, chainId: chainId).signal
+                    let chainId = UInt64(EthereumQuantity.bytes(Bytes(hex: req.chainId)).quantity)
+                    return wallet.eth_signTx(tx: transaction, networkId: req.networkId, chainId: chainId).signal
                 } catch (let err) {
                     return ResultSignal<EthereumSignedTransaction, AnyError>.failure(AnyError(err))
                 }
@@ -75,6 +78,20 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
             }
             .dispose(in: reactive.bag)
         
+        context.ethereumWeb3Service
+            .ethereumAPIs.filter{$0 != nil}.map{_ in}
+            .with(weak: context.ethereumWeb3Service)
+            .flatMapLatest { service in
+                service.isContract(address: try! EthereumAddress(hex: req.to, eip55: false), networkId: req.networkId).signal
+            }
+            .suppressedErrors
+            .bind(to: isContract)
+            .dispose(in: reactive.bag)
+        
+        context.changeRateService.changeRates[.Ethereum]!
+            .bind(to: usdChangeRate)
+            .dispose(in: reactive.bag)
+
         blurView()
     }
     
@@ -82,6 +99,5 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
         blurredView.layout(visualEffectView).edges()
         blurredView.sendSubviewToBack(visualEffectView)
-
     }
 }

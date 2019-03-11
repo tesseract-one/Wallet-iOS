@@ -28,10 +28,10 @@ public class EthereumAPIs: NetworkAPI {
         }
     }
     
-    public func web3(rpcUrl: String, chainId: Int) -> Web3 {
+    public func web3(rpcUrl: String, networkId: UInt64, chainId: UInt64) -> Web3 {
         let web3Provider = Web3HttpProvider(rpcURL: rpcUrl)
-        let sign = EthereumSignWeb3Provider(rpcId: chainId, web3Provider: web3Provider, signProvider: signProvider!)
-        return Web3(provider: sign, rpcId: chainId)
+        let sign = EthereumSignWeb3Provider(rpcId: networkId, chainId: chainId, web3Provider: web3Provider, signProvider: signProvider!)
+        return Web3(provider: sign, rpcId: Int(chainId))
     }
     
     public func etherscan(apiUrl: String, apiToken: String) -> EthereumEtherscanAPI {

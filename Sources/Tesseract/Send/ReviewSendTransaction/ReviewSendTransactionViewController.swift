@@ -69,7 +69,7 @@ extension ReviewSendTransactionViewController: ContextSubject {
         model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService)
         model.account.next(context.get(bean: "account")! as? Account)
         model.address.next(context.get(bean: "address")! as! String)
-        model.ethereumNetwork.next(context.get(bean: "network")! as! Int)
+        model.ethereumNetwork.next(context.get(bean: "network")! as! UInt64)
         model.amount.next(context.get(bean: "amount")! as! Double)
         model.gasAmount.next(context.get(bean: "gasAmount")! as! Double)
         model.balance.next(context.get(bean: "balance")! as! Double)

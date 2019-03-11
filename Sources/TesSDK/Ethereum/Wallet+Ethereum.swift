@@ -20,11 +20,11 @@ extension Account {
 }
 
 extension Wallet: EthereumSignProvider {
-    public func eth_accounts() -> Promise<Array<String>> {
+    public func eth_accounts(networkId: UInt64) -> Promise<Array<String>> {
         return Promise().map { try self.accounts.map { try $0.eth_address() } }
     }
     
-    public func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+    public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<EthereumSignedTransaction> {
         guard let account = tx.from?.hex(eip55: false) else {
             return Promise(error: EthereumSignProviderError.emptyAccount)
         }
@@ -37,7 +37,7 @@ extension Wallet: EthereumSignProvider {
 //            .then { $0.eth_verify(data: data, signature: signature) }
 //    }
     
-    public func eth_signData(account: String, data: Data) -> Promise<Data> {
+    public func eth_signData(account: String, data: Data, networkId: UInt64) -> Promise<Data> {
         return eth_account(address: account)
             .then { $0.eth_signData(data: data) }
     }
@@ -59,12 +59,13 @@ extension Wallet: EthereumSignProvider {
 }
 
 extension Account {
-    fileprivate func eth_signTx(tx: EthereumTransaction, chainId: EthereumQuantity) -> Promise<EthereumSignedTransaction> {
+    fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<EthereumSignedTransaction> {
+        let chId = EthereumQuantity(quantity: BigUInt(chainId))
         //TODO: Rewrite this SHIT to secure methods
         return eth_hdwallet()
             .map { try $0.privateKey(network: .Ethereum, keyPath: self.keyPath) }
             .map { try EthereumPrivateKey(bytes: $0) }
-            .map { try tx.sign(with: $0, chainId: chainId) }
+            .map { try tx.sign(with: $0, chainId: chId) }
     }
     
 //    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {

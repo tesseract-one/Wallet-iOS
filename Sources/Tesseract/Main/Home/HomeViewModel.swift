@@ -17,8 +17,8 @@ class HomeViewModel: ViewModel {
     let sendAction = SafePublishSubject<Void>()
     let receiveAction = SafePublishSubject<Void>()
     
-    let activeAccount = Property<TesSDK.Account?>(nil)
-    let ethereumNetwork = Property<Int>(0)
+    let activeAccount = Property<Account?>(nil)
+    let ethereumNetwork = Property<UInt64>(0)
     let transactions = MutableObservableArray<EthereumTransactionLog>()
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)

@@ -11,6 +11,8 @@ import UIKit
 class ExtensionViewController: UIViewController {
     var context: ExtensionContext!
     
+    var subTitle: String? = nil
+    
     override var preferredStatusBarStyle : UIStatusBarStyle {
         return UIStatusBarStyle.lightContent
     }

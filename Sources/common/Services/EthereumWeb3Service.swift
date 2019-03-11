@@ -18,10 +18,10 @@ class EthereumWeb3Service {
     var wallet: Property<Wallet?>!
     var ethereumAPIs: Property<EthereumAPIs?> = Property(nil)
     
-    var endpoints: Dictionary<Int, String> = TESSERACT_ETHEREUM_ENDPOINTS
+    var endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
     
     var etherscanApiToken = "B7F32GXMBH169BF1SKBYPG4K8SKGSJGDGV"
-    var etherscanEndpoints: Dictionary<Int, String> = [
+    var etherscanEndpoints: Dictionary<UInt64, String> = [
         1: "https://api.etherscan.io",
         2: "https://api-ropsten.etherscan.io",
         3: "https://api-kovan.etherscan.io",
@@ -38,8 +38,8 @@ class EthereumWeb3Service {
             .dispose(in: bag)
     }
     
-    func getBalance(account: Int, networkId: Int) -> Promise<Double> {
-        var web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+    func getBalance(account: Int, networkId: UInt64) -> Promise<Double> {
+        var web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, networkId: networkId, chainId: networkId)
         let account = wallet.value!.accounts[account]
         web3.activeAccount = try! account.eth_address()
         return web3.eth
@@ -47,8 +47,8 @@ class EthereumWeb3Service {
             .map { Double($0.quantity) / pow(10.0, 18) }
     }
     
-    func sendEthereum(account: Int, to: String, amountEth: Double, networkId: Int) -> Promise<Void> {
-        var web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+    func sendEthereum(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {
+        var web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, networkId: networkId, chainId: networkId)
         let account = wallet.value!.accounts[account]
         web3.activeAccount = try! account.eth_address()
         let tx = EthereumTransaction(
@@ -59,11 +59,18 @@ class EthereumWeb3Service {
         return web3.eth.sendTransaction(transaction: tx).asVoid()
     }
     
-    func estimateGas(call: EthereumCall, networkId: Int) -> Promise<Double> {
+    func estimateGas(call: EthereumCall, networkId: UInt64) -> Promise<Double> {
         return _estimateGasWei(call: call, networkId: networkId).map{Double($0) / pow(10.0, 18)}
     }
     
-    func estimateSendTxGas(account: Int, to: String, amountEth: Double, networkId: Int) -> Promise<Double> {
+    func isContract(address: EthereumAddress, networkId: UInt64) -> Promise<Bool> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, networkId: networkId, chainId: networkId)
+        return web3.eth.getCode(address: address, block: .latest).map { data in
+            data.bytes.count > 0
+        }
+    }
+    
+    func estimateSendTxGas(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Double> {
         let account = wallet.value!.accounts[account]
         let gasPrice = _estimateGasPriceWei(networkId: networkId)
         
@@ -78,21 +85,21 @@ class EthereumWeb3Service {
             .map{Double($0) / pow(10.0, 18)}
     }
     
-    func estimateGasPrice(networkId: Int) -> Promise<Double> {
+    func estimateGasPrice(networkId: UInt64) -> Promise<Double> {
         return _estimateGasPriceWei(networkId: networkId).map{Double($0) / pow(10.0, 18)}
     }
     
-    private func _estimateGasWei(call: EthereumCall, networkId: Int) -> Promise<BigUInt> {
-        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+    private func _estimateGasWei(call: EthereumCall, networkId: UInt64) -> Promise<BigUInt> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, networkId: networkId, chainId: networkId)
         return web3.eth.estimateGas(call: call).map{$0.quantity}
     }
     
-    private func _estimateGasPriceWei(networkId: Int) -> Promise<BigUInt> {
-        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, chainId: networkId)
+    private func _estimateGasPriceWei(networkId: UInt64) -> Promise<BigUInt> {
+        let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!, networkId: networkId, chainId: networkId)
         return web3.eth.gasPrice().map{$0.quantity}
     }
     
-    func getTransactions(account: Int, networkId: Int) -> Promise<Array<EthereumTransactionLog>> {
+    func getTransactions(account: Int, networkId: UInt64) -> Promise<Array<EthereumTransactionLog>> {
         let etherscan = ethereumAPIs.value!.etherscan(apiUrl: etherscanEndpoints[networkId]!, apiToken: etherscanApiToken)
         return etherscan.getTransactions(address: try! wallet.value!.accounts[account].eth_address())
     }

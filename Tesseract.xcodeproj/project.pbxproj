@@ -32,6 +32,8 @@
 		92564D3C22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3522356BFA00319D8E /* materialdesignicons-webfont.ttf */; };
 		92564D3D22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3622356BFA00319D8E /* SF-Pro-Display-Medium.otf */; };
 		92564D3E22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3622356BFA00319D8E /* SF-Pro-Display-Medium.otf */; };
+		92564D3F2236EEBB00319D8E /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
+		92564D402236EEBF00319D8E /* ChangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9734222D9651007DB61C /* ChangeRateService.swift */; };
 		92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */; };
 		92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */; };
 		92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */; };
@@ -495,6 +497,8 @@
 		9230790E223024C2004E3950 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				92FE9734222D9651007DB61C /* ChangeRateService.swift */,
+				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
 				92CB198922282ED000407F9A /* WalletService.swift */,
 			);
 			path = Services;
@@ -676,8 +680,6 @@
 			isa = PBXGroup;
 			children = (
 				92CB198F22283B9200407F9A /* ApplicationService.swift */,
-				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
-				92FE9734222D9651007DB61C /* ChangeRateService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1408,6 +1410,7 @@
 			files = (
 				9299323522248422000EAD47 /* MainViewController.swift in Sources */,
 				928A91602232A019005DA7B4 /* EthereumKeychainViewController.swift in Sources */,
+				92564D402236EEBF00319D8E /* ChangeRateService.swift in Sources */,
 				D1D82F4A2232E1D4003BDFE2 /* BorderedButton.swift in Sources */,
 				923079122230257D004E3950 /* WalletService.swift in Sources */,
 				D1D82F482232E1D4003BDFE2 /* KeyboardInputScrollView.swift in Sources */,
@@ -1419,6 +1422,7 @@
 				92307914223025FB004E3950 /* Promise+Extensions.swift in Sources */,
 				92307913223025F8004E3950 /* Signal+Extensions.swift in Sources */,
 				928A91672232B786005DA7B4 /* EthereumKeychainSignTransactionViewController.swift in Sources */,
+				92564D3F2236EEBB00319D8E /* EthereumWeb3Service.swift in Sources */,
 				928A916D2232D9A7005DA7B4 /* Context.swift in Sources */,
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,

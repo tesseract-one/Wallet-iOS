@@ -23,7 +23,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     
     let account = Property<Account?>(nil)
     let address = Property<String>("")
-    let ethereumNetwork = Property<Int>(0)
+    let ethereumNetwork = Property<UInt64>(0)
     
     let balance = Property<Double>(0.0)
     let balanceString = Property<String>("")

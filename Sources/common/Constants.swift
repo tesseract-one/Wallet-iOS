@@ -8,7 +8,7 @@
 
 import Foundation
 
-public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<Int, String> = [
+public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<UInt64, String> = [
     1: "https://mainnet.infura.io/v3/f20390fe230e46608572ac4378b70668",
     2: "https://ropsten.infura.io/v3/f20390fe230e46608572ac4378b70668",
     3: "https://kovan.infura.io/v3/f20390fe230e46608572ac4378b70668",
