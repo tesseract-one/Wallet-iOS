@@ -76,12 +76,20 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
             }.dispose(in: bag)
     }
     
+    func moveConstraints(keyboardHeight: CGFloat?) {
+        if let height = keyboardHeight {
+            self._bottomConstraint.constant = self._bottomConstraintInitial + height
+        } else {
+            self._bottomConstraint.constant = self._bottomConstraintInitial
+        }
+    }
+    
     @objc func onKeyboardOpened(notification: NSNotification) {
         if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             let keyboardHeight = keyboardRectangle.height
             self.view.layoutIfNeeded()
-            _bottomConstraint.constant = _bottomConstraintInitial + keyboardHeight
+            moveConstraints(keyboardHeight: keyboardHeight)
             UIView.animate(withDuration: 1.0) {
                 self.view.layoutIfNeeded()
             }
@@ -91,12 +99,11 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
     
     @objc func onKeyboardClosed(notification: NSNotification) {
         self.view.layoutIfNeeded()
-        _bottomConstraint.constant = _bottomConstraintInitial
+        moveConstraints(keyboardHeight: nil)
         UIView.animate(withDuration: 1.0) {
             self.view.layoutIfNeeded()
         }
     }
-    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

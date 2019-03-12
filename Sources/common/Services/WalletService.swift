@@ -37,9 +37,7 @@ class WalletService {
         wallet.map {
           $0 == nil || $0!.isLocked
         }.executeIn(.main).bind(to: isWalletLocked).dispose(in: bag)
-        isWalletLocked.with(latestFrom: wallet).map { isLocked, wallet in
-          isLocked ? nil : wallet!.accounts[0]
-        }.bind(to: activeAccount).dispose(in: bag)
+        wallet.map { $0 != nil ? $0!.accounts[0] : nil }.bind(to: activeAccount).dispose(in: bag)
     }
     
     func loadWallet() -> Promise<Wallet?> {

@@ -125,26 +125,26 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Accounts" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRs-Dc-2Ly">
-                                        <rect key="frame" x="16" y="154" width="343" height="14"/>
+                                        <rect key="frame" x="16" y="186" width="343" height="14"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="12"/>
                                         <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="wcz-Kg-dIR">
-                                        <rect key="frame" x="16" y="176" width="343" height="317"/>
+                                        <rect key="frame" x="16" y="208" width="343" height="253"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="KRs-Dc-2Ly" firstAttribute="leading" secondItem="tkE-Am-IeW" secondAttribute="leading" constant="16" id="3SM-b0-SuB"/>
-                                    <constraint firstAttribute="bottom" secondItem="wcz-Kg-dIR" secondAttribute="bottom" id="441-tv-H6h"/>
+                                    <constraint firstAttribute="bottom" secondItem="wcz-Kg-dIR" secondAttribute="bottom" constant="32" id="441-tv-H6h"/>
                                     <constraint firstAttribute="trailing" secondItem="PXQ-ij-f3H" secondAttribute="trailing" constant="16" id="6A7-Tb-ZTa"/>
                                     <constraint firstItem="wcz-Kg-dIR" firstAttribute="top" secondItem="KRs-Dc-2Ly" secondAttribute="bottom" constant="8" id="ITT-MX-tCy"/>
                                     <constraint firstItem="wcz-Kg-dIR" firstAttribute="top" secondItem="KRs-Dc-2Ly" secondAttribute="bottom" constant="8" id="KSG-DB-oU1"/>
                                     <constraint firstAttribute="trailing" secondItem="KRs-Dc-2Ly" secondAttribute="trailing" constant="16" id="U1R-5Y-jlk"/>
                                     <constraint firstItem="6Bq-Lt-ztg" firstAttribute="leading" secondItem="tkE-Am-IeW" secondAttribute="leading" constant="16" id="YeX-UW-2R4"/>
-                                    <constraint firstItem="KRs-Dc-2Ly" firstAttribute="top" secondItem="6Bq-Lt-ztg" secondAttribute="bottom" constant="16" id="dlm-Ae-F1c"/>
+                                    <constraint firstItem="KRs-Dc-2Ly" firstAttribute="top" secondItem="6Bq-Lt-ztg" secondAttribute="bottom" constant="48" id="dlm-Ae-F1c"/>
                                     <constraint firstItem="wcz-Kg-dIR" firstAttribute="leading" secondItem="tkE-Am-IeW" secondAttribute="leading" constant="16" id="gG7-Ux-Dsf"/>
                                     <constraint firstAttribute="trailing" secondItem="wcz-Kg-dIR" secondAttribute="trailing" constant="16" id="gh7-mA-KVm"/>
                                     <constraint firstItem="6Bq-Lt-ztg" firstAttribute="top" secondItem="PXQ-ij-f3H" secondAttribute="bottom" constant="8" id="hZJ-dO-LS3"/>
@@ -168,10 +168,10 @@
                     </view>
                     <connections>
                         <outlet property="acceptButton" destination="F9M-K3-vjp" id="dxw-xJ-PYQ"/>
-                        <outlet property="blurredView" destination="hG7-ql-mTD" id="3u7-uQ-box"/>
                         <outlet property="bottomConstraint" destination="dfu-u1-p3O" id="M8Q-Yp-JfE"/>
                         <outlet property="chooseAccountTableView" destination="wcz-Kg-dIR" id="phj-3A-mOz"/>
                         <outlet property="passwordField" destination="kil-c0-tqK" id="9Tr-uM-ciG"/>
+                        <outlet property="topConstraint" destination="Ayz-EI-rf7" id="Awi-ho-Kd1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62w-ch-Omg" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,7 +378,6 @@
                     </view>
                     <connections>
                         <outlet property="acceptButton" destination="9rQ-xw-Eup" id="xVi-Ww-6Ev"/>
-                        <outlet property="blurredView" destination="YXV-ge-vf1" id="7iM-VK-3fP"/>
                         <outlet property="bottomConstraint" destination="APS-xO-WA2" id="0ID-SH-193"/>
                         <outlet property="passwordField" destination="Cw1-ym-dKY" id="jIK-jn-2BP"/>
                         <outlet property="signData" destination="wZZ-lK-8K5" id="JuZ-PQ-ygB"/>
@@ -808,7 +807,6 @@
                     <connections>
                         <outlet property="acceptButton" destination="4sR-Xk-UrV" id="TjY-sF-VpO"/>
                         <outlet property="addressLabel" destination="39A-4X-skD" id="Ira-Ip-Xkj"/>
-                        <outlet property="blurredView" destination="VOD-4k-rGM" id="qTm-FA-GgK"/>
                         <outlet property="bottomConstraint" destination="imn-i1-YCk" id="AMP-Zb-uFk"/>
                         <outlet property="dataLabel" destination="Vjt-eE-DCm" id="6NJ-1D-ZgK"/>
                         <outlet property="gasFeeLabel" destination="xqZ-9L-Emz" id="R1j-al-4Nh"/>

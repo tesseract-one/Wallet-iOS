@@ -14,7 +14,6 @@ import Bond
 
 class EthereumKeychainSignDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignDataKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     @IBOutlet weak var signData: UILabel!
-    @IBOutlet weak var blurredView: UIView!
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!

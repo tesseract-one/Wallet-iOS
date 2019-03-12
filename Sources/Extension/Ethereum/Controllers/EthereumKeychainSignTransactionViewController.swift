@@ -19,7 +19,6 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     @IBOutlet weak var gasFeeLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
-    @IBOutlet weak var blurredView: UIView!
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!

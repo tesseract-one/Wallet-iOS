@@ -16,13 +16,15 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
     EthereumKeychainViewControllerBaseControls {
    
     let accounts = MutableObservableArray<Account>()
-    let activeAccountIndex = Property<UInt32>(0)
+    let activeAccountIndex = Property<Int>(-1)
+    
+    private var topConstraintInitial: CGFloat = 0.0
 
     @IBOutlet weak var chooseAccountTableView: UITableView!
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var passwordField: ErrorTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var blurredView: UIView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,13 +41,15 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             return
         }.dispose(in: bag)
         
-        context.activeAccount.map{$0?.index ?? 0}.bind(to: activeAccountIndex).dispose(in: reactive.bag)
+        context.activeAccount.map{ $0 != nil ? Int($0!.index) : -1}.bind(to: activeAccountIndex).dispose(in: reactive.bag)
         
-//        activeAccountIndex.with(weak: self).observeNext { index, sself in
-//            sself.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
-//        }.dispose(in: reactive.bag)
+        combineLatest(accounts, activeAccountIndex.filter{$0 >= 0}).observeNext { [weak self] accounts, index in
+            if (accounts.collection.count > index) {
+                self?.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
+            }
+        }.dispose(in: reactive.bag)
         
-        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5).map{UInt32($0.item)}.bind(to: activeAccountIndex)
+        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5).map{Int($0.item)}.bind(to: activeAccountIndex)
         
         runWalletOperation
             .with(latestFrom: context.wallet)
@@ -59,5 +63,17 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             .observeNext { address, sself in
                 sself.succeed(response: address)
             }.dispose(in: reactive.bag)
+        
+         self.topConstraintInitial = self.topConstraint.constant
+    }
+    
+    override func moveConstraints(keyboardHeight: CGFloat?) {
+        super.moveConstraints(keyboardHeight: keyboardHeight)
+        
+        if let height = keyboardHeight {
+            self.topConstraint.constant = self.topConstraintInitial - height
+        } else {
+            self.topConstraint.constant = self.topConstraintInitial
+        }
     }
 }
