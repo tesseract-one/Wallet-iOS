@@ -42,8 +42,6 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
             self?.navigationController?.pushViewController(vc!, animated: true)
             }.dispose(in: bag)
         
-        blurView()
-        
         termsTextView.delegate = self
     }
     
@@ -51,14 +49,6 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
         super.viewDidLayoutSubviews()
         termsTextView.setContentOffset(.zero, animated: false)
         scrollViewDidScroll(termsTextView)
-    }
-}
-
-extension TermsOfServiceViewController {
-    private func blurView() {
-        let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        visualEffectView.frame = blurredView.bounds
-        blurredView.addSubview(visualEffectView)
     }
 }
 
