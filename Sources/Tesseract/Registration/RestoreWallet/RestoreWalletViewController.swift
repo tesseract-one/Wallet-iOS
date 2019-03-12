@@ -16,9 +16,11 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
     private(set) var model: ViewModel!
     
     @IBOutlet weak var mnemonicTextView: UITextView!
+    @IBOutlet weak var mnemonicTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
+    @IBOutlet weak var scrollView: KeyboardInputScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,8 +71,26 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
             let vc = try! self?.viewController(for: .named(name: name), context: context)
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
+        
+        scrollView.navigationBar = navigationController?.navigationBar
+        
+        setupSizes()
+    }
+    
+}
+
+extension RestoreWalletViewController {
+    private func setupSizes() {
+        if UIScreen.main.bounds.height < 600 {
+            mnemonicTextView.isScrollEnabled = true
+            mnemonicTextViewHeight.constant = 120
+        } else {
+            mnemonicTextView.isScrollEnabled = false
+            mnemonicTextViewHeight.constant = 180
+        }
     }
 }
+
 
 extension RestoreWalletViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {

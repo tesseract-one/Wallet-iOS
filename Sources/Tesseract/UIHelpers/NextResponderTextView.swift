@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Material
 
 class NextResponderTextView: CustomInsetsTextView, UITextViewDelegate {
     
@@ -124,6 +125,9 @@ class NextResponderTextView: CustomInsetsTextView, UITextViewDelegate {
     //
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
+        layoutDivider()
+        dividerColor = UIColor.init(red: 0.24, green: 0.24, blue: 0.24, alpha: 1.0)
     }
     
     // MARK: Private functions
