@@ -8,9 +8,16 @@
 
 import UIKit
 
+@IBDesignable
 class RouterNavigationController: UINavigationController, RouterViewProtocol {
+    
+    @IBInspectable
+    var backgroundColor: UIColor? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        view.backgroundColor = backgroundColor
         
         for controller in viewControllers {
             if let ctrl = controller as? RouterViewProtocol {

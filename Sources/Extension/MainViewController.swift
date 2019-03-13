@@ -8,7 +8,7 @@
 
 import UIKit
 import TesSDK
-import Material
+import SnapKit
 
 class MainViewController: OpenWalletExtensionViewController {
     @IBOutlet weak var containerView: UIView!
@@ -49,7 +49,12 @@ class MainViewController: OpenWalletExtensionViewController {
         if let contexted = vc as? ExtensionViewController {
             contexted.context = context
         }
-        containerView.layout(vc.view).edges()
+        
+        containerView.addSubview(vc.view)
+        
+        vc.view.snp.makeConstraints { v in
+            v.edges.equalToSuperview()
+        }
         
         for child in children {
             child.removeFromParent()

@@ -9,7 +9,7 @@
 import UIKit
 import TesSDK
 import ReactiveKit
-import Material
+import MaterialTextField
 import Bond
 
 class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>,
@@ -22,7 +22,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
 
     @IBOutlet weak var chooseAccountTableView: UITableView!
     @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var passwordField: ErrorTextField!
+    @IBOutlet weak var passwordField: MFTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     

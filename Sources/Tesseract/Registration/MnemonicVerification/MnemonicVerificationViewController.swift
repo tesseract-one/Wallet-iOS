@@ -28,20 +28,21 @@ class MnemonicVerificationViewController: KeyboardScrollViewFromBoth, ModelVCPro
         mnemonicVerificationTextView.reactive.text.map { $0 ?? "" } // useless map actually, its already empty string
             .bind(to: model.mnemonicText).dispose(in: bag)
         
-        mnemonicVerificationTextView.reactive.text
-            .with(weak: mnemonicVerificationTextView) // can't write bond to textView.error
-            .observeNext { _, mnemonicVerificationTextView in
-                mnemonicVerificationTextView.error = ""
-            }.dispose(in: bag)
-        
-        model.mnemonicVerifiedSuccessfully
-            .filter { $0 != nil }
-            .with(latestFrom: model.mnemonicError)
-            .filter { $0 == false && $1 != nil }
-            .with(weak: mnemonicVerificationTextView)
-            .observeNext { mnemonicErrorTuple, mnemonicVerificationTextView in
-                mnemonicVerificationTextView.error = mnemonicErrorTuple.1!.rawValue
-            }.dispose(in: bag)
+//        mnemonicVerificationTextView.reactive
+//            .notification(.textDidBeginEditing)
+//            .with(weak: mnemonicVerificationTextView) // can't write bond to textView.error
+//            .observeNext { _, mnemonicVerificationTextView in
+//                mnemonicVerificationTextView.error = ""
+//            }.dispose(in: bag)
+//        
+//        model.mnemonicVerifiedSuccessfully
+//            .filter { $0 != nil }
+//            .with(latestFrom: model.mnemonicError)
+//            .filter { $0 == false && $1 != nil }
+//            .with(weak: mnemonicVerificationTextView)
+//            .observeNext { mnemonicErrorTuple, mnemonicVerificationTextView in
+//                mnemonicVerificationTextView.error = mnemonicErrorTuple.1!.rawValue
+//            }.dispose(in: bag)
         
         let doneTap = doneButton.reactive.tap.throttle(seconds: 0.5)
         doneTap.bind(to: model.doneMnemonicVerificationAction).dispose(in: bag)

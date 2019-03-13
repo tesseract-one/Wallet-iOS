@@ -9,11 +9,11 @@
 import UIKit
 import TesSDK
 import ReactiveKit
-import Material
+import MaterialTextField
 
 protocol EthereumKeychainViewControllerBaseControls  {
     var acceptButton: UIButton! { get set }
-    var passwordField: ErrorTextField! { get set }
+    var passwordField: MFTextField! { get set }
     
     var bottomConstraint: NSLayoutConstraint! { get set }
 }
@@ -31,7 +31,7 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
     
     let runWalletOperation = SafePublishSubject<Void>()
     
-    private var _passwordField: ErrorTextField {
+    private var _passwordField: MFTextField {
         return (self as! EthereumKeychainViewControllerBaseControls).passwordField
     }
     

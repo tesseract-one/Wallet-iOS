@@ -34,7 +34,7 @@ class GradientBorderedButton: UIButton {
     }
   }
   
-  @IBInspectable override var borderColor: UIColor? {
+  @IBInspectable var borderColor: UIColor? {
     didSet {
       layer.borderColor = self.borderColor?.cgColor
     }

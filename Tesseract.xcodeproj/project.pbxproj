@@ -94,7 +94,6 @@
 		92FE9742222E334D007DB61C /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9740222E334D007DB61C /* TransactionTableViewCell.swift */; };
 		92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */; };
 		D108644722370294005B10CB /* KeyboardScrollViewFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */; };
-		D1170BED22302CC500ECB398 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEC22302CC400ECB398 /* CustomInsetsTextView.swift */; };
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
@@ -110,6 +109,7 @@
 		D14A502D2229B7660069A262 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A502C2229B7660069A262 /* HomeViewModel.swift */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
+		D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
 		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
@@ -314,7 +314,6 @@
 		92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Replace.swift"; sourceTree = "<group>"; };
 		B34475B14182EE9EA1935060 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		CB6DCCCD72733AFD84049AB4 /* Pods-Tesseract-Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract-Extension.release.xcconfig"; path = "Target Support Files/Pods-Tesseract-Extension/Pods-Tesseract-Extension.release.xcconfig"; sourceTree = "<group>"; };
-		D1170BEC22302CC400ECB398 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
 		D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
@@ -330,6 +329,7 @@
 		D14A502C2229B7660069A262 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
+		D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Bond.swift"; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
@@ -764,6 +764,7 @@
 				D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */,
 				D1D292E621B16329000DA665 /* RoundDouble.swift */,
 				D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */,
+				D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -841,7 +842,6 @@
 				D131639521B96D5D0066FB4A /* GradientBorderedButton.swift */,
 				D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */,
 				D171DE4D219DAAD4003134DD /* GradientView.swift */,
-				D1170BEC22302CC400ECB398 /* CustomInsetsTextView.swift */,
 				D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */,
 				D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */,
 				D1D5F85E21B8494F007D0433 /* RoundedImage.swift */,
@@ -1286,11 +1286,11 @@
 				"${BUILT_PRODUCTS_DIR}/CKMnemonic/CKMnemonic.framework",
 				"${BUILT_PRODUCTS_DIR}/CryptoSwift/CryptoSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
-				"${BUILT_PRODUCTS_DIR}/Material/Material.framework",
-				"${BUILT_PRODUCTS_DIR}/Motion/Motion.framework",
+				"${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Web3/Web3.framework",
 				"${BUILT_PRODUCTS_DIR}/secp256k1.swift/secp256k1.framework",
 			);
@@ -1303,11 +1303,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CKMnemonic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CryptoSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Material.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Motion.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/secp256k1.framework",
 			);
@@ -1337,7 +1337,6 @@
 				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
 				92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */,
-				D1170BED22302CC500ECB398 /* CustomInsetsTextView.swift in Sources */,
 				92CB198322281E0D00407F9A /* RouterViews.swift in Sources */,
 				92FE9735222D9651007DB61C /* ChangeRateService.swift in Sources */,
 				D171DE54219DE3A5003134DD /* MnemonicVerificationViewController.swift in Sources */,
@@ -1368,6 +1367,7 @@
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
+				D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,

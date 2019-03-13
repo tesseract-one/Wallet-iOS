@@ -7,8 +7,8 @@ target :Tesseract do
     pod 'ReactiveKit'
     pod 'Bond'
     
-    pod 'Motion', :git => 'https://github.com/CosmicMind/Motion.git', :branch => 'development'
-    pod 'Material', :git => 'https://github.com/CosmicMind/Material.git', :branch => 'development'
+    pod 'MaterialTextField', '~> 1.0'
+    pod 'SnapKit', '~> 4.2.0'
 
     pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
     pod 'Web3/PromiseKit', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
@@ -22,8 +22,8 @@ target :Tesseract do
         pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
         pod 'Web3/PromiseKit', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
         
-        pod 'Motion', :git => 'https://github.com/CosmicMind/Motion.git', :branch => 'development'
-        pod 'Material', :git => 'https://github.com/CosmicMind/Material.git', :branch => 'development'
+        pod 'MaterialTextField', '~> 1.0'
+        pod 'SnapKit', '~> 4.2.0'
         
         pod 'CKMnemonic'
         

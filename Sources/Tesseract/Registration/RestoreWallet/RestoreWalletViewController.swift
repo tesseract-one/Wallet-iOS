@@ -38,7 +38,8 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
             .bind(to: confirmPasswordField.reactive.error)
             .dispose(in: bag)
         
-        mnemonicTextView.reactive.tapGesture()
+        mnemonicTextView.reactive
+            .notification(.textDidBeginEditing)
             .map { _ in "" }
             .bind(to: confirmPasswordField.reactive.error)
             .dispose(in: bag)

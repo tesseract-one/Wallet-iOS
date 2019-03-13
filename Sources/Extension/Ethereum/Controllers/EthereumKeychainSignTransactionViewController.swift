@@ -8,8 +8,8 @@
 
 import UIKit
 import TesSDK
-import Material
 import ReactiveKit
+import MaterialTextField
 import Bond
 import Web3
 
@@ -21,7 +21,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     @IBOutlet weak var dataLabel: UILabel!
     
     @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var passwordField: ErrorTextField!
+    @IBOutlet weak var passwordField: MFTextField!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     let isContract = Property<Bool>(false)
