@@ -48,7 +48,7 @@ class MnemonicVerificationViewController: KeyboardScrollViewFromBoth, ModelVCPro
         doneTap.bind(to: model.doneMnemonicVerificationAction).dispose(in: bag)
         doneTap.with(weak: view).observeNext { view in
             view.endEditing(true)
-            }.dispose(in: bag)
+        }.dispose(in: bag)
         
         skipButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.skipMnemonicVerificationAction).dispose(in: bag)
