@@ -66,7 +66,7 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletEthereumRequest
             gas: "0x" + String(tx.gas, radix: 16),
             gasPrice: "0x" + String(tx.gasPrice, radix: 16),
             value: "0x" + String(tx.value, radix: 16),
-            data: tx.data.reduce("0x") { $0 + String(format: "%02x", $1) },
+            data: "0x" + tx.data.toHexString(),
             chainId: "0x" + String(BigUInt(chainId), radix: 16),
             networkId: networkId
         )

@@ -90,12 +90,12 @@ class Wallet {
             print("eth_signTypedData is not supported!")
             callback(id, "eth_signTypedData is not supported!", nil)
         case "personal_sign":
-            let account = params.count > 1 ? try! EthereumAddress(hex: params[1] as! String, eip55: false) : nil
+            let account = params.count > 1 ? try! Web3EthereumAddress(hex: params[1] as! String, eip55: false) : nil
             web3.personal.sign(data: try! EthereumData(bytes: Data(hex: params[0] as! String)), account: account)
                 .done { callback(id, nil, $0.hex()) }
                 .catch { callback(id, $0, nil) }
         case "eth_sign":
-            let account = try! EthereumAddress(hex: params[0] as! String, eip55: false)
+            let account = try! Web3EthereumAddress(hex: params[0] as! String, eip55: false)
             web3.personal.sign(data: try! EthereumData(bytes: Data(hex: params[1] as! String)), account: account)
                 .done { callback(id, nil, $0.hex()) }
                 .catch { callback(id, $0, nil) }

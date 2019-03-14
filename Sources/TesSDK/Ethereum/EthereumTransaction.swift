@@ -46,7 +46,7 @@ private enum DataItem {
             // a single byte with value 0xf7 plus the length in bytes of the length of the payload
             // in binary form, followed by the length of the payload, followed by the concatenation of
             // the RLP encodings of the items.
-            let length = uintToBytes(UInt(bytes.count))
+            let length = uintToBytes(UInt(bytes.count)).bytes
             
             let lengthCount = length.count
             guard lengthCount <= 0xff - 0xf7 else {
@@ -82,7 +82,7 @@ private enum DataItem {
             // If a string is more than 55 bytes long, the RLP encoding consists of a single byte
             // with value 0xb7 plus the length in bytes of the length of the string in binary form,
             // followed by the length of the string, followed by the string.
-            let length = uintToBytes(UInt(bytes.count))
+            let length = uintToBytes(UInt(bytes.count)).bytes
             
             let lengthCount = length.count
             guard lengthCount <= 0xbf - 0xb7 else {
