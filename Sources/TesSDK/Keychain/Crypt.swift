@@ -44,7 +44,7 @@ func encrypt(data: Data, password: String) throws -> Data {
         throw CryptError.randomFailed
     }
     
-    let key = try PKCS5.PBKDF2(password: Array(password.utf8), salt: salt, iterations: ITER, variant: .sha512).calculate()
+    let key = try PKCS5.PBKDF2(password: Array(password.utf8), salt: salt, iterations: ITER, keyLength: KEY_SIZE, variant: .sha512).calculate()
     
     let encypted = try AEADChaCha20Poly1305.encrypt(data.bytes, key: key, iv: nonce, authenticationHeader: [])
     
@@ -65,12 +65,12 @@ func decrypt(data: Data, password: String) throws -> Data {
         throw CryptError.notEnoughData(data.count)
     }
     
-    let salt = data[SALT_START...SALT_END].bytes
-    let nonce = data[NONCE_START...NONCE_END].bytes
-    let tag = data[TAG_START...TAG_END].bytes
+    let salt = data[SALT_START..<SALT_END].bytes
+    let nonce = data[NONCE_START..<NONCE_END].bytes
+    let tag = data[TAG_START..<TAG_END].bytes
     let encrypted = data[ENCRYPTED_START...].bytes
     
-    let key = try PKCS5.PBKDF2(password: Array(password.utf8), salt: salt, iterations: ITER, variant: .sha512).calculate()
+    let key = try PKCS5.PBKDF2(password: Array(password.utf8), salt: salt, iterations: ITER, keyLength: KEY_SIZE, variant: .sha512).calculate()
     
     let decrypted = try AEADChaCha20Poly1305.decrypt(encrypted, key: key, iv: nonce, authenticationHeader: [], authenticationTag: tag)
     
