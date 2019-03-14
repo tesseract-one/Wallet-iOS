@@ -53,6 +53,10 @@ extension Web3.EthereumSignedTransaction {
         guard signature.count == 65 else {
             throw Web3.EthereumSignedTransaction.Error.signatureMalformed
         }
+        var v = BigUInt(signature[64])
+        if chainId > 0 {
+            v += chainId * BigUInt(2) + BigUInt(8)
+        }
         self.init(
             nonce: Web3.EthereumQuantity(quantity: tx.nonce),
             gasPrice: Web3.EthereumQuantity(quantity: tx.gasPrice),
@@ -60,7 +64,7 @@ extension Web3.EthereumSignedTransaction {
             to: tx.to != nil ? try Web3EthereumAddress(rawAddress: tx.to!.rawValue.bytes) : nil,
             value: Web3.EthereumQuantity(quantity: tx.value),
             data: Web3.EthereumData(raw: tx.data.bytes),
-            v: Web3.EthereumQuantity(quantity: BigUInt(signature[64] - 27)),
+            v: Web3.EthereumQuantity(quantity: v),
             r: Web3.EthereumQuantity.bytes(signature[0..<32].bytes),
             s: Web3.EthereumQuantity.bytes(signature[32..<64].bytes),
             chainId: Web3.EthereumQuantity(quantity: chainId)

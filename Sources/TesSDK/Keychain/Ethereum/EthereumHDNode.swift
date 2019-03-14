@@ -485,7 +485,9 @@ extension EthereumHDNode {
     }
     
     public func address() -> Data? {
-        var hash = SHA3(variant: .keccak256).calculate(for: publicKey.bytes)
+        var mPubKey = publicKey.bytes
+        mPubKey.remove(at: 0)
+        var hash = SHA3(variant: .keccak256).calculate(for: mPubKey)
         guard hash.count == 32 else {
             return nil
         }

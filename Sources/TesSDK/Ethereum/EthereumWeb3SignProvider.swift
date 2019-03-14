@@ -35,7 +35,7 @@ class EthereumSignWeb3Provider: Web3Provider {
                 let tesTx = try tx.tesseract()
                 return self.sign
                     .eth_signTx(tx: tesTx, networkId: self.networkId, chainId: self.chainId)
-                    .map{ (tesTx, $0) }
+                    .map { (tesTx, $0) }
             }
             .map { tx, sig in try EthereumSignedTransaction(tx: tx, signature: sig, chainId: BigUInt(self.chainId))}
     }

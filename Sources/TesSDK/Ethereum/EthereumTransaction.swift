@@ -122,7 +122,7 @@ extension Data {
     var trimmedLeadingZeros: Data {
         // trim leading zeros
         var from = 0
-        while self[from] == 0x00 {
+        while from < count-1 && self[from] == 0x00 {
             from += 1
         }
         return self[from...]
