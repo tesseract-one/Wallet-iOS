@@ -26,7 +26,7 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
         let accountProp = self.model.activeAccount
         
         model.transactions.bind(to: self.tableView, cellType: TransactionTableViewCell.self) { cell, tx in
-            cell.setModel(model: tx, address: try! accountProp.value!.eth_address())
+            cell.setModel(model: tx, address: try! accountProp.value!.eth_address().hex(eip55: false))
             return
         }.dispose(in: bag)
         

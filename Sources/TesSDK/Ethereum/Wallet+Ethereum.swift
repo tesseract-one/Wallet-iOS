@@ -8,10 +8,10 @@
 
 import Foundation
 import PromiseKit
-import Web3
+import BigInt
 
 extension Account {
-    public func eth_address() throws -> String {
+    public func eth_address() throws -> EthereumAddress {
         if let ethAddrs = addresses[.Ethereum] {
             return ethAddrs[0].address
         }
@@ -20,15 +20,12 @@ extension Account {
 }
 
 extension Wallet: EthereumSignProvider {
-    public func eth_accounts(networkId: UInt64) -> Promise<Array<String>> {
+    public func eth_accounts(networkId: UInt64) -> Promise<Array<EthereumAddress>> {
         return Promise().map { try self.accounts.map { try $0.eth_address() } }
     }
     
-    public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<EthereumSignedTransaction> {
-        guard let account = tx.from?.hex(eip55: false) else {
-            return Promise(error: EthereumSignProviderError.emptyAccount)
-        }
-        return eth_account(address: account)
+    public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<Data> {
+        return eth_account(address: tx.from)
             .then { $0.eth_signTx(tx: tx, chainId: chainId) }
     }
     
@@ -37,7 +34,7 @@ extension Wallet: EthereumSignProvider {
 //            .then { $0.eth_verify(data: data, signature: signature) }
 //    }
     
-    public func eth_signData(account: String, data: Data, networkId: UInt64) -> Promise<Data> {
+    public func eth_signData(account: EthereumAddress, data: Data, networkId: UInt64) -> Promise<Data> {
         return eth_account(address: account)
             .then { $0.eth_signData(data: data) }
     }
@@ -46,7 +43,7 @@ extension Wallet: EthereumSignProvider {
     //        <#code#>
     //    }
     
-    private func eth_account(address: String) -> Promise<Account> {
+    private func eth_account(address: EthereumAddress) -> Promise<Account> {
         let accounts = self.accounts
         return Promise().map {
             let opAccount = try accounts.first { try $0.eth_address() == address }
@@ -59,13 +56,9 @@ extension Wallet: EthereumSignProvider {
 }
 
 extension Account {
-    fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<EthereumSignedTransaction> {
-        let chId = EthereumQuantity(quantity: BigUInt(chainId))
-        //TODO: Rewrite this SHIT to secure methods
+    fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<Data> {
         return eth_hdwallet()
-            .map { try $0.privateKey(network: .Ethereum, keyPath: self.keyPath) }
-            .map { try EthereumPrivateKey(bytes: $0) }
-            .map { try tx.sign(with: $0, chainId: chId) }
+            .map { try $0.sign(network: .Ethereum, data: tx.rawData(chainId: BigUInt(chainId)), path: self.keyPath) }
     }
     
 //    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
@@ -116,6 +109,7 @@ struct EthereumWalletNetworkSupport: WalletNetworkSupport {
     
     func createFirstAddress(accountIndex: UInt32) throws -> Address {
         let address = try self.hdWallet.address(network: .Ethereum, path: EthereumKeyPath(account: accountIndex))
-        return Address(index: 0, address: address, network: .Ethereum)
+        let ethAddress = try EthereumAddress(hex: address, eip55: false)
+        return Address(index: 0, address: ethAddress, network: .Ethereum)
     }
 }

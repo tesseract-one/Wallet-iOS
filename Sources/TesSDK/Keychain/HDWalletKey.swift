@@ -30,7 +30,4 @@ public protocol HDWalletKey {
     func address(path: KeyPath) throws -> String
     func sign(data: Data, path: KeyPath) throws -> Data
     func verify(data: Data, signature: Data, path: KeyPath) throws -> Bool
-    
-    //TODO: Remove this SHIT!!!!
-    func privateKey(keyPath: KeyPath) throws -> Data
 }

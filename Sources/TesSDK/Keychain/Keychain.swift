@@ -55,9 +55,10 @@ class Keychain {
     
     func saveWalletData(name: String, data: NewWalletData, password: String) -> Promise<HDWallet> {
         let factories = self.factories
-        return Promise.value(data.walletData).then { v1 in
-            self.storage
-                .saveData(key: name, data: try WalletVersionedData(v1: v1).toData())
+        return Promise.value(data.walletData).then { v1 -> Promise<WalletDataV1> in
+            let encrypted = try encrypt(data: try WalletVersionedData(v1: v1).toData(), password: password)
+            return self.storage
+                .saveData(key: name, data: encrypted)
                 .map { v1 }
         }
         .map { try HDWallet(name: name, data: $0, factories: factories) }
@@ -65,8 +66,9 @@ class Keychain {
     
     func renameWallet(name: String, to: String, password: String) -> Promise<HDWallet> {
         return _loadWalletData(name: name, password: password)
-            .then { v1 in
-                self.storage.saveData(key: to, data: try WalletVersionedData(v1: v1).toData()).map { v1 }
+            .then { v1 -> Promise<WalletDataV1> in
+                let encrypted = try encrypt(data: try WalletVersionedData(v1: v1).toData(), password: password)
+                return self.storage.saveData(key: to, data: encrypted).map { v1 }
             }
             .map { try HDWallet(name: name, data: $0, factories: self.factories) }
     }
@@ -77,6 +79,13 @@ class Keychain {
     
     private func _loadWalletData(name: String, password: String) -> Promise<WalletDataV1> {
         return storage.loadData(key: name)
+            .map { try decrypt(data: $0, password: password) }
+            .mapError { err in
+                if case CryptError.decryptionFailed = err {
+                    return KeychainError.wrongPassword
+                }
+                return err
+            }
             .map { try WalletVersionedData.from(data: $0).walletData() }
     }
 }

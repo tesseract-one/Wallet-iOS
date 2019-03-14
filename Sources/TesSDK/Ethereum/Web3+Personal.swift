@@ -17,18 +17,24 @@ public struct EthereumPersonal {
         self.signProvider = signProvider
     }
     
-    public func sign(data: EthereumData, account: EthereumAddress? = nil) -> Promise<EthereumData> {
-        let accAddr = account != nil ? account!.hex(eip55: false) : signProvider.account
-        if let addr = accAddr {
+    public func sign(data: EthereumData, account: Web3EthereumAddress? = nil) -> Promise<EthereumData> {
+        if let acc = account ?? signProvider.account {
             return signProvider.sign
-                .eth_signData(account: addr, data: Data(data.bytes), networkId: signProvider.networkId)
+                .eth_signData(account: acc.tesseract, data: Data(data.bytes), networkId: signProvider.networkId)
                 .map{try EthereumData(bytes: $0)}
         }
         return Promise(error: EthereumSignProviderError.emptyAccount)
     }
     
-    public func signTransaction(tx: EthereumTransaction) -> Promise<EthereumSignedTransaction> {
-        return signProvider.sign.eth_signTx(tx: tx, networkId: signProvider.networkId, chainId: signProvider.chainId)
+    public func signTransaction(tx: Web3EthereumTransaction) -> Promise<EthereumSignedTransaction> {
+        return Promise()
+            .map { try tx.tesseract() }
+            .then { tx in
+                self.signProvider.sign
+                    .eth_signTx(tx: tx, networkId: self.signProvider.networkId, chainId: self.signProvider.chainId)
+                    .map { (tx, $0) }
+            }
+            .map { tx, sig in try EthereumSignedTransaction(tx: tx, signature: sig, chainId: BigUInt(self.signProvider.chainId)) }
     }
 }
 

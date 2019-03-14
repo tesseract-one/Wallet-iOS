@@ -10,7 +10,7 @@ import Foundation
 
 public struct Address: Codable {
     let index: UInt32
-    let address: String
+    let address: EthereumAddress
     let network: Network
 }
 

@@ -18,3 +18,9 @@ public extension Result {
         }
     }
 }
+
+public extension CatchMixin {
+    public func mapError<T>(on: DispatchQueue? = conf.Q.map, flags: DispatchWorkItemFlags? = nil, policy: CatchPolicy = conf.catchPolicy, _ body: @escaping(Error) -> Error) -> Promise<T> where Self.T == T {
+        return recover(on: on, flags: flags, policy: policy) { Promise(error: body($0)) }
+    }
+}

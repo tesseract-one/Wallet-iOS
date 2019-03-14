@@ -47,33 +47,17 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         
         runWalletOperation
             .with(latestFrom: context.wallet)
-            .flatMapLatest { (_, wallet) -> ResultSignal<EthereumSignedTransaction, AnyError> in
+            .flatMapLatest { (_, wallet) -> ResultSignal<Data, AnyError> in
                 guard let wallet = wallet else {
-                    return ResultSignal<EthereumSignedTransaction, AnyError>.failure(AnyError(NSError()))
+                    return ResultSignal<Data, AnyError>.failure(AnyError(NSError()))
                 }
-                do {
-                    let transaction = EthereumTransaction(
-                        nonce: EthereumQuantity.bytes(Bytes(hex: req.nonce)),
-                        gasPrice: EthereumQuantity.bytes(Bytes(hex: req.gasPrice)),
-                        gas: EthereumQuantity.bytes(Bytes(hex: req.gas)),
-                        from: try EthereumAddress(hex: req.from, eip55: false),
-                        to:  try EthereumAddress(hex: req.to, eip55: false),
-                        value: EthereumQuantity.bytes(Bytes(hex: req.value)),
-                        data: EthereumData(raw: Bytes(hex: req.data))
-                    )
-                    let chainId = UInt64(EthereumQuantity.bytes(Bytes(hex: req.chainId)).quantity)
-                    return wallet.eth_signTx(tx: transaction, networkId: req.networkId, chainId: chainId).signal
-                } catch (let err) {
-                    return ResultSignal<EthereumSignedTransaction, AnyError>.failure(AnyError(err))
-                }
+                
+                return wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
             }
             .pourError(into: context.errors)
             .with(weak: self)
-            .observeNext { signedTx, sself in
-                var signData = Data(bytes: signedTx.r.makeBytes())
-                signData.append(Data(bytes: signedTx.s.makeBytes()))
-                signData.append(UInt8(signedTx.v.quantity) + 27)
-                sself.succeed(response: "0x" + signData.toHexString())
+            .observeNext { signature, sself in
+                sself.succeed(response: "0x" + signature.toHexString())
             }
             .dispose(in: reactive.bag)
         
@@ -81,7 +65,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
             .ethereumAPIs.filter{$0 != nil}.map{_ in}
             .with(weak: context.ethereumWeb3Service)
             .flatMapLatest { service in
-                service.isContract(address: try! EthereumAddress(hex: req.to, eip55: false), networkId: req.networkId).signal
+                service.isContract(address: req.to!, networkId: req.networkId).signal
             }
             .suppressedErrors
             .bind(to: isContract)

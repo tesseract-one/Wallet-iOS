@@ -44,9 +44,6 @@ public class Wallet: SignProvider {
     
     public var associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
     
-    // TODO: Remove this SHIT. This is really a TEMPORARY solution.
-    var password: String!
-    
     private init(name: String, storage: StorageProtocol, keychain: Keychain, associatedData: Dictionary<AssociatedKeys, AnySerializableObject> = [:], accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
         self.storage = storage
         self.keychain = keychain
@@ -87,7 +84,6 @@ public class Wallet: SignProvider {
         return keychain.saveWalletData(name: Wallet.walletPrefix + name, data: data, password: password)
             .then { (hd) -> Promise<Wallet> in
                 let wallet = try Wallet(name: name, storage: storage, keychain: keychain, hdWallet: hd)
-                wallet.password = password
                 let _ = try wallet.addAccount()
                 return wallet.save().map { wallet }
             }
@@ -106,9 +102,6 @@ public class Wallet: SignProvider {
     }
     
     public func unlock(password: String) -> Promise<Void> {
-        if password != self.password {
-            return Promise(error: KeychainError.wrongPassword)
-        }
         return keychain.loadWallet(name: Wallet.walletPrefix + name, password: password)
             .done {
                 try self.setHdWallet(wallet: $0)
@@ -116,10 +109,7 @@ public class Wallet: SignProvider {
     }
     
     public func checkPassword(password: String) -> Promise<Void> {
-        if password != self.password {
-            return Promise(error: KeychainError.wrongPassword)
-        }
-        return Promise.value(())
+        return keychain.loadWallet(name: Wallet.walletPrefix + name, password: password).asVoid()
     }
     
     public func addAccount() throws -> Account {
@@ -159,20 +149,17 @@ extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
         let associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
-        // TEMPORARY KLUDGE
-        let password: String
     }
     
     fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
         try self.init(name: name, storage: storage, keychain: keychain, associatedData: data.associatedData, accounts: accounts)
-        password = data.password
     }
     
     var storageData: StorageData {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: associatedData, password: password)
+        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: associatedData)
     }
 }
 

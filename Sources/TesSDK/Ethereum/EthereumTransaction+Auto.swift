@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import Web3
 import PromiseKit
+import Web3
 
-extension EthereumTransaction {
-    func autononce(web3: Web3) -> Promise<EthereumTransaction> {
+extension Web3EthereumTransaction {
+    func autononce(web3: Web3) -> Promise<Web3EthereumTransaction> {
         guard let from = self.from else {
             return Promise(error: EthereumSignProviderError.mandatoryFieldMissing("from"))
         }
@@ -29,7 +29,7 @@ extension EthereumTransaction {
         }
     }
     
-    func autogas(web3: Web3) -> Promise<EthereumTransaction> {
+    func autogas(web3: Web3) -> Promise<Web3EthereumTransaction> {
         guard self.gas == nil else {
             return Promise.value(self)
         }
@@ -41,9 +41,9 @@ extension EthereumTransaction {
                 .map {
                     tx.gas = $0
                     return tx
-                }.then { (tx: EthereumTransaction) -> Promise<EthereumTransaction> in
+                }.then { (tx: Web3EthereumTransaction) -> Promise<Web3EthereumTransaction> in
                     var tx2 = tx
-                    return web3.eth.gasPrice().map { (price) -> EthereumTransaction in
+                    return web3.eth.gasPrice().map { (price) -> Web3EthereumTransaction in
                         tx2.gasPrice = price
                         return tx2
                     }

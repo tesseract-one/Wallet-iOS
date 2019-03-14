@@ -8,7 +8,7 @@
 
 import UIKit
 import PromiseKit
-import Web3
+import BigInt
 
 public protocol OpenWalletEthereumRequestDataProtocol: OpenWalletRequestDataProtocol {
     var networkId: UInt64 { get }
@@ -36,7 +36,7 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletEthereumRequest
     // From TX
     public let nonce: String
     public let from: String
-    public let to: String
+    public let to: String?
     public let gas: String
     public let gasPrice: String
     public let value: String
@@ -44,7 +44,7 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletEthereumRequest
     
     public let chainId: String
     
-    public init(nonce: String, from: String, to: String,
+    public init(nonce: String, from: String, to: String? = nil,
                 gas: String, gasPrice: String, value: String,
                 data: String, chainId: String, networkId: UInt64) {
         self.nonce = nonce
@@ -59,10 +59,36 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletEthereumRequest
     }
     
     public init(tx: EthereumTransaction, chainId: UInt64, networkId: UInt64) {
-        let chId = EthereumQuantity(quantity: BigUInt(chainId))
-        self.init(nonce: tx.nonce!.hex(), from: tx.from!.hex(eip55: false), to: tx.to!.hex(eip55: false),
-                  gas: tx.gas!.hex(), gasPrice: tx.gasPrice!.hex(), value: tx.value!.hex(),
-                  data: tx.data.hex(), chainId: chId.hex(), networkId: networkId)
+        self.init(
+            nonce: "0x" + String(tx.nonce, radix: 16),
+            from: tx.from.hex(eip55: false),
+            to: tx.to?.hex(eip55: false),
+            gas: "0x" + String(tx.gas, radix: 16),
+            gasPrice: "0x" + String(tx.gasPrice, radix: 16),
+            value: "0x" + String(tx.value, radix: 16),
+            data: tx.data.reduce("0x") { $0 + String(format: "%02x", $1) },
+            chainId: "0x" + String(BigUInt(chainId), radix: 16),
+            networkId: networkId
+        )
+    }
+    
+    public var transaction: EthereumTransaction {
+        return EthereumTransaction(
+            nonce: BigUInt(remove0x(nonce), radix: 16)!,
+            gasPrice: BigUInt(remove0x(gasPrice), radix: 16)!,
+            gas: BigUInt(remove0x(gas), radix: 16)!,
+            from: try! EthereumAddress(hex: from, eip55: false),
+            to: to != nil ? try! EthereumAddress(hex: to!, eip55: false) : nil,
+            value: BigUInt(remove0x(value), radix: 16)!,
+            data: Data(hex: data))
+    }
+    
+    public var chainIdInt: UInt64 {
+        return UInt64(BigUInt(remove0x(chainId), radix: 16)!)
+    }
+    
+    private func remove0x(_ str: String) -> String {
+        return String(str.suffix(from: str.index(str.startIndex, offsetBy: 2)))
     }
 }
 
@@ -93,27 +119,14 @@ public struct OpenWalletEthereumSignDataKeychainRequest: OpenWalletEthereumReque
 }
 
 extension OpenWallet: EthereumSignProvider {
-    public func eth_accounts(networkId: UInt64) -> Promise<Array<String>> {
+    public func eth_accounts(networkId: UInt64) -> Promise<Array<EthereumAddress>> {
         return keychain(net: .Ethereum, request: OpenWalletEthereumAccountKeychainRequest(networkId: networkId))
-            .map { [$0] }
+            .map { [try EthereumAddress(hex: $0, eip55: false)] }
     }
     
-    public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<EthereumSignedTransaction> {
-        let chId = EthereumQuantity(quantity: BigUInt(chainId))
+    public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<Data> {
         return keychain(net: .Ethereum, request: OpenWalletEthereumSignTxKeychainRequest(tx: tx, chainId: chainId, networkId: networkId))
             .map { Data(hex: $0) }
-            .map { data -> EthereumSignedTransaction in
-                let bytes = data.makeBytes()
-                let r = EthereumQuantity.bytes(Bytes(bytes[0..<32]))
-                let s = EthereumQuantity.bytes(Bytes(bytes[32..<64]))
-                let v = EthereumQuantity(integerLiteral: UInt64(bytes[64]) - 27)
-                return EthereumSignedTransaction(
-                    nonce: tx.nonce!, gasPrice: tx.gasPrice!, gasLimit: tx.gas!,
-                    to: tx.to!, value: tx.value!, data: tx.data,
-                    v: v, r: r,
-                    s: s, chainId: chId
-                )
-            }
     }
     
 //    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
@@ -125,10 +138,10 @@ extension OpenWallet: EthereumSignProvider {
 //        )
 //    }
     
-    public func eth_signData(account: String, data: Data, networkId: UInt64) -> Promise<Data> {
+    public func eth_signData(account: EthereumAddress, data: Data, networkId: UInt64) -> Promise<Data> {
         return keychain(
             net: .Ethereum,
-            request: OpenWalletEthereumSignDataKeychainRequest(account: account, data: "0x" + data.toHexString(), networkId: networkId)
+            request: OpenWalletEthereumSignDataKeychainRequest(account: account.hex(eip55: false), data: "0x" + data.toHexString(), networkId: networkId)
         ).map { Data(hex: $0) }
     }
 }

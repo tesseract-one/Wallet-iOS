@@ -44,7 +44,15 @@ extension Data {
 }
 
 private struct SECP256K1 {
-    static let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN|SECP256K1_CONTEXT_VERIFY))
+    static let context: OpaquePointer = {
+        var seed = Array<UInt8>(repeating: 0, count: 32)
+        guard SecRandomCopyBytes(kSecRandomDefault, seed.count, &seed) == 0 else {
+            fatalError("Can't obtain 32 bytes of random data")
+        }
+        let context = secp256k1_context_create(UInt32(SECP256K1_CONTEXT_SIGN|SECP256K1_CONTEXT_VERIFY))
+        let _ = secp256k1_context_randomize(context!, &seed)
+        return context!
+    }()
 
     public static func privateToPublic(privateKey: Data, compressed: Bool = false) -> Data? {
         if (privateKey.count != 32) {return nil}
@@ -57,7 +65,7 @@ private struct SECP256K1 {
         if (privateKey.count != 32) {return nil}
         var publicKey = secp256k1_pubkey()
         let result = privateKey.withUnsafeBytes { (privateKeyPointer:UnsafePointer<UInt8>) -> Int32 in
-            let res = secp256k1_ec_pubkey_create(context!, UnsafeMutablePointer<secp256k1_pubkey>(&publicKey), privateKeyPointer)
+            let res = secp256k1_ec_pubkey_create(context, UnsafeMutablePointer<secp256k1_pubkey>(&publicKey), privateKeyPointer)
             return res
         }
         if result == 0 {
@@ -72,7 +80,7 @@ private struct SECP256K1 {
         let result = serializedPubkey.withUnsafeMutableBytes { (serializedPubkeyPointer:UnsafeMutablePointer<UInt8>) -> Int32 in
             withUnsafeMutablePointer(to: &keyLength, { (keyPtr:UnsafeMutablePointer<Int>) -> Int32 in
                 withUnsafeMutablePointer(to: &publicKey, { (pubKeyPtr:UnsafeMutablePointer<secp256k1_pubkey>) -> Int32 in
-                    let res = secp256k1_ec_pubkey_serialize(context!,
+                    let res = secp256k1_ec_pubkey_serialize(context,
                                                             serializedPubkeyPointer,
                                                             keyPtr,
                                                             pubKeyPtr,
@@ -91,7 +99,7 @@ private struct SECP256K1 {
     public static func verifyPrivateKey(privateKey: Data) -> Bool {
         if (privateKey.count != 32) {return false}
         let result = privateKey.withUnsafeBytes { (privateKeyPointer:UnsafePointer<UInt8>) -> Int32 in
-            let res = secp256k1_ec_seckey_verify(context!, privateKeyPointer)
+            let res = secp256k1_ec_seckey_verify(context, privateKeyPointer)
             return res
         }
         return result == 1
@@ -119,7 +127,7 @@ private struct SECP256K1 {
         let immutablePointer = UnsafePointer(arrayOfPointers)
         var publicKey: secp256k1_pubkey = secp256k1_pubkey()
         let result = withUnsafeMutablePointer(to: &publicKey) { (pubKeyPtr: UnsafeMutablePointer<secp256k1_pubkey>) -> Int32 in
-            let res = secp256k1_ec_pubkey_combine(context!, pubKeyPtr, immutablePointer, numToCombine)
+            let res = secp256k1_ec_pubkey_combine(context, pubKeyPtr, immutablePointer, numToCombine)
             return res
         }
         if result == 0 {
@@ -136,7 +144,7 @@ private struct SECP256K1 {
         let keyLen: Int = Int(serializedKey.count)
         var publicKey = secp256k1_pubkey()
         let result = serializedKey.withUnsafeBytes { (serializedKeyPointer:UnsafePointer<UInt8>) -> Int32 in
-            let res = secp256k1_ec_pubkey_parse(context!, UnsafeMutablePointer<secp256k1_pubkey>(&publicKey), serializedKeyPointer, keyLen)
+            let res = secp256k1_ec_pubkey_parse(context, UnsafeMutablePointer<secp256k1_pubkey>(&publicKey), serializedKeyPointer, keyLen)
             return res
         }
         if result == 0 {
@@ -225,6 +233,10 @@ class EthereumHDNode {
     
     private static var curveOrder = BigUInt("FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141", radix: 16)!
     public static var hardenedIndexPrefix: UInt32 = (UInt32(1) << 31)
+    
+    public static var hexadecimalNumbers: CharacterSet {
+        return ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    }
 }
 
 extension EthereumHDNode {
@@ -389,4 +401,134 @@ extension EthereumHDNode {
         return data
     }
     
+    public func sign(data: Data) -> Data? {
+        var hash = SHA3(variant: .keccak256).calculate(for: data.bytes)
+        
+        guard hash.count == 32 else {
+            return nil
+        }
+        guard var pk = privateKey?.bytes else {
+            return nil
+        }
+        guard let sig = malloc(MemoryLayout<secp256k1_ecdsa_recoverable_signature>.size)?.assumingMemoryBound(to: secp256k1_ecdsa_recoverable_signature.self) else {
+            return nil
+        }
+        defer {
+            free(sig)
+        }
+        
+        guard secp256k1_ecdsa_sign_recoverable(SECP256K1.context, sig, &hash, &pk, nil, nil) == 1 else {
+            return nil
+        }
+        
+        var output64 = Array<UInt8>(repeating: 0, count: 64)
+        var recid: Int32 = 0
+        secp256k1_ecdsa_recoverable_signature_serialize_compact(SECP256K1.context, &output64, &recid, sig)
+        
+        guard recid == 0 || recid == 1 else {
+            return nil
+        }
+        
+        var response = Data(output64)
+        response.append(UInt8(recid))
+        return response
+    }
+    
+    public func verifySignature(message: Data, signature: Data) -> Bool? {
+        guard signature.count == 65 else {
+            return nil
+        }
+        
+        var rawpubKey = publicKey.bytes
+   
+        guard let pubkey = malloc(MemoryLayout<secp256k1_pubkey>.size)?.assumingMemoryBound(to: secp256k1_pubkey.self) else {
+            return nil
+        }
+        defer {
+            free(pubkey)
+        }
+        guard secp256k1_ec_pubkey_parse(SECP256K1.context, pubkey, &rawpubKey, rawpubKey.count) == 1 else {
+            return nil
+        }
+        
+        var rawSig = signature.bytes
+        let v = Int32(rawSig.removeLast())
+        
+        // Parse recoverable signature
+        guard let recsig = malloc(MemoryLayout<secp256k1_ecdsa_recoverable_signature>.size)?.assumingMemoryBound(to: secp256k1_ecdsa_recoverable_signature.self) else {
+            return nil
+        }
+        defer {
+            free(recsig)
+        }
+        guard secp256k1_ecdsa_recoverable_signature_parse_compact(SECP256K1.context, recsig, &rawSig, v) == 1 else {
+            return nil
+        }
+        
+        // Convert to normal signature
+        guard let sig = malloc(MemoryLayout<secp256k1_ecdsa_signature>.size)?.assumingMemoryBound(to: secp256k1_ecdsa_signature.self) else {
+            return nil
+        }
+        defer {
+            free(sig)
+        }
+        guard secp256k1_ecdsa_recoverable_signature_convert(SECP256K1.context, sig, recsig) == 1 else {
+            return nil
+        }
+        
+        // Check validity with signature
+        var hash = SHA3(variant: .keccak256).calculate(for: message.bytes)
+        guard hash.count == 32 else {
+            return nil
+        }
+        return secp256k1_ecdsa_verify(SECP256K1.context, sig, &hash, pubkey) == 1
+    }
+    
+    public func address() -> Data? {
+        var hash = SHA3(variant: .keccak256).calculate(for: publicKey.bytes)
+        guard hash.count == 32 else {
+            return nil
+        }
+        return Data(hash[12...])
+    }
+    
+    public func hexAddress(eip55: Bool) -> String? {
+        guard let rawAddress = address()?.bytes else {
+            return nil
+        }
+        var hex = "0x"
+        if !eip55 {
+            for b in rawAddress {
+                hex += String(format: "%02x", b)
+            }
+        } else {
+            var address = ""
+            for b in rawAddress {
+                address += String(format: "%02x", b)
+            }
+            let hash = SHA3(variant: .keccak256).calculate(for: Array(address.utf8))
+            
+            for i in 0..<address.count {
+                let charString = String(address[address.index(address.startIndex, offsetBy: i)])
+                
+                if charString.rangeOfCharacter(from: EthereumHDNode.hexadecimalNumbers) != nil {
+                    hex += charString
+                    continue
+                }
+                
+                let bytePos = (4 * i) / 8
+                let bitPos = (4 * i) % 8
+                let bit = (hash[bytePos] >> (7 - UInt8(bitPos))) & 0x01
+                
+                if bit == 1 {
+                    hex += charString.uppercased()
+                } else {
+                    hex += charString.lowercased()
+                }
+            }
+        }
+        
+        return hex
+    }
+
 }

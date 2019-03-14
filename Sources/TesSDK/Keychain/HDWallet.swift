@@ -15,7 +15,9 @@ enum HDWalletError: Error {
     case wrongKeyPath
     case dataError
     case keyGenerationError
+    case signatureError
     case mnemonicError
+    case internalError
 }
 
 public class HDWallet {
@@ -64,11 +66,6 @@ public class HDWallet {
     
     func verify(network: Network, data: Data, signature: Data, path: KeyPath) throws -> Bool {
         return try _pk(net: network).verify(data: data, signature: signature, path: path)
-    }
-    
-    //TODO: Remove this SHIT!!!!
-    func privateKey(network: Network, keyPath: KeyPath) throws -> Data {
-        return try _pk(net: network).privateKey(keyPath: keyPath)
     }
     
     private func _pk(net: Network) throws -> HDWalletKey {

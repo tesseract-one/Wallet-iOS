@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import struct Web3.EthereumTransaction
 import Web3
 
 class EthereumSignWeb3Provider: Web3Provider {
     private let provider: Web3Provider
     private let web3: Web3
     
-    public var account: String? = nil
+    public var account: Web3EthereumAddress? = nil
     public let networkId: UInt64
     public let chainId: UInt64
     public let sign: EthereumSignProvider
@@ -26,11 +27,17 @@ class EthereumSignWeb3Provider: Web3Provider {
         self.chainId = chainId
     }
     
-    private func signTransaction(request: RPCRequest<[EthereumTransaction]>) -> Promise<EthereumSignedTransaction> {
+    private func signTransaction(request: RPCRequest<[Web3EthereumTransaction]>) -> Promise<EthereumSignedTransaction> {
         return request.params[0]
             .autononce(web3: web3)
             .then { $0.autogas(web3: self.web3) }
-            .then { self.sign.eth_signTx(tx: $0, networkId: self.networkId, chainId: self.chainId) }
+            .then { tx -> Promise<(EthereumTransaction, Data)> in
+                let tesTx = try tx.tesseract()
+                return self.sign
+                    .eth_signTx(tx: tesTx, networkId: self.networkId, chainId: self.chainId)
+                    .map{ (tesTx, $0) }
+            }
+            .map { tx, sig in try EthereumSignedTransaction(tx: tx, signature: sig, chainId: BigUInt(self.chainId))}
     }
     
     func send<Params, Result>(request: RPCRequest<Params>, response: @escaping Web3ResponseCompletion<Result>) {
@@ -39,8 +46,7 @@ class EthereumSignWeb3Provider: Web3Provider {
             sign
                 .eth_accounts(networkId: networkId)
                 .done { accounts in
-                    let addresses = try accounts.map { try EthereumAddress(hex: $0, eip55: false) }
-                    response(Web3Response(status: .success(addresses)) as! Web3Response<Result>)
+                    response(Web3Response(status: .success(accounts.map { $0.web3 })) as! Web3Response<Result>)
                 }
                 .catch { response(Web3Response(error: $0)) }
         case "personal_sign":
@@ -50,12 +56,12 @@ class EthereumSignWeb3Provider: Web3Provider {
             }
             let req = request as! RPCRequest<[String]>
             sign
-                .eth_signData(account: account, data: Data(bytes: req.params[0].hexToBytes()), networkId: networkId)
+                .eth_signData(account: account.tesseract, data: Data(bytes: req.params[0].hexToBytes()), networkId: networkId)
                 .map { $0.bytes.reduce("0x") {$0 + String(format: "%02x", $1)} }
                 .done { response(Web3Response(status: .success($0)) as! Web3Response<Result>) }
                 .catch { response(Web3Response(error: $0))}
         case "eth_sendTransaction":
-            signTransaction(request: request as! RPCRequest<[EthereumTransaction]>)
+            signTransaction(request: request as! RPCRequest<[Web3EthereumTransaction]>)
                 .then { self.web3.eth.sendRawTransaction(transaction: $0) }
                 .done { response(Web3Response(status: .success($0)) as! Web3Response<Result>) }
                 .catch { response(Web3Response(error: $0)) }
@@ -66,7 +72,7 @@ class EthereumSignWeb3Provider: Web3Provider {
 }
 
 extension Web3 {
-    public var activeAccount: String? {
+    public var activeAccount: Web3EthereumAddress? {
         get {
             if let sign = properties.provider as? EthereumSignWeb3Provider {
                 return sign.account

@@ -13,7 +13,7 @@ import TesSDK
 class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<Account?>(nil)
     
-    let address = Property<String?>(nil)
+    let address = Property<EthereumAddress?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
     let ethereumNetwork = Property<UInt64>(0)
@@ -51,7 +51,7 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
         activeAccount.filter { $0 == nil }.map { _ in nil }.bind(to: ethBalance).dispose(in: bag)
         
         activeAccount.map {try! $0?.eth_address()}.bind(to: address).dispose(in: bag)
-        activeAccount.map {try! $0?.eth_address() ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
+        activeAccount.map {try! $0?.eth_address().hex(eip55: false) ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
         
         ethBalance
             .map { $0 == nil ? "unknown" : "\($0!) ETH" }

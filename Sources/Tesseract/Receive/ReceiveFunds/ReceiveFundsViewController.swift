@@ -35,14 +35,14 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
         copyButton.reactive.tap.throttle(seconds: 0.5)
             .with(latestFrom: model.address)
             .observeNext { _, address in
-                UIPasteboard.general.string = address
+                UIPasteboard.general.string = address?.hex(eip55: false)
             }.dispose(in: reactive.bag)
         
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
         cancelButton.reactive.tap.bind(to: model.closeButtonAction).dispose(in: reactive.bag)
         
         model.qrCodeAddress.bind(to: qrCodeImageView.data).dispose(in: reactive.bag)
-        model.address.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
+        model.address.map{$0?.hex(eip55: false)}.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)

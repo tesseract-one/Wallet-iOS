@@ -7,9 +7,6 @@
 //
 
 import Foundation
-import Web3
-import CryptoSwift
-import BigInt
 
 // "44'/60'/index'/0/0"
 struct EthereumKeyPath: KeyPath {
@@ -49,29 +46,35 @@ struct EthereumHDWalletKey: HDWalletKey {
         return try _pKey(for: path).publicKey
     }
     
-    func privateKey(keyPath: KeyPath) throws -> Data {
-        return try _pKey(for: keyPath).privateKey!
-    }
-    
     func address(path: KeyPath) throws -> String {
-        return try EthereumPublicKey(bytes: _pKey(for: path).publicKey).address.hex(eip55: false)
+        guard let address = try _pKey(for: path).hexAddress(eip55: false) else {
+            throw HDWalletError.internalError
+        }
+        return address
     }
     
     func sign(data: Data, path: KeyPath) throws -> Data {
-        let signature = try EthereumPrivateKey(bytes: _pKey(for: path).privateKey!).sign(message: data.bytes)
-        var signData = Data(bytes: signature.r)
-        signData.append(Data(bytes: signature.s))
-        signData.append(UInt8(signature.v + 27))
-        return signData
+        guard var signature = try _pKey(for: path).sign(data: data) else {
+            throw HDWalletError.internalError
+        }
+        
+        signature[64] = signature[64] + 27
+        
+        return signature
     }
     
     func verify(data: Data, signature: Data, path: KeyPath) throws -> Bool {
-        let ourPubKey = try EthereumPublicKey(bytes: _pKey(for: path).publicKey)
-        let r = try EthereumQuantity(bytes: data.subdata(in: 0..<32))
-        let s = try EthereumQuantity(bytes: data.subdata(in: 32..<64))
-        let v = EthereumQuantity(integerLiteral: UInt64(data[64] - 27))
-        let dataPubKey = try EthereumPublicKey(message: data.bytes, v: v, r: r, s: s)
-        return ourPubKey == dataPubKey
+        guard signature.count == 65 else {
+            throw HDWalletError.signatureError
+        }
+        var fixedSignature = signature
+        fixedSignature[64] = fixedSignature[64] - 27
+        
+        guard let verified = try _pKey(for: path).verifySignature(message: data, signature: signature) else {
+            throw HDWalletError.internalError
+        }
+        
+        return verified
     }
     
     private func _pKey(for path: KeyPath) throws -> EthereumHDNode {

@@ -57,7 +57,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             .map { (arg, accountIndex) -> String in
                 let (_, wallet) = arg
                 let account = wallet?.accounts.first { $0.index == accountIndex }
-                return try! account!.eth_address()
+                return try! account!.eth_address().hex(eip55: false)
             }
             .with(weak: self)
             .observeNext { address, sself in
