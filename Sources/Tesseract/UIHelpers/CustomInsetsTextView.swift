@@ -8,49 +8,20 @@
 
 import UIKit
 
+@IBDesignable
 open class CustomInsetsTextView: UITextView {
   
-  // MARK: Inspectable vars
-  //
   @IBInspectable
-  open var leftInset: CGFloat = 16 {
-    didSet {
-      updateInsets()
+  open var insets: CGRect {
+    get {
+        return CGRect(x: textContainerInset.left, y: textContainerInset.top, width: textContainerInset.right, height: textContainerInset.bottom)
+    }
+    set (insets) {
+        textContainerInset = UIEdgeInsets.init(top: insets.minY, left: insets.minX, bottom: insets.height, right: insets.width)
     }
   }
   
-  @IBInspectable
-  open var topInset: CGFloat = 16 {
-    didSet {
-      updateInsets()
-    }
-  }
-  
-  @IBInspectable
-  open var rightInset: CGFloat = 16 {
-    didSet {
-      updateInsets()
-    }
-  }
-  
-  @IBInspectable
-  open var bottomInset: CGFloat = 16 {
-    didSet {
-      updateInsets()
-    }
-  }
-  
-  // MARK: Lifecycle
-  //
   required public init?(coder aDecoder: NSCoder) {
     super.init(coder: aDecoder)
-    
-    updateInsets()
-  }
-  
-  // Private methods
-  //
-  private func updateInsets() {
-    textContainerInset = UIEdgeInsets.init(top: topInset, left: leftInset, bottom: bottomInset, right: rightInset)
   }
 }

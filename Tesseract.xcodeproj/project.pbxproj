@@ -115,6 +115,7 @@
 		D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
 		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
+		D16FD29C223B1D54003324D2 /* CustomInsetsTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D16FD29B223B1D54003324D2 /* CustomInsetsTextView.swift */; };
 		D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4D219DAAD4003134DD /* GradientView.swift */; };
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicViewController.swift */; };
@@ -338,6 +339,7 @@
 		D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Bond.swift"; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
+		D16FD29B223B1D54003324D2 /* CustomInsetsTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomInsetsTextView.swift; sourceTree = "<group>"; };
 		D171DE4D219DAAD4003134DD /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D171DE51219DD0B3003134DD /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
@@ -846,6 +848,7 @@
 			isa = PBXGroup;
 			children = (
 				D131639421B96AA70066FB4A /* Extensions */,
+				D16FD29B223B1D54003324D2 /* CustomInsetsTextView.swift */,
 				D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */,
 				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
 				D131639521B96D5D0066FB4A /* GradientBorderedButton.swift */,
@@ -1373,6 +1376,7 @@
 				D1D82F452232E08A003BDFE2 /* ErrorTextField+Bind.swift in Sources */,
 				92FE973A222DB2BA007DB61C /* ScanQRViewController.swift in Sources */,
 				D11FEE6022306CB400738AAD /* ShadowedViews.swift in Sources */,
+				D16FD29C223B1D54003324D2 /* CustomInsetsTextView.swift in Sources */,
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
