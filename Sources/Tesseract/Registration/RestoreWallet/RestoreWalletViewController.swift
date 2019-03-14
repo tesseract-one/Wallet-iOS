@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class RestoreWalletViewController: UIViewController, ModelVCProtocol {
+class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProtocol {
     typealias ViewModel = RestoreWalletViewModel
     
     private(set) var model: ViewModel!
@@ -20,7 +20,6 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
-    @IBOutlet weak var scrollView: KeyboardInputScrollView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,8 +72,6 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
         
-        scrollView.navigationBar = navigationController?.navigationBar
-        
         setupSizes()
     }
     
@@ -82,13 +79,8 @@ class RestoreWalletViewController: UIViewController, ModelVCProtocol {
 
 extension RestoreWalletViewController {
     private func setupSizes() {
-        if UIScreen.main.bounds.height < 600 {
-            mnemonicTextView.isScrollEnabled = true
-            mnemonicTextViewHeight.constant = 120
-        } else {
-            mnemonicTextView.isScrollEnabled = false
-            mnemonicTextViewHeight.constant = 180
-        }
+        mnemonicTextView.isScrollEnabled = UIScreen.main.bounds.height < 600
+        mnemonicTextViewHeight.constant = 60 * UIScreen.main.scale
     }
 }
 
