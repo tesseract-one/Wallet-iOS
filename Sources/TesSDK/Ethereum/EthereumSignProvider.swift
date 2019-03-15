@@ -14,6 +14,7 @@ public enum EthereumSignProviderError: Error {
     case emptyAccount
     case mandatoryFieldMissing(String)
     case emptyResponse(String)
+    case nonIntNetworkVersion(String)
 }
 
 public protocol EthereumSignProvider: SignProvider {

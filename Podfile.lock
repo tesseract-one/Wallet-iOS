@@ -73,7 +73,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Web3:
-    :commit: 5fc7fd6c1b273268f67a55fffe1a4ab7d267c9fc
+    :commit: 43a6c9e8b4a6dd510c825ba0b1eb5935e06d622e
     :git: https://github.com/crossroadlabs/Web3.swift.git
 
 SPEC CHECKSUMS:
