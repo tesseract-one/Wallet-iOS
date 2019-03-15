@@ -74,7 +74,6 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
         
         setupSizes()
     }
-    
 }
 
 extension RestoreWalletViewController {

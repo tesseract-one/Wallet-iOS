@@ -900,7 +900,7 @@
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="8" id="M4D-AU-Ixz"/>
                                             <constraint firstAttribute="bottom" secondItem="4V9-LC-FdN" secondAttribute="bottom" id="PhW-2I-xmV"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="24" id="ZZR-pi-bTX"/>
-                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="16" id="byw-Q6-myF"/>
+                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="4" id="byw-Q6-myF"/>
                                             <constraint firstAttribute="trailing" secondItem="YcG-LT-ZFb" secondAttribute="trailing" id="dmE-DR-FsP"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="fzB-ia-h4P"/>
                                             <constraint firstAttribute="trailing" secondItem="nOd-qH-Ff2" secondAttribute="trailing" constant="16" id="i4n-9E-k3x"/>
@@ -922,10 +922,10 @@
                         <constraints>
                             <constraint firstItem="Vgt-ad-ZUq" firstAttribute="width" secondItem="y0b-86-rqf" secondAttribute="width" id="4SO-HV-r14"/>
                             <constraint firstItem="b9F-je-7Og" firstAttribute="leading" secondItem="y0b-86-rqf" secondAttribute="leading" id="D7B-yq-p44"/>
-                            <constraint firstItem="b9F-je-7Og" firstAttribute="top" secondItem="c1q-zl-CsG" secondAttribute="top" id="JsV-gs-IIA"/>
+                            <constraint firstItem="b9F-je-7Og" firstAttribute="top" secondItem="y0b-86-rqf" secondAttribute="top" id="JsV-gs-IIA"/>
                             <constraint firstAttribute="trailing" secondItem="b9F-je-7Og" secondAttribute="trailing" id="MLy-eJ-NUW"/>
-                            <constraint firstItem="b9F-je-7Og" firstAttribute="bottom" secondItem="c1q-zl-CsG" secondAttribute="bottom" id="wCJ-Z8-T5O"/>
-                            <constraint firstItem="Vgt-ad-ZUq" firstAttribute="height" secondItem="y0b-86-rqf" secondAttribute="height" id="xOS-FG-aWe"/>
+                            <constraint firstItem="Vgt-ad-ZUq" firstAttribute="height" secondItem="y0b-86-rqf" secondAttribute="height" id="nM1-s7-hFL"/>
+                            <constraint firstItem="b9F-je-7Og" firstAttribute="bottom" secondItem="y0b-86-rqf" secondAttribute="bottom" id="wCJ-Z8-T5O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c1q-zl-CsG"/>
                     </view>
@@ -951,7 +951,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="SC7-mf-IfW" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="320" height="92.5"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
