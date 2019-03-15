@@ -9,7 +9,7 @@
 import UIKit
 import TesSDK
 
-class MnemonicVerificationViewController: KeyboardScrollViewFromBoth, ModelVCProtocol {
+class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     typealias ViewModel = MnemonicVerificationViewModel
     
     private(set) var model: ViewModel!

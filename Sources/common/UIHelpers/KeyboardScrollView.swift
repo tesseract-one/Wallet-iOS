@@ -1,5 +1,5 @@
 //
-//  KeyboardScrollViewFromBottom.swift
+//  KeyboardScrollView.swift
 //  Tesseract
 //
 //  Created by Yura Kulynych on 3/11/19.
@@ -8,16 +8,19 @@
 
 import UIKit
 
-class KeyboardScrollViewFromBottom: UIViewController {
+class KeyboardScrollView: UIViewController {
     
     private var bottomConstraintInitial: CGFloat = 0.0
+    private var topConstraintInitial: CGFloat = 0.0
     
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint?
+    @IBOutlet weak var topConstraint: NSLayoutConstraint?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.bottomConstraintInitial = self.bottomConstraint.constant
+        bottomConstraintInitial = bottomConstraint != nil ? bottomConstraint!.constant : 0.0
+        topConstraintInitial = topConstraint != nil ? topConstraint!.constant : 0.0
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onKeyboardOpened), name: UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(self.onKeyboardClosed), name: UIResponder.keyboardWillHideNotification, object: nil);
@@ -25,9 +28,19 @@ class KeyboardScrollViewFromBottom: UIViewController {
     
     func moveConstraints(keyboardHeight: CGFloat?) {
         if let height = keyboardHeight {
-            self.bottomConstraint.constant = self.bottomConstraintInitial + height
+            if let bottomConstraint = bottomConstraint {
+                bottomConstraint.constant = bottomConstraintInitial + height
+            }
+            if let topConstraint = topConstraint {
+                topConstraint.constant = topConstraintInitial - height
+            }
         } else {
-           self.bottomConstraint.constant = self.bottomConstraintInitial
+            if let bottomConstraint = bottomConstraint  {
+                bottomConstraint.constant = bottomConstraintInitial
+            }
+            if let topConstraint = topConstraint {
+                topConstraint.constant = topConstraintInitial
+            }
         }
     }
     
@@ -54,28 +67,5 @@ class KeyboardScrollViewFromBottom: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-    }
-}
-
-class KeyboardScrollViewFromBoth: KeyboardScrollViewFromBottom {
-    
-    private var topConstraintInitial: CGFloat = 0.0
-    
-    @IBOutlet weak var topConstraint: NSLayoutConstraint!
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        self.topConstraintInitial = self.topConstraint.constant
-    }
-    
-    override func moveConstraints(keyboardHeight: CGFloat?) {
-        super.moveConstraints(keyboardHeight: keyboardHeight)
-        
-        if let height = keyboardHeight {
-            self.topConstraint.constant = self.topConstraintInitial - height
-        } else {
-            self.topConstraint.constant = self.topConstraintInitial
-        }
     }
 }

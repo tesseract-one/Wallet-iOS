@@ -96,7 +96,7 @@
 		92FE9741222E334D007DB61C /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FE973F222E334D007DB61C /* TransactionTableViewCell.xib */; };
 		92FE9742222E334D007DB61C /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9740222E334D007DB61C /* TransactionTableViewCell.swift */; };
 		92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */; };
-		D108644722370294005B10CB /* KeyboardScrollViewFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */; };
+		D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */; };
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
@@ -132,7 +132,7 @@
 		D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
 		D1B1E1DE2236B7C1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
 		D1B1E1E02236B812008E4CE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DF2236B812008E4CE8 /* Assets.xcassets */; };
-		D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */; };
+		D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */; };
 		D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */; };
 		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* SignUpViewController.swift */; };
@@ -355,7 +355,7 @@
 		D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewModel.swift; sourceTree = "<group>"; };
 		D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D1B1E1DF2236B812008E4CE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewFromBottom.swift; sourceTree = "<group>"; };
+		D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollView.swift; sourceTree = "<group>"; };
 		D1B2D3D421A573EC0095A17F /* AppStoryboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppStoryboard.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -892,7 +892,7 @@
 				D1958B04219B417100113CAA /* KeyboardIAutoScrollView.swift */,
 				D14B5F292199B75D006F387E /* BorderedButton.swift */,
 				D11FEE5F22306CB400738AAD /* ShadowedViews.swift */,
-				D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift */,
+				D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1354,7 +1354,7 @@
 				D171DE54219DE3A5003134DD /* MnemonicVerificationViewController.swift in Sources */,
 				D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */,
 				D1B2D3D521A573EC0095A17F /* AppStoryboard.swift in Sources */,
-				D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollViewFromBottom.swift in Sources */,
+				D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollView.swift in Sources */,
 				D1958B05219B417100113CAA /* KeyboardIAutoScrollView.swift in Sources */,
 				D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */,
 				D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */,
@@ -1440,7 +1440,7 @@
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,
 				928A916F2232DC08005DA7B4 /* ExtensionViewController.swift in Sources */,
-				D108644722370294005B10CB /* KeyboardScrollViewFromBottom.swift in Sources */,
+				D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */,
 				928A915E22329F96005DA7B4 /* EthereumKeychainViewProvider.swift in Sources */,
 				D1D82F462232E0BF003BDFE2 /* ErrorTextField+Bind.swift in Sources */,
 			);
