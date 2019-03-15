@@ -302,7 +302,7 @@
                             <constraint firstItem="Ra7-XZ-68H" firstAttribute="trailing" secondItem="YfP-G0-scS" secondAttribute="trailing" id="PET-gY-G29"/>
                             <constraint firstItem="bMK-Pn-epb" firstAttribute="leading" secondItem="Ra7-XZ-68H" secondAttribute="leading" id="TJL-aC-ZkY"/>
                             <constraint firstItem="bMK-Pn-epb" firstAttribute="top" secondItem="Ra7-XZ-68H" secondAttribute="top" id="e4P-d3-OAG"/>
-                            <constraint firstAttribute="bottom" secondItem="YfP-G0-scS" secondAttribute="bottom" id="pWs-NX-dZg"/>
+                            <constraint firstItem="Ra7-XZ-68H" firstAttribute="bottom" secondItem="YfP-G0-scS" secondAttribute="bottom" id="pWs-NX-dZg"/>
                             <constraint firstItem="Ra7-XZ-68H" firstAttribute="bottom" secondItem="bMK-Pn-epb" secondAttribute="bottom" id="vYd-bE-zha"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ra7-XZ-68H"/>
@@ -929,7 +929,6 @@
                                     <constraint firstItem="Vgt-ad-ZUq" firstAttribute="leading" secondItem="b9F-je-7Og" secondAttribute="leading" id="94h-A8-iBm"/>
                                     <constraint firstAttribute="trailing" secondItem="Vgt-ad-ZUq" secondAttribute="trailing" id="WG0-FR-PWR"/>
                                     <constraint firstItem="Vgt-ad-ZUq" firstAttribute="top" secondItem="b9F-je-7Og" secondAttribute="top" id="cYB-rz-iQr"/>
-                                    <constraint firstAttribute="bottom" secondItem="Vgt-ad-ZUq" secondAttribute="bottom" id="ujB-YR-h7P"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -939,7 +938,7 @@
                             <constraint firstItem="b9F-je-7Og" firstAttribute="leading" secondItem="y0b-86-rqf" secondAttribute="leading" id="D7B-yq-p44"/>
                             <constraint firstItem="b9F-je-7Og" firstAttribute="top" secondItem="y0b-86-rqf" secondAttribute="top" id="JsV-gs-IIA"/>
                             <constraint firstAttribute="trailing" secondItem="b9F-je-7Og" secondAttribute="trailing" id="MLy-eJ-NUW"/>
-                            <constraint firstItem="Vgt-ad-ZUq" firstAttribute="height" secondItem="y0b-86-rqf" secondAttribute="height" id="nM1-s7-hFL"/>
+                            <constraint firstItem="Vgt-ad-ZUq" firstAttribute="height" secondItem="c1q-zl-CsG" secondAttribute="height" id="tJY-jS-fhS"/>
                             <constraint firstItem="b9F-je-7Og" firstAttribute="bottom" secondItem="y0b-86-rqf" secondAttribute="bottom" id="wCJ-Z8-T5O"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c1q-zl-CsG"/>
