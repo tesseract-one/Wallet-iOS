@@ -2,7 +2,6 @@ use_frameworks!
 platform :ios, "11.0"
 
 target :Browser do
-    pod 'Alamofire', '~> 4.7'
     pod 'Fabric'
     pod 'Crashlytics'
 

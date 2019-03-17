@@ -8,9 +8,7 @@
 
 import UIKit
 import WebKit
-import Alamofire
 import TesSDK
-import Web3
 
 public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<UInt64, String> = [
     1: "https://mainnet.infura.io/v3/f20390fe230e46608572ac4378b70668",

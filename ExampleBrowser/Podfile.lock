@@ -1,5 +1,4 @@
 PODS:
-  - Alamofire (4.8.1)
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
   - CKMnemonic (0.1.7):
@@ -38,7 +37,6 @@ PODS:
     - Web3/Core
 
 DEPENDENCIES:
-  - Alamofire (~> 4.7)
   - Crashlytics
   - Fabric
   - TesSDK (from `../`)
@@ -47,7 +45,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Alamofire
     - BigInt
     - CKMnemonic
     - Crashlytics
@@ -70,7 +67,6 @@ CHECKOUT OPTIONS:
     :git: https://github.com/crossroadlabs/Web3.swift.git
 
 SPEC CHECKSUMS:
-  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CKMnemonic: 88e745afffea6f3c719c799d9869a2ea5eb9f08b
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
@@ -82,6 +78,6 @@ SPEC CHECKSUMS:
   TesSDK: 02ab55d810b893bde55ce8a22ae6700638ab288c
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: cd93b315e5e6b15a0664f3e7a9f969790928febd
+PODFILE CHECKSUM: d42a28b3a735c6235ad149728ba6d7f5d4070900
 
 COCOAPODS: 1.6.1
