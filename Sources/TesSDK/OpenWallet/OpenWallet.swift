@@ -26,6 +26,7 @@ public class OpenWallet: SignProvider {
     private let window: UIWindow
     private var requestCounter: UInt32
     private let lock = NSLock()
+    private var requestQueue: Array<UIActivityViewController> = []
     
     public static var networkUTIs: Dictionary<Network, String> = [
         .Ethereum: "ethereum"
@@ -65,7 +66,7 @@ public class OpenWallet: SignProvider {
     }
     
     public func request<R: OpenWalletRequestDataProtocol>(_ request: OpenWalletRequest<R>) -> Promise<R.Response> {
-        return Promise<R.Response> { [weak self] resolver in
+        return Promise<R.Response> { resolver in
             let vc = UIActivityViewController(activityItems: [request], applicationActivities: nil)
             
             // All system types
@@ -75,6 +76,17 @@ public class OpenWallet: SignProvider {
                                         .postToVimeo, .postToWeibo, .print, .saveToCameraRoll]
             
             vc.completionWithItemsHandler = { activityType, completed, returnedItems, error in
+                defer {
+                    DispatchQueue.main.async {
+                        self.requestQueue.removeFirst()
+                        guard let rootView = self.window.rootViewController else {
+                            return
+                        }
+                        if self.requestQueue.count > 0 {
+                            rootView.present(self.requestQueue[0], animated: true, completion: nil)
+                        }
+                    }
+                }
                 if let error = error {
                     resolver.reject(error)
                     return
@@ -89,12 +101,15 @@ public class OpenWallet: SignProvider {
                     .catch { resolver.reject($0) }
             }
             
-            guard let window = self?.window, let rootView = window.rootViewController else {
-                return resolver.reject(OpenWalletError.emptyRootView)
-            }
-            
             DispatchQueue.main.async {
-                rootView.present(vc, animated: true, completion: nil)
+                guard let rootView = self.window.rootViewController else {
+                    return resolver.reject(OpenWalletError.emptyRootView)
+                }
+                self.requestQueue.append(vc)
+                
+                if self.requestQueue.count == 1 {
+                    rootView.present(vc, animated: true, completion: nil)
+                }
             }
         }
     }

@@ -1,7 +1,7 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - Bond (7.2.1):
+  - Bond (7.3.0):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.9)
   - CKMnemonic (0.1.7):
@@ -73,12 +73,12 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Web3:
-    :commit: 43a6c9e8b4a6dd510c825ba0b1eb5935e06d622e
+    :commit: f578ac010d681d443b1939b7b706c7e3e984da9c
     :git: https://github.com/crossroadlabs/Web3.swift.git
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  Bond: 663dd8da3eccadb4d7d57243499d387f9976580d
+  Bond: 981286b1fae920135b527514e44e1591048d56dc
   CKMnemonic: 88e745afffea6f3c719c799d9869a2ea5eb9f08b
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
   CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa

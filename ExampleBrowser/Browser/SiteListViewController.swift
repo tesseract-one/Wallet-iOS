@@ -10,6 +10,8 @@ import UIKit
 
 private let networkNames: Dictionary<UInt64, String> = [
     1: "Mainnet",
+    2: "Ropsten",
+    3: "Kovan",
     4: "Rinkeby"
 ]
 
@@ -22,6 +24,11 @@ private let applications: Array<(URL?, UInt64)> = [
     //(URL(string:"https://www.mycryptoheroes.net/"), "1")
     //(URL(string:"https://godsunchained.com/"), "1")
     (URL(string:"http://crypto-rose.com"), 4),
+    (URL(string:"https://grafiti.online"), 4),
+    (URL(string:"http://staticoin.com/dapp/"), 4),
+    (URL(string: "https://beta.cent.co"), 4),
+    (URL(string: "https://etheroll.com"), 4),
+    (URL(string: "https://sharits.netlify.com/"), 4)
     //(URL(string:"https://demo.originprotocol.com/"), "4")
 ]
 

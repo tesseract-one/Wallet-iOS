@@ -24,12 +24,7 @@ private extension WKScriptMessage {
                 return data.flatMap { data in
                     try? JSONSerialization.jsonObject(with: data, options: [])
                 }.map { parsed in
-                    var object: NSDictionary? = nil
-                    if let data = parsed as? NSArray {
-                        object = data[0] as? NSDictionary
-                    } else {
-                        object = parsed as? NSDictionary
-                    }
+                    let object: NSDictionary? = parsed as? NSDictionary
                     let id = object!["id"] as! Int
                     let jsonrpc = object!["jsonrpc"] as! String
                     let method = object!["method"] as! String
@@ -37,9 +32,6 @@ private extension WKScriptMessage {
                     
                     return .message(id: id, jsonrpc: jsonrpc, method: method, params: params)
                 }!
-                
-                
-                //return .message(data: data)
             case (let name, let body):
                 return .unknown(name: name, data: body)
             }
@@ -51,9 +43,13 @@ public protocol TesWebSink : AnyObject {
     func reply(id: Int, error:Any?, result:Any?)
 }
 
+public protocol TesWebStateSink: AnyObject {
+    func setState(key: String, value: Any?)
+}
+
 typealias TesWebRecepient = (TesWebSink, TesWebMessage)->Void
 
-private class TesWebViewMessageHandler : NSObject, WKScriptMessageHandler {
+private class TesWebViewMessageHandler: NSObject, WKScriptMessageHandler {
     var recepients = [TesWebRecepient]()
     weak var sink:TesWebSink? = nil
     
@@ -92,12 +88,13 @@ public extension TesWebSink {
     }
 }
 
-public class TesWebView : WKWebView, TesWebSink {
+public class TesWebView : WKWebView, TesWebSink, TesWebStateSink {
     private let messageHandler = TesWebViewMessageHandler()
     
-    public init(frame: CGRect) {
-        let js = try! assembleJS(files: ["web3.min", "Web3Provider"])
-        
+    public init(frame: CGRect, networkId: UInt64) {
+        //let js = try! assembleJS(files: ["Web3Provider"])
+        var js = "\nwindow.__ethereum_network_version = \(networkId);\n"
+        js += try! String(contentsOfFile: Bundle.main.path(forResource: "Web3Provider", ofType: "js")!, encoding: .utf8)
         //let userScript = WKUserScript(source: "window.webkit.messageHandlers.send.postMessage(`lalala`);", injectionTime: .atDocumentStart, forMainFrameOnly: true)
         
         let userScript = WKUserScript(source: js, injectionTime: .atDocumentStart, forMainFrameOnly: true)
@@ -131,6 +128,12 @@ public class TesWebView : WKWebView, TesWebSink {
                 return "\"\(string)\"".data(using: .utf8)
             case _ as NSNull:
                 return nil
+            case let number as IntegerLiteralType:
+                return "\(number)".data(using: .utf8)
+            case let number as FloatLiteralType:
+                return "\(number)".data(using: .utf8)
+            case let bool as BooleanLiteralType:
+                return (bool ? "true" : "false").data(using: .utf8)
             case let err as Error:
                 return "\"\(err.localizedDescription)\"".data(using: .utf8)
             default:
@@ -151,13 +154,20 @@ public class TesWebView : WKWebView, TesWebSink {
         return "window.web3.currentProvider.accept(\(id), '\(err)', '\(res)');"
     }
     
+    public func setState(key: String, value: Any?) {
+        let k = serialize(object: key)!
+        let v = value.flatMap(serialize) ?? "null"
+        let js = "window.web3.currentProvider.setState('\(k)', '\(v)');"
+        DispatchQueue.main.async {
+            self.evaluateJavaScript(js)
+        }
+    }
+    
     public func reply(id: Int, error:Any? = nil, result:Any?) {
         let js = assembleMessageCall(id: id, error: error, result: result)
         //print(js)
         DispatchQueue.main.async {
-            self.evaluateJavaScript(js) { res, err in
-                //print("Res: ", res ?? "(none)", ", Err: ", err ?? "(none)")
-            }
+            self.evaluateJavaScript(js)
         }
     }
 }

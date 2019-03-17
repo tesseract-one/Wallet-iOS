@@ -33,9 +33,10 @@ extension EthereumTransaction {
 
 extension Web3EthereumTransaction {
     public func tesseract() throws -> EthereumTransaction {
-        guard let nonce = nonce, let gas = gas, let gasPrice = gasPrice, let from = from, let value = value else {
+        guard let nonce = nonce, let gas = gas, let gasPrice = gasPrice, let from = from else {
             throw EthereumSignedTransaction.Error.transactionInvalid
         }
+        let value = self.value ?? EthereumQuantity(integerLiteral: 0)
         return EthereumTransaction(
             nonce: nonce.quantity,
             gasPrice: gasPrice.quantity,

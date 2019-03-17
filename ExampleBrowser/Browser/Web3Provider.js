@@ -1,148 +1,137 @@
+(function(window) {
 
-class AccountsProcessor {
-    process(params, callback) {
-        callback(["0xb1c94904ccfb398b885fb755790117ac5baad709"]);
-    }
-    
-    static get method() {
-        return "eth_accounts";
-    }
-}
-
-class NetVersionProcessor {
-    process(params, callback) {
-        callback("1");
-    }
-    
-    static get method() {
-        return "net_version";
-    }
-}
-
-class TesseractProvider {
-    constructor() {
-        this._writeops = new Set(["eth_accounts", "net_version", "personal_sign", "eth_signTypedData"]);
+ class TesseractProvider {
+    constructor(net) {
         this._callbacks = {};
+        this._state = { network: net, account: null };
+        this.isMetaMask = true;
     }
-    
-    get provider() {
-        if(this._provider === undefined) {
-            this._provider = new Web3.providers.HttpProvider("https://mainnet.infura.io/v3/f20390fe230e46608572ac4378b70668");
-        }
-        
-        return this._provider;
+
+    isConnected() {
+        return true;
     }
-    
+ 
     processRequest(request, callback) {
-        /*if(!this._writeops.has(request.method)) {
-            return false;
-        }*/
-        
         const id = request.id;
-        
+     
         this._callbacks[id] = (error, result) => {
             delete this._callbacks[id];
-            
+ 
             if (error) {
                 var reply = {id, jsonrpc: request.jsonrpc, error: error};
                 alert(JSON.stringify(reply));
                 callback(reply, null);
             } else {
                 var reply = {id, jsonrpc: request.jsonrpc, result: result};
-                //alert(JSON.stringify(reply));
                 callback(null, reply);
             }
         }
-        
+ 
         const jsonRequest = JSON.stringify(request);
         window.webkit.messageHandlers.tes.postMessage(jsonRequest);
-        
-        return true;
-        
-        /*var processor = this._processors[request.method];
-        
-        if(processor === undefined) {
-            return false;
-        }
-        
-        var cb = function(result) {
-            var reply = {id: request.id, jsonrpc: request.jsonrpc, result: result};
-            callback(null, reply);
-        }
-        
-        processor.process(request.params, cb);
-        
-        return true;*/
     }
-    
-    sendAsync(...args) {
-        this.processRequest(...args)
-    }
-    
-    async send(request) {
-        var p = new Promise( (resolve, reject) => {
-            this.sendAsync(request, function(error, result) {
-                           alert("DDDD" + result);
-                if(error) {
-                      reject(error);
+ 
+    processBatch(requests, callback) {
+        const batchSize = requests.length;
+        var context = { isResponded: false, responses: [] };
+        requests.forEach(request => {
+            this.processRequest(request, (error, result) => {
+                if (context.isResponded) return;
+                if (error) {
+                    callback(error, null);
+                    context.isResponded = true;
                 } else {
-                      resolve(result);
+                    context.responses.push(result)
+                    if (context.responses.length === batchSize) {
+                        context.isResponded = true
+                        callback(null, context.responses)
+                    }
                 }
             });
         });
-        
-        var reply = await p;
-        //alert("UUUUUU" + JSON.stringify(reply));
-        return reply;
-        
-        //callback(null, reply);
-        
-        //alert("????????" + arguments[0].method);
     }
-    
-    /*send(request) {
-        alert("????????" + request.id);
-        return await new Promise(function(res, rej) {});
-    }*/
-    
+ 
+    sendAsync(data, callback) {
+        if (Array.isArray(data)) {
+            this.processBatch(data, callback);
+        } else {
+            this.processRequest(data, callback);
+        }
+    }
+ 
+    send(request, callback) {
+        if (callback) {
+            this.sendAsync(request, callback);
+            return;
+        }
+
+        var response = null
+        alert("SYNC REQUEST: " + JSON.stringify(request));
+        switch (request.method) {
+        case "net_version":
+            response = this._state.network.toString();
+            break;
+        case "eth_accounts":
+            response = this._state.account ? [this._state.account] : []
+            break;
+        case "eth_coinbase":
+            response = this._state.account ? this._state.account : null;
+            break;
+        case "eth_uninstallFilter":
+            this.sendAsync(request, () => {})
+            response = true
+            break
+        default:
+            throw new Error("Sync call " + request.method + " is not supported.");
+        }
+
+        return { id: request.id, jsonrpc: request.jsonrpc, result: response };
+    }
+
+    setState(key, value) {
+        const k = JSON.parse(key);
+        const v = JSON.parse(value);
+        this._state[k] = v;
+        if (k === "account") {
+            window.web3.eth.defaultAccount = v;
+        }
+    }
+ 
     accept(id, error, result) {
         const callback = this._callbacks[id];
-        
+ 
         if(callback) {
             const err = JSON.parse(error);
             const res = JSON.parse(result);
-            
+ 
             callback(err, res);
         } else {
             alert("WTF??? Callback for id is not there: " + id);
         }
     }
-}
+ }
+ 
+ class TesWeb3 {
+    constructor(net) {
+        this._net = net;
+        this.version = {
+            network: net.toString(),
+            node: null,
+            api: "0.20.3",
+            ethereum: null,
+            whisper: null
+        };
+    }
 
-class TesWeb3 {
     get currentProvider() {
         if(this._currentProvider === undefined) {
-            this._currentProvider = new TesseractProvider();
+            this._currentProvider = new TesseractProvider(this._net);
         }
-        
+ 
         return this._currentProvider;
     }
-}
-
-//window.web3 = new Web3(new TesseractProvider());
-window.web3 = new TesWeb3();
-
-
-window.onerror = function(error) {
-    alert(error); // Fire when errors occur. Just a test, not always do this.
-};
-
-(function(window) {
- // Write your code here.
- // This function call will create own local scope, so you can create global vars here.
- // If you need to add something to window scope use window.something = ...
+ }
  
- 
- 
- })(window);
+ window.web3 = new TesWeb3(window.__ethereum_network_version);
+})(window);
 

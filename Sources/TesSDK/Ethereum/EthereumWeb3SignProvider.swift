@@ -22,12 +22,12 @@ class EthereumSignWeb3Provider: Web3Provider {
     
     public let sign: EthereumSignProvider
     
-    init(chainId: UInt64?, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
+    init(chainId: UInt64?, counter: AtomicCounter, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
         _provider = web3Provider
         sign = signProvider
-        _web3 = Web3(provider: web3Provider)
         _networkId = nil
         _chainId = chainId
+        _web3 = Web3(provider: web3Provider, rpcIdCounter: counter)
         networkId({ _ in }) // Prefetch network and chain id
     }
     
@@ -77,7 +77,7 @@ class EthereumSignWeb3Provider: Web3Provider {
     func send<Params, Result>(request: RPCRequest<Params>, response: @escaping Web3ResponseCompletion<Result>) {
         switch request.method {
         case "eth_accounts":
-            eth_accounts { response($0 as! Web3Response<Result>) }
+            eth_accounts(id: request.id) { response($0 as! Web3Response<Result>) }
         case "personal_sign":
             personal_sign(req: request as! RPCRequest<EthereumValue>) { response($0 as! Web3Response<Result>) }
         case "eth_sign":
@@ -94,16 +94,16 @@ class EthereumSignWeb3Provider: Web3Provider {
 
 // eth_accounts
 extension EthereumSignWeb3Provider {
-    fileprivate func eth_accounts(response: @escaping Web3ResponseCompletion<[Web3EthereumAddress]>) {
+    fileprivate func eth_accounts(id: Int, response: @escaping Web3ResponseCompletion<[Web3EthereumAddress]>) {
         networkId { res in
             switch res {
-            case .error(let err): response(Web3Response(status: .failure(err)))
+            case .error(let err): response(Web3Response(id: id, error: err))
             case .value(let networkId):
                 self.sign.eth_accounts(networkId: networkId)
                     .done { accounts in
-                        response(Web3Response(status: .success(accounts.map { $0.web3 })))
+                        response(Web3Response(id: id, value: accounts.map { $0.web3 }))
                     }
-                    .catch { response(Web3Response(error: $0)) }
+                    .catch { response(Web3Response(id: id, error: $0)) }
             }
         }
     }
@@ -111,16 +111,16 @@ extension EthereumSignWeb3Provider {
 
 // personal_sign, eth_sign
 extension EthereumSignWeb3Provider {
-    private func sign_data(account: Web3EthereumAddress, data: EthereumData, cb: @escaping Web3ResponseCompletion<EthereumData>) {
+    private func sign_data(id: Int, account: Web3EthereumAddress, data: EthereumData, cb: @escaping Web3ResponseCompletion<EthereumData>) {
         networkId { res in
             switch res {
-            case .error(let err): cb(Web3Response(error: err))
+            case .error(let err): cb(Web3Response(id: id, error: err))
             case .value(let networkId):
                 self.sign.eth_signData(account: account.tesseract, data: Data(bytes: data.bytes), networkId: networkId)
                     .done { signature in
-                        cb(Web3Response(status: .success(EthereumData(raw: signature.bytes))))
+                        cb(Web3Response(id: id, value: EthereumData(raw: signature.bytes)))
                     }
-                    .catch { cb(Web3Response(error: $0)) }
+                    .catch { cb(Web3Response(id: id, error: $0)) }
             }
         }
         
@@ -128,50 +128,50 @@ extension EthereumSignWeb3Provider {
     
     fileprivate func personal_sign(req: RPCRequest<EthereumValue>, response: @escaping Web3ResponseCompletion<EthereumData>) {
         guard let params = req.params.array else {
-            response(Web3Response(error: EthereumSignProviderError.mandatoryFieldMissing("array")))
+            response(Web3Response(id: req.id, error: EthereumSignProviderError.mandatoryFieldMissing("array")))
             return
         }
         guard params.count > 1 else {
-            response(Web3Response(error: EthereumSignProviderError.emptyAccount))
+            response(Web3Response(id: req.id, error: EthereumSignProviderError.emptyAccount))
             return
         }
         let account: Web3EthereumAddress
         do {
             account = try Web3EthereumAddress(ethereumValue: params[1])
         } catch(let err) {
-            response(Web3Response(error: err))
+            response(Web3Response(id: req.id, error: err))
             return
         }
         let data: EthereumData
         do {
             data = try EthereumData(ethereumValue: params[0])
         } catch(let err) {
-            response(Web3Response(error: err))
+            response(Web3Response(id: req.id, error: err))
             return
         }
-        sign_data(account: account, data: data, cb: response)
+        sign_data(id: req.id, account: account, data: data, cb: response)
     }
     
     fileprivate func eth_sign(req: RPCRequest<EthereumValue>, response: @escaping Web3ResponseCompletion<EthereumData>) {
         guard let params = req.params.array else {
-            response(Web3Response(error: EthereumSignProviderError.mandatoryFieldMissing("array")))
+            response(Web3Response(id: req.id, error: EthereumSignProviderError.mandatoryFieldMissing("array")))
             return
         }
         let account: Web3EthereumAddress
         do {
             account = try Web3EthereumAddress(ethereumValue: params[0])
         } catch(let err) {
-            response(Web3Response(error: err))
+            response(Web3Response(id: req.id, error: err))
             return
         }
         let data: EthereumData
         do {
             data = try EthereumData(ethereumValue: params[1])
         } catch(let err) {
-            response(Web3Response(error: err))
+            response(Web3Response(id: req.id, error: err))
             return
         }
-        sign_data(account: account, data: data, cb: response)
+        sign_data(id: req.id, account: account, data: data, cb: response)
     }
 }
 
@@ -227,7 +227,7 @@ extension EthereumSignWeb3Provider {
             }
         }
         if let txG = tx.gas {
-            gas(Web3Response(status: .success(txG)))
+            gas(Web3Response(id: 0, status: .success(txG)))
         } else {
             guard let to = tx.to else {
                 cb(.error(EthereumSignProviderError.mandatoryFieldMissing("to")))
@@ -243,7 +243,7 @@ extension EthereumSignWeb3Provider {
     fileprivate func eth_sendTransaction(request: RPCRequest<[Web3EthereumTransaction]>, cb: @escaping (Web3Response<EthereumData>) -> Void) {
         signTransaction(request: request) { res in
             switch res {
-            case .error(let err): cb(Web3Response(status: .failure(err)))
+            case .error(let err): cb(Web3Response(id: request.id, error: err))
             case .value(let tx): self._web3.eth.sendRawTransaction(transaction: tx, response: cb)
             }
         }

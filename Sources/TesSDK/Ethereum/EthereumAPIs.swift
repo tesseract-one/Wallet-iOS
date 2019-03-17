@@ -30,8 +30,9 @@ public class EthereumAPIs: NetworkAPI {
     
     // By default chainId = networkId
     public func web3(rpcUrl: String, chainId: UInt64? = nil) -> Web3 {
-        let web3Provider = Web3HttpProvider(rpcURL: rpcUrl)
-        let sign = EthereumSignWeb3Provider(chainId: chainId, web3Provider: web3Provider, signProvider: signProvider!)
+        let counter = AtomicCounter()
+        let web3Provider = Web3HttpProviderFilterHandler(Web3HttpProvider(rpcURL: rpcUrl), counter: counter)
+        let sign = EthereumSignWeb3Provider(chainId: chainId, counter: counter, web3Provider: web3Provider, signProvider: signProvider!)
         return Web3(provider: sign)
     }
     

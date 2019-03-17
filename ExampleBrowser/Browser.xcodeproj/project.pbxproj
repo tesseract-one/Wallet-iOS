@@ -10,7 +10,6 @@
 		54E9691EB130112B959F80AA /* Pods_Browser.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E9B2610C289D211FFD6ED1E /* Pods_Browser.framework */; };
 		65223F71214D986200D937A9 /* Web3Provider.js in Resources */ = {isa = PBXBuildFile; fileRef = 65223F70214D986200D937A9 /* Web3Provider.js */; };
 		65223F73214D9AE200D937A9 /* TesWebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65223F72214D9AE200D937A9 /* TesWebView.swift */; };
-		65223F75214DA9F700D937A9 /* web3.min.js in Resources */ = {isa = PBXBuildFile; fileRef = 65223F74214DA9F700D937A9 /* web3.min.js */; };
 		65BC9CD4214179F6005D496C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BC9CD3214179F6005D496C /* AppDelegate.swift */; };
 		65BC9CD6214179F6005D496C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BC9CD5214179F6005D496C /* ViewController.swift */; };
 		65BC9CD9214179F6005D496C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CD7214179F6005D496C /* Main.storyboard */; };
@@ -23,7 +22,6 @@
 		3E9B2610C289D211FFD6ED1E /* Pods_Browser.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Browser.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65223F70214D986200D937A9 /* Web3Provider.js */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.javascript; path = Web3Provider.js; sourceTree = "<group>"; };
 		65223F72214D9AE200D937A9 /* TesWebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesWebView.swift; sourceTree = "<group>"; };
-		65223F74214DA9F700D937A9 /* web3.min.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = web3.min.js; sourceTree = "<group>"; };
 		65BC9CD1214179F6005D496C /* Browser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Browser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BC9CD3214179F6005D496C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65BC9CD5214179F6005D496C /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -86,7 +84,6 @@
 				65BC9CDA214179F7005D496C /* Assets.xcassets */,
 				65BC9CDC214179F7005D496C /* LaunchScreen.storyboard */,
 				65BC9CDF214179F7005D496C /* Info.plist */,
-				65223F74214DA9F700D937A9 /* web3.min.js */,
 				65223F70214D986200D937A9 /* Web3Provider.js */,
 			);
 			path = Browser;
@@ -167,7 +164,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				65BC9CDE214179F7005D496C /* LaunchScreen.storyboard in Resources */,
-				65223F75214DA9F700D937A9 /* web3.min.js in Resources */,
 				65BC9CDB214179F7005D496C /* Assets.xcassets in Resources */,
 				65223F71214D986200D937A9 /* Web3Provider.js in Resources */,
 				65BC9CD9214179F6005D496C /* Main.storyboard in Resources */,
