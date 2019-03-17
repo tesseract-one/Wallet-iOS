@@ -15,6 +15,8 @@
 		65BC9CD9214179F6005D496C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CD7214179F6005D496C /* Main.storyboard */; };
 		65BC9CDB214179F7005D496C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CDA214179F7005D496C /* Assets.xcassets */; };
 		65BC9CDE214179F7005D496C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BC9CDC214179F7005D496C /* LaunchScreen.storyboard */; };
+		9255B0EE223ED3980019BF9E /* Wallet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9255B0ED223ED3980019BF9E /* Wallet.swift */; };
+		9255B0F0223ED3A30019BF9E /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9255B0EF223ED3A30019BF9E /* JSON.swift */; };
 		92E5132121815FD3006184A5 /* SiteListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E5132021815FD3006184A5 /* SiteListViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +32,8 @@
 		65BC9CDD214179F7005D496C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65BC9CDF214179F7005D496C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71FAEA16BB87082841DFD4F1 /* Pods-Browser.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Browser.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Browser/Pods-Browser.debug.xcconfig"; sourceTree = "<group>"; };
+		9255B0ED223ED3980019BF9E /* Wallet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wallet.swift; sourceTree = "<group>"; };
+		9255B0EF223ED3A30019BF9E /* JSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		92E5132021815FD3006184A5 /* SiteListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiteListViewController.swift; sourceTree = "<group>"; };
 		AD19D6605D9F4D863AEC6335 /* Pods-Browser.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Browser.release.xcconfig"; path = "Pods/Target Support Files/Pods-Browser/Pods-Browser.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -79,6 +83,8 @@
 				92E5132021815FD3006184A5 /* SiteListViewController.swift */,
 				65223F72214D9AE200D937A9 /* TesWebView.swift */,
 				65BC9CD3214179F6005D496C /* AppDelegate.swift */,
+				9255B0EF223ED3A30019BF9E /* JSON.swift */,
+				9255B0ED223ED3980019BF9E /* Wallet.swift */,
 				65BC9CD5214179F6005D496C /* ViewController.swift */,
 				65BC9CD7214179F6005D496C /* Main.storyboard */,
 				65BC9CDA214179F7005D496C /* Assets.xcassets */,
@@ -254,8 +260,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9255B0EE223ED3980019BF9E /* Wallet.swift in Sources */,
 				65223F73214D9AE200D937A9 /* TesWebView.swift in Sources */,
 				65BC9CD6214179F6005D496C /* ViewController.swift in Sources */,
+				9255B0F0223ED3A30019BF9E /* JSON.swift in Sources */,
 				65BC9CD4214179F6005D496C /* AppDelegate.swift in Sources */,
 				92E5132121815FD3006184A5 /* SiteListViewController.swift in Sources */,
 			);

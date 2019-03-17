@@ -9,21 +9,21 @@
 import Foundation
 import Web3
 
-class EthereumSignWeb3Provider: Web3Provider {
+class EthereumSignWeb3Provider: Web3InjectedProvider {
     enum Result<T> {
         case value(T)
         case error(Swift.Error)
     }
     
-    private let _provider: Web3Provider
     fileprivate let _web3: Web3
     private var _networkId: UInt64?
     private var _chainId: UInt64?
     
     public let sign: EthereumSignProvider
+    public let provider: Web3Provider
     
     init(chainId: UInt64?, counter: AtomicCounter, web3Provider: Web3Provider, signProvider: EthereumSignProvider) {
-        _provider = web3Provider
+        provider = web3Provider
         sign = signProvider
         _networkId = nil
         _chainId = chainId
@@ -87,7 +87,7 @@ class EthereumSignWeb3Provider: Web3Provider {
                 response($0 as! Web3Response<Result>)
             }
         default:
-            _provider.send(request: request, response: response)
+            provider.send(request: request, response: response)
         }
     }
 }
