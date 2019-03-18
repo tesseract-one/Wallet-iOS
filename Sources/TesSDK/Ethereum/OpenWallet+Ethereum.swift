@@ -92,6 +92,36 @@ public struct OpenWalletEthereumSignTxKeychainRequest: OpenWalletEthereumRequest
     }
 }
 
+public struct OpenWalletEthereumSignTypedDataKeychainRequest: OpenWalletEthereumRequestDataProtocol {
+    public typealias Response = String
+    public static let type: String = "eth_signTypedData"
+    public let type: String = "eth_signTypedData"
+    
+    public let networkId: UInt64
+    
+    public let types: Dictionary<String, Array<EIP712TypedData._Type>>
+    public let primaryType: String
+    public let domain: EIP712TypedData.Domain
+    public let message: Dictionary<String, SerializableValue>
+    
+    public init(data: EIP712TypedData, networkId: UInt64) {
+        self.networkId = networkId
+        self.types = data.types
+        self.primaryType = data.primaryType
+        self.domain = data.domain
+        self.message = data.message
+    }
+    
+    var typedData: EIP712TypedData {
+        return EIP712TypedData(
+            primaryType: primaryType,
+            types: types,
+            domain: domain,
+            message: message
+        )
+    }
+}
+
 //public struct OpenWalletEthereumVerifyKeychainRequest: OpenWalletRequestDataProtocol {
 //    public typealias Response = Bool
 //    public static let type: String = "eth_verify"
@@ -127,6 +157,13 @@ extension OpenWallet: EthereumSignProvider {
     public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<Data> {
         return keychain(net: .Ethereum, request: OpenWalletEthereumSignTxKeychainRequest(tx: tx, chainId: chainId, networkId: networkId))
             .map { Data(hex: $0) }
+    }
+    
+    public func eth_signTypedData(account: EthereumAddress, data: EIP712TypedData, networkId: UInt64) -> Promise<Data> {
+        return keychain(
+            net: .Ethereum,
+            request: OpenWalletEthereumSignTypedDataKeychainRequest(data: data, networkId: networkId)
+        ).map { Data(hex: $0) }
     }
     
 //    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {

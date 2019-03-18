@@ -86,6 +86,11 @@ class EthereumSignWeb3Provider: Web3InjectedProvider {
             eth_sendTransaction(request: request as! RPCRequest<[Web3EthereumTransaction]>) {
                 response($0 as! Web3Response<Result>)
             }
+        case "eth_signTypedData": fallthrough
+        case "personal_signTypedData":
+            eth_signTypedData(request: request as! RPCRequest<EthereumSignTypedDataCallParams>) {
+                response($0 as! Web3Response<Result>)
+            }
         default:
             provider.send(request: request, response: response)
         }
@@ -123,7 +128,6 @@ extension EthereumSignWeb3Provider {
                     .catch { cb(Web3Response(id: id, error: $0)) }
             }
         }
-        
     }
     
     fileprivate func personal_sign(req: RPCRequest<EthereumValue>, response: @escaping Web3ResponseCompletion<EthereumData>) {
@@ -175,10 +179,32 @@ extension EthereumSignWeb3Provider {
     }
 }
 
+// eth_signTypedData
+extension EthereumSignWeb3Provider {
+    fileprivate func eth_signTypedData(
+        request: RPCRequest<EthereumSignTypedDataCallParams>,
+        cb: @escaping Web3ResponseCompletion<EthereumData>
+    ) {
+        networkId { res in
+            switch res {
+            case .error(let err): cb(Web3Response(id: request.id, error: err))
+            case .value(let networkId):
+                self.sign.eth_signTypedData(
+                    account: request.params.account.tesseract,
+                    data: request.params.data.eip712TypedData,
+                    networkId: networkId
+                ).done { signature in
+                    cb(Web3Response(id: request.id, value: EthereumData(raw: signature.bytes)))
+                }
+                .catch { cb(Web3Response(id: request.id, error: $0)) }
+            }
+        }
+    }
+}
 
 // eth_sendTransaction
 extension EthereumSignWeb3Provider {
-    public func autoNonce(_ tx: Web3EthereumTransaction, cb: @escaping (Result<Web3EthereumTransaction>) -> Void) {
+    fileprivate func autoNonce(_ tx: Web3EthereumTransaction, cb: @escaping (Result<Web3EthereumTransaction>) -> Void) {
         guard let from = tx.from else {
             cb(.error(EthereumSignProviderError.mandatoryFieldMissing("from")))
             return
@@ -200,7 +226,7 @@ extension EthereumSignWeb3Provider {
         }
     }
     
-    public func autoGas(_ tx: Web3EthereumTransaction, cb: @escaping (Result<Web3EthereumTransaction>) -> Void) {
+    fileprivate func autoGas(_ tx: Web3EthereumTransaction, cb: @escaping (Result<Web3EthereumTransaction>) -> Void) {
         if tx.gas != nil && tx.gasPrice != nil {
             cb(.value(tx))
             return

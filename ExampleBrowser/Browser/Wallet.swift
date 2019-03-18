@@ -84,9 +84,15 @@ class Wallet {
                     }
                 }
             }
-        case "eth_signTypedData":
-            print("eth_signTypedData is not supported!")
-            callback(id, "eth_signTypedData is not supported!", nil)
+        case "eth_signTypedData": fallthrough
+        case "personal_signTypedData":
+            let params = try! Wallet.decoder.decode(RPCRequest<EthereumSignTypedDataCallParams>.self, from: message).params
+            web3.eth.signTypedData(account: params.account, data: params.data) { res in
+                switch res.status {
+                case .success(let data): callback(id, nil, data.hex().jsv)
+                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                }
+            }
         case "personal_sign":
             let params = try! Wallet.decoder.decode(RPCRequest<[EthereumValue]>.self, from: message).params
             let account = try! EthereumAddress(ethereumValue: params[1])
@@ -99,7 +105,7 @@ class Wallet {
         case "eth_sign":
             let params = try! Wallet.decoder.decode(RPCRequest<[EthereumValue]>.self, from: message).params
             let account = try! EthereumAddress(ethereumValue: params[0])
-            web3.personal.sign(message: params[1].ethereumData!, account: account, password: "") { res in
+            web3.eth.sign(account: account, message: params[1].ethereumData!) { res in
                 switch res.status {
                 case .success(let data): callback(id, nil, data.hex().jsv)
                 case .failure(let err): callback(id, JsonValue.error(err), nil)

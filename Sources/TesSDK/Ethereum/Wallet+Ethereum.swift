@@ -39,9 +39,10 @@ extension Wallet: EthereumSignProvider {
             .then { $0.eth_signData(data: data) }
     }
     
-    //    func eth_signTypedData(account: String) -> Promise<Array<UInt8>> {
-    //        <#code#>
-    //    }
+    public func eth_signTypedData(account: EthereumAddress, data: EIP712TypedData, networkId: UInt64) -> Promise<Data> {
+        return eth_account(address: account)
+            .then { $0.eth_signTypedData(data: data) }
+    }
     
     private func eth_account(address: EthereumAddress) -> Promise<Account> {
         let accounts = self.accounts
@@ -59,6 +60,11 @@ extension Account {
     fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<Data> {
         return eth_hdwallet()
             .map { try $0.sign(network: .Ethereum, data: tx.rawData(chainId: BigUInt(chainId)), path: self.keyPath) }
+    }
+    
+    fileprivate func eth_signTypedData(data: EIP712TypedData) -> Promise<Data> {
+        return eth_hdwallet()
+            .map { try $0.sign(network: .Ethereum, data: data.signableMessageData(), path: self.keyPath) }
     }
     
 //    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {

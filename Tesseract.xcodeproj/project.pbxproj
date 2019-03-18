@@ -27,6 +27,7 @@
 		924AC59E223A78FE0091FB9E /* Crypt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AC59D223A78FE0091FB9E /* Crypt.swift */; };
 		924AC5A0223AB86D0091FB9E /* EthereumTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AC59F223AB86D0091FB9E /* EthereumTransaction.swift */; };
 		924AC5A2223ACB0B0091FB9E /* Web3+EthereumTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 924AC5A1223ACB0B0091FB9E /* Web3+EthereumTransaction.swift */; };
+		9255B0F2223FEBAA0019BF9E /* EIP712TypedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9255B0F1223FEBAA0019BF9E /* EIP712TypedData.swift */; };
 		92564D3722356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3322356BFA00319D8E /* SF-Pro-Display-Semibold.otf */; };
 		92564D3822356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3322356BFA00319D8E /* SF-Pro-Display-Semibold.otf */; };
 		92564D3922356BFA00319D8E /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3422356BFA00319D8E /* SF-Pro-Display-Regular.otf */; };
@@ -66,6 +67,11 @@
 		9299324E22248908000EAD47 /* TesSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9299324522248908000EAD47 /* TesSDK.framework */; };
 		9299325322248908000EAD47 /* TesSDKTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325222248908000EAD47 /* TesSDKTests.swift */; };
 		9299325D222489F4000EAD47 /* dAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299325C222489F4000EAD47 /* dAPI.swift */; };
+		92A1CE0E224023BB001D429C /* SolidityType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE09224023BB001D429C /* SolidityType.swift */; };
+		92A1CE0F224023BB001D429C /* SolidityWrappedValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE0A224023BB001D429C /* SolidityWrappedValue.swift */; };
+		92A1CE10224023BB001D429C /* ABIConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE0B224023BB001D429C /* ABIConvertible.swift */; };
+		92A1CE12224023BB001D429C /* ABIEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE0D224023BB001D429C /* ABIEncoder.swift */; };
+		92A1CE1A224054BA001D429C /* Web3+EIP712TypedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE19224054BA001D429C /* Web3+EIP712TypedData.swift */; };
 		92CB197B222808DC00407F9A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* Storage.swift */; };
 		92CB198322281E0D00407F9A /* RouterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198222281E0D00407F9A /* RouterViews.swift */; };
 		92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198422281E2600407F9A /* ApplicationContext.swift */; };
@@ -252,6 +258,7 @@
 		924AC59D223A78FE0091FB9E /* Crypt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypt.swift; sourceTree = "<group>"; };
 		924AC59F223AB86D0091FB9E /* EthereumTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumTransaction.swift; sourceTree = "<group>"; };
 		924AC5A1223ACB0B0091FB9E /* Web3+EthereumTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web3+EthereumTransaction.swift"; sourceTree = "<group>"; };
+		9255B0F1223FEBAA0019BF9E /* EIP712TypedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EIP712TypedData.swift; sourceTree = "<group>"; };
 		92564D3322356BFA00319D8E /* SF-Pro-Display-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Semibold.otf"; sourceTree = "<group>"; };
 		92564D3422356BFA00319D8E /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		92564D3522356BFA00319D8E /* materialdesignicons-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "materialdesignicons-webfont.ttf"; sourceTree = "<group>"; };
@@ -286,6 +293,11 @@
 		9299325222248908000EAD47 /* TesSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesSDKTests.swift; sourceTree = "<group>"; };
 		9299325422248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9299325C222489F4000EAD47 /* dAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dAPI.swift; sourceTree = "<group>"; };
+		92A1CE09224023BB001D429C /* SolidityType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolidityType.swift; sourceTree = "<group>"; };
+		92A1CE0A224023BB001D429C /* SolidityWrappedValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolidityWrappedValue.swift; sourceTree = "<group>"; };
+		92A1CE0B224023BB001D429C /* ABIConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABIConvertible.swift; sourceTree = "<group>"; };
+		92A1CE0D224023BB001D429C /* ABIEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABIEncoder.swift; sourceTree = "<group>"; };
+		92A1CE19224054BA001D429C /* Web3+EIP712TypedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web3+EIP712TypedData.swift"; sourceTree = "<group>"; };
 		92CB197A222808DC00407F9A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		92CB198222281E0D00407F9A /* RouterViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterViews.swift; sourceTree = "<group>"; };
 		92CB198422281E2600407F9A /* ApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
@@ -545,6 +557,7 @@
 		92655A97222ABA2500CB8A18 /* Ethereum */ = {
 			isa = PBXGroup;
 			children = (
+				92A1CE08224022BE001D429C /* ABI */,
 				92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */,
 				92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */,
 				92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */,
@@ -555,6 +568,8 @@
 				D1D82F4B2232E7A7003BDFE2 /* Numbers+Ethereum.swift */,
 				924AC59F223AB86D0091FB9E /* EthereumTransaction.swift */,
 				924AC5A1223ACB0B0091FB9E /* Web3+EthereumTransaction.swift */,
+				9255B0F1223FEBAA0019BF9E /* EIP712TypedData.swift */,
+				92A1CE19224054BA001D429C /* Web3+EIP712TypedData.swift */,
 			);
 			path = Ethereum;
 			sourceTree = "<group>";
@@ -669,6 +684,17 @@
 				9299325422248908000EAD47 /* Info.plist */,
 			);
 			path = TesSDKTests;
+			sourceTree = "<group>";
+		};
+		92A1CE08224022BE001D429C /* ABI */ = {
+			isa = PBXGroup;
+			children = (
+				92A1CE0B224023BB001D429C /* ABIConvertible.swift */,
+				92A1CE0D224023BB001D429C /* ABIEncoder.swift */,
+				92A1CE09224023BB001D429C /* SolidityType.swift */,
+				92A1CE0A224023BB001D429C /* SolidityWrappedValue.swift */,
+			);
+			path = ABI;
 			sourceTree = "<group>";
 		};
 		92CB198122281DE100407F9A /* Router */ = {
@@ -1447,6 +1473,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92A1CE0E224023BB001D429C /* SolidityType.swift in Sources */,
 				92029DC3222C55790069B362 /* EthereumHDNode.swift in Sources */,
 				928A91592231AC4D005DA7B4 /* OpenWallet+Keychain.swift in Sources */,
 				92FB84A22225A2FA00447653 /* EthereumKey.swift in Sources */,
@@ -1456,17 +1483,21 @@
 				924AC5A2223ACB0B0091FB9E /* Web3+EthereumTransaction.swift in Sources */,
 				92655AAD222C492100CB8A18 /* RIPEMD160.swift in Sources */,
 				92FB849E2225A21A00447653 /* HDWallet.swift in Sources */,
+				92A1CE10224023BB001D429C /* ABIConvertible.swift in Sources */,
 				9299325D222489F4000EAD47 /* dAPI.swift in Sources */,
 				92FB84972225823200447653 /* Keychain.swift in Sources */,
 				92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */,
 				9230791B2230385A004E3950 /* WalletNetwork.swift in Sources */,
 				9230791922302711004E3950 /* Wallet+Ethereum.swift in Sources */,
 				928A916B2232C694005DA7B4 /* Serialization.swift in Sources */,
+				92A1CE1A224054BA001D429C /* Web3+EIP712TypedData.swift in Sources */,
 				92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */,
 				924AC59E223A78FE0091FB9E /* Crypt.swift in Sources */,
 				92FE972F222D6C8D007DB61C /* NewWalletData.swift in Sources */,
 				92FB849A222589AA00447653 /* Data.swift in Sources */,
+				9255B0F2223FEBAA0019BF9E /* EIP712TypedData.swift in Sources */,
 				928A914E2231650E005DA7B4 /* OpenWallet+Ethereum.swift in Sources */,
+				92A1CE12224023BB001D429C /* ABIEncoder.swift in Sources */,
 				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
 				D1D82F4C2232E7A7003BDFE2 /* Numbers+Ethereum.swift in Sources */,
 				92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */,
@@ -1477,6 +1508,7 @@
 				92CB197B222808DC00407F9A /* Storage.swift in Sources */,
 				928A915022319A15005DA7B4 /* OpenWalletRequest.swift in Sources */,
 				9230791E22303C7E004E3950 /* Account.swift in Sources */,
+				92A1CE0F224023BB001D429C /* SolidityWrappedValue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

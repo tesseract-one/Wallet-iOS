@@ -22,5 +22,5 @@ public protocol EthereumSignProvider: SignProvider {
     func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<Data>
 //    func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool>
     func eth_signData(account: EthereumAddress, data: Data, networkId: UInt64) -> Promise<Data>
-    //func eth_signTypedData(account: String) -> Promise<Array<UInt8>>
+    func eth_signTypedData(account: EthereumAddress, data: EIP712TypedData, networkId: UInt64) -> Promise<Data>
 }
