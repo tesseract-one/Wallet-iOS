@@ -8,38 +8,35 @@
 
 import Foundation
 
-public protocol SerializableProtocol: Codable {
-    init(_ serializable: SerializableValue) throws
+public protocol SerializableValueEncodable {
     var serializable: SerializableValue { get }
 }
 
-extension SerializableProtocol {
-    public init?(_ serializable: SerializableValue) {
-        do {
-            try self.init(serializable)
-        } catch {
-            return nil
-        }
-    }
+public protocol SerializableValueDecodable {
+    init(_ serializable: SerializableValue) throws
 }
 
-public enum SerializableValue: SerializableProtocol {
-    case null
+public typealias SerializableProtocol = SerializableValueDecodable & SerializableValueEncodable
+
+public enum SerializableValue: Codable, SerializableProtocol {
+    case `nil`
     case bool(Bool)
     case int(Int)
     case float(Double)
-    case data(Data)
-    case date(Date)
     case string(String)
     case array(Array<SerializableValue>)
-    case object(SerializableObject)
+    case object(Dictionary<String, SerializableValue>)
     
     public init(_ serializable: SerializableValue) {
         self = serializable
     }
     
-    public init(from value: SerializableProtocol) {
+    public init(from value: SerializableValueEncodable) {
         self = value.serializable
+    }
+    
+    public init(_ dict: Dictionary<String, SerializableValueEncodable>) {
+        self = .object(dict.mapValues{ $0.serializable })
     }
     
     public var serializable: SerializableValue {
@@ -50,22 +47,18 @@ public enum SerializableValue: SerializableProtocol {
         let container = try decoder.singleValueContainer()
         
         if container.decodeNil() {
-            self = .null
+            self = .nil
         } else if let bool = try? container.decode(Bool.self) {
             self = .bool(bool)
         } else if let int = try? container.decode(Int.self) {
             self = .int(int)
         } else if let float = try? container.decode(Double.self) {
             self = .float(float)
-        } else if let date = try? container.decode(Date.self) {
-            self = .date(date)
-        } else if let data = try? container.decode(Data.self) {
-            self = .data(data)
         } else if let string = try? container.decode(String.self) {
             self = .string(string)
         } else if let array = try? container.decode([SerializableValue].self) {
             self = .array(array)
-        } else if let object = try? container.decode(SerializableObject.self) {
+        } else if let object = try? container.decode([String: SerializableValue].self) {
             self = .object(object)
         } else {
             throw DecodingError.dataCorruptedError(in: container, debugDescription: "Unknown value type")
@@ -76,12 +69,10 @@ public enum SerializableValue: SerializableProtocol {
         var container = encoder.singleValueContainer()
         
         switch self {
-        case .null: try container.encodeNil()
+        case .nil: try container.encodeNil()
         case .bool(let bool): try container.encode(bool)
         case .int(let int): try container.encode(int)
         case .float(let num): try container.encode(num)
-        case .data(let data): try container.encode(data)
-        case .date(let date): try container.encode(date)
         case .string(let str): try container.encode(str)
         case .array(let arr): try container.encode(arr)
         case .object(let obj): try container.encode(obj)
@@ -90,48 +81,6 @@ public enum SerializableValue: SerializableProtocol {
     
     public enum Error: Swift.Error {
         case notInitializable(SerializableValue)
-    }
-}
-
-public struct SerializableObject: SerializableProtocol {
-    public var data: Dictionary<String, SerializableValue>
-    
-    public subscript(key: String) -> SerializableProtocol? {
-        get {
-            return data[key]
-        }
-        set(newValue) {
-            data[key] = newValue?.serializable
-        }
-    }
-    
-    public init(_ data: Dictionary<String, SerializableProtocol> = [:]) {
-        self.data = data.mapValues { $0.serializable }
-    }
-    
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CustomCodingKeys.self)
-        var data = Dictionary<String, SerializableValue>()
-        for key in container.allKeys {
-            data[key.stringValue] = try container.decode(SerializableValue.self, forKey: key)
-        }
-        self.data = data
-    }
-    
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CustomCodingKeys.self)
-        for (key, val) in data {
-            try container.encode(val, forKey: CustomCodingKeys(stringValue: key)!)
-        }
-    }
-    
-    public init(_ serializable: SerializableValue) throws {
-        guard case .object(let obj) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
-        self = obj
-    }
-    
-    public var serializable: SerializableValue {
-        return .object(self)
     }
 }
 
@@ -146,6 +95,8 @@ private struct CustomCodingKeys: CodingKey {
     init?(intValue: Int) { return nil }
 }
 
+private let DATE_FORMATTER = ISO8601DateFormatter()
+
 extension Int: SerializableProtocol {
     public init(_ serializable: SerializableValue) throws {
         guard case .int(let int) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
@@ -153,7 +104,7 @@ extension Int: SerializableProtocol {
     }
     public var serializable: SerializableValue { return .int(self) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var int: Int? {
         switch self {
         case let val as SerializableValue:
@@ -172,7 +123,7 @@ extension Double: SerializableProtocol {
     }
     public var serializable: SerializableValue { return .float(self) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var float: Double? {
         switch self {
         case let val as SerializableValue:
@@ -191,7 +142,7 @@ extension Bool: SerializableProtocol {
     }
     public var serializable: SerializableValue { return .bool(self) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var bool: Bool? {
         switch self {
         case let val as SerializableValue:
@@ -205,17 +156,33 @@ extension SerializableProtocol {
 
 extension Date: SerializableProtocol {
     public init(_ serializable: SerializableValue) throws {
-        guard case .date(let date) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
-        self = date
+        switch serializable {
+        case .string(let str):
+            guard let date = DATE_FORMATTER.date(from: str) else {
+                throw SerializableValue.Error.notInitializable(serializable)
+            }
+            self = date
+        case .float(let num):
+            self = Date(timeIntervalSince1970: num)
+        case .int(let int):
+            self = Date(timeIntervalSince1970: Double(int))
+        default:
+            throw SerializableValue.Error.notInitializable(serializable)
+        }
     }
-    public var serializable: SerializableValue { return .date(self) }
+    public var serializable: SerializableValue { return .string(DATE_FORMATTER.string(from: self)) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var date: Date? {
         switch self {
         case let val as SerializableValue:
-            guard case .date(let date) = val else { return nil }
-            return date
+            return try? Date(val)
+        case let str as String:
+            return DATE_FORMATTER.date(from: str)
+        case let num as Double:
+            return Date(timeIntervalSince1970: num)
+        case let int as Int:
+            return Date(timeIntervalSince1970: Double(int))
         case let date as Date: return date
         default: return nil
         }
@@ -224,17 +191,25 @@ extension SerializableProtocol {
 
 extension Data: SerializableProtocol {
     public init(_ serializable: SerializableValue) throws {
-        guard case .data(let data) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
-        self = data
+        switch serializable {
+        case .string(let str):
+            guard let data = Data(base64Encoded: str) else {
+                throw SerializableValue.Error.notInitializable(serializable)
+            }
+            self = data
+        default:
+            throw SerializableValue.Error.notInitializable(serializable)
+        }
     }
-    public var serializable: SerializableValue { return .data(self) }
+    public var serializable: SerializableValue { return .string(self.base64EncodedString()) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var data: Data? {
         switch self {
         case let val as SerializableValue:
-            guard case .data(let data) = val else { return nil }
-            return data
+            return try? Data(val)
+        case let str as String:
+            return Data(base64Encoded: str)
         case let data as Data: return data
         default: return nil
         }
@@ -248,7 +223,7 @@ extension String: SerializableProtocol {
     }
     public var serializable: SerializableValue { return .string(self) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var string: String? {
         switch self {
         case let val as SerializableValue:
@@ -260,14 +235,16 @@ extension SerializableProtocol {
     }
 }
 
-extension Array: SerializableProtocol where Element: SerializableProtocol {
+extension Array: SerializableValueEncodable where Element: SerializableValueEncodable {
+    public var serializable: SerializableValue { return .array(self.map{$0.serializable}) }
+}
+extension Array: SerializableValueDecodable where Element: SerializableValueDecodable {
     public init(_ serializable: SerializableValue) throws {
         guard case .array(let array) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
         self = try array.map{ try Element($0) }
     }
-    public var serializable: SerializableValue { return .array(self.map{$0.serializable}) }
 }
-extension SerializableProtocol {
+extension SerializableValueDecodable {
     public var array: Array<SerializableValue>? {
         switch self {
         case let val as SerializableValue:
@@ -280,56 +257,51 @@ extension SerializableProtocol {
     }
 }
 
-extension Dictionary: SerializableProtocol where Key == String, Value: SerializableProtocol {
+extension Dictionary: SerializableValueDecodable where Key == String, Value: SerializableValueDecodable {
     public init(_ serializable: SerializableValue) throws {
         guard case .object(let obj) = serializable else { throw SerializableValue.Error.notInitializable(serializable) }
-        try self.init(obj)
-    }
-    public init(_ object: SerializableObject) throws {
-        self = try object.data.mapValues { try Value($0) }
-    }
-    public var serializable: SerializableValue {
-        return .object(asObject)
-    }
-    public var asObject: SerializableObject {
-        return SerializableObject(self)
+        self = try obj.mapValues { try Value($0) }
     }
 }
-extension SerializableProtocol {
-    public var object: SerializableObject? {
+
+extension Dictionary: SerializableValueEncodable where Key == String, Value: SerializableValueEncodable {
+    public var serializable: SerializableValue {
+        return .object(self.mapValues { $0.serializable })
+    }
+}
+
+extension SerializableValueDecodable {
+    public var object: Dictionary<String, SerializableValue>? {
         switch self {
         case let val as SerializableValue:
             guard case .object(let obj) = val else { return nil }
             return obj
-        case let object as SerializableObject: return object
-        case let dict as Dictionary<String, SerializableProtocol>: return SerializableObject(dict)
+        case let object as Dictionary<String, SerializableValue>: return object
+        case let dict as Dictionary<String, SerializableProtocol>: return dict.mapValues { $0.serializable }
         default: return nil
         }
     }
 }
 
-extension Dictionary where Value == SerializableValue {
-    public subscript(key: Key) -> SerializableProtocol? {
-        get {
-            return self[key]
+extension Optional: SerializableValueEncodable where Wrapped: SerializableValueEncodable {
+    public var serializable: SerializableValue {
+        switch self {
+        case .none: return .nil
+        case .some(let val): return val.serializable
         }
-        set(newValue) {
-            self[key] = newValue?.serializable
+    }
+}
+extension Optional: SerializableValueDecodable where Wrapped: SerializableValueDecodable {
+    public init(_ serializable: SerializableValue) throws {
+        switch serializable {
+        case .nil: self = .none
+        default: self = try .some(Wrapped(serializable))
         }
     }
 }
 
-extension Optional: SerializableProtocol where Wrapped: SerializableProtocol {
-    public init(_ serializable: SerializableValue) throws {
-        switch serializable {
-        case .null: self = .none
-        default: self = try .some(Wrapped(serializable))
-        }
-    }
-    public var serializable: SerializableValue {
-        switch self {
-        case .none: return .null
-        case .some(let val): return val.serializable
-        }
+extension Optional {
+    public static var `nil`: SerializableProtocol {
+        return SerializableValue.nil
     }
 }

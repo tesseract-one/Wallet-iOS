@@ -65,12 +65,12 @@ extension Account {
     struct StorageData: Codable {
         let index: UInt32
         let addresses: Dictionary<Network, Array<Address>>
-        let associatedData: SerializableObject
+        let associatedData: Dictionary<String, SerializableValue>
     }
     
     convenience init(storageData: StorageData) throws {
         var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
-        for (key, val) in storageData.associatedData.data {
+        for (key, val) in storageData.associatedData {
             associatedData[AssociatedKeys(rawValue: key)] = val
         }
         self.init(index: storageData.index, addresses: storageData.addresses, associatedData: associatedData)
@@ -81,6 +81,6 @@ extension Account {
         for (key, val) in associatedData {
             data[key.rawValue] = val.serializable
         }
-        return StorageData(index: index, addresses: addresses, associatedData: data.asObject)
+        return StorageData(index: index, addresses: addresses, associatedData: data)
     }
 }

@@ -148,13 +148,13 @@ public class Wallet: SignProvider {
 extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
-        let associatedData: SerializableObject
+        let associatedData: Dictionary<String, SerializableValue>
     }
     
     fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
         var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
-        for (key, val) in data.associatedData.data {
+        for (key, val) in data.associatedData {
             associatedData[AssociatedKeys(rawValue: key)] = val
         }
         try self.init(name: name, storage: storage, keychain: keychain, associatedData: associatedData, accounts: accounts)
@@ -167,7 +167,7 @@ extension Wallet {
         for (key, val) in associatedData {
             data[key.rawValue] = val.serializable
         }
-        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: data.asObject)
+        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: data)
     }
 }
 
