@@ -85,7 +85,9 @@ class Wallet {
                 }
             }
         case "eth_signTypedData": fallthrough
-        case "personal_signTypedData":
+        case "eth_signTypedData_v3": fallthrough
+        case "personal_signTypedData": fallthrough
+        case "personal_signTypedData_v3":
             let params = try! Wallet.decoder.decode(RPCRequest<EthereumSignTypedDataCallParams>.self, from: message).params
             web3.eth.signTypedData(account: params.account, data: params.data) { res in
                 switch res.status {
