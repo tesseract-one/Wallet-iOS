@@ -25,11 +25,11 @@ public class Account {
     
     public let index: UInt32
     public private(set) var addresses: Dictionary<Network, Array<Address>>
-    public var associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
+    public var associatedData: Dictionary<AssociatedKeys, SerializableProtocol>
     
     public private(set) var networkSupport: Dictionary<Network, WalletNetworkSupport> = [:]
     
-    init(index: UInt32, addresses: Dictionary<Network, Array<Address>>, associatedData: Dictionary<AssociatedKeys, AnySerializableObject>) {
+    init(index: UInt32, addresses: Dictionary<Network, Array<Address>>, associatedData: Dictionary<AssociatedKeys, SerializableProtocol>) {
         self.index = index
         self.addresses = addresses
         self.associatedData = associatedData
@@ -65,14 +65,22 @@ extension Account {
     struct StorageData: Codable {
         let index: UInt32
         let addresses: Dictionary<Network, Array<Address>>
-        let associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
+        let associatedData: SerializableObject
     }
     
     convenience init(storageData: StorageData) throws {
-        self.init(index: storageData.index, addresses: storageData.addresses, associatedData: storageData.associatedData)
+        var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
+        for (key, val) in storageData.associatedData.data {
+            associatedData[AssociatedKeys(rawValue: key)] = val
+        }
+        self.init(index: storageData.index, addresses: storageData.addresses, associatedData: associatedData)
     }
     
     var storageData: StorageData {
-        return StorageData(index: index, addresses: addresses, associatedData: associatedData)
+        var data = Dictionary<String, SerializableValue>()
+        for (key, val) in associatedData {
+            data[key.rawValue] = val.serializable
+        }
+        return StorageData(index: index, addresses: addresses, associatedData: data.asObject)
     }
 }

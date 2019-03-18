@@ -38,13 +38,13 @@ public class Wallet: SignProvider {
         return Set(networkSupport.keys)
     }
     
-    public static func initialize() {
-        AnySerializableObject.initialize()
-    }
+    public var associatedData: Dictionary<AssociatedKeys, SerializableProtocol>
     
-    public var associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
-    
-    private init(name: String, storage: StorageProtocol, keychain: Keychain, associatedData: Dictionary<AssociatedKeys, AnySerializableObject> = [:], accounts: Array<Account> = [], hdWallet: HDWallet? = nil) throws {
+    private init(
+        name: String, storage: StorageProtocol, keychain: Keychain,
+        associatedData: Dictionary<AssociatedKeys, SerializableProtocol> = [:],
+        accounts: Array<Account> = [], hdWallet: HDWallet? = nil
+    ) throws {
         self.storage = storage
         self.keychain = keychain
         self.name = name
@@ -148,18 +148,26 @@ public class Wallet: SignProvider {
 extension Wallet {
     struct StorageData: Codable {
         let accounts: Array<Account.StorageData>
-        let associatedData: Dictionary<AssociatedKeys, AnySerializableObject>
+        let associatedData: SerializableObject
     }
     
     fileprivate convenience init(name: String, data: StorageData, storage: StorageProtocol, keychain: Keychain) throws {
         let accounts = try data.accounts.map { try Account(storageData: $0) }
-        try self.init(name: name, storage: storage, keychain: keychain, associatedData: data.associatedData, accounts: accounts)
+        var associatedData = Dictionary<AssociatedKeys, SerializableProtocol>()
+        for (key, val) in data.associatedData.data {
+            associatedData[AssociatedKeys(rawValue: key)] = val
+        }
+        try self.init(name: name, storage: storage, keychain: keychain, associatedData: associatedData, accounts: accounts)
     }
     
     var storageData: StorageData {
         accountsLock.lock()
         defer { accountsLock.unlock() }
-        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: associatedData)
+        var data = Dictionary<String, SerializableValue>()
+        for (key, val) in associatedData {
+            data[key.rawValue] = val.serializable
+        }
+        return StorageData(accounts: accounts.map { $0.storageData }, associatedData: data.asObject)
     }
 }
 

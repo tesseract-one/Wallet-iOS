@@ -29,7 +29,6 @@ class WalletService {
     var errorNode: SafePublishSubject<AnyError>!
     
     init() {
-        Wallet.initialize()
         Wallet.addNetworkSupport(lib: EthereumWalletNetwork())
     }
     
@@ -71,8 +70,8 @@ class WalletService {
     func saveWalletData(data: NewWalletData, password: String) -> Promise<Wallet> {
         return Wallet.saveWalletData(name:WalletService.WALLET_KEY, data: data, password: password, storage: storage)
             .then { wallet -> Promise<Wallet> in
-                wallet.accounts[0].associatedData[.name] = "Main Account".serialized
-                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}".serialized
+                wallet.accounts[0].associatedData[.name] = "Main Account"
+                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
                 return wallet.save().map { wallet }
             }
     }

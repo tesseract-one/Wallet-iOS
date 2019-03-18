@@ -17,10 +17,8 @@ class ChooseAccountTableViewCell: UITableViewCell {
     var index: UInt32 = 0
     
     func setModel(model: Account) {
-        let nameTitle = model.associatedData[.name]
-        let emojiTitle = model.associatedData[.emoji]
-        name.text = nameTitle != nil ? String(nameTitle!) : "Account"
-        emoji.text = emojiTitle != nil ? String(emojiTitle!) : "🦹‍"
+        name.text = model.associatedData[.name]?.string ?? "Account"
+        emoji.text =  model.associatedData[.emoji]?.string ?? "\u{1F9B9}"
         index = model.index
 //        selectedIcon.isHidden = model.index == activeAccountIndex
     }
