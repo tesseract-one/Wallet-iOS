@@ -16,7 +16,7 @@ private let networkNames: Dictionary<UInt64, String> = [
 ]
 
 private let applications: Array<(URL?, UInt64)> = [
-    //(URL(string:"https://www.cryptokitties.co"), "1")
+    (URL(string:"https://www.cryptokitties.co"), 1),
     //(URL(string:"https://blockchaincuties.co/"), "1")
     //(URL(string:"https://0xuniverse.com"), "1")
     //(URL(string:"https://chickenhunt.io"), "1")

@@ -25,11 +25,11 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Ope
         title = "Sign Data"
         
         signData.text = request.data
-        
+
         let reqData = Data(hex: request.data)
         let account = try! EthereumAddress(hex: request.account, eip55: false)
         let networkId = request.networkId
-        
+
         runWalletOperation
             .with(latestFrom: context.wallet)
             .flatMapLatest { (_, wallet) -> ResultSignal<Data, AnyError> in

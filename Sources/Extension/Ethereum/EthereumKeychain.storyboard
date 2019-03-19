@@ -191,67 +191,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXV-ge-vf1">
-                                <rect key="frame" x="0.0" y="493" width="375" height="174"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw1-ym-dKY" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
-                                        <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
-                                                <size key="value" width="0.0" height="8"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="defaultPlaceholderColor">
-                                                <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
-                                                <color key="value" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                                                <color key="value" red="1" green="0.23137254900000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
-                                            </userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
-                                                <size key="value" width="0.0" height="4.5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <outlet property="nextResponderView" destination="9rQ-xw-Eup" id="H4a-79-HvF"/>
-                                        </connections>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="100" width="343" height="50"/>
-                                        <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="vdf-8C-69z"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                        <state key="normal" title="Sign">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="4"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="9rQ-xw-Eup" secondAttribute="bottom" constant="24" id="2Zx-lJ-aFr"/>
-                                    <constraint firstItem="9rQ-xw-Eup" firstAttribute="leading" secondItem="YXV-ge-vf1" secondAttribute="leading" constant="16" id="Dsp-hW-9IW"/>
-                                    <constraint firstAttribute="trailing" secondItem="Cw1-ym-dKY" secondAttribute="trailing" constant="16" id="Sas-GU-Mpm"/>
-                                    <constraint firstAttribute="height" constant="174" id="X1M-7e-x8d"/>
-                                    <constraint firstItem="9rQ-xw-Eup" firstAttribute="top" secondItem="Cw1-ym-dKY" secondAttribute="bottom" constant="24" id="dGz-t3-i6L"/>
-                                    <constraint firstAttribute="trailing" secondItem="9rQ-xw-Eup" secondAttribute="trailing" constant="16" id="rJO-Kn-dnl"/>
-                                    <constraint firstItem="Cw1-ym-dKY" firstAttribute="leading" secondItem="YXV-ge-vf1" secondAttribute="leading" constant="16" id="vSe-tx-F0K"/>
-                                </constraints>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IJy-cO-ibU">
                                 <rect key="frame" x="0.0" y="20" width="375" height="623"/>
                                 <subviews>
@@ -372,6 +311,67 @@
                                     <constraint firstItem="uaQ-pR-hug" firstAttribute="leading" secondItem="IJy-cO-ibU" secondAttribute="leading" id="wpt-Hv-bhG"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YXV-ge-vf1">
+                                <rect key="frame" x="0.0" y="493" width="375" height="174"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw1-ym-dKY" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
+                                        <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
+                                                <size key="value" width="0.0" height="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="defaultPlaceholderColor">
+                                                <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                <color key="value" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                <color key="value" red="1" green="0.23137254900000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
+                                                <size key="value" width="0.0" height="4.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="nextResponderView" destination="9rQ-xw-Eup" id="H4a-79-HvF"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="100" width="343" height="50"/>
+                                        <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="vdf-8C-69z"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                        <state key="normal" title="Sign">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="9rQ-xw-Eup" secondAttribute="bottom" constant="24" id="2Zx-lJ-aFr"/>
+                                    <constraint firstItem="9rQ-xw-Eup" firstAttribute="leading" secondItem="YXV-ge-vf1" secondAttribute="leading" constant="16" id="Dsp-hW-9IW"/>
+                                    <constraint firstAttribute="trailing" secondItem="Cw1-ym-dKY" secondAttribute="trailing" constant="16" id="Sas-GU-Mpm"/>
+                                    <constraint firstAttribute="height" constant="174" id="X1M-7e-x8d"/>
+                                    <constraint firstItem="9rQ-xw-Eup" firstAttribute="top" secondItem="Cw1-ym-dKY" secondAttribute="bottom" constant="24" id="dGz-t3-i6L"/>
+                                    <constraint firstAttribute="trailing" secondItem="9rQ-xw-Eup" secondAttribute="trailing" constant="16" id="rJO-Kn-dnl"/>
+                                    <constraint firstItem="Cw1-ym-dKY" firstAttribute="leading" secondItem="YXV-ge-vf1" secondAttribute="leading" constant="16" id="vSe-tx-F0K"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
