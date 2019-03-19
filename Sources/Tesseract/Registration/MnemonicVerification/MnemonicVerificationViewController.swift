@@ -15,7 +15,6 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     private(set) var model: ViewModel!
     
     @IBOutlet weak var mnemonicVerificationTextView: TextView!
-    @IBOutlet weak var mnemonicVerificationTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var mnemonicVerificationTextViewTop: NSLayoutConstraint!
     private var mnemonicVerificationTextViewTopInitial: CGFloat = 0.0
     
@@ -28,8 +27,7 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
         mnemonicVerificationTextView.reactive.notification(.textDidChange).map { $0.text ?? "" }
             .bind(to: model.mnemonicText).dispose(in: bag)
         
-        mnemonicVerificationTextView.reactive.notification(.textDidBeginEditing)
-            .merge(with: mnemonicVerificationTextView.reactive.notification(.textDidChange)).map { _ in "" }
+        mnemonicVerificationTextView.reactive.notification(.textDidBeginEditing).map { _ in "" }
             .bind(to: mnemonicVerificationTextView.reactive.error).dispose(in: bag)
 
         model.mnemonicVerifiedSuccessfully
@@ -80,10 +78,10 @@ extension MnemonicVerificationViewController {
     private func setupSizes() {
         if UIScreen.main.bounds.height < 600 {
             mnemonicVerificationTextView.textView.isScrollEnabled = true
-            mnemonicVerificationTextViewHeight.constant = 193
+            mnemonicVerificationTextView.frame.size.height = 193
         } else {
             mnemonicVerificationTextView.textView.isScrollEnabled = false
-            mnemonicVerificationTextViewHeight.constant = 235
+            mnemonicVerificationTextView.frame.size.height = 235
         }
     }
 }

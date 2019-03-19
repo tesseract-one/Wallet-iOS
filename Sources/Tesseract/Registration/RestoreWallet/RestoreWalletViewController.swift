@@ -16,7 +16,6 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     private(set) var model: ViewModel!
     
     @IBOutlet weak var mnemonicTextView: TextView!
-    @IBOutlet weak var mnemonicTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
@@ -79,7 +78,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
 extension RestoreWalletViewController {
     private func setupSizes() {
         mnemonicTextView.textView.isScrollEnabled = UIScreen.main.bounds.height < 600
-        mnemonicTextViewHeight.constant = 75 * UIScreen.main.scale
+        mnemonicTextView.frame.size.height = 75 * UIScreen.main.scale
     }
 }
 

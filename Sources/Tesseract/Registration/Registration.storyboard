@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_0" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -26,17 +26,17 @@
             <objects>
                 <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khx-6M-fzw">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="355.33333333333331"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRT-Tt-Ehc">
-                                        <rect key="frame" x="0.0" y="3" width="320" height="114"/>
+                                        <rect key="frame" x="0.0" y="69.333333333333343" width="414" height="189.00000000000003"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="wIJ-Dj-xQx">
-                                                <rect key="frame" x="123" y="20" width="74" height="74"/>
+                                                <rect key="frame" x="145.66666666666666" y="33" width="122.66666666666666" height="123"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="wIJ-Dj-xQx" secondAttribute="height" multiplier="1:1" id="l66-7z-BXI"/>
                                                 </constraints>
@@ -49,7 +49,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-GL-UP9">
-                                        <rect key="frame" x="39.5" y="142" width="241" height="48"/>
+                                        <rect key="frame" x="86.666666666666686" y="283.33333333333331" width="241" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="yGV-wL-SLm"/>
                                         </constraints>
@@ -58,7 +58,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwF-BI-OU2">
-                                        <rect key="frame" x="15" y="190" width="290" height="24"/>
+                                        <rect key="frame" x="62" y="331.33333333333331" width="290" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="hpv-Nw-eM6"/>
                                         </constraints>
@@ -78,13 +78,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7UG-if-BYj">
-                                <rect key="frame" x="0.0" y="214" width="320" height="109.5"/>
+                                <rect key="frame" x="0.0" y="355.33333333333331" width="414" height="234.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5kX-ZW-ulh">
-                                        <rect key="frame" x="0.0" y="31" width="320" height="48"/>
+                                        <rect key="frame" x="0.0" y="93.333333333333314" width="414" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="boP-Jv-ldG" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="0.0" width="288" height="20"/>
+                                                <rect key="frame" x="16" y="0.0" width="382" height="20"/>
                                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -115,7 +115,7 @@
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8wX-ft-38H" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="28" width="288" height="20"/>
+                                                <rect key="frame" x="16" y="28" width="382" height="20"/>
                                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -165,10 +165,10 @@
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="IuL-ue-ER6">
-                                <rect key="frame" x="16" y="323.5" width="288" height="108"/>
+                                <rect key="frame" x="16" y="590" width="382" height="108"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AbA-dT-H7q" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                         <state key="normal" title="Create Key">
@@ -181,7 +181,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r11-Cf-4ka" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="58" width="288" height="50"/>
+                                        <rect key="frame" x="0.0" y="58" width="382" height="50"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                         <state key="normal" title="Restore Key">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -240,11 +240,11 @@
             <objects>
                 <viewController storyboardIdentifier="TermsOfService" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TOP-Zx-po9" customClass="TermsOfServiceViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bG2-8s-dpE">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" usesAttributedText="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bMK-Pn-epb" customClass="CustomInsetsTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
@@ -265,10 +265,10 @@
                                 </userDefinedRuntimeAttributes>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YfP-G0-scS">
-                                <rect key="frame" x="0.0" y="478" width="320" height="90"/>
+                                <rect key="frame" x="0.0" y="772" width="414" height="90"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qMR-5q-8QY" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="288" height="50"/>
+                                        <rect key="frame" x="16" y="16" width="382" height="50"/>
                                         <color key="backgroundColor" red="0.23137254900000001" green="0.23137254900000001" blue="0.23137254900000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="fUU-St-jTN"/>
@@ -327,11 +327,11 @@
             <objects>
                 <viewController storyboardIdentifier="Mnemonic" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AsG-nN-6DF" customClass="MnemonicViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BOL-u6-Bef">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7SB-s6-gJg">
-                                <rect key="frame" x="16" y="36" width="288" height="47"/>
+                                <rect key="frame" x="16" y="60" width="382" height="46.666666666666657"/>
                                 <attributedString key="attributedText">
                                     <fragment content="We’ve all heard how crucial it is to set intentions, goals and targets.">
                                         <attributes>
@@ -344,13 +344,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vPL-P7-DuK">
-                                <rect key="frame" x="16" y="116" width="288" height="20"/>
+                                <rect key="frame" x="16" y="139.66666666666666" width="382" height="20"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="17"/>
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hht-z9-Bkb">
-                                <rect key="frame" x="16" y="144" width="288" height="33"/>
+                                <rect key="frame" x="16" y="167.66666666666666" width="382" height="32.666666666666657"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Mnemonics">
                                         <attributes>
@@ -364,7 +364,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s0j-pk-iE2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="494" width="288" height="50"/>
+                                <rect key="frame" x="16" y="788" width="382" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="gor-HF-M62"/>
@@ -415,7 +415,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="xRp-Bx-Fzs" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="320" height="91"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -443,17 +443,17 @@
             <objects>
                 <viewController storyboardIdentifier="MnemonicVerification" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y3x-gO-Oc3" customClass="MnemonicVerificationViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ubl-XX-NKV">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
-                                <rect key="frame" x="16" y="171" width="288" height="19"/>
+                                <rect key="frame" x="16" y="194.66666666666666" width="382" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                 <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L7R-92-xAd">
-                                <rect key="frame" x="16" y="80" width="288" height="47"/>
+                                <rect key="frame" x="16" y="104" width="382" height="46.666666666666657"/>
                                 <attributedString key="attributedText">
                                     <fragment content="We’ve all heard how crucial it is to set intentions, goals and targets.">
                                         <attributes>
@@ -465,13 +465,10 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="198" width="288" height="220"/>
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="221.66666666666666" width="382" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="5RN-ME-aQN"/>
-                                </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="textViewFontSize">
                                         <real key="value" value="28"/>
@@ -489,7 +486,7 @@
                                 </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-bF-Du2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="494" width="288" height="50"/>
+                                <rect key="frame" x="16" y="788" width="382" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="C9p-rE-rlx"/>
@@ -507,6 +504,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="KOX-bF-Du2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="61Q-jv-WeK" secondAttribute="bottom" constant="24" id="6eO-lV-CjT"/>
                             <constraint firstItem="61Q-jv-WeK" firstAttribute="top" secondItem="bBV-7A-zhK" secondAttribute="bottom" constant="8" id="B0h-qw-mHx"/>
                             <constraint firstItem="L7R-92-xAd" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="BVz-vA-2a7"/>
                             <constraint firstItem="KOX-bF-Du2" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="GIg-fz-Poy"/>
@@ -516,7 +514,6 @@
                             <constraint firstItem="61Q-jv-WeK" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="PFM-oc-g6e"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" constant="16" id="RR3-dA-sL4"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="61Q-jv-WeK" secondAttribute="trailing" constant="16" id="SZn-Mh-Gfb"/>
-                            <constraint firstItem="KOX-bF-Du2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="61Q-jv-WeK" secondAttribute="bottom" constant="24" id="YON-6n-Uvs"/>
                             <constraint firstItem="bBV-7A-zhK" firstAttribute="top" secondItem="L7R-92-xAd" secondAttribute="bottom" constant="44" id="bZO-b1-Iuj"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="L7R-92-xAd" secondAttribute="trailing" constant="16" id="gSh-rI-X0T"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="bottom" secondItem="KOX-bF-Du2" secondAttribute="bottom" constant="24" id="zJ5-iT-xA3"/>
@@ -531,7 +528,6 @@
                         <outlet property="bottomConstraint" destination="zJ5-iT-xA3" id="UZ6-kP-WRh"/>
                         <outlet property="doneButton" destination="KOX-bF-Du2" id="2Ns-eZ-xB7"/>
                         <outlet property="mnemonicVerificationTextView" destination="61Q-jv-WeK" id="07n-dO-oMX"/>
-                        <outlet property="mnemonicVerificationTextViewHeight" destination="5RN-ME-aQN" id="06e-8x-nKx"/>
                         <outlet property="mnemonicVerificationTextViewTop" destination="bZO-b1-Iuj" id="pLM-FR-LVr"/>
                         <outlet property="skipButton" destination="iYf-1q-7ln" id="0Ns-k4-Qzs"/>
                         <outlet property="topConstraint" destination="L6x-p3-wH8" id="a49-cY-arl"/>
@@ -546,17 +542,17 @@
             <objects>
                 <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="SignInViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpN-zK-av5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-2k-pAp">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="241.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="400.66666666666669"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujy-H1-l28">
-                                        <rect key="frame" x="0.0" y="21" width="320" height="114"/>
+                                        <rect key="frame" x="0.0" y="105.33333333333334" width="414" height="189.00000000000003"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="6bO-lU-xEu">
-                                                <rect key="frame" x="123" y="20" width="74" height="74"/>
+                                                <rect key="frame" x="145.66666666666666" y="32.999999999999972" width="122.66666666666666" height="123"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="6bO-lU-xEu" secondAttribute="height" multiplier="1:1" id="xC1-JN-Bix"/>
                                                 </constraints>
@@ -569,7 +565,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26K-vS-IBg">
-                                        <rect key="frame" x="39.5" y="165" width="241" height="48"/>
+                                        <rect key="frame" x="86.666666666666686" y="324.33333333333331" width="241" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="bb6-mV-Kkm"/>
                                         </constraints>
@@ -578,7 +574,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" verticalCompressionResistancePriority="749" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w1j-uV-EnZ">
-                                        <rect key="frame" x="15" y="221" width="290" height="20.5"/>
+                                        <rect key="frame" x="62" y="380.33333333333337" width="290" height="20.333333333333314"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -596,13 +592,13 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P80-32-YRo">
-                                <rect key="frame" x="0.0" y="241.5" width="320" height="214"/>
+                                <rect key="frame" x="0.0" y="400.66666666666663" width="414" height="355.33333333333337"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxb-a9-DHO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="223.33333333333334"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-r1-3jz" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="31" width="288" height="20"/>
+                                                <rect key="frame" x="16" y="101.66666666666674" width="382" height="20"/>
                                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -638,10 +634,10 @@
                                         </constraints>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
-                                        <rect key="frame" x="16" y="82" width="288" height="108"/>
+                                        <rect key="frame" x="16" y="223.33333333333337" width="382" height="108"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="288" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                                 <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                                 <state key="normal" title="Unlock">
@@ -654,7 +650,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="58" width="288" height="50"/>
+                                                <rect key="frame" x="0.0" y="58" width="382" height="50"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                                 <state key="normal" title="Restore Key">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -719,17 +715,17 @@
             <objects>
                 <viewController storyboardIdentifier="RestoreWallet" useStoryboardIdentifierAsRestorationIdentifier="YES" id="l8G-nD-7H9" customClass="RestoreWalletViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="y0b-86-rqf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b9F-je-7Og" customClass="KeyboardAutoScrollView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9F-je-7Og" customClass="KeyboardAutoScrollView" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vgt-ad-ZUq">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="774"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOd-qH-Ff2">
-                                                <rect key="frame" x="16" y="8" width="288" height="48"/>
+                                                <rect key="frame" x="16" y="8" width="382" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="48" id="qWE-xk-Uyc"/>
                                                 </constraints>
@@ -759,14 +755,12 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-LT-ZFb" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72" width="320" height="100"/>
+                                                <rect key="frame" x="0.0" y="72" width="414" height="100"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZB-ec-BPk" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="288" height="100"/>
+                                                    <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="100" translatesAutoresizingMaskIntoConstraints="NO" id="sZB-ec-BPk" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="0.0" width="382" height="100"/>
                                                         <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="100" id="hxe-Ew-xmK"/>
-                                                        </constraints>
+                                                        <viewLayoutGuide key="safeArea" id="Qqj-Qd-Qqb"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mnemonics"/>
                                                             <userDefinedRuntimeAttribute type="string" keyPath="textViewFontName" value=".SFUIText"/>
@@ -790,17 +784,17 @@
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="sZB-ec-BPk" secondAttribute="trailing" constant="16" id="GDK-JV-tS9"/>
                                                     <constraint firstAttribute="bottom" secondItem="sZB-ec-BPk" secondAttribute="bottom" id="NHl-6G-FLl"/>
                                                     <constraint firstItem="sZB-ec-BPk" firstAttribute="leading" secondItem="YcG-LT-ZFb" secondAttribute="leading" constant="16" id="ioJ-GJ-Bj8"/>
                                                     <constraint firstItem="sZB-ec-BPk" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="top" id="o33-Xa-6qj"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sZB-ec-BPk" secondAttribute="trailing" constant="16" id="wFc-86-Efu"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDg-JE-zLB" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="184" width="320" height="20"/>
+                                                <rect key="frame" x="0.0" y="184" width="414" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-Xa-DVd" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="288" height="20"/>
+                                                        <rect key="frame" x="16" y="0.0" width="382" height="20"/>
                                                         <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -844,10 +838,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4z-Jb-td5" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="212" width="320" height="20"/>
+                                                <rect key="frame" x="0.0" y="212" width="414" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IJN-8j-PMi" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="288" height="20"/>
+                                                        <rect key="frame" x="16" y="0.0" width="382" height="20"/>
                                                         <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -892,10 +886,10 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4V9-LC-FdN" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="430" width="320" height="74"/>
+                                                <rect key="frame" x="0.0" y="700" width="414" height="74"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cJa-Wn-mU5" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="288" height="50"/>
+                                                        <rect key="frame" x="16" y="0.0" width="382" height="50"/>
                                                         <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                                         <state key="normal" title="Restore">
@@ -940,6 +934,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Vgt-ad-ZUq" firstAttribute="leading" secondItem="b9F-je-7Og" secondAttribute="leading" id="94h-A8-iBm"/>
+                                    <constraint firstAttribute="bottom" secondItem="Vgt-ad-ZUq" secondAttribute="bottom" id="EJ0-tM-xcI"/>
                                     <constraint firstAttribute="trailing" secondItem="Vgt-ad-ZUq" secondAttribute="trailing" id="WG0-FR-PWR"/>
                                     <constraint firstItem="Vgt-ad-ZUq" firstAttribute="top" secondItem="b9F-je-7Og" secondAttribute="top" id="cYB-rz-iQr"/>
                                 </constraints>
@@ -961,7 +956,6 @@
                     <connections>
                         <outlet property="confirmPasswordField" destination="IJN-8j-PMi" id="nmp-HN-Fdx"/>
                         <outlet property="mnemonicTextView" destination="sZB-ec-BPk" id="uqR-MW-vZu"/>
-                        <outlet property="mnemonicTextViewHeight" destination="hxe-Ew-xmK" id="8Yz-bg-2IX"/>
                         <outlet property="passwordField" destination="CtV-Xa-DVd" id="bDl-Xp-hQ2"/>
                         <outlet property="restoreButton" destination="cJa-Wn-mU5" id="6eb-kd-ztl"/>
                         <outlet property="scrollView" destination="b9F-je-7Og" id="er8-h3-MMz"/>
@@ -978,7 +972,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="SC7-mf-IfW" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="320" height="92.5"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1003,6 +997,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo" width="140.80000305175781" height="145.60000610351562"/>
+        <image name="logo" width="211.19999694824219" height="218.39999389648438"/>
     </resources>
 </document>
