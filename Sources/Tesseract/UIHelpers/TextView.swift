@@ -120,6 +120,10 @@ class TextView: UIView {
     private var errorColor: UIColor = UIColor(red: 255/255, green: 59/255, blue: 49/255, alpha: 1.0)
     private var errorPadding: CGSize = CGSize(width: 0, height: 4)
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: super.intrinsicContentSize.width, height: frame.height)
+    }
+    
     // MARK: Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -143,8 +147,8 @@ class TextView: UIView {
         NotificationCenter.default.addObserver(self, selector: #selector(self.onTakeFocus), name: UITextView.textDidBeginEditingNotification, object: textView)
         NotificationCenter.default.addObserver(self, selector: #selector(self.onLostFocus), name: UITextView.textDidEndEditingNotification, object: textView)
     }
-    
-    override var bounds: CGRect { // frames don't work
+        
+    override var frame: CGRect {
         didSet {
             let errorLabelSpace = errorLabel != nil ? errorLabel!.frame.size.height + errorPadding.height : 0
             
@@ -157,10 +161,25 @@ class TextView: UIView {
                 textView.frame.size.height = frame.height - errorLabelSpace
             }
             
-            textView.frame.size.width = frame.width
-            
             underlineLayer.frame.origin.y = frame.height - underlineHeight - errorLabelSpace
-            underlineLayer.frame.size.width = frame.width
+            
+            invalidateIntrinsicContentSize()
+        }
+    }
+    
+    override var bounds: CGRect {
+        didSet {
+            // if width will be updated by autoLayout, we should update components
+            
+            underlineLayer.frame.size.width = bounds.width
+            textView.frame.size.width = bounds.width
+            
+            if let placeholderLabel = placeholderLabel {
+                placeholderLabel.frame.size.width = bounds.width - textViewInsets.minX - textViewInsets.width
+            }
+            if let errorLabel = errorLabel {
+                errorLabel.frame.size.width = bounds.width - errorPadding.width * 2 - textViewInsets.minX - textViewInsets.width
+            }
         }
     }
     
@@ -170,10 +189,9 @@ class TextView: UIView {
         textView.keyboardAppearance = .dark
         textView.returnKeyType = .next
         textView.textContainer.lineFragmentPadding = 0
-        textView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+        textView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: frame.height)
         
         addSubview(textView)
-        layoutIfNeeded()
     }
     
     private func setupPlaceholder(placeholder: String) {
@@ -190,7 +208,7 @@ class TextView: UIView {
         
         placeholderLabel!.frame = CGRect(
             x: textViewInsets.minX, y: placeholderLabelHeight + textViewInsets.minY,
-            width: frame.width - textViewInsets.minX - textViewInsets.width, height: placeholderLabelHeight
+            width: bounds.width - textViewInsets.minX - textViewInsets.width, height: placeholderLabelHeight
         )
         
         if textView.isScrollEnabled {
@@ -205,7 +223,6 @@ class TextView: UIView {
         underlineLayer.frame.origin.y = frame.height - underlineHeight
         
         addSubview(placeholderLabel!)
-        layoutIfNeeded()
     }
     
     private func setupUnderline() {
@@ -213,10 +230,9 @@ class TextView: UIView {
         
         underlineLayer.backgroundColor = underlineColor.cgColor
         
-        underlineLayer.frame = CGRect(x: 0, y: frame.height - underlineHeight, width: frame.width, height: underlineHeight)
+        underlineLayer.frame = CGRect(x: 0, y: frame.height - underlineHeight, width: bounds.width, height: underlineHeight)
         
         layer.addSublayer(underlineLayer)
-        layoutIfNeeded()
     }
 
     private func animatePlaceholderToTop(animated: Bool) {
@@ -234,7 +250,6 @@ class TextView: UIView {
                 animations: {
                     self.placeholderLabel!.font = UIFont(name: self.placeholderFontName, size: self.placeholderFontSize)
                     self.placeholderLabel!.frame.origin.y = 0
-                    self.layoutIfNeeded()
                 },
                 completion: { finished in
                     self.placeholderIsAnimating = false
@@ -268,7 +283,6 @@ class TextView: UIView {
                 animations: {
                     self.placeholderLabel!.font = self.textView.font
                     self.placeholderLabel!.frame.origin.y = bottomPosition
-                    self.layoutIfNeeded()
                 },
                 completion: { isFinished in
                     self.placeholderIsAnimating = false
@@ -332,12 +346,11 @@ class TextView: UIView {
         errorLabel!.frame = CGRect(
             x: errorPadding.width,
             y: frame.height - errorLabelHeight,
-            width: frame.width - errorPadding.width * 2 - textViewInsets.minX - textViewInsets.width,
+            width: bounds.width - errorPadding.width * 2 - textViewInsets.minX - textViewInsets.width,
             height: errorLabelHeight
         )
         
         addSubview(errorLabel!)
-        layoutIfNeeded()
         
         let bottomPosition = errorLabelHeight + errorPadding.height
         
@@ -352,14 +365,12 @@ class TextView: UIView {
                     self.errorLabel!.frame.origin.y += bottomPosition
                     self.errorLabel!.alpha = 1.0
                     
-                    self.frame.size.height += bottomPosition
-                    
                     if self.placeholderLabel != nil {
                         self.placeholderLabel!.textColor = self.errorColor
                     }
                     self.underlineLayer.backgroundColor = self.errorColor.cgColor
-                    
-                    self.layoutIfNeeded()
+                
+                    self.frame.size.height += bottomPosition
                 },
                 completion: { isFinished in
                     self.errorIsAnimating = false
@@ -371,7 +382,7 @@ class TextView: UIView {
             )
         } else if !animated {
             errorLabel?.frame.origin.y += bottomPosition
-            self.frame.size.height += bottomPosition
+            frame.size.height += bottomPosition
         }
     }
     
@@ -394,14 +405,12 @@ class TextView: UIView {
                     self.errorLabel!.frame.origin.y -= topPosition
                     self.errorLabel!.alpha = 0.0
                     
-                    self.frame.size.height -= topPosition
-                    
                     if self.placeholderLabel != nil {
                         self.placeholderLabel!.textColor = self.tintColor
                     }
                     self.underlineLayer.backgroundColor = self.tintColor.cgColor
                     
-                    self.layoutIfNeeded()
+                    self.frame.size.height -= topPosition
                 },
                 completion: { isFinished in
                     self.errorIsAnimating = false
@@ -452,7 +461,7 @@ class TextView: UIView {
 extension UILabel{
     
     public var requiredHeight: CGFloat {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: frame.width, height: CGFloat.greatestFiniteMagnitude))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: bounds.width, height: CGFloat.greatestFiniteMagnitude))
         label.numberOfLines = 0
         label.lineBreakMode = NSLineBreakMode.byWordWrapping
         label.font = font
