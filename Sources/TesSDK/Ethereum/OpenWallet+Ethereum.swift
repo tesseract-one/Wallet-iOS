@@ -99,17 +99,20 @@ public struct OpenWalletEthereumSignTypedDataKeychainRequest: OpenWalletEthereum
     
     public let networkId: UInt64
     
+    public let account: String
+    
     public let types: Dictionary<String, Array<EIP712TypedData._Type>>
     public let primaryType: String
     public let domain: EIP712TypedData.Domain
     public let message: Dictionary<String, SerializableValue>
     
-    public init(data: EIP712TypedData, networkId: UInt64) {
+    public init(account: String, data: EIP712TypedData, networkId: UInt64) {
         self.networkId = networkId
         self.types = data.types
         self.primaryType = data.primaryType
         self.domain = data.domain
         self.message = data.message
+        self.account = account
     }
     
     var typedData: EIP712TypedData {
@@ -162,7 +165,7 @@ extension OpenWallet: EthereumSignProvider {
     public func eth_signTypedData(account: EthereumAddress, data: EIP712TypedData, networkId: UInt64) -> Promise<Data> {
         return keychain(
             net: .Ethereum,
-            request: OpenWalletEthereumSignTypedDataKeychainRequest(data: data, networkId: networkId)
+            request: OpenWalletEthereumSignTypedDataKeychainRequest(account: account.hex(eip55: false), data: data, networkId: networkId)
         ).map { Data(hex: $0) }
     }
     
@@ -190,6 +193,8 @@ public protocol OpenWalletEthereumKeychainViewProvider {
     func signTransactionView(req: OpenWalletEthereumSignTxKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumSignTxKeychainRequest.Response?) -> Void) -> UIViewController
     
     func signDataView(req: OpenWalletEthereumSignDataKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumSignDataKeychainRequest.Response?) -> Void) -> UIViewController
+    
+    func signTypedDataView(req: OpenWalletEthereumSignTypedDataKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumSignTypedDataKeychainRequest.Response?) -> Void) -> UIViewController
 }
 
 public class OpenWalletEthereumKeychainRequestHandler: OpenWalletRequestHandler {
@@ -224,6 +229,15 @@ public class OpenWalletEthereumKeychainRequestHandler: OpenWalletRequestHandler 
         case OpenWalletEthereumSignDataKeychainRequest.type:
             let req = try OpenWalletRequest<OpenWalletEthereumSignDataKeychainRequest>(json: request, uti: uti)
             return viewProvider.signDataView(req: req.data.request) { err, res in
+                if let res = res {
+                    cb(nil, req.response(data: res))
+                } else {
+                    cb(err, nil)
+                }
+            }
+        case OpenWalletEthereumSignTypedDataKeychainRequest.type:
+            let req = try OpenWalletRequest<OpenWalletEthereumSignTypedDataKeychainRequest>(json: request, uti: uti)
+            return viewProvider.signTypedDataView(req: req.data.request) { err, res in
                 if let res = res {
                     cb(nil, req.response(data: res))
                 } else {

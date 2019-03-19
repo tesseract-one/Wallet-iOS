@@ -41,11 +41,11 @@ private extension WKScriptMessage {
 }
 
 public protocol TesWebSink: AnyObject {
-    func reply(id: Int, error: JsonValueEncodable?, result: JsonValueEncodable?)
+    func reply(id: Int, error: JSONValueEncodable?, result: JSONValueEncodable?)
 }
 
 public protocol TesWebStateSink: AnyObject {
-    func setState(key: String, value: JsonValueEncodable?)
+    func setState(key: String, value: JSONValueEncodable?)
 }
 
 typealias TesWebRecepient = (TesWebSink, TesWebMessage) -> Void
@@ -84,11 +84,11 @@ private class TesWebViewMessageHandler: NSObject, WKScriptMessageHandler {
 //}
 
 public extension TesWebSink {
-    public func reply(id: Int, result: JsonValueEncodable) {
+    public func reply(id: Int, result: JSONValueEncodable) {
         reply(id: id, error: nil, result: result)
     }
     
-    public func reply(id: Int, error: JsonValueEncodable) {
+    public func reply(id: Int, error: JSONValueEncodable) {
         reply(id: id, error: error, result: nil)
     }
 }
@@ -128,7 +128,7 @@ public class TesWebView : WKWebView, TesWebSink, TesWebStateSink {
         messageHandler.recepients.append(recepient)
     }
     
-    private func serialize(object: JsonValueEncodable?) -> String? {
+    private func serialize(object: JSONValueEncodable?) -> String? {
         return object
             .flatMap { $0.encode().jsonData }
             .flatMap { String(data: $0, encoding: .utf8) }
@@ -160,7 +160,7 @@ public class TesWebView : WKWebView, TesWebSink, TesWebStateSink {
 //        }
 //    }
     
-    private func assembleMessageCall(id:Int, error: JsonValueEncodable?, result: JsonValueEncodable?) -> String {
+    private func assembleMessageCall(id:Int, error: JSONValueEncodable?, result: JSONValueEncodable?) -> String {
         let err = error.flatMap(serialize) ?? "null"
         let res = result.flatMap(serialize) ?? "null"
         
@@ -168,7 +168,7 @@ public class TesWebView : WKWebView, TesWebSink, TesWebStateSink {
         return "window.web3.currentProvider.accept(\(id), '\(err)', '\(res)');"
     }
     
-    public func setState(key: String, value: JsonValueEncodable?) {
+    public func setState(key: String, value: JSONValueEncodable?) {
         let k = serialize(object: key)!
         let v = value.flatMap(serialize) ?? "null"
         let js = "window.web3.currentProvider.setState('\(k)', '\(v)');"
@@ -177,7 +177,7 @@ public class TesWebView : WKWebView, TesWebSink, TesWebStateSink {
         }
     }
     
-    public func reply(id: Int, error: JsonValueEncodable?, result: JsonValueEncodable?) {
+    public func reply(id: Int, error: JSONValueEncodable?, result: JSONValueEncodable?) {
         let js = assembleMessageCall(id: id, error: error, result: result)
         //print(js)
         DispatchQueue.main.async {

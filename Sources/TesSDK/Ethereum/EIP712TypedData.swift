@@ -13,8 +13,8 @@ import BigInt
 public struct EIP712TypedData: Codable {
     
     public struct _Type: Codable {
-        let name: String
-        let type: String
+        public let name: String
+        public let type: String
         
         public init(name: String, type: String) {
             self.name = name
@@ -23,10 +23,10 @@ public struct EIP712TypedData: Codable {
     }
     
     public struct Domain: Codable {
-        let name: String
-        let version: String
-        let chainId: Int
-        let verifyingContract: EthereumAddress
+        public let name: String
+        public let version: String
+        public let chainId: Int
+        public let verifyingContract: EthereumAddress
         
         public init(name: String, version: String, chainId: Int, verifyingContract: EthereumAddress) {
             self.name = name
@@ -209,7 +209,7 @@ private extension BigUInt {
 private extension EIP712TypedData.Domain {
     var serialized: SerializableValue {
         return SerializableValue([
-            "name": name, "vesrion": version,
+            "name": name, "version": version,
             "chainId": chainId, "verifyingContract": verifyingContract.hex(eip55: false)
         ])
     }

@@ -38,6 +38,10 @@
 		92564D3E22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3622356BFA00319D8E /* SF-Pro-Display-Medium.otf */; };
 		92564D3F2236EEBB00319D8E /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
 		92564D402236EEBF00319D8E /* ChangeRateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9734222D9651007DB61C /* ChangeRateService.swift */; };
+		926061DB22415B90006B5B50 /* EthereumDataTypeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 926061D922415B90006B5B50 /* EthereumDataTypeTableViewCell.xib */; };
+		926061DC22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926061DA22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift */; };
+		926061DF22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 926061DD22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib */; };
+		926061E022415BAF006B5B50 /* TextWithHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */; };
 		92655A9A222ABA6F00CB8A18 /* EthereumSignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */; };
 		92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */; };
 		92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */; };
@@ -72,6 +76,9 @@
 		92A1CE10224023BB001D429C /* ABIConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE0B224023BB001D429C /* ABIConvertible.swift */; };
 		92A1CE12224023BB001D429C /* ABIEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE0D224023BB001D429C /* ABIEncoder.swift */; };
 		92A1CE1A224054BA001D429C /* Web3+EIP712TypedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE19224054BA001D429C /* Web3+EIP712TypedData.swift */; };
+		92A1CE1E22410BF7001D429C /* EthereumAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */; };
+		92A1CE1F22410BF7001D429C /* EthereumAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */; };
+		92A1CE212241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */; };
 		92CB197B222808DC00407F9A /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* Storage.swift */; };
 		92CB198322281E0D00407F9A /* RouterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198222281E0D00407F9A /* RouterViews.swift */; };
 		92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198422281E2600407F9A /* ApplicationContext.swift */; };
@@ -265,6 +272,10 @@
 		92564D3422356BFA00319D8E /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		92564D3522356BFA00319D8E /* materialdesignicons-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "materialdesignicons-webfont.ttf"; sourceTree = "<group>"; };
 		92564D3622356BFA00319D8E /* SF-Pro-Display-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Medium.otf"; sourceTree = "<group>"; };
+		926061D922415B90006B5B50 /* EthereumDataTypeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EthereumDataTypeTableViewCell.xib; sourceTree = "<group>"; };
+		926061DA22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumDataTypeTableViewCell.swift; sourceTree = "<group>"; };
+		926061DD22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextWithHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		92655A98222ABA4400CB8A18 /* EthereumSignProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumSignProvider.swift; sourceTree = "<group>"; };
 		92655A9B222ABACC00CB8A18 /* EthereumAPIs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAPIs.swift; sourceTree = "<group>"; };
 		92655A9D222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3SignProvider.swift; sourceTree = "<group>"; };
@@ -300,6 +311,9 @@
 		92A1CE0B224023BB001D429C /* ABIConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABIConvertible.swift; sourceTree = "<group>"; };
 		92A1CE0D224023BB001D429C /* ABIEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABIEncoder.swift; sourceTree = "<group>"; };
 		92A1CE19224054BA001D429C /* Web3+EIP712TypedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Web3+EIP712TypedData.swift"; sourceTree = "<group>"; };
+		92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EthereumAddressTableViewCell.xib; sourceTree = "<group>"; };
+		92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressTableViewCell.swift; sourceTree = "<group>"; };
+		92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKeychainSignTypedDataViewController.swift; sourceTree = "<group>"; };
 		92CB197A222808DC00407F9A /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		92CB198222281E0D00407F9A /* RouterViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterViews.swift; sourceTree = "<group>"; };
 		92CB198422281E2600407F9A /* ApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
@@ -600,6 +614,7 @@
 		928A915C22329F01005DA7B4 /* Ethereum */ = {
 			isa = PBXGroup;
 			children = (
+				92A1CE1B22410A92001D429C /* Cells */,
 				928A91632232B452005DA7B4 /* Controllers */,
 				928A915D22329F96005DA7B4 /* EthereumKeychainViewProvider.swift */,
 				928A915F2232A019005DA7B4 /* EthereumKeychainViewController.swift */,
@@ -611,8 +626,7 @@
 		928A91632232B452005DA7B4 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				D1D82F512232F2B9003BDFE2 /* ChooseAccountTableViewCell.swift */,
-				D1D82F522232F2B9003BDFE2 /* ChooseAccountTableViewCell.xib */,
+				92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */,
 				928A91642232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift */,
 				928A91662232B786005DA7B4 /* EthereumKeychainSignTransactionViewController.swift */,
 				928A91682232B7ED005DA7B4 /* EthereumKeychainSignDataViewController.swift */,
@@ -699,6 +713,21 @@
 				92A1CE0A224023BB001D429C /* SolidityWrappedValue.swift */,
 			);
 			path = ABI;
+			sourceTree = "<group>";
+		};
+		92A1CE1B22410A92001D429C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				D1D82F522232F2B9003BDFE2 /* ChooseAccountTableViewCell.xib */,
+				D1D82F512232F2B9003BDFE2 /* ChooseAccountTableViewCell.swift */,
+				92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */,
+				92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */,
+				926061D922415B90006B5B50 /* EthereumDataTypeTableViewCell.xib */,
+				926061DA22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift */,
+				926061DD22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib */,
+				926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 		92CB198122281DE100407F9A /* Router */ = {
@@ -1206,7 +1235,10 @@
 				9299323822248422000EAD47 /* MainInterface.storyboard in Resources */,
 				92564D3822356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */,
 				92564D3C22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */,
+				926061DF22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib in Resources */,
+				92A1CE1E22410BF7001D429C /* EthereumAddressTableViewCell.xib in Resources */,
 				9268AFC62235679A00D94EA6 /* Images.xcassets in Resources */,
+				926061DB22415B90006B5B50 /* EthereumDataTypeTableViewCell.xib in Resources */,
 				92564D3A22356BFA00319D8E /* SF-Pro-Display-Regular.otf in Resources */,
 				928A91622232B354005DA7B4 /* EthereumKeychain.storyboard in Resources */,
 			);
@@ -1457,8 +1489,10 @@
 				92564D402236EEBF00319D8E /* ChangeRateService.swift in Sources */,
 				D1D82F4A2232E1D4003BDFE2 /* BorderedButton.swift in Sources */,
 				923079122230257D004E3950 /* WalletService.swift in Sources */,
+				926061E022415BAF006B5B50 /* TextWithHeaderTableViewCell.swift in Sources */,
 				D1D82F482232E1D4003BDFE2 /* KeyboardIAutoScrollView.swift in Sources */,
 				D1D82F492232E1D4003BDFE2 /* ShadowedViews.swift in Sources */,
+				92A1CE212241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift in Sources */,
 				928A91692232B7ED005DA7B4 /* EthereumKeychainSignDataViewController.swift in Sources */,
 				9230791122302539004E3950 /* Constants.swift in Sources */,
 				D1D82F552233091C003BDFE2 /* ChooseAccountTableViewCell.swift in Sources */,
@@ -1466,6 +1500,8 @@
 				92307914223025FB004E3950 /* Promise+Extensions.swift in Sources */,
 				92307913223025F8004E3950 /* Signal+Extensions.swift in Sources */,
 				928A91672232B786005DA7B4 /* EthereumKeychainSignTransactionViewController.swift in Sources */,
+				926061DC22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift in Sources */,
+				92A1CE1F22410BF7001D429C /* EthereumAddressTableViewCell.swift in Sources */,
 				92564D3F2236EEBB00319D8E /* EthereumWeb3Service.swift in Sources */,
 				928A916D2232D9A7005DA7B4 /* Context.swift in Sources */,
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,

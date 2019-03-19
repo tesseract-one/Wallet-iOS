@@ -20,7 +20,6 @@ class ChooseAccountTableViewCell: UITableViewCell {
         name.text = model.associatedData[.name]?.string ?? "Account"
         emoji.text =  model.associatedData[.emoji]?.string ?? "\u{1F9B9}"
         index = model.index
-//        selectedIcon.isHidden = model.index == activeAccountIndex
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
