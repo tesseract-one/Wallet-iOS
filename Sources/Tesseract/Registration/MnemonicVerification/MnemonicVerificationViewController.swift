@@ -14,7 +14,7 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    @IBOutlet weak var mnemonicVerificationTextView: NextResponderTextView!
+    @IBOutlet weak var mnemonicVerificationTextView: TextView!
     @IBOutlet weak var mnemonicVerificationTextViewHeight: NSLayoutConstraint!
     @IBOutlet weak var mnemonicVerificationTextViewTop: NSLayoutConstraint!
     private var mnemonicVerificationTextViewTopInitial: CGFloat = 0.0
@@ -25,24 +25,20 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mnemonicVerificationTextView.reactive.text.map { $0 ?? "" } // useless map actually, its already empty string
+        mnemonicVerificationTextView.reactive.notification(.textDidChange).map { $0.text ?? "" }
             .bind(to: model.mnemonicText).dispose(in: bag)
         
-//        mnemonicVerificationTextView.reactive
-//            .notification(.textDidBeginEditing)
-//            .with(weak: mnemonicVerificationTextView) // can't write bond to textView.error
-//            .observeNext { _, mnemonicVerificationTextView in
-//                mnemonicVerificationTextView.error = ""
-//            }.dispose(in: bag)
-//        
-//        model.mnemonicVerifiedSuccessfully
-//            .filter { $0 != nil }
-//            .with(latestFrom: model.mnemonicError)
-//            .filter { $0 == false && $1 != nil }
-//            .with(weak: mnemonicVerificationTextView)
-//            .observeNext { mnemonicErrorTuple, mnemonicVerificationTextView in
-//                mnemonicVerificationTextView.error = mnemonicErrorTuple.1!.rawValue
-//            }.dispose(in: bag)
+        mnemonicVerificationTextView.reactive.notification(.textDidBeginEditing)
+            .merge(with: mnemonicVerificationTextView.reactive.notification(.textDidChange)).map { _ in "" }
+            .bind(to: mnemonicVerificationTextView.reactive.error).dispose(in: bag)
+
+        model.mnemonicVerifiedSuccessfully
+            .filter { $0 != nil }
+            .with(latestFrom: model.mnemonicError)
+            .filter { $0 == false && $1 != nil }
+            .map { $1!.rawValue }
+            .bind(to: mnemonicVerificationTextView.reactive.error)
+            .dispose(in: bag)
         
         let doneTap = doneButton.reactive.tap.throttle(seconds: 0.5)
         doneTap.bind(to: model.doneMnemonicVerificationAction).dispose(in: bag)
@@ -83,11 +79,11 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
 extension MnemonicVerificationViewController {
     private func setupSizes() {
         if UIScreen.main.bounds.height < 600 {
-            mnemonicVerificationTextView.isScrollEnabled = true
-            mnemonicVerificationTextViewHeight.constant = 170
+            mnemonicVerificationTextView.textView.isScrollEnabled = true
+            mnemonicVerificationTextViewHeight.constant = 193
         } else {
-            mnemonicVerificationTextView.isScrollEnabled = false
-            mnemonicVerificationTextViewHeight.constant = 220
+            mnemonicVerificationTextView.textView.isScrollEnabled = false
+            mnemonicVerificationTextViewHeight.constant = 235
         }
     }
 }

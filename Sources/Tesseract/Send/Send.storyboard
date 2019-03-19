@@ -118,6 +118,7 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="avx-FJ-lIa" id="mHm-fv-WHB"/>
@@ -148,6 +149,7 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="svo-RL-bve" id="Lqh-GC-Zqj"/>
@@ -205,6 +207,7 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="HYd-1E-yM2" id="In9-73-fXK"/>
@@ -610,7 +613,7 @@
                                                 </constraints>
                                             </view>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-1R-ZTT" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="388" width="343" height="35"/>
+                                                <rect key="frame" x="16" y="388" width="343" height="20"/>
                                                 <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -634,13 +637,14 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="Hqp-dG-EDP" id="2wd-gN-d7Y"/>
                                                 </connections>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqp-dG-EDP" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="447" width="343" height="50"/>
+                                                <rect key="frame" x="16" y="432" width="343" height="50"/>
                                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="Lts-fn-1oP"/>

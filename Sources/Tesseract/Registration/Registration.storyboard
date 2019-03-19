@@ -108,6 +108,7 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="8wX-ft-38H" id="PHI-Am-EOR"/>
@@ -138,6 +139,7 @@
                                                     <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                         <size key="value" width="0.0" height="8"/>
                                                     </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                 </userDefinedRuntimeAttributes>
                                                 <connections>
                                                     <outlet property="nextResponderView" destination="AbA-dT-H7q" id="rjd-HQ-T7v"/>
@@ -413,7 +415,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="xRp-Bx-Fzs" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="20" width="320" height="92.5"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="91"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -444,22 +446,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-bF-Du2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="494" width="288" height="50"/>
-                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="C9p-rE-rlx"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                <state key="normal" title="Done">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </state>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="4"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Words" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bBV-7A-zhK">
                                 <rect key="frame" x="16" y="171" width="288" height="19"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
@@ -479,36 +465,61 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="D4f-hf-0jP" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="749" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
                                 <rect key="frame" x="16" y="198" width="288" height="220"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="220" id="uat-Jw-gbH"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="220" id="5RN-ME-aQN"/>
                                 </constraints>
-                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your mnemonics"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="textViewFontSize">
+                                        <real key="value" value="28"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your Mnemonics"/>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textViewColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="textViewBackground">
+                                        <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <outlet property="nextResponderView" destination="KOX-bF-Du2" id="MCH-eO-rbW"/>
+                                    <outlet property="nextResponderView" destination="KOX-bF-Du2" id="zCm-nd-Hhn"/>
                                 </connections>
-                            </textView>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KOX-bF-Du2" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="494" width="288" height="50"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="C9p-rE-rlx"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                <state key="normal" title="Done">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="61Q-jv-WeK" firstAttribute="top" secondItem="bBV-7A-zhK" secondAttribute="bottom" constant="8" id="B0h-qw-mHx"/>
                             <constraint firstItem="L7R-92-xAd" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="BVz-vA-2a7"/>
-                            <constraint firstItem="usD-ei-tZ3" firstAttribute="bottom" secondItem="KOX-bF-Du2" secondAttribute="bottom" constant="24" id="CCH-8i-bE1"/>
                             <constraint firstItem="KOX-bF-Du2" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="GIg-fz-Poy"/>
                             <constraint firstItem="bBV-7A-zhK" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="H89-1F-qd4"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="bBV-7A-zhK" secondAttribute="trailing" constant="16" id="L54-zb-Fy7"/>
                             <constraint firstItem="L7R-92-xAd" firstAttribute="top" secondItem="usD-ei-tZ3" secondAttribute="top" constant="16" id="L6x-p3-wH8"/>
-                            <constraint firstItem="D4f-hf-0jP" firstAttribute="top" secondItem="bBV-7A-zhK" secondAttribute="bottom" constant="8" id="MzD-qo-BWP"/>
+                            <constraint firstItem="61Q-jv-WeK" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="PFM-oc-g6e"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="KOX-bF-Du2" secondAttribute="trailing" constant="16" id="RR3-dA-sL4"/>
+                            <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="61Q-jv-WeK" secondAttribute="trailing" constant="16" id="SZn-Mh-Gfb"/>
+                            <constraint firstItem="KOX-bF-Du2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="61Q-jv-WeK" secondAttribute="bottom" constant="24" id="YON-6n-Uvs"/>
                             <constraint firstItem="bBV-7A-zhK" firstAttribute="top" secondItem="L7R-92-xAd" secondAttribute="bottom" constant="44" id="bZO-b1-Iuj"/>
-                            <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="D4f-hf-0jP" secondAttribute="trailing" constant="16" id="fAd-az-bSp"/>
                             <constraint firstItem="usD-ei-tZ3" firstAttribute="trailing" secondItem="L7R-92-xAd" secondAttribute="trailing" constant="16" id="gSh-rI-X0T"/>
-                            <constraint firstItem="D4f-hf-0jP" firstAttribute="leading" secondItem="usD-ei-tZ3" secondAttribute="leading" constant="16" id="o8F-vC-as1"/>
+                            <constraint firstItem="usD-ei-tZ3" firstAttribute="bottom" secondItem="KOX-bF-Du2" secondAttribute="bottom" constant="24" id="zJ5-iT-xA3"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="usD-ei-tZ3"/>
                     </view>
@@ -517,10 +528,10 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
-                        <outlet property="bottomConstraint" destination="CCH-8i-bE1" id="vfI-Z9-A21"/>
+                        <outlet property="bottomConstraint" destination="zJ5-iT-xA3" id="UZ6-kP-WRh"/>
                         <outlet property="doneButton" destination="KOX-bF-Du2" id="2Ns-eZ-xB7"/>
-                        <outlet property="mnemonicVerificationTextView" destination="D4f-hf-0jP" id="EkP-3L-jRm"/>
-                        <outlet property="mnemonicVerificationTextViewHeight" destination="uat-Jw-gbH" id="HCA-hE-O4l"/>
+                        <outlet property="mnemonicVerificationTextView" destination="61Q-jv-WeK" id="07n-dO-oMX"/>
+                        <outlet property="mnemonicVerificationTextViewHeight" destination="5RN-ME-aQN" id="06e-8x-nKx"/>
                         <outlet property="mnemonicVerificationTextViewTop" destination="bZO-b1-Iuj" id="pLM-FR-LVr"/>
                         <outlet property="skipButton" destination="iYf-1q-7ln" id="0Ns-k4-Qzs"/>
                         <outlet property="topConstraint" destination="L6x-p3-wH8" id="a49-cY-arl"/>
@@ -587,6 +598,45 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P80-32-YRo">
                                 <rect key="frame" x="0.0" y="241.5" width="320" height="214"/>
                                 <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxb-a9-DHO">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-r1-3jz" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
+                                                <rect key="frame" x="16" y="31" width="288" height="20"/>
+                                                <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                                        <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="defaultPlaceholderColor">
+                                                        <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                                        <color key="value" red="1" green="0.23137254901960785" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                                        <color key="value" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
+                                                        <size key="value" width="0.0" height="8"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="nextResponderView" destination="V3v-qf-LkC" id="Ugw-qj-yWf"/>
+                                                </connections>
+                                            </textField>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ngg-r1-3jz" secondAttribute="trailing" constant="16" id="4BT-nQ-Z64"/>
+                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="leading" secondItem="vxb-a9-DHO" secondAttribute="leading" constant="16" id="GCK-wx-Ya9"/>
+                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="centerY" secondItem="vxb-a9-DHO" secondAttribute="centerY" id="JdW-P7-2fm"/>
+                                        </constraints>
+                                    </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
                                         <rect key="frame" x="16" y="82" width="288" height="108"/>
                                         <subviews>
@@ -622,44 +672,6 @@
                                             <constraint firstAttribute="height" constant="108" id="ZIw-OR-fwn"/>
                                         </constraints>
                                     </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vxb-a9-DHO">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="82"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-r1-3jz" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="16" y="31" width="288" height="20"/>
-                                                <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="password"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                                        <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="defaultPlaceholderColor">
-                                                        <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                                                        <color key="value" red="1" green="0.23137254901960785" blue="0.19215686274509802" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
-                                                        <color key="value" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
-                                                        <size key="value" width="0.0" height="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                                <connections>
-                                                    <outlet property="nextResponderView" destination="V3v-qf-LkC" id="Ugw-qj-yWf"/>
-                                                </connections>
-                                            </textField>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="ngg-r1-3jz" secondAttribute="trailing" constant="16" id="4BT-nQ-Z64"/>
-                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="leading" secondItem="vxb-a9-DHO" secondAttribute="leading" constant="16" id="GCK-wx-Ya9"/>
-                                            <constraint firstItem="ngg-r1-3jz" firstAttribute="centerY" secondItem="vxb-a9-DHO" secondAttribute="centerY" id="JdW-P7-2fm"/>
-                                        </constraints>
-                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
@@ -747,46 +759,45 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-LT-ZFb" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72" width="320" height="151"/>
+                                                <rect key="frame" x="0.0" y="72" width="320" height="100"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The biggest secret in the world" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S1I-2H-hSB">
-                                                        <rect key="frame" x="16" y="8" width="288" height="15"/>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sZB-ec-BPk" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                                                        <rect key="frame" x="16" y="0.0" width="288" height="100"/>
+                                                        <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="15" id="xZx-Pl-2hd"/>
+                                                            <constraint firstAttribute="height" constant="100" id="hxe-Ew-xmK"/>
                                                         </constraints>
-                                                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="14"/>
-                                                        <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dqq-hU-V4b" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="31" width="288" height="120"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="120" id="FQ2-TJ-1i9"/>
-                                                        </constraints>
-                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="24"/>
-                                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
                                                         <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your Mnemonics"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Mnemonics"/>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="textViewFontName" value=".SFUIText"/>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="textViewFontSize">
+                                                                <real key="value" value="24"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="rect" keyPath="insets">
+                                                                <rect key="value" x="0.0" y="8" width="0.0" height="8"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="textViewColor">
+                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="textViewBackground">
+                                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
-                                                            <outlet property="nextResponderView" destination="CtV-Xa-DVd" id="XDJ-37-MSi"/>
+                                                            <outlet property="nextResponderView" destination="CtV-Xa-DVd" id="giK-nS-gZk"/>
                                                         </connections>
-                                                    </textView>
+                                                    </view>
                                                 </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="dqq-hU-V4b" secondAttribute="bottom" id="ExR-Ok-M2t"/>
-                                                    <constraint firstItem="S1I-2H-hSB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="top" constant="8" id="Lfx-MK-BCu"/>
-                                                    <constraint firstAttribute="trailing" secondItem="dqq-hU-V4b" secondAttribute="trailing" constant="16" id="M4n-RO-Lde"/>
-                                                    <constraint firstItem="S1I-2H-hSB" firstAttribute="leading" secondItem="YcG-LT-ZFb" secondAttribute="leading" constant="16" id="UyM-Yq-w1y"/>
-                                                    <constraint firstItem="dqq-hU-V4b" firstAttribute="top" secondItem="S1I-2H-hSB" secondAttribute="bottom" constant="8" id="Yvg-q0-qK2"/>
-                                                    <constraint firstItem="dqq-hU-V4b" firstAttribute="leading" secondItem="YcG-LT-ZFb" secondAttribute="leading" constant="16" id="hi1-ax-Wgn"/>
-                                                    <constraint firstAttribute="trailing" secondItem="S1I-2H-hSB" secondAttribute="trailing" constant="16" id="qZo-NX-VL2"/>
+                                                    <constraint firstAttribute="trailing" secondItem="sZB-ec-BPk" secondAttribute="trailing" constant="16" id="GDK-JV-tS9"/>
+                                                    <constraint firstAttribute="bottom" secondItem="sZB-ec-BPk" secondAttribute="bottom" id="NHl-6G-FLl"/>
+                                                    <constraint firstItem="sZB-ec-BPk" firstAttribute="leading" secondItem="YcG-LT-ZFb" secondAttribute="leading" constant="16" id="ioJ-GJ-Bj8"/>
+                                                    <constraint firstItem="sZB-ec-BPk" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="top" id="o33-Xa-6qj"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDg-JE-zLB" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="239" width="320" height="20"/>
+                                                <rect key="frame" x="0.0" y="184" width="320" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-Xa-DVd" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="0.0" width="288" height="20"/>
@@ -813,6 +824,7 @@
                                                             <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                                 <size key="value" width="0.0" height="8"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="nextResponderView" destination="IJN-8j-PMi" id="mvv-8J-9lu"/>
@@ -832,7 +844,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4z-Jb-td5" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="267" width="320" height="20"/>
+                                                <rect key="frame" x="0.0" y="212" width="320" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IJN-8j-PMi" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="0.0" width="288" height="20"/>
@@ -859,6 +871,7 @@
                                                             <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                                 <size key="value" width="0.0" height="8"/>
                                                             </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <outlet property="nextResponderView" destination="cJa-Wn-mU5" id="kFl-uv-liT"/>
@@ -914,9 +927,9 @@
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="LZA-xA-crk"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="8" id="M4D-AU-Ixz"/>
                                             <constraint firstAttribute="bottom" secondItem="4V9-LC-FdN" secondAttribute="bottom" id="PhW-2I-xmV"/>
-                                            <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="16" id="ZZR-pi-bTX"/>
+                                            <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="12" id="ZZR-pi-bTX"/>
+                                            <constraint firstAttribute="trailing" secondItem="YcG-LT-ZFb" secondAttribute="trailing" id="be8-0X-wfi"/>
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="4" id="byw-Q6-myF"/>
-                                            <constraint firstAttribute="trailing" secondItem="YcG-LT-ZFb" secondAttribute="trailing" id="dmE-DR-FsP"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="fzB-ia-h4P"/>
                                             <constraint firstAttribute="trailing" secondItem="nOd-qH-Ff2" secondAttribute="trailing" constant="16" id="i4n-9E-k3x"/>
                                             <constraint firstItem="YcG-LT-ZFb" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="nwu-aZ-cgd"/>
@@ -947,8 +960,8 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="confirmPasswordField" destination="IJN-8j-PMi" id="nmp-HN-Fdx"/>
-                        <outlet property="mnemonicTextView" destination="dqq-hU-V4b" id="GQO-1y-Mps"/>
-                        <outlet property="mnemonicTextViewHeight" destination="FQ2-TJ-1i9" id="79J-dh-zwi"/>
+                        <outlet property="mnemonicTextView" destination="sZB-ec-BPk" id="uqR-MW-vZu"/>
+                        <outlet property="mnemonicTextViewHeight" destination="hxe-Ew-xmK" id="8Yz-bg-2IX"/>
                         <outlet property="passwordField" destination="CtV-Xa-DVd" id="bDl-Xp-hQ2"/>
                         <outlet property="restoreButton" destination="cJa-Wn-mU5" id="6eb-kd-ztl"/>
                         <outlet property="scrollView" destination="b9F-je-7Og" id="er8-h3-MMz"/>

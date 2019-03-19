@@ -105,6 +105,7 @@
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
+		D11C404922407D080068D883 /* TextView+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11C404822407D080068D883 /* TextView+Bond.swift */; };
 		D11FEE6022306CB400738AAD /* ShadowedViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11FEE5F22306CB400738AAD /* ShadowedViews.swift */; };
 		D1201FE5222D87DA0030C2C2 /* Send.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1201FE4222D87DA0030C2C2 /* Send.storyboard */; };
 		D1201FE8222D99CE0030C2C2 /* SendFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1201FE7222D99CE0030C2C2 /* SendFundsViewController.swift */; };
@@ -128,6 +129,7 @@
 		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardIAutoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardIAutoScrollView.swift */; };
+		D19EA619223FD1C200365868 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA618223FD1C200365868 /* TextView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
 		D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */; };
 		D1B13CCC222DC3A8005213F7 /* ReceiveFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */; };
@@ -334,6 +336,7 @@
 		D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
 		D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollViewToTop.swift; sourceTree = "<group>"; };
 		D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoundleLoadXib.swift; sourceTree = "<group>"; };
+		D11C404822407D080068D883 /* TextView+Bond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextView+Bond.swift"; sourceTree = "<group>"; };
 		D11FEE5F22306CB400738AAD /* ShadowedViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowedViews.swift; sourceTree = "<group>"; };
 		D1201FE4222D87DA0030C2C2 /* Send.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Send.storyboard; sourceTree = "<group>"; };
 		D1201FE7222D99CE0030C2C2 /* SendFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendFundsViewController.swift; sourceTree = "<group>"; };
@@ -357,6 +360,7 @@
 		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardIAutoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardIAutoScrollView.swift; sourceTree = "<group>"; };
+		D19EA618223FD1C200365868 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
 		D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewModel.swift; sourceTree = "<group>"; };
@@ -799,6 +803,7 @@
 				D1D292E621B16329000DA665 /* RoundDouble.swift */,
 				D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */,
 				D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */,
+				D11C404822407D080068D883 /* TextView+Bond.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -885,6 +890,7 @@
 				D1B13CCD222DD05E005213F7 /* BorderedView.swift */,
 				D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */,
 				92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */,
+				D19EA618223FD1C200365868 /* TextView.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1387,6 +1393,7 @@
 				92CB199022283B9200407F9A /* ApplicationService.swift in Sources */,
 				92CB198E2228323300407F9A /* AnyError.swift in Sources */,
 				D1B13CCE222DD05E005213F7 /* BorderedView.swift in Sources */,
+				D19EA619223FD1C200365868 /* TextView.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */,
 				9230791022302539004E3950 /* Constants.swift in Sources */,
@@ -1403,6 +1410,7 @@
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
+				D11C404922407D080068D883 /* TextView+Bond.swift in Sources */,
 				D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,

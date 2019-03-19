@@ -76,6 +76,7 @@
                                             <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
                                                 <size key="value" width="0.0" height="8"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="nextResponderView" destination="F9M-K3-vjp" id="Frh-Iy-7Pn"/>
@@ -201,7 +202,7 @@
                                                 <rect key="frame" x="16" y="40" width="343" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNr-Wr-j39">
-                                                        <rect key="frame" x="0.0" y="-7.5" width="47" height="15"/>
+                                                        <rect key="frame" x="0.0" y="-7.5" width="49.5" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="b82-q1-uxm"/>
                                                         </constraints>
@@ -315,7 +316,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw1-ym-dKY" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
+                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -772,6 +773,7 @@
                                             <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
                                                 <size key="value" width="0.0" height="4.5"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="nextResponderView" destination="4sR-Xk-UrV" id="JI1-Hr-Tua"/>

@@ -9,7 +9,7 @@
 import UIKit
 
 @IBDesignable
-class NextResponderTextView: UITextView {
+class NextResponderTextView: TextView {
     
     @objc
     @IBOutlet open weak var nextResponderView: UIResponder?
@@ -18,12 +18,12 @@ class NextResponderTextView: UITextView {
     public required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self)
+        NotificationCenter.default.addObserver(self, selector: #selector(textDidChange), name: UITextView.textDidChangeNotification, object: self.textView)
     }
     
     @objc private func textDidChange(nofitication: NSNotification) {
-        if text.last == "\n" {
-            text = String(text.dropLast())
+        if textView.text.last == "\n" {
+            textView.text = String(textView.text.dropLast())
             actionKeyboardButtonTapped()
         }
     }
