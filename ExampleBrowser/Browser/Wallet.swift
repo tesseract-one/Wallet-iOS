@@ -9,25 +9,25 @@
 import Foundation
 import Web3
 
-extension NSError: JsonValueEncodable {
-    public func encode() -> JsonValue {
-        return JsonObject([
+extension NSError: JSONValueEncodable {
+    public func encode() -> JSONValue {
+        return JSONValue([
             "code": code,
             "domain": domain,
             "debug": debugDescription,
             "description": description
-        ]).encode()
+        ])
     }
 }
 
-extension JsonValue {
-    static func error(_ err: Swift.Error) -> JsonValue {
+extension JSONValue {
+    static func error(_ err: Swift.Error) -> JSONValue {
         return .string("\(err)")
     }
 }
 
 class Wallet {
-    typealias AccountRequest = (id: Int, method: String, cb: (Int, JsonValueEncodable?, JsonValueEncodable?) -> Void)
+    typealias AccountRequest = (id: Int, method: String, cb: (Int, JSONValueEncodable?, JSONValueEncodable?) -> Void)
     private let endpoint:String
     
     private let web3: Web3
@@ -57,9 +57,8 @@ class Wallet {
     
     //rewrite to processors
     func request(
-        id: Int, method:String, message: Data, callback: @escaping (Int, JsonValueEncodable?, JsonValueEncodable?) -> Void
+        id: Int, method:String, message: Data, callback: @escaping (Int, JSONValueEncodable?, JSONValueEncodable?) -> Void
     ) {
-        //        let payload = WalletPayload.request(id: id, jsonrpc: jsonrpc, method: method, params: params)
         print("REQ", String(data: message, encoding: .utf8) ?? "UNKNOWN")
         switch method {
         case "eth_accounts":
@@ -79,7 +78,7 @@ class Wallet {
                         case .success(let accounts):
                             self.account = accounts.first
                             self._respondToAccounts(err: nil, accs: accounts)
-                        case .failure(let err): self._respondToAccounts(err: JsonValue.error(err), accs: nil)
+                        case .failure(let err): self._respondToAccounts(err: JSONValue.error(err), accs: nil)
                         }
                     }
                 }
@@ -91,8 +90,8 @@ class Wallet {
             let params = try! Wallet.decoder.decode(RPCRequest<EthereumSignTypedDataCallParams>.self, from: message).params
             web3.eth.signTypedData(account: params.account, data: params.data) { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "personal_sign":
@@ -100,8 +99,8 @@ class Wallet {
             let account = try! EthereumAddress(ethereumValue: params[1])
             web3.personal.sign(message: params[0].ethereumData!, account: account, password: "") { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_sign":
@@ -109,20 +108,20 @@ class Wallet {
             let account = try! EthereumAddress(ethereumValue: params[0])
             web3.eth.sign(account: account, message: params[1].ethereumData!) { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_sendTransaction":
             let tx = try! Wallet.decoder.decode(RPCRequest<[EthereumTransaction]>.self, from: message).params[0]
             web3.eth.sendTransaction(transaction: tx) { res in
                 switch res.status {
-                case .success(let txData): callback(id, nil, txData.hex().jsv)
+                case .success(let txData): callback(id, nil, txData.hex())
                 case .failure(let err):
                     if let web3Err = err as? RPCResponse<EthereumData>.Error {
-                        callback(id, JsonObject(["code": web3Err.code, "message": web3Err.message]), nil)
+                        callback(id, JSONValue(["code": web3Err.code, "message": web3Err.message]), nil)
                     } else {
-                        callback(id, JsonValue.error(err), nil)
+                        callback(id, JSONValue.error(err), nil)
                     }
                 }
             }
@@ -130,22 +129,22 @@ class Wallet {
             let params = try! Wallet.decoder.decode(RPCRequest<[EthereumNewFilterParams]>.self, from: message).params[0]
             web3.eth.newFilter(fromBlock: params.fromBlock, toBlock: params.toBlock, address: params.address, topics: params.topics) { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_newPendingTransactionFilter":
             web3.eth.newPendingTransactionFilter() { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_newBlockFilter":
             web3.eth.newBlockFilter() { res in
                 switch res.status {
-                case .success(let data): callback(id, nil, data.hex().jsv)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .success(let data): callback(id, nil, data.hex())
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_getFilterLogs":
@@ -153,7 +152,7 @@ class Wallet {
             web3.eth.getFilterLogs(id: quantity.ethereumQuantity!) { res in
                 switch res.status {
                 case .success(let logs): callback(id, nil, self._asJsonObject(obj: logs))
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
             
@@ -162,7 +161,7 @@ class Wallet {
             web3.eth.getFilterChanges(id: quantity.ethereumQuantity!) { res in
                 switch res.status {
                 case .success(let obj): callback(id, nil, self._asJsonObject(obj: obj))
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_uninstallFilter":
@@ -170,7 +169,7 @@ class Wallet {
             web3.eth.uninstallFilter(id: quantity.ethereumQuantity!) { res in
                 switch res.status {
                 case .success(let res): callback(id, nil, res)
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         case "eth_call":
@@ -185,17 +184,17 @@ class Wallet {
             web3.eth.call(call: params.call, block: params.block) { res in
                 switch res.status {
                 case .success(let data): callback(id, nil, data.hex())
-                case .failure(let err): callback(id, JsonValue.error(err), nil)
+                case .failure(let err): callback(id, JSONValue.error(err), nil)
                 }
             }
         default:
-            var req = try! Wallet.decoder.decode(JsonObject.self, from: message)
-            req["id"] = web3.rpcId.jsv
-            web3.provider.dataProvider.send(data: req.jsonData) { error, result in
+            var req = try! Wallet.decoder.decode(JSONValue.self, from: message).object!
+            req["id"] = web3.rpcId.encode()
+            web3.provider.dataProvider.send(data: JSONValue(req).jsonData) { error, result in
                 if let error = error {
-                    callback(id, JsonValue.error(error), nil)
+                    callback(id, JSONValue.error(error), nil)
                 } else if let result = result {
-                    let js = try! Wallet.decoder.decode(JsonObject.self, from: result)
+                    let js = try! Wallet.decoder.decode(JSONValue.self, from: result)
                     callback(id, nil, js["result"])
                 } else {
                     callback(id, nil, nil)
@@ -204,7 +203,7 @@ class Wallet {
         }
     }
     
-    private func _respondToAccounts(err: JsonValueEncodable?, accs: [EthereumAddress]?) {
+    private func _respondToAccounts(err: JSONValueEncodable?, accs: [EthereumAddress]?) {
         if let err = err {
             for req in pendingAccountsRequests {
                 req.cb(req.id, err, nil)
@@ -221,9 +220,9 @@ class Wallet {
         pendingAccountsRequests.removeAll()
     }
     
-    private func _asJsonObject<E: Encodable>(obj: E) -> JsonValue {
+    private func _asJsonObject<E: Encodable>(obj: E) -> JSONValue {
         let data = try! Wallet.encoder.encode(obj)
-        return try! Wallet.decoder.decode(JsonValue.self, from: data)
+        return try! Wallet.decoder.decode(JSONValue.self, from: data)
     }
 }
 

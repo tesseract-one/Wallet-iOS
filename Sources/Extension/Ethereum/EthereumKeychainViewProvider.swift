@@ -32,4 +32,14 @@ class EthereumKeychainViewProvider: OpenWalletEthereumKeychainViewProvider {
         vc.request = req
         return vc
     }
+    
+    func signTypedDataView(
+        req: OpenWalletEthereumSignTypedDataKeychainRequest,
+        cb: @escaping (Error?, OpenWalletEthereumSignTypedDataKeychainRequest.Response?) -> Void
+    ) -> UIViewController {
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignTypedDataRequest") as! EthereumKeychainViewController<OpenWalletEthereumSignTypedDataKeychainRequest>
+        vc.responseCb = cb
+        vc.request = req
+        return vc
+    }
 }
