@@ -19,7 +19,9 @@ class HomeViewModel: ViewModel {
     
     let activeAccount = Property<Account?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
+    
     let transactions = MutableObservableArray<EthereumTransactionLog>()
+    
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
     let balanceUSD = Property<String>("")
@@ -30,10 +32,14 @@ class HomeViewModel: ViewModel {
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
+    let transactionInfoService: TransactionInfoService
     
-    init(ethWeb3Service: EthereumWeb3Service, changeRateService: ChangeRateService) {
+    init(ethWeb3Service: EthereumWeb3Service,
+         changeRateService: ChangeRateService,
+         transactionInfoService: TransactionInfoService) {
         self.ethWeb3Service = ethWeb3Service
         self.changeRateService = changeRateService
+        self.transactionInfoService = transactionInfoService
         
         super.init()
         
@@ -49,25 +55,6 @@ class HomeViewModel: ViewModel {
     }
         
     func bootstrap() {
-        let service = ethWeb3Service
-        let balReq = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { accound, net in
-                service.getBalance(account: Int(accound!.index), networkId: net).signal
-            }
-        
-        balReq
-            .suppressedErrors
-            .bind(to: ethBalance)
-            .dispose(in: bag)
-        
-        balReq
-            .errorNode
-            .map{_ in nil}
-            .bind(to: ethBalance)
-            .dispose(in: bag)
-        
-        activeAccount.filter { $0 == nil }.map { _ in nil }.bind(to: ethBalance).dispose(in: bag)
-        
         ethBalance
             .map { $0 == nil ? "unknown" : "\($0!) ETH" }
             .bind(to: balance)
@@ -79,37 +66,9 @@ class HomeViewModel: ViewModel {
             }
             .bind(to: balanceUSD)
             .dispose(in: bag)
-        
-        let txs = combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
-            .flatMapLatest { accoundAndNet in
-                service.getTransactions(account: Int(accoundAndNet.0!.index), networkId: accoundAndNet.1).signal
-            }
-        
-        txs.suppressedErrors.map{ $0.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! }) }.bind(to: transactions).dispose(in: bag)
-        txs.errorNode.map{_ in Array<EthereumTransactionLog>()}.bind(to: transactions).dispose(in: bag)
     }
     
     func updateBalance() {
-        if let account = activeAccount.value, ethereumNetwork.value > 0 {
-            ethWeb3Service.getBalance(account: Int(account.index), networkId: ethereumNetwork.value)
-                .done { [weak self] in
-                    self?.ethBalance.next($0)
-                }
-                .catch { [weak self] _ in
-                    self?.ethBalance.next(nil)
-                }
-        }
-    }
-    
-    func updateTransactions() {
-        if let account = activeAccount.value, ethereumNetwork.value > 0 {
-            ethWeb3Service.getTransactions(account: Int(account.index), networkId: ethereumNetwork.value)
-                .done { [weak self] in
-                    self?.transactions.replace(with: $0.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! }))
-                }
-                .catch { [weak self] _ in
-                    self?.transactions.replace(with: [])
-            }
-        }
+        transactionInfoService.updateBalance()
     }
 }

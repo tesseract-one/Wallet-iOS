@@ -65,6 +65,7 @@
 		928A916B2232C694005DA7B4 /* Serialization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928A916A2232C694005DA7B4 /* Serialization.swift */; };
 		928A916D2232D9A7005DA7B4 /* Context.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928A916C2232D9A7005DA7B4 /* Context.swift */; };
 		928A916F2232DC08005DA7B4 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 928A916E2232DC08005DA7B4 /* ExtensionViewController.swift */; };
+		92947DE42242930300055F5A /* TransactionInfoService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92947DE32242930300055F5A /* TransactionInfoService.swift */; };
 		9299323522248422000EAD47 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9299323422248422000EAD47 /* MainViewController.swift */; };
 		9299323822248422000EAD47 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9299323622248422000EAD47 /* MainInterface.storyboard */; };
 		9299323C22248422000EAD47 /* Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 9299323222248422000EAD47 /* Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -296,6 +297,7 @@
 		928A916A2232C694005DA7B4 /* Serialization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Serialization.swift; sourceTree = "<group>"; };
 		928A916C2232D9A7005DA7B4 /* Context.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		928A916E2232DC08005DA7B4 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
+		92947DE32242930300055F5A /* TransactionInfoService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionInfoService.swift; sourceTree = "<group>"; };
 		9299323222248422000EAD47 /* Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Extension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		9299323422248422000EAD47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9299323722248422000EAD47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
@@ -746,6 +748,7 @@
 			isa = PBXGroup;
 			children = (
 				92CB198F22283B9200407F9A /* ApplicationService.swift */,
+				92947DE32242930300055F5A /* TransactionInfoService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1428,6 +1431,7 @@
 				D19EA619223FD1C200365868 /* TextView.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */,
+				92947DE42242930300055F5A /* TransactionInfoService.swift in Sources */,
 				9230791022302539004E3950 /* Constants.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */,
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,

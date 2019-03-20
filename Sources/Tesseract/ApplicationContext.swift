@@ -24,6 +24,9 @@ class ApplicationContext: RouterContextProtocol {
     let ethereumNetwork: Property<UInt64> = Property(4)
     let activeAccount: Property<Account?> = Property(nil)
     
+    let balance = Property<Double?>(nil)
+    let transactions = Property<Array<EthereumTransactionLog>?>(nil)
+    
     // Node to send critical errors
     public let errorNode = SafePublishSubject<AnyError>()
     
@@ -32,6 +35,7 @@ class ApplicationContext: RouterContextProtocol {
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
     let changeRatesService = ChangeRateService()
+    let transactionService = TransactionInfoService()
     
     func bootstrap() {
         walletService.wallet = wallet
@@ -43,6 +47,12 @@ class ApplicationContext: RouterContextProtocol {
         
         ethereumWeb3Service.wallet = wallet
         
+        transactionService.activeAccount = activeAccount
+        transactionService.web3Service = ethereumWeb3Service
+        transactionService.balance = balance
+        transactionService.transactions = transactions
+        transactionService.network = ethereumNetwork
+        
         applicationService.rootContainer = rootContainer
         
         applicationService.registrationViewFactory = registrationViewFactory
@@ -52,5 +62,6 @@ class ApplicationContext: RouterContextProtocol {
         applicationService.bootstrap()
         ethereumWeb3Service.bootstrap()
         changeRatesService.bootstrap()
+        transactionService.bootstrap()
     }
 }
