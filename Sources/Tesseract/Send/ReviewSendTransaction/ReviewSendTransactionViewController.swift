@@ -11,7 +11,7 @@ import TesSDK
 import ReactiveKit
 import Bond
 
-class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
+class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     typealias ViewModel = ReviewSendTransactionViewModel
     
     var model: ViewModel!
@@ -59,6 +59,25 @@ class ReviewSendTransactionViewController: UIViewController, ModelVCProtocol {
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
             self?.present(alert, animated: true, completion: nil)
         }.dispose(in: reactive.bag)
+        
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
+    
+    override func moveConstraints(keyboardHeight: CGFloat?) {
+        super.moveConstraints(keyboardHeight: keyboardHeight)
+        
+        if UIScreen.main.bounds.height < 600 {
+            if keyboardHeight != nil {
+                navigationController?.navigationBar.prefersLargeTitles = false
+            } else {
+                navigationController?.navigationBar.prefersLargeTitles = true
+
+            }
+            UIView.animate(withDuration: 1.0) {
+                self.navigationController?.navigationBar.layoutIfNeeded()
+            }
+        }
     }
 }
 
