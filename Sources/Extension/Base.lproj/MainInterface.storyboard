@@ -84,7 +84,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="jDX-8g-pnZ" secondAttribute="trailing" constant="17" id="MhT-ET-7a5"/>
                                     <constraint firstItem="jDX-8g-pnZ" firstAttribute="centerY" secondItem="FUv-0V-Gld" secondAttribute="centerY" id="NES-wK-prT"/>
