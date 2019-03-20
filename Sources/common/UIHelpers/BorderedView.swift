@@ -8,9 +8,10 @@
 
 import UIKit
 
+@IBDesignable
 class BorderedView: UIView {
     
-    @IBInspectable var borderColor: UIColor? {
+    @IBInspectable var borderColor: UIColor? = nil {
         didSet {
             layer.borderColor = self.borderColor?.cgColor
         }
@@ -27,13 +28,5 @@ class BorderedView: UIView {
             layer.cornerRadius = self.cornerRadius
             layer.masksToBounds = self.cornerRadius > 0
         }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
     }
 }

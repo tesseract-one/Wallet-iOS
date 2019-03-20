@@ -9,6 +9,7 @@
 import UIKit
 import MaterialTextField
 
+@IBDesignable
 @objc
 open class NextResponderTextField: MFTextField {
   

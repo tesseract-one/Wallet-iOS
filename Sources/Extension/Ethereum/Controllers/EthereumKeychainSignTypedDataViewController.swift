@@ -66,7 +66,9 @@ private class DataSectionHeaderView: UIView {
     var buttonTextColor: UIColor = UIColor.white
     var spacerTextColor: UIColor = UIColor.white
     
-    var distance: CGFloat = 8
+    var insets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
+    var verticalSpace: CGFloat = 8
+    var horizontalSpace: CGFloat = 0
     
     var onClick: ((DataType) -> Void)!
     
@@ -78,17 +80,17 @@ private class DataSectionHeaderView: UIView {
         for index in 0..<count {
             let view = subviews[index]
             if index == 0 {
-                view.frame.origin = CGPoint(x: distance, y: distance)
-                maxHeight = view.frame.maxY + distance
+                view.frame.origin = CGPoint(x: insets.left, y: insets.top)
+                maxHeight = view.frame.maxY + insets.bottom
             } else {
                 let prev = subviews[index-1]
                 view.frame.origin = CGPoint(
-                    x: prev.frame.maxX + 8,
+                    x: prev.frame.maxX + horizontalSpace,
                     y: prev.frame.minY
                 )
-                if view.frame.maxX > bounds.maxX - distance {
-                    view.frame.origin.y += view.frame.height + distance
-                    maxHeight = view.frame.maxY + distance
+                if view.frame.maxX > bounds.maxX - insets.right {
+                    view.frame.origin.y += view.frame.height + verticalSpace
+                    maxHeight = view.frame.maxY + insets.bottom
                 }
             }
         }
@@ -168,8 +170,10 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         
         let request = self.request!
         
-        domainInfo.append((0, DataPrimitive(field: "domain", value: request.domain.name)))
-        domainInfo.append(request.domain.verifyingContract)
+        domainInfo.append((0, DataPrimitive(field: "Domain", value: request.domain.name)))
+        domainInfo.append(
+            (0, DataPrimitive(field: "Contract", value: request.domain.verifyingContract.hex(eip55: false)))
+        )
         
         setupTable()
         
@@ -260,16 +264,6 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             ) as! EthereumAddressTableViewCell
             cell.setAccount(account: account, header: "Account")
             return cell
-        case let address as EthereumAddress:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: "AddressCell", for: indexPath
-            ) as! EthereumAddressTableViewCell
-            cell.setAddress(
-                address: address,
-                header: "Contract",
-                icon: UIImage(named: "Contract")!
-            )
-            return cell
         case let tuple as (Int, DataType):
             let (level, dataType) = tuple
             let cell = tableView.dequeueReusableCell(withIdentifier: "DataHeaderCell", for: indexPath) as! EthereumDataTypeTableViewCell
@@ -290,20 +284,20 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == 2, let item = tableData[indexPath.row].1 as? DataType {
+        if indexPath.section == dataSection, let item = tableData[indexPath.row].1 as? DataType {
             selectedItem.next(item)
         }
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 2 {
+        if section == dataSection {
             return ensureDataSectionHeader().frame.height
         }
-        return 16
+        return 10
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 2 {
+        if section == dataSection {
             return ensureDataSectionHeader()
         }
         return nil

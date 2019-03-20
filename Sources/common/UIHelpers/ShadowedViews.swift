@@ -8,6 +8,7 @@
 
 import UIKit
 
+@IBDesignable
 extension UIView {
     @IBInspectable
     var maskToBounds: Bool {

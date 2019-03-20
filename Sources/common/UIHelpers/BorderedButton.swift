@@ -60,7 +60,7 @@ class BorderedButton: UIButton {
   }
 }
 
-
+@IBDesignable
 class BorderedClippedButton: BorderedButton {
   @IBInspectable override var roundedByHeight: Bool {
     didSet {
