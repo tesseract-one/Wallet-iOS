@@ -67,10 +67,16 @@ private class DataSectionHeaderView: UIView {
     var spacerTextColor: UIColor = UIColor.white
     
     var insets = UIEdgeInsets(top: 8, left: 16, bottom: 8, right: 16)
-    var verticalSpace: CGFloat = 8
+    var verticalSpace: CGFloat = 0
     var horizontalSpace: CGFloat = 0
     
+    var calculatedHeight: CGFloat = 0
+    
     var onClick: ((DataType) -> Void)!
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: frame.width, height: calculatedHeight)
+    }
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -90,12 +96,13 @@ private class DataSectionHeaderView: UIView {
                 )
                 if view.frame.maxX > bounds.maxX - insets.right {
                     view.frame.origin.y += view.frame.height + verticalSpace
+                    view.frame.origin.x = insets.left
                     maxHeight = view.frame.maxY + insets.bottom
                 }
             }
         }
-        if abs(bounds.maxY - maxHeight) > 0.1  {
-            frame.size.height = maxHeight
+        if abs(calculatedHeight - maxHeight) > 0.1  {
+            calculatedHeight = maxHeight
         }
     }
     
@@ -182,12 +189,6 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         ensureDataSectionHeader().onClick = { [weak self] item in
             self?.selectedItem.next(item)
         }
-        
-        selectedItem.observeIn(.immediateOnMain).observeNext { [weak self] item in
-            let header = self?.ensureDataSectionHeader()
-            header?.setPath(path: item?.path() ?? [])
-            header?.layoutSubviews()
-        }.dispose(in: reactive.bag)
         
         selectedItem.next(topDataItem)
         
@@ -291,7 +292,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == dataSection {
-            return ensureDataSectionHeader().frame.height
+            return ensureDataSectionHeader().calculatedHeight
         }
         return 10
     }
@@ -332,6 +333,9 @@ extension EthereumKeychainSignTypedDataViewController {
     }
     
     fileprivate func updateTableData(item: DataType?) {
+        let header = ensureDataSectionHeader()
+        header.setPath(path: item?.path() ?? [])
+        header.layoutSubviews()
         tableData.removeAll()
         if let item = item {
             for child1 in item.items {
