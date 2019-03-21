@@ -18,7 +18,7 @@ public protocol SerializableValueDecodable {
 
 public typealias SerializableProtocol = SerializableValueDecodable & SerializableValueEncodable
 
-public enum SerializableValue: Codable, SerializableProtocol {
+public enum SerializableValue: Codable, SerializableProtocol, Equatable {
     case `nil`
     case bool(Bool)
     case int(Int)

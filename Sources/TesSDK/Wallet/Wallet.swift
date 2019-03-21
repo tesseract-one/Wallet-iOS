@@ -146,7 +146,7 @@ public class Wallet: SignProvider {
 }
 
 extension Wallet {
-    struct StorageData: Codable {
+    struct StorageData: Codable, Equatable {
         let accounts: Array<Account.StorageData>
         let associatedData: Dictionary<String, SerializableValue>
     }
@@ -180,8 +180,7 @@ extension Wallet {
 }
 
 extension Wallet: Equatable {
-    //TODO: Write proper equatable
     public static func == (lhs: Wallet, rhs: Wallet) -> Bool {
-        return lhs.name == rhs.name
+        return lhs.name == rhs.name && lhs.networks == rhs.networks && lhs.isLocked == rhs.isLocked && lhs.storageData == rhs.storageData
     }
 }

@@ -8,14 +8,18 @@
 
 import Foundation
 
-public struct Address: Codable {
+public struct Address: Codable, Equatable {
     let index: UInt32
     let address: EthereumAddress
     let network: Network
+    
+    public static func == (lhs: Address, rhs: Address) -> Bool {
+        return lhs.index == rhs.index && lhs.address == rhs.address && lhs.network == rhs.network
+    }
 }
 
 public class Account {
-    public struct AssociatedKeys: RawRepresentable, Codable, Hashable {
+    public struct AssociatedKeys: RawRepresentable, Codable, Hashable, Equatable {
         public typealias RawValue = String
         public let rawValue: RawValue
         public init(rawValue: RawValue) {
@@ -62,7 +66,7 @@ public class Account {
 }
 
 extension Account {
-    struct StorageData: Codable {
+    struct StorageData: Codable, Equatable {
         let index: UInt32
         let addresses: Dictionary<Network, Array<Address>>
         let associatedData: Dictionary<String, SerializableValue>
@@ -82,5 +86,11 @@ extension Account {
             data[key.rawValue] = val.serializable
         }
         return StorageData(index: index, addresses: addresses, associatedData: data)
+    }
+}
+
+extension Account: Equatable {
+    public static func == (lhs: Account, rhs: Account) -> Bool {
+        return lhs.storageData == rhs.storageData
     }
 }
