@@ -20,6 +20,6 @@ class TextWithHeaderTableViewCell: UITableViewCell {
     }
     
     func setIndent(level: Int) {
-        leadingConstraint.constant = level > 0 ? CGFloat(level) * 8 : 0
+        leadingConstraint.constant = level > 0 ? CGFloat(level) * 16 : 0
     }
 }

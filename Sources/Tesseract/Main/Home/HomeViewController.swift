@@ -54,7 +54,6 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
         model.closePopupView.with(weak: self).observeNext { sself in
             if sself.presentedViewController != nil {
                 sself.dismiss(animated: true, completion: nil)
-                sself.model.updateTransactions()
                 sself.model.updateBalance()
             }
         }.dispose(in: bag)
@@ -86,11 +85,16 @@ extension HomeViewController: ContextSubject {
         let appCtx = context.get(context: ApplicationContext.self)!
         model = HomeViewModel(
             ethWeb3Service: appCtx.ethereumWeb3Service,
-            changeRateService: appCtx.changeRatesService
+            changeRateService: appCtx.changeRatesService,
+            transactionInfoService: appCtx.transactionService
         )
         
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
+        appCtx.balance.bind(to: model.ethBalance).dispose(in: model.bag)
+        appCtx.transactions.observeNext { [weak model] txs in
+            model?.transactions.replace(with: txs ?? [])
+        }.dispose(in: model.bag)
         
         model.bootstrap()
     }
