@@ -56,6 +56,13 @@ private class DataType: DataValue {
     }
 }
 
+private struct TableInfoItem {
+    let level: Int
+    let first: Bool
+    let last: Bool
+    let item: DataValue
+}
+
 
 private class DataSectionHeaderView: UIView {
     private var path: Array<DataType> = []
@@ -161,10 +168,9 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     
     fileprivate let account = Property<Account?>(nil)
     fileprivate let selectedItem = Property<DataType?>(nil)
-    fileprivate var domainInfo = Array<Any>()
-    
     fileprivate var topDataItem: DataType? = nil
-    fileprivate var tableData = Array<(Int, DataValue)>()
+    
+    fileprivate var tableCachedData = Dictionary<Int, Array<TableInfoItem>>()
     
     private let accountSection = 0
     private let domainSection = 1
@@ -177,12 +183,21 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         
         let request = self.request!
         
-        domainInfo.append((0, DataPrimitive(field: "Domain", value: request.domain.name)))
-        domainInfo.append(
-            (0, DataPrimitive(field: "Contract", value: request.domain.verifyingContract.hex(eip55: false)))
-        )
-        
         setupTable()
+        
+        tableCachedData[domainSection] = [
+            TableInfoItem(
+                level: 0, first: true, last: false,
+                item: DataPrimitive(field: "Domain", value: request.domain.name)
+            ),
+            TableInfoItem(
+                level: 0, first: false, last: true,
+                item: DataPrimitive(
+                    field: "Contract",
+                    value: request.domain.verifyingContract.hex(eip55: false)
+                )
+            )
+        ]
         
         topDataItem = parseTypedData()
         
@@ -239,53 +254,40 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case accountSection: return account.value != nil ? 1 : 0
-        case domainSection: return domainInfo.count
-        case dataSection: return tableData.count
-        default: return 0
+        default: return tableCachedData[section]!.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item: Any
         switch indexPath.section {
         case accountSection:
-            item = account.value!
-        case domainSection:
-            item = domainInfo[indexPath.row]
-        case dataSection:
-            item = tableData[indexPath.row]
-        default:
-            fatalError("Wrong section")
-        }
-        
-        switch item {
-        case let account as Account:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: "AddressCell", for: indexPath
-            ) as! EthereumAddressTableViewCell
-            cell.setAccount(account: account, header: "Account")
-            return cell
-        case let tuple as (Int, DataType):
-            let (level, dataType) = tuple
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DataHeaderCell", for: indexPath) as! EthereumDataTypeTableViewCell
-            cell.setData(type: dataType.type, field: dataType.field)
-            cell.setIndent(level: level)
-            return cell
-        case let tuple as (Int, DataPrimitive):
-            let (level, primitive) = tuple
-            let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! TextWithHeaderTableViewCell
-            cell.setData(header: primitive.field, data: primitive.value)
-            cell.selectionStyle = .none
-            cell.setIndent(level: level)
+                ) as! EthereumAddressTableViewCell
+            cell.setAccount(account: account.value!, header: "Account")
             return cell
         default:
-            break
+            let item = tableCachedData[indexPath.section]![indexPath.row]
+            switch item.item {
+            case let type as DataType:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DataHeaderCell", for: indexPath) as! EthereumDataTypeTableViewCell
+                cell.setData(type: type.type, field: type.field)
+                cell.setIndent(level: item.level)
+                return cell
+            case let primitive as DataPrimitive:
+                let cell = tableView.dequeueReusableCell(withIdentifier: "DataCell", for: indexPath) as! TextWithHeaderTableViewCell
+                cell.setData(header: primitive.field, data: primitive.value)
+                cell.selectionStyle = .none
+                cell.setIndent(level: item.level)
+                return cell
+            default: fatalError("Unknown type")
+            }
         }
-        fatalError("Wrong data type")
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.section == dataSection, let item = tableData[indexPath.row].1 as? DataType {
+        if indexPath.section == dataSection,
+            let item = tableCachedData[dataSection]?[indexPath.row].item as? DataType {
             selectedItem.next(item)
         }
     }
@@ -336,17 +338,34 @@ extension EthereumKeychainSignTypedDataViewController {
         let header = ensureDataSectionHeader()
         header.setPath(path: item?.path() ?? [])
         header.layoutSubviews()
-        tableData.removeAll()
+        
+        var tableData = Array<TableInfoItem>()
         if let item = item {
-            for child1 in item.items {
-                tableData.append((0, child1))
-                if let type = child1 as? DataType {
-                    for child2 in type.items {
-                        tableData.append((1, child2))
-                    }
+            let last = item.items.count-1
+            for c1index in 0...last {
+                tableData.append(
+                    TableInfoItem(
+                        level: 0,
+                        first: c1index == 0 ? true : item.items[c1index] is DataType,
+                        last: c1index == last ? true : item.items[c1index+1] is DataType,
+                        item: item.items[c1index]
+                    )
+                )
+                guard let type = item.items[c1index] as? DataType else { continue }
+                let last2 = type.items.count-1
+                for c2index in 0...last2 {
+                    tableData.append(
+                        TableInfoItem(
+                            level: 1,
+                            first: c2index == 0 ? true : type.items[c2index] is DataType,
+                            last: c2index == last2 ? true : type.items[c2index+1] is DataType,
+                            item: type.items[c2index]
+                        )
+                    )
                 }
             }
         }
+        tableCachedData[dataSection] = tableData
         
         tableView.reloadSections(IndexSet(integer: dataSection), with: .automatic)
     }
