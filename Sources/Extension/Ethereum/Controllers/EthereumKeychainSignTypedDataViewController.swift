@@ -210,7 +210,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         let ethAcc = request.account
         context.wallet
             .map {
-                $0?.accounts.first{
+                $0.exists?.accounts.first{
                     ethAcc.lowercased() == (try? $0.eth_address().hex(eip55: false))
                 }
             }
@@ -229,7 +229,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             .with(latestFrom: account)
             .flatMapLatest { (arg, account) -> ResultSignal<Data, AnyError> in
                 let (_, wallet) = arg
-                return wallet!.eth_signTypedData(
+                return wallet.exists!.eth_signTypedData(
                     account: try! account!.eth_address(),
                     data: EIP712TypedData(
                         primaryType: request.primaryType,

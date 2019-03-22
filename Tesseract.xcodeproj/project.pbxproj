@@ -140,6 +140,11 @@
 		D1958B05219B417100113CAA /* KeyboardAutoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardAutoScrollView.swift */; };
 		D19EA619223FD1C200365868 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA618223FD1C200365868 /* TextView.swift */; };
 		D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D1A16BBB219A2077008AEAD4 /* Registration.storyboard */; };
+		D1A211482242983F00DDF3F3 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A211472242983F00DDF3F3 /* LocalAuthentication.framework */; };
+		D1A2114B2242A1DE00DDF3F3 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */; };
+		D1A2114D2242A29F00DDF3F3 /* KeychainPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2114C2242A29F00DDF3F3 /* KeychainPasswordService.swift */; };
+		D1A2114F2242A3AC00DDF3F3 /* KeychainPasswordItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */; };
+		D1A211502242A3B100DDF3F3 /* KeychainPasswordService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1A2114C2242A29F00DDF3F3 /* KeychainPasswordService.swift */; };
 		D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */; };
 		D1B13CCC222DC3A8005213F7 /* ReceiveFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */; };
 		D1B13CCE222DD05E005213F7 /* BorderedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCD222DD05E005213F7 /* BorderedView.swift */; };
@@ -379,6 +384,9 @@
 		D1958B04219B417100113CAA /* KeyboardAutoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAutoScrollView.swift; sourceTree = "<group>"; };
 		D19EA618223FD1C200365868 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
 		D1A16BBB219A2077008AEAD4 /* Registration.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Registration.storyboard; sourceTree = "<group>"; };
+		D1A211472242983F00DDF3F3 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
+		D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordItem.swift; sourceTree = "<group>"; };
+		D1A2114C2242A29F00DDF3F3 /* KeychainPasswordService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainPasswordService.swift; sourceTree = "<group>"; };
 		D1B13CC9222DBCE5005213F7 /* ReceiveFundsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewController.swift; sourceTree = "<group>"; };
 		D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewModel.swift; sourceTree = "<group>"; };
 		D1B13CCD222DD05E005213F7 /* BorderedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedView.swift; sourceTree = "<group>"; };
@@ -434,6 +442,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1A211482242983F00DDF3F3 /* LocalAuthentication.framework in Frameworks */,
 				928A9149223070EB005DA7B4 /* TesSDK.framework in Frameworks */,
 				4B21B47FFDC9B4394DD0D00D /* Pods_Tesseract_Extension.framework in Frameworks */,
 			);
@@ -536,6 +545,7 @@
 		9230790E223024C2004E3950 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1A2114C2242A29F00DDF3F3 /* KeychainPasswordService.swift */,
 				92FE9734222D9651007DB61C /* ChangeRateService.swift */,
 				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
 				92CB198922282ED000407F9A /* WalletService.swift */,
@@ -661,6 +671,7 @@
 		9299320222245B27000EAD47 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D1A211472242983F00DDF3F3 /* LocalAuthentication.framework */,
 				7B3692C429ADD5FB5DB2BF56 /* Pods_TesSDK.framework */,
 				26E507A9D48F0A930BD855FA /* Pods_Tesseract.framework */,
 				5234901E5B38E9DB09B132CF /* Pods_Tesseract_Extension.framework */,
@@ -980,6 +991,7 @@
 		D1F76C9F2226A4F000BFBB6B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */,
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
 				92CB198B2228312A00407F9A /* Promise+Extensions.swift */,
 				92CB198D2228323300407F9A /* AnyError.swift */,
@@ -1451,6 +1463,7 @@
 				D11FEE6022306CB400738AAD /* ShadowedViews.swift in Sources */,
 				D16FD29C223B1D54003324D2 /* CustomInsetsTextView.swift in Sources */,
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
+				D1A2114D2242A29F00DDF3F3 /* KeychainPasswordService.swift in Sources */,
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
 				D11C404922407D080068D883 /* TextView+Bond.swift in Sources */,
@@ -1472,6 +1485,7 @@
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
+				D1A2114B2242A1DE00DDF3F3 /* KeychainPasswordItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1519,8 +1533,10 @@
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,
 				928A916F2232DC08005DA7B4 /* ExtensionViewController.swift in Sources */,
+				D1A2114F2242A3AC00DDF3F3 /* KeychainPasswordItem.swift in Sources */,
 				D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */,
 				928A915E22329F96005DA7B4 /* EthereumKeychainViewProvider.swift in Sources */,
+				D1A211502242A3B100DDF3F3 /* KeychainPasswordService.swift in Sources */,
 				D1D82F462232E0BF003BDFE2 /* ErrorTextField+Bind.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

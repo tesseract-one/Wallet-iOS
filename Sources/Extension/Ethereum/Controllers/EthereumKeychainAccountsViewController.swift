@@ -32,7 +32,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
         title = "Access Request"
         
         context.wallet
-            .map{$0?.accounts ?? []}
+            .map{$0.exists?.accounts ?? []}
             .bind(to: accounts)
             .dispose(in: reactive.bag)
         
@@ -56,7 +56,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
             .with(latestFrom: activeAccountIndex)
             .map { (arg, accountIndex) -> String in
                 let (_, wallet) = arg
-                let account = wallet?.accounts.first { $0.index == accountIndex }
+                let account = wallet.exists?.accounts.first { $0.index == accountIndex }
                 return try! account!.eth_address().hex(eip55: false)
             }
             .with(weak: self)

@@ -20,7 +20,7 @@ class ApplicationContext: RouterContextProtocol {
     var walletViewFactory: ViewFactoryProtocol!
     
     // State
-    let wallet: Property<Wallet?> = Property(nil)
+    let wallet: Property<WalletState> = Property(.empty)
     let ethereumNetwork: Property<UInt64> = Property(4)
     let activeAccount: Property<Account?> = Property(nil)
     
@@ -30,12 +30,16 @@ class ApplicationContext: RouterContextProtocol {
     // Node to send critical errors
     public let errorNode = SafePublishSubject<AnyError>()
     
+    // Settings
+    let settings = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
+    
     // Services
     let applicationService = ApplicationService()
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
     let changeRatesService = ChangeRateService()
     let transactionService = TransactionInfoService()
+    let passwordService = KeychainPasswordService()
     
     func bootstrap() {
         walletService.wallet = wallet
@@ -63,5 +67,6 @@ class ApplicationContext: RouterContextProtocol {
         ethereumWeb3Service.bootstrap()
         changeRatesService.bootstrap()
         transactionService.bootstrap()
+        passwordService.bootstrap()
     }
 }

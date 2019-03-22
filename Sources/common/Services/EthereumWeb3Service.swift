@@ -15,7 +15,7 @@ import TesSDK
 class EthereumWeb3Service {
     let bag = DisposeBag()
     
-    var wallet: Property<Wallet?>!
+    var wallet: Property<WalletState>!
     let ethereumAPIs: Property<EthereumAPIs?> = Property(nil)
 
     var endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
@@ -30,8 +30,8 @@ class EthereumWeb3Service {
     
     func bootstrap() {
         wallet
-            .map { (wallet: Wallet?) -> EthereumAPIs? in
-                guard let wallet = wallet else { return nil }
+            .map { (wallet: WalletState) -> EthereumAPIs? in
+                guard let wallet = wallet.exists else { return nil }
                 return wallet.distributedAPI.Ethereum
             }
             .bind(to: ethereumAPIs)
@@ -40,7 +40,7 @@ class EthereumWeb3Service {
     
     func getBalance(account: Int, networkId: UInt64) -> Promise<Double> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
-        let account = wallet.value!.accounts[account]
+        let account = wallet.value.exists!.accounts[account]
         return web3.eth
             .getBalance(address: try! account.eth_address().web3, block: .latest)
             .map { Double($0.quantity) / pow(10.0, 18) }
@@ -48,7 +48,7 @@ class EthereumWeb3Service {
     
     func sendEthereum(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
-        let account = wallet.value!.accounts[account]
+        let account = wallet.value.exists!.accounts[account]
         let tx = EthereumTransaction(
             from: try! account.eth_address().web3,
             to: try! EthereumAddress(hex: to, eip55: false),
@@ -73,7 +73,7 @@ class EthereumWeb3Service {
     }
     
     func estimateSendTxGas(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Double> {
-        let account = wallet.value!.accounts[account]
+        let account = wallet.value.exists!.accounts[account]
         let gasPrice = _estimateGasPriceWei(networkId: networkId)
         
         let call = EthereumCall(
@@ -103,6 +103,6 @@ class EthereumWeb3Service {
     
     func getTransactions(account: Int, networkId: UInt64) -> Promise<Array<EthereumTransactionLog>> {
         let etherscan = ethereumAPIs.value!.etherscan(apiUrl: etherscanEndpoints[networkId]!, apiToken: etherscanApiToken)
-        return etherscan.getTransactions(address: try! wallet.value!.accounts[account].eth_address().hex(eip55: false))
+        return etherscan.getTransactions(address: try! wallet.value.exists!.accounts[account].eth_address().hex(eip55: false))
     }
 }

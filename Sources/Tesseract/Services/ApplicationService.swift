@@ -36,19 +36,19 @@ class ApplicationService {
     }
     
     private func bindRegistration() {
-        combineLatest(walletService.wallet.distinct(), walletService.isWalletLocked.distinct())
+        walletService.wallet.distinct()
             .observeIn(.immediateOnMain)
-            .map { [weak self] (wallet, isLocked) -> UIViewController? in
-                if wallet != nil && !isLocked {
-                    return try! self?.walletViewFactory.viewController(for: .root)
-                } else if wallet == nil {
-                    return self?.registrationViewFactory.registrationView
+            .map { [weak self] wallet -> UIViewController? in
+                switch wallet {
+                case .empty: return UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+                case .notExist: return self?.registrationViewFactory.registrationView
+                case .locked(_): return self?.registrationViewFactory.unlockView
+                case .unlocked(_): return try! self?.walletViewFactory.viewController(for: .root)
                 }
-                return self?.registrationViewFactory.unlockView
             }
             .with(weak: self)
             .observeNext { view, sself in
-                if sself.rootContainer.view != nil && sself.rootContainer.view!.storyboard != view?.storyboard {
+                if sself.rootContainer.view != nil {
                     sself.rootContainer.setViewController(vc: view!, animated: true)
                 } else {
                     sself.rootContainer.setViewController(vc: view!, animated: false)

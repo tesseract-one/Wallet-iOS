@@ -70,7 +70,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     func bootstrap() {
         sendTransaction.with(weak: self)
             .flatMapLatest { password, sself in
-                sself.walletService.wallet.value!.checkPassword(password: password).map{sself}.signal
+                sself.walletService.wallet.value.exists!.checkPassword(password: password).map{sself}.signal
             }
             .flatMapLatest { sself in
                 sself.ethWeb3Service.sendEthereum(

@@ -188,6 +188,7 @@ class TextView: UIView {
         textView.spellCheckingType = .no
         textView.keyboardAppearance = .dark
         textView.returnKeyType = .next
+        textView.autocapitalizationType = .none
         textView.textContainer.lineFragmentPadding = 0
         textView.frame = CGRect(x: 0, y: 0, width: bounds.width, height: frame.height)
         
