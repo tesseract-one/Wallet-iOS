@@ -17,6 +17,8 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
     
     @IBOutlet weak var passwordField: NextResponderTextField!
     @IBOutlet weak var signInButton: UIButton!
+    @IBOutlet weak var signInButtonRight: NSLayoutConstraint!
+    @IBOutlet weak var fingerButton: UIButton!
     @IBOutlet weak var restoreKeyButton: UIButton!
     
     override func viewDidLoad() {
@@ -65,6 +67,8 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
         
+        setupFingerButton()
+        
         navigationController?.isToolbarHidden = true
     }
     
@@ -78,7 +82,7 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
         navigationController?.isNavigationBarHidden = false
     }
     
-    func showTouchIdPopup() {
+    private func showTouchIdPopup() {
         let alert = UIAlertController(title: "Do you wan't \u{22}\(Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String)\u{22} to use Touch ID", message: "as password", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { [weak self] _ in
             self?.model.touchIdPopupAnswer.next(true)
@@ -87,6 +91,18 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
             self?.model.touchIdPopupAnswer.next(false)
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func setupFingerButton() {
+        model.isBiometricEnabled.map { !$0 }.bind(to: fingerButton.reactive.isHidden).dispose(in: bag)
+        
+        model.isBiometricEnabled.with(weak: signInButtonRight)
+            .observeNext { isEnabled, signInButtonRight in
+                signInButtonRight.constant = isEnabled ? 82 : 16
+            }.dispose(in: bag)
+        
+        fingerButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.fingerAction).dispose(in: bag)
     }
 }
 

@@ -17,6 +17,10 @@ enum SignInPasswordErrors: String {
     case biometric = "Finger ID error"
 }
 
+enum KeychainErrors: String {
+    case cantLoad = "Can't load password"
+}
+
 enum BiometricFlow: Equatable {
     case EnterPassword
     case ShowYesNoPopup
@@ -30,6 +34,7 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     private let settings: UserDefaults
     
     let signInAction = SafePublishSubject<Void>()
+    let fingerAction = SafePublishSubject<Void>()
     let restoreKeyAction = SafePublishSubject<Void>()
     
     let password = Property<String>("")
@@ -38,15 +43,13 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let goToView = SafePublishSubject<ToView>()
     
-    let errors = SafePublishSubject<AnyError>()
-    let biometricErrors = SafePublishSubject<AnyError>()
-    
-    let canLoadPassword = Property<Bool?>(nil)
-    
     let showTouchIdPopup = SafePublishSubject<Void>()
     let touchIdPopupAnswer = Property<Bool?>(nil)
     
+    let isBiometricEnabled = Property<Bool>(false)
     let setBiometricEnabledSetting = Property<Bool?>(nil)
+    
+    let canLoadPassword = Property<Bool?>(nil)
     
     let checkPassword = SafePublishSubject<Void>()
     let unlockWallet = SafePublishSubject<Void>()
@@ -54,6 +57,9 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let touchIdBiometric = SafePublishSubject<Void>()
     
     let biometricFlow = Property<BiometricFlow?>(nil)
+    
+    let textFieldErrors = SafePublishSubject<AnyError>()
+    let biometricErrors = SafePublishSubject<AnyError>()
     
     init (walletService: WalletService, passwordService: KeychainPasswordService, settings: UserDefaults) {
         self.walletService = walletService
@@ -92,7 +98,7 @@ extension SignInViewModel {
             .resultMap { pwdTuple, walletService in
                 try walletService.unlockWallet(password: pwdTuple.1)
             }
-            .pourError(into: errors)
+            .pourError(into: textFieldErrors)
             .map { _ in true }
             .bind(to: signInSuccessfully)
             .dispose(in: bag)
@@ -113,24 +119,29 @@ extension SignInViewModel {
             .resultMap { pwdTuple, walletService in
                 try walletService.unlockWallet(password: pwdTuple.1)
             }
-            .pourError(into: errors)
+            .pourError(into: textFieldErrors)
             .map { _ in }
             .bind(to: checkPassword)
             .dispose(in: bag)
         
-        errors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
-        errors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
+        textFieldErrors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
+        textFieldErrors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
         
         if biometricType == .none || settings.object(forKey: "isBiometricEnabled") as? Bool == false {
             checkPassword.bind(to: unlockWallet).dispose(in: bag)
         } else if settings.object(forKey: "isBiometricEnabled") as? Bool == true {
-            passwordService.canLoadPassword().signal
-                .pourError(into: errors)
+            isBiometricEnabled.next(true)
+            
+            fingerAction
+                .with(weak: passwordService)
+                .flatMapLatest { passwordService in
+                    passwordService.canLoadPassword().signal
+                }
+                .pourError(into: textFieldErrors)
                 .bind(to: canLoadPassword)
                 .dispose(in: bag)
-            
-            canLoadPassword
-                .filter { $0 == true }
+                
+            canLoadPassword.filter { $0 == true }
                 .map { _ in }
                 .with(weak: passwordService)
                 .flatMapLatest { passwordService in
@@ -141,10 +152,13 @@ extension SignInViewModel {
                 .resultMap { password, walletService in
                     try walletService.unlockWallet(password: password)
                 }
-                .pourError(into: errors)
+                .pourError(into: textFieldErrors)
                 .map { _ in true }
                 .bind(to: signInSuccessfully)
                 .dispose(in: bag)
+            
+//            canLoadPassword.filter { $0 == false }
+//                .map { _ in KeychainErrors.cantLoad }.bind(to: passwordError) KEYCHAIN ERRORS
             
             checkPassword.bind(to: unlockWallet).dispose(in: bag)
         } else {

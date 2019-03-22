@@ -89,7 +89,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipient Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RNW-vB-Wfi" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="164" width="343" height="20"/>
+                                <rect key="frame" x="16" y="164" width="343" height="35"/>
                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -120,7 +120,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="You Send" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="avx-FJ-lIa" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="200" width="343" height="20"/>
+                                <rect key="frame" x="16" y="215" width="343" height="35"/>
                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -151,7 +151,7 @@
                                 </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gas" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="YJl-nF-yPC" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="236" width="343" height="20"/>
+                                <rect key="frame" x="16" y="266" width="343" height="35.5"/>
                                 <color key="tintColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -194,7 +194,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Recipient gets" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="svo-RL-bve" customClass="MFTextField">
-                                <rect key="frame" x="16" y="272" width="343" height="20"/>
+                                <rect key="frame" x="16" y="317.5" width="343" height="35"/>
                                 <color key="tintColor" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -595,7 +595,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqp-dG-EDP" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="593" width="343" height="50"/>
+                                <rect key="frame" x="16" y="593" width="277" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lts-fn-1oP"/>
@@ -617,16 +617,34 @@
                                     <constraint firstAttribute="height" constant="1" id="Dw1-Sd-MM6"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCh-pJ-YbV" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="309" y="593" width="50" height="50"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="A4R-Jd-4TX"/>
+                                    <constraint firstAttribute="width" constant="50" id="hTh-fc-o7V"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" image="fingerprint"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="eM5-ru-yKP" firstAttribute="top" secondItem="Ucy-0e-lEG" secondAttribute="bottom" constant="16" id="2Xd-Yn-6R0"/>
                             <constraint firstItem="lZT-x1-kHm" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="3Vm-a8-iFu"/>
+                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="fCh-pJ-YbV" secondAttribute="trailing" constant="16" id="EWF-xQ-ptA"/>
                             <constraint firstAttribute="trailing" secondItem="eM5-ru-yKP" secondAttribute="trailing" constant="16" id="GAe-R7-Y2P"/>
                             <constraint firstItem="Hqp-dG-EDP" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="LuD-w7-Mk3"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="lZT-x1-kHm" secondAttribute="trailing" constant="16" id="NsL-y2-5aY"/>
                             <constraint firstItem="hYc-7s-4j2" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="QFG-sJ-LnR"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="hYc-7s-4j2" secondAttribute="trailing" constant="16" id="UHQ-cA-f5s"/>
+                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Hqp-dG-EDP" secondAttribute="trailing" constant="82" id="VME-K2-Y0B"/>
+                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="bottom" secondItem="fCh-pJ-YbV" secondAttribute="bottom" constant="24" id="Wxm-8T-y0j"/>
                             <constraint firstItem="Ucy-0e-lEG" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="aCw-jE-MJf"/>
                             <constraint firstItem="Hqp-dG-EDP" firstAttribute="top" secondItem="hbE-1R-ZTT" secondAttribute="bottom" constant="24" id="bgj-hr-uAn"/>
                             <constraint firstItem="Ucy-0e-lEG" firstAttribute="top" secondItem="lZT-x1-kHm" secondAttribute="bottom" constant="32" id="d8C-KS-opm"/>
@@ -635,7 +653,6 @@
                             <constraint firstItem="hbE-1R-ZTT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hYc-7s-4j2" secondAttribute="bottom" constant="8" id="eFv-UX-epJ"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Ucy-0e-lEG" secondAttribute="trailing" constant="16" id="efK-IQ-PAE"/>
                             <constraint firstItem="hYc-7s-4j2" firstAttribute="top" secondItem="eM5-ru-yKP" secondAttribute="bottom" constant="16" id="idB-lp-x1z"/>
-                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Hqp-dG-EDP" secondAttribute="trailing" constant="16" id="l2P-Zv-E4P"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="bottom" secondItem="Hqp-dG-EDP" secondAttribute="bottom" constant="24" id="qFC-ZW-Yau"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="hbE-1R-ZTT" secondAttribute="trailing" constant="16" id="qmb-zI-3AP"/>
                             <constraint firstItem="eM5-ru-yKP" firstAttribute="leading" secondItem="f7F-gI-ar6" secondAttribute="leading" constant="16" id="ygt-kH-AlB"/>
@@ -649,6 +666,8 @@
                         <outlet property="balance" destination="KzO-pU-OWw" id="QqA-iL-eAb"/>
                         <outlet property="bottomConstraint" destination="qFC-ZW-Yau" id="PdA-CD-E2C"/>
                         <outlet property="confirmButton" destination="Hqp-dG-EDP" id="MoF-xj-mFB"/>
+                        <outlet property="confirmButtonRight" destination="VME-K2-Y0B" id="fHH-e8-gMk"/>
+                        <outlet property="fingerButton" destination="fCh-pJ-YbV" id="PaT-Ja-jK2"/>
                         <outlet property="gasAmount" destination="Bao-UO-Xvm" id="fBn-tj-nyh"/>
                         <outlet property="gasAmountInUSD" destination="sp2-z0-Swp" id="VPI-z3-tsO"/>
                         <outlet property="passwordField" destination="hbE-1R-ZTT" id="4P4-gd-xl1"/>
@@ -759,6 +778,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fingerprint" width="36" height="44"/>
         <image name="logo" width="140.80000305175781" height="145.60000610351562"/>
     </resources>
 </document>

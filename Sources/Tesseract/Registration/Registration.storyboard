@@ -26,7 +26,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khx-6M-fzw">
@@ -49,7 +49,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-GL-UP9">
-                                        <rect key="frame" x="82" y="283.33333333333331" width="250" height="48"/>
+                                        <rect key="frame" x="86.666666666666686" y="283.33333333333331" width="241" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="yGV-wL-SLm"/>
                                         </constraints>
@@ -465,7 +465,7 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" misplaced="YES" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
+                            <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
                                 <rect key="frame" x="16" y="221.66666666666666" width="382" height="150"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
@@ -542,7 +542,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="SignInViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpN-zK-av5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-2k-pAp">
@@ -565,7 +565,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26K-vS-IBg">
-                                        <rect key="frame" x="82" y="324.33333333333331" width="250" height="48"/>
+                                        <rect key="frame" x="86.666666666666686" y="324.33333333333331" width="241" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="bb6-mV-Kkm"/>
                                         </constraints>
@@ -633,51 +633,67 @@
                                             <constraint firstItem="ngg-r1-3jz" firstAttribute="centerY" secondItem="vxb-a9-DHO" secondAttribute="centerY" id="JdW-P7-2fm"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="uK0-wJ-naJ">
-                                        <rect key="frame" x="16" y="223.33333333333337" width="382" height="108"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
-                                                <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                                <state key="normal" title="Unlock">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="58" width="382" height="50"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                                <state key="normal" title="Restore Key">
-                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </state>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="4"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </button>
-                                        </subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="223.33333333333337" width="316" height="50"/>
+                                        <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="V3v-qf-LkC" firstAttribute="height" secondItem="h7y-Me-OLL" secondAttribute="height" id="Qo8-12-Akq"/>
-                                            <constraint firstAttribute="height" constant="108" id="ZIw-OR-fwn"/>
+                                            <constraint firstAttribute="height" constant="50" id="JWe-zU-HmO"/>
                                         </constraints>
-                                    </stackView>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                        <state key="normal" title="Unlock">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZVM-9o-nK6" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="364" y="237.33333333333337" width="18" height="22"/>
+                                        <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="sQ1-ND-aeC"/>
+                                        </constraints>
+                                        <state key="normal" image="fingerprint"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h7y-Me-OLL" customClass="BorderedClippedButton" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="16" y="281.33333333333337" width="382" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="aTE-M0-mGx"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                        <state key="normal" title="Restore Key">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ZVM-9o-nK6" secondAttribute="trailing" constant="16" id="2ix-dz-19y"/>
+                                    <constraint firstAttribute="trailing" secondItem="h7y-Me-OLL" secondAttribute="trailing" constant="16" id="EZd-NU-T31"/>
+                                    <constraint firstItem="V3v-qf-LkC" firstAttribute="top" secondItem="vxb-a9-DHO" secondAttribute="bottom" id="IlW-Qm-byT"/>
                                     <constraint firstItem="vxb-a9-DHO" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" id="Pra-w7-3G0"/>
-                                    <constraint firstItem="uK0-wJ-naJ" firstAttribute="top" secondItem="vxb-a9-DHO" secondAttribute="bottom" id="SQE-hK-TNZ"/>
-                                    <constraint firstItem="uK0-wJ-naJ" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" constant="16" id="YDf-I6-lUO"/>
+                                    <constraint firstItem="ZVM-9o-nK6" firstAttribute="top" secondItem="vxb-a9-DHO" secondAttribute="bottom" id="RDf-0W-HoZ"/>
+                                    <constraint firstItem="h7y-Me-OLL" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" constant="16" id="ZFC-Px-weL"/>
+                                    <constraint firstItem="h7y-Me-OLL" firstAttribute="top" secondItem="ZVM-9o-nK6" secondAttribute="bottom" constant="8" id="aZu-Di-lcc"/>
                                     <constraint firstAttribute="trailing" secondItem="vxb-a9-DHO" secondAttribute="trailing" id="adS-Uf-KA5"/>
-                                    <constraint firstAttribute="trailing" secondItem="uK0-wJ-naJ" secondAttribute="trailing" constant="16" id="f9X-pm-Qyq"/>
+                                    <constraint firstItem="V3v-qf-LkC" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" constant="16" id="fKf-vu-SVI"/>
                                     <constraint firstItem="vxb-a9-DHO" firstAttribute="top" secondItem="P80-32-YRo" secondAttribute="top" id="g21-GR-QJE"/>
-                                    <constraint firstAttribute="bottom" secondItem="uK0-wJ-naJ" secondAttribute="bottom" constant="24" id="k8e-O3-2q9"/>
+                                    <constraint firstAttribute="trailing" secondItem="V3v-qf-LkC" secondAttribute="trailing" constant="82" id="mOJ-Kk-A1u"/>
+                                    <constraint firstItem="h7y-Me-OLL" firstAttribute="top" secondItem="V3v-qf-LkC" secondAttribute="bottom" constant="8" id="rHU-g1-GS9"/>
+                                    <constraint firstAttribute="bottom" secondItem="h7y-Me-OLL" secondAttribute="bottom" constant="24" id="vOp-5y-jpp"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -699,10 +715,12 @@
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="AN7-gA-Eux"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="bottomConstraint" destination="k8e-O3-2q9" id="Gjy-Ol-ruR"/>
+                        <outlet property="bottomConstraint" destination="vOp-5y-jpp" id="fmX-68-6qz"/>
+                        <outlet property="fingerButton" destination="ZVM-9o-nK6" id="Vig-Ur-s0B"/>
                         <outlet property="passwordField" destination="ngg-r1-3jz" id="CpX-fb-9ps"/>
                         <outlet property="restoreKeyButton" destination="h7y-Me-OLL" id="SdZ-vs-Zuj"/>
                         <outlet property="signInButton" destination="V3v-qf-LkC" id="CbN-cF-5Ed"/>
+                        <outlet property="signInButtonRight" destination="mOJ-Kk-A1u" id="Qcq-4A-mKv"/>
                         <outlet property="topConstraint" destination="0wm-VB-B9E" id="UpE-Wg-733"/>
                     </connections>
                 </viewController>
@@ -997,6 +1015,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="fingerprint" width="18" height="22"/>
         <image name="logo" width="211.19999694824219" height="218.39999389648438"/>
     </resources>
 </document>

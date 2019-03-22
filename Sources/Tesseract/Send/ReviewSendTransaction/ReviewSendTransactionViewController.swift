@@ -27,6 +27,8 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
+    @IBOutlet weak var confirmButtonRight: NSLayoutConstraint!
+    @IBOutlet weak var fingerButton: UIButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +38,10 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         }.dispose(in: reactive.bag)
         
         confirmButton.reactive.tap
-            .throttle(seconds: 0.3)
+            .throttle(seconds: 0.5)
             .with(latestFrom: passwordField.reactive.text)
             .map { _, password in password ?? "" }
-            .bind(to: model.sendTransaction)
+            .bind(to: model.send)
             .dispose(in: reactive.bag)
         
         model.amountString.bind(to: sentAmount.reactive.text).dispose(in: reactive.bag)
@@ -60,6 +62,7 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             self?.present(alert, animated: true, completion: nil)
         }.dispose(in: reactive.bag)
         
+        setupFingerButton()
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -79,13 +82,25 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             }
         }
     }
+    
+    private func setupFingerButton() {
+        model.isBiometricEnabled.map { !$0 }.bind(to: fingerButton.reactive.isHidden).dispose(in: bag)
+        
+        model.isBiometricEnabled.with(weak: confirmButtonRight)
+            .observeNext { isEnabled, confirmButtonRight in
+                confirmButtonRight.constant = isEnabled ? 82 : 16
+            }.dispose(in: bag)
+        
+        fingerButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.fingerAction).dispose(in: bag)
+    }
 }
 
 
 extension ReviewSendTransactionViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
-        model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService)
+        model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, passwordService: appCtx.passwordService, settings: appCtx.settings)
         model.account.next(context.get(bean: "account")! as? Account)
         model.address.next(context.get(bean: "address")! as! String)
         model.ethereumNetwork.next(context.get(bean: "network")! as! UInt64)
