@@ -43,6 +43,12 @@ public class Wallet: SignProvider {
         return networkSupport == nil
     }
     
+    public func lock() {
+        _accountsLock.lock()
+        defer { _accountsLock.unlock() }
+        networkSupport = nil
+    }
+    
     public func unlock(password: String) throws {
         guard isLocked else { return }
         
@@ -63,7 +69,7 @@ public class Wallet: SignProvider {
         }
         
         networkSupport = support
-        _networks = nil
+        //_networks = nil
     }
     
     public func checkPassword(password: String) -> Bool {

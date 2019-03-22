@@ -24,10 +24,13 @@ class ExtensionContext {
     
     let errors = SafePublishSubject<AnyError>()
     
+    let settings = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
+    
     func bootstrap() {
         walletService.errorNode = errors
         walletService.wallet = wallet
         walletService.activeAccount = activeAccount
+        walletService.storage = settings
         
         ethereumWeb3Service.wallet = wallet
         

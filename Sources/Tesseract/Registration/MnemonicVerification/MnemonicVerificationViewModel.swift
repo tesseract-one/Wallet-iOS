@@ -102,6 +102,7 @@ extension MnemonicVerificationViewModel {
             .with(weak: walletService, settings)
             .observeNext { wallet, walletService, settings in
                 settings.removeObject(forKey: "isBiometricEnabled")
+                wallet.lock() // We will go to login for touch id setup
                 walletService.setWallet(wallet: wallet)
             }.dispose(in: bag)
         
