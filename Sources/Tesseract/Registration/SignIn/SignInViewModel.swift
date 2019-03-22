@@ -89,8 +89,8 @@ extension SignInViewModel {
         unlockWallet
             .with(latestFrom: password)
             .with(weak: walletService)
-            .flatMapLatest { pwdTuple, walletService in
-                walletService.unlockWallet(password: pwdTuple.1).signal
+            .resultMap { pwdTuple, walletService in
+                try walletService.unlockWallet(password: pwdTuple.1)
             }
             .pourError(into: errors)
             .map { _ in true }
@@ -110,8 +110,8 @@ extension SignInViewModel {
             .map { _ in }
             .with(latestFrom: password)
             .with(weak: walletService)
-            .flatMapLatest { pwdTuple, walletService in
-                walletService.checkPassword(password: pwdTuple.1).signal
+            .resultMap { pwdTuple, walletService in
+                try walletService.unlockWallet(password: pwdTuple.1)
             }
             .pourError(into: errors)
             .map { _ in }
@@ -138,8 +138,8 @@ extension SignInViewModel {
                 }
                 .suppressedErrors
                 .with(weak: walletService)
-                .flatMapLatest { password, walletService in
-                    walletService.unlockWallet(password: password).signal
+                .resultMap { password, walletService in
+                    try walletService.unlockWallet(password: password)
                 }
                 .pourError(into: errors)
                 .map { _ in true }

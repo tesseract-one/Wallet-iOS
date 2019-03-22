@@ -1,6 +1,6 @@
 //
-//  Keychain.swift
-//  Tesseract
+//  Wallet.swift
+//  TesSDK
 //
 //  Created by Yehor Popovych on 2/26/19.
 //  Copyright © 2019 Crossroad Labs s.r.o. All rights reserved.
@@ -10,82 +10,101 @@ import Foundation
 import PromiseKit
 import CKMnemonic
 
-enum KeychainError: Error {
-    case wrongPassword
-}
 
-class Keychain {
-    private static let factories: Array<HDWalletKeyFactory> = [EthereumHDWalletKeyFactory()]
+public class Keychain {
     
-    private let storage: StorageProtocol
-    
-    private var factories: Array<HDWalletKeyFactory> {
-        return Keychain.factories
+    enum Error: Swift.Error {
+        case networkIsNotSupported(Network)
+        case wrongKeyPath
+        case dataError
+        case keyGenerationError
+        case signatureError
+        case mnemonicError
+        case internalError
+        case wrongPassword
     }
     
-    init(storage: StorageProtocol) {
-        self.storage = storage
+    private let keys: Dictionary<Network, KeychainKey>
+    
+    public static let factories: Dictionary<Network, KeychainKeyFactory> = [
+        .Ethereum: EthereumKeychainKeyFactory()
+    ]
+    
+    public var networks: Set<Network> {
+        return Set(Keychain.factories.keys).intersection(keys.keys)
     }
     
-    func hasWallet(name: String) -> Promise<Bool> {
-        return storage.hasData(key: name)
+    public static func generateMnemonic() throws -> String {
+         return try CKMnemonic.generateMnemonic(strength: 128, language: .english)
     }
     
-    func loadWallet(name: String, password: String) -> Promise<HDWallet> {
-        return _loadWalletData(name: name, password: password)
-            .map { try HDWallet(name: name, data: $0, factories: self.factories) }
-    }
-    
-    static func newWalletData() -> Promise<NewWalletData> {
-        let factories = self.factories
-        return Promise().map {
-            let mnemonic = try CKMnemonic.generateMnemonic(strength: 128, language: .english)
-            let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(mnemonic: mnemonic, keys: keys)
+    public convenience init(encrypted: Data, password: String) throws {
+        let decrypted: Data
+        do {
+            decrypted = try decrypt(data: encrypted, password: password)
+        } catch CryptError.decryptionFailed {
+            throw Error.wrongPassword
         }
+        try self.init(data: WalletVersionedData.from(data: decrypted).walletData())
     }
     
-    static func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
-        let factories = self.factories
-        return Promise().map {
-            let keys = try HDWallet.keysFromMnemonic(mnemonic: mnemonic, factories: factories)
-            return NewWalletData(mnemonic: mnemonic, keys: keys)
-        }
+    private convenience init(data: WalletDataV1) throws {
+        try self.init(pkeys: data.keys)
     }
     
-    func saveWalletData(name: String, data: NewWalletData, password: String) -> Promise<HDWallet> {
-        let factories = self.factories
-        return Promise.value(data.walletData).then { v1 -> Promise<WalletDataV1> in
-            let encrypted = try encrypt(data: try WalletVersionedData(v1: v1).toData(), password: password)
-            return self.storage
-                .saveData(key: name, data: encrypted)
-                .map { v1 }
-        }
-        .map { try HDWallet(name: name, data: $0, factories: factories) }
-    }
-    
-    func renameWallet(name: String, to: String, password: String) -> Promise<HDWallet> {
-        return _loadWalletData(name: name, password: password)
-            .then { v1 -> Promise<WalletDataV1> in
-                let encrypted = try encrypt(data: try WalletVersionedData(v1: v1).toData(), password: password)
-                return self.storage.saveData(key: to, data: encrypted).map { v1 }
-            }
-            .map { try HDWallet(name: name, data: $0, factories: self.factories) }
-    }
-    
-    func removeWallet(name: String) -> Promise<Void> {
-        return self.storage.removeData(key: name)
-    }
-    
-    private func _loadWalletData(name: String, password: String) -> Promise<WalletDataV1> {
-        return storage.loadData(key: name)
-            .map { try decrypt(data: $0, password: password) }
-            .mapError { err in
-                if case CryptError.decryptionFailed = err {
-                    return KeychainError.wrongPassword
+    private init(pkeys: Dictionary<Network, Data>) throws {
+        let keysArr: Array<(Network, KeychainKey)> = try pkeys
+            .compactMap {
+                if let fact = Keychain.factories[$0.key] {
+                    return ($0.key, try fact.from(data: $0.value))
                 }
-                return err
-            }
-            .map { try WalletVersionedData.from(data: $0).walletData() }
+                return nil
+        }
+        self.keys = Dictionary(uniqueKeysWithValues: keysArr)
+    }
+    
+    func address(network: Network, path: KeyPath) throws -> String {
+        return try _pk(net: network).address(path: path)
+    }
+    
+    func pubKey(network: Network, path: KeyPath) throws -> Data {
+        return try _pk(net: network).pubKey(path: path)
+    }
+    
+    func sign(network: Network, data: Data, path: KeyPath) throws -> Data {
+        return try _pk(net: network).sign(data: data, path: path)
+    }
+    
+    func verify(network: Network, data: Data, signature: Data, path: KeyPath) throws -> Bool {
+        return try _pk(net: network).verify(data: data, signature: signature, path: path)
+    }
+    
+    private func _pk(net: Network) throws -> KeychainKey {
+        if let pk = keys[net] {
+            return pk
+        }
+        throw Error.networkIsNotSupported(net)
+    }
+    
+    public static func fromSeed(seed: Data, password: String) throws -> (keychain: Keychain, encrypted: Data) {
+        let keysTuple = try Keychain.factories.map { net, fact in
+            return (net, try fact.keyDataFrom(seed: seed))
+        }
+        let keys = Dictionary(uniqueKeysWithValues: keysTuple)
+        let keychain = try Keychain(pkeys: keys)
+        let walletData = try WalletVersionedData(v1: WalletDataV1(keys: keys))
+        let data = try encrypt(data: walletData.toData(), password: password)
+        return (keychain, data)
+    }
+    
+    public static func fromMnemonic(mnemonic: String, password: String) throws -> (keychain: Keychain, encrypted: Data) {
+        let seedStr = try CKMnemonic.deterministicSeedString(from: mnemonic, passphrase: "", language: .english)
+        guard seedStr != "" else { throw Error.mnemonicError }
+        return try fromSeed(seed: seedStr.ck_mnemonicData(), password: password)
+    }
+    
+    public static func changePassword(encrypted: Data, oldPassword: String, newPassword: String) throws -> Data {
+        let data = try decrypt(data: encrypted, password: oldPassword)
+        return try encrypt(data: data, password: newPassword)
     }
 }

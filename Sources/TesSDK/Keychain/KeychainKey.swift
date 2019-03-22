@@ -18,14 +18,14 @@ public protocol KeyPath {
 
 public let BIP44_KEY_PATH_PURPOSE: UInt32 = 0x8000002C
 
-public protocol HDWalletKeyFactory {
+public protocol KeychainKeyFactory {
     var network: Network { get }
     
     func keyDataFrom(seed: Data) throws -> Data
-    func from(data: Data) throws -> HDWalletKey
+    func from(data: Data) throws -> KeychainKey
 }
 
-public protocol HDWalletKey {
+public protocol KeychainKey {
     func pubKey(path: KeyPath) throws -> Data
     func address(path: KeyPath) throws -> String
     func sign(data: Data, path: KeyPath) throws -> Data

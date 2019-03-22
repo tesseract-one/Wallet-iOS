@@ -18,27 +18,27 @@ struct EthereumKeyPath: KeyPath {
     var coin: UInt32 { return Network.Ethereum.rawValue } // ETH Coin Type
 }
 
-struct EthereumHDWalletKeyFactory: HDWalletKeyFactory {
+struct EthereumKeychainKeyFactory: KeychainKeyFactory {
     let network: Network = .Ethereum
     
     func keyDataFrom(seed: Data) throws -> Data {
         return EthereumHDNode(seed: seed)!.serialize()!
     }
     
-    func from(data: Data) throws -> HDWalletKey {
-        return try EthereumHDWalletKey(data: data)
+    func from(data: Data) throws -> KeychainKey {
+        return try EthereumKeychainKey(data: data)
     }
 }
 
-//TODO: Refactor to proper HDWallet
-struct EthereumHDWalletKey: HDWalletKey {
+
+struct EthereumKeychainKey: KeychainKey {
     private let pk: EthereumHDNode
     
     init(data: Data) throws {
         let key =  EthereumHDNode(data)?
             .derive(index: BIP44_KEY_PATH_PURPOSE, derivePrivateKey: true, hardened: true)?
             .derive(index: Network.Ethereum.rawValue, derivePrivateKey: true, hardened: true)
-        guard let newkey = key else { throw HDWalletError.dataError }
+        guard let newkey = key else { throw Keychain.Error.dataError }
         pk = newkey
     }
     
@@ -48,14 +48,14 @@ struct EthereumHDWalletKey: HDWalletKey {
     
     func address(path: KeyPath) throws -> String {
         guard let address = try _pKey(for: path).hexAddress(eip55: false) else {
-            throw HDWalletError.internalError
+            throw Keychain.Error.internalError
         }
         return address
     }
     
     func sign(data: Data, path: KeyPath) throws -> Data {
         guard var signature = try _pKey(for: path).sign(data: data) else {
-            throw HDWalletError.internalError
+            throw Keychain.Error.internalError
         }
         
         signature[64] = signature[64] + 27
@@ -65,13 +65,13 @@ struct EthereumHDWalletKey: HDWalletKey {
     
     func verify(data: Data, signature: Data, path: KeyPath) throws -> Bool {
         guard signature.count == 65 else {
-            throw HDWalletError.signatureError
+            throw Keychain.Error.signatureError
         }
         var fixedSignature = signature
         fixedSignature[64] = fixedSignature[64] - 27
         
         guard let verified = try _pKey(for: path).verifySignature(message: data, signature: signature) else {
-            throw HDWalletError.internalError
+            throw Keychain.Error.internalError
         }
         
         return verified
@@ -79,13 +79,13 @@ struct EthereumHDWalletKey: HDWalletKey {
     
     private func _pKey(for path: KeyPath) throws -> EthereumHDNode {
         guard path.address == 0 && path.change == 0 && path.coin == Network.Ethereum.rawValue && path.purpose == BIP44_KEY_PATH_PURPOSE else {
-            throw HDWalletError.wrongKeyPath
+            throw Keychain.Error.wrongKeyPath
         }
         let key = pk
             .derive(index: path.account, derivePrivateKey: true, hardened: true)?
             .derive(index: 0, derivePrivateKey: true, hardened: false)?
             .derive(index: 0, derivePrivateKey: true, hardened: false)
-        guard let newkey = key else { throw HDWalletError.keyGenerationError }
+        guard let newkey = key else { throw Keychain.Error.keyGenerationError }
         return newkey
     }
 }

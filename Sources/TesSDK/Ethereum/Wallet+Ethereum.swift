@@ -15,7 +15,7 @@ extension Account {
         if let ethAddrs = addresses[.Ethereum] {
             return ethAddrs[0].address
         }
-        throw HDWalletError.networkIsNotSupported(.Ethereum)
+        throw Keychain.Error.networkIsNotSupported(.Ethereum)
     }
 }
 
@@ -58,12 +58,12 @@ extension Wallet: EthereumSignProvider {
 
 extension Account {
     fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<Data> {
-        return eth_hdwallet()
+        return eth_keychain()
             .map { try $0.sign(network: .Ethereum, data: tx.rawData(chainId: BigUInt(chainId)), path: self.keyPath) }
     }
     
     fileprivate func eth_signTypedData(data: EIP712TypedData) -> Promise<Data> {
-        return eth_hdwallet()
+        return eth_keychain()
             .map { try $0.sign(network: .Ethereum, data: data.signableMessageData(), path: self.keyPath) }
     }
     
@@ -73,7 +73,7 @@ extension Account {
 //    }
     
     fileprivate func eth_signData(data: Data) -> Promise<Data> {
-        return eth_hdwallet()
+        return eth_keychain()
             .map {
                 var signData = "\u{19}Ethereum Signed Message:\n".data(using: .utf8)!
                 signData.append(String(describing: data.count).data(using: .utf8)!)
@@ -86,11 +86,11 @@ extension Account {
         return EthereumKeyPath(account: index)
     }
     
-    private func eth_hdwallet() -> Promise<HDWallet> {
+    private func eth_keychain() -> Promise<Keychain> {
         if let support = networkSupport[.Ethereum] as? EthereumWalletNetworkSupport {
-            return Promise.value(support.hdWallet)
+            return Promise.value(support.keychain)
         }
-        return Promise(error: HDWalletError.networkIsNotSupported(.Ethereum))
+        return Promise(error: Keychain.Error.networkIsNotSupported(.Ethereum))
     }
 }
 
@@ -101,20 +101,20 @@ public struct EthereumWalletNetwork: WalletNetworkSupportFactory {
         network = .Ethereum
     }
     
-    public func withHdWallet(wallet: HDWallet) -> WalletNetworkSupport {
-        return EthereumWalletNetworkSupport(hdWallet: wallet)
+    public func withKeychain(keychain: Keychain) -> WalletNetworkSupport {
+        return EthereumWalletNetworkSupport(keychain: keychain)
     }
 }
 
 struct EthereumWalletNetworkSupport: WalletNetworkSupport {
-    let hdWallet: HDWallet
+    let keychain: Keychain
     
-    init(hdWallet: HDWallet) {
-        self.hdWallet = hdWallet
+    init(keychain: Keychain) {
+        self.keychain = keychain
     }
     
     func createFirstAddress(accountIndex: UInt32) throws -> Address {
-        let address = try self.hdWallet.address(network: .Ethereum, path: EthereumKeyPath(account: accountIndex))
+        let address = try self.keychain.address(network: .Ethereum, path: EthereumKeyPath(account: accountIndex))
         let ethAddress = try EthereumAddress(hex: address, eip55: false)
         return Address(index: 0, address: ethAddress, network: .Ethereum)
     }

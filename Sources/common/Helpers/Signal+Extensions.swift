@@ -107,6 +107,18 @@ extension SignalProtocol where Element == Void {
     }
 }
 
+extension SignalProtocol {
+    func resultMap<U>(_ transform: @escaping (Element) throws -> U) -> Signal<ReactiveKit.Result<U, AnyError>, Error> {
+        return map { val -> ReactiveKit.Result<U, AnyError> in
+            do {
+                return try .success(transform(val))
+            } catch let err {
+                return .failure(AnyError(err))
+            }
+        }
+    }
+}
+
 extension SignalProtocol where Self.Element: ResultProtocol {
     var errorNode: Signal<Element.Error, Error> {
         return filter{$0.error != nil}.map{$0.error!}
@@ -118,6 +130,21 @@ extension SignalProtocol where Self.Element: ResultProtocol {
     
     func pourError<S>(into listener: S) -> Signal<Element.Value, Error> where S: SubjectProtocol, S.Element == Element.Error {
         return doOn(next: { e in if e.error != nil { listener.next(e.error!) } }).suppressedErrors
+    }
+    
+    func tryMapWrapped<U>(_ transform: @escaping (Element.Value) throws -> U) -> Signal<ReactiveKit.Result<U, Element.Error>, Error> {
+        return map { result in
+            if let err = result.error {
+                return .failure(err)
+            }
+            do {
+                return try .success(transform(result.value!))
+            } catch let err as Element.Error {
+                return .failure(err)
+            } catch let err {
+                fatalError("Unknown error \(err)")
+            }
+        }
     }
     
     func mapWrapped<U>(_ transform: @escaping (Element.Value) -> U) -> Signal<ReactiveKit.Result<U, Element.Error>, Error> {

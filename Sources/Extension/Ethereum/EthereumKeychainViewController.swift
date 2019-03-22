@@ -57,9 +57,9 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
             .with(latestFrom: _passwordField.reactive.text)
             .map{$0.1 ?? ""}
             .with(weak: context.walletService)
-            .flatMapLatest { password, walletService in
-                walletService.unlockWallet(password: password).signal
-        }
+            .resultMap { password, service in
+                try service.unlockWallet(password: password)
+            }
         
         acceptTap.errorNode.map { _ in "Incorrect password" }.bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
         

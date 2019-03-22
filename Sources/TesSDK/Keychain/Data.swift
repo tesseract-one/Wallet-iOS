@@ -7,19 +7,6 @@
 //
 
 import Foundation
-import PromiseKit
-
-enum StorageError: Error {
-    case noData(forKey: String)
-    case internalError(err: Error)
-}
-
-public protocol StorageProtocol {
-    func hasData(key: String) -> Promise<Bool>
-    func loadData(key: String) -> Promise<Data>
-    func saveData(key: String, data: Data) -> Promise<Void>
-    func removeData(key: String) -> Promise<Void>
-}
 
 enum DataVersion: UInt16, Codable {
     case v1 = 1

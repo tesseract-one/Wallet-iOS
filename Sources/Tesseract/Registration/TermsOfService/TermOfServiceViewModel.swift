@@ -33,13 +33,13 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
 
 class TermsOfServiceFromSignInViewModel: TermsOfServiceViewModel {
     
-    override init (walletService: WalletService) {
+    init(walletService: WalletService, password: String) {
         super.init(walletService: walletService)
         
         acceptTermsAction
             .with(weak: walletService)
-            .flatMapLatest { _, walletService in
-                walletService.createWalletData().signal
+            .resultMap { _, walletService in
+                try walletService.createWalletData(password: password)
             }
             .pourError(into: errors)
             .map { NewWalletData in
@@ -63,7 +63,7 @@ class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
         acceptTermsAction
             .with(weak: self)
             .flatMapLatest { sself in
-                sself.walletService.saveWalletData(data: sself.newWalletData, password: sself.password).signal
+                sself.walletService.newWallet(data: newWalletData, password: password).signal
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)

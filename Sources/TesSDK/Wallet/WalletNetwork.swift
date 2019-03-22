@@ -11,7 +11,7 @@ import Foundation
 public protocol WalletNetworkSupportFactory {
     var network: Network { get }
     
-    func withHdWallet(wallet: HDWallet) -> WalletNetworkSupport
+    func withKeychain(keychain: Keychain) -> WalletNetworkSupport
 }
 
 public protocol WalletNetworkSupport {

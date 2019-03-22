@@ -75,11 +75,12 @@ extension RestoreWalletViewModel {
         restoreAction
             .with(latestFrom: restoreFormError)
             .filter { $0.1 == nil }
-            .map { _ in }
+            .with(latestFrom: password)
+            .map { $0.1 }
             .with(latestFrom: mnemonic)
             .with(weak: walletService)
-            .flatMapLatest { mnemonicTuple, walletService in
-                walletService.restoreWalletData(mnemonic: mnemonicTuple.1).signal
+            .resultMap { mnemonicAndPwd, walletService in
+                try walletService.restoreWalletData(mnemonic: mnemonicAndPwd.1, password: mnemonicAndPwd.0)
             }
             .pourError(into: errors)
             .with(latestFrom: password)

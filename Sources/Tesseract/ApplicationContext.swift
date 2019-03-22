@@ -42,6 +42,7 @@ class ApplicationContext: RouterContextProtocol {
     let passwordService = KeychainPasswordService()
     
     func bootstrap() {
+        walletService.storage = settings
         walletService.wallet = wallet
         walletService.errorNode = errorNode
         walletService.activeAccount = activeAccount

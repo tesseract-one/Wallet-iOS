@@ -19,6 +19,14 @@ class KeychainPasswordService {
         case none
         case touch
         case face
+        
+        init(type: LABiometryType) {
+            switch(type) {
+            case .none: self = .none
+            case .touchID: self = .touch
+            case .faceID: self = .face
+            }
+        }
     }
     
     enum BiometricalErrors: Swift.Error, Equatable {
@@ -27,8 +35,18 @@ class KeychainPasswordService {
         case userDisallow
         case biometryLockout
         case retryLimitExceeded
-        case internalError(LAError)
-        case unhandledError
+        case internalError(NSError)
+        
+        init(error: NSError) {
+            switch error.code {
+            case Int(kLAErrorAuthenticationFailed): self = .retryLimitExceeded
+            case Int(kLAErrorBiometryNotAvailable): self = .userDisallow
+            case Int(kLAErrorUserCancel): self = .userCancel
+            case Int(kLAErrorUserFallback): self = .userFallback
+            case Int(kLAErrorBiometryLockout): self = .biometryLockout
+            default: self = .internalError(error)
+            }
+        }
     }
     
     static var serviceName = "wallet"
@@ -90,11 +108,7 @@ class KeychainPasswordService {
     func getBiometricType() -> BiometricType {
         let context = LAContext()
         if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: nil) {
-            switch(context.biometryType) {
-            case .none: return .none
-            case .touchID: return .touch
-            case .faceID: return .face
-            }
+            return BiometricType(type: context.biometryType)
         } else {
             return .none
         }
@@ -108,29 +122,7 @@ class KeychainPasswordService {
                 if val {
                     seal.fulfill(true)
                 } else if let error = error {
-                    let resError: BiometricalErrors
-                    if let error = error as? LAError {
-                        switch (error as NSError).code {
-                        case -1:
-                            resError = .retryLimitExceeded
-                        case -6:
-                            resError = .userDisallow
-                        default:
-                            switch error.code {
-                            case .userCancel:
-                                resError = .userCancel
-                            case .userFallback:
-                                resError = .userFallback
-                            case .biometryLockout:
-                                resError = .biometryLockout
-                            default:
-                                resError = .internalError(error)
-                            }
-                        }
-                    } else {
-                        resError = .unhandledError
-                    }
-                    seal.reject(resError)
+                    seal.reject(BiometricalErrors(error: error as NSError))
                 } else {
                     seal.fulfill(false)
                 }

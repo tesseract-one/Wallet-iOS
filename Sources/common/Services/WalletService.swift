@@ -47,32 +47,48 @@ enum WalletState: Equatable {
 
 class WalletService {
     enum Error: Swift.Error {
-        case walletIsEmpty
+        case walletIsNotLoaded
+        case noStoredWallet
     }
     
     private let bag = DisposeBag()
-    private let storage: StorageProtocol = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
-    private static let WALLET_KEY = "WALLET"
+    
+    private var walletManager: WalletManager!
+    
+    var storage: WalletStorageProtocol!
     
     var wallet: Property<WalletState>!
     var activeAccount: Property<Account?>!
-  
+    
     var errorNode: SafePublishSubject<AnyError>!
     
-    init() {
-        Wallet.addNetworkSupport(lib: EthereumWalletNetwork())
-    }
     
     func bootstrap() {
+        walletManager = WalletManager(
+            networks: [EthereumWalletNetwork()],
+            storage: storage
+        )
+        
         wallet!.map { $0.exists != nil ? $0.exists!.accounts[0] : nil }.bind(to: activeAccount).dispose(in: bag)
     }
     
     func loadWallet() -> Promise<Wallet?> {
-        let promise = Wallet.hasWallet(name: WalletService.WALLET_KEY, storage: storage)
-            .then {
-                $0 ? Wallet.loadWallet(name: WalletService.WALLET_KEY, storage: self.storage).map { .locked($0) }
-                    : Promise<WalletState>.value(.notExist)
+        let promise = walletManager
+            .listWalletIds()
+            .then { ids -> Promise<WalletState> in
+                guard ids.count > 0 else { throw Error.noStoredWallet }
+                return self.walletManager.load(with: ids[0]).map{.locked($0)}
             }
+            .recover { err -> Promise<WalletState> in
+                if case WalletStorageError.noData(_) = err {
+                    return Promise.value(.notExist)
+                }
+                if case Error.noStoredWallet = err {
+                    return Promise.value(.notExist)
+                }
+                throw err
+            }
+        
         promise.signal
             .executeIn(.immediateOnMain)
             .suppressedErrors
@@ -80,45 +96,58 @@ class WalletService {
         return promise.map { $0.exists }
     }
     
-    func unlockWallet(password: String) -> Promise<Void> {
-        guard let wallet = self.wallet.value.exists else {
-            return Promise(error: Error.walletIsEmpty)
-        }
-        return wallet.unlock(password: password)
-            .done { [weak self] in
-                self?.wallet.next(.unlocked(wallet))
-        }
-    }
-    
-    func checkPassword(password: String) -> Promise<Void> {
-        guard let wallet = self.wallet.value.exists else {
-            return Promise(error: Error.walletIsEmpty)
+    func checkPassword(password: String) throws -> Bool {
+        guard let wallet = wallet.value.exists else {
+            throw Error.walletIsNotLoaded
         }
         return wallet.checkPassword(password: password)
     }
     
-    func createWalletData() -> Promise<NewWalletData> {
-        return Wallet.newWalletData()
+    func unlockWallet(password: String) throws {
+        guard let wallet = wallet.value.exists else {
+            throw Error.walletIsNotLoaded
+        }
+        try wallet.unlock(password: password)
+        setWallet(wallet: wallet)
     }
     
-    func restoreWalletData(mnemonic: String) -> Promise<NewWalletData> {
-        return Wallet.restoreWalletData(mnemonic: mnemonic)
-    }
-    
-    func saveWalletData(data: NewWalletData, password: String) -> Promise<Wallet> {
-        return Wallet.saveWalletData(name:WalletService.WALLET_KEY, data: data, password: password, storage: storage)
-            .then { wallet -> Promise<Wallet> in
-                wallet.accounts[0].associatedData[.name] = "Main Account"
-                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
-                return wallet.save().map { wallet }
+    func newAccount(name: String, emoji: String) -> Promise<Account> {
+        guard let wallet = wallet.value.exists else {
+            return Promise(error: Error.walletIsNotLoaded)
+        }
+        return Promise()
+            .map {
+                let account = try wallet.addAccount()
+                account.associatedData[.name] = name
+                account.associatedData[.emoji] = emoji
+                return account
             }
+            .then { acc in self.walletManager.save(wallet: wallet).map{ acc } }
+    }
+    
+    func createWalletData(password: String) throws -> NewWalletData {
+        return try walletManager.newWalletData(password: password)
+    }
+    
+    func restoreWalletData(mnemonic: String, password: String) throws -> NewWalletData {
+        return try walletManager.restoreWalletData(mnemonic: mnemonic, password: password)
+    }
+    
+    func newWallet(data: NewWalletData, password: String) -> Promise<Wallet> {
+        return Promise().map {
+            let wallet = try self.walletManager.create(from: data, password: password)
+            wallet.accounts[0].associatedData[.name] = "Main Account"
+            wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
+            return wallet
+        }
+        .then { wallet in self.walletManager.save(wallet: wallet).map { wallet } }
     }
     
     func saveWallet() -> Promise<Void> {
-        guard let wallet = self.wallet.value.exists else {
-            return Promise(error: Error.walletIsEmpty)
+        guard let wallet = wallet.value.exists else {
+            return Promise(error: Error.walletIsNotLoaded)
         }
-        return wallet.save()
+        return walletManager.save(wallet: wallet)
     }
     
     func setWallet(wallet: Wallet) {
