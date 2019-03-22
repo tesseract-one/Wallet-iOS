@@ -53,10 +53,12 @@ class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
     
     let newWalletData: NewWalletData
     let password: String
+    let settings: UserDefaults
     
-    init (walletService: WalletService, newWalletData: NewWalletData, password: String) {
+    init (walletService: WalletService, newWalletData: NewWalletData, password: String, settings: UserDefaults) {
         self.newWalletData = newWalletData
         self.password = password
+        self.settings = settings
         
         super.init(walletService: walletService)
         
@@ -67,8 +69,9 @@ class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)
-            .with(weak: walletService)
-            .observeNext { wallet, walletService in
+            .with(weak: walletService, settings)
+            .observeNext { wallet, walletService, settings in
+                settings.removeObject(forKey: "isBiometricEnabled")
                 walletService.setWallet(wallet: wallet)
             }.dispose(in: bag)
     }

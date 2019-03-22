@@ -70,7 +70,7 @@ extension TermsOfServiceViewController: ContextSubject {
         let toeCtx = context.get(context: TermsOfServiceViewControllerContext.self)!
         
         if let newWalletData = toeCtx.newWalletData {
-            model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password)
+            model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password, settings: appCtx.settings)
         } else {
             model = TermsOfServiceFromSignInViewModel(walletService: appCtx.walletService, password: toeCtx.password)
         }

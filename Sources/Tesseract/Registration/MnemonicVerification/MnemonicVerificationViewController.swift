@@ -99,6 +99,6 @@ extension MnemonicVerificationViewController: ContextSubject {
             return
         }
         
-        self.model = MnemonicVerificationViewModel(password: password, newWalletData: newWalletData, walletService: appCtx.walletService)
+        self.model = MnemonicVerificationViewModel(password: password, newWalletData: newWalletData, walletService: appCtx.walletService, settings: appCtx.settings)
     }
 }
