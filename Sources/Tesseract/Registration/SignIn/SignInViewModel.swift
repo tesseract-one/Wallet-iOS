@@ -51,7 +51,8 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let canLoadPassword = Property<Bool?>(nil)
     
-    let checkPassword = SafePublishSubject<Void>()
+    let checkPassword = SafePublishSubject<Bool>()
+    let correctPassword = SafePublishSubject<Void>()
     let unlockWallet = SafePublishSubject<Void>()
     let faceBiometric = SafePublishSubject<Void>()
     let touchIdBiometric = SafePublishSubject<Void>()
@@ -117,20 +118,27 @@ extension SignInViewModel {
             .with(latestFrom: password)
             .with(weak: walletService)
             .resultMap { pwdTuple, walletService in
-                try walletService.unlockWallet(password: pwdTuple.1)
+                try walletService.checkPassword(password: pwdTuple.1)
             }
             .pourError(into: textFieldErrors)
-            .map { _ in }
             .bind(to: checkPassword)
+            
+        checkPassword
+            .filter { $0 == true }
+            .map { _ in }
+            .bind(to: correctPassword)
             .dispose(in: bag)
+        
+        checkPassword.filter { $0 == false }.map{ _ in AnyError(NSError()) }.bind(to: textFieldErrors).dispose(in: bag)
         
         textFieldErrors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
         textFieldErrors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
         
         if biometricType == .none || settings.object(forKey: "isBiometricEnabled") as? Bool == false {
-            checkPassword.bind(to: unlockWallet).dispose(in: bag)
+            correctPassword.bind(to: unlockWallet).dispose(in: bag)
         } else if settings.object(forKey: "isBiometricEnabled") as? Bool == true {
             isBiometricEnabled.next(true)
+            fingerAction.next()
             
             fingerAction
                 .with(weak: passwordService)
@@ -160,7 +168,7 @@ extension SignInViewModel {
 //            canLoadPassword.filter { $0 == false }
 //                .map { _ in KeychainErrors.cantLoad }.bind(to: passwordError) KEYCHAIN ERRORS
             
-            checkPassword.bind(to: unlockWallet).dispose(in: bag)
+            correctPassword.bind(to: unlockWallet).dispose(in: bag)
         } else {
             setBiometricEnabledSetting.filter{ $0 != nil }.with(weak: self).observeNext { isBiometricEnabled, sself in
                 sself.settings.set(isBiometricEnabled!, forKey: "isBiometricEnabled")
@@ -168,7 +176,7 @@ extension SignInViewModel {
             .dispose(in: bag)
             
             if biometricType == .face {
-                checkPassword
+                correctPassword
                     .with(latestFrom: biometricFlow)
                     .filter { $0.1 == nil || $0.1 == .ShowYesNoPopup }
                     .map { _ in }
@@ -186,7 +194,7 @@ extension SignInViewModel {
                 }.bind(to: setBiometricEnabledSetting).dispose(in: bag)
                 faceBiometric.bind(to: unlockWallet).dispose(in: bag)
                 
-                checkPassword
+                correctPassword
                     .with(latestFrom: biometricFlow)
                     .filter { $0.1 == .EnterPassword }
                     .map { _ in }
@@ -227,7 +235,7 @@ extension SignInViewModel {
                     .bind(to: unlockWallet)
                     .dispose(in: bag)
                 
-                checkPassword
+                correctPassword
                     .with(latestFrom: biometricFlow)
                     .filter { $0.1 == nil || $0.1 == .ShowYesNoPopup }
                     .map { _ in }
@@ -236,13 +244,13 @@ extension SignInViewModel {
                 touchIdPopupAnswer.filter { $0 == false }.map { _ in }.bind(to: unlockWallet)
                 touchIdPopupAnswer.filter { $0 != nil }.bind(to: setBiometricEnabledSetting).dispose(in: bag)
                 
-                checkPassword
+                correctPassword
                     .with(latestFrom: biometricFlow)
                     .filter { $0.1 == .ShowFingerPopup }
                     .map { _ in }
                     .bind(to: touchIdBiometric)
                     .dispose(in: bag)
-                checkPassword
+                correctPassword
                     .with(latestFrom: biometricFlow)
                     .filter { $0.1 == .EnterPassword }
                     .map { _ in }
