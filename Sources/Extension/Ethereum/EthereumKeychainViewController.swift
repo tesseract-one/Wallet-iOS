@@ -74,6 +74,7 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
         
         setupAcceptButton()
         setupFingerButton()
+        setupKeyboardDismiss()
     }
     
     private func setupAcceptButton() {

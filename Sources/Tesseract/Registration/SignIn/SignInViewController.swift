@@ -67,9 +67,10 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
         
-        setupFingerButton()
-        
         navigationController?.isToolbarHidden = true
+        
+        setupFingerButton()
+        setupKeyboardDismiss()
     }
     
     override func viewWillAppear(_ animated: Bool) {

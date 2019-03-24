@@ -72,6 +72,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
         }.dispose(in: bag)
         
         setupSizes()
+        setupKeyboardDismiss()
     }
 }
 

@@ -69,6 +69,8 @@ class SignUpViewController: KeyboardScrollView, ModelVCProtocol {
       let vc = try! self?.viewController(for: .named(name: name), context: context)
       self?.navigationController?.pushViewController(vc!, animated: true)
       }.dispose(in: bag)
+    
+    setupKeyboardDismiss()
   }
   
   override func viewWillAppear(_ animated: Bool) {

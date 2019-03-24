@@ -88,6 +88,8 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             .map{"\($0) ETH"}
             .bind(to: recieverGetsAmountField.reactive.text)
             .dispose(in: reactive.bag)
+        
+        setupKeyboardDismiss()
     }
 }
 

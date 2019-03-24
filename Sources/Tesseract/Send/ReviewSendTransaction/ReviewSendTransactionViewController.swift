@@ -62,9 +62,10 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             self?.present(alert, animated: true, completion: nil)
         }.dispose(in: reactive.bag)
         
-        setupFingerButton()
-        
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        setupFingerButton()
+        setupKeyboardDismiss()
     }
     
     override func moveConstraints(keyboardHeight: CGFloat?) {

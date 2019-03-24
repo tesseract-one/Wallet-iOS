@@ -50,6 +50,7 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
         mnemonicVerificationTextViewTopInitial = mnemonicVerificationTextViewTop.constant
         
         setupSizes()
+        setupKeyboardDismiss()
     }
     
     override func moveConstraints(keyboardHeight: CGFloat?) {
