@@ -14,15 +14,19 @@ import Bond
 import Web3
 
 class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
+    
+    @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var fingerButton: UIButton!
+    @IBOutlet weak var passwordField: MFTextField!
+    
+    @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var sendAmountLabel: UILabel!
     @IBOutlet weak var gasFeeLabel: UILabel!
     @IBOutlet weak var totalAmountLabel: UILabel!
     @IBOutlet weak var dataLabel: UILabel!
-    
-    @IBOutlet weak var acceptButton: UIButton!
-    @IBOutlet weak var passwordField: MFTextField!
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     let isContract = Property<Bool>(false)
     let usdChangeRate = Property<Double>(0.0)

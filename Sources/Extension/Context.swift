@@ -21,6 +21,7 @@ class ExtensionContext {
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
     let changeRateService = ChangeRateService()
+    let passwordService = KeychainPasswordService()
     
     let errors = SafePublishSubject<AnyError>()
     
@@ -37,6 +38,7 @@ class ExtensionContext {
         walletService.bootstrap()
         ethereumWeb3Service.bootstrap()
         changeRateService.bootstrap()
+        passwordService.bootstrap()
         
         walletService
             .loadWallet()

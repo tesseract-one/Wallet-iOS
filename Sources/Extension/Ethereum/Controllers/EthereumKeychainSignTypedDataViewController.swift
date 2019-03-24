@@ -159,7 +159,10 @@ private class DataSectionHeaderView: UIView {
 class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignTypedDataKeychainRequest>, EthereumKeychainViewControllerBaseControls, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var fingerButton: UIButton!
     @IBOutlet weak var passwordField: MFTextField!
+    
+    @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var tableView: UITableView!

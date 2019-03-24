@@ -13,11 +13,15 @@ import Bond
 import MaterialTextField
 
 class EthereumKeychainSignDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignDataKeychainRequest>, EthereumKeychainViewControllerBaseControls {
-    @IBOutlet weak var signData: UILabel!
     
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var fingerButton: UIButton!
     @IBOutlet weak var passwordField: MFTextField!
+    
+    @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var signData: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

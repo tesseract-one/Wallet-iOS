@@ -13,8 +13,10 @@ import MaterialTextField
 
 protocol EthereumKeychainViewControllerBaseControls  {
     var acceptButton: UIButton! { get set }
+    var fingerButton: UIButton! { get set }
     var passwordField: MFTextField! { get set }
     
+    var acceptBtnRightConstraint: NSLayoutConstraint! { get set }
     var bottomConstraint: NSLayoutConstraint! { get set }
 }
 
@@ -30,6 +32,7 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
     var request: Request!
     
     let runWalletOperation = SafePublishSubject<Void>()
+    let passwordErrorSiganl = SafePublishSubject<AnyError>()
     
     private var _passwordField: MFTextField {
         return (self as! EthereumKeychainViewControllerBaseControls).passwordField
@@ -37,6 +40,14 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
     
     private var _acceptButton: UIButton {
         return (self as! EthereumKeychainViewControllerBaseControls).acceptButton
+    }
+    
+    private var _fingerButton: UIButton {
+        return (self as! EthereumKeychainViewControllerBaseControls).fingerButton
+    }
+    
+    private var _acceptBtnRightConstraint: NSLayoutConstraint {
+        return (self as! EthereumKeychainViewControllerBaseControls).acceptBtnRightConstraint
     }
     
     private var _bottomConstraint: NSLayoutConstraint {
@@ -50,30 +61,71 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
         
         subTitle = NETWORK_NAMES[request.networkId] ?? "Unknown Ethereum Network"
         
-        _passwordField.reactive.controlEvents(.editingDidBegin).map{_ in ""}.bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
+        _passwordField.reactive.controlEvents(.editingDidBegin).map{ _ in "" }
+            .bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
         
-        let acceptTap = _acceptButton.reactive.tap
-            .throttle(seconds: 0.5)
-            .with(latestFrom: _passwordField.reactive.text)
-            .map{$0.1 ?? ""}
-            .with(weak: context.walletService)
-            .resultMap { password, service in
-                try service.unlockWallet(password: password)
-            }
-        
-        acceptTap.errorNode.map { _ in "Incorrect password" }.bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
-        
-        acceptTap.suppressedErrors.bind(to: runWalletOperation).dispose(in: reactive.bag)
+        passwordErrorSiganl.map { _ in "Incorrect password" }
+            .bind(to: _passwordField.reactive.error).dispose(in: reactive.bag)
         
         _bottomConstraintInitial = _bottomConstraint.constant
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.onKeyboardOpened), name: UIResponder.keyboardWillShowNotification, object: nil);
         NotificationCenter.default.addObserver(self, selector: #selector(self.onKeyboardClosed), name: UIResponder.keyboardWillHideNotification, object: nil);
         
-        _acceptButton.reactive.tap.throttle(seconds: 0.5)
-            .with(weak: view).observeNext { view in
+        setupAcceptButton()
+        setupFingerButton()
+    }
+    
+    private func setupAcceptButton() {
+        let acceptTap = _acceptButton.reactive.tap.throttle(seconds: 0.5)
+            
+        acceptTap.with(latestFrom: _passwordField.reactive.text)
+            .map{$0.1 ?? ""}
+            .with(weak: context.walletService)
+            .resultMap { password, service in
+                try service.unlockWallet(password: password)
+            }
+            .pourError(into: passwordErrorSiganl)
+            .bind(to: runWalletOperation)
+            .dispose(in: reactive.bag)
+        
+        acceptTap.with(weak: view)
+            .observeNext { view in
                 view.endEditing(true)
-            }.dispose(in: bag)
+            }
+            .dispose(in: bag)
+    }
+    
+    private func setupFingerButton() {
+        if (context.settings.object(forKey: "isBiometricEnabled") as? Bool == true) &&
+           (context.passwordService.getBiometricType() != .none) {
+            _fingerButton.isHidden = false
+            _acceptBtnRightConstraint.constant = 82
+        } else {
+            _fingerButton.isHidden = true
+            _acceptBtnRightConstraint.constant = 16
+        }
+        
+        _fingerButton.reactive.tap.throttle(seconds: 0.5)
+            .with(weak: context.passwordService)
+            .flatMapLatest { passwordService in
+                passwordService.canLoadPassword().signal
+            }
+            .suppressedErrors
+            .filter { $0 == true }
+            .map { _ in }
+            .with(weak: context.passwordService)
+            .flatMapLatest { passwordService in
+                passwordService.loadPasswordWithBiometrics().signal
+            }
+            .suppressedErrors
+            .with(weak: context.walletService)
+            .resultMap { password, service in
+                try service.unlockWallet(password: password)
+            }
+            .pourError(into: passwordErrorSiganl)
+            .bind(to: runWalletOperation)
+            .dispose(in: reactive.bag)
     }
     
     func moveConstraints(keyboardHeight: CGFloat?) {

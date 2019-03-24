@@ -20,11 +20,15 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Ope
     
     private var topConstraintInitial: CGFloat = 0.0
 
-    @IBOutlet weak var chooseAccountTableView: UITableView!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var fingerButton: UIButton!
     @IBOutlet weak var passwordField: MFTextField!
+    
+    @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var chooseAccountTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
