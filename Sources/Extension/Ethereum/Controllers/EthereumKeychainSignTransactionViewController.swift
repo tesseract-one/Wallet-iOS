@@ -41,7 +41,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         sendAmountLabel.text = String(sendQuantity.ethValue())
         
         let withFee = sendQuantity + EthereumQuantity.bytes(Bytes(hex: request.gas)).quantity * EthereumQuantity.bytes(Bytes(hex: request.gasPrice)).quantity
-        gasFeeLabel.text = String(withFee.ethValue())
+        gasFeeLabel.text = "\(String(withFee.ethValue())) ETH"
         
         totalAmountLabel.text = String(sendQuantity.ethValue() + withFee.ethValue())
         
