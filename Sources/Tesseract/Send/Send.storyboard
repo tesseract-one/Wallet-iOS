@@ -595,7 +595,7 @@
                                 </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hqp-dG-EDP" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="593" width="277" height="50"/>
+                                <rect key="frame" x="16" y="593" width="285" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lts-fn-1oP"/>
@@ -643,7 +643,7 @@
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="lZT-x1-kHm" secondAttribute="trailing" constant="16" id="NsL-y2-5aY"/>
                             <constraint firstItem="hYc-7s-4j2" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="QFG-sJ-LnR"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="hYc-7s-4j2" secondAttribute="trailing" constant="16" id="UHQ-cA-f5s"/>
-                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Hqp-dG-EDP" secondAttribute="trailing" constant="82" id="VME-K2-Y0B"/>
+                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Hqp-dG-EDP" secondAttribute="trailing" constant="74" id="VME-K2-Y0B"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="bottom" secondItem="fCh-pJ-YbV" secondAttribute="bottom" constant="24" id="Wxm-8T-y0j"/>
                             <constraint firstItem="Ucy-0e-lEG" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="aCw-jE-MJf"/>
                             <constraint firstItem="Hqp-dG-EDP" firstAttribute="top" secondItem="hbE-1R-ZTT" secondAttribute="bottom" constant="24" id="bgj-hr-uAn"/>

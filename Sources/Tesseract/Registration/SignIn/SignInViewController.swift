@@ -99,7 +99,7 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
         
         model.isBiometricEnabled.with(weak: signInButtonRight)
             .observeNext { isEnabled, signInButtonRight in
-                signInButtonRight.constant = isEnabled ? 82 : 16
+                signInButtonRight.constant = isEnabled ? 74 : 16
             }.dispose(in: bag)
         
         fingerButton.reactive.tap.throttle(seconds: 0.5)

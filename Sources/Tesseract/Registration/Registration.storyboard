@@ -26,7 +26,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khx-6M-fzw">
@@ -691,7 +691,7 @@
                                     <constraint firstAttribute="trailing" secondItem="vxb-a9-DHO" secondAttribute="trailing" id="adS-Uf-KA5"/>
                                     <constraint firstItem="V3v-qf-LkC" firstAttribute="leading" secondItem="P80-32-YRo" secondAttribute="leading" constant="16" id="fKf-vu-SVI"/>
                                     <constraint firstItem="vxb-a9-DHO" firstAttribute="top" secondItem="P80-32-YRo" secondAttribute="top" id="g21-GR-QJE"/>
-                                    <constraint firstAttribute="trailing" secondItem="V3v-qf-LkC" secondAttribute="trailing" constant="82" id="mOJ-Kk-A1u"/>
+                                    <constraint firstAttribute="trailing" secondItem="V3v-qf-LkC" secondAttribute="trailing" constant="74" id="mOJ-Kk-A1u"/>
                                     <constraint firstItem="h7y-Me-OLL" firstAttribute="top" secondItem="V3v-qf-LkC" secondAttribute="bottom" constant="8" id="rHU-g1-GS9"/>
                                     <constraint firstAttribute="bottom" secondItem="h7y-Me-OLL" secondAttribute="bottom" constant="24" id="vOp-5y-jpp"/>
                                 </constraints>

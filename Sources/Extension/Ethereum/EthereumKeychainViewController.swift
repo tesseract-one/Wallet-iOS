@@ -101,7 +101,7 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
         if (context.settings.object(forKey: "isBiometricEnabled") as? Bool == true) &&
            (context.passwordService.getBiometricType() != .none) {
             _fingerButton.isHidden = false
-            _acceptBtnRightConstraint.constant = 82
+            _acceptBtnRightConstraint.constant = 74
         } else {
             _fingerButton.isHidden = true
             _acceptBtnRightConstraint.constant = 16

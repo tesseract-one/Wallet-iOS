@@ -89,7 +89,7 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         
         model.isBiometricEnabled.with(weak: confirmButtonRight)
             .observeNext { isEnabled, confirmButtonRight in
-                confirmButtonRight.constant = isEnabled ? 82 : 16
+                confirmButtonRight.constant = isEnabled ? 74 : 16
             }.dispose(in: bag)
         
         fingerButton.reactive.tap.throttle(seconds: 0.5)
