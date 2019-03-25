@@ -104,6 +104,8 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
         
         fingerButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.fingerAction).dispose(in: bag)
+        
+        model.fingerAction.next()
     }
 }
 

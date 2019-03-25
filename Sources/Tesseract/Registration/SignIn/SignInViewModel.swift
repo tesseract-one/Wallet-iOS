@@ -138,7 +138,6 @@ extension SignInViewModel {
             correctPassword.bind(to: unlockWallet).dispose(in: bag)
         } else if settings.object(forKey: "isBiometricEnabled") as? Bool == true {
             isBiometricEnabled.next(true)
-            fingerAction.next()
             
             fingerAction
                 .with(weak: passwordService)
