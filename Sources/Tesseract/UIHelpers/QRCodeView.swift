@@ -9,7 +9,7 @@
 import UIKit
 import ReactiveKit
 
-class QRCodeView: UIImageView {
+class QRCodeView: RoundedImage {
     let data: Property<String> = Property("")
     private let ciFilter = CIFilter(name: "CIQRCodeGenerator")
     

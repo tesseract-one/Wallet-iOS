@@ -24,7 +24,6 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var qrCodeImageView: QRCodeView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var balanceUSDLabel: UILabel!
     
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var copyButton: UIButton!
@@ -45,7 +44,6 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
         model.address.map{$0?.hex(eip55: false)}.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
-        model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)
     }
 }
 

@@ -24,7 +24,6 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
-    let balanceUSD = Property<String>("")
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
@@ -53,16 +52,13 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
         activeAccount.map {try! $0?.eth_address()}.bind(to: address).dispose(in: bag)
         activeAccount.map {try! $0?.eth_address().hex(eip55: false) ?? ""}.map{"ethereum:" + $0}.bind(to: qrCodeAddress).dispose(in: bag)
         
-        ethBalance
-            .map { $0 == nil ? "unknown" : "\($0!) ETH" }
-            .bind(to: balance)
-            .dispose(in: bag)
-        
         combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
             .map { balance, rate in
-                balance == nil ? "unknown" : "$ \((balance! * rate).rounded(toPlaces: 2))"
+                let balanceETH = balance == nil ? "unknown" : "\(String(balance!)) ETH"
+                let balanceUsd = balance == nil ? "unknown" : "\((balance! * rate).rounded(toPlaces: 2)) USD"
+                return "\(balanceETH) · \(balanceUsd)"
             }
-            .bind(to: balanceUSD)
+            .bind(to: balance)
             .dispose(in: bag)
     }
 }
