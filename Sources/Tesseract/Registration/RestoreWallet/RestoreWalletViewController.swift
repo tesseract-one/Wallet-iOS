@@ -19,7 +19,12 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
-    @IBOutlet weak var wasCreatedByMetamaskSwitch: UISwitch!
+    
+    @IBOutlet weak var descreptionLabel: UILabel!
+    @IBOutlet weak var mnemonicTextViewTopConstraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var wasCreatedByMetamaskView: UIView!
+    @IBOutlet weak var wasCreatedByMetamaskButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +47,6 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             .map { _ in "" }
             .bind(to: confirmPasswordField.reactive.error)
             .dispose(in: bag)
-        
-        wasCreatedByMetamaskSwitch.reactive.isOn.bind(to: model.wasCreatedByMetamask).dispose(in: reactive.bag)
         
         let restoreTap = restoreButton.reactive.tap.throttle(seconds: 0.5)
         restoreTap.bind(to: model.restoreAction).dispose(in: bag)
@@ -75,14 +78,34 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
         }.dispose(in: bag)
         
         setupSizes()
+        setupWasCreatedByMnemonic()
         setupKeyboardDismiss()
     }
 }
 
 extension RestoreWalletViewController {
     private func setupSizes() {
-        mnemonicTextView.textView.isScrollEnabled = UIScreen.main.bounds.height < 600
-        mnemonicTextView.frame.size.height = 75 * UIScreen.main.scale
+        mnemonicTextView.frame.size.height = 110
+        
+        if UIScreen.main.bounds.height < 600 {
+            descreptionLabel.removeFromSuperview()
+            mnemonicTextViewTopConstraint.constant = 32
+        }
+    }
+}
+
+extension RestoreWalletViewController {
+    private func setupWasCreatedByMnemonic() {
+        wasCreatedByMetamaskButton.setImage(UIImage(named: "checked-box-icon"), for: .selected)
+        wasCreatedByMetamaskButton.setImage(UIImage(named: "unchecked-box-icon"), for: .normal)
+        
+        wasCreatedByMetamaskView.reactive.tapGesture().throttle(seconds: 0.3)
+            .with(latestFrom: model.wasCreatedByMetamask)
+            .map { !$0.1 }
+            .bind(to: model.wasCreatedByMetamask)
+            .dispose(in: reactive.bag)
+        
+        model.wasCreatedByMetamask.bind(to: wasCreatedByMetamaskButton.reactive.isSelected).dispose(in: reactive.bag)
     }
 }
 

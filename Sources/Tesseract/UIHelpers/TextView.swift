@@ -184,8 +184,8 @@ class TextView: UIView {
     }
     
     private func setupTextView() {
-        textView.autocorrectionType = .yes
-        textView.spellCheckingType = .yes
+        textView.autocorrectionType = .no
+        textView.spellCheckingType = .no
         textView.keyboardAppearance = .dark
         textView.returnKeyType = .next
         textView.autocapitalizationType = .none
