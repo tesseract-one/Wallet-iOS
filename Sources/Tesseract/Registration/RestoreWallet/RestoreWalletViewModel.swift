@@ -10,11 +10,14 @@ import ReactiveKit
 import Bond
 import TesSDK
 
-enum RestoreFormErrors: String {
-    case mnemonic = "Mnemonic should contain 12 words"
-    case shortPass = "Password should be at least 8 characters long"
-    case differentPass = "Passwords are different"
+enum PasswordErrors: String {
+    case short = "Password should be at least 8 characters long"
+    case different = "Passwords are different"
+}
+enum MnemonicErrors: String {
+    case size = "Mnemonic should contain 12 words"
     case wrong = "Mnemonic is incorrect"
+
 }
 
 class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
@@ -23,11 +26,12 @@ class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let mnemonic = Property<String>("")
     let password = Property<String>("")
     let confirmPassword = Property<String>("")
-    let restoreFormError = Property<RestoreFormErrors?>(nil)
     let restoreWalletSuccessfully = Property<Bool?>(nil)
     let wasCreatedByMetamask = Property<Bool>(false)
     
     let errors = SafePublishSubject<AnyError>()
+    let mnemonicError = Property<MnemonicErrors?>(nil)
+    let passwordError = Property<PasswordErrors?>(nil)
     
     let goToView = SafePublishSubject<ToView>()
     
@@ -38,7 +42,8 @@ class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         super.init()
         
-        restoreFormValidator().bind(to: restoreFormError).dispose(in: bag)
+        passwordValidator().bind(to: passwordError).dispose(in: bag)
+        mnemonicValidator().bind(to: mnemonicError).dispose(in: bag)
         
         setupRestoreWallet()
     }
@@ -46,36 +51,44 @@ class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
 
 extension RestoreWalletViewModel {
     
-    private func restoreFormValidator() -> SafeSignal<RestoreFormErrors?> {
-        return combineLatest(mnemonic, password, confirmPassword)
-            .map { mnemonic, pwd1, pwd2 -> RestoreFormErrors? in
+    private func passwordValidator() -> SafeSignal<PasswordErrors?> {
+        return combineLatest(password, confirmPassword)
+            .map { pwd1, pwd2 -> PasswordErrors? in
+                if pwd1.count < 8 || pwd2.count < 8 {
+                    return PasswordErrors.short
+                } else if pwd1 != pwd2 {
+                    return PasswordErrors.different
+                }
+                return nil
+            }
+    }
+    
+    private func mnemonicValidator() -> SafeSignal<MnemonicErrors?> {
+        return mnemonic.map { mnemonic -> MnemonicErrors? in
                 let mnemonicWords = mnemonic.split(separator: " ").filter { word in
                     let trimmedWord = word.trimmingCharacters(in: .whitespacesAndNewlines)
                     return trimmedWord != ""
                 }
-
+                
                 if mnemonicWords.count != 12  {
-                    return RestoreFormErrors.mnemonic
-                } else if pwd1.count < 8 || pwd2.count < 8 {
-                    return RestoreFormErrors.shortPass
-                } else if pwd1 != pwd2 {
-                    return RestoreFormErrors.differentPass
+                    return MnemonicErrors.size
                 }
                 return nil
         }
     }
     
     private func setupRestoreWallet() {
-        restoreAction
-            .with(latestFrom: restoreFormError)
-            .filter { $0.1 != nil }
+        let restoreActionCheckPass = restoreAction
+            .with(latestFrom: passwordError)
+            .with(latestFrom: mnemonicError)
+        
+        restoreActionCheckPass.filter { $0.0.1 != nil || $0.1 != nil }
             .map { _ in false }
             .bind(to: restoreWalletSuccessfully)
             .dispose(in: bag)
         
-        restoreAction
-            .with(latestFrom: restoreFormError)
-            .filter { $0.1 == nil }
+        restoreActionCheckPass.filter { $0.0.1 == nil && $0.1 == nil }
+            .map { _ in }
             .with(latestFrom: password)
             .map { $0.1 }
             .with(latestFrom: mnemonic)
@@ -90,10 +103,11 @@ extension RestoreWalletViewModel {
                 let ((walletData, password), wasCreatedByMetamask) = args
                 let context = TermsOfServiceViewControllerContext(password: password, data: walletData, wasCreatedByMetamask: wasCreatedByMetamask)
                 return (name: "TermsOfService", context: context)
-            }.bind(to: goToView).dispose(in: bag)
+            }
+            .bind(to: goToView).dispose(in: bag)
         
         
-        errors.map { _ in RestoreFormErrors.wrong }.bind(to: restoreFormError).dispose(in: bag)
+        errors.map { _ in MnemonicErrors.wrong }.bind(to: mnemonicError).dispose(in: bag)
         errors.map { _ in false }.bind(to: restoreWalletSuccessfully).dispose(in: bag)
     }
 }

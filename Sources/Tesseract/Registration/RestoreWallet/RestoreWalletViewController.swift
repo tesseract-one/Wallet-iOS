@@ -37,17 +37,15 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
         confirmPasswordField.reactive.text.map { $0 ?? "" }
             .bind(to: model.confirmPassword).dispose(in: bag)
         
-        passwordField.reactive.controlEvents(.editingDidBegin)
+        let beginEditingPasswordField = passwordField.reactive.controlEvents(.editingDidBegin)
             .merge(with: confirmPasswordField.reactive.controlEvents(.editingDidBegin))
             .map { _ in "" }
-            .bind(to: confirmPasswordField.reactive.error)
-            .dispose(in: bag)
-        
-        mnemonicTextView.reactive
+        let beginEditingMnemonicField = mnemonicTextView.reactive
             .notification(.textDidBeginEditing)
             .map { _ in "" }
-            .bind(to: confirmPasswordField.reactive.error)
-            .dispose(in: bag)
+        let beginEditingField = beginEditingMnemonicField.merge(with: beginEditingPasswordField)
+        beginEditingField.bind(to: confirmPasswordField.reactive.error).dispose(in: bag)
+        beginEditingField.bind(to: mnemonicTextView.reactive.error).dispose(in: bag)
         
         let restoreTap = restoreButton.reactive.tap.throttle(seconds: 0.5)
         restoreTap.bind(to: model.restoreAction).dispose(in: bag)
@@ -55,23 +53,31 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             view.endEditing(true)
         }.dispose(in: bag)
         
-        let restoreWalletSuccessfull = model.restoreWalletSuccessfully
-            .filter { $0 != nil }
-            .with(latestFrom: model.restoreFormError)
-            .filter { $0 != true && $1 != nil }
+        let restoreWalletUnsuccessfull = model.restoreWalletSuccessfully.filter { $0 != nil }
         
-        restoreWalletSuccessfull
+        let passwordErrors = restoreWalletUnsuccessfull
+            .with(latestFrom: model.passwordError)
+            .filter { $0 != true && $1 != nil }
+        passwordErrors
             .map { $1!.rawValue }
             .bind(to: confirmPasswordField.reactive.error)
             .dispose(in: bag)
-        restoreWalletSuccessfull
+        passwordErrors
             .map { _ in "" }
             .bind(to: passwordField.reactive.text)
             .dispose(in: bag)
-        restoreWalletSuccessfull
+        passwordErrors
             .map { _ in "" }
             .bind(to: confirmPasswordField.reactive.text)
             .dispose(in: bag)
+        
+        restoreWalletUnsuccessfull
+            .with(latestFrom: model.mnemonicError)
+            .filter { $0 != true && $1 != nil }
+            .map { $1!.rawValue}
+            .bind(to: mnemonicTextView.reactive.error)
+            .dispose(in: bag)
+        
         
         goToViewAction.observeNext { [weak self] name, context in
             let vc = try! self?.viewController(for: .named(name: name), context: context)
