@@ -24,6 +24,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var mnemonicTextViewTopConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var wasCreatedByMetamaskView: UIView!
+    @IBOutlet weak var wasCreatedByMetamaskLabel: UILabel!
     @IBOutlet weak var wasCreatedByMetamaskButton: UIButton!
     
     override func viewDidLoad() {
@@ -89,7 +90,7 @@ extension RestoreWalletViewController {
         
         if UIScreen.main.bounds.height < 600 {
             descreptionLabel.removeFromSuperview()
-            mnemonicTextViewTopConstraint.constant = 32
+            mnemonicTextViewTopConstraint.constant = 24
         }
     }
 }
@@ -106,6 +107,11 @@ extension RestoreWalletViewController {
             .dispose(in: reactive.bag)
         
         model.wasCreatedByMetamask.bind(to: wasCreatedByMetamaskButton.reactive.isSelected).dispose(in: reactive.bag)
+        model.wasCreatedByMetamask.with(weak: wasCreatedByMetamaskLabel)
+            .observeNext { wasCreatedByMetamask, wasCreatedByMetamaskLabel in
+                wasCreatedByMetamaskLabel.alpha = wasCreatedByMetamask ? 1.0 : 0.3
+            }
+            .dispose(in: reactive.bag)
     }
 }
 

@@ -565,7 +565,7 @@
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="26K-vS-IBg">
-                                        <rect key="frame" x="86.666666666666686" y="324.33333333333331" width="241" height="48"/>
+                                        <rect key="frame" x="82" y="324.33333333333331" width="250" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="bb6-mV-Kkm"/>
                                         </constraints>
@@ -773,10 +773,10 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YcG-LT-ZFb" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="72" width="414" height="100"/>
+                                                <rect key="frame" x="0.0" y="72" width="414" height="92"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="92" translatesAutoresizingMaskIntoConstraints="NO" id="sZB-ec-BPk" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                                        <rect key="frame" x="16" y="0.0" width="382" height="100"/>
+                                                        <rect key="frame" x="16" y="0.0" width="382" height="92"/>
                                                         <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                                         <viewLayoutGuide key="safeArea" id="Qqj-Qd-Qqb"/>
                                                         <userDefinedRuntimeAttributes>
@@ -809,8 +809,39 @@
                                                     <constraint firstAttribute="trailing" secondItem="sZB-ec-BPk" secondAttribute="trailing" constant="16" id="wFc-86-Efu"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOO-Dw-uE2">
+                                                <rect key="frame" x="0.0" y="172" width="414" height="44"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have MetaMask Mnemonics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9u9-7x-MTN">
+                                                        <rect key="frame" x="16" y="11.666666666666657" width="348" height="21"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="21" id="bIC-aP-ZCm"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="14"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB8-W4-zY9">
+                                                        <rect key="frame" x="380" y="13" width="18" height="18"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="18" id="ADV-d8-cTu"/>
+                                                            <constraint firstAttribute="height" constant="18" id="Zcs-hZ-oUj"/>
+                                                        </constraints>
+                                                        <state key="normal" image="unchecked-box-icon"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="xB8-W4-zY9" secondAttribute="trailing" constant="16" id="7H2-cV-FM6"/>
+                                                    <constraint firstAttribute="height" constant="44" id="7a9-fq-yom"/>
+                                                    <constraint firstItem="9u9-7x-MTN" firstAttribute="leading" secondItem="FOO-Dw-uE2" secondAttribute="leading" constant="16" id="KGV-YE-82y"/>
+                                                    <constraint firstItem="xB8-W4-zY9" firstAttribute="leading" secondItem="9u9-7x-MTN" secondAttribute="trailing" constant="16" id="XWF-Nv-Jvk"/>
+                                                    <constraint firstItem="9u9-7x-MTN" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="fcX-7D-sNk"/>
+                                                    <constraint firstItem="xB8-W4-zY9" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="iR1-nj-yyE"/>
+                                                </constraints>
+                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KDg-JE-zLB" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="184" width="414" height="20"/>
+                                                <rect key="frame" x="0.0" y="240" width="414" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="CtV-Xa-DVd" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="0.0" width="382" height="20"/>
@@ -857,7 +888,7 @@
                                                 </userDefinedRuntimeAttributes>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M4z-Jb-td5" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="212" width="414" height="20"/>
+                                                <rect key="frame" x="0.0" y="268" width="414" height="20"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="IJN-8j-PMi" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
                                                         <rect key="frame" x="16" y="0.0" width="382" height="20"/>
@@ -904,51 +935,6 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOO-Dw-uE2">
-                                                <rect key="frame" x="0.0" y="649" width="414" height="35"/>
-                                                <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="3pO-sQ-XRl">
-                                                        <rect key="frame" x="16" y="0.0" width="356" height="35.333333333333336"/>
-                                                        <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have MetaMask Mnemonics" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9u9-7x-MTN">
-                                                                <rect key="frame" x="0.0" y="0.0" width="33.333333333333336" height="21"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="21" id="bIC-aP-ZCm"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="14"/>
-                                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click if you want to import MM Account" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJV-BJ-5Yn">
-                                                                <rect key="frame" x="0.0" y="21" width="185.66666666666666" height="14.333333333333336"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="18" id="qEQ-Q1-Aet"/>
-                                                                </constraints>
-                                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                                <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
-                                                                <nil key="highlightedColor"/>
-                                                            </label>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xB8-W4-zY9">
-                                                        <rect key="frame" x="380" y="6.6666666666666288" width="18" height="22"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" constant="18" id="ADV-d8-cTu"/>
-                                                            <constraint firstAttribute="height" constant="18" id="Zcs-hZ-oUj"/>
-                                                        </constraints>
-                                                        <state key="normal" image="unchecked-box-icon"/>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstItem="3pO-sQ-XRl" firstAttribute="leading" secondItem="FOO-Dw-uE2" secondAttribute="leading" constant="16" id="16Z-vc-6zH"/>
-                                                    <constraint firstAttribute="trailing" secondItem="xB8-W4-zY9" secondAttribute="trailing" constant="16" id="7H2-cV-FM6"/>
-                                                    <constraint firstAttribute="height" constant="44" id="7a9-fq-yom"/>
-                                                    <constraint firstItem="3pO-sQ-XRl" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="Yd0-wb-Hrx"/>
-                                                    <constraint firstItem="xB8-W4-zY9" firstAttribute="leading" secondItem="3pO-sQ-XRl" secondAttribute="trailing" constant="8" id="bDg-eG-5nK"/>
-                                                    <constraint firstItem="xB8-W4-zY9" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="iR1-nj-yyE"/>
-                                                </constraints>
-                                            </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4V9-LC-FdN" customClass="KeyboardAutoScrollContainer" customModule="Tesseract" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="700" width="414" height="74"/>
                                                 <subviews>
@@ -977,21 +963,21 @@
                                             </view>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstItem="M4z-Jb-td5" firstAttribute="top" secondItem="KDg-JE-zLB" secondAttribute="bottom" constant="8" id="1cm-DZ-Svz"/>
-                                            <constraint firstItem="YcG-LT-ZFb" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="72" id="3yS-3p-bgg"/>
+                                            <constraint firstItem="M4z-Jb-td5" firstAttribute="top" secondItem="KDg-JE-zLB" secondAttribute="bottom" constant="16" id="1cm-DZ-Svz"/>
+                                            <constraint firstItem="YcG-LT-ZFb" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="64" id="3yS-3p-bgg"/>
                                             <constraint firstItem="M4z-Jb-td5" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="8KM-OC-oHZ"/>
                                             <constraint firstAttribute="trailing" secondItem="4V9-LC-FdN" secondAttribute="trailing" id="AYX-wK-Llf"/>
-                                            <constraint firstItem="FOO-Dw-uE2" firstAttribute="top" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="24" id="E9x-6p-nNt"/>
                                             <constraint firstAttribute="trailing" secondItem="M4z-Jb-td5" secondAttribute="trailing" id="FxT-y6-cdy"/>
+                                            <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="FOO-Dw-uE2" secondAttribute="bottom" constant="16" id="H72-nj-T0K"/>
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="LZA-xA-crk"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="8" id="M4D-AU-Ixz"/>
                                             <constraint firstAttribute="bottom" secondItem="4V9-LC-FdN" secondAttribute="bottom" id="PhW-2I-xmV"/>
-                                            <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="12" id="ZZR-pi-bTX"/>
+                                            <constraint firstItem="FOO-Dw-uE2" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="8" id="TBz-V7-GKF"/>
                                             <constraint firstItem="FOO-Dw-uE2" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="ZfR-Cw-gOP"/>
                                             <constraint firstAttribute="trailing" secondItem="YcG-LT-ZFb" secondAttribute="trailing" id="be8-0X-wfi"/>
-                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FOO-Dw-uE2" secondAttribute="bottom" constant="13" id="fNV-OB-rhd"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="fzB-ia-h4P"/>
                                             <constraint firstAttribute="trailing" secondItem="nOd-qH-Ff2" secondAttribute="trailing" constant="16" id="i4n-9E-k3x"/>
+                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="16" id="lxJ-eb-vKR"/>
                                             <constraint firstItem="YcG-LT-ZFb" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="nwu-aZ-cgd"/>
                                             <constraint firstAttribute="trailing" secondItem="FOO-Dw-uE2" secondAttribute="trailing" id="uE6-yk-Pzp"/>
                                             <constraint firstAttribute="trailing" secondItem="KDg-JE-zLB" secondAttribute="trailing" id="wq4-VW-4E4"/>
@@ -1029,6 +1015,7 @@
                         <outlet property="restoreButton" destination="cJa-Wn-mU5" id="6eb-kd-ztl"/>
                         <outlet property="scrollView" destination="b9F-je-7Og" id="er8-h3-MMz"/>
                         <outlet property="wasCreatedByMetamaskButton" destination="xB8-W4-zY9" id="hPD-5E-GvQ"/>
+                        <outlet property="wasCreatedByMetamaskLabel" destination="9u9-7x-MTN" id="eIr-lL-Kic"/>
                         <outlet property="wasCreatedByMetamaskView" destination="FOO-Dw-uE2" id="6la-2m-Td1"/>
                     </connections>
                 </viewController>
