@@ -46,6 +46,7 @@ PODS:
 DEPENDENCIES:
   - Crashlytics
   - Fabric
+  - SQLite.swift (from `https://github.com/ottosuess/SQLite.swift.git`, branch `master`)
   - TesSDK (from `../`)
   - Web3 (from `https://github.com/crossroadlabs/Web3.swift.git`, branch `master`)
   - Web3/PromiseKit (from `https://github.com/crossroadlabs/Web3.swift.git`, branch `master`)
@@ -60,10 +61,12 @@ SPEC REPOS:
     - PromiseKit
     - secp256k1.swift
     - SipHash
-    - SQLite.swift
     - SQLiteMigrationManager.swift
 
 EXTERNAL SOURCES:
+  SQLite.swift:
+    :branch: master
+    :git: https://github.com/ottosuess/SQLite.swift.git
   TesSDK:
     :path: "../"
   Web3:
@@ -71,6 +74,9 @@ EXTERNAL SOURCES:
     :git: https://github.com/crossroadlabs/Web3.swift.git
 
 CHECKOUT OPTIONS:
+  SQLite.swift:
+    :commit: c96a5da4ef8c9ccec7bfac254b56ae17199097f3
+    :git: https://github.com/ottosuess/SQLite.swift.git
   Web3:
     :commit: 87523600fcec849b39ccf92c73a923d48c1f44d9
     :git: https://github.com/crossroadlabs/Web3.swift.git
@@ -84,11 +90,11 @@ SPEC CHECKSUMS:
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
-  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
   TesSDK: 84b558b55a0a750eccc43d98e8249b30e18e83d8
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: d42a28b3a735c6235ad149728ba6d7f5d4070900
+PODFILE CHECKSUM: 075ab273176f1a9f708fcc0e620975c710918bc2
 
 COCOAPODS: 1.6.1

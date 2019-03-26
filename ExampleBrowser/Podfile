@@ -9,6 +9,7 @@ target :Browser do
 
     pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
     pod 'Web3/PromiseKit', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
+    pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
 end
 
 post_install do |pi|

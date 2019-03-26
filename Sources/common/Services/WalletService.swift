@@ -134,13 +134,20 @@ class WalletService {
     }
     
     func newWallet(data: NewWalletData, password: String) -> Promise<Wallet> {
-        return Promise().map {
-            let wallet = try self.walletManager.create(from: data, password: password)
-            wallet.accounts[0].associatedData[.name] = "Main Account"
-            wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
-            return wallet
-        }
-        .then { wallet in self.walletManager.save(wallet: wallet).map { wallet } }
+        return walletManager.listWalletIds()
+            .map { ids -> (Wallet, Array<String>) in
+                let wallet = try self.walletManager.create(from: data, password: password)
+                wallet.accounts[0].associatedData[.name] = "Main Account"
+                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
+                return (wallet, ids)
+            }
+            .then { wallet, ids in
+                self.walletManager.save(wallet: wallet).map { (wallet, ids) }
+            }
+            .then { wallet, ids in // We have only one wallet in app. Remove old.
+                when(fulfilled: ids.map{self.walletManager.remove(walletId: $0)})
+                    .map { wallet }
+            }
     }
     
     func saveWallet() -> Promise<Void> {

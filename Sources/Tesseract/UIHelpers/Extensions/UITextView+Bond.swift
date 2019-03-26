@@ -29,7 +29,7 @@ public enum UITextViewReactiveExtensionsNotificationType {
 }
 
 public extension ReactiveExtensions where Base: UITextView {
-    public func notification(_ type: UITextViewReactiveExtensionsNotificationType) -> SafeSignal<UITextView> {
+    func notification(_ type: UITextViewReactiveExtensionsNotificationType) -> SafeSignal<UITextView> {
         let base = self.base
         return Signal { [weak base] observer in
             guard let base = base else {

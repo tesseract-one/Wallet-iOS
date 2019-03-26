@@ -17,7 +17,7 @@ target :Tesseract do
     pod 'Crashlytics'
     
     pod 'CKMnemonic'
-    pod 'SQLite.swift'
+    pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
     pod 'SQLiteMigrationManager.swift'
 
     target :Extension do
@@ -28,7 +28,7 @@ target :Tesseract do
         pod 'SnapKit', '~> 4.2.0'
         
         pod 'CKMnemonic'
-        pod 'SQLite.swift'
+        pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
         pod 'SQLiteMigrationManager.swift'
         
         pod 'PromiseKit'
@@ -41,7 +41,7 @@ target :TesSDK do
     pod 'PromiseKit'
     pod 'CKMnemonic'
     
-    pod 'SQLite.swift'
+    pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
     pod 'SQLiteMigrationManager.swift'
     
     pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
