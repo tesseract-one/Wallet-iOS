@@ -10,6 +10,10 @@ import Foundation
 import PromiseKit
 import BigInt
 
+public extension Wallet.AssociatedKeys {
+    static let isMetamask = Wallet.AssociatedKeys(rawValue: "isMetamask")
+}
+
 extension Account {
     public func eth_address() throws -> EthereumAddress {
         if let ethAddrs = addresses[.Ethereum] {
@@ -26,7 +30,7 @@ extension Wallet: EthereumSignProvider {
     
     public func eth_signTx(tx: EthereumTransaction, networkId: UInt64, chainId: UInt64) -> Promise<Data> {
         return eth_account(address: tx.from)
-            .then { $0.eth_signTx(tx: tx, chainId: chainId) }
+            .then { $0.eth_signTx(isMetamask: self.isMetamask, tx: tx, chainId: chainId) }
     }
     
 //    public func eth_verify(account: String, data: Data, signature: Data) -> Promise<Bool> {
@@ -36,12 +40,12 @@ extension Wallet: EthereumSignProvider {
     
     public func eth_signData(account: EthereumAddress, data: Data, networkId: UInt64) -> Promise<Data> {
         return eth_account(address: account)
-            .then { $0.eth_signData(data: data) }
+            .then { $0.eth_signData(isMetamask: self.isMetamask, data: data) }
     }
     
     public func eth_signTypedData(account: EthereumAddress, data: EIP712TypedData, networkId: UInt64) -> Promise<Data> {
         return eth_account(address: account)
-            .then { $0.eth_signTypedData(data: data) }
+            .then { $0.eth_signTypedData(isMetamask: self.isMetamask, data: data) }
     }
     
     private func eth_account(address: EthereumAddress) -> Promise<Account> {
@@ -54,17 +58,21 @@ extension Wallet: EthereumSignProvider {
             return account
         }
     }
+    
+    private var isMetamask: Bool {
+        return associatedData[.isMetamask]?.bool ?? false
+    }
 }
 
 extension Account {
-    fileprivate func eth_signTx(tx: EthereumTransaction, chainId: UInt64) -> Promise<Data> {
+    fileprivate func eth_signTx(isMetamask: Bool, tx: EthereumTransaction, chainId: UInt64) -> Promise<Data> {
         return eth_keychain()
-            .map { try $0.sign(network: .Ethereum, data: tx.rawData(chainId: BigUInt(chainId)), path: self.keyPath) }
+            .map { try $0.sign(network: .Ethereum, data: tx.rawData(chainId: BigUInt(chainId)), path: self.keyPath(isMetamask)) }
     }
     
-    fileprivate func eth_signTypedData(data: EIP712TypedData) -> Promise<Data> {
+    fileprivate func eth_signTypedData(isMetamask: Bool, data: EIP712TypedData) -> Promise<Data> {
         return eth_keychain()
-            .map { try $0.sign(network: .Ethereum, data: data.signableMessageData(), path: self.keyPath) }
+            .map { try $0.sign(network: .Ethereum, data: data.signableMessageData(), path: self.keyPath(isMetamask)) }
     }
     
 //    fileprivate func eth_verify(data: Data, signature: Data) -> Promise<Bool> {
@@ -72,18 +80,18 @@ extension Account {
 //            .map { try $0.verify(network: .Ethereum, data: data, signature: signature, path: self.keyPath) }
 //    }
     
-    fileprivate func eth_signData(data: Data) -> Promise<Data> {
+    fileprivate func eth_signData(isMetamask: Bool, data: Data) -> Promise<Data> {
         return eth_keychain()
             .map {
                 var signData = "\u{19}Ethereum Signed Message:\n".data(using: .utf8)!
                 signData.append(String(describing: data.count).data(using: .utf8)!)
                 signData.append(data)
-                return try $0.sign(network: .Ethereum, data: signData, path: self.keyPath)
+                return try $0.sign(network: .Ethereum, data: signData, path: self.keyPath(isMetamask))
         }
     }
     
-    private var keyPath: EthereumKeyPath {
-        return EthereumKeyPath(account: index)
+    private func keyPath(_ isMetamask: Bool) -> KeyPath {
+        return isMetamask ? MetamaskKeyPath(address: index) : EthereumKeyPath(account: index)
     }
     
     private func eth_keychain() -> Promise<Keychain> {
@@ -101,20 +109,32 @@ public struct EthereumWalletNetwork: WalletNetworkSupportFactory {
         network = .Ethereum
     }
     
-    public func withKeychain(keychain: Keychain) -> WalletNetworkSupport {
-        return EthereumWalletNetworkSupport(keychain: keychain)
+    public func withKeychain(keychain: Keychain, and wallet: Wallet) -> WalletNetworkSupport {
+        return EthereumWalletNetworkSupport(
+            keychain: keychain,
+            isMetamask: wallet.associatedData[.isMetamask]?.bool ?? false
+        )
     }
+}
+
+protocol EthereumWalletKeychainNetworkSuppport: WalletNetworkSupport {
+    var keychain: Keychain { get }
 }
 
 struct EthereumWalletNetworkSupport: WalletNetworkSupport {
     let keychain: Keychain
+    let isMetamask: Bool
     
-    init(keychain: Keychain) {
+    init(keychain: Keychain, isMetamask: Bool) {
         self.keychain = keychain
+        self.isMetamask = isMetamask
     }
     
     func createFirstAddress(accountIndex: UInt32) throws -> Address {
-        let address = try self.keychain.address(network: .Ethereum, path: EthereumKeyPath(account: accountIndex))
+        let keyPath: KeyPath = isMetamask
+            ? MetamaskKeyPath(address: accountIndex)
+            : EthereumKeyPath(account: accountIndex)
+        let address = try self.keychain.address(network: .Ethereum, path: keyPath)
         let ethAddress = try EthereumAddress(hex: address, eip55: false)
         return Address(index: 0, address: ethAddress, network: .Ethereum)
     }

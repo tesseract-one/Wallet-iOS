@@ -61,7 +61,7 @@ public class Wallet: SignProvider {
         
         for network in keychain.networks {
             if let factory = _networks![network] {
-                support[network] = factory.withKeychain(keychain: keychain)
+                support[network] = factory.withKeychain(keychain: keychain, and: self)
             }
         }
         for account in accounts {

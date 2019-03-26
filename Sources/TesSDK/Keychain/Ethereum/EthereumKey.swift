@@ -18,6 +18,16 @@ struct EthereumKeyPath: KeyPath {
     var coin: UInt32 { return Network.Ethereum.rawValue } // ETH Coin Type
 }
 
+// "44'/60'/0'/0/index"
+struct MetamaskKeyPath: KeyPath {
+    var address: UInt32
+    
+    var account: UInt32 { return 0}
+    var change: UInt32 { return 0 }
+    var purpose: UInt32 { return BIP44_KEY_PATH_PURPOSE } // BIP44
+    var coin: UInt32 { return Network.Ethereum.rawValue } // ETH Coin Type
+}
+
 struct EthereumKeychainKeyFactory: KeychainKeyFactory {
     let network: Network = .Ethereum
     
@@ -78,13 +88,13 @@ struct EthereumKeychainKey: KeychainKey {
     }
     
     private func _pKey(for path: KeyPath) throws -> EthereumHDNode {
-        guard path.address == 0 && path.change == 0 && path.coin == Network.Ethereum.rawValue && path.purpose == BIP44_KEY_PATH_PURPOSE else {
+        guard path.change == 0 && path.coin == Network.Ethereum.rawValue && path.purpose == BIP44_KEY_PATH_PURPOSE else {
             throw Keychain.Error.wrongKeyPath
         }
         let key = pk
             .derive(index: path.account, derivePrivateKey: true, hardened: true)?
-            .derive(index: 0, derivePrivateKey: true, hardened: false)?
-            .derive(index: 0, derivePrivateKey: true, hardened: false)
+            .derive(index: path.change, derivePrivateKey: true, hardened: false)?
+            .derive(index: path.address, derivePrivateKey: true, hardened: false)
         guard let newkey = key else { throw Keychain.Error.keyGenerationError }
         return newkey
     }

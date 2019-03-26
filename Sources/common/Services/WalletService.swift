@@ -133,12 +133,13 @@ class WalletService {
         return try walletManager.restoreWalletData(mnemonic: mnemonic, password: password)
     }
     
-    func newWallet(data: NewWalletData, password: String) -> Promise<Wallet> {
+    func newWallet(data: NewWalletData, password: String, isMetamask: Bool) -> Promise<Wallet> {
         return walletManager.listWalletIds()
             .map { ids -> (Wallet, Array<String>) in
                 let wallet = try self.walletManager.create(from: data, password: password)
                 wallet.accounts[0].associatedData[.name] = "Main Account"
                 wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
+                wallet.associatedData[.isMetamask] = isMetamask
                 return (wallet, ids)
             }
             .then { wallet, ids in
