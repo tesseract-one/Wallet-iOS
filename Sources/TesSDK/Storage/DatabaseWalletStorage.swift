@@ -25,22 +25,6 @@ extension Network: Value {
     }
 }
 
-//extension EthereumAddress: Value {
-//    public typealias Datatype = Blob
-//
-//    public static var declaredDatatype: String {
-//        return Blob.declaredDatatype
-//    }
-//
-//    public static func fromDatatypeValue(_ datatypeValue: Blob) -> EthereumAddress {
-//        return try! EthereumAddress(rawAddress: Data(datatypeValue.bytes))
-//    }
-//
-//    public var datatypeValue: Blob {
-//        return Blob(bytes: self.rawValue.bytes)
-//    }
-//}
-
 public class DatabaseWalletStorage {
     private let db: Connection
     private let queue: DispatchQueue
@@ -172,7 +156,7 @@ extension DatabaseWalletStorage: WalletStorageProtocol {
     public func removeWallet(id: String, response: @escaping (Error?) -> Void) {
         queue.async {
             do {
-                try self.db.run(WalletDBModel.table.filter(WalletDBModel.id == id).drop())
+                try self.db.run(WalletDBModel.table.filter(WalletDBModel.id == id).delete())
                 response(nil)
             } catch let err {
                 response(err)
