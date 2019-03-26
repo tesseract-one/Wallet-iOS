@@ -109,7 +109,7 @@ public struct EthereumWalletNetwork: WalletNetworkSupportFactory {
         network = .Ethereum
     }
     
-    public func withKeychain(keychain: Keychain, and wallet: Wallet) -> WalletNetworkSupport {
+    public func withKeychain(keychain: Keychain, for wallet: Wallet) -> WalletNetworkSupport {
         return EthereumWalletNetworkSupport(
             keychain: keychain,
             isMetamask: wallet.associatedData[.isMetamask]?.bool ?? false
