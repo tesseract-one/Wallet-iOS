@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
         context.registrationViewFactory = RegistrationViewFactory(resolver: UIStoryboard(name: "Registration", bundle: nil), context: context)
         context.walletViewFactory = WeakContextViewFactory(resolver: UIStoryboard(name: "Main", bundle: nil), context: context)
         
-        context.bootstrap()        
+        context.bootstrap()
         return true
     }
     

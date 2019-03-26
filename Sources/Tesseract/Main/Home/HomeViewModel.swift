@@ -56,7 +56,7 @@ class HomeViewModel: ViewModel {
         
     func bootstrap() {
         ethBalance
-            .map { $0 == nil ? "unknown" : "\($0!) ETH" }
+            .map { $0 == nil ? "unknown" : "\($0!.rounded(toPlaces: 6)) ETH" }
             .bind(to: balance)
             .dispose(in: bag)
         

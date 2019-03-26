@@ -66,7 +66,7 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
 extension HomeViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
-        header.backgroundColor = UIColor.init(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
+        header.backgroundColor = .clear
         
         let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32, height: 16))
         label.text = "Latest Activity"
