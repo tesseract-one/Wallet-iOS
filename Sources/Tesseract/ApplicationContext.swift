@@ -31,7 +31,7 @@ class ApplicationContext: RouterContextProtocol {
     public let errorNode = SafePublishSubject<AnyError>()
     
     // Settings
-    let settings = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
+    let settings = UserDefaults(suiteName: SHARED_GROUP)!
     
     // Services
     let applicationService = ApplicationService()
@@ -42,7 +42,9 @@ class ApplicationContext: RouterContextProtocol {
     let passwordService = KeychainPasswordService()
     
     func bootstrap() {
-        walletService.storage = settings
+        let storage = try! DatabaseWalletStorage(path: storagePath)
+        
+        walletService.storage = storage
         walletService.wallet = wallet
         walletService.errorNode = errorNode
         walletService.activeAccount = activeAccount
@@ -63,11 +65,20 @@ class ApplicationContext: RouterContextProtocol {
         applicationService.registrationViewFactory = registrationViewFactory
         applicationService.walletViewFactory = walletViewFactory
         
+        try! storage.bootstrap()
+        
         walletService.bootstrap()
         applicationService.bootstrap()
         ethereumWeb3Service.bootstrap()
         changeRatesService.bootstrap()
         transactionService.bootstrap()
         passwordService.bootstrap()
+    }
+    
+    private var storagePath: String {
+        let sharedDir = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: SHARED_GROUP
+        )!
+        return sharedDir.appendingPathComponent(DATABASE_NAME).absoluteString
     }
 }

@@ -83,7 +83,10 @@
 		92A1CE1E22410BF7001D429C /* EthereumAddressTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */; };
 		92A1CE1F22410BF7001D429C /* EthereumAddressTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */; };
 		92A1CE212241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */; };
-		92CB197B222808DC00407F9A /* UserDefaultsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB197A222808DC00407F9A /* UserDefaultsStorage.swift */; };
+		92B54EF32248EBBC007197EF /* DatabaseWalletStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B54EF22248EBBC007197EF /* DatabaseWalletStorage.swift */; };
+		92B54EF522490A53007197EF /* DatabaseWalletStorageTables.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B54EF422490A53007197EF /* DatabaseWalletStorageTables.swift */; };
+		92B54EF7224911FC007197EF /* DatabaseWalletStorageMigrations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92B54EF6224911FC007197EF /* DatabaseWalletStorageMigrations.swift */; };
+		92B54EF8224A2BA1007197EF /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D1A211472242983F00DDF3F3 /* LocalAuthentication.framework */; };
 		92CB198322281E0D00407F9A /* RouterViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198222281E0D00407F9A /* RouterViews.swift */; };
 		92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198422281E2600407F9A /* ApplicationContext.swift */; };
 		92CB198722281EA400407F9A /* RouterContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198622281EA400407F9A /* RouterContext.swift */; };
@@ -326,7 +329,9 @@
 		92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EthereumAddressTableViewCell.xib; sourceTree = "<group>"; };
 		92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressTableViewCell.swift; sourceTree = "<group>"; };
 		92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKeychainSignTypedDataViewController.swift; sourceTree = "<group>"; };
-		92CB197A222808DC00407F9A /* UserDefaultsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsStorage.swift; sourceTree = "<group>"; };
+		92B54EF22248EBBC007197EF /* DatabaseWalletStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWalletStorage.swift; sourceTree = "<group>"; };
+		92B54EF422490A53007197EF /* DatabaseWalletStorageTables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWalletStorageTables.swift; sourceTree = "<group>"; };
+		92B54EF6224911FC007197EF /* DatabaseWalletStorageMigrations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseWalletStorageMigrations.swift; sourceTree = "<group>"; };
 		92CB198222281E0D00407F9A /* RouterViews.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterViews.swift; sourceTree = "<group>"; };
 		92CB198422281E2600407F9A /* ApplicationContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationContext.swift; sourceTree = "<group>"; };
 		92CB198622281EA400407F9A /* RouterContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterContext.swift; sourceTree = "<group>"; };
@@ -422,6 +427,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B54EF8224A2BA1007197EF /* LocalAuthentication.framework in Frameworks */,
 				928A9144223070D3005DA7B4 /* TesSDK.framework in Frameworks */,
 				DF24AB378ED2A6F9A8F742A2 /* Pods_Tesseract.framework in Frameworks */,
 			);
@@ -701,6 +707,7 @@
 		9299324622248908000EAD47 /* TesSDK */ = {
 			isa = PBXGroup;
 			children = (
+				92B54EF12248EB55007197EF /* Storage */,
 				928A914A22316247005DA7B4 /* OpenWallet */,
 				9230791C22303C22004E3950 /* Wallet */,
 				92655A97222ABA2500CB8A18 /* Ethereum */,
@@ -708,7 +715,6 @@
 				9299324822248908000EAD47 /* Info.plist */,
 				9299325C222489F4000EAD47 /* dAPI.swift */,
 				92FB849B22259E4200447653 /* Result+Promise.swift */,
-				92CB197A222808DC00407F9A /* UserDefaultsStorage.swift */,
 			);
 			path = TesSDK;
 			sourceTree = "<group>";
@@ -746,6 +752,16 @@
 				926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		92B54EF12248EB55007197EF /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				92B54EF22248EBBC007197EF /* DatabaseWalletStorage.swift */,
+				92B54EF422490A53007197EF /* DatabaseWalletStorageTables.swift */,
+				92B54EF6224911FC007197EF /* DatabaseWalletStorageMigrations.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		92CB198122281DE100407F9A /* Router */ = {
@@ -1388,6 +1404,8 @@
 				"${BUILT_PRODUCTS_DIR}/MaterialTextField/MaterialTextField.framework",
 				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLite.swift/SQLite.framework",
+				"${BUILT_PRODUCTS_DIR}/SQLiteMigrationManager.swift/SQLiteMigrationManager.framework",
 				"${BUILT_PRODUCTS_DIR}/SipHash/SipHash.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Web3/Web3.framework",
@@ -1405,6 +1423,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MaterialTextField.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLite.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SQLiteMigrationManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SipHash.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Web3.framework",
@@ -1559,11 +1579,13 @@
 				92655A9E222ABBAB00CB8A18 /* EthereumWeb3SignProvider.swift in Sources */,
 				924AC5A0223AB86D0091FB9E /* EthereumTransaction.swift in Sources */,
 				9254FEB4224409AF00EAB42F /* Storage.swift in Sources */,
+				92B54EF32248EBBC007197EF /* DatabaseWalletStorage.swift in Sources */,
 				924AC5A2223ACB0B0091FB9E /* Web3+EthereumTransaction.swift in Sources */,
 				92655AAD222C492100CB8A18 /* RIPEMD160.swift in Sources */,
 				92FB849E2225A21A00447653 /* Keychain.swift in Sources */,
 				92A1CE10224023BB001D429C /* ABIConvertible.swift in Sources */,
 				9299325D222489F4000EAD47 /* dAPI.swift in Sources */,
+				92B54EF7224911FC007197EF /* DatabaseWalletStorageMigrations.swift in Sources */,
 				92655A9C222ABACC00CB8A18 /* EthereumAPIs.swift in Sources */,
 				9230791B2230385A004E3950 /* WalletNetwork.swift in Sources */,
 				9230791922302711004E3950 /* Wallet+Ethereum.swift in Sources */,
@@ -1578,12 +1600,12 @@
 				92FB84A72226EBA300447653 /* Wallet.swift in Sources */,
 				D1D82F4C2232E7A7003BDFE2 /* Numbers+Ethereum.swift in Sources */,
 				9254FEB62244263100EAB42F /* WalletManager.swift in Sources */,
+				92B54EF522490A53007197EF /* DatabaseWalletStorageTables.swift in Sources */,
 				92655AA0222ABBF500CB8A18 /* EthereumTransaction+Auto.swift in Sources */,
 				92FB849C22259E4200447653 /* Result+Promise.swift in Sources */,
 				928A914C22316281005DA7B4 /* OpenWalletExtension.swift in Sources */,
 				92655AA2222ABC5400CB8A18 /* EthereumEtherscanAPI.swift in Sources */,
 				92FB84A02225A27600447653 /* KeychainKey.swift in Sources */,
-				92CB197B222808DC00407F9A /* UserDefaultsStorage.swift in Sources */,
 				928A915022319A15005DA7B4 /* OpenWalletRequest.swift in Sources */,
 				9230791E22303C7E004E3950 /* Account.swift in Sources */,
 				92A1CE0F224023BB001D429C /* SolidityWrappedValue.swift in Sources */,

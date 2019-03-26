@@ -110,7 +110,7 @@ extension Wallet {
             privateKeys: Data,
             accounts: Array<Account.StorageData>,
             associatedData: Dictionary<String, SerializableValue>
-            ) {
+        ) {
             self.id = id
             self.privateKeys = privateKeys
             self.accounts = accounts

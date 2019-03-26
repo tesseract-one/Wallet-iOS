@@ -20,6 +20,8 @@ Swift library for working with OpenWallet protocol.
 
   s.dependency 'PromiseKit', '~> 6.8'
   s.dependency 'CKMnemonic', '~> 0.1'
+  s.dependency 'SQLite.swift'
+  s.dependency 'SQLiteMigrationManager.swift'
   #s.dependency 'BigInt'
 
   s.dependency 'Web3'

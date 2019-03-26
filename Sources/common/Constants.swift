@@ -14,3 +14,7 @@ public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<UInt64, String> = [
     3: "https://kovan.infura.io/v3/f20390fe230e46608572ac4378b70668",
     4: "https://rinkeby.infura.io/v3/f20390fe230e46608572ac4378b70668"
 ]
+
+public let SHARED_GROUP: String = "group.io.gettes.wallet.shared"
+
+public let DATABASE_NAME: String = "walletdb.sqlite"

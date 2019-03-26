@@ -17,6 +17,8 @@ target :Tesseract do
     pod 'Crashlytics'
     
     pod 'CKMnemonic'
+    pod 'SQLite.swift'
+    pod 'SQLiteMigrationManager.swift'
 
     target :Extension do
         pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
@@ -26,6 +28,8 @@ target :Tesseract do
         pod 'SnapKit', '~> 4.2.0'
         
         pod 'CKMnemonic'
+        pod 'SQLite.swift'
+        pod 'SQLiteMigrationManager.swift'
         
         pod 'PromiseKit'
         pod 'ReactiveKit'
@@ -36,6 +40,10 @@ end
 target :TesSDK do
     pod 'PromiseKit'
     pod 'CKMnemonic'
+    
+    pod 'SQLite.swift'
+    pod 'SQLiteMigrationManager.swift'
+    
     pod 'Web3', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
     pod 'Web3/PromiseKit', :git => 'https://github.com/crossroadlabs/Web3.swift.git', :branch => 'master'
 end

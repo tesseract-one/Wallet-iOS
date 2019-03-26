@@ -25,16 +25,19 @@ class ExtensionContext {
     
     let errors = SafePublishSubject<AnyError>()
     
-    let settings = UserDefaults(suiteName: "group.io.gettes.wallet.shared")!
+    let settings = UserDefaults(suiteName: SHARED_GROUP)!
     
     func bootstrap() {
+        let storage = try! DatabaseWalletStorage(path: storagePath)
+        
         walletService.errorNode = errors
         walletService.wallet = wallet
         walletService.activeAccount = activeAccount
-        walletService.storage = settings
+        walletService.storage = storage
         
         ethereumWeb3Service.wallet = wallet
         
+        try! storage.bootstrap()
         walletService.bootstrap()
         ethereumWeb3Service.bootstrap()
         changeRateService.bootstrap()
@@ -50,5 +53,12 @@ class ExtensionContext {
             .signal
             .errorNode
             .bind(to: errors)
+    }
+    
+    private var storagePath: String {
+        let sharedDir = FileManager.default.containerURL(
+            forSecurityApplicationGroupIdentifier: SHARED_GROUP
+            )!
+        return sharedDir.appendingPathComponent(DATABASE_NAME).absoluteString
     }
 }

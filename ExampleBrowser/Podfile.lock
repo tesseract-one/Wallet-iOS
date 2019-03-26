@@ -5,7 +5,7 @@ PODS:
     - CryptoSwift
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - CryptoSwift (0.14.0)
+  - CryptoSwift (0.15.0)
   - Fabric (1.9.0)
   - PromiseKit (6.8.3):
     - PromiseKit/CorePromise (= 6.8.3)
@@ -18,9 +18,16 @@ PODS:
     - PromiseKit/CorePromise
   - secp256k1.swift (0.1.4)
   - SipHash (1.2.2)
+  - SQLite.swift (0.11.5):
+    - SQLite.swift/standard (= 0.11.5)
+  - SQLite.swift/standard (0.11.5)
+  - SQLiteMigrationManager.swift (0.5.0):
+    - SQLite.swift (~> 0.11.0)
   - TesSDK (0.0.1):
     - CKMnemonic (~> 0.1)
     - PromiseKit (~> 6.8)
+    - SQLite.swift
+    - SQLiteMigrationManager.swift
     - Web3
     - Web3/PromiseKit
   - Web3 (0.3.1):
@@ -53,6 +60,8 @@ SPEC REPOS:
     - PromiseKit
     - secp256k1.swift
     - SipHash
+    - SQLite.swift
+    - SQLiteMigrationManager.swift
 
 EXTERNAL SOURCES:
   TesSDK:
@@ -70,12 +79,14 @@ SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   CKMnemonic: 88e745afffea6f3c719c799d9869a2ea5eb9f08b
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
-  TesSDK: 02ab55d810b893bde55ce8a22ae6700638ab288c
+  SQLite.swift: 6e5356850bb1791459f8c16d6ee9195b28714a2e
+  SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
+  TesSDK: 84b558b55a0a750eccc43d98e8249b30e18e83d8
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
 PODFILE CHECKSUM: d42a28b3a735c6235ad149728ba6d7f5d4070900
