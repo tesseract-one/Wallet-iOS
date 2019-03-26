@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -634,7 +634,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3v-qf-LkC" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="223.33333333333337" width="316" height="50"/>
+                                        <rect key="frame" x="16" y="223.33333333333337" width="324" height="50"/>
                                         <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="JWe-zU-HmO"/>
@@ -929,22 +929,49 @@
                                                     <constraint firstItem="cJa-Wn-mU5" firstAttribute="top" secondItem="4V9-LC-FdN" secondAttribute="top" id="eM7-7F-Fri"/>
                                                 </constraints>
                                             </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FOO-Dw-uE2">
+                                                <rect key="frame" x="0.0" y="649" width="414" height="35"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wallet was created by metamask" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJV-BJ-5Yn">
+                                                        <rect key="frame" x="16" y="10.333333333333371" width="317" height="14.333333333333336"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="jRD-IN-k8C">
+                                                        <rect key="frame" x="349" y="2" width="51" height="31"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </switch>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="35" id="7a9-fq-yom"/>
+                                                    <constraint firstItem="rJV-BJ-5Yn" firstAttribute="leading" secondItem="FOO-Dw-uE2" secondAttribute="leading" constant="16" id="BUN-YI-YAf"/>
+                                                    <constraint firstItem="jRD-IN-k8C" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="Y96-Wv-NyW"/>
+                                                    <constraint firstItem="jRD-IN-k8C" firstAttribute="leading" secondItem="rJV-BJ-5Yn" secondAttribute="trailing" constant="16" id="dHC-Lt-d1k"/>
+                                                    <constraint firstItem="rJV-BJ-5Yn" firstAttribute="centerY" secondItem="FOO-Dw-uE2" secondAttribute="centerY" id="xnq-xs-vEa"/>
+                                                    <constraint firstAttribute="trailing" secondItem="jRD-IN-k8C" secondAttribute="trailing" constant="16" id="xuM-bp-Q7M"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="M4z-Jb-td5" firstAttribute="top" secondItem="KDg-JE-zLB" secondAttribute="bottom" constant="8" id="1cm-DZ-Svz"/>
                                             <constraint firstItem="YcG-LT-ZFb" firstAttribute="top" secondItem="nOd-qH-Ff2" secondAttribute="bottom" constant="16" id="3yS-3p-bgg"/>
                                             <constraint firstItem="M4z-Jb-td5" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="8KM-OC-oHZ"/>
                                             <constraint firstAttribute="trailing" secondItem="4V9-LC-FdN" secondAttribute="trailing" id="AYX-wK-Llf"/>
+                                            <constraint firstItem="FOO-Dw-uE2" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="16" id="E9x-6p-nNt"/>
                                             <constraint firstAttribute="trailing" secondItem="M4z-Jb-td5" secondAttribute="trailing" id="FxT-y6-cdy"/>
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="LZA-xA-crk"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="8" id="M4D-AU-Ixz"/>
                                             <constraint firstAttribute="bottom" secondItem="4V9-LC-FdN" secondAttribute="bottom" id="PhW-2I-xmV"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="top" secondItem="YcG-LT-ZFb" secondAttribute="bottom" constant="12" id="ZZR-pi-bTX"/>
+                                            <constraint firstItem="FOO-Dw-uE2" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="ZfR-Cw-gOP"/>
                                             <constraint firstAttribute="trailing" secondItem="YcG-LT-ZFb" secondAttribute="trailing" id="be8-0X-wfi"/>
-                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="4" id="byw-Q6-myF"/>
+                                            <constraint firstItem="4V9-LC-FdN" firstAttribute="top" secondItem="FOO-Dw-uE2" secondAttribute="bottom" constant="16" id="fNV-OB-rhd"/>
                                             <constraint firstItem="KDg-JE-zLB" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="fzB-ia-h4P"/>
                                             <constraint firstAttribute="trailing" secondItem="nOd-qH-Ff2" secondAttribute="trailing" constant="16" id="i4n-9E-k3x"/>
                                             <constraint firstItem="YcG-LT-ZFb" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="nwu-aZ-cgd"/>
+                                            <constraint firstAttribute="trailing" secondItem="FOO-Dw-uE2" secondAttribute="trailing" id="uE6-yk-Pzp"/>
                                             <constraint firstAttribute="trailing" secondItem="KDg-JE-zLB" secondAttribute="trailing" id="wq4-VW-4E4"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" constant="16" id="yDX-Hj-AUP"/>
                                         </constraints>
@@ -977,11 +1004,12 @@
                         <outlet property="passwordField" destination="CtV-Xa-DVd" id="bDl-Xp-hQ2"/>
                         <outlet property="restoreButton" destination="cJa-Wn-mU5" id="6eb-kd-ztl"/>
                         <outlet property="scrollView" destination="b9F-je-7Og" id="er8-h3-MMz"/>
+                        <outlet property="wasCreatedByMetamaskSwitch" destination="jRD-IN-k8C" id="Oow-Xz-MrS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zeP-WK-HGl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1425" y="157"/>
+            <point key="canvasLocation" x="1424.6376811594205" y="156.69642857142856"/>
         </scene>
         <!--Sign In-->
         <scene sceneID="Cai-7E-Jay">
@@ -1016,6 +1044,6 @@
     </scenes>
     <resources>
         <image name="fingerprint" width="18" height="22"/>
-        <image name="logo" width="211.19999694824219" height="218.39999389648438"/>
+        <image name="logo" width="88" height="91"/>
     </resources>
 </document>

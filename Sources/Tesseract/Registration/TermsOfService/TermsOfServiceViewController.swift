@@ -13,10 +13,12 @@ import TesSDK
 class TermsOfServiceViewControllerContext: RouterContextProtocol {
     let password: String
     let newWalletData: NewWalletData?
+    let wasCreatedByMetamask: Bool?
     
-    init(password: String, data: NewWalletData? = nil) {
+    init(password: String, data: NewWalletData? = nil, wasCreatedByMetamask: Bool? = nil) {
         self.password = password
         self.newWalletData = data
+        self.wasCreatedByMetamask = wasCreatedByMetamask
     }
 }
 
@@ -69,8 +71,8 @@ extension TermsOfServiceViewController: ContextSubject {
         let appCtx = context.get(context: ApplicationContext.self)!
         let toeCtx = context.get(context: TermsOfServiceViewControllerContext.self)!
         
-        if let newWalletData = toeCtx.newWalletData {
-            model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password, settings: appCtx.settings)
+        if let newWalletData = toeCtx.newWalletData, let wasCreatedByMetamask = toeCtx.wasCreatedByMetamask {
+            model = TermsOfServiceFromRestoreWalletViewModel(walletService: appCtx.walletService, newWalletData: newWalletData, password: toeCtx.password, wasCreatedByMetamask: wasCreatedByMetamask, settings: appCtx.settings)
         } else {
             model = TermsOfServiceFromSignInViewModel(walletService: appCtx.walletService, password: toeCtx.password)
         }

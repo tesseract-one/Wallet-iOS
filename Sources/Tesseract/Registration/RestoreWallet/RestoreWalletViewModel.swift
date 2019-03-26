@@ -25,6 +25,7 @@ class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let confirmPassword = Property<String>("")
     let restoreFormError = Property<RestoreFormErrors?>(nil)
     let restoreWalletSuccessfully = Property<Bool?>(nil)
+    let wasCreatedByMetamask = Property<Bool>(false)
     
     let errors = SafePublishSubject<AnyError>()
     
@@ -84,8 +85,10 @@ extension RestoreWalletViewModel {
             }
             .pourError(into: errors)
             .with(latestFrom: password)
-            .map { walletData, password in
-                let context = TermsOfServiceViewControllerContext(password: password, data: walletData)
+            .with(latestFrom: wasCreatedByMetamask)
+            .map { args in
+                let ((walletData, password), wasCreatedByMetamask) = args
+                let context = TermsOfServiceViewControllerContext(password: password, data: walletData, wasCreatedByMetamask: wasCreatedByMetamask)
                 return (name: "TermsOfService", context: context)
             }.bind(to: goToView).dispose(in: bag)
         

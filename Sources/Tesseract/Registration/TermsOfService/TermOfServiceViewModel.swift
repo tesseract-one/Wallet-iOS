@@ -53,11 +53,13 @@ class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
     
     let newWalletData: NewWalletData
     let password: String
+    let wasCreatedByMetamask: Bool
     let settings: UserDefaults
     
-    init (walletService: WalletService, newWalletData: NewWalletData, password: String, settings: UserDefaults) {
+    init (walletService: WalletService, newWalletData: NewWalletData, password: String, wasCreatedByMetamask: Bool, settings: UserDefaults) {
         self.newWalletData = newWalletData
         self.password = password
+        self.wasCreatedByMetamask = wasCreatedByMetamask
         self.settings = settings
         
         super.init(walletService: walletService)
@@ -65,7 +67,7 @@ class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
         acceptTermsAction
             .with(weak: self)
             .flatMapLatest { sself in
-                sself.walletService.newWallet(data: newWalletData, password: password).signal
+                sself.walletService.newWallet(data: newWalletData, password: password, isMetamask: wasCreatedByMetamask).signal
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)

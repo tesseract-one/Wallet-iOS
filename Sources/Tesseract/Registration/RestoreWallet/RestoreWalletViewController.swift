@@ -19,6 +19,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
+    @IBOutlet weak var wasCreatedByMetamaskSwitch: UISwitch!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,8 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             .map { _ in "" }
             .bind(to: confirmPasswordField.reactive.error)
             .dispose(in: bag)
+        
+        wasCreatedByMetamaskSwitch.reactive.isOn.bind(to: model.wasCreatedByMetamask).dispose(in: reactive.bag)
         
         let restoreTap = restoreButton.reactive.tap.throttle(seconds: 0.5)
         restoreTap.bind(to: model.restoreAction).dispose(in: bag)

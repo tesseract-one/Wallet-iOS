@@ -76,7 +76,7 @@ extension MnemonicVerificationViewModel {
                 .map { _ in }
                 .with(weak: walletService)
                 .flatMapLatest { walletService in
-                    walletService.newWallet(data: newWalletData, password: password).signal
+                    walletService.newWallet(data: newWalletData, password: password, isMetamask: false).signal
                 }
                 .pourError(into: errors)
         
@@ -95,7 +95,7 @@ extension MnemonicVerificationViewModel {
         skipMnemonicVerificationAction
             .with(weak: walletService)
             .flatMapLatest { walletService in
-                walletService.newWallet(data: newWalletData, password: password).signal
+                walletService.newWallet(data: newWalletData, password: password, isMetamask: false).signal
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)
