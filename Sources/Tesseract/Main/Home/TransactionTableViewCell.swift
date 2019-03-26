@@ -8,6 +8,7 @@
 
 import UIKit
 import TesSDK
+import BigInt
 
 class TransactionTableViewCell: UITableViewCell {
 
@@ -38,7 +39,7 @@ class TransactionTableViewCell: UITableViewCell {
             amountLabel.textColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1)
         }
         
-        amountLabel.text = String(Double(UInt64(model.value)!) / pow(10.0, 18)) + " ETH"
+        amountLabel.text = String(BigUInt(model.value, radix: 10)!.ethValue()) + " ETH"
         dateLabel.text = TransactionTableViewCell.dateFormatter.string(from: Date(timeIntervalSince1970: Double(UInt64(model.timeStamp)!)))
     }
 }

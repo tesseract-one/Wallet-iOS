@@ -43,7 +43,7 @@ class EthereumWeb3Service {
         let account = wallet.value.exists!.accounts[account]
         return web3.eth
             .getBalance(address: try! account.eth_address().web3, block: .latest)
-            .map { Double($0.quantity) / pow(10.0, 18) }
+            .map { $0.quantity.ethValue(precision: 9) }
     }
     
     func sendEthereum(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {
@@ -52,13 +52,13 @@ class EthereumWeb3Service {
         let tx = EthereumTransaction(
             from: try! account.eth_address().web3,
             to: try! EthereumAddress(hex: to, eip55: false),
-            value: EthereumQuantity(integerLiteral: UInt64(amountEth * pow(10.0, 18)))
+            value: EthereumQuantity(quantity: BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9))
         )
         return web3.eth.sendTransaction(transaction: tx).asVoid()
     }
     
     func estimateGas(call: EthereumCall, networkId: UInt64) -> Promise<Double> {
-        return _estimateGasWei(call: call, networkId: networkId).map{Double($0) / pow(10.0, 18)}
+        return _estimateGasWei(call: call, networkId: networkId).map{$0.ethValue(precision: 9)}
     }
     
     func isContract(address: String, networkId: UInt64) -> Promise<Bool> {
@@ -79,16 +79,16 @@ class EthereumWeb3Service {
         let call = EthereumCall(
             from: try! account.eth_address().web3,
             to: try! Web3EthereumAddress(hex: to, eip55: false),
-            value: EthereumQuantity(integerLiteral: UInt64(amountEth * pow(10.0, 18)))
+            value: EthereumQuantity(quantity: BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9))
         )
         let gasAmount = _estimateGasWei(call: call, networkId: networkId)
         return when(fulfilled: gasPrice, gasAmount)
             .map { $0.0 * $0.1 }
-            .map{Double($0) / pow(10.0, 18)}
+            .map{ $0.ethValue(precision: 9) }
     }
     
     func estimateGasPrice(networkId: UInt64) -> Promise<Double> {
-        return _estimateGasPriceWei(networkId: networkId).map{Double($0) / pow(10.0, 18)}
+        return _estimateGasPriceWei(networkId: networkId).map{$0.ethValue(precision: 9)}
     }
     
     private func _estimateGasWei(call: EthereumCall, networkId: UInt64) -> Promise<BigUInt> {
