@@ -10,35 +10,36 @@ import ReactiveKit
 import Bond
 import TesSDK
 
-enum PasswordErrors: String {
+enum PasswordErrors: String, Error {
     case short = "Password should be at least 8 characters long"
     case different = "Passwords are different"
 }
-enum MnemonicErrors: String {
+enum MnemonicErrors: String, Error {
     case size = "Mnemonic should contain 12 words"
     case wrong = "Mnemonic is incorrect"
 
 }
 
-class RestoreWalletViewModel: ViewModel, ForwardRoutableViewModelProtocol {
+class RestoreWalletViewModel: ViewModel {
+    private let walletService: WalletService
+    private let settings: UserDefaults
+    private let wasCreatedByMetamask: Bool
+    
     let restoreAction = SafePublishSubject<Void>()
     
     let mnemonic = Property<String>("")
     let password = Property<String>("")
     let confirmPassword = Property<String>("")
     let restoreWalletSuccessfully = Property<Bool?>(nil)
-    let wasCreatedByMetamask = Property<Bool>(false)
     
     let errors = SafePublishSubject<AnyError>()
     let mnemonicError = Property<MnemonicErrors?>(nil)
     let passwordError = Property<PasswordErrors?>(nil)
     
-    let goToView = SafePublishSubject<ToView>()
-    
-    private let walletService: WalletService
-    
-    init (walletService: WalletService) {
+    init (walletService: WalletService, settings: UserDefaults, wasCreatedByMetamask: Bool) {
         self.walletService = walletService
+        self.settings = settings
+        self.wasCreatedByMetamask = wasCreatedByMetamask
         
         super.init()
         
@@ -78,6 +79,7 @@ extension RestoreWalletViewModel {
     }
     
     private func setupRestoreWallet() {
+        let wasCreatedByMetamask = self.wasCreatedByMetamask
         let restoreActionCheckPass = restoreAction
             .with(latestFrom: passwordError)
             .with(latestFrom: mnemonicError)
@@ -93,22 +95,29 @@ extension RestoreWalletViewModel {
             .map { $0.1 }
             .with(latestFrom: mnemonic)
             .with(weak: walletService)
-            .resultMap { mnemonicAndPwd, walletService in
-                try walletService.restoreWalletData(mnemonic: mnemonicAndPwd.1, password: mnemonicAndPwd.0)
+            .resultMap { mnemonicAndPwd, walletService -> (WalletService, String, NewWalletData) in
+                do {
+                    let newWalletData = try walletService.restoreWalletData(mnemonic: mnemonicAndPwd.1, password: mnemonicAndPwd.0)
+                     return (walletService, mnemonicAndPwd.0, newWalletData)
+                } catch  {
+                    throw AnyError(MnemonicErrors.wrong)
+                }
             }
             .pourError(into: errors)
-            .with(latestFrom: password)
-            .with(latestFrom: wasCreatedByMetamask)
-            .map { args in
-                let ((walletData, password), wasCreatedByMetamask) = args
-                let context = TermsOfServiceViewControllerContext(password: password, data: walletData, wasCreatedByMetamask: wasCreatedByMetamask)
-                return (name: "TermsOfService", context: context)
+            .flatMapLatest { walletService, password, newWalletData in
+                walletService.newWallet(data: newWalletData, password: password, isMetamask: wasCreatedByMetamask).signal
             }
-            .bind(to: goToView).dispose(in: bag)
+            .observeIn(.immediateOnMain)
+            .pourError(into: errors)
+            .with(weak: walletService, settings)
+            .observeNext { wallet, walletService, settings in
+                settings.removeObject(forKey: "isBiometricEnabled")
+                wallet.lock() // We will go to login for touch id setup
+                walletService.setWallet(wallet: wallet)
+            }.dispose(in: bag)
         
         
         errors.map { _ in MnemonicErrors.wrong }.bind(to: mnemonicError).dispose(in: bag)
         errors.map { _ in false }.bind(to: restoreWalletSuccessfully).dispose(in: bag)
     }
 }
-

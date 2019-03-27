@@ -20,13 +20,6 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
     
-    @IBOutlet weak var descreptionLabel: UILabel!
-    @IBOutlet weak var mnemonicTextViewTopConstraint: NSLayoutConstraint!
-    
-    @IBOutlet weak var wasCreatedByMetamaskView: UIView!
-    @IBOutlet weak var wasCreatedByMetamaskLabel: UILabel!
-    @IBOutlet weak var wasCreatedByMetamaskButton: UIButton!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -78,14 +71,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             .bind(to: mnemonicTextView.reactive.error)
             .dispose(in: bag)
         
-        
-        goToViewAction.observeNext { [weak self] name, context in
-            let vc = try! self?.viewController(for: .named(name: name), context: context)
-            self?.navigationController?.pushViewController(vc!, animated: true)
-        }.dispose(in: bag)
-        
         setupSizes()
-        setupWasCreatedByMnemonic()
         setupKeyboardDismiss()
     }
 }
@@ -93,39 +79,19 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
 extension RestoreWalletViewController {
     private func setupSizes() {
         mnemonicTextView.frame.size.height = 110
-        
-        if UIScreen.main.bounds.height < 600 {
-            descreptionLabel.removeFromSuperview()
-            mnemonicTextViewTopConstraint.constant = 24
-        }
     }
 }
-
-extension RestoreWalletViewController {
-    private func setupWasCreatedByMnemonic() {
-        wasCreatedByMetamaskButton.setImage(UIImage(named: "checked-box-icon"), for: .selected)
-        wasCreatedByMetamaskButton.setImage(UIImage(named: "unchecked-box-icon"), for: .normal)
-        
-        wasCreatedByMetamaskView.reactive.tapGesture().throttle(seconds: 0.3)
-            .with(latestFrom: model.wasCreatedByMetamask)
-            .map { !$0.1 }
-            .bind(to: model.wasCreatedByMetamask)
-            .dispose(in: reactive.bag)
-        
-        model.wasCreatedByMetamask.bind(to: wasCreatedByMetamaskButton.reactive.isSelected).dispose(in: reactive.bag)
-        model.wasCreatedByMetamask.with(weak: wasCreatedByMetamaskLabel)
-            .observeNext { wasCreatedByMetamask, wasCreatedByMetamaskLabel in
-                wasCreatedByMetamaskLabel.alpha = wasCreatedByMetamask ? 1.0 : 0.3
-            }
-            .dispose(in: reactive.bag)
-    }
-}
-
 
 extension RestoreWalletViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
-        model = RestoreWalletViewModel(walletService: appCtx.walletService)
+        
+        guard let wasCreatedByMetamask = context.get(bean: "wasCreatedByMetamask") as? Bool else {
+            print("Router context don't contain wasCreatedByMetamask", self)
+            return
+        }
+        
+        model = RestoreWalletViewModel(walletService: appCtx.walletService, settings: appCtx.settings, wasCreatedByMetamask: wasCreatedByMetamask)
     }
 }
 
