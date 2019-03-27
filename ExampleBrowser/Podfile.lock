@@ -75,7 +75,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   SQLite.swift:
-    :commit: c96a5da4ef8c9ccec7bfac254b56ae17199097f3
+    :commit: becacc73f239d8774e2d0c078ff3e6bcbb4ea972
     :git: https://github.com/ottosuess/SQLite.swift.git
   Web3:
     :commit: 87523600fcec849b39ccf92c73a923d48c1f44d9
