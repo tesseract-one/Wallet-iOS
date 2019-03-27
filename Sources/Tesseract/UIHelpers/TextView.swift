@@ -151,14 +151,14 @@ class TextView: UIView {
     override var frame: CGRect {
         didSet {
             let errorLabelSpace = errorLabel != nil ? errorLabel!.frame.size.height + errorPadding.height : 0
-            
+
             if let placeholderLabel = placeholderLabel {
                 textView.frame.size.height = frame.height - placeholderLabel.frame.height - underlineHeight - errorLabelSpace
                 if textView.isScrollEnabled {
                     textView.frame.size.height -= textViewInsets.minY + textViewInsets.height
                 }
             } else {
-                textView.frame.size.height = frame.height - errorLabelSpace
+                textView.frame.size.height = frame.height - underlineHeight - errorLabelSpace
             }
             
             underlineLayer.frame.origin.y = frame.height - underlineHeight - errorLabelSpace
@@ -410,13 +410,12 @@ class TextView: UIView {
                         self.placeholderLabel!.textColor = self.tintColor
                     }
                     self.underlineLayer.backgroundColor = self.tintColor.cgColor
-                    
-                    self.frame.size.height -= topPosition
                 },
                 completion: { isFinished in
                     self.errorIsAnimating = false
                     self.errorLabel!.removeFromSuperview()
                     self.errorLabel = nil
+                    self.frame.size.height -= topPosition
                     // Layout label without animation if state has changed since animation started.
                     if self.error != "" {
                         self.showError(error: self.error, animated: false)
