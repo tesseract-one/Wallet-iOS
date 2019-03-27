@@ -19,7 +19,9 @@ extension JSONValue {
         case .null: return "null".data(using: .utf8)!
         case .bool(let bool): return (bool ? "true" : "false").data(using: .utf8)!
         case .number(let num): return "\(num)".data(using: .utf8)!
-        case .string(let str): return "\"\(str)\"".data(using: .utf8)!
+        case .string(let str):
+            let fixed = str.replacingOccurrences(of: "\"", with: "\\\"")
+            return "\"\(fixed)\"".data(using: .utf8)!
         default:
             return try! JSONEncoder().encode(self)
         }
@@ -50,7 +52,7 @@ extension Double: JSONValueEncodable {
 
 extension String: JSONValueEncodable {
     public func encode() -> JSONValue {
-        return .string(self)
+        return .string(self.replacingOccurrences(of: "\"", with: "\\\""))
     }
 }
 
