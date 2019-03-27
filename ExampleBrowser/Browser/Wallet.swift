@@ -22,7 +22,18 @@ extension NSError: JSONValueEncodable {
 
 extension JSONValue {
     static func error(_ err: Swift.Error) -> JSONValue {
-        return .string("\(err)")
+        return .object([
+            "code": (-32000).encode(),
+            "message": "\(err)".encode(),
+            "data": [(err as NSError).encode()].encode()
+        ])
+    }
+    
+    static func web3Error(code: Int, message: String) -> JSONValue {
+        return .object([
+            "code": code.encode(),
+            "message": message.encode()
+        ])
     }
 }
 
@@ -119,7 +130,7 @@ class Wallet {
                 case .success(let txData): callback(id, nil, txData.hex())
                 case .failure(let err):
                     if let web3Err = err as? RPCResponse<EthereumData>.Error {
-                        callback(id, JSONValue(["code": web3Err.code, "message": web3Err.message]), nil)
+                        callback(id, JSONValue.web3Error(code: web3Err.code, message: web3Err.message), nil)
                     } else {
                         callback(id, JSONValue.error(err), nil)
                     }
