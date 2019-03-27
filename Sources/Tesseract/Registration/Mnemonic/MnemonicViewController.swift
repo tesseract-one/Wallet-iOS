@@ -29,6 +29,8 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
       let vc = try! self?.viewController(for: .named(name: name), context: context)
       self?.navigationController?.pushViewController(vc!, animated: true)
       }.dispose(in: bag)
+    
+    print(navigationController?.navigationBar.frame, navigationController?.navigationBar.bounds)
   }
 }
 

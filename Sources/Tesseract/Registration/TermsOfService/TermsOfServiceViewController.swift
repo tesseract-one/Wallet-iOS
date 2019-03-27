@@ -45,6 +45,13 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
         termsTextView.delegate = self
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // kludge to fix large title in navigation bar of next screen, when navigation bar on current screen is small (after scrolling)
+        termsTextView.setContentOffset(.zero, animated: false)
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         termsTextView.setContentOffset(.zero, animated: false)
