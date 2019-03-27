@@ -17,11 +17,7 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let errors = SafePublishSubject<AnyError>()
     
-    let walletService: WalletService
-    
-    init (walletService: WalletService) {
-        self.walletService = walletService
-        
+    override init () {
         super.init()
         
         let terms = "When someone does something that they know that they shouldn’t do, did they really have a choice. Maybe what I mean to say is did they really have a chance. You can take two people, present them with the same fork in the road, and one is going to have an easier time than the other choosing the right path.\nIs there such a thing as the right path? You could argue back and forth with God and Evolution and such topics. The side that you take in an arguement like that might lead you to think that you know the meaning to life. How can we really know though. At least up until now there isn’t and 100% proof to either side. If God was a gaurantee – why would he leave so many of us here to die, without the information or say it as proof that we individually would have needed to make that choice?"
@@ -33,8 +29,12 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
 
 class TermsOfServiceFromSignInViewModel: TermsOfServiceViewModel {
     
+    let walletService: WalletService
+    
     init(walletService: WalletService, password: String) {
-        super.init(walletService: walletService)
+        self.walletService = walletService
+        
+        super.init()
         
         acceptTermsAction
             .with(weak: walletService)
@@ -49,33 +49,15 @@ class TermsOfServiceFromSignInViewModel: TermsOfServiceViewModel {
       }
 }
 
-class TermsOfServiceFromRestoreWalletViewModel: TermsOfServiceViewModel {
+class TermsOfServiceFromWalletTypeViewModel: TermsOfServiceViewModel {
     
-    let newWalletData: NewWalletData
-    let password: String
     let wasCreatedByMetamask: Bool
-    let settings: UserDefaults
     
-    init (walletService: WalletService, newWalletData: NewWalletData, password: String, wasCreatedByMetamask: Bool, settings: UserDefaults) {
-        self.newWalletData = newWalletData
-        self.password = password
+    init (wasCreatedByMetamask: Bool) {
         self.wasCreatedByMetamask = wasCreatedByMetamask
-        self.settings = settings
         
-        super.init(walletService: walletService)
+        super.init()
         
-        acceptTermsAction
-            .with(weak: self)
-            .flatMapLatest { sself in
-                sself.walletService.newWallet(data: newWalletData, password: password, isMetamask: wasCreatedByMetamask).signal
-            }
-            .observeIn(.immediateOnMain)
-            .pourError(into: errors)
-            .with(weak: walletService, settings)
-            .observeNext { wallet, walletService, settings in
-                settings.removeObject(forKey: "isBiometricEnabled")
-                wallet.lock() // We will go to login for touch id setup
-                walletService.setWallet(wallet: wallet)
-            }.dispose(in: bag)
+        acceptTermsAction.map { _ in (name: "RestoreWallet", context: nil) }.bind(to: goToView).dispose(in: bag)
     }
 }
