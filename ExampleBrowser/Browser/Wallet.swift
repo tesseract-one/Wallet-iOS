@@ -64,6 +64,13 @@ class Wallet {
         self.endpoint = endpoint
         self.webState = webState
         request(id: 0, method: "eth_accounts", message: Data()) { _, _, _ in }
+        //        let req = """
+        
+        //{"jsonrpc":"2.0","method":"eth_signTypedData","params":["0x0de8e243816f0fa76f1ab947d87bf2bfdbc18baf", {"types":{"EIP712Domain":[{"name":"name","type":"string"},{"name":"version","type":"string"},{"name":"chainId","type":"uint256"},{"name":"verifyingContract","type":"address"}],"Person":[{"name":"name","type":"string"},{"name":"wallet","type":"address"}, {"name":"child","type":"Person"}],"Mail":[{"name":"from","type":"Person"},{"name":"to","type":"Person"},{"name":"contents","type":"string"}]},"primaryType":"Mail","domain":{"name":"Ether Mail","version":"1","chainId":1,"verifyingContract":"0xCcCCccccCCCCcCCCCCCcCcCccCcCCCcCcccccccC"},"message":{"from":{"name":"Cow","wallet":"0xCD2a3d9F938E13CD947Ec05AbC7FE734Df8DD826", "child":{"name":"Cow Child","wallet":"0x222a3d9F938E13CD947Ec05AbC7FE734Df8DD826", "child":{"name":"Cow Child Child","wallet":"0x332a3d9F938E13CD947Ec05AbC7FE734Df8DD826", "child":null}}},"to":{"name":"Bob","wallet":"0xbBbBBBBbbBBBbbbBbbBbbbbBBbBbbbbBbBbbBBbB", "child":null},"contents":"Hello, Bob!"}}],"id":1}
+        
+        //"""
+        
+        //        request(id: 1, method: "eth_signTypedData", message: req.data(using: .utf8)!) { _, _, _ in }
     }
     
     //rewrite to processors
