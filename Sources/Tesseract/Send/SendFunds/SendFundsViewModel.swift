@@ -10,8 +10,7 @@ import Foundation
 import ReactiveKit
 import TesSDK
 
-class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
-    let goBack = SafePublishSubject<Void>()
+class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let goToView = SafePublishSubject<ToView>()
     
     let scanQr = SafePublishSubject<Void>()

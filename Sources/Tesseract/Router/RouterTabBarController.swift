@@ -15,7 +15,7 @@ class RouterTabBarController: UITabBarController, RouterViewProtocol {
         if let controllers = viewControllers {
             for controller in controllers {
                 if let ctrl = controller as? RouterViewProtocol {
-                    ctrl.r_inject(context: r_context, resolver: r_resolver)
+                    ctrl.r_inject(context: r_context, resolver: controller.storyboard ?? r_resolver)
                 }
                 if let ctrl = controller as? ContextSubject {
                     ctrl.apply(context: r_context)

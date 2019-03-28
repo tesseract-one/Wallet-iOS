@@ -474,7 +474,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" verticalCompressionResistancePriority="1000" placeholderIntrinsicWidth="infinite" placeholderIntrinsicHeight="150" translatesAutoresizingMaskIntoConstraints="NO" id="61Q-jv-WeK" customClass="NextResponderTextView" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="221.66666666666663" width="382" height="150"/>
+                                <rect key="frame" x="16" y="158.66666666666666" width="382" height="149.99999999999997"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.9137254901960784" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
                                 <userDefinedRuntimeAttributes>

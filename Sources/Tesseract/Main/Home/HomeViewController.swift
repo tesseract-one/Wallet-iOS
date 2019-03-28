@@ -17,8 +17,6 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     private(set) var model: ViewModel!
     
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var sendButton: UIButton!
-    @IBOutlet weak var receiveButton: UIButton!
     @IBOutlet weak var headerView: UIView!
     
     override func viewDidLoad() {
@@ -32,46 +30,20 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
         
-        sendButton.reactive.tap.throttle(seconds: 0.5)
-            .bind(to: model.sendAction).dispose(in: bag)
-        receiveButton.reactive.tap.throttle(seconds: 0.5)
-            .bind(to: model.receiveAction).dispose(in: bag)
-        
-        model.goToSendView.observeNext { [weak self] name, context in
-            let vc = try? UIStoryboard(name: "Send", bundle: nil)
-                .viewFactory(context: self?.r_context)
-                .viewController(for: .root, context: context)
-            self?.show(vc!, sender: self!)
-        }.dispose(in: bag)
-        
-        model.goToReceiveView.observeNext { [weak self] name, context in
-            let vc = try? UIStoryboard(name: "Receive", bundle: nil)
-                .viewFactory(context: self?.r_context)
-                .viewController(for: .root, context: context)
-            self?.show(vc!, sender: self!)
-        }.dispose(in: bag)
-        
-        model.closePopupView.with(weak: self).observeNext { sself in
-            if sself.presentedViewController != nil {
-                sself.dismiss(animated: true, completion: nil)
-                sself.model.updateBalance()
-            }
-        }.dispose(in: bag)
-        
-        // 190 = height without card, (self.view.frame.width - 32) * 184/343 = width of card * proportion of card
-        headerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 190 + (self.view.frame.width - 32) * 184/343)
+        // 150 = height without card, (self.view.frame.width - 32) * 184/343 = width of card * proportion of card
+        headerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150 + (self.view.frame.width - 32) * 184/343)
     }
 }
 
 extension HomeViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 16))
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 26))
         header.backgroundColor = .clear
         
-        let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 0, width: tableView.frame.width - 32, height: 16))
+        let label = UILabel(frame: CGRect(x: 16, y: 3, width: tableView.frame.width - 32, height: 26))
         label.text = "Latest Activity"
+        label.font = UIFont(name: "SFProDisplay-Medium", size: 12)
         label.sizeToFit()
-        label.font = UIFont.systemFont(ofSize: 12)
         label.textColor = UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0)
         
         header.addSubview(label)

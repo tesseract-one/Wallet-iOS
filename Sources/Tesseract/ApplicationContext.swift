@@ -18,7 +18,7 @@ class ApplicationContext: RouterContextProtocol {
     // Storyboards
     var registrationViewFactory: RegistrationViewFactory!
     var walletViewFactory: ViewFactoryProtocol!
-    
+
     // State
     let wallet: Property<WalletState> = Property(.empty)
     let ethereumNetwork: Property<UInt64> = Property(4)

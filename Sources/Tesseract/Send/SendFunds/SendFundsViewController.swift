@@ -10,10 +10,6 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class SendFundsViewControllerContext: RouterContextProtocol {
-    let closeAction = SafePublishSubject<Void>()
-}
-
 class SendFundsViewController: UIViewController, ModelVCProtocol {
     typealias ViewModel = SendFundsViewModel
     
@@ -28,11 +24,8 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var recieverGetsAmountField: UITextField!
     
     @IBOutlet weak var scanQrButton: UIBarButtonItem!
-    @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var reviewButton: UIButton!
     
-    let closeAction = SafePublishSubject<Void>()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,17 +53,10 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         
         model.address.bidirectionalBind(to: addressField.reactive.text).dispose(in: reactive.bag)
         
-        cancelButton.reactive.tap
-            .throttle(seconds: 0.3)
-            .bind(to: closeAction)
-            .dispose(in: reactive.bag)
-        
         reviewButton.reactive.tap
             .throttle(seconds: 0.3)
             .bind(to: model.reviewAction)
             .dispose(in: reactive.bag)
-        
-        goBack.bind(to: closeAction).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         model.balanceUSD.bind(to: balanceInUSDLabel.reactive.text).dispose(in: reactive.bag)
@@ -104,8 +90,6 @@ extension SendFundsViewController: ContextSubject {
         
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
-        
-        closeAction.bind(to: context.get(context: SendFundsViewControllerContext.self)!.closeAction).dispose(in: reactive.bag)
         
         model.bootstrap()
     }

@@ -14,9 +14,6 @@ import PromiseKit
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
-    let sendAction = SafePublishSubject<Void>()
-    let receiveAction = SafePublishSubject<Void>()
-    
     let activeAccount = Property<Account?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     
@@ -25,10 +22,6 @@ class HomeViewModel: ViewModel {
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
     let balanceUSD = Property<String>("")
-    
-    let goToSendView = SafePublishSubject<ToView>()
-    let goToReceiveView = SafePublishSubject<ToView>()
-    let closePopupView = SafePublishSubject<Void>()
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
@@ -42,16 +35,6 @@ class HomeViewModel: ViewModel {
         self.transactionInfoService = transactionInfoService
         
         super.init()
-        
-        let sendContext = SendFundsViewControllerContext()
-        sendContext.closeAction.bind(to: closePopupView).dispose(in: bag)
-        sendAction.map { _ in (name: "SendFunds", context: sendContext) }
-            .bind(to: goToSendView).dispose(in: bag)
-        
-        let receiveContext = ReceiveFundsViewControllerContext()
-        receiveContext.closeAction.bind(to: closePopupView).dispose(in: bag)
-        receiveAction.map { _ in (name: "ReceiveFunds", context: receiveContext) }
-            .bind(to: goToReceiveView).dispose(in: bag)
     }
         
     func bootstrap() {

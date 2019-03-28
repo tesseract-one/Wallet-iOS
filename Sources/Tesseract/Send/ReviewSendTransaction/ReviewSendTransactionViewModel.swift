@@ -41,8 +41,6 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let amountUSD = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
-    let closeModal = SafePublishSubject<Void>()
-    
     let error = SafePublishSubject<AnyError>()
     
     let send = SafePublishSubject<String>()
@@ -101,7 +99,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
                 ).signal
             }
             .pourError(into: error)
-            .bind(to: closeModal)
+            .bind(to: goBack)
             .dispose(in: bag)
         
         fingerAction

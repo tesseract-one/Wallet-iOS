@@ -26,30 +26,33 @@
             <objects>
                 <tabBarController storyboardIdentifier="Main" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JfT-fh-RVi" customClass="RouterTabBarController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <tabBar key="tabBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="Jq4-eW-CKS">
-                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="Jq4-eW-CKS">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="barTintColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.13331639766693115" green="0.13334554433822632" blue="0.13331016898155212" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.13331639766693115" green="0.13334554433822632" blue="0.13331016898155212" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="NrD-gD-WuY" kind="relationship" relationship="viewControllers" id="lvM-BI-xEJ"/>
+                        <segue destination="oRs-F8-VSe" kind="relationship" relationship="viewControllers" id="6fz-0U-1ec"/>
+                        <segue destination="nnc-TN-IhE" kind="relationship" relationship="viewControllers" id="Q9g-Vc-aHy"/>
+                        <segue destination="axF-bi-Fhy" kind="relationship" relationship="viewControllers" id="vtT-mb-Va2"/>
+                        <segue destination="xP5-Fk-PEv" kind="relationship" relationship="viewControllers" id="aga-fV-M1d"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1pw-RM-QGw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1154.4000000000001" y="679.61019490254876"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="Qrd-m0-OMO">
             <objects>
                 <tableViewController storyboardIdentifier="Home" id="NrD-gD-WuY" customClass="HomeViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="1" id="48e-xM-hGP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="26" sectionFooterHeight="1" id="48e-xM-hGP">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="separatorColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="separatorColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="uRB-u7-lZc">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -130,73 +133,13 @@
                                         <constraint firstItem="Ezl-E7-9Hw" firstAttribute="leading" secondItem="Wxg-Ph-n94" secondAttribute="leading" id="paf-a6-eKh"/>
                                     </constraints>
                                 </view>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="LtN-Dx-Pfd">
-                                    <rect key="frame" x="16" y="282.5" width="288" height="50"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbp-w2-BF1" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="136" height="50"/>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                            <state key="normal" title="Recieve">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="roundedByHeight" value="NO"/>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                    <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cZ1-oW-Q1L" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
-                                            <rect key="frame" x="152" y="0.0" width="136" height="50"/>
-                                            <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                            <state key="normal" title="Send">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <userDefinedRuntimeAttributes>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                    <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
-                                                    <color key="value" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                                    <size key="value" width="0.0" height="0.5"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                    <real key="value" value="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
-                                            </userDefinedRuntimeAttributes>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="zbp-w2-BF1" secondAttribute="bottom" id="Ap4-Nh-niP"/>
-                                        <constraint firstItem="cZ1-oW-Q1L" firstAttribute="top" secondItem="LtN-Dx-Pfd" secondAttribute="top" id="D8K-cA-dJD"/>
-                                        <constraint firstAttribute="height" constant="50" id="L0e-gT-shC"/>
-                                        <constraint firstItem="zbp-w2-BF1" firstAttribute="top" secondItem="LtN-Dx-Pfd" secondAttribute="top" id="eyK-4y-PbM"/>
-                                        <constraint firstAttribute="bottom" secondItem="cZ1-oW-Q1L" secondAttribute="bottom" id="hOM-Bh-OzF"/>
-                                    </constraints>
-                                </stackView>
                             </subviews>
                             <constraints>
                                 <constraint firstItem="L24-Ym-UdJ" firstAttribute="trailing" secondItem="U4R-dj-f3w" secondAttribute="trailing" constant="16" id="57A-sv-Jmw"/>
-                                <constraint firstItem="LtN-Dx-Pfd" firstAttribute="trailing" secondItem="U4R-dj-f3w" secondAttribute="trailing" id="AdW-uv-Ebo"/>
-                                <constraint firstItem="LtN-Dx-Pfd" firstAttribute="top" secondItem="U4R-dj-f3w" secondAttribute="bottom" constant="32" id="GET-Ap-WcI"/>
                                 <constraint firstItem="U4R-dj-f3w" firstAttribute="leading" secondItem="L24-Ym-UdJ" secondAttribute="leading" constant="16" id="Uaq-wI-QRX"/>
                                 <constraint firstItem="U4R-dj-f3w" firstAttribute="top" secondItem="X7t-8g-uXP" secondAttribute="bottom" constant="16" id="VUq-ku-Sz3"/>
                                 <constraint firstItem="X7t-8g-uXP" firstAttribute="top" secondItem="L24-Ym-UdJ" secondAttribute="top" constant="24" id="pIk-5u-mdE"/>
                                 <constraint firstItem="X7t-8g-uXP" firstAttribute="leading" secondItem="L24-Ym-UdJ" secondAttribute="leading" constant="16" id="r9u-LM-uax"/>
-                                <constraint firstItem="LtN-Dx-Pfd" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" id="uBP-4J-mOo"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="L24-Ym-UdJ"/>
                         </view>
@@ -205,20 +148,71 @@
                             <outlet property="delegate" destination="NrD-gD-WuY" id="fZs-7S-a4d"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Item" id="Ozc-Rh-NPk"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="menu-home-passive" selectedImage="menu-home-active" id="Ozc-Rh-NPk">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                    </tabBarItem>
+                    <navigationItem key="navigationItem" id="q0l-jX-kyo"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="balanceLabel" destination="Ezl-E7-9Hw" id="fgp-Sn-a30"/>
                         <outlet property="headerView" destination="uRB-u7-lZc" id="s0n-Ut-vtY"/>
-                        <outlet property="receiveButton" destination="zbp-w2-BF1" id="b5Z-hq-u4i"/>
-                        <outlet property="sendButton" destination="cZ1-oW-Q1L" id="YRq-dK-zYe"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kw8-Tk-cY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-356" y="679.61019490254876"/>
+            <point key="canvasLocation" x="204" y="679"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="D0C-22-EEG">
+            <objects>
+                <navigationController storyboardIdentifier="MainNC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oRs-F8-VSe" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="pla-9M-rAE"/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="401-PD-jum">
+                        <rect key="frame" x="0.0" y="20" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="NrD-gD-WuY" kind="relationship" relationship="rootViewController" id="sOl-3D-naq"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4v7-3O-W8S" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-474" y="679"/>
+        </scene>
+        <!--Send-->
+        <scene sceneID="8J3-QU-axv">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Send" storyboardName="Send" id="axF-bi-Fhy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="IlM-f2-rZR"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ccq-tt-zuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1429" y="1099"/>
+        </scene>
+        <!--More-->
+        <scene sceneID="CdA-9K-43R">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="More" storyboardName="More" id="xP5-Fk-PEv" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="2FD-sa-csS"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Frt-n9-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1154" y="1164"/>
+        </scene>
+        <!--Receive-->
+        <scene sceneID="TTL-v4-JDG">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="Receive" storyboardName="Receive" id="nnc-TN-IhE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="A4E-Fg-ncp"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KEz-3B-Cfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-890" y="1106"/>
         </scene>
     </scenes>
     <resources>
         <image name="TesCard" width="343" height="183"/>
+        <image name="menu-home-active" width="18" height="18"/>
+        <image name="menu-home-passive" width="18" height="18"/>
     </resources>
 </document>
