@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import TesSDK
 import ReactiveKit
 import Bond
 import MaterialTextField
+import OpenWallet
+import EthereumWeb3
 
-class EthereumKeychainSignDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignDataKeychainRequest>, EthereumKeychainViewControllerBaseControls {
+class EthereumKeychainSignDataViewController: EthereumKeychainViewController<EthereumSignDataKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
@@ -28,10 +29,10 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Ope
         
         title = "Sign Data"
         
-        signData.text = request.data
+        signData.text = request.data.toHexString()
 
-        let reqData = Data(hex: request.data)
-        let account = try! EthereumAddress(hex: request.account, eip55: false)
+        let reqData = request.data
+        let account = try! Address(hex: request.account, eip55: false)
         let networkId = request.networkId
 
         runWalletOperation
@@ -42,7 +43,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Ope
             .pourError(into: context.errors)
             .with(weak: self)
             .observeNext { signedData, sself in
-                sself.succeed(response: "0x" + signedData.toHexString())
+                sself.succeed(response: signedData)
             }.dispose(in: reactive.bag)
     }
 }

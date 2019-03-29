@@ -8,8 +8,9 @@
 
 import Foundation
 import UIKit
-import TesSDK
 import ReactiveKit
+import Wallet
+
 
 class SettingWithWordVM: ViewModel {
     let title: String

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import TesSDK
 import ReactiveKit
+import Wallet
 
 enum ExtensionErrors: Error {
     case walletIsEmpty

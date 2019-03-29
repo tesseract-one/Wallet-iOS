@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import TesSDK
 import ReactiveKit
 import Bond
+
 
 class AccountTableViewCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!

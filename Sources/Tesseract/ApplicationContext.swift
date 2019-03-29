@@ -8,7 +8,8 @@
 
 import Foundation
 import ReactiveKit
-import TesSDK
+import Wallet
+
 
 class ApplicationContext: RouterContextProtocol {
     // let bag = DisposeBag()

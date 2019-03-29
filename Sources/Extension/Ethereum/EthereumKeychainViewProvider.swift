@@ -7,37 +7,38 @@
 //
 
 import UIKit
-import TesSDK
+import OpenWallet
 
-class EthereumKeychainViewProvider: OpenWalletEthereumKeychainViewProvider {
+class EthereumKeychainViewProvider: OpenWallet.EthereumKeychainViewProvider {
+    
     let storyboard = UIStoryboard(name: "EthereumKeychain", bundle: nil)
     
-    func accountRequestView(req: OpenWalletEthereumAccountKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumAccountKeychainRequest.Response?) -> Void) -> UIViewController {
-        let vc = storyboard.instantiateViewController(withIdentifier: "AccountRequest") as! EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>
-        vc.responseCb = cb
-        vc.request = req
-        return vc
-    }
-    
-    func signTransactionView(req: OpenWalletEthereumSignTxKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumSignTxKeychainRequest.Response?) -> Void) -> UIViewController {
-        let vc = storyboard.instantiateViewController(withIdentifier: "SignTransactionRequest") as! EthereumKeychainViewController<OpenWalletEthereumSignTxKeychainRequest>
-        vc.responseCb = cb
-        vc.request = req
-        return vc
-    }
-    
-    func signDataView(req: OpenWalletEthereumSignDataKeychainRequest, cb: @escaping (Error?, OpenWalletEthereumSignDataKeychainRequest.Response?) -> Void) -> UIViewController {
-        let vc = storyboard.instantiateViewController(withIdentifier: "SignDataRequest") as! EthereumKeychainViewController<OpenWalletEthereumSignDataKeychainRequest>
-        vc.responseCb = cb
-        vc.request = req
-        return vc
-    }
-    
-    func signTypedDataView(
-        req: OpenWalletEthereumSignTypedDataKeychainRequest,
-        cb: @escaping (Error?, OpenWalletEthereumSignTypedDataKeychainRequest.Response?) -> Void
+    func accountRequestView(
+        req: EthereumAccountKeychainRequest,
+        cb: @escaping ViewResponse<EthereumAccountKeychainRequest>
     ) -> UIViewController {
-        let vc = storyboard.instantiateViewController(withIdentifier: "SignTypedDataRequest") as! EthereumKeychainViewController<OpenWalletEthereumSignTypedDataKeychainRequest>
+        let vc = storyboard.instantiateViewController(withIdentifier: "AccountRequest") as! EthereumKeychainViewController<EthereumAccountKeychainRequest>
+        vc.responseCb = cb
+        vc.request = req
+        return vc
+    }
+    
+    func signTransactionView(req: EthereumSignTxKeychainRequest, cb: @escaping ViewResponse<EthereumSignTxKeychainRequest>) -> UIViewController {
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignTransactionRequest") as! EthereumKeychainViewController<EthereumSignTxKeychainRequest>
+        vc.responseCb = cb
+        vc.request = req
+        return vc
+    }
+    
+    func signDataView(req: EthereumSignDataKeychainRequest, cb: @escaping ViewResponse<EthereumSignDataKeychainRequest>) -> UIViewController {
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignDataRequest") as! EthereumKeychainViewController<EthereumSignDataKeychainRequest>
+        vc.responseCb = cb
+        vc.request = req
+        return vc
+    }
+    
+    func signTypedDataView(req: EthereumSignTypedDataKeychainRequest, cb: @escaping ViewResponse<EthereumSignTypedDataKeychainRequest>) -> UIViewController {
+        let vc = storyboard.instantiateViewController(withIdentifier: "SignTypedDataRequest") as! EthereumKeychainViewController<EthereumSignTypedDataKeychainRequest>
         vc.responseCb = cb
         vc.request = req
         return vc

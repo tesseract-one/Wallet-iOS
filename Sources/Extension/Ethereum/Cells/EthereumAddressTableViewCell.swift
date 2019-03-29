@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TesSDK
+import Wallet
 
 class EthereumAddressTableViewCell: UITableViewCell {
 

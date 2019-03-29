@@ -10,8 +10,9 @@ import UIKit
 import MaterialTextField
 import ReactiveKit
 import Bond
-import TesSDK
 import BigInt
+import OpenWallet
+import Wallet
 
 private protocol DataValue {
     var parent: DataType? { get }
@@ -156,7 +157,7 @@ private class DataSectionHeaderView: UIView {
     }
 }
 
-class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewController<OpenWalletEthereumSignTypedDataKeychainRequest>, EthereumKeychainViewControllerBaseControls, UITableViewDataSource, UITableViewDelegate {
+class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewController<EthereumSignTypedDataKeychainRequest>, EthereumKeychainViewControllerBaseControls, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
@@ -234,7 +235,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
                 let (_, wallet) = arg
                 return wallet.exists!.eth_signTypedData(
                     account: try! account!.eth_address(),
-                    data: EIP712TypedData(
+                    data: TypedData(
                         primaryType: request.primaryType,
                         types: request.types,
                         domain: request.domain,
@@ -246,7 +247,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             .pourError(into: context.errors)
             .with(weak: self)
             .observeNext { data, sself in
-                sself.succeed(response: "0x" + data.toHexString())
+                sself.succeed(response: data)
             }.dispose(in: reactive.bag)
     }
     

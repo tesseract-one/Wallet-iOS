@@ -9,7 +9,8 @@
 import Foundation
 import ReactiveKit
 import Bond
-import TesSDK
+import Wallet
+
 
 class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let walletService: WalletService

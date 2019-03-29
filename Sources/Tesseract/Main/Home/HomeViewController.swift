@@ -9,7 +9,6 @@
 import UIKit
 import ReactiveKit
 import Bond
-import TesSDK
 
 class HomeViewController: UITableViewController, ModelVCProtocol {
     typealias ViewModel = HomeViewModel

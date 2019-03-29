@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import TesSDK
+import Wallet
+
 
 class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     typealias ViewModel = MnemonicVerificationViewModel

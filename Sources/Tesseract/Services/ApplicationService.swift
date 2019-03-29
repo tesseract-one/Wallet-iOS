@@ -9,8 +9,8 @@
 import Foundation
 import ReactiveKit
 import PromiseKit
-import TesSDK
 import UIKit
+
 
 class ApplicationService {
     let bag = DisposeBag()

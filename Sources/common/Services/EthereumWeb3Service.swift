@@ -9,14 +9,14 @@
 import Foundation
 import ReactiveKit
 import PromiseKit
-import Web3
-import TesSDK
+import EthereumWeb3
+import Wallet
 
 class EthereumWeb3Service {
     let bag = DisposeBag()
     
     var wallet: Property<WalletState>!
-    let ethereumAPIs: Property<EthereumAPIs?> = Property(nil)
+    let ethereumAPIs: Property<APIRegistry?> = Property(nil)
 
     var endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
     
@@ -30,9 +30,9 @@ class EthereumWeb3Service {
     
     func bootstrap() {
         wallet
-            .map { (wallet: WalletState) -> EthereumAPIs? in
+            .map { (wallet: WalletState) -> APIRegistry? in
                 guard let wallet = wallet.exists else { return nil }
-                return wallet.distributedAPI.Ethereum
+                return wallet.ethereum
             }
             .bind(to: ethereumAPIs)
             .dispose(in: bag)
@@ -64,7 +64,7 @@ class EthereumWeb3Service {
     func isContract(address: String, networkId: UInt64) -> Promise<Bool> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
         return Promise()
-            .map { try Web3EthereumAddress(hex: address, eip55: false) }
+            .map { try EthereumAddress(hex: address, eip55: false) }
             .then { address in
                 web3.eth.getCode(address: address, block: .latest).map { data in
                     data.bytes.count > 0
@@ -78,7 +78,7 @@ class EthereumWeb3Service {
         
         let call = EthereumCall(
             from: try! account.eth_address().web3,
-            to: try! Web3EthereumAddress(hex: to, eip55: false),
+            to: try! EthereumAddress(hex: to, eip55: false),
             value: EthereumQuantity(quantity: BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9))
         )
         let gasAmount = _estimateGasWei(call: call, networkId: networkId)

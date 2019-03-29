@@ -7,12 +7,13 @@
 //
 
 import UIKit
-import TesSDK
 import ReactiveKit
 import MaterialTextField
 import Bond
+import Wallet
+import OpenWallet
 
-class EthereumKeychainAccountsViewController: EthereumKeychainViewController<OpenWalletEthereumAccountKeychainRequest>,
+class EthereumKeychainAccountsViewController: EthereumKeychainViewController<EthereumAccountKeychainRequest>,
     EthereumKeychainViewControllerBaseControls {
    
     let accounts = MutableObservableArray<Account>()

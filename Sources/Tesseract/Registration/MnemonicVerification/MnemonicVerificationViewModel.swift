@@ -7,7 +7,7 @@
 //
 
 import ReactiveKit
-import TesSDK
+import Wallet
 
 enum MnemonicVerificationError: String {
     case deffierent = "Mnemonics are different"

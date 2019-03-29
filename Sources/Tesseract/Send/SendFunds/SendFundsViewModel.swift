@@ -8,7 +8,8 @@
 
 import Foundation
 import ReactiveKit
-import TesSDK
+import Wallet
+
 
 class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let goToView = SafePublishSubject<ToView>()

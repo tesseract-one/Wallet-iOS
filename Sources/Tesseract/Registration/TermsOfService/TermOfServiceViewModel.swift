@@ -7,7 +7,7 @@
 //
 
 import ReactiveKit
-import TesSDK
+
 
 class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let acceptTermsAction = SafePublishSubject<Void>()

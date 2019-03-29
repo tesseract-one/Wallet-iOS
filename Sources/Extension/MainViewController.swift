@@ -7,10 +7,10 @@
 //
 
 import UIKit
-import TesSDK
 import SnapKit
+import OpenWallet
 
-class MainViewController: OpenWalletExtensionViewController {
+class MainViewController: OpenWallet.ExtensionViewController {
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -18,9 +18,9 @@ class MainViewController: OpenWalletExtensionViewController {
     
     let context = ExtensionContext()
     
-    override var handlers: Array<OpenWalletRequestHandler> {
+    override var handlers: Array<RequestHandler> {
         return [
-            OpenWalletEthereumKeychainRequestHandler(viewProvider: EthereumKeychainViewProvider())
+            EthereumKeychainRequestHandler(viewProvider: EthereumKeychainViewProvider())
         ]
     }
     

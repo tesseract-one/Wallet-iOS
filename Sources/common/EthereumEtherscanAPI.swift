@@ -8,6 +8,7 @@
 
 import Foundation
 import PromiseKit
+import Wallet
 
 private struct ESResponse: Codable {
     let status: String
@@ -56,3 +57,10 @@ public struct EthereumEtherscanAPI {
             .map { $0.result }
     }
 }
+
+extension APIRegistry {
+    public func etherscan(apiUrl: String, apiToken: String) -> EthereumEtherscanAPI {
+        return EthereumEtherscanAPI(apiUrl: apiUrl, apiToken: apiToken)
+    }
+}
+
