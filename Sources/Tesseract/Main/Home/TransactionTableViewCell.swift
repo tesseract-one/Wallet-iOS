@@ -29,9 +29,11 @@ class TransactionTableViewCell: UITableViewCell {
         if model.from == model.to && model.from == address {
             titleLabel.text = "Transaction"
             descriptionLabel.text = "From: me, to: me. 🙃"
+            amountLabel.textColor = .white
         } else if model.from == address {
             titleLabel.text = "Transaction Sent"
             descriptionLabel.text = "To: " + model.to
+            amountLabel.textColor = .white
         } else {
             titleLabel.text = "Transaction Received"
             descriptionLabel.text = "From: " + model.from
