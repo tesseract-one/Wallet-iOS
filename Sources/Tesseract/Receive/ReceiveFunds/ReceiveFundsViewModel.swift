@@ -8,12 +8,13 @@
 
 import ReactiveKit
 import Bond
-import TesSDK
+import Wallet
+
 
 class ReceiveFundsViewModel: ViewModel {
     let activeAccount = Property<Account?>(nil)
     
-    let address = Property<EthereumAddress?>(nil)
+    let address = Property<EthereumBase.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
     let ethereumNetwork = Property<UInt64>(0)

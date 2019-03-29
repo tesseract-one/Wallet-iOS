@@ -8,8 +8,9 @@
 
 import ReactiveKit
 import Bond
-import TesSDK
 import PromiseKit
+import Wallet
+
 
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)

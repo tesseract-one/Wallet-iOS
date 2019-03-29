@@ -8,8 +8,8 @@
 
 import Foundation
 import ReactiveKit
-import TesSDK
-import Web3
+import Wallet
+
 
 class TransactionInfoService {
     let bag = DisposeBag()

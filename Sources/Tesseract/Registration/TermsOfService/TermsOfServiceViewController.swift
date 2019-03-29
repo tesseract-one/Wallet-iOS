@@ -8,7 +8,7 @@
 
 import UIKit
 import ReactiveKit
-import TesSDK
+
 
 class TermsOfServiceViewControllerContext: RouterContextProtocol {
     let password: String?

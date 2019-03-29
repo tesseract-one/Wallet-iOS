@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import TesSDK
 import BigInt
+
 
 class TransactionTableViewCell: UITableViewCell {
 

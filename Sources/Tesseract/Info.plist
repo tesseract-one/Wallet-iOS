@@ -25,7 +25,7 @@
 			<string>io.gettes.tesseract.keychain</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>opw-keychain-ethereum</string>
+				<string>openwallet-keychain-ethereum</string>
 			</array>
 		</dict>
 		<dict>

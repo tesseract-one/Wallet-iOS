@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import TesSDK
+import Wallet
 
 class ChooseAccountTableViewCell: UITableViewCell {
     @IBOutlet weak var name: UILabel!

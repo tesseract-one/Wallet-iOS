@@ -9,7 +9,8 @@
 import Foundation
 import ReactiveKit
 import Bond
-import TesSDK
+import Wallet
+
 
 private let NETWORKS: Dictionary<UInt64, (name: String, abbr: String)> = [
     1: ("Main Ethereum Network", "MAIN"),

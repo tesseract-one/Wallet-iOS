@@ -7,7 +7,8 @@
 //
 
 import UIKit
-import TesSDK
+import Wallet
+
 
 class MnemonicViewController: UIViewController, ModelVCProtocol {
   typealias ViewModel = MnemonicViewModel
@@ -28,9 +29,9 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
     goToViewAction.observeNext { [weak self] name, context in
       let vc = try! self?.viewController(for: .named(name: name), context: context)
       self?.navigationController?.pushViewController(vc!, animated: true)
-      }.dispose(in: bag)
+    }.dispose(in: bag)
     
-    print(navigationController?.navigationBar.frame, navigationController?.navigationBar.bounds)
+//    print(navigationController?.navigationBar.frame, navigationController?.navigationBar.bounds)
   }
 }
 

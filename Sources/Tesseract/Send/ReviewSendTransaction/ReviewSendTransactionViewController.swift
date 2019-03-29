@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import TesSDK
 import ReactiveKit
 import Bond
+import Wallet
+
 
 class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     typealias ViewModel = ReviewSendTransactionViewModel

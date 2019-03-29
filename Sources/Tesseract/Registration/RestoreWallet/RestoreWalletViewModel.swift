@@ -8,7 +8,8 @@
 
 import ReactiveKit
 import Bond
-import TesSDK
+import Wallet
+
 
 enum PasswordErrors: String, Error {
     case short = "Password should be at least 8 characters long"

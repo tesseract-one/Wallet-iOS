@@ -8,7 +8,8 @@
 
 import Foundation
 import ReactiveKit
-import TesSDK
+import Wallet
+
 
 enum SendError: String, Error {
     case wrongPassword = "Wrong password"

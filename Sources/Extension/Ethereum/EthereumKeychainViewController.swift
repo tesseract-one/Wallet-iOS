@@ -7,8 +7,8 @@
 //
 
 import UIKit
-import TesSDK
 import ReactiveKit
+import OpenWallet
 import MaterialTextField
 
 protocol EthereumKeychainViewControllerBaseControls  {
@@ -27,8 +27,8 @@ private let NETWORK_NAMES: Dictionary<UInt64, String> = [
     4: "Rinkeby Test Network"
 ]
 
-class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProtocol>: ExtensionViewController {
-    var responseCb: ((Error?, Request.Response?) -> Void)!
+class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: ExtensionViewController {
+    var responseCb: ((Swift.Result<Request.Response, OpenWalletError>) -> Void)!
     var request: Request!
     
     let runWalletOperation = SafePublishSubject<Void>()
@@ -161,11 +161,11 @@ class EthereumKeychainViewController<Request: OpenWalletEthereumRequestDataProto
         NotificationCenter.default.removeObserver(self)
     }
     
-    func fail(error: Error) {
-        responseCb(error, nil)
+    func fail(error: OpenWalletError) {
+        responseCb(.failure(error))
     }
     
     func succeed(response: Request.Response) {
-        responseCb(nil, response)
+        responseCb(.success(response))
     }
 }

@@ -8,7 +8,7 @@
 
 import Foundation
 import BigInt
-import Web3
+import EthereumWeb3
 
 extension BigUInt {
     public func ethValue(precision: UInt = 6) -> Double {

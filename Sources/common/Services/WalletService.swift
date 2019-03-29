@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import TesSDK
 import ReactiveKit
 import PromiseKit
+import Wallet
 
 extension Account.AssociatedKeys {
     static let name = Account.AssociatedKeys(rawValue: "name")
@@ -53,9 +53,9 @@ class WalletService {
     
     private let bag = DisposeBag()
     
-    private var walletManager: WalletManager!
+    private var walletManager: Manager!
     
-    var storage: WalletStorageProtocol!
+    var storage: StorageProtocol!
     
     var wallet: Property<WalletState>!
     var activeAccount: Property<Account?>!
@@ -64,8 +64,8 @@ class WalletService {
     
     
     func bootstrap() {
-        walletManager = WalletManager(
-            networks: [EthereumWalletNetwork()],
+        walletManager = Manager(
+            networks: [EthereumNetwork()],
             storage: storage
         )
         
@@ -80,7 +80,7 @@ class WalletService {
                 return self.walletManager.load(with: ids[0]).map{.locked($0)}
             }
             .recover { err -> Promise<WalletState> in
-                if case WalletStorageError.noData(_) = err {
+                if case StorageError.noData(_) = err {
                     return Promise.value(.notExist)
                 }
                 if case Error.noStoredWallet = err {
