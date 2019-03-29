@@ -95,7 +95,7 @@ DEPENDENCIES:
   - MaterialTextField (~> 1.0)
   - PromiseKit
   - ReactiveKit
-  - SerializableValue (from `https://github.com/ypopovych/swift-serializable.git`, branch `master`)
+  - SerializableValue (from `https://github.com/tesseract-one/swift-serializable.git`, branch `master`)
   - SnapKit (~> 4.2.0)
   - SQLite.swift (from `https://github.com/ottosuess/SQLite.swift.git`, branch `master`)
   - "TesseractEthereumBase (from `git@github.com:ypopovych/swift-ethereum-base.git`, branch `master`)"
@@ -103,7 +103,7 @@ DEPENDENCIES:
   - "TesseractKeychain (from `git@github.com:ypopovych/swift-keychain.git`, branch `master`)"
   - "TesseractOpenWallet/WalletEthereum (from `git@github.com:ypopovych/ios-openwallet-sdk.git`, branch `master`)"
   - "TesseractWallet/EthereumPromiseKit (from `git@github.com:ypopovych/swift-wallet-sdk.git`, branch `master`)"
-  - Web3 (from `https://github.com/crossroadlabs/Web3.swift.git`, branch `master`)
+  - Web3 (from `https://github.com/tesseract-one/Web3.swift.git`, branch `master`)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -125,7 +125,7 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   SerializableValue:
     :branch: master
-    :git: https://github.com/ypopovych/swift-serializable.git
+    :git: https://github.com/tesseract-one/swift-serializable.git
   SQLite.swift:
     :branch: master
     :git: https://github.com/ottosuess/SQLite.swift.git
@@ -146,33 +146,33 @@ EXTERNAL SOURCES:
     :git: "git@github.com:ypopovych/swift-wallet-sdk.git"
   Web3:
     :branch: master
-    :git: https://github.com/crossroadlabs/Web3.swift.git
+    :git: https://github.com/tesseract-one/Web3.swift.git
 
 CHECKOUT OPTIONS:
   SerializableValue:
-    :commit: 10f23664e16c600002178cece070722c09e7b7c1
-    :git: https://github.com/ypopovych/swift-serializable.git
+    :commit: a77ea4589520eac0406912dca1dc54466ffa82ac
+    :git: https://github.com/tesseract-one/swift-serializable.git
   SQLite.swift:
     :commit: 1a34caff10c529ef7ed4fc1de6db819a1cd0bc6e
     :git: https://github.com/ottosuess/SQLite.swift.git
   TesseractEthereumBase:
-    :commit: 4ad54158b44ac3482125880c4948c5c20b18bc89
+    :commit: 2c34b9f05450a3d7f080666a4466070aac2d591b
     :git: "git@github.com:ypopovych/swift-ethereum-base.git"
   TesseractEthereumWeb3:
-    :commit: 8ce3dd9c26f7f76069d196ce76eb016306b745a9
+    :commit: e3af467bef4ddf21747ac64c4b7e6ce083f83e14
     :git: "git@github.com:ypopovych/ios-web3-ethereum.git"
   TesseractKeychain:
-    :commit: 802cc6033620ebf225bd42efc7355296b1f204b0
+    :commit: 099038f5ccaa61400bd89731ca7da05db3c01687
     :git: "git@github.com:ypopovych/swift-keychain.git"
   TesseractOpenWallet:
-    :commit: 62d6c369f75e799f6c4ff1763207eccb7460f41a
+    :commit: bcad1d4d3ca0b8f4d92f79640571fbba90ba6dfe
     :git: "git@github.com:ypopovych/ios-openwallet-sdk.git"
   TesseractWallet:
-    :commit: 04c5a7a000ae008105cf03fe2342e02ad07c0db8
+    :commit: bf6796fc9958635f82506deaccaa1a170d189ed4
     :git: "git@github.com:ypopovych/swift-wallet-sdk.git"
   Web3:
-    :commit: 87523600fcec849b39ccf92c73a923d48c1f44d9
-    :git: https://github.com/crossroadlabs/Web3.swift.git
+    :commit: 170d9c6777f759307ef2f9aa5ae98426212a84e7
+    :git: https://github.com/tesseract-one/Web3.swift.git
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
@@ -186,18 +186,18 @@ SPEC CHECKSUMS:
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   ReactiveKit: 5f4c440715d671901c382ae6b42ed3337ce4699b
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
-  SerializableValue: 68b0bc3f578c45f99279bc0297213a57ec532663
+  SerializableValue: 4dec77eadb50f94f4070f84a8826c51bc481e9cd
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
-  TesseractEthereumBase: ec0452a5fc8a7c3b93daf880851b63467f87ad10
-  TesseractEthereumWeb3: d54a6dc9f26eeb912627d1d31f6765859d9a5d7e
-  TesseractKeychain: 0242d82b5d37f16c9c4f3a975dd55a9aaecbc3a9
-  TesseractOpenWallet: 045fe5b450e257efc64f9826a697cd95f610cbc0
-  TesseractWallet: 6abc5bc803fcc1f5171f7cb4341b617a65022015
+  TesseractEthereumBase: 33148c974f63dd81e638d84a74415793c32bb9d5
+  TesseractEthereumWeb3: 24f316d6cb0d22cf5ea3b53e8fba224f73c8cf25
+  TesseractKeychain: 473558edc2ec9bc8e6f07427cb8e30b73868a751
+  TesseractOpenWallet: e4e3ac5d6e93e7d644a43d85f8dcdc645bfe9121
+  TesseractWallet: c5a56293d6144bf695194ab0d3fb8476b4d64d30
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: 4cf681023a041963504395519ece76342a622871
+PODFILE CHECKSUM: 77596470eb305dece40bfd29bbe0bd1bac6636a2
 
 COCOAPODS: 1.6.1
