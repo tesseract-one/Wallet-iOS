@@ -21,7 +21,7 @@ class ApplicationContext: RouterContextProtocol {
 
     // State
     let wallet: Property<WalletState> = Property(.empty)
-    let ethereumNetwork: Property<UInt64> = Property(4)
+    let ethereumNetwork: Property<UInt64> = Property(0)
     let activeAccount: Property<Account?> = Property(nil)
     
     let balance = Property<Double?>(nil)
@@ -51,6 +51,8 @@ class ApplicationContext: RouterContextProtocol {
         
         applicationService.walletService = walletService
         applicationService.errorNode = errorNode
+        applicationService.settings = settings
+        applicationService.ethereumNetwork = ethereumNetwork
         
         ethereumWeb3Service.wallet = wallet
         

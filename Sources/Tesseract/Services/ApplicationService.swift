@@ -25,9 +25,13 @@ class ApplicationService {
     var registrationViewFactory: RegistrationViewFactory!
     var walletViewFactory: ViewFactoryProtocol!
     
+    var settings: UserDefaults!
+    var ethereumNetwork: Property<UInt64>!
+    
     func bootstrap() {
         bindRegistration()
         // Bootstrap Step 2
+        setNetwork()
         exec()
     }
     
@@ -55,5 +59,14 @@ class ApplicationService {
                 }
             }
             .dispose(in: bag)
+    }
+    
+    private func setNetwork() {
+        if let network = settings.object(forKey: "ethereumNetwork") as? UInt64 {
+            ethereumNetwork.next(network)
+        } else {
+            ethereumNetwork.next(1) // Main Network
+            settings.set(UInt64(1), forKey: "ethereumNetwork")
+        }
     }
 }

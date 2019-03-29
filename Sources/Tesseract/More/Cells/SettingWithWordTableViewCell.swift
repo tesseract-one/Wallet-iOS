@@ -17,10 +17,16 @@ class SettingWithWordTableViewCell: UITableViewCell {
     
     func setModel(model: SettingWithWordVM) {
         titleLabel.text = model.title
-        descriptionLabel.text = model.description
         settingLabel.textColor = model.isEnabled ? .white : UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
         
+        if let description = model.description {
+            descriptionLabel.text = description
+        } else {
+            model.activeDescription!.bind(to: descriptionLabel.reactive.text).dispose(in: reactive.bag)
+        }
+
         model.word.bind(to: settingLabel.reactive.text).dispose(in: reactive.bag)
+        
         if model.isEnabled {
             self.reactive.tapGesture().throttle(seconds: 0.5).map { _ in }
                 .bind(to: model.action!).dispose(in: reactive.bag)

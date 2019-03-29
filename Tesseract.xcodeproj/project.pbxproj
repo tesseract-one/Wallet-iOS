@@ -130,6 +130,7 @@
 		D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D131639521B96D5D0066FB4A /* GradientBorderedButton.swift */; };
 		D133937F224BA8F500E69E57 /* WalletTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133937E224BA8F500E69E57 /* WalletTypeViewController.swift */; };
 		D1339381224BA90A00E69E57 /* WalletTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */; };
+		D1463111224E90F2004D68AD /* ChooseNetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */; };
 		D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A500F222964F00069A262 /* MnemonicViewModel.swift */; };
 		D14A5013222977BE0069A262 /* MnemonicVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A5012222977BE0069A262 /* MnemonicVerificationViewModel.swift */; };
 		D14A50222229B1A40069A262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14A50212229B1A40069A262 /* Main.storyboard */; };
@@ -138,6 +139,9 @@
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D14B5F2A2199B75D006F387E /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F292199B75D006F387E /* BorderedButton.swift */; };
 		D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */; };
+		D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */; };
+		D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BC5E6224E899F0022622E /* NetworkTableViewCell.swift */; };
+		D15BC5EB224E90670022622E /* ChooseNetworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
 		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
 		D16F02F9224D262B0001FA57 /* SettingWithWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16F02F7224D262B0001FA57 /* SettingWithWordTableViewCell.xib */; };
@@ -392,6 +396,7 @@
 		D131639521B96D5D0066FB4A /* GradientBorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBorderedButton.swift; sourceTree = "<group>"; };
 		D133937E224BA8F500E69E57 /* WalletTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewController.swift; sourceTree = "<group>"; };
 		D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewModel.swift; sourceTree = "<group>"; };
+		D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkViewModel.swift; sourceTree = "<group>"; };
 		D14A500F222964F00069A262 /* MnemonicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewModel.swift; sourceTree = "<group>"; };
 		D14A5012222977BE0069A262 /* MnemonicVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicVerificationViewModel.swift; sourceTree = "<group>"; };
 		D14A50212229B1A40069A262 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -400,6 +405,9 @@
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D14B5F292199B75D006F387E /* BorderedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Bond.swift"; sourceTree = "<group>"; };
+		D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NetworkTableViewCell.xib; path = ../Cells/NetworkTableViewCell.xib; sourceTree = "<group>"; };
+		D15BC5E6224E899F0022622E /* NetworkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkTableViewCell.swift; path = ../Cells/NetworkTableViewCell.swift; sourceTree = "<group>"; };
+		D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkTableViewController.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
 		D16F02F7224D262B0001FA57 /* SettingWithWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingWithWordTableViewCell.xib; sourceTree = "<group>"; };
@@ -949,6 +957,17 @@
 			path = Home;
 			sourceTree = "<group>";
 		};
+		D15BC5E9224E901B0022622E /* ChooseNetwork */ = {
+			isa = PBXGroup;
+			children = (
+				D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */,
+				D15BC5E6224E899F0022622E /* NetworkTableViewCell.swift */,
+				D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */,
+				D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */,
+			);
+			path = ChooseNetwork;
+			sourceTree = "<group>";
+		};
 		D168B5552227FAD9008DBFB0 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -978,6 +997,7 @@
 		D18B012F22495372003EF3AC /* More */ = {
 			isa = PBXGroup;
 			children = (
+				D15BC5E9224E901B0022622E /* ChooseNetwork */,
 				D1C5DDAD224ABB670063546D /* Settings */,
 				D18D9514224A6F180028B3CA /* Cells */,
 				D18B013022495383003EF3AC /* More.storyboard */,
@@ -1327,6 +1347,7 @@
 				D1201FEB222DA9E70030C2C2 /* Receive.storyboard in Resources */,
 				D1E2022C224A9E4200DA7F9A /* SettingWithIconTableViewCell.xib in Resources */,
 				92564D3B22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */,
+				D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */,
 				D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */,
 				D10F9161224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib in Resources */,
 				D16F02F9224D262B0001FA57 /* SettingWithWordTableViewCell.xib in Resources */,
@@ -1557,9 +1578,11 @@
 				D14A502D2229B7660069A262 /* HomeViewModel.swift in Sources */,
 				92CB199022283B9200407F9A /* ApplicationService.swift in Sources */,
 				92CB198E2228323300407F9A /* AnyError.swift in Sources */,
+				D1463111224E90F2004D68AD /* ChooseNetworkViewModel.swift in Sources */,
 				D1B13CCE222DD05E005213F7 /* BorderedView.swift in Sources */,
 				D19EA619223FD1C200365868 /* TextView.swift in Sources */,
 				D1E2022D224A9E4200DA7F9A /* SettingWithIconTableViewCell.swift in Sources */,
+				D15BC5EB224E90670022622E /* ChooseNetworkTableViewController.swift in Sources */,
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */,
 				D133937F224BA8F500E69E57 /* WalletTypeViewController.swift in Sources */,
@@ -1600,6 +1623,7 @@
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
+				D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 				D1A2114B2242A1DE00DDF3F3 /* KeychainPasswordItem.swift in Sources */,

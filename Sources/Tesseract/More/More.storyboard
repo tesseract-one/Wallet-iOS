@@ -49,11 +49,41 @@
                             <outlet property="delegate" destination="AeC-RR-txd" id="CKg-43-aZa"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="More" id="xqg-7a-aoH"/>
+                    <navigationItem key="navigationItem" title="More" id="xqg-7a-aoH">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="ssz-pr-e6Q"/>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KIX-0x-OwR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-742" y="-52"/>
+        </scene>
+        <!--Choose Network-->
+        <scene sceneID="KMF-gj-avx">
+            <objects>
+                <tableViewController storyboardIdentifier="ChooseNetwork" useStoryboardIdentifierAsRestorationIdentifier="YES" id="o2b-RO-sTc" customClass="ChooseNetworkTableViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="53" sectionFooterHeight="1" id="rWE-SH-9cg">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <connections>
+                            <outlet property="dataSource" destination="o2b-RO-sTc" id="iku-mh-Jg3"/>
+                            <outlet property="delegate" destination="o2b-RO-sTc" id="PMQ-ns-chz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Choose Network" largeTitleDisplayMode="always" id="sSh-j7-shr">
+                        <barButtonItem key="leftBarButtonItem" title="Back" style="done" id="P5E-9v-Li7">
+                            <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <connections>
+                        <outlet property="backButton" destination="P5E-9v-Li7" id="0lM-4v-xoH"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jrt-0H-1ds" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="97" y="-54"/>
         </scene>
     </scenes>
     <resources>

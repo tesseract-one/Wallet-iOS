@@ -24,7 +24,7 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
         tableView.register(UINib(nibName: "SettingWithIconTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingWithIcon")
         tableView.register(UINib(nibName: "SettingWithSwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingWithSwitch")
         
-        model.tableSettings.bind(to: tableView) { data, indexPath, tableView in
+        model.tableSettings.bind(to: tableView, animated: true, rowAnimation: UITableView.RowAnimation.right) { data, indexPath, tableView in
             let item = data[itemAt: indexPath]
             switch item {
             case let account as SettingWithAccountVM:
@@ -52,6 +52,11 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
             }
         }
         .dispose(in: reactive.bag)
+        
+        goToViewAction.observeNext { [weak self] name, context in
+            let vc = try! self?.viewController(for: .named(name: name), context: context)
+            self?.navigationController?.pushViewController(vc!, animated: true)
+        }.dispose(in: bag)
     }
 }
 
@@ -90,7 +95,7 @@ extension SettingsTableViewController {
 extension SettingsTableViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
-        model = SettingsViewModel(web3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
+        model = SettingsViewModel(walletService: appCtx.walletService, web3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
         
         appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.network).dispose(in: model.bag)
