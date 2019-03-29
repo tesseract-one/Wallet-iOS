@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,10 +27,10 @@
                         </constraints>
                     </imageView>
                     <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="QhF-je-Is3">
-                        <rect key="frame" x="56" y="8" width="248" height="44"/>
+                        <rect key="frame" x="56" y="9" width="248" height="42"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="wCA-j4-dLP">
-                                <rect key="frame" x="0.0" y="1" width="150" height="42"/>
+                                <rect key="frame" x="0.0" y="0.0" width="150" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ZS-dC-ja9">
                                         <rect key="frame" x="0.0" y="0.0" width="32.5" height="24"/>
@@ -57,7 +57,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="B0H-mE-a2L">
-                                <rect key="frame" x="189.5" y="1" width="58.5" height="42"/>
+                                <rect key="frame" x="189.5" y="0.0" width="58.5" height="42"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w0c-ju-jnz">
                                         <rect key="frame" x="0.0" y="0.0" width="58.5" height="24"/>
@@ -88,7 +88,6 @@
                         <constraints>
                             <constraint firstItem="B0H-mE-a2L" firstAttribute="centerY" secondItem="QhF-je-Is3" secondAttribute="centerY" id="44e-Ue-N7i"/>
                             <constraint firstItem="wCA-j4-dLP" firstAttribute="centerY" secondItem="QhF-je-Is3" secondAttribute="centerY" id="Nvp-25-nGc"/>
-                            <constraint firstAttribute="height" constant="44" id="szu-da-Eij"/>
                         </constraints>
                     </stackView>
                 </subviews>

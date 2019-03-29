@@ -14,9 +14,12 @@ import PromiseKit
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
+    let wallet = Property<WalletState?>(nil)
     let activeAccount = Property<Account?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     
+    let isMoreThanOneAccount = Property<Bool>(false)
+
     let transactions = MutableObservableArray<EthereumTransactionLog>()
     
     let balance = Property<String>("")
@@ -49,6 +52,8 @@ class HomeViewModel: ViewModel {
             }
             .bind(to: balanceUSD)
             .dispose(in: bag)
+        
+        wallet.map{$0!.exists != nil ? $0!.exists!.accounts.count > 1 : false}.bind(to: isMoreThanOneAccount)
     }
     
     func updateBalance() {

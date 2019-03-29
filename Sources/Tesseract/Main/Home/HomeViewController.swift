@@ -17,7 +17,10 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     private(set) var model: ViewModel!
     
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var headerView: UIView!
+    
+    @IBOutlet weak var cardView: UIImageView!
+    @IBOutlet weak var accountView: UIStackView!
+    @IBOutlet weak var cardTopConstraint: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,8 +33,27 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
         
-        // 150 = height without card, (self.view.frame.width - 32) * 184/343 = width of card * proportion of card
-        headerView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 150 + (self.view.frame.width - 32) * 184/343)
+        setupAccountView()
+    }
+}
+
+extension HomeViewController {
+    private func setupAccountView() {
+        model.isMoreThanOneAccount.with(weak: self)
+            .observeNext { isMoreThanOneAccount, sself in
+                if isMoreThanOneAccount {
+                    sself.cardTopConstraint.constant = 76
+                    sself.accountView.isHidden = false
+                    let newHeight: CGFloat = 100.0 + (sself.view.frame.width - 32.0) * 184.0/343.0
+                    sself.tableView.tableHeaderView!.frame.size.height = newHeight
+                } else {
+                    sself.cardTopConstraint.constant = 24
+                    sself.accountView.isHidden = true
+                    let newHeight: CGFloat = 48.0 + (sself.view.frame.width - 32.0) * 184.0/343.0
+                    sself.tableView.tableHeaderView!.frame.size.height = newHeight
+                }
+            }
+            .dispose(in: reactive.bag)
     }
 }
 
@@ -39,15 +61,15 @@ extension HomeViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 26))
         header.backgroundColor = .clear
-        
+
         let label = UILabel(frame: CGRect(x: 16, y: 3, width: tableView.frame.width - 32, height: 26))
         label.text = "Latest Activity"
         label.font = UIFont(name: "SFProDisplay-Medium", size: 12)
         label.sizeToFit()
         label.textColor = UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0)
-        
+
         header.addSubview(label)
-        
+
         return header
     }
 }
@@ -61,6 +83,7 @@ extension HomeViewController: ContextSubject {
             transactionInfoService: appCtx.transactionService
         )
         
+        appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
         appCtx.balance.bind(to: model.ethBalance).dispose(in: model.bag)

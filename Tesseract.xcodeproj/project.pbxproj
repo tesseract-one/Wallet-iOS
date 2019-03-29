@@ -151,7 +151,7 @@
 		D171DE50219DB702003134DD /* TermsOfServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */; };
 		D171DE52219DD0B3003134DD /* MnemonicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE51219DD0B3003134DD /* MnemonicViewController.swift */; };
 		D171DE54219DE3A5003134DD /* MnemonicVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE53219DE3A5003134DD /* MnemonicVerificationViewController.swift */; };
-		D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */; };
+		D171DE58219F21FD003134DD /* BorderlessBars.swift in Sources */ = {isa = PBXBuildFile; fileRef = D171DE57219F21FD003134DD /* BorderlessBars.swift */; };
 		D18B013122495383003EF3AC /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18B013022495383003EF3AC /* More.storyboard */; };
 		D18D9517224A70E30028B3CA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D18D9515224A70E30028B3CA /* AccountTableViewCell.xib */; };
 		D18D9518224A70E30028B3CA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18D9516224A70E30028B3CA /* AccountTableViewCell.swift */; };
@@ -417,7 +417,7 @@
 		D171DE4F219DB702003134DD /* TermsOfServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServiceViewController.swift; sourceTree = "<group>"; };
 		D171DE51219DD0B3003134DD /* MnemonicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewController.swift; sourceTree = "<group>"; };
 		D171DE53219DE3A5003134DD /* MnemonicVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicVerificationViewController.swift; sourceTree = "<group>"; };
-		D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessNavigationBar.swift; sourceTree = "<group>"; };
+		D171DE57219F21FD003134DD /* BorderlessBars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderlessBars.swift; sourceTree = "<group>"; };
 		D18B013022495383003EF3AC /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D18D9515224A70E30028B3CA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		D18D9516224A70E30028B3CA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
@@ -1027,7 +1027,7 @@
 			children = (
 				D131639421B96AA70066FB4A /* Extensions */,
 				D16FD29B223B1D54003324D2 /* CustomInsetsTextView.swift */,
-				D171DE57219F21FD003134DD /* BorderlessNavigationBar.swift */,
+				D171DE57219F21FD003134DD /* BorderlessBars.swift */,
 				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
 				D131639521B96D5D0066FB4A /* GradientBorderedButton.swift */,
 				D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */,
@@ -1590,7 +1590,7 @@
 				9230791022302539004E3950 /* Constants.swift in Sources */,
 				D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */,
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,
-				D171DE58219F21FD003134DD /* BorderlessNavigationBar.swift in Sources */,
+				D171DE58219F21FD003134DD /* BorderlessBars.swift in Sources */,
 				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
 				D1C5DDB1224ABB970063546D /* SettingsViewModel.swift in Sources */,
 				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,
