@@ -48,7 +48,7 @@
                                             <constraint firstItem="wIJ-Dj-xQx" firstAttribute="height" secondItem="HRT-Tt-Ehc" secondAttribute="height" multiplier="0.65" id="uwK-yz-k81"/>
                                         </constraints>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome Back!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-GL-UP9">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-GL-UP9">
                                         <rect key="frame" x="86.666666666666686" y="283.33333333333331" width="241" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="yGV-wL-SLm"/>
@@ -57,7 +57,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Legend said you will come back..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwF-BI-OU2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Don't forget to wave us in Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwF-BI-OU2">
                                         <rect key="frame" x="62" y="331.33333333333331" width="290" height="24"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="24" id="hpv-Nw-eM6"/>
@@ -171,7 +171,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                        <state key="normal" title="Create Key">
+                                        <state key="normal" title="New">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <userDefinedRuntimeAttributes>

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="60" id="KGk-i7-Jjw" customClass="NetworkTableViewCell" customModule="Tesseract" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="bem-Vw-oqT">
+                        <rect key="frame" x="16" y="1" width="256" height="42"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Ff-po-rZz">
+                                <rect key="frame" x="0.0" y="0.0" width="256" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="RTq-xh-YmE"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Wu-fK-KVy">
+                                <rect key="frame" x="0.0" y="24" width="256" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="rm8-b6-Vpp"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" red="0.39211094379425049" green="0.39218336343765259" blue="0.39210647344589233" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checked" translatesAutoresizingMaskIntoConstraints="NO" id="Psn-ph-HgE">
+                        <rect key="frame" x="288" y="14" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="sM1-KB-5BK"/>
+                            <constraint firstAttribute="width" constant="16" id="u9x-Tr-JoP"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="bem-Vw-oqT" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="b66-vz-DGw"/>
+                    <constraint firstItem="Psn-ph-HgE" firstAttribute="leading" secondItem="bem-Vw-oqT" secondAttribute="trailing" constant="16" id="l2r-8p-UT4"/>
+                    <constraint firstItem="bem-Vw-oqT" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="lXd-RT-NyB"/>
+                    <constraint firstAttribute="trailing" secondItem="Psn-ph-HgE" secondAttribute="trailing" constant="16" id="qd7-EV-Lmu"/>
+                    <constraint firstItem="Psn-ph-HgE" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ySt-7D-oZ0"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="5Wu-fK-KVy" id="R5M-8h-FAV"/>
+                <outlet property="isCheckedIcon" destination="Psn-ph-HgE" id="6tf-fw-ZrV"/>
+                <outlet property="nameLabel" destination="9Ff-po-rZz" id="ypD-7f-5ia"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="checked" width="14" height="11"/>
+    </resources>
+</document>

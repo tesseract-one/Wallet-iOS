@@ -15,6 +15,8 @@ class SettingWithSwitchTableViewCell: UITableViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var isEnabledSwitch: UISwitch!
     
+    let toggleSwithAction = SafePublishSubject<Bool>()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -26,7 +28,15 @@ class SettingWithSwitchTableViewCell: UITableViewCell {
         descriptionLabel.text = model.description
         isEnabledSwitch.isOn = model.isEnabled
 
-        isEnabledSwitch.reactive.isOn.bind(to: model.switchAction)
+        self.reactive.tapGesture().throttle(seconds: 0.5)
+            .map{ _ in }
+            .with(weak: isEnabledSwitch)
+            .map { !$0.isOn }
+            .bind(to: toggleSwithAction)
+            .dispose(in: reactive.bag)
+      
+        toggleSwithAction.bind(to: isEnabledSwitch.reactive.isOn).dispose(in: reactive.bag)
+        toggleSwithAction.bind(to: model.switchAction).dispose(in: reactive.bag)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

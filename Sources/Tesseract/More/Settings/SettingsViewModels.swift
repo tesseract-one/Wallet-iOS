@@ -14,14 +14,16 @@ import Wallet
 
 class SettingWithWordVM: ViewModel {
     let title: String
-    let description: String
+    let description: String?
+    let activeDescription: Property<String>?
     let word: Property<String>
     let isEnabled: Bool
     let action: SafePublishSubject<Void>?
     
-    init(title: String, description: String, word: Property<String>, isEnabled: Bool, action: SafePublishSubject<Void>? = nil) {
+    init(title: String, description: String? = nil, activeDescription: Property<String>? = nil, word: Property<String>, isEnabled: Bool, action: SafePublishSubject<Void>? = nil) {
         self.title = title
         self.description = description
+        self.activeDescription = activeDescription
         self.word = word
         self.isEnabled = isEnabled
         self.action = isEnabled ? action! : nil
@@ -50,16 +52,16 @@ class SettingWithSwitchVM: ViewModel {
     let title: String
     let description: String
     let isEnabled: Bool
-    let switchAction = SafePublishSubject<Bool>()
+    let switchAction: SafePublishSubject<Bool>
     
-    init(title: String, description: String, key: String, settings: UserDefaults, defaultValue: Bool) {
+    init(title: String, description: String, key: String, settings: UserDefaults, switchAction: SafePublishSubject<Bool>, defaultValue: Bool) {
         self.title = title
         self.description = description
+        self.switchAction = switchAction
         
         if let value = settings.object(forKey: key) as? Bool {
             self.isEnabled = value
         } else {
-            settings.set(defaultValue, forKey: key)
             self.isEnabled = defaultValue
         }
         
@@ -68,8 +70,7 @@ class SettingWithSwitchVM: ViewModel {
         switchAction.with(weak: settings)
             .observeNext { newValue, settings in
                 settings.set(newValue, forKey: key)
-            }
-            .dispose(in: bag)
+            }.dispose(in: bag)
     }
 }
 

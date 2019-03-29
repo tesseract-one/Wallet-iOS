@@ -53,7 +53,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="uRB-u7-lZc">
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="uRB-u7-lZc">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="366"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>

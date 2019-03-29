@@ -12,14 +12,8 @@ import Bond
 import Wallet
 
 
-private let NETWORKS: Dictionary<UInt64, (name: String, abbr: String)> = [
-    1: ("Main Ethereum Network", "MAIN"),
-    2: ("Ropsten Test Network", "RPN"),
-    3: ("Kovan Test Network", "KVN"),
-    4: ("Rinkeby Test Network", "RKB")
-]
-
 class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
+    let walletService: WalletService
     let web3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     
@@ -35,14 +29,17 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let primaryCurrency = Property<String>("ETH")
     let currentLanguage = Property<String>("ENG")
     let changePasswordAction = SafePublishSubject<Void>()
+    let switchDeveloperModeAction = SafePublishSubject<Bool>()
     let currentNetwork = Property<String>("RKB")
+    let currentNetworkDescription = Property<String>("Rinkeby Network")
     let changeNetworkAction = SafePublishSubject<Void>()
     let showInfoAboutTesseractAcion = SafePublishSubject<Void>()
     let logoutAction = SafePublishSubject<Void>()
     
     let goToView = SafePublishSubject<ToView>()
     
-    init(web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, settings: UserDefaults) {
+    init(walletService: WalletService, web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, settings: UserDefaults) {
+        self.walletService = walletService
         self.web3Service = web3Service
         self.changeRateService = changeRateService
         self.settings = settings
@@ -51,6 +48,8 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     }
     
     func bootstrap() {
+        setupTableSettigns()
+        
         wallet.with(weak: self)
             .map{ wallet, sself -> [ViewModel] in
                 let accounts = wallet!.exists?.accounts ?? []
@@ -63,8 +62,45 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             }
             .bind(to: accounts)
             .dispose(in: bag)
-        network.map { NETWORKS[$0]!.abbr }.bind(to: currentNetwork)
         
+        
+        network.map { NETWORKS[Int($0) - 1].abbr }.bind(to: currentNetwork)
+        network.map { NETWORKS[Int($0) - 1].name }.bind(to: currentNetworkDescription)
+        
+        switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
+            let numberOfItemsInDeveloperSection = sself.tableSettings.collection.numberOfItems(inSection: 2)
+
+            if !isOn && numberOfItemsInDeveloperSection > 1 {
+                for _ in 1 ... numberOfItemsInDeveloperSection - 1 {
+                    sself.tableSettings.removeItem(at: IndexPath(row: 1, section: 2))
+                }
+            } else if isOn && numberOfItemsInDeveloperSection == 1 {
+                sself.tableSettings.appendItem(
+                    SettingWithWordVM(title: "Choose Network", activeDescription: sself.currentNetworkDescription, word: sself.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
+                    toSectionAt: 2
+                )
+            }
+        }.dispose(in: bag)
+        
+        changeNetworkAction.map { _ in (name: "ChooseNetwork", context: nil) }
+            .bind(to: goToView).dispose(in: bag)
+        
+        accounts.with(weak: tableSettings).observeNext { accounts, tableSettings in
+            tableSettings.removeSection(at: 0)
+            tableSettings.insert(section: "Your Accounts", at: 0)
+            tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
+        }.dispose(in: bag)
+        
+        logoutAction
+            .with(weak: walletService)
+            .with(latestFrom: wallet)
+            .observeNext { walletService, wallet in
+                wallet!.exists!.lock()
+                walletService.setWallet(wallet: wallet!.exists!)
+            }.dispose(in: bag)
+    }
+    
+    private func setupTableSettigns() {
         tableSettings.appendSection("Your Accounts")
         
         tableSettings.appendSection("Settings")
@@ -87,13 +123,15 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         tableSettings.appendSection("Developer Tools")
         tableSettings.appendItem(
-            SettingWithSwitchVM(title: "Developer Mode", description: "For dark magicians only 🦹‍♂️", key: "isDeveloperModeEnabled", settings: self.settings, defaultValue: false),
+            SettingWithSwitchVM(title: "Developer Mode", description: "For dark magicians only 🦹‍♂️", key: "isDeveloperModeEnabled", settings: self.settings, switchAction: self.switchDeveloperModeAction, defaultValue: false),
             toSectionAt: 2
         )
-        tableSettings.appendItem(
-            SettingWithWordVM(title: "Choose Network", description: NETWORKS[network.value]!.name, word: currentNetwork, isEnabled: true, action: changeNetworkAction),
-            toSectionAt: 2
-        )
+        if settings.object(forKey: "isDeveloperModeEnabled") as? Bool == true {
+            self.tableSettings.appendItem(
+                SettingWithWordVM(title: "Choose Network", activeDescription: self.currentNetworkDescription, word: self.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
+                toSectionAt: 2
+            )
+        }
         
         tableSettings.appendSection("Other")
         tableSettings.appendItem(
@@ -104,11 +142,5 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             SettingWithIconVM(title: "Logout", description: "You’ll be back 🤖", icon: UIImage(named: "logout")!, action: self.logoutAction),
             toSectionAt: 3
         )
-        
-        accounts.with(weak: tableSettings).observeNext { accounts, tableSettings in
-            tableSettings.removeSection(at: 0)
-            tableSettings.insert(section: "Your Accounts", at: 0)
-            tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
-        }.dispose(in: bag)
     }
 }
