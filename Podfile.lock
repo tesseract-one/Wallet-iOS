@@ -171,7 +171,7 @@ CHECKOUT OPTIONS:
     :commit: bf6796fc9958635f82506deaccaa1a170d189ed4
     :git: "git@github.com:ypopovych/swift-wallet-sdk.git"
   Web3:
-    :commit: 170d9c6777f759307ef2f9aa5ae98426212a84e7
+    :commit: 1aa389b81970ecad8d1814fd4b664db2c2cd632d
     :git: https://github.com/tesseract-one/Web3.swift.git
 
 SPEC CHECKSUMS:
