@@ -4,14 +4,14 @@ PODS:
   - Bond (7.3.3):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.9)
-  - CKMnemonic (0.1.7):
-    - CryptoSwift
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - CryptoSwift (0.15.0)
+  - CryptoSwift (0.14.0)
   - Differ (1.3.0)
   - Fabric (1.9.0)
   - MaterialTextField (1.0.1)
+  - MnemonicKit (1.3.4):
+    - CryptoSwift (~> 0.14.0)
   - PromiseKit (6.8.3):
     - PromiseKit/CorePromise (= 6.8.3)
     - PromiseKit/Foundation (= 6.8.3)
@@ -35,7 +35,7 @@ PODS:
     - TesseractEthereumBase/Core (= 0.0.1)
   - TesseractEthereumBase/Core (0.0.1):
     - BigInt (~> 3.1)
-    - CryptoSwift (~> 0.15)
+    - CryptoSwift (~> 0.13)
     - SerializableValue (~> 0.0.1)
   - TesseractEthereumBase/PromiseKit (0.0.1):
     - PromiseKit/CorePromise (~> 6.8.0)
@@ -48,8 +48,8 @@ PODS:
     - Web3/PromiseKit (~> 0.3.1)
   - TesseractKeychain (0.0.1):
     - BigInt (~> 3.1)
-    - CKMnemonic (~> 0.1)
-    - CryptoSwift (~> 0.15)
+    - CryptoSwift (~> 0.13)
+    - MnemonicKit (~> 1.3.0)
     - secp256k1.swift (~> 0.1)
   - TesseractOpenWallet/Core (0.0.1)
   - TesseractOpenWallet/EthereumCore (0.0.1):
@@ -109,12 +109,12 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - BigInt
     - Bond
-    - CKMnemonic
     - Crashlytics
     - CryptoSwift
     - Differ
     - Fabric
     - MaterialTextField
+    - MnemonicKit
     - PromiseKit
     - ReactiveKit
     - secp256k1.swift
@@ -156,13 +156,13 @@ CHECKOUT OPTIONS:
     :commit: 1a34caff10c529ef7ed4fc1de6db819a1cd0bc6e
     :git: https://github.com/ottosuess/SQLite.swift.git
   TesseractEthereumBase:
-    :commit: 2c34b9f05450a3d7f080666a4466070aac2d591b
+    :commit: bddcb4b9128316900ee1da5be73307c94c55e70d
     :git: "git@github.com:ypopovych/swift-ethereum-base.git"
   TesseractEthereumWeb3:
     :commit: e3af467bef4ddf21747ac64c4b7e6ce083f83e14
     :git: "git@github.com:ypopovych/ios-web3-ethereum.git"
   TesseractKeychain:
-    :commit: 099038f5ccaa61400bd89731ca7da05db3c01687
+    :commit: e335f23e9e5ba4fc76db98e6c6491a04a12565f0
     :git: "git@github.com:ypopovych/swift-keychain.git"
   TesseractOpenWallet:
     :commit: bcad1d4d3ca0b8f4d92f79640571fbba90ba6dfe
@@ -177,12 +177,12 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
   Bond: 48ffda2418dde1da39bad39495c32a55f3ad23b9
-  CKMnemonic: 88e745afffea6f3c719c799d9869a2ea5eb9f08b
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
+  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
   Differ: 9fcee7602542d7c6484ce05a0faec1c11258ed63
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   MaterialTextField: f1a0786588e4d3610cb9bb62d2adbe9777cebbf9
+  MnemonicKit: c3517dfad15b7cc21ede6660b433aaae083faaa4
   PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
   ReactiveKit: 5f4c440715d671901c382ae6b42ed3337ce4699b
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
@@ -191,13 +191,13 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
-  TesseractEthereumBase: 33148c974f63dd81e638d84a74415793c32bb9d5
+  TesseractEthereumBase: cc36a0266461f2bceaa18e10942bfc91e31d0fa3
   TesseractEthereumWeb3: 24f316d6cb0d22cf5ea3b53e8fba224f73c8cf25
-  TesseractKeychain: 473558edc2ec9bc8e6f07427cb8e30b73868a751
+  TesseractKeychain: 2cbbc08729398002c839086c8b76d7386654e488
   TesseractOpenWallet: e4e3ac5d6e93e7d644a43d85f8dcdc645bfe9121
   TesseractWallet: c5a56293d6144bf695194ab0d3fb8476b4d64d30
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: 77596470eb305dece40bfd29bbe0bd1bac6636a2
+PODFILE CHECKSUM: 10963eb5da8b74e418d05ab68281ecdcb4aa8a7d
 
 COCOAPODS: 1.6.1
