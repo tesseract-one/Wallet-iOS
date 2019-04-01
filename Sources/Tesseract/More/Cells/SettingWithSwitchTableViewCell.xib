@@ -48,7 +48,7 @@
                         <rect key="frame" x="255" y="6.5" width="51" height="31"/>
                     </switch>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="4rG-Ea-Z1U" secondAttribute="trailing" constant="16" id="UFi-O7-7jW"/>
                     <constraint firstItem="4rG-Ea-Z1U" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aC6-mP-rDK"/>

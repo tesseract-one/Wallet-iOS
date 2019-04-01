@@ -13,7 +13,7 @@ class EthereumDataTypeTableViewCell: UITableViewCell {
     @IBOutlet weak var dataLabel: UILabel!
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var leftLineTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var borderedView: BorderedView!
+    @IBOutlet weak var borderedView: UIView!
     
     func setData(type: String, field: String) {
         dataLabel.text = "\(field): \(type)"

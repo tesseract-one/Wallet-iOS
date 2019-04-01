@@ -51,7 +51,7 @@ class SettingWithIconVM: ViewModel {
 class SettingWithSwitchVM: ViewModel {
     let title: String
     let description: String
-    let isEnabled: Bool
+    var isEnabled: Bool
     let switchAction: SafePublishSubject<Bool>
     
     init(title: String, description: String, key: String, settings: UserDefaults, switchAction: SafePublishSubject<Bool>, defaultValue: Bool) {
@@ -67,8 +67,9 @@ class SettingWithSwitchVM: ViewModel {
         
         super.init()
         
-        switchAction.with(weak: settings)
-            .observeNext { newValue, settings in
+        switchAction.with(weak: self)
+            .observeNext { newValue, sself in
+                sself.isEnabled = newValue // should update is
                 settings.set(newValue, forKey: key)
             }.dispose(in: bag)
     }

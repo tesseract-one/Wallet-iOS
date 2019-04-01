@@ -31,7 +31,7 @@ class ChooseNetworkTableViewController: UITableViewController, ModelVCProtocol {
                 tableView.selectRow(at: IndexPath(row: networkIndex, section: 0), animated: true, scrollPosition: .middle)
             }.dispose(in: reactive.bag)
         
-        tableView.reactive.selectedRowIndexPath.distinct().throttle(seconds: 0.5).map{ UInt64($0.item) + 1 }
+        tableView.reactive.selectedRowIndexPath.distinct().throttle(seconds: 0.1).map{ UInt64($0.item) + 1 }
             .bind(to: model.changeNetworkAction).dispose(in: reactive.bag)
         
         backButton.reactive.tap.throttle(seconds: 0.5)

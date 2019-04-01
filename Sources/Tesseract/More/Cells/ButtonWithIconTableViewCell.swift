@@ -10,16 +10,18 @@ import UIKit
 import ReactiveKit
 import Bond
 
-class ButtonWithIconTableViewCell: UITableViewCell {
+class ButtonWithIconTableViewCell: ViewModelCell<ButtonWithIconVM> {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var icon: UIImageView!
     
-    func setModel(model: ButtonWithIconVM) {
+    override func advise() {
+        guard let model = self.model else { return }
+        
         title.text = model.title
         icon.image = model.icon
         
-        self.reactive.tapGesture().throttle(seconds: 0.5).map { _ in }
-            .bind(to: model.action).dispose(in: reactive.bag)
+        self.reactive.tapGesture().throttle(seconds: 0.1).map { _ in }
+            .bind(to: model.action).dispose(in: bag)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

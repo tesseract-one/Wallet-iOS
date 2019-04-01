@@ -20,9 +20,39 @@ extension UIView {
         }
     }
     @IBInspectable
+    var borderColor: UIColor? {
+        get {
+            return layer.borderColor != nil ? UIColor(cgColor: layer.borderColor!) : nil
+        }
+        set {
+            layer.borderColor = newValue?.cgColor
+        }
+    }
+    
+    @IBInspectable
+    var borderWidth: CGFloat {
+        get {
+            return layer.borderWidth
+        }
+        set {
+            layer.borderWidth = newValue
+        }
+    }
+    
+    @IBInspectable
+    var cornerRadius: CGFloat {
+        get {
+            return layer.cornerRadius
+        }
+        set {
+            layer.masksToBounds = newValue > 0
+            layer.cornerRadius = newValue
+        }
+    }
+    @IBInspectable
     var shadowOpacity: Float {
         get {
-            return self.layer.shadowOpacity
+            return layer.shadowOpacity
         }
         set {
             layer.shadowOpacity = newValue
@@ -52,17 +82,10 @@ extension UIView {
     @IBInspectable
     var shadowColorIB: UIColor? {
         get {
-            if let color = layer.shadowColor {
-                return UIColor(cgColor: color)
-            }
-            return nil
+            return layer.shadowColor != nil ? UIColor(cgColor: layer.shadowColor!) : nil
         }
         set {
-            if let color = newValue {
-                layer.shadowColor = color.cgColor
-            } else {
-                layer.shadowColor = nil
-            }
+            layer.shadowColor = newValue?.cgColor
         }
     }
 }

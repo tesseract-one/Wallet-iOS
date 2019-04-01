@@ -69,14 +69,14 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
             let numberOfItemsInDeveloperSection = sself.tableSettings.collection.numberOfItems(inSection: 2)
-
+            
             if !isOn && numberOfItemsInDeveloperSection > 1 {
                 for _ in 1 ... numberOfItemsInDeveloperSection - 1 {
                     sself.tableSettings.removeItem(at: IndexPath(row: 1, section: 2))
                 }
             } else if isOn && numberOfItemsInDeveloperSection == 1 {
                 sself.tableSettings.appendItem(
-                    SettingWithWordVM(title: "Choose Network", activeDescription: sself.currentNetworkDescription, word: sself.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
+                    SettingWithWordVM(title: "Choose Network", activeDescription: sself.currentNetworkDescription, word: sself.currentNetwork, isEnabled: true, action: sself.changeNetworkAction),
                     toSectionAt: 2
                 )
             }
@@ -98,6 +98,9 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
                 wallet!.exists!.lock()
                 walletService.setWallet(wallet: wallet!.exists!)
             }.dispose(in: bag)
+        
+        createAccountAction.map { _ in (name: "CreateAccount", context: nil) }
+            .bind(to: goToView).dispose(in: bag)
     }
     
     private func setupTableSettigns() {

@@ -24,28 +24,28 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
         tableView.register(UINib(nibName: "SettingWithIconTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingWithIcon")
         tableView.register(UINib(nibName: "SettingWithSwitchTableViewCell", bundle: nil), forCellReuseIdentifier: "SettingWithSwitch")
         
-        model.tableSettings.bind(to: tableView, animated: true, rowAnimation: UITableView.RowAnimation.right) { data, indexPath, tableView in
+        model.tableSettings.bind(to: tableView, animated: true, rowAnimation: .top) { data, indexPath, tableView in
             let item = data[itemAt: indexPath]
             switch item {
             case let account as SettingWithAccountVM:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "AccountSetting") as! AccountTableViewCell
-                cell.setModel(model: account)
+                cell.model = account
                 return cell
             case let buttonWithIcon as ButtonWithIconVM:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "ButtonWithIconSetting") as! ButtonWithIconTableViewCell
-                cell.setModel(model: buttonWithIcon)
+                cell.model = buttonWithIcon
                 return cell
             case let settingWithWord as SettingWithWordVM:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SettingWithWord") as! SettingWithWordTableViewCell
-                cell.setModel(model: settingWithWord)
+                cell.model = settingWithWord
                 return cell
             case let settingWithIcon as SettingWithIconVM:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SettingWithIcon") as! SettingWithIconTableViewCell
-                cell.setModel(model: settingWithIcon)
+                cell.model = settingWithIcon
                 return cell
             case let settingWithSwitch as SettingWithSwitchVM:
                 let cell = tableView.dequeueReusableCell(withIdentifier: "SettingWithSwitch") as! SettingWithSwitchTableViewCell
-                cell.setModel(model: settingWithSwitch)
+                cell.model = settingWithSwitch
                 return cell
             default:
                 fatalError("Unknown cell type")

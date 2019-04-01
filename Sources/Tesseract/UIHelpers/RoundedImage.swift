@@ -17,11 +17,14 @@ class RoundedImage: UIImageView {
     }
   }
   
-  @IBInspectable var cornerRadius: CGFloat = 0.0 {
-    didSet {
+  @IBInspectable override var cornerRadius: CGFloat {
+    get {
+        return layer.cornerRadius
+    }
+    set {
       if !roundedByHeight {
-        layer.cornerRadius = self.cornerRadius
-        layer.masksToBounds = self.cornerRadius > 0
+        layer.cornerRadius = newValue
+        layer.masksToBounds = newValue > 0
       } else {
         layer.cornerRadius = self.frame.height / 2.0
         layer.masksToBounds = true

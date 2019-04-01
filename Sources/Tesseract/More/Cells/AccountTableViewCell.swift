@@ -10,8 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 
-
-class AccountTableViewCell: UITableViewCell {
+class AccountTableViewCell: ViewModelCell<SettingWithAccountVM> {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emojiLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
@@ -19,14 +18,16 @@ class AccountTableViewCell: UITableViewCell {
     
     var index: UInt32 = 0
     
-    func setModel(model: SettingWithAccountVM) {
+    override func advise() {
+        guard let model = self.model else { return }
+        
         nameLabel.text = model.name
         emojiLabel.text = model.emoji
         index = model.index
         
-        model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
+        model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

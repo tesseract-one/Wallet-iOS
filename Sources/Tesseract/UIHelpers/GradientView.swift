@@ -34,25 +34,6 @@ class GradientView: UIView {
     }
   }
   
-  @IBInspectable var borderColor: UIColor? {
-    didSet {
-      layer.borderColor = self.borderColor?.cgColor
-    }
-  }
-  
-  @IBInspectable var borderWidth: CGFloat = 0 {
-    didSet {
-      layer.borderWidth = self.borderWidth
-    }
-  }
-  
-  @IBInspectable var cornerRadius: CGFloat = 0 {
-    didSet {
-      layer.cornerRadius = self.cornerRadius
-      layer.masksToBounds = self.cornerRadius > 0
-    }
-  }
-  
   @IBInspectable var startPoint: CGPoint = CGPoint(x: 0, y: 0) {
     didSet {
       gradientLayer.startPoint = startPoint

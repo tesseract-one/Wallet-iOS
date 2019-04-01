@@ -6,8 +6,17 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
+        <array key="SF-Pro-Display-Semibold.otf">
+            <string>SFProDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--More-->
         <scene sceneID="6Vu-1X-2Mz">
@@ -75,7 +84,7 @@
         <!--Choose Network-->
         <scene sceneID="KMF-gj-avx">
             <objects>
-                <tableViewController storyboardIdentifier="ChooseNetwork" useStoryboardIdentifierAsRestorationIdentifier="YES" id="o2b-RO-sTc" customClass="ChooseNetworkTableViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ChooseNetwork" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="o2b-RO-sTc" customClass="ChooseNetworkTableViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="53" sectionFooterHeight="1" id="rWE-SH-9cg">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -86,6 +95,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Network" largeTitleDisplayMode="always" id="sSh-j7-shr">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="uSf-QA-O6H"/>
                         <barButtonItem key="leftBarButtonItem" title="Back" style="done" id="P5E-9v-Li7">
                             <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
@@ -100,9 +110,174 @@
             </objects>
             <point key="canvasLocation" x="97" y="-54"/>
         </scene>
+        <!--Create Account-->
+        <scene sceneID="Wgj-SW-bj1">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccount" useStoryboardIdentifierAsRestorationIdentifier="YES" id="q6M-h5-a8U" customClass="CreateAccountViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Yi2-6r-OFi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nq4-1h-iqU">
+                                <rect key="frame" x="16" y="72" width="343" height="47"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="It should be longer than 8 characters and don't use your usual password">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name=".SFNSText"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Your Password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wix-wl-cnt" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="143" width="343" height="35"/>
+                                <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardAppearance="alert" returnKeyType="continue" enablesReturnKeyAutomatically="YES" secureTextEntry="YES" textContentType="one-time-code"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
+                                        <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="defaultPlaceholderColor">
+                                        <color key="value" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
+                                        <color key="value" red="1" green="0.23137254900000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="underlineColor">
+                                        <color key="value" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="textPadding">
+                                        <size key="value" width="0.0" height="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="placeholderAnimatesOnFocus" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="nextResponderView" destination="Xsb-6N-8PJ" id="T40-9R-PE3"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-98-2LT">
+                                <rect key="frame" x="16" y="202" width="343" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="rfR-Lh-gVB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="12"/>
+                                <color key="textColor" red="0.57249265909194946" green="0.57258981466293335" blue="0.57247203588485718" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="smP-yG-fMh">
+                                <rect key="frame" x="16" y="236" width="343" height="284"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="22" id="DGQ-mb-j4J">
+                                    <size key="itemSize" width="55" height="55"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Bzh-R4-dbG" customClass="CreateAccountCollectionViewCell" customModule="Tesseract" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="55" height="55"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👨🏼‍💻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cS8-ai-VaR">
+                                                    <rect key="frame" x="5" y="3.5" width="45" height="48"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="40"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstItem="cS8-ai-VaR" firstAttribute="centerX" secondItem="Bzh-R4-dbG" secondAttribute="centerX" id="Gkl-ni-s0v"/>
+                                            <constraint firstItem="cS8-ai-VaR" firstAttribute="centerY" secondItem="Bzh-R4-dbG" secondAttribute="centerY" id="m9X-u7-Elu"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                <size key="value" width="0.0" height="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
+                                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="1"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="emojiLabel" destination="cS8-ai-VaR" id="ujK-vu-Nwe"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xsb-6N-8PJ" customClass="BorderedButton" customModule="Tesseract" customModuleProvider="target">
+                                <rect key="frame" x="16" y="544" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="c2S-2e-DCB"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                <state key="normal" title="Create Account">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Xsb-6N-8PJ" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="5SZ-uD-cX2"/>
+                            <constraint firstItem="DGs-98-2LT" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="6CT-p9-JDL"/>
+                            <constraint firstItem="DGs-98-2LT" firstAttribute="top" secondItem="Wix-wl-cnt" secondAttribute="bottom" constant="24" id="BX1-Zm-Qq7"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="Wix-wl-cnt" secondAttribute="trailing" constant="16" id="FEk-UO-jxF"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="DGs-98-2LT" secondAttribute="trailing" constant="16" id="LiH-Tp-lQD"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="Xsb-6N-8PJ" secondAttribute="trailing" constant="16" id="NyD-3n-9Yx"/>
+                            <constraint firstItem="Xsb-6N-8PJ" firstAttribute="top" secondItem="smP-yG-fMh" secondAttribute="bottom" constant="24" id="Uem-rL-kkq"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="smP-yG-fMh" secondAttribute="trailing" constant="16" id="WMk-C3-yp6"/>
+                            <constraint firstItem="smP-yG-fMh" firstAttribute="top" secondItem="DGs-98-2LT" secondAttribute="bottom" constant="16" id="aOt-9Y-WvQ"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="bottom" secondItem="Xsb-6N-8PJ" secondAttribute="bottom" constant="24" id="aet-oL-jFB"/>
+                            <constraint firstItem="nq4-1h-iqU" firstAttribute="top" secondItem="1Hb-xx-zW0" secondAttribute="top" constant="8" id="bbS-Go-beC"/>
+                            <constraint firstItem="Wix-wl-cnt" firstAttribute="leading" secondItem="Yi2-6r-OFi" secondAttribute="leading" constant="16" id="i7j-FR-pha"/>
+                            <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="nq4-1h-iqU" secondAttribute="trailing" constant="16" id="jsK-aY-cNY"/>
+                            <constraint firstItem="nq4-1h-iqU" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="pAv-W6-JHK"/>
+                            <constraint firstItem="Wix-wl-cnt" firstAttribute="top" secondItem="nq4-1h-iqU" secondAttribute="bottom" constant="24" id="xPf-td-5lO"/>
+                            <constraint firstItem="smP-yG-fMh" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="zbF-2T-u03"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="1Hb-xx-zW0"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Create Account" largeTitleDisplayMode="always" id="Fe2-bE-zBd">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="eTX-yA-N45"/>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
+                    <connections>
+                        <outlet property="accountImagesCV" destination="smP-yG-fMh" id="R54-kD-UFl"/>
+                        <outlet property="accountNameTF" destination="Wix-wl-cnt" id="UgN-rv-ZNm"/>
+                        <outlet property="createAccountButton" destination="Xsb-6N-8PJ" id="5Hf-Pw-hK3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HEn-rp-pqg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="863" y="-54"/>
+        </scene>
     </scenes>
     <resources>
-        <image name="menu-more-active" width="16" height="16"/>
-        <image name="menu-more-passive" width="16" height="16"/>
+        <image name="menu-more-active" width="20" height="20"/>
+        <image name="menu-more-passive" width="20" height="20"/>
     </resources>
 </document>
