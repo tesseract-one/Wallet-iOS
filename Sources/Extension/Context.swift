@@ -27,6 +27,8 @@ class ExtensionContext {
     
     let settings = UserDefaults(suiteName: SHARED_GROUP)!
     
+    let walletIsLoaded = SafePublishSubject<Bool>()
+    
     func bootstrap() {
         let storage = try! DatabaseWalletStorage(path: storagePath)
         
@@ -46,13 +48,11 @@ class ExtensionContext {
         walletService
             .loadWallet()
             .done { wallet in
-                if wallet == nil {
-                    throw ExtensionErrors.walletIsEmpty
-                }
+                self.walletIsLoaded.next(wallet != nil)
             }
-            .signal
-            .errorNode
-            .bind(to: errors)
+            .catch {
+                self.errors.next($0)
+            }
     }
     
     private var storagePath: String {

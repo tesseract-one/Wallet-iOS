@@ -32,6 +32,7 @@
 		926061DF22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 926061DD22415BAF006B5B50 /* TextWithHeaderTableViewCell.xib */; };
 		926061E022415BAF006B5B50 /* TextWithHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */; };
 		9268AFC62235679A00D94EA6 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9268AFC52235679A00D94EA6 /* Images.xcassets */; };
+		926C55552253DDBE00D14851 /* WalletNotInitializedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 926C55542253DDBE00D14851 /* WalletNotInitializedViewController.swift */; };
 		927C5ACB224E990100F2AA50 /* Numbers+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D82F4B2232E7A7003BDFE2 /* Numbers+Ethereum.swift */; };
 		927C5ACC224E990100F2AA50 /* Numbers+Ethereum.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D82F4B2232E7A7003BDFE2 /* Numbers+Ethereum.swift */; };
 		927C5AD0224EA75800F2AA50 /* EthereumEtherscanAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */; };
@@ -225,6 +226,7 @@
 		926061DE22415BAF006B5B50 /* TextWithHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextWithHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumEtherscanAPI.swift; sourceTree = "<group>"; };
 		9268AFC52235679A00D94EA6 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		926C55542253DDBE00D14851 /* WalletNotInitializedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletNotInitializedViewController.swift; sourceTree = "<group>"; };
 		928A915D22329F96005DA7B4 /* EthereumKeychainViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKeychainViewProvider.swift; sourceTree = "<group>"; };
 		928A915F2232A019005DA7B4 /* EthereumKeychainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKeychainViewController.swift; sourceTree = "<group>"; };
 		928A91612232B354005DA7B4 /* EthereumKeychain.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EthereumKeychain.storyboard; sourceTree = "<group>"; };
@@ -559,6 +561,7 @@
 				928A915C22329F01005DA7B4 /* Ethereum */,
 				92FE9727222CAFD1007DB61C /* Extension.entitlements */,
 				9299323422248422000EAD47 /* MainViewController.swift */,
+				926C55542253DDBE00D14851 /* WalletNotInitializedViewController.swift */,
 				928A916E2232DC08005DA7B4 /* ExtensionViewController.swift */,
 				928A916C2232D9A7005DA7B4 /* Context.swift */,
 				9299323622248422000EAD47 /* MainInterface.storyboard */,
@@ -1365,6 +1368,7 @@
 				92A1CE212241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift in Sources */,
 				928A91692232B7ED005DA7B4 /* EthereumKeychainSignDataViewController.swift in Sources */,
 				927C5AD1224EA75800F2AA50 /* EthereumEtherscanAPI.swift in Sources */,
+				926C55552253DDBE00D14851 /* WalletNotInitializedViewController.swift in Sources */,
 				9230791122302539004E3950 /* Constants.swift in Sources */,
 				D12CF8C0224811A100D370DE /* UIViewController+KeyboardDismiss.swift in Sources */,
 				D1D82F552233091C003BDFE2 /* ChooseAccountTableViewCell.swift in Sources */,

@@ -165,7 +165,7 @@ CHECKOUT OPTIONS:
     :commit: e335f23e9e5ba4fc76db98e6c6491a04a12565f0
     :git: "git@github.com:ypopovych/swift-keychain.git"
   TesseractOpenWallet:
-    :commit: bcad1d4d3ca0b8f4d92f79640571fbba90ba6dfe
+    :commit: ae5e04db79dba83f407089034e7b5cee3a369676
     :git: "git@github.com:ypopovych/ios-openwallet-sdk.git"
   TesseractWallet:
     :commit: c271be5291844fada9fa82c83c7bb486c829d602

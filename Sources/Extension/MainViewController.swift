@@ -34,7 +34,23 @@ class MainViewController: OpenWallet.ExtensionViewController {
                 sself.extensionContext!.cancelRequest(withError: err)
             }.dispose(in: reactive.bag)
         
+        context
+            .walletIsLoaded
+            .observeIn(.immediateOnMain)
+            .with(weak: self)
+            .observeNext { hasWallet, sself in
+                if !hasWallet {
+                    sself.walletIsNotInitialized()
+                }
+            }
+            .dispose(in: reactive.bag)
+        
         context.bootstrap()
+    }
+    
+    override func walletNotInitializedController() -> ExtensionWalletNotInitializedViewController {
+        return self.storyboard!.instantiateViewController(withIdentifier: "WalletIsNotInitialized")
+        as! WalletNotInitializedViewController
     }
     
     @IBAction func cancel() {
