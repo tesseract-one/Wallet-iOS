@@ -23,7 +23,7 @@ class ExtensionContext {
     let changeRateService = ChangeRateService()
     let passwordService = KeychainPasswordService()
     
-    let errors = SafePublishSubject<AnyError>()
+    let errors = SafePublishSubject<Swift.Error>()
     
     let settings = UserDefaults(suiteName: SHARED_GROUP)!
     

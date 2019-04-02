@@ -27,7 +27,7 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
             cell.setupCell(emoji: image)
         }.dispose(in: reactive.bag)
         
-        accountImagesCV.reactive.selectedItemIndexPath.distinct().throttle(seconds: 0.1).map { $0.row }
+        accountImagesCV.reactive.selectedItemIndexPath.distinctUntilChanged().throttle(seconds: 0.1).map { $0.row }
             .bind(to: model.accountEmojiIndex).dispose(in: reactive.bag)
         
         createAccountButton.reactive.tap.throttle(seconds: 0.5)

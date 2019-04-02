@@ -33,7 +33,7 @@ class TransactionInfoService {
             }
             .dispose(in: bag)
         
-        combineLatest(network.distinct(), activeAccount)
+        combineLatest(network.distinctUntilChanged(), activeAccount)
             .observeIn(.main)
             .observeNext { [weak self] _, _ in
                 self?.balance.next(nil)
@@ -41,7 +41,7 @@ class TransactionInfoService {
             }
             .dispose(in: bag)
         
-        combineLatest(balance.distinct(), activeAccount)
+        combineLatest(balance.distinctUntilChanged(), activeAccount)
             .observeIn(.main)
             .observeNext { [weak self] _,  _ in
                 self?.updateTransactions()

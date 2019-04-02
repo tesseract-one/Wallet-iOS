@@ -76,7 +76,7 @@ class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     func bootstrap() {
         let service = ethWeb3Service
-        combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
+        combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinctUntilChanged())
             .flatMapLatest { account, net in
                 service.getBalance(account: Int(account!.index), networkId: net).signal
             }
@@ -88,7 +88,7 @@ class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             sendAmount.debounce(interval: 0.5),
             activeAccount.filter { $0 != nil },
             address.filter {$0 != nil && $0!.count == 42}.debounce(interval: 0.5),
-            ethereumNetwork.distinct()
+            ethereumNetwork.distinctUntilChanged()
         ).flatMapLatest { amount, account, address, network in
             service.estimateSendTxGas(account: Int(account!.index), to: address!, amountEth: amount, networkId: network).signal
         }

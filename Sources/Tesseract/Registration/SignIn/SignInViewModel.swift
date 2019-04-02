@@ -59,8 +59,8 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let biometricFlow = Property<BiometricFlow?>(nil)
     
-    let textFieldErrors = SafePublishSubject<AnyError>()
-    let biometricErrors = SafePublishSubject<AnyError>()
+    let textFieldErrors = SafePublishSubject<Swift.Error>()
+    let biometricErrors = SafePublishSubject<Swift.Error>()
     
     init (walletService: WalletService, passwordService: KeychainPasswordService, settings: UserDefaults) {
         self.walletService = walletService
@@ -129,7 +129,7 @@ extension SignInViewModel {
             .bind(to: correctPassword)
             .dispose(in: bag)
         
-        checkPassword.filter { $0 == false }.map{ _ in AnyError(NSError()) }.bind(to: textFieldErrors).dispose(in: bag)
+        checkPassword.filter { $0 == false }.map{ _ in NSError() }.bind(to: textFieldErrors).dispose(in: bag)
         
         textFieldErrors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
         textFieldErrors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
@@ -206,17 +206,17 @@ extension SignInViewModel {
                     .bind(to: unlockWallet).dispose(in: bag)
                
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .userDisallow }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .userDisallow }
                     .map { _ in BiometricFlow.DisallowBiometric }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .userCancel }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .userCancel }
                     .map { _ in BiometricFlow.EnterPassword }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .retryLimitExceeded }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .retryLimitExceeded }
                     .map { _ in BiometricFlow.ShowYesNoPopup }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)
@@ -257,17 +257,17 @@ extension SignInViewModel {
                     .dispose(in: bag)
                 
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .retryLimitExceeded }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .retryLimitExceeded }
                     .map { _ in BiometricFlow.ShowFingerPopup }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .userFallback }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .userFallback }
                     .map { _ in BiometricFlow.EnterPassword }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)
                 biometricErrors
-                    .filter { $0.error as! KeychainPasswordService.BiometricalErrors == .userCancel }
+                    .filter { $0 as! KeychainPasswordService.BiometricalErrors == .userCancel }
                     .map { _ in BiometricFlow.ShowYesNoPopup }
                     .bind(to: biometricFlow)
                     .dispose(in: bag)

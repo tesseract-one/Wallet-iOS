@@ -26,7 +26,7 @@ class MnemonicVerificationViewModel: ViewModel {
     let mnemonicError = Property<MnemonicVerificationError?>(nil)
     let mnemonicVerifiedSuccessfully = Property<Bool?>(nil)
     
-    let errors = SafePublishSubject<AnyError>()
+    let errors = SafePublishSubject<Swift.Error>()
     
     init (password: String, newWalletData: NewWalletData, walletService: WalletService, settings: UserDefaults) {
         self.password = password

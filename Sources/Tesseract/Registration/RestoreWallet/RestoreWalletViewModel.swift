@@ -33,7 +33,7 @@ class RestoreWalletViewModel: ViewModel {
     let confirmPassword = Property<String>("")
     let restoreWalletSuccessfully = Property<Bool?>(nil)
     
-    let errors = SafePublishSubject<AnyError>()
+    let errors = SafePublishSubject<Swift.Error>()
     let mnemonicError = Property<MnemonicErrors?>(nil)
     let passwordError = Property<PasswordErrors?>(nil)
     
@@ -101,7 +101,7 @@ extension RestoreWalletViewModel {
                     let newWalletData = try walletService.restoreWalletData(mnemonic: mnemonicAndPwd.1, password: mnemonicAndPwd.0)
                      return (walletService, mnemonicAndPwd.0, newWalletData)
                 } catch  {
-                    throw AnyError(MnemonicErrors.wrong)
+                    throw MnemonicErrors.wrong
                 }
             }
             .pourError(into: errors)

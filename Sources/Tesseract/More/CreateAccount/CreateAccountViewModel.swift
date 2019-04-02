@@ -49,7 +49,7 @@ class CreateAccountViewModel: ViewModel, BackRoutableViewModelProtocol {
             .filter { $0.1 != "" }
             .with(latestFrom: accountEmojiIndex)
             .with(weak: walletService)
-            .flatMapLatest { args -> ResultSignal<Account, AnyError> in
+            .flatMapLatest { args -> ResultSignal<Account, Swift.Error> in
                 let (((_, name), emojiIndex), walletService) = args
                 return walletService.newAccount(name: name, emoji: emojis[emojiIndex]).signal
             }

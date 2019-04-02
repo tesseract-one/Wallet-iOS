@@ -17,7 +17,6 @@
 		923079122230257D004E3950 /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198922282ED000407F9A /* WalletService.swift */; };
 		92307913223025F8004E3950 /* Signal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */; };
 		92307914223025FB004E3950 /* Promise+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198B2228312A00407F9A /* Promise+Extensions.swift */; };
-		92307915223025FE004E3950 /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198D2228323300407F9A /* AnyError.swift */; };
 		92564D3722356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3322356BFA00319D8E /* SF-Pro-Display-Semibold.otf */; };
 		92564D3822356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3322356BFA00319D8E /* SF-Pro-Display-Semibold.otf */; };
 		92564D3922356BFA00319D8E /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 92564D3422356BFA00319D8E /* SF-Pro-Display-Regular.otf */; };
@@ -58,7 +57,6 @@
 		92CB198722281EA400407F9A /* RouterContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198622281EA400407F9A /* RouterContext.swift */; };
 		92CB198A22282ED000407F9A /* WalletService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198922282ED000407F9A /* WalletService.swift */; };
 		92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198B2228312A00407F9A /* Promise+Extensions.swift */; };
-		92CB198E2228323300407F9A /* AnyError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198D2228323300407F9A /* AnyError.swift */; };
 		92CB199022283B9200407F9A /* ApplicationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB198F22283B9200407F9A /* ApplicationService.swift */; };
 		92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1991222840B300407F9A /* RegistrationViewFactory.swift */; };
 		92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199322286EBF00407F9A /* RouterViewModel.swift */; };
@@ -250,7 +248,6 @@
 		92CB198622281EA400407F9A /* RouterContext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterContext.swift; sourceTree = "<group>"; };
 		92CB198922282ED000407F9A /* WalletService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletService.swift; sourceTree = "<group>"; };
 		92CB198B2228312A00407F9A /* Promise+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Extensions.swift"; sourceTree = "<group>"; };
-		92CB198D2228323300407F9A /* AnyError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyError.swift; sourceTree = "<group>"; };
 		92CB198F22283B9200407F9A /* ApplicationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationService.swift; sourceTree = "<group>"; };
 		92CB1991222840B300407F9A /* RegistrationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewFactory.swift; sourceTree = "<group>"; };
 		92CB199322286EBF00407F9A /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
@@ -901,7 +898,6 @@
 				D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */,
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
 				92CB198B2228312A00407F9A /* Promise+Extensions.swift */,
-				92CB198D2228323300407F9A /* AnyError.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1284,7 +1280,6 @@
 				D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */,
 				D14A502D2229B7660069A262 /* HomeViewModel.swift in Sources */,
 				92CB199022283B9200407F9A /* ApplicationService.swift in Sources */,
-				92CB198E2228323300407F9A /* AnyError.swift in Sources */,
 				D1463111224E90F2004D68AD /* ChooseNetworkViewModel.swift in Sources */,
 				D19EA619223FD1C200365868 /* TextView.swift in Sources */,
 				D1E2022D224A9E4200DA7F9A /* SettingWithIconTableViewCell.swift in Sources */,
@@ -1373,7 +1368,6 @@
 				9230791122302539004E3950 /* Constants.swift in Sources */,
 				D12CF8C0224811A100D370DE /* UIViewController+KeyboardDismiss.swift in Sources */,
 				D1D82F552233091C003BDFE2 /* ChooseAccountTableViewCell.swift in Sources */,
-				92307915223025FE004E3950 /* AnyError.swift in Sources */,
 				92307914223025FB004E3950 /* Promise+Extensions.swift in Sources */,
 				92307913223025F8004E3950 /* Signal+Extensions.swift in Sources */,
 				928A91672232B786005DA7B4 /* EthereumKeychainSignTransactionViewController.swift in Sources */,

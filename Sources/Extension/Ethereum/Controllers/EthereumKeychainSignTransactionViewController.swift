@@ -51,9 +51,9 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         
         runWalletOperation
             .with(latestFrom: context.wallet)
-            .flatMapLatest { (_, wallet) -> ResultSignal<Data, AnyError> in
+            .flatMapLatest { (_, wallet) -> ResultSignal<Data, Swift.Error> in
                 guard let wallet = wallet.exists else {
-                    return ResultSignal<Data, AnyError>.failure(AnyError(NSError()))
+                    return ResultSignal<Data, Swift.Error>.failure(NSError())
                 }
                 
                 return wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal

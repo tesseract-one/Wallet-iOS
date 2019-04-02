@@ -37,7 +37,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
 
         runWalletOperation
             .with(latestFrom: context.wallet)
-            .flatMapLatest { (_, wallet) -> ResultSignal<Data, AnyError> in
+            .flatMapLatest { (_, wallet) -> ResultSignal<Data, Swift.Error> in
                 wallet.exists!.eth_signData(account: account, data: reqData, networkId: networkId).signal
             }
             .pourError(into: context.errors)

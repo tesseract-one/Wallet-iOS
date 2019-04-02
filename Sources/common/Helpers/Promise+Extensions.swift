@@ -10,11 +10,11 @@ import PromiseKit
 import ReactiveKit
 
 public extension Promise {
-    var signal : ResultSignal<T, AnyError> {
-        return ResultSignal<T, AnyError> { observer in
+    var signal : ResultSignal<T, Swift.Error> {
+        return ResultSignal<T, Swift.Error> { observer in
             self
                 .done { observer.completed(with: .success($0)) }
-                .catch { observer.completed(with: .failure(AnyError($0))) }
+                .catch { observer.completed(with: .failure($0)) }
             return observer.disposable
         }
     }

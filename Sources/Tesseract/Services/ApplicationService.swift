@@ -17,7 +17,7 @@ class ApplicationService {
     
     var walletService: WalletService!
     
-    var errorNode: SafePublishSubject<AnyError>!
+    var errorNode: SafePublishSubject<Swift.Error>!
     
     weak var rootContainer: ViewControllerContainer!
     
@@ -40,7 +40,7 @@ class ApplicationService {
     }
     
     private func bindRegistration() {
-        walletService.wallet.distinct()
+        walletService.wallet.distinctUntilChanged()
             .observeIn(.immediateOnMain)
             .map { [weak self] wallet -> UIViewController? in
                 switch wallet {

@@ -29,7 +29,7 @@ class ApplicationContext: RouterContextProtocol {
     let transactions = Property<Array<EthereumTransactionLog>?>(nil)
     
     // Node to send critical errors
-    public let errorNode = SafePublishSubject<AnyError>()
+    public let errorNode = SafePublishSubject<Swift.Error>()
     
     // Settings
     let settings = UserDefaults(suiteName: SHARED_GROUP)!

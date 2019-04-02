@@ -34,7 +34,7 @@ class ReceiveFundsViewModel: ViewModel {
     
     func bootstrap() {
         let service = ethWeb3Service
-        combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinct())
+        combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinctUntilChanged())
             .flatMapLatest { account, net in
                 service.getBalance(account: Int(account!.index), networkId: net).signal
             }

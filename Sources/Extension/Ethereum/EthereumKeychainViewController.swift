@@ -32,7 +32,7 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: E
     var request: Request!
     
     let runWalletOperation = SafePublishSubject<Void>()
-    let passwordErrorSiganl = SafePublishSubject<AnyError>()
+    let passwordErrorSiganl = SafePublishSubject<Swift.Error>()
     
     private var _passwordField: MFTextField {
         return (self as! EthereumKeychainViewControllerBaseControls).passwordField

@@ -42,7 +42,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let amountUSD = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
-    let error = SafePublishSubject<AnyError>()
+    let error = SafePublishSubject<Swift.Error>()
     
     let send = SafePublishSubject<String>()
     let fingerAction = SafePublishSubject<Void>()
@@ -83,7 +83,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         send.with(weak: self)
             .resultMap { password, sself -> (String, ReviewSendTransactionViewModel) in
                 guard try sself.walletService.checkPassword(password: password) else {
-                    throw AnyError(SendError.wrongPassword)
+                    throw SendError.wrongPassword
                 }
                 return (password, sself)
             }

@@ -60,7 +60,7 @@ class WalletService {
     var wallet: Property<WalletState>!
     var activeAccount: Property<Account?>!
     
-    var errorNode: SafePublishSubject<AnyError>!
+    var errorNode: SafePublishSubject<Swift.Error>!
     
     
     func bootstrap() {

@@ -15,7 +15,7 @@ class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let goToView = SafePublishSubject<ToView>()
     
-    let errors = SafePublishSubject<AnyError>()
+    let errors = SafePublishSubject<Swift.Error>()
     
     override init () {
         super.init()
