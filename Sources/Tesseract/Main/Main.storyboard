@@ -33,7 +33,6 @@
                         <color key="barTintColor" red="0.13331639766693115" green="0.13334554433822632" blue="0.13331016898155212" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                             <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
@@ -72,7 +71,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="center" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-8g-uXP">
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-8g-uXP">
                                     <rect key="frame" x="16" y="44" width="183" height="36"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👨🏼‍💻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ien-FQ-kme">
@@ -95,7 +94,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U4R-dj-f3w">
                                     <rect key="frame" x="16" y="96" width="288" height="154.5"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TesCard" translatesAutoresizingMaskIntoConstraints="NO" id="TGV-lJ-6MQ" customClass="RoundedImage" customModule="Tesseract" customModuleProvider="target">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TesCard" translatesAutoresizingMaskIntoConstraints="NO" id="TGV-lJ-6MQ">
                                             <rect key="frame" x="0.0" y="0.0" width="288" height="154.5"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -110,7 +109,6 @@
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                                     <real key="value" value="2"/>
                                                 </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                                     <real key="value" value="1"/>
                                                 </userDefinedRuntimeAttribute>
@@ -125,7 +123,7 @@
                                             <color key="textColor" red="0.7843137255" green="0.7843137255" blue="0.7843137255" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-E7-9Hw">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ezl-E7-9Hw">
                                             <rect key="frame" x="24" y="48" width="113.5" height="48"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="48" id="Bi1-H6-2I6"/>

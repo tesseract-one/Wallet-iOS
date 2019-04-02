@@ -44,11 +44,11 @@
                             <constraint firstAttribute="bottom" secondItem="0dE-R5-hmH" secondAttribute="bottom" constant="4" id="urZ-DS-cvQ"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
-                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                 <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
+                                <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                 <real key="value" value="0.5"/>
@@ -59,7 +59,6 @@
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
                                 <real key="value" value="1"/>
                             </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>

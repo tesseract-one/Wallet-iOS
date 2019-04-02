@@ -97,7 +97,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hG7-ql-mTD">
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-K3-vjp" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F9M-K3-vjp">
                                         <rect key="frame" x="16" y="100" width="285" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -144,7 +144,7 @@
                                             <outlet property="nextResponderView" destination="F9M-K3-vjp" id="Frh-Iy-7Pn"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rb4-En-RnZ" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rb4-En-RnZ">
                                         <rect key="frame" x="309" y="100" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -217,7 +217,7 @@
                                                 <rect key="frame" x="16" y="40" width="343" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sNr-Wr-j39">
-                                                        <rect key="frame" x="0.0" y="-7.5" width="49.5" height="15"/>
+                                                        <rect key="frame" x="0.0" y="-7.5" width="47" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="b82-q1-uxm"/>
                                                         </constraints>
@@ -331,7 +331,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw1-ym-dKY" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
+                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -360,7 +360,7 @@
                                             <outlet property="nextResponderView" destination="9rQ-xw-Eup" id="H4a-79-HvF"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9rQ-xw-Eup">
                                         <rect key="frame" x="16" y="100" width="285" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -376,7 +376,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-Ur-uhs" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ego-Ur-uhs">
                                         <rect key="frame" x="309" y="100" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -404,7 +404,6 @@
                                     <constraint firstItem="Cw1-ym-dKY" firstAttribute="leading" secondItem="YXV-ge-vf1" secondAttribute="leading" constant="16" id="vSe-tx-F0K"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                         <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
@@ -473,7 +472,7 @@
                                                 <rect key="frame" x="16" y="74" width="343" height="44"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fii-Pk-3lf">
-                                                        <rect key="frame" x="0.0" y="-7.5" width="49.5" height="15"/>
+                                                        <rect key="frame" x="0.0" y="-7.5" width="47" height="15"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="15" id="LcR-JV-g8a"/>
                                                         </constraints>
@@ -489,7 +488,7 @@
                                                         </constraints>
                                                     </view>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="wSU-s9-LmB">
-                                                        <rect key="frame" x="0.0" y="11.5" width="131" height="21.5"/>
+                                                        <rect key="frame" x="0.0" y="11.5" width="124.5" height="21.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="👨🏼‍💻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NAx-fT-6BN">
                                                                 <rect key="frame" x="0.0" y="0.0" width="24" height="21.5"/>
@@ -498,7 +497,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uc8-w3-Ja6">
-                                                                <rect key="frame" x="32" y="0.0" width="99" height="21.5"/>
+                                                                <rect key="frame" x="32" y="0.0" width="92.5" height="21.5"/>
                                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -597,7 +596,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TransactionAmount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfZ-gh-zjR">
-                                                        <rect key="frame" x="0.0" y="10" width="138.5" height="24"/>
+                                                        <rect key="frame" x="0.0" y="10" width="135.5" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="mLf-XQ-POb"/>
                                                         </constraints>
@@ -606,7 +605,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="16P-Gh-t4S">
-                                                        <rect key="frame" x="312" y="10" width="31" height="24"/>
+                                                        <rect key="frame" x="313" y="10" width="30" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="Yaq-XF-TiN"/>
                                                         </constraints>
@@ -649,7 +648,7 @@
                                                         </constraints>
                                                     </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TotalAmount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wHB-Su-Koz">
-                                                        <rect key="frame" x="0.0" y="10" width="90" height="24"/>
+                                                        <rect key="frame" x="0.0" y="10" width="88" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="dHq-2i-fka"/>
                                                         </constraints>
@@ -658,7 +657,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ux1-Ob-J77">
-                                                        <rect key="frame" x="312" y="10" width="31" height="24"/>
+                                                        <rect key="frame" x="313" y="10" width="30" height="24"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="24" id="rdd-BS-Thl"/>
                                                         </constraints>
@@ -801,7 +800,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1a5-HF-awJ" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
+                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -831,7 +830,7 @@
                                             <outlet property="nextResponderView" destination="4sR-Xk-UrV" id="JI1-Hr-Tua"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sR-Xk-UrV" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4sR-Xk-UrV">
                                         <rect key="frame" x="16" y="100" width="285" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -847,7 +846,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCG-nJ-dNb" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCG-nJ-dNb">
                                         <rect key="frame" x="309" y="100" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -875,7 +874,6 @@
                                     <constraint firstAttribute="height" constant="174" id="z6a-Wx-SVx"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                         <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
@@ -938,7 +936,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6n5-1M-RCR" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
+                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -967,7 +965,7 @@
                                             <outlet property="nextResponderView" destination="NIy-0d-ST6" id="vJl-kS-ROi"/>
                                         </connections>
                                     </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIy-0d-ST6" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NIy-0d-ST6">
                                         <rect key="frame" x="16" y="100" width="285" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -983,7 +981,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRy-sO-7mq" customClass="BorderedButton" customModule="Extension" customModuleProvider="target">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iRy-sO-7mq">
                                         <rect key="frame" x="309" y="100" width="50" height="50"/>
                                         <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -1011,7 +1009,6 @@
                                     <constraint firstAttribute="height" constant="174" id="xqd-gZ-3Wq"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounds" value="NO"/>
                                     <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
                                         <real key="value" value="0.5"/>
                                     </userDefinedRuntimeAttribute>
