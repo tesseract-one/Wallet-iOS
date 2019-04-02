@@ -92,8 +92,9 @@
 		D1339381224BA90A00E69E57 /* WalletTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */; };
 		D143DCDD225247C80075BAC9 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */; };
 		D143DCDF225247E60075BAC9 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */; };
-		D143DCE122524D3F0075BAC9 /* CreateAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCE022524D3F0075BAC9 /* CreateAccountCollectionViewCell.swift */; };
 		D143DCE3225259EC0075BAC9 /* ViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */; };
+		D143DCEC22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D143DCEA22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib */; };
+		D143DCED22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCEB22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift */; };
 		D1463111224E90F2004D68AD /* ChooseNetworkViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */; };
 		D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A500F222964F00069A262 /* MnemonicViewModel.swift */; };
 		D14A5013222977BE0069A262 /* MnemonicVerificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A5012222977BE0069A262 /* MnemonicVerificationViewModel.swift */; };
@@ -285,8 +286,9 @@
 		D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewModel.swift; sourceTree = "<group>"; };
 		D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
-		D143DCE022524D3F0075BAC9 /* CreateAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModelCell.swift; path = ../ViewModelCell.swift; sourceTree = "<group>"; };
+		D143DCEA22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountCollectionViewCell.xib; sourceTree = "<group>"; };
+		D143DCEB22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkViewModel.swift; sourceTree = "<group>"; };
 		D14A500F222964F00069A262 /* MnemonicViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicViewModel.swift; sourceTree = "<group>"; };
 		D14A5012222977BE0069A262 /* MnemonicVerificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MnemonicVerificationViewModel.swift; sourceTree = "<group>"; };
@@ -692,7 +694,8 @@
 			children = (
 				D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */,
 				D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */,
-				D143DCE022524D3F0075BAC9 /* CreateAccountCollectionViewCell.swift */,
+				D143DCEA22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib */,
+				D143DCEB22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift */,
 			);
 			path = CreateAccount;
 			sourceTree = "<group>";
@@ -1073,6 +1076,7 @@
 				D1201FEB222DA9E70030C2C2 /* Receive.storyboard in Resources */,
 				D1E2022C224A9E4200DA7F9A /* SettingWithIconTableViewCell.xib in Resources */,
 				92564D3B22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */,
+				D143DCEC22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib in Resources */,
 				D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */,
 				D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */,
 				D10F9161224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib in Resources */,
@@ -1260,6 +1264,7 @@
 				D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */,
 				92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */,
 				927C5AD0224EA75800F2AA50 /* EthereumEtherscanAPI.swift in Sources */,
+				D143DCED22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift in Sources */,
 				92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */,
 				D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */,
 				D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */,
@@ -1317,7 +1322,6 @@
 				D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */,
 				D1D5F85F21B8494F007D0433 /* RoundedImage.swift in Sources */,
 				D1B13CCA222DBCE5005213F7 /* ReceiveFundsViewController.swift in Sources */,
-				D143DCE122524D3F0075BAC9 /* CreateAccountCollectionViewCell.swift in Sources */,
 				927C5ACB224E990100F2AA50 /* Numbers+Ethereum.swift in Sources */,
 				D1201FE8222D99CE0030C2C2 /* SendFundsViewController.swift in Sources */,
 				D143DCDF225247E60075BAC9 /* CreateAccountViewModel.swift in Sources */,

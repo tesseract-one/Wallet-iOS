@@ -11,15 +11,6 @@ import UIKit
 @IBDesignable
 extension UIView {
     @IBInspectable
-    var maskToBounds: Bool {
-        get {
-            return self.layer.masksToBounds
-        }
-        set {
-            layer.masksToBounds = newValue
-        }
-    }
-    @IBInspectable
     var borderColor: UIColor? {
         get {
             return layer.borderColor != nil ? UIColor(cgColor: layer.borderColor!) : nil
@@ -75,6 +66,7 @@ extension UIView {
             return layer.shadowRadius
         }
         set {
+            layer.masksToBounds = newValue < 0
             layer.shadowRadius = newValue
         }
     }

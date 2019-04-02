@@ -12,11 +12,10 @@ import ReactiveKit
 extension UIViewController {
     public func setupKeyboardDismiss() {
         view.reactive.tapGesture()
-//            .map { tap in
-//                tap.cancelsTouchesInView = false
-//                return
-//            }
-            .map { _ in }
+            .map { tap in
+                tap.cancelsTouchesInView = false
+                return
+            }
             .with(weak: view)
             .observeNext { $0.endEditing(true)}
             .dispose(in: reactive.bag)
