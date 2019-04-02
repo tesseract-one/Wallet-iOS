@@ -35,8 +35,6 @@ class CreateAccountViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         accountImages.replace(with: emojis)
         
-        accountEmojiIndex.observeNext { print($0) }.dispose(in: bag)
-        
         createAccountAction
             .with(latestFrom: accountName)
             .filter { $0.1 == "" }

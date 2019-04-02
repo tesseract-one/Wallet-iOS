@@ -27,6 +27,7 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
             cell.setupCell(emoji: image)
         }.dispose(in: reactive.bag)
         
+        accountImagesCV.selectItem(at: IndexPath(row: 0, section: 0), animated: false, scrollPosition: .left)
         accountImagesCV.reactive.selectedItemIndexPath.distinctUntilChanged().throttle(seconds: 0.1).map { $0.row }
             .bind(to: model.accountEmojiIndex).dispose(in: reactive.bag)
         
@@ -48,7 +49,7 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
             self?.navigationController?.popViewController(animated: true)
         }.dispose(in: reactive.bag)
         
-//        setupKeyboardDismiss()
+        setupKeyboardDismiss()
     }
 }
 
