@@ -13,7 +13,7 @@ import Wallet
 class CreateAccountViewModel: ViewModel, BackRoutableViewModelProtocol {
     let walletService: WalletService
     
-    let emojis = ["👨🏼‍💻", "👩🏿‍🎤", "👯‍♀️", "🦄", "😈", "💩", "👾", "🦹‍♀️"]
+    let emojis: [String]
     
     let accountName = Property<String>("")
     let accountEmojiIndex = Property<Int>(0)
@@ -26,6 +26,9 @@ class CreateAccountViewModel: ViewModel, BackRoutableViewModelProtocol {
     
     init(walletService: WalletService) {
         self.walletService = walletService
+        self.emojis = UIScreen.main.bounds.width < 375 ?
+            ["👨🏼‍💻", "👩🏿‍🎤", "👯‍♀️", "🦄", "😈", "💩", "👾", "🦹‍♀️"] :
+            ["👨🏼‍💻", "👩🏿‍🎤", "👯‍♀️", "🦄", "😈", "👻", "💩", "👾", "👺", "🦹‍♀️"]
         
         super.init()
     }

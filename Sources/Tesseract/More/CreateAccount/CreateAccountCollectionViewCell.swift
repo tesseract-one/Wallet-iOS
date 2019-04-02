@@ -25,10 +25,16 @@ class CreateAccountCollectionViewCell: UICollectionViewCell {
     override var isSelected: Bool {
         didSet {
             if isSelected {
-                layer.shadowColor = UIColor(red: 74/255, green: 148/255, blue: 227/255, alpha: 1.0).cgColor
+                layer.borderWidth = 0.5
+                layer.borderColor = UIColor(red: 74/255, green: 148/255, blue: 227/255, alpha: 1.0).cgColor
+                layer.shadowColor = .none
+                layer.shadowRadius = 0
                 layer.shadowOffset = CGSize(width: 0.0, height: 0.0)
             } else {
+                layer.borderWidth = 0.0
+                layer.borderColor = .none
                 layer.shadowColor = UIColor.black.cgColor
+                layer.shadowRadius = 1.0
                 layer.shadowOffset = CGSize(width: 0.0, height: 0.5)
             }
         }
