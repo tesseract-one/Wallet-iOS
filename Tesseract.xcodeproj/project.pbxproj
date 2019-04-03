@@ -143,6 +143,7 @@
 		D1C5DDB3224ABEAF0063546D /* SettingsViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C5DDB2224ABEAF0063546D /* SettingsViewModels.swift */; };
 		D1CC01222253B6460056BC44 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC01212253B6460056BC44 /* WalletViewModel.swift */; };
 		D1CC01242253DE150056BC44 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC01212253B6460056BC44 /* WalletViewModel.swift */; };
+		D1CC012622554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */; };
 		D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D292E621B16329000DA665 /* RoundDouble.swift */; };
 		D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */; };
 		D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */; };
@@ -335,6 +336,7 @@
 		D1C5DDB0224ABB970063546D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		D1C5DDB2224ABEAF0063546D /* SettingsViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModels.swift; sourceTree = "<group>"; };
 		D1CC01212253B6460056BC44 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableObservable2DArray+RemoveFromSubrange.swift"; sourceTree = "<group>"; };
 		D1D292E621B16329000DA665 /* RoundDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDouble.swift; sourceTree = "<group>"; };
 		D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachBarTextFieldBackground.swift; sourceTree = "<group>"; };
 		D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBackgroundTableView.swift; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */,
 				D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */,
 				D11C404822407D080068D883 /* TextView+Bond.swift */,
+				D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1309,6 +1312,7 @@
 				D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */,
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessBars.swift in Sources */,
+				D1CC012622554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift in Sources */,
 				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
 				D1C5DDB1224ABB970063546D /* SettingsViewModel.swift in Sources */,
 				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,

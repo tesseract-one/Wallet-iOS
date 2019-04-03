@@ -56,6 +56,12 @@ class WalletService {
             }
             .bind(to: activeAccount)
             .dispose(in: bag)
+        
+        activeAccount.filter { $0 != nil }
+            .with(weak: settings)
+            .observeNext { account, settings in
+                settings.set(account!.id, forKey: "activeAccountId")
+            }.dispose(in: bag)
     }
     
     func loadWallet() -> Promise<WalletViewModel?> {

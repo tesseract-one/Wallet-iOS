@@ -54,7 +54,11 @@ class HomeViewModel: ViewModel {
             .bind(to: balanceUSD)
             .dispose(in: bag)
         
-        wallet.map{$0 != nil ? $0!.accounts.count > 1 : false}.bind(to: isMoreThanOneAccount)
+        wallet.with(weak: self)
+            .observeNext { wallet, sself in
+                wallet!.accounts.map { $0.collection.count > 0 }
+                    .bind(to: sself.isMoreThanOneAccount).dispose(in: wallet!.bag)
+            }.dispose(in: bag)
     }
     
     func updateBalance() {

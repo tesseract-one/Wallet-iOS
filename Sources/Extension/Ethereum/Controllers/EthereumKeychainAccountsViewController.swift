@@ -49,14 +49,14 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
         
         context.activeAccount.bind(to: activeAccount).dispose(in: reactive.bag)
         
-        combineLatest(accounts, activeAccount.filter{$0 != nil}).observeNext { [weak self] accounts, activeAccount in
-            if (accounts.collection.count > activeAccount!.index) {
-                self?.chooseAccountTableView.selectRow(at: IndexPath(row: Int(activeAccount!.index), section: 0), animated: true, scrollPosition: .middle)
-            }
-        }.dispose(in: reactive.bag)
+        combineLatest(accounts.filter{$0.collection.count > 0}, activeAccount.filter{$0 != nil})
+            .observeNext { [weak self] accounts, activeAccount in
+                let activeAccountIndex = accounts.collection.firstIndex(of: activeAccount!).int!
+                self?.chooseAccountTableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: true, scrollPosition: .middle)
+            }.dispose(in: reactive.bag)
         
-        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5)
-            .map { Int($0.item) }
+        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.1)
+            .map { Int($0.row) }
             .with(latestFrom: accounts)
             .map { accountIndex, accounts in
                 accounts.collection.first { $0.index == accountIndex }!

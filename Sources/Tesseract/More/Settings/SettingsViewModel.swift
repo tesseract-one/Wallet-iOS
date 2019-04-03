@@ -17,6 +17,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let changeRateService: ChangeRateService
     
     let wallet = Property<WalletViewModel?>(nil)
+    let activeAccount = Property<Account?>(nil)
     let accounts = MutableObservableArray<Account>()
     let network = Property<UInt64>(0)
     let settings: UserDefaults
@@ -33,7 +34,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let currentNetwork = Property<String>("RKB")
     let currentNetworkDescription = Property<String>("Rinkeby Network")
     let changeNetworkAction = SafePublishSubject<Void>()
-    let showInfoAboutTesseractAcion = SafePublishSubject<Void>()
+    let showInfoAboutTesseractAction = SafePublishSubject<Void>()
     let logoutAction = SafePublishSubject<Void>()
     
     let goToView = SafePublishSubject<ToView>()
@@ -50,8 +51,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     func bootstrap() {
         setupTableSettigns()
         
-        wallet
-            .filter { $0 != nil }
+        wallet.filter { $0 != nil }
             .with(weak: self)
             .observeNext { wallet, sself in
                 wallet!.accounts.bind(to: sself.accounts).dispose(in: wallet!.bag)
@@ -74,12 +74,10 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         network.map { NETWORKS[Int($0) - 1].name }.bind(to: currentNetworkDescription)
         
         switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
-            let numberOfItemsInDeveloperSection = sself.tableSettings.collection.numberOfItems(inSection: 2)
+            let numberOfItemsInDeveloperSection = sself.tableSettings[sectionAt: 2].items.count
             
             if !isOn && numberOfItemsInDeveloperSection > 1 {
-                for _ in 1 ... numberOfItemsInDeveloperSection - 1 {
-                    sself.tableSettings.removeItem(at: IndexPath(row: 1, section: 2))
-                }
+                sself.tableSettings.removeFromSubrange(section: 2, range: 1... )
             } else if isOn && numberOfItemsInDeveloperSection == 1 {
                 sself.tableSettings.appendItem(
                     SettingWithWordVM(title: "Choose Network", activeDescription: sself.currentNetworkDescription, word: sself.currentNetwork, isEnabled: true, action: sself.changeNetworkAction),
@@ -92,8 +90,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             .bind(to: goToView).dispose(in: bag)
         
         viewModelAccounts.with(weak: tableSettings).observeNext { accounts, tableSettings in
-            tableSettings.removeSection(at: 0)
-            tableSettings.insert(section: "Your Accounts", at: 0)
+            tableSettings.removeFromSubrange(section: 0, range: ...)
             tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
         }.dispose(in: bag)
         
@@ -144,7 +141,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         tableSettings.appendSection("Other")
         tableSettings.appendItem(
-            SettingWithIconVM(title: "About Tesseract", description: "Info about current version and company.", icon: UIImage(named: "chevron")!, action: showInfoAboutTesseractAcion),
+            SettingWithIconVM(title: "About Tesseract", description: "Info about current version and company.", icon: UIImage(named: "chevron")!, action: showInfoAboutTesseractAction),
             toSectionAt: 3
         )
         tableSettings.appendItem(

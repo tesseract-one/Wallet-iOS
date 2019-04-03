@@ -46,8 +46,8 @@
         <!--More-->
         <scene sceneID="fvG-y9-VzC">
             <objects>
-                <tableViewController storyboardIdentifier="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="AeC-RR-txd" customClass="SettingsTableViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="53" sectionFooterHeight="1" id="8mX-jM-Bcn">
+                <tableViewController storyboardIdentifier="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" clearsSelectionOnViewWillAppear="NO" id="AeC-RR-txd" customClass="SettingsTableViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="60" estimatedRowHeight="60" sectionHeaderHeight="53" sectionFooterHeight="1" id="8mX-jM-Bcn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14508002996444702" green="0.14511102437973022" blue="0.14507344365119934" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
