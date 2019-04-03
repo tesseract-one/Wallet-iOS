@@ -15,7 +15,7 @@ import Wallet
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
-    let wallet = Property<WalletState?>(nil)
+    let wallet = Property<WalletViewModel?>(nil)
     let activeAccount = Property<Account?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     
@@ -54,7 +54,7 @@ class HomeViewModel: ViewModel {
             .bind(to: balanceUSD)
             .dispose(in: bag)
         
-        wallet.map{$0!.exists != nil ? $0!.exists!.accounts.count > 1 : false}.bind(to: isMoreThanOneAccount)
+        wallet.map{$0 != nil ? $0!.accounts.count > 1 : false}.bind(to: isMoreThanOneAccount)
     }
     
     func updateBalance() {

@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="uRB-u7-lZc">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="uRB-u7-lZc">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="274"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <subviews>
@@ -168,6 +168,8 @@
                     <navigationItem key="navigationItem" id="q0l-jX-kyo"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="accountEmojiLabel" destination="Ien-FQ-kme" id="rhw-8n-wNg"/>
+                        <outlet property="accountNameLabel" destination="WOQ-Oy-KMu" id="dyx-X8-BuQ"/>
                         <outlet property="accountView" destination="X7t-8g-uXP" id="OpX-7s-mds"/>
                         <outlet property="balanceLabel" destination="Ezl-E7-9Hw" id="fgp-Sn-a30"/>
                         <outlet property="cardTopConstraint" destination="sXo-MR-YCb" id="c5f-eL-sOC"/>

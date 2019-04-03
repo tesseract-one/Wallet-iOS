@@ -15,6 +15,8 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
+    @IBOutlet weak var accountEmojiLabel: UILabel!
+    @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     
     @IBOutlet weak var cardView: UIImageView!
@@ -31,6 +33,16 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
         }.dispose(in: bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
+        
+        let activeAccount = model.activeAccount.filter { $0 != nil }
+        activeAccount
+            .map { $0!.associatedData[.emoji]?.string }
+            .bind(to: accountEmojiLabel.reactive.text)
+            .dispose(in: reactive.bag)
+        activeAccount
+            .map { $0!.associatedData[.name]?.string }
+            .bind(to: accountNameLabel.reactive.text)
+            .dispose(in: reactive.bag)
         
         setupAccountView()
     }

@@ -28,6 +28,11 @@ class ApplicationService {
     var settings: UserDefaults!
     var ethereumNetwork: Property<UInt64>!
     
+    let isAppLoaded = Property<Bool>(false)
+    let isWalletLocked = Property<Bool>(true)
+    
+    let rootViewController = Property<UIViewController>(UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
+    
     func bootstrap() {
         bindRegistration()
         // Bootstrap Step 2
@@ -36,26 +41,52 @@ class ApplicationService {
     }
     
     private func exec() {
-        let _ = walletService.loadWallet()
+        walletService.loadWallet().done { _ in
+            self.isAppLoaded.next(true)
+            }.catch {
+                self.errorNode.next($0)
+        }
     }
     
     private func bindRegistration() {
-        walletService.wallet.distinctUntilChanged()
-            .observeIn(.immediateOnMain)
-            .map { [weak self] wallet -> UIViewController? in
-                switch wallet {
-                case .empty: return UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
-                case .notExist: return self?.registrationViewFactory.registrationView
-                case .locked(_): return self?.registrationViewFactory.unlockView
-                case .unlocked(_): return try! self?.walletViewFactory.viewController(for: .root)
-                }
+        walletService.wallet
+            .filter { $0 != nil }
+            .distinctUntilChanged()
+            .with(weak: self)
+            .observeNext { wallet, sself in
+                wallet!.isLocked.bind(to: sself.isWalletLocked).dispose(in: wallet!.bag)
+            }.dispose(in: bag)
+        
+        combineLatest(walletService.wallet, isAppLoaded)
+            .filter { $0 == nil && $1 }
+            .map { _, _ in }
+            .with(weak: self)
+            .map { sself in
+                sself.registrationViewFactory.registrationView
             }
+            .bind(to: rootViewController)
+            .dispose(in: bag)
+        
+        combineLatest(isWalletLocked, isAppLoaded)
+            .filter { $1 }
+            .map { $0.0 }
+            .with(weak: self)
+            .map { isLocked, sself in
+                return isLocked
+                    ? sself.registrationViewFactory.unlockView
+                    : try! sself.walletViewFactory.viewController(for: .root)
+            }
+            .bind(to: rootViewController)
+            .dispose(in: bag)
+        
+        rootViewController
+            .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { view, sself in
                 if sself.rootContainer.view != nil {
-                    sself.rootContainer.setViewController(vc: view!, animated: true)
+                    sself.rootContainer.setViewController(vc: view, animated: true)
                 } else {
-                    sself.rootContainer.setViewController(vc: view!, animated: false)
+                    sself.rootContainer.setViewController(vc: view, animated: false)
                 }
             }
             .dispose(in: bag)

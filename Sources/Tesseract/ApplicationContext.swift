@@ -21,9 +21,11 @@ class ApplicationContext: RouterContextProtocol {
     var walletViewFactory: ViewFactoryProtocol!
 
     // State
-    let wallet: Property<WalletState> = Property(.empty)
+    let wallet: Property<WalletViewModel?> = Property(nil)
     let ethereumNetwork: Property<UInt64> = Property(0)
     let activeAccount: Property<Account?> = Property(nil)
+    
+    let isApplicationStarted = Property<Bool>(false)
     
     let balance = Property<Double?>(nil)
     let transactions = Property<Array<EthereumTransactionLog>?>(nil)
@@ -49,6 +51,7 @@ class ApplicationContext: RouterContextProtocol {
         walletService.wallet = wallet
         walletService.errorNode = errorNode
         walletService.activeAccount = activeAccount
+        walletService.settings = settings
         
         applicationService.walletService = walletService
         applicationService.errorNode = errorNode

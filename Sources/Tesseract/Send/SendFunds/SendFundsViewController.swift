@@ -15,6 +15,8 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     
     var model: ViewModel!
     
+    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var balanceInUSDLabel: UILabel!
     
@@ -52,6 +54,16 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         }.dispose(in: reactive.bag)
         
         model.address.bidirectionalBind(to: addressField.reactive.text).dispose(in: reactive.bag)
+        
+        let activeAccount = model.activeAccount.filter { $0 != nil }
+        activeAccount
+            .map { $0!.associatedData[.emoji]?.string }
+            .bind(to: accountEmojiLabel.reactive.text)
+            .dispose(in: reactive.bag)
+        activeAccount
+            .map { $0!.associatedData[.name]?.string }
+            .bind(to: accountNameLabel.reactive.text)
+            .dispose(in: reactive.bag)
         
         reviewButton.reactive.tap
             .throttle(seconds: 0.3)

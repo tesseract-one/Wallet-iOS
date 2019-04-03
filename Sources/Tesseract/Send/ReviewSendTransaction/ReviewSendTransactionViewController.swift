@@ -17,6 +17,8 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     
     var model: ViewModel!
     
+    @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var balance: UILabel!
     @IBOutlet weak var address: UILabel!
     @IBOutlet weak var sentAmount: UILabel!
@@ -43,6 +45,16 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             .with(latestFrom: passwordField.reactive.text)
             .map { _, password in password ?? "" }
             .bind(to: model.send)
+            .dispose(in: reactive.bag)
+        
+        let activeAccount = model.account.filter { $0 != nil }
+        activeAccount
+            .map { $0!.associatedData[.emoji]?.string }
+            .bind(to: accountEmojiLabel.reactive.text)
+            .dispose(in: reactive.bag)
+        activeAccount
+            .map { $0!.associatedData[.name]?.string }
+            .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         
         model.amountString.bind(to: sentAmount.reactive.text).dispose(in: reactive.bag)

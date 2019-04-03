@@ -11,18 +11,18 @@ import ReactiveKit
 import Bond
 import Wallet
 
-
 class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let walletService: WalletService
     let web3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     
-    let wallet = Property<WalletState?>(nil)
+    let wallet = Property<WalletViewModel?>(nil)
+    let accounts = MutableObservableArray<Account>()
     let network = Property<UInt64>(0)
     let settings: UserDefaults
     
     let tableSettings = MutableObservableArray2D<String, ViewModel>(Array2D())
-    let accounts = MutableObservableArray<ViewModel>()
+    let viewModelAccounts = MutableObservableArray<ViewModel>()
     
     let createAccountAction = SafePublishSubject<Void>()
     let currentConversion = Property<String>("USD")
@@ -50,17 +50,23 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     func bootstrap() {
         setupTableSettigns()
         
-        wallet.with(weak: self)
-            .map{ wallet, sself -> [ViewModel] in
-                let accounts = wallet!.exists?.accounts ?? []
-                var accountsVM: [ViewModel] = accounts.map { SettingWithAccountVM(account: $0, web3Service: sself.web3Service, changeRateService: sself.changeRateService, network: sself.network) }
+        wallet
+            .filter { $0 != nil }
+            .with(weak: self)
+            .observeNext { wallet, sself in
+                wallet!.accounts.bind(to: sself.accounts).dispose(in: wallet!.bag)
+            }.dispose(in: bag)
+        
+        accounts.with(weak: self)
+            .map{ accounts, sself -> [ViewModel] in
+                var accountsVM: [ViewModel] = accounts.collection.map { SettingWithAccountVM(account: $0, web3Service: sself.web3Service, changeRateService: sself.changeRateService, network: sself.network) }
                 let createAccountVM = ButtonWithIconVM(title: "Create Account", icon:  UIImage(named: "plus")!, action: sself.createAccountAction)
                 
                 accountsVM.append(createAccountVM)
                 
                 return accountsVM
             }
-            .bind(to: accounts)
+            .bind(to: viewModelAccounts)
             .dispose(in: bag)
         
         
@@ -85,7 +91,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         changeNetworkAction.map { _ in (name: "ChooseNetwork", context: nil) }
             .bind(to: goToView).dispose(in: bag)
         
-        accounts.with(weak: tableSettings).observeNext { accounts, tableSettings in
+        viewModelAccounts.with(weak: tableSettings).observeNext { accounts, tableSettings in
             tableSettings.removeSection(at: 0)
             tableSettings.insert(section: "Your Accounts", at: 0)
             tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
@@ -95,8 +101,8 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             .with(weak: walletService)
             .with(latestFrom: wallet)
             .observeNext { walletService, wallet in
-                wallet!.exists!.lock()
-                walletService.setWallet(wallet: wallet!.exists!)
+                wallet!.lock()
+                walletService.setWallet(wallet: wallet!)
             }.dispose(in: bag)
         
         createAccountAction.map { _ in (name: "CreateAccount", context: nil) }

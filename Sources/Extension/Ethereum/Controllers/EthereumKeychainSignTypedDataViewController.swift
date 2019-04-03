@@ -213,11 +213,20 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         
         let ethAcc = request.account
         context.wallet
-            .map {
-                $0.exists?.accounts.first{
+            .filter { $0 != nil }
+            .mapError { $0 as Error }
+            .map { wallet -> Account in
+                let account = wallet!.accounts.collection.first {
                     ethAcc.lowercased() == (try? $0.eth_address().hex(eip55: false))
                 }
+                
+                guard account != nil else {
+                    throw OpenWalletError.eth_keychainWrongAccount(ethAcc)
+                }
+                
+                return account!
             }
+            .suppressAndFeedError(into: context.errors)
             .bind(to: account)
             .dispose(in: reactive.bag)
 
@@ -233,7 +242,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             .with(latestFrom: account)
             .flatMapLatest { (arg, account) -> ResultSignal<Data, Swift.Error> in
                 let (_, wallet) = arg
-                return wallet.exists!.eth_signTypedData(
+                return wallet!.wallet.eth_signTypedData(
                     account: try! account!.eth_address(),
                     data: TypedData(
                         primaryType: request.primaryType,
