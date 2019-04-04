@@ -12,12 +12,16 @@ import MaterialTextField
 import Bond
 import OpenWallet
 import EthereumWeb3
+import Wallet
 
 class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<EthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
     @IBOutlet weak var passwordField: MFTextField!
+    
+    @IBOutlet weak var accountEmojiLabel: UILabel!
+    @IBOutlet weak var accountNameLabel: UILabel!
     
     @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
@@ -49,14 +53,36 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         
         let req = self.request!
         
+        let activeAccount = context.wallet
+            .filter { $0 != nil }
+            .mapError { $0 as Error }
+            .map { wallet -> Account in
+                let activeAccount = wallet!.accounts.collection.first { (try? $0.eth_address().hex(eip55: false) == req.from.lowercased()) ?? false }
+                guard activeAccount != nil else {
+                    throw OpenWalletError.eth_keychainWrongAccount(req.from)
+                }
+                return activeAccount!
+            }
+            .suppressAndFeedError(into: context.errors)
+        
+        activeAccount
+            .map { $0.associatedData[.emoji]?.string }
+            .bind(to: accountEmojiLabel.reactive.text)
+            .dispose(in: reactive.bag)
+        
+        activeAccount
+            .map { $0.associatedData[.name]?.string }
+            .bind(to: accountNameLabel.reactive.text)
+            .dispose(in: reactive.bag)
+        
         runWalletOperation
             .with(latestFrom: context.wallet)
             .flatMapLatest { (_, wallet) -> ResultSignal<Data, Swift.Error> in
-                guard let wallet = wallet.exists else {
+                guard let wallet = wallet else {
                     return ResultSignal<Data, Swift.Error>.failure(NSError())
                 }
                 
-                return wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
+                return wallet.wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
             }
             .pourError(into: context.errors)
             .with(weak: self)

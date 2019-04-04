@@ -53,6 +53,23 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
         }
         .dispose(in: reactive.bag)
         
+        combineLatest(model.accounts, model.activeAccount.filter{ $0 != nil })
+            .observeNext { [weak self] accounts, activeAccount in
+                let activeAccountIndex = self!.model.accounts.collection.firstIndex(of: activeAccount!).int!
+                self?.tableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: false, scrollPosition: .none)
+            }.dispose(in: reactive.bag)
+        
+        tableView.reactive.selectedRowIndexPath.throttle(seconds: 0.1)
+            .filter { Int($0.section) == 0 }
+            .map { Int($0.row) }
+            .with(latestFrom: model.accounts)
+            .filter { $1.collection.count > $0 } // not last elements in this section (like addAccount)
+            .map { accountIndex, accounts in
+                accounts.collection[accountIndex]
+            }
+            .bind(to: model.activeAccount)
+            .dispose(in: reactive.bag)
+        
         goToViewAction.observeNext { [weak self] name, context in
             let vc = try! self?.viewController(for: .named(name: name), context: context)
             self?.navigationController?.pushViewController(vc!, animated: true)
@@ -90,6 +107,10 @@ extension SettingsTableViewController {
         
         return header
     }
+    
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return indexPath.section == 0
+    }
 }
 
 extension SettingsTableViewController: ContextSubject {
@@ -98,6 +119,7 @@ extension SettingsTableViewController: ContextSubject {
         model = SettingsViewModel(walletService: appCtx.walletService, web3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
         
         appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
+        appCtx.activeAccount.bidirectionalBind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.network).dispose(in: model.bag)
         
         model.bootstrap()

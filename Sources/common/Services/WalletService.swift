@@ -16,52 +16,24 @@ extension Account.AssociatedKeys {
     static let emoji = Account.AssociatedKeys(rawValue: "emoji")
 }
 
-enum WalletState: Equatable {
-    case empty
-    case notExist
-    case locked(Wallet)
-    case unlocked(Wallet)
-    
-    var unlocked: Wallet? {
-        switch self {
-        case .unlocked(let w): return w
-        default: return nil
-        }
-    }
-    
-    var exists: Wallet? {
-        switch self {
-        case .unlocked(let w): return w
-        case .locked(let w): return w
-        default: return nil
-        }
-    }
-    
-    var isEmpty: Bool {
-        switch self {
-        case .empty: return true
-        default: return false
-        }
-    }
-}
-
 class WalletService {
     enum Error: Swift.Error {
-        case walletIsNotLoaded
+        case walletIsNotInitialized
         case noStoredWallet
     }
-    
+
     private let bag = DisposeBag()
     
     private var walletManager: Manager!
     
     var storage: StorageProtocol!
     
-    var wallet: Property<WalletState>!
+    var wallet: Property<WalletViewModel?>!
     var activeAccount: Property<Account?>!
     
     var errorNode: SafePublishSubject<Swift.Error>!
     
+    var settings: UserDefaults!
     
     func bootstrap() {
         walletManager = Manager(
@@ -69,22 +41,42 @@ class WalletService {
             storage: storage
         )
         
-        wallet!.map { $0.exists != nil ? $0.exists!.accounts[0] : nil }.bind(to: activeAccount).dispose(in: bag)
+        wallet.with(weak: settings)
+            .map { wallet, settings -> Account? in
+                guard let wallet = wallet else {
+                    return nil
+                }
+                
+                guard let activeAccountId = settings.object(forKey: "activeAccountId") as? String else {
+                    settings.set(wallet.accounts[0].id, forKey: "activeAccountId")
+                    return wallet.accounts[0]
+                }
+                
+                return wallet.accounts.collection.first { $0.id == activeAccountId } ?? wallet.accounts[0]
+            }
+            .bind(to: activeAccount)
+            .dispose(in: bag)
+        
+        activeAccount.filter { $0 != nil }
+            .with(weak: settings)
+            .observeNext { account, settings in
+                settings.set(account!.id, forKey: "activeAccountId")
+            }.dispose(in: bag)
     }
     
-    func loadWallet() -> Promise<Wallet?> {
+    func loadWallet() -> Promise<WalletViewModel?> {
         let promise = walletManager
             .listWalletIds()
-            .then { ids -> Promise<WalletState> in
+            .then { ids -> Promise<WalletViewModel?> in
                 guard ids.count > 0 else { throw Error.noStoredWallet }
-                return self.walletManager.load(with: ids[0]).map{.locked($0)}
+                return self.walletManager.load(with: ids[0]).map{ WalletViewModel(wallet: $0) }
             }
-            .recover { err -> Promise<WalletState> in
+            .recover { err -> Promise<WalletViewModel?> in
                 if case StorageError.noData(_) = err {
-                    return Promise.value(.notExist)
+                    return Promise.value(nil)
                 }
                 if case Error.noStoredWallet = err {
-                    return Promise.value(.notExist)
+                    return Promise.value(nil)
                 }
                 throw err
             }
@@ -93,36 +85,33 @@ class WalletService {
             .executeIn(.immediateOnMain)
             .suppressedErrors
             .bind(to: wallet)
-        return promise.map { $0.exists }
+        
+        return promise
     }
     
     func checkPassword(password: String) throws -> Bool {
-        guard let wallet = wallet.value.exists else {
-            throw Error.walletIsNotLoaded
+        guard let wallet = wallet.value else {
+            throw Error.walletIsNotInitialized
         }
         return wallet.checkPassword(password: password)
     }
     
     func unlockWallet(password: String) throws {
-        guard let wallet = wallet.value.exists else {
-            throw Error.walletIsNotLoaded
+        guard let wallet = wallet.value else {
+            throw Error.walletIsNotInitialized
         }
         try wallet.unlock(password: password)
-        setWallet(wallet: wallet)
     }
     
     func newAccount(name: String, emoji: String) -> Promise<Account> {
-        guard let wallet = wallet.value.exists else {
-            return Promise(error: Error.walletIsNotLoaded)
+        guard let wallet = wallet.value else {
+            return Promise(error: Error.walletIsNotInitialized)
         }
         return Promise()
             .map {
-                let account = try wallet.addAccount()
-                account.associatedData[.name] = name
-                account.associatedData[.emoji] = emoji
-                return account
+                try wallet.addAccount(emoji: emoji, name: name)
             }
-            .then { acc in self.walletManager.save(wallet: wallet).map{ acc } }
+            .then { acc in self.walletManager.save(wallet: wallet.wallet).map{ acc } }
     }
     
     func createWalletData(password: String) throws -> NewWalletData {
@@ -133,7 +122,7 @@ class WalletService {
         return try walletManager.restoreWalletData(mnemonic: mnemonic, password: password)
     }
     
-    func newWallet(data: NewWalletData, password: String, isMetamask: Bool) -> Promise<Wallet> {
+    func newWallet(data: NewWalletData, password: String, isMetamask: Bool) -> Promise<WalletViewModel> {
         return walletManager.listWalletIds()
             .map { ids -> (Wallet, Array<String>) in
                 let wallet = try self.walletManager.create(from: data, password: password)
@@ -147,18 +136,18 @@ class WalletService {
             }
             .then { wallet, ids in // We have only one wallet in app. Remove old.
                 when(fulfilled: ids.map{self.walletManager.remove(walletId: $0)})
-                    .map { wallet }
+                    .map { WalletViewModel(wallet: wallet) }
             }
     }
     
     func saveWallet() -> Promise<Void> {
-        guard let wallet = wallet.value.exists else {
-            return Promise(error: Error.walletIsNotLoaded)
+        guard let wallet = wallet.value else {
+            return Promise(error: Error.walletIsNotInitialized)
         }
-        return walletManager.save(wallet: wallet)
+        return walletManager.save(wallet: wallet.wallet)
     }
     
-    func setWallet(wallet: Wallet) {
-        self.wallet.next(wallet.isLocked ? .locked(wallet) : .unlocked(wallet))
+    func setWallet(wallet: WalletViewModel) {
+        self.wallet.next(wallet)
     }
 }

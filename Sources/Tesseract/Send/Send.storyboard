@@ -256,6 +256,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="accountEmojiLabel" destination="5v9-nh-rmq" id="Gdw-Ar-sN1"/>
+                        <outlet property="accountNameLabel" destination="tfX-yZ-6yG" id="vjK-A9-0Jd"/>
                         <outlet property="addressField" destination="RNW-vB-Wfi" id="FhO-xz-j8x"/>
                         <outlet property="balanceInUSDLabel" destination="N9m-0U-Pvo" id="kCQ-dl-6N2"/>
                         <outlet property="balanceLabel" destination="CHH-1j-4Km" id="yIO-a8-VoF"/>
@@ -660,6 +662,8 @@
                     <navigationItem key="navigationItem" title="Review" largeTitleDisplayMode="never" id="hpa-6r-QPw"/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
+                        <outlet property="accountEmojiLabel" destination="HJ1-CG-OE6" id="Vdn-wW-lsW"/>
+                        <outlet property="accountNameLabel" destination="PXn-BW-7hX" id="bw9-EX-wBy"/>
                         <outlet property="address" destination="w4R-6K-Kzr" id="6ZY-lt-c5B"/>
                         <outlet property="balance" destination="KzO-pU-OWw" id="QqA-iL-eAb"/>
                         <outlet property="bottomConstraint" destination="qFC-ZW-Yau" id="PdA-CD-E2C"/>

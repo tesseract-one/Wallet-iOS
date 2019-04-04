@@ -331,7 +331,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cw1-ym-dKY" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
+                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -435,6 +435,8 @@
                     <connections>
                         <outlet property="acceptBtnRightConstraint" destination="rJO-Kn-dnl" id="6Td-ZW-z45"/>
                         <outlet property="acceptButton" destination="9rQ-xw-Eup" id="xVi-Ww-6Ev"/>
+                        <outlet property="accountEmojiLabel" destination="O0w-Ce-bSw" id="tTj-oN-uN9"/>
+                        <outlet property="accountNameLabel" destination="LD1-tL-kch" id="3Y4-xA-9K8"/>
                         <outlet property="bottomConstraint" destination="APS-xO-WA2" id="0ID-SH-193"/>
                         <outlet property="fingerButton" destination="Ego-Ur-uhs" id="rDp-rg-Dpw"/>
                         <outlet property="passwordField" destination="Cw1-ym-dKY" id="jIK-jn-2BP"/>
@@ -800,7 +802,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1a5-HF-awJ" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
+                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -905,6 +907,8 @@
                     <connections>
                         <outlet property="acceptBtnRightConstraint" destination="g20-eL-igp" id="tPP-1o-Elg"/>
                         <outlet property="acceptButton" destination="4sR-Xk-UrV" id="TjY-sF-VpO"/>
+                        <outlet property="accountEmojiLabel" destination="NAx-fT-6BN" id="Qps-B8-v4Y"/>
+                        <outlet property="accountNameLabel" destination="uc8-w3-Ja6" id="co9-bb-yAT"/>
                         <outlet property="addressLabel" destination="39A-4X-skD" id="Ira-Ip-Xkj"/>
                         <outlet property="bottomConstraint" destination="imn-i1-YCk" id="AMP-Zb-uFk"/>
                         <outlet property="dataLabel" destination="Vjt-eE-DCm" id="6NJ-1D-ZgK"/>
@@ -936,7 +940,7 @@
                                 <rect key="frame" x="0.0" y="493" width="375" height="174"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6n5-1M-RCR" customClass="NextResponderTextField" customModule="Extension" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="41" width="343" height="35"/>
+                                        <rect key="frame" x="16" y="56" width="343" height="20"/>
                                         <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>

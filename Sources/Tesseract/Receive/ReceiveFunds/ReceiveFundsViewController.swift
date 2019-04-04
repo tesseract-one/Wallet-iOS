@@ -15,6 +15,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
+    @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var qrCodeImageView: QRCodeView!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
@@ -29,6 +30,11 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
             .observeNext { _, address in
                 UIPasteboard.general.string = address?.hex(eip55: false)
             }.dispose(in: reactive.bag)
+        
+        model.activeAccount.filter { $0 != nil }
+            .map { $0!.associatedData[.emoji]?.string }
+            .bind(to: accountEmojiLabel.reactive.text)
+            .dispose(in: reactive.bag)
         
         model.qrCodeAddress.bind(to: qrCodeImageView.data).dispose(in: reactive.bag)
         model.address.map{$0?.hex(eip55: false)}.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)

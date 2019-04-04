@@ -291,6 +291,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountEmojiLabel" destination="xjV-q3-IMH" id="HCh-uO-tgh"/>
                         <outlet property="addressLabel" destination="ves-dx-gdD" id="mRc-jb-H7i"/>
                         <outlet property="balanceLabel" destination="fDJ-LR-L1I" id="Bfo-5u-6gR"/>
                         <outlet property="copyButton" destination="k7h-CQ-Es9" id="apd-az-end"/>

@@ -16,8 +16,8 @@ import OpenWallet
 class EthereumKeychainAccountsViewController: EthereumKeychainViewController<EthereumAccountKeychainRequest>,
     EthereumKeychainViewControllerBaseControls {
    
+    let activeAccount = Property<Account?>(nil)
     let accounts = MutableObservableArray<Account>()
-    let activeAccountIndex = Property<Int>(-1)
     
     private var topConstraintInitial: CGFloat = 0.0
 
@@ -36,33 +36,38 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
         
         title = "Access Request"
         
-        context.wallet
-            .map{$0.exists?.accounts ?? []}
-            .bind(to: accounts)
-            .dispose(in: reactive.bag)
+        context.wallet.observeNext { [weak self] wallet in
+            if let wallet = wallet {
+                wallet.accounts.bind(to: self!.accounts).dispose(in: wallet.bag)
+            }
+        }.dispose(in: reactive.bag)
         
         accounts.bind(to: chooseAccountTableView, cellType: ChooseAccountTableViewCell.self) { cell, account in
             cell.setModel(model: account)
             return
         }.dispose(in: bag)
         
-        context.activeAccount.map{ $0 != nil ? Int($0!.index) : -1}.bind(to: activeAccountIndex).dispose(in: reactive.bag)
+        context.activeAccount.bind(to: activeAccount).dispose(in: reactive.bag)
         
-        combineLatest(accounts, activeAccountIndex.filter{$0 >= 0}).observeNext { [weak self] accounts, index in
-            if (accounts.collection.count > index) {
-                self?.chooseAccountTableView.selectRow(at: IndexPath(row: Int(index), section: 0), animated: true, scrollPosition: .middle)
+        combineLatest(accounts.filter{$0.collection.count > 0}, activeAccount.filter{$0 != nil})
+            .observeNext { [weak self] accounts, activeAccount in
+                let activeAccountIndex = accounts.collection.firstIndex(of: activeAccount!).int!
+                self?.chooseAccountTableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: true, scrollPosition: .middle)
+            }.dispose(in: reactive.bag)
+        
+        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.1)
+            .map { Int($0.row) }
+            .with(latestFrom: accounts)
+            .map { accountIndex, accounts in
+                accounts.collection.first { $0.index == accountIndex }!
             }
-        }.dispose(in: reactive.bag)
-        
-        chooseAccountTableView.reactive.selectedRowIndexPath.throttle(seconds: 0.5).map{Int($0.item)}.bind(to: activeAccountIndex)
+            .bind(to: activeAccount)
+            .dispose(in: reactive.bag)
         
         runWalletOperation
-            .with(latestFrom: context.wallet)
-            .with(latestFrom: activeAccountIndex)
-            .map { (arg, accountIndex) -> String in
-                let (_, wallet) = arg
-                let account = wallet.exists?.accounts.first { $0.index == accountIndex }
-                return try! account!.eth_address().hex(eip55: false)
+            .with(latestFrom: activeAccount)
+            .map { _, activeAccount -> String in
+                return try! activeAccount!.eth_address().hex(eip55: false)
             }
             .with(weak: self)
             .observeNext { address, sself in

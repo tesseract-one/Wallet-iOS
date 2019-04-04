@@ -9,6 +9,10 @@
 import UIKit
 
 class ViewModelCell<Model: ViewModel>: UITableViewCell {
+    deinit {
+        bag.dispose()
+    }
+    
     var model: Model? = nil {
         willSet {
             unadvise()

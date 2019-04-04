@@ -141,6 +141,9 @@
 		D1C5DDAF224ABB860063546D /* SettingsTableVViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C5DDAE224ABB860063546D /* SettingsTableVViewController.swift */; };
 		D1C5DDB1224ABB970063546D /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C5DDB0224ABB970063546D /* SettingsViewModel.swift */; };
 		D1C5DDB3224ABEAF0063546D /* SettingsViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C5DDB2224ABEAF0063546D /* SettingsViewModels.swift */; };
+		D1CC01222253B6460056BC44 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC01212253B6460056BC44 /* WalletViewModel.swift */; };
+		D1CC01242253DE150056BC44 /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC01212253B6460056BC44 /* WalletViewModel.swift */; };
+		D1CC012622554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */; };
 		D1D292E721B16329000DA665 /* RoundDouble.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D292E621B16329000DA665 /* RoundDouble.swift */; };
 		D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */; };
 		D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */; };
@@ -332,6 +335,8 @@
 		D1C5DDAE224ABB860063546D /* SettingsTableVViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableVViewController.swift; sourceTree = "<group>"; };
 		D1C5DDB0224ABB970063546D /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		D1C5DDB2224ABEAF0063546D /* SettingsViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModels.swift; sourceTree = "<group>"; };
+		D1CC01212253B6460056BC44 /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
+		D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MutableObservable2DArray+RemoveFromSubrange.swift"; sourceTree = "<group>"; };
 		D1D292E621B16329000DA665 /* RoundDouble.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundDouble.swift; sourceTree = "<group>"; };
 		D1D5F84A21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SerachBarTextFieldBackground.swift; sourceTree = "<group>"; };
 		D1D5F84C21B6F00C007D0433 /* DarkBackgroundTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DarkBackgroundTableView.swift; sourceTree = "<group>"; };
@@ -464,6 +469,7 @@
 		9230790E223024C2004E3950 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1CC01202253B62B0056BC44 /* Models */,
 				D1A2114C2242A29F00DDF3F3 /* KeychainPasswordService.swift */,
 				92FE9734222D9651007DB61C /* ChangeRateService.swift */,
 				92CB199522294FA100407F9A /* EthereumWeb3Service.swift */,
@@ -676,6 +682,7 @@
 				D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */,
 				D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */,
 				D11C404822407D080068D883 /* TextView+Bond.swift */,
+				D1CC012522554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -861,6 +868,14 @@
 				D1C5DDB2224ABEAF0063546D /* SettingsViewModels.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		D1CC01202253B62B0056BC44 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				D1CC01212253B6460056BC44 /* WalletViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		D1D82F432232E04D003BDFE2 /* UIHelpers */ = {
@@ -1297,6 +1312,7 @@
 				D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */,
 				D131639621B96D5D0066FB4A /* GradientBorderedButton.swift in Sources */,
 				D171DE58219F21FD003134DD /* BorderlessBars.swift in Sources */,
+				D1CC012622554CC10056BC44 /* MutableObservable2DArray+RemoveFromSubrange.swift in Sources */,
 				92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */,
 				D1C5DDB1224ABB970063546D /* SettingsViewModel.swift in Sources */,
 				D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */,
@@ -1328,6 +1344,7 @@
 				92CB198722281EA400407F9A /* RouterContext.swift in Sources */,
 				92FE9742222E334D007DB61C /* TransactionTableViewCell.swift in Sources */,
 				D1D5F84D21B6F00C007D0433 /* DarkBackgroundTableView.swift in Sources */,
+				D1CC01222253B6460056BC44 /* WalletViewModel.swift in Sources */,
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
@@ -1386,6 +1403,7 @@
 				D1A2114F2242A3AC00DDF3F3 /* KeychainPasswordItem.swift in Sources */,
 				D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */,
 				928A915E22329F96005DA7B4 /* EthereumKeychainViewProvider.swift in Sources */,
+				D1CC01242253DE150056BC44 /* WalletViewModel.swift in Sources */,
 				D1A211502242A3B100DDF3F3 /* KeychainPasswordService.swift in Sources */,
 				D1D82F462232E0BF003BDFE2 /* ErrorTextField+Bind.swift in Sources */,
 			);

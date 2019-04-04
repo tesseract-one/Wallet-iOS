@@ -21,7 +21,6 @@ class SettingWithSwitchTableViewCell: ViewModelCell<SettingWithSwitchVM> {
         super.awakeFromNib()
         
         isEnabledSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75).translatedBy(x: 6.275, y: 0) // move to right size transformed switch
-        
     }
     
     override func advise() {
@@ -29,7 +28,7 @@ class SettingWithSwitchTableViewCell: ViewModelCell<SettingWithSwitchVM> {
         
         titleLabel.text = model.title
         descriptionLabel.text = model.description
-        isEnabledSwitch.isOn = model.isEnabled
+        isEnabledSwitch.setOn(model.isEnabled, animated: false)
 
         self.reactive.tapGesture().throttle(seconds: 0.1)
             .map{ _ in }
@@ -37,7 +36,7 @@ class SettingWithSwitchTableViewCell: ViewModelCell<SettingWithSwitchVM> {
             .map { !$0.isOn }
             .bind(to: toggleSwithAction)
             .dispose(in: bag)
-      
+        
         toggleSwithAction.bind(to: isEnabledSwitch.reactive.isOn).dispose(in: bag)
         // when we change isEnabledSwitch.reactive.isOn from code, we can't subscribe on this change
         toggleSwithAction.merge(with: isEnabledSwitch.reactive.isOn).bind(to: model.switchAction).dispose(in: bag)
