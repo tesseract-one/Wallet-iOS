@@ -39,7 +39,9 @@ class MainViewController: OpenWallet.ExtensionViewController {
             .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { hasWallet, sself in
-                if !hasWallet {
+                if hasWallet {
+                    sself.handleRequest()
+                } else {
                     sself.walletIsNotInitialized()
                 }
             }
