@@ -25,11 +25,11 @@ class ApplicationService {
     var registrationViewFactory: RegistrationViewFactory!
     var walletViewFactory: ViewFactoryProtocol!
     
-    var settings: UserDefaults!
+    var settings: Settings!
     var ethereumNetwork: Property<UInt64>!
     
     let isAppLoaded = Property<Bool>(false)
-    let isWalletLocked = Property<Bool>(true)
+    let isWalletLocked = Property<Bool?>(nil)
     
     let rootViewController = Property<UIViewController>(UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
     
@@ -54,8 +54,16 @@ class ApplicationService {
             .distinctUntilChanged()
             .with(weak: self)
             .observeNext { wallet, sself in
+                sself.isWalletLocked.next(nil)
                 wallet!.isLocked.bind(to: sself.isWalletLocked).dispose(in: wallet!.bag)
             }.dispose(in: bag)
+        
+        walletService.wallet
+            .filter { $0 == nil }
+            .distinctUntilChanged()
+            .map { _ in nil }
+            .bind(to: isWalletLocked)
+            .dispose(in: bag)
         
         combineLatest(walletService.wallet, isAppLoaded)
             .filter { $0 == nil && $1 }
@@ -67,9 +75,9 @@ class ApplicationService {
             .bind(to: rootViewController)
             .dispose(in: bag)
         
-        combineLatest(isWalletLocked, isAppLoaded)
-            .filter { $1 }
-            .map { $0.0 }
+        combineLatest(isWalletLocked.distinctUntilChanged(), isAppLoaded)
+            .filter { $0 != nil && $1 }
+            .map { $0.0! }
             .with(weak: self)
             .map { isLocked, sself in
                 return isLocked
@@ -93,11 +101,11 @@ class ApplicationService {
     }
     
     private func setNetwork() {
-        if let network = settings.object(forKey: "ethereumNetwork") as? UInt64 {
+        if let network = settings.number(forKey: .ethereumNetwork) as? UInt64 {
             ethereumNetwork.next(network)
         } else {
             ethereumNetwork.next(1) // Main Network
-            settings.set(UInt64(1), forKey: "ethereumNetwork")
+            settings.set(UInt64(1), forKey: .ethereumNetwork)
         }
     }
 }

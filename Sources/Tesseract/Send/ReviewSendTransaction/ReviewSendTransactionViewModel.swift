@@ -20,7 +20,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     let passwordService: KeychainPasswordService
-    let settings: UserDefaults
+    let settings: Settings
     
     let goBack = SafePublishSubject<Void>()
     
@@ -50,7 +50,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let isBiometricEnabled = Property<Bool>(false)
     let canLoadPassword = Property<Bool?>(nil)
     
-    init(walletService: WalletService, ethWeb3Service: EthereumWeb3Service, changeRateService: ChangeRateService, passwordService: KeychainPasswordService, settings: UserDefaults) {
+    init(walletService: WalletService, ethWeb3Service: EthereumWeb3Service, changeRateService: ChangeRateService, passwordService: KeychainPasswordService, settings: Settings) {
         self.walletService = walletService
         self.ethWeb3Service = ethWeb3Service
         self.changeRateService = changeRateService
@@ -73,7 +73,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         balance.map{"\($0.rounded(toPlaces: 4)) ETH"}.bind(to: balanceString).dispose(in: bag)
         
-        if (settings.object(forKey: "isBiometricEnabled") as? Bool == true) &&
+        if (settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
            (passwordService.getBiometricType() != .none) {
             isBiometricEnabled.next(true)
         }
@@ -93,7 +93,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
             }
             .flatMapLatest { sself in
                 sself.ethWeb3Service.sendEthereum(
-                    account: Int(sself.account.value!.index),
+                    accountId: sself.account.value!.id,
                     to: sself.address.value,
                     amountEth: sself.amount.value,
                     networkId: sself.ethereumNetwork.value

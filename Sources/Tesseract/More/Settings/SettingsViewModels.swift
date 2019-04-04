@@ -54,12 +54,12 @@ class SettingWithSwitchVM: ViewModel {
     var isEnabled: Bool
     let switchAction: SafePublishSubject<Bool>
     
-    init(title: String, description: String, key: String, settings: UserDefaults, switchAction: SafePublishSubject<Bool>, defaultValue: Bool) {
+    init(title: String, description: String, key: SettingKeys, settings: Settings, switchAction: SafePublishSubject<Bool>, defaultValue: Bool) {
         self.title = title
         self.description = description
         self.switchAction = switchAction
         
-        if let value = settings.object(forKey: key) as? Bool {
+        if let value = settings.number(forKey: key) as? Bool {
             self.isEnabled = value
         } else {
             self.isEnabled = defaultValue
@@ -79,7 +79,7 @@ class SettingWithAccountVM: ViewModel {
     let name: String
     let balance = Property<String>("")
     let emoji: String
-    let index: UInt32
+    let accountId: String
     
     let web3Service: EthereumWeb3Service!
     let changeRateService: ChangeRateService!
@@ -94,7 +94,7 @@ class SettingWithAccountVM: ViewModel {
         
         self.name = account.associatedData[.name]?.string ?? "Account"
         self.emoji = account.associatedData[.emoji]?.string ?? "\u{1F9B9}"
-        self.index = account.index
+        self.accountId = account.id
         
         super.init()
 
@@ -102,9 +102,9 @@ class SettingWithAccountVM: ViewModel {
             self?.updateBalance()
         }
     }
-    
+
     func updateBalance() {
-        web3Service.getBalance(account: Int(index), networkId: network.value)
+        web3Service.getBalance(accountId: self.accountId, networkId: network.value)
             .done(on: .main) { [weak self] balance in
                 let ethBalance = "\(balance.rounded(toPlaces: 6)) ETH"
                 let usdBalance = "\((balance * self!.changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"

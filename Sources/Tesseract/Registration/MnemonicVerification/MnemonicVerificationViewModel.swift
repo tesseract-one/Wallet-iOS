@@ -18,7 +18,7 @@ class MnemonicVerificationViewModel: ViewModel {
     private let password: String
     private let newWalletData: NewWalletData
     private let walletService: WalletService
-    private let settings: UserDefaults
+    private let settings: Settings
     
     let doneMnemonicVerificationAction = SafePublishSubject<Void>()
     let skipMnemonicVerificationAction = SafePublishSubject<Void>()
@@ -28,7 +28,7 @@ class MnemonicVerificationViewModel: ViewModel {
     
     let errors = SafePublishSubject<Swift.Error>()
     
-    init (password: String, newWalletData: NewWalletData, walletService: WalletService, settings: UserDefaults) {
+    init (password: String, newWalletData: NewWalletData, walletService: WalletService, settings: Settings) {
         self.password = password
         self.newWalletData = newWalletData
         self.walletService = walletService
@@ -92,6 +92,8 @@ extension MnemonicVerificationViewModel {
             .bind(to: mnemonicVerifiedSuccessfully)
             .dispose(in: bag)
         
+        let settings = self.settings
+        
         skipMnemonicVerificationAction
             .with(weak: walletService)
             .flatMapLatest { walletService in
@@ -99,9 +101,9 @@ extension MnemonicVerificationViewModel {
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)
-            .with(weak: walletService, settings)
-            .observeNext { wallet, walletService, settings in
-                settings.removeObject(forKey: "isBiometricEnabled")
+            .with(weak: walletService)
+            .observeNext { wallet, walletService in
+                settings.clearSettings()
                 wallet.lock() // We will go to login for touch id setup
                 walletService.setWallet(wallet: wallet)
             }.dispose(in: bag)

@@ -38,17 +38,17 @@ class EthereumWeb3Service {
             .dispose(in: bag)
     }
     
-    func getBalance(account: Int, networkId: UInt64) -> Promise<Double> {
+    func getBalance(accountId: String, networkId: UInt64) -> Promise<Double> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
-        let account = wallet.value!.accounts[account]
+        let account = wallet.value!.account(id: accountId)!
         return web3.eth
             .getBalance(address: try! account.eth_address().web3, block: .latest)
             .map { $0.quantity.ethValue(precision: 9) }
     }
     
-    func sendEthereum(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {
+    func sendEthereum(accountId: String, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
-        let account = wallet.value!.accounts[account]
+        let account = wallet.value!.account(id: accountId)!
         let tx = EthereumTransaction(
             from: try! account.eth_address().web3,
             to: try! EthereumAddress(hex: to, eip55: false),
@@ -72,8 +72,8 @@ class EthereumWeb3Service {
             }
     }
     
-    func estimateSendTxGas(account: Int, to: String, amountEth: Double, networkId: UInt64) -> Promise<Double> {
-        let account = wallet.value!.accounts[account]
+    func estimateSendTxGas(accountId: String, to: String, amountEth: Double, networkId: UInt64) -> Promise<Double> {
+        let account = wallet.value!.account(id: accountId)!
         let gasPrice = _estimateGasPriceWei(networkId: networkId)
         
         let call = EthereumCall(
@@ -101,8 +101,8 @@ class EthereumWeb3Service {
         return web3.eth.gasPrice().map{$0.quantity}
     }
     
-    func getTransactions(account: Int, networkId: UInt64) -> Promise<Array<EthereumTransactionLog>> {
+    func getTransactions(accountId: String, networkId: UInt64) -> Promise<Array<EthereumTransactionLog>> {
         let etherscan = ethereumAPIs.value!.etherscan(apiUrl: etherscanEndpoints[networkId]!, apiToken: etherscanApiToken)
-        return etherscan.getTransactions(address: try! wallet.value!.accounts[account].eth_address().hex(eip55: false))
+        return etherscan.getTransactions(address: try! wallet.value!.account(id: accountId)!.eth_address().hex(eip55: false))
     }
 }

@@ -98,7 +98,7 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: E
     }
     
     private func setupFingerButton() {
-        if (context.settings.object(forKey: "isBiometricEnabled") as? Bool == true) &&
+        if (context.settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
            (context.passwordService.getBiometricType() != .none) {
             _fingerButton.isHidden = false
             _acceptBtnRightConstraint.constant = 74

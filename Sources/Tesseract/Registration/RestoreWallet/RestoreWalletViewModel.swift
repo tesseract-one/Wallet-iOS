@@ -23,7 +23,7 @@ enum MnemonicErrors: String, Error {
 
 class RestoreWalletViewModel: ViewModel {
     private let walletService: WalletService
-    private let settings: UserDefaults
+    private let settings: Settings
     private let wasCreatedByMetamask: Bool
     
     let restoreAction = SafePublishSubject<Void>()
@@ -37,7 +37,7 @@ class RestoreWalletViewModel: ViewModel {
     let mnemonicError = Property<MnemonicErrors?>(nil)
     let passwordError = Property<PasswordErrors?>(nil)
     
-    init (walletService: WalletService, settings: UserDefaults, wasCreatedByMetamask: Bool) {
+    init (walletService: WalletService, settings: Settings, wasCreatedByMetamask: Bool) {
         self.walletService = walletService
         self.settings = settings
         self.wasCreatedByMetamask = wasCreatedByMetamask
@@ -90,6 +90,8 @@ extension RestoreWalletViewModel {
             .bind(to: restoreWalletSuccessfully)
             .dispose(in: bag)
         
+        let settings = self.settings
+        
         restoreActionCheckPass.filter { $0.0.1 == nil && $0.1 == nil }
             .map { _ in }
             .with(latestFrom: password)
@@ -110,9 +112,9 @@ extension RestoreWalletViewModel {
             }
             .observeIn(.immediateOnMain)
             .pourError(into: errors)
-            .with(weak: walletService, settings)
-            .observeNext { wallet, walletService, settings in
-                settings.removeObject(forKey: "isBiometricEnabled")
+            .with(weak: walletService)
+            .observeNext { wallet, walletService in
+                settings.clearSettings()
                 wallet.lock() // We will go to login for touch id setup
                 walletService.setWallet(wallet: wallet)
             }.dispose(in: bag)

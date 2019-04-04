@@ -11,14 +11,14 @@ import ReactiveKit
 import Bond
 
 class ChooseNetworkViewModel: ViewModel {
-    let settings: UserDefaults
+    let settings: Settings
     let network = Property<UInt64>(0)
     
     let networks = MutableObservableArray<NetworkType>()
     
     let changeNetworkAction = SafePublishSubject<UInt64>()
     
-    init(settings: UserDefaults) {
+    init(settings: Settings) {
         self.settings = settings
         super.init()
     }
@@ -26,9 +26,10 @@ class ChooseNetworkViewModel: ViewModel {
     func bootstrap() {
         networks.replace(with: NETWORKS)
         
-        changeNetworkAction.with(weak: settings)
-            .observeNext { network, settings in
-                settings.set(network, forKey: "ethereumNetwork")
+        let settings = self.settings
+        changeNetworkAction
+            .observeNext { network in
+                settings.set(network, forKey: .ethereumNetwork)
             }.dispose(in: bag)
         
         changeNetworkAction.bind(to: network).dispose(in: bag)

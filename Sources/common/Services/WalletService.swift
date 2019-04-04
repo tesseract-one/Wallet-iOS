@@ -33,7 +33,7 @@ class WalletService {
     
     var errorNode: SafePublishSubject<Swift.Error>!
     
-    var settings: UserDefaults!
+    var settings: Settings!
     
     func bootstrap() {
         walletManager = Manager(
@@ -41,14 +41,16 @@ class WalletService {
             storage: storage
         )
         
-        wallet.with(weak: settings)
-            .map { wallet, settings -> Account? in
+        let settings = self.settings!
+        
+        wallet
+            .map { wallet -> Account? in
                 guard let wallet = wallet else {
                     return nil
                 }
                 
-                guard let activeAccountId = settings.object(forKey: "activeAccountId") as? String else {
-                    settings.set(wallet.accounts[0].id, forKey: "activeAccountId")
+                guard let activeAccountId = settings.string(forKey: .activeAccountId) else {
+                    settings.set(wallet.accounts[0].id, forKey: .activeAccountId)
                     return wallet.accounts[0]
                 }
                 
@@ -58,9 +60,8 @@ class WalletService {
             .dispose(in: bag)
         
         activeAccount.filter { $0 != nil }
-            .with(weak: settings)
-            .observeNext { account, settings in
-                settings.set(account!.id, forKey: "activeAccountId")
+            .observeNext { account in
+                settings.set(account!.id, forKey: .activeAccountId)
             }.dispose(in: bag)
     }
     

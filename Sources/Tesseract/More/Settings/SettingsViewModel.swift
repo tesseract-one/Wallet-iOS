@@ -20,7 +20,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let activeAccount = Property<Account?>(nil)
     let accounts = MutableObservableArray<Account>()
     let network = Property<UInt64>(0)
-    let settings: UserDefaults
+    let settings: Settings
     
     let tableSettings = MutableObservableArray2D<String, ViewModel>(Array2D())
     let viewModelAccounts = MutableObservableArray<ViewModel>()
@@ -39,7 +39,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let goToView = SafePublishSubject<ToView>()
     
-    init(walletService: WalletService, web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, settings: UserDefaults) {
+    init(walletService: WalletService, web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, settings: Settings) {
         self.walletService = walletService
         self.web3Service = web3Service
         self.changeRateService = changeRateService
@@ -95,11 +95,9 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         }.dispose(in: bag)
         
         logoutAction
-            .with(weak: walletService)
             .with(latestFrom: wallet)
-            .observeNext { walletService, wallet in
+            .observeNext { _, wallet in
                 wallet!.lock()
-                walletService.setWallet(wallet: wallet!)
             }.dispose(in: bag)
         
         createAccountAction.map { _ in (name: "CreateAccount", context: nil) }
@@ -129,10 +127,10 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         tableSettings.appendSection("Developer Tools")
         tableSettings.appendItem(
-            SettingWithSwitchVM(title: "Developer Mode", description: "For dark magicians only 🦹‍♂️", key: "isDeveloperModeEnabled", settings: self.settings, switchAction: self.switchDeveloperModeAction, defaultValue: false),
+            SettingWithSwitchVM(title: "Developer Mode", description: "For dark magicians only 🦹‍♂️", key: .isDeveloperModeEnabled, settings: self.settings, switchAction: self.switchDeveloperModeAction, defaultValue: false),
             toSectionAt: 2
         )
-        if settings.object(forKey: "isDeveloperModeEnabled") as? Bool == true {
+        if settings.number(forKey: .isDeveloperModeEnabled) as? Bool == true {
             self.tableSettings.appendItem(
                 SettingWithWordVM(title: "Choose Network", activeDescription: self.currentNetworkDescription, word: self.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
                 toSectionAt: 2

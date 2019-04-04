@@ -50,6 +50,10 @@ class WalletViewModel: Equatable {
         return account
     }
     
+    public func account(id: String) -> Account? {
+        return self.accounts.collection.first { $0.id == id }
+    }
+    
     static func == (lhs: WalletViewModel, rhs: WalletViewModel) -> Bool {
         return lhs.wallet == rhs.wallet
     }

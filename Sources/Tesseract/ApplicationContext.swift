@@ -34,7 +34,7 @@ class ApplicationContext: RouterContextProtocol {
     public let errorNode = SafePublishSubject<Swift.Error>()
     
     // Settings
-    let settings = UserDefaults(suiteName: SHARED_GROUP)!
+    let settings: Settings = UserDefaults(suiteName: SHARED_GROUP)!
     
     // Services
     let applicationService = ApplicationService()

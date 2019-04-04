@@ -16,14 +16,11 @@ class AccountTableViewCell: ViewModelCell<SettingWithAccountVM> {
     @IBOutlet weak var balanceLabel: UILabel!
     @IBOutlet weak var selectedIcon: UIImageView!
     
-    var index: UInt32 = 0
-    
     override func advise() {
         guard let model = self.model else { return }
         
         nameLabel.text = model.name
         emojiLabel.text = model.emoji
-        index = model.index
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
     }

@@ -74,6 +74,8 @@
 		92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */; };
 		D1065C41224D317B00EB9505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1065C40224D317B00EB9505 /* Assets.xcassets */; };
 		D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */; };
+		D10DC1202256758F00F97A00 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DC11F2256758F00F97A00 /* Settings.swift */; };
+		D10DC121225677EC00F97A00 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DC11F2256758F00F97A00 /* Settings.swift */; };
 		D10F9161224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D10F915F224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib */; };
 		D10F9162224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10F9160224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.swift */; };
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
@@ -272,6 +274,7 @@
 		B34475B14182EE9EA1935060 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		CB6DCCCD72733AFD84049AB4 /* Pods-Tesseract-Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract-Extension.release.xcconfig"; path = "Target Support Files/Pods-Tesseract-Extension/Pods-Tesseract-Extension.release.xcconfig"; sourceTree = "<group>"; };
 		D1065C40224D317B00EB9505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D10DC11F2256758F00F97A00 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		D10F915F224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingWithSwitchTableViewCell.xib; sourceTree = "<group>"; };
 		D10F9160224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWithSwitchTableViewCell.swift; sourceTree = "<group>"; };
 		D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NextResponderTextView.swift; sourceTree = "<group>"; };
@@ -461,6 +464,7 @@
 				D1F76C9F2226A4F000BFBB6B /* Helpers */,
 				9230790E223024C2004E3950 /* Services */,
 				9230790F22302539004E3950 /* Constants.swift */,
+				D10DC11F2256758F00F97A00 /* Settings.swift */,
 				92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */,
 			);
 			path = common;
@@ -1266,6 +1270,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D10DC1202256758F00F97A00 /* Settings.swift in Sources */,
 				D14A5013222977BE0069A262 /* MnemonicVerificationViewModel.swift in Sources */,
 				D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */,
 				D14A502B2229B7540069A262 /* HomeViewController.swift in Sources */,
@@ -1401,6 +1406,7 @@
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,
 				928A916F2232DC08005DA7B4 /* ExtensionViewController.swift in Sources */,
 				D1A2114F2242A3AC00DDF3F3 /* KeychainPasswordItem.swift in Sources */,
+				D10DC121225677EC00F97A00 /* Settings.swift in Sources */,
 				D108644722370294005B10CB /* KeyboardScrollView.swift in Sources */,
 				928A915E22329F96005DA7B4 /* EthereumKeychainViewProvider.swift in Sources */,
 				D1CC01242253DE150056BC44 /* WalletViewModel.swift in Sources */,

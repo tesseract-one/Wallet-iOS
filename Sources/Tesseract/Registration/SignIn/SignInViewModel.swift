@@ -31,7 +31,7 @@ enum BiometricFlow: Equatable {
 class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     private let walletService: WalletService
     private let passwordService: KeychainPasswordService
-    private let settings: UserDefaults
+    private let settings: Settings
     
     let signInAction = SafePublishSubject<Void>()
     let fingerAction = SafePublishSubject<Void>()
@@ -62,7 +62,7 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let textFieldErrors = SafePublishSubject<Swift.Error>()
     let biometricErrors = SafePublishSubject<Swift.Error>()
     
-    init (walletService: WalletService, passwordService: KeychainPasswordService, settings: UserDefaults) {
+    init (walletService: WalletService, passwordService: KeychainPasswordService, settings: Settings) {
         self.walletService = walletService
         self.passwordService = passwordService
         self.settings = settings
@@ -134,9 +134,9 @@ extension SignInViewModel {
         textFieldErrors.map { _ in SignInPasswordErrors.wrong }.bind(to: passwordError).dispose(in: bag)
         textFieldErrors.map { _ in false }.bind(to: signInSuccessfully).dispose(in: bag)
         
-        if biometricType == .none || settings.object(forKey: "isBiometricEnabled") as? Bool == false {
+        if biometricType == .none || settings.number(forKey: .isBiometricEnabled) as? Bool == false {
             correctPassword.bind(to: unlockWallet).dispose(in: bag)
-        } else if settings.object(forKey: "isBiometricEnabled") as? Bool == true {
+        } else if settings.number(forKey: .isBiometricEnabled) as? Bool == true {
             isBiometricEnabled.next(true)
             
             fingerAction
@@ -170,7 +170,7 @@ extension SignInViewModel {
             correctPassword.bind(to: unlockWallet).dispose(in: bag)
         } else {
             setBiometricEnabledSetting.filter{ $0 != nil }.with(weak: self).observeNext { isBiometricEnabled, sself in
-                sself.settings.set(isBiometricEnabled!, forKey: "isBiometricEnabled")
+                sself.settings.set(isBiometricEnabled!, forKey: .isBiometricEnabled)
             }
             .dispose(in: bag)
             

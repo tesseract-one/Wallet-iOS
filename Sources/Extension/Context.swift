@@ -25,7 +25,7 @@ class ExtensionContext {
     
     let errors = SafePublishSubject<Swift.Error>()
     
-    let settings = UserDefaults(suiteName: SHARED_GROUP)!
+    let settings: Settings = UserDefaults(suiteName: SHARED_GROUP)!
     
     let walletIsLoaded = SafePublishSubject<Bool>()
     

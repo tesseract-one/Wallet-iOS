@@ -51,7 +51,7 @@ class TransactionInfoService {
     
     func updateBalance() {
         if let account = activeAccount.value {
-            web3Service.getBalance(account: Int(account.index), networkId: network.value)
+            web3Service.getBalance(accountId: account.id, networkId: network.value)
                 .done(on: .main) { [weak self] balance in
                     self?.balance.next(balance)
                 }
@@ -65,7 +65,7 @@ class TransactionInfoService {
     
     private func updateTransactions() {
         if let account = activeAccount.value, let _ = balance.value {
-            web3Service.getTransactions(account: Int(account.index), networkId: network.value)
+            web3Service.getTransactions(accountId: account.id, networkId: network.value)
                 .done(on: .main) { [weak self] txs in
                     self?.transactions.next(
                         txs.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! })

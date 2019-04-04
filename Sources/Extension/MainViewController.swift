@@ -11,6 +11,8 @@ import SnapKit
 import OpenWallet
 
 class MainViewController: OpenWallet.ExtensionViewController {
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var containerView: UIView!
     
     @IBOutlet weak var titleLabel: UILabel!
@@ -50,6 +52,13 @@ class MainViewController: OpenWallet.ExtensionViewController {
             .dispose(in: reactive.bag)
         
         context.bootstrap()
+    }
+    
+    override func walletIsNotInitialized() {
+        super.walletIsNotInitialized()
+        
+        headerView.isHidden = true
+        headerHeightConstraint.constant = 0
     }
     
     override func walletNotInitializedController() -> ExtensionWalletNotInitializedViewController {

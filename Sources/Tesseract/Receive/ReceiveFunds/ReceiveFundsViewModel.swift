@@ -36,7 +36,7 @@ class ReceiveFundsViewModel: ViewModel {
         let service = ethWeb3Service
         combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinctUntilChanged())
             .flatMapLatest { account, net in
-                service.getBalance(account: Int(account!.index), networkId: net).signal
+                service.getBalance(accountId: account!.id, networkId: net).signal
             }
             .suppressedErrors
             .bind(to: ethBalance)
