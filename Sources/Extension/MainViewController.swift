@@ -24,14 +24,16 @@ class MainViewController: OpenWallet.ExtensionViewController {
         ]
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    private func handleRequest(data: String, uti: String) {
+        super.onLoaded(data: data, uti: uti)
+    }
+    
+    override func onLoaded(data: String, uti: String) {
         context.errors
             .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { err, sself in
-                sself.extensionContext!.cancelRequest(withError: err)
+                sself.error(.unknownError(err))
             }.dispose(in: reactive.bag)
         
         context
@@ -40,7 +42,7 @@ class MainViewController: OpenWallet.ExtensionViewController {
             .with(weak: self)
             .observeNext { hasWallet, sself in
                 if hasWallet {
-                    sself.handleRequest()
+                    sself.handleRequest(data: data, uti: uti)
                 } else {
                     sself.walletIsNotInitialized()
                 }
