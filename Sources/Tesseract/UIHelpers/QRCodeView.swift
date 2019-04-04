@@ -28,7 +28,6 @@ class QRCodeView: RoundedImage {
     }
     
     private func setupObserver() {
-        print("Bounds", self.bounds)
         data.with(weak: self)
             .map { (str, sself) -> CIImage? in
                 if let data = str.data(using: .isoLatin1), let filter = sself.ciFilter {

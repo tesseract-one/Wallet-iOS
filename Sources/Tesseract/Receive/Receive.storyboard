@@ -286,8 +286,8 @@
                         <viewLayoutGuide key="safeArea" id="Wji-Rk-cjI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Receive Funds" id="cTF-2p-hrE">
-                        <barButtonItem key="rightBarButtonItem" image="actionBtn" style="done" id="gXP-PH-3pW">
-                            <color key="tintColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" image="actionBtn" style="done" id="gXP-PH-3pW">
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

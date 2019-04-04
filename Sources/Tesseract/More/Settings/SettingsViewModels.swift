@@ -102,16 +102,20 @@ class SettingWithAccountVM: ViewModel {
             self?.updateBalance()
         }
     }
+    
+    deinit {
+        updateTimer?.invalidate()
+    }
 
     func updateBalance() {
         web3Service.getBalance(accountId: self.accountId, networkId: network.value)
-            .done(on: .main) { [weak self] balance in
+            .done(on: .main) { balance in
                 let ethBalance = "\(balance.rounded(toPlaces: 6)) ETH"
-                let usdBalance = "\((balance * self!.changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"
-                self?.balance.next("\(ethBalance) · \(usdBalance)")
+                let usdBalance = "\((balance * self.changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"
+                self.balance.next("\(ethBalance) · \(usdBalance)")
             }
-            .catch { [weak self] _ in
-                self?.balance.next("unknown")
+            .catch { _ in
+                self.balance.next("unknown")
         }
     }
 }
