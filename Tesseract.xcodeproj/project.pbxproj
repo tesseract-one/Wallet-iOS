@@ -245,8 +245,6 @@
 		9299323422248422000EAD47 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		9299323722248422000EAD47 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
 		9299323922248422000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		9299325222248908000EAD47 /* TesSDKTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesSDKTests.swift; sourceTree = "<group>"; };
-		9299325422248908000EAD47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92A1CE1C22410BF7001D429C /* EthereumAddressTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EthereumAddressTableViewCell.xib; sourceTree = "<group>"; };
 		92A1CE1D22410BF7001D429C /* EthereumAddressTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumAddressTableViewCell.swift; sourceTree = "<group>"; };
 		92A1CE202241140E001D429C /* EthereumKeychainSignTypedDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumKeychainSignTypedDataViewController.swift; sourceTree = "<group>"; };
@@ -546,7 +544,6 @@
 		929932012224591E000EAD47 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				9299325122248908000EAD47 /* TesSDKTests */,
 				922CA4A621945F2100FE66F1 /* TesseractTests */,
 				922CA4B121945F2100FE66F1 /* TesseractUITests */,
 			);
@@ -578,15 +575,6 @@
 				9299323922248422000EAD47 /* Info.plist */,
 			);
 			path = Extension;
-			sourceTree = "<group>";
-		};
-		9299325122248908000EAD47 /* TesSDKTests */ = {
-			isa = PBXGroup;
-			children = (
-				9299325222248908000EAD47 /* TesSDKTests.swift */,
-				9299325422248908000EAD47 /* Info.plist */,
-			);
-			path = TesSDKTests;
 			sourceTree = "<group>";
 		};
 		92A1CE1B22410A92001D429C /* Cells */ = {
