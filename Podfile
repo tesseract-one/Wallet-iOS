@@ -6,11 +6,11 @@ target :Tesseract do
     pod 'Fabric'
     pod 'Crashlytics'
     
-    pod 'TesseractOpenWallet/WalletEthereum', :git => 'git@github.com:ypopovych/ios-openwallet-sdk.git', :branch => 'master'
+    pod 'TesseractOpenWallet/WalletEthereum', :git => 'https://github.com/tesseract-one/ios-openwallet-sdk.git', :branch => 'master'
 
-    pod 'TesseractEthereumWeb3/PromiseKit', :git => 'git@github.com:ypopovych/ios-web3-ethereum.git', :branch => 'master'
+    pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
     
-    pod 'TesseractWallet/EthereumPromiseKit', :git => 'git@github.com:ypopovych/swift-wallet-sdk.git', :branch => 'master'
+    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master'
 
     pod 'PromiseKit'
     pod 'ReactiveKit'
@@ -21,17 +21,17 @@ target :Tesseract do
 
     # temporary. Should be removed
     pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
-    pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
-    pod 'TesseractKeychain', :git => 'git@github.com:ypopovych/swift-keychain.git', :branch => 'master'
-    pod 'TesseractEthereumBase', :git => 'git@github.com:ypopovych/swift-ethereum-base.git', :branch => 'master'
+    pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'master'
+    pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
+    pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
     pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
 
     target :Extension do
-        pod 'TesseractOpenWallet/WalletEthereum', :git => 'git@github.com:ypopovych/ios-openwallet-sdk.git', :branch => 'master'
+        pod 'TesseractOpenWallet/WalletEthereum', :git => 'https://github.com/tesseract-one/ios-openwallet-sdk.git', :branch => 'master'
 
-        pod 'TesseractEthereumWeb3/PromiseKit', :git => 'git@github.com:ypopovych/ios-web3-ethereum.git', :branch => 'master'
+        pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
 
-        pod 'TesseractWallet/EthereumPromiseKit', :git => 'git@github.com:ypopovych/swift-wallet-sdk.git', :branch => 'master'
+        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master'
 
         pod 'PromiseKit'
         pod 'ReactiveKit'
@@ -41,10 +41,10 @@ target :Tesseract do
         pod 'SnapKit', '~> 4.2.0'
         
         # temporary should be removed
-        pod 'SQLite.swift', :git => 'https://github.com/ottosuess/SQLite.swift.git', :branch => 'master'
+        pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'master'
 	      pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
-        pod 'TesseractKeychain', :git => 'git@github.com:ypopovych/swift-keychain.git', :branch => 'master'
-        pod 'TesseractEthereumBase', :git => 'git@github.com:ypopovych/swift-ethereum-base.git', :branch => 'master'
+        pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
+        pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
     	  pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
     end
 end
