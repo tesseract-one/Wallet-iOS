@@ -170,7 +170,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     
     private var dataSectionHeader: DataSectionHeaderView?
     
-    fileprivate let account = Property<Account?>(nil)
+    fileprivate let account = Property<AccountViewModel?>(nil)
     fileprivate let selectedItem = Property<DataType?>(nil)
     fileprivate var topDataItem: DataType? = nil
     
@@ -215,7 +215,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         context.wallet
             .filter { $0 != nil }
             .mapError { $0 as Error }
-            .map { wallet -> Account in
+            .map { wallet -> AccountViewModel in
                 let account = wallet!.accounts.collection.first {
                     ethAcc.lowercased() == (try? $0.eth_address().hex(eip55: false))
                 }
@@ -277,7 +277,8 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: "AddressCell", for: indexPath
                 ) as! EthereumAddressTableViewCell
-            cell.setAccount(account: account.value!, header: "Account")
+            cell.model = account.value!
+            cell.setHeader(header: "Account")
             return cell
         default:
             let item = tableCachedData[indexPath.section]![indexPath.row]

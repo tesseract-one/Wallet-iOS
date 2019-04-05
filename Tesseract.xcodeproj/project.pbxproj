@@ -102,6 +102,11 @@
 		D14A50222229B1A40069A262 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D14A50212229B1A40069A262 /* Main.storyboard */; };
 		D14A502B2229B7540069A262 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A502A2229B7540069A262 /* HomeViewController.swift */; };
 		D14A502D2229B7660069A262 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A502C2229B7660069A262 /* HomeViewModel.swift */; };
+		D14A53072257790000A4F793 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A53062257790000A4F793 /* AccountViewModel.swift */; };
+		D14A53082257B45E00A4F793 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A53062257790000A4F793 /* AccountViewModel.swift */; };
+		D14A53092257B96C00A4F793 /* ViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */; };
+		D14A530B2257BB1200A4F793 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A530A2257BB1200A4F793 /* ViewModel.swift */; };
+		D14A530C2257BB2500A4F793 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14A530A2257BB1200A4F793 /* ViewModel.swift */; };
 		D14B5F282199ABF5006F387E /* NextResponderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D14B5F272199ABF5006F387E /* NextResponderTextField.swift */; };
 		D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */; };
 		D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */; };
@@ -289,7 +294,7 @@
 		D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewModel.swift; sourceTree = "<group>"; };
 		D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
-		D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ViewModelCell.swift; path = ../ViewModelCell.swift; sourceTree = "<group>"; };
+		D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCell.swift; sourceTree = "<group>"; };
 		D143DCEA22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateAccountCollectionViewCell.xib; sourceTree = "<group>"; };
 		D143DCEB22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountCollectionViewCell.swift; sourceTree = "<group>"; };
 		D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkViewModel.swift; sourceTree = "<group>"; };
@@ -298,6 +303,8 @@
 		D14A50212229B1A40069A262 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		D14A502A2229B7540069A262 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D14A502C2229B7660069A262 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		D14A53062257790000A4F793 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
+		D14A530A2257BB1200A4F793 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		D14B5F272199ABF5006F387E /* NextResponderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextResponderTextField.swift; sourceTree = "<group>"; };
 		D15223A022399BCC002EC9F1 /* UITextView+Bond.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Bond.swift"; sourceTree = "<group>"; };
 		D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NetworkTableViewCell.xib; path = ../Cells/NetworkTableViewCell.xib; sourceTree = "<group>"; };
@@ -425,7 +432,6 @@
 				92CB198122281DE100407F9A /* Router */,
 				D125143D21A82D570077E04A /* Registration */,
 				D1AE725821A2C28000CA1C17 /* UIHelpers */,
-				D143DCE5225263560075BAC9 /* Helpers */,
 				D171DE49219DA36A003134DD /* Resources */,
 				922CA49021945F1F00FE66F1 /* AppDelegate.swift */,
 				922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */,
@@ -462,6 +468,7 @@
 				D1F76C9F2226A4F000BFBB6B /* Helpers */,
 				9230790E223024C2004E3950 /* Services */,
 				9230790F22302539004E3950 /* Constants.swift */,
+				D14A530A2257BB1200A4F793 /* ViewModel.swift */,
 				D10DC11F2256758F00F97A00 /* Settings.swift */,
 				92655AA1222ABC5400CB8A18 /* EthereumEtherscanAPI.swift */,
 			);
@@ -699,15 +706,6 @@
 			path = CreateAccount;
 			sourceTree = "<group>";
 		};
-		D143DCE5225263560075BAC9 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */,
-			);
-			name = Helpers;
-			path = UIHelpers/Helpers;
-			sourceTree = "<group>";
-		};
 		D14A500E222964A50069A262 /* Mnemonic */ = {
 			isa = PBXGroup;
 			children = (
@@ -866,6 +864,7 @@
 			isa = PBXGroup;
 			children = (
 				D1CC01212253B6460056BC44 /* WalletViewModel.swift */,
+				D14A53062257790000A4F793 /* AccountViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -904,6 +903,7 @@
 		D1F76C9F2226A4F000BFBB6B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */,
 				D1D82F4B2232E7A7003BDFE2 /* Numbers+Ethereum.swift */,
 				D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */,
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
@@ -1314,6 +1314,7 @@
 				92FE973A222DB2BA007DB61C /* ScanQRViewController.swift in Sources */,
 				D11FEE6022306CB400738AAD /* View+Shadow+Border.swift in Sources */,
 				D16FD29C223B1D54003324D2 /* CustomInsetsTextView.swift in Sources */,
+				D14A530B2257BB1200A4F793 /* ViewModel.swift in Sources */,
 				D16F02FA224D262B0001FA57 /* SettingWithWordTableViewCell.swift in Sources */,
 				92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */,
 				D1A2114D2242A29F00DDF3F3 /* KeychainPasswordService.swift in Sources */,
@@ -1340,6 +1341,7 @@
 				D1CC01222253B6460056BC44 /* WalletViewModel.swift in Sources */,
 				92CB198522281E2600407F9A /* ApplicationContext.swift in Sources */,
 				92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */,
+				D14A53072257790000A4F793 /* AccountViewModel.swift in Sources */,
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
 				D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
@@ -1384,11 +1386,14 @@
 				D1D82F552233091C003BDFE2 /* ChooseAccountTableViewCell.swift in Sources */,
 				92307914223025FB004E3950 /* Promise+Extensions.swift in Sources */,
 				92307913223025F8004E3950 /* Signal+Extensions.swift in Sources */,
+				D14A53082257B45E00A4F793 /* AccountViewModel.swift in Sources */,
 				928A91672232B786005DA7B4 /* EthereumKeychainSignTransactionViewController.swift in Sources */,
 				926061DC22415B90006B5B50 /* EthereumDataTypeTableViewCell.swift in Sources */,
 				927C5ACC224E990100F2AA50 /* Numbers+Ethereum.swift in Sources */,
+				D14A530C2257BB2500A4F793 /* ViewModel.swift in Sources */,
 				92A1CE1F22410BF7001D429C /* EthereumAddressTableViewCell.swift in Sources */,
 				92564D3F2236EEBB00319D8E /* EthereumWeb3Service.swift in Sources */,
+				D14A53092257B96C00A4F793 /* ViewModelCell.swift in Sources */,
 				928A916D2232D9A7005DA7B4 /* Context.swift in Sources */,
 				928A91652232B68F005DA7B4 /* EthereumKeychainAccountsViewController.swift in Sources */,
 				D1D82F472232E1D4003BDFE2 /* NextResponderTextField.swift in Sources */,

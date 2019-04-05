@@ -32,7 +32,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
             }.dispose(in: reactive.bag)
         
         model.activeAccount.filter { $0 != nil }
-            .map { $0!.associatedData[.emoji]?.string }
+            .flatMapLatest { $0!.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         

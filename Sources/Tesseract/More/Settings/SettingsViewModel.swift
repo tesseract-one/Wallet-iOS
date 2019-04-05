@@ -13,12 +13,11 @@ import Wallet
 
 class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let walletService: WalletService
-    let web3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     
     let wallet = Property<WalletViewModel?>(nil)
-    let activeAccount = Property<Account?>(nil)
-    let accounts = MutableObservableArray<Account>()
+    let activeAccount = Property<AccountViewModel?>(nil)
+    let accounts = MutableObservableArray<AccountViewModel>()
     let network = Property<UInt64>(0)
     let settings: Settings
     
@@ -39,9 +38,8 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let goToView = SafePublishSubject<ToView>()
     
-    init(walletService: WalletService, web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, settings: Settings) {
+    init(walletService: WalletService, changeRateService: ChangeRateService, settings: Settings) {
         self.walletService = walletService
-        self.web3Service = web3Service
         self.changeRateService = changeRateService
         self.settings = settings
         
@@ -59,7 +57,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         accounts.with(weak: self)
             .map{ accounts, sself -> [ViewModel] in
-                var accountsVM: [ViewModel] = accounts.collection.map { SettingWithAccountVM(account: $0, web3Service: sself.web3Service, changeRateService: sself.changeRateService, network: sself.network) }
+                var accountsVM: [ViewModel] = accounts.collection.map { SettingWithAccountVM(account: $0, changeRateService: sself.changeRateService) }
                 let createAccountVM = ButtonWithIconVM(title: "Create Account", icon:  UIImage(named: "plus")!, action: sself.createAccountAction)
                 
                 accountsVM.append(createAccountVM)

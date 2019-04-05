@@ -12,7 +12,7 @@ import Wallet
 
 
 class ReceiveFundsViewModel: ViewModel {
-    let activeAccount = Property<Account?>(nil)
+    let activeAccount = Property<AccountViewModel?>(nil)
     
     let address = Property<EthereumBase.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")

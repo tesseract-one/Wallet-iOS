@@ -21,9 +21,9 @@ class ApplicationContext: RouterContextProtocol {
     var walletViewFactory: ViewFactoryProtocol!
 
     // State
-    let wallet: Property<WalletViewModel?> = Property(nil)
-    let ethereumNetwork: Property<UInt64> = Property(0)
-    let activeAccount: Property<Account?> = Property(nil)
+    let wallet = Property<WalletViewModel?>(nil)
+    let ethereumNetwork = Property<UInt64>(0)
+    let activeAccount = Property<AccountViewModel?>(nil)
     
     let isApplicationStarted = Property<Bool>(false)
     
@@ -52,6 +52,8 @@ class ApplicationContext: RouterContextProtocol {
         walletService.errorNode = errorNode
         walletService.activeAccount = activeAccount
         walletService.settings = settings
+        walletService.web3Service = ethereumWeb3Service
+        walletService.network = ethereumNetwork
         
         applicationService.walletService = walletService
         applicationService.errorNode = errorNode
@@ -62,7 +64,6 @@ class ApplicationContext: RouterContextProtocol {
         
         transactionService.activeAccount = activeAccount
         transactionService.web3Service = ethereumWeb3Service
-        transactionService.balance = balance
         transactionService.transactions = transactions
         transactionService.network = ethereumNetwork
         

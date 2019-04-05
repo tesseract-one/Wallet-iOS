@@ -16,7 +16,7 @@ class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
     let wallet = Property<WalletViewModel?>(nil)
-    let activeAccount = Property<Account?>(nil)
+    let activeAccount = Property<AccountViewModel?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     
     let isMoreThanOneAccount = Property<Bool>(false)
@@ -42,6 +42,8 @@ class HomeViewModel: ViewModel {
     }
         
     func bootstrap() {
+        activeAccount.flatMapLatest{ $0!.balance }.bind(to: ethBalance).dispose(in: bag)
+        
         ethBalance
             .map { $0 == nil ? "unknown" : "\($0!.rounded(toPlaces: 6)) ETH" }
             .bind(to: balance)
@@ -59,9 +61,5 @@ class HomeViewModel: ViewModel {
                 wallet!.accounts.map { $0.collection.count > 0 }
                     .bind(to: sself.isMoreThanOneAccount).dispose(in: wallet!.bag)
             }.dispose(in: bag)
-    }
-    
-    func updateBalance() {
-        transactionInfoService.updateBalance()
     }
 }

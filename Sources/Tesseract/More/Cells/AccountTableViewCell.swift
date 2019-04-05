@@ -19,9 +19,8 @@ class AccountTableViewCell: ViewModelCell<SettingWithAccountVM> {
     override func advise() {
         guard let model = self.model else { return }
         
-        nameLabel.text = model.name
-        emojiLabel.text = model.emoji
-        
+        model.name.bind(to: nameLabel.reactive.text).dispose(in: bag)
+        model.emoji.bind(to: emojiLabel.reactive.text).dispose(in: bag)
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
     }
     

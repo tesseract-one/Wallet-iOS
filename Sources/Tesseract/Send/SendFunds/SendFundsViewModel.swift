@@ -19,7 +19,7 @@ class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let closeModal = SafePublishSubject<Void>()
     
-    let activeAccount = Property<Account?>(nil)
+    let activeAccount = Property<AccountViewModel?>(nil)
     
     let address = Property<String?>(nil)
     let ethereumNetwork = Property<UInt64>(0)

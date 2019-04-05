@@ -10,17 +10,15 @@ import ReactiveKit
 import Bond
 import Wallet
 
-class WalletViewModel: Equatable {
-    let bag = DisposeBag()
-    
+class WalletViewModel: ViewModel, Equatable {
     let wallet: Wallet // don't use directly
-    
-    let accounts: MutableObservableArray<Account>
+
+    let accounts: MutableObservableArray<AccountViewModel>
     let isLocked: Property<Bool>
     
     init(wallet: Wallet) {
         self.wallet = wallet
-        self.accounts = MutableObservableArray(wallet.accounts)
+        self.accounts = MutableObservableArray(wallet.accounts.map { AccountViewModel(account: $0 )})
         self.isLocked = Property(wallet.isLocked)
     }
     
@@ -42,15 +40,15 @@ class WalletViewModel: Equatable {
         try wallet.changePassword(old: old, new: new)
     }
     
-    public func addAccount(emoji: String, name: String) throws -> Account {
-        let account = try wallet.addAccount()
-        account.associatedData[.name] = name
-        account.associatedData[.emoji] = emoji
+    public func addAccount(emoji: String, name: String) throws -> AccountViewModel {
+        let account = AccountViewModel(account: try wallet.addAccount())
+        account.updateName(name: name)
+        account.updateEmoji(emoji: emoji)
         accounts.append(account)
         return account
     }
     
-    public func account(id: String) -> Account? {
+    public func account(id: String) -> AccountViewModel? {
         return self.accounts.collection.first { $0.id == id }
     }
     

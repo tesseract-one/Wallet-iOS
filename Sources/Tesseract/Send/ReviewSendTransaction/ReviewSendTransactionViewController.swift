@@ -49,11 +49,11 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         
         let activeAccount = model.account.filter { $0 != nil }
         activeAccount
-            .map { $0!.associatedData[.emoji]?.string }
+            .flatMapLatest { $0!.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         activeAccount
-            .map { $0!.associatedData[.name]?.string }
+            .flatMapLatest { $0!.name }
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         
@@ -115,7 +115,7 @@ extension ReviewSendTransactionViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
         model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, passwordService: appCtx.passwordService, settings: appCtx.settings)
-        model.account.next(context.get(bean: "account")! as? Account)
+        model.account.next(context.get(bean: "account")! as? AccountViewModel)
         model.address.next(context.get(bean: "address")! as! String)
         model.ethereumNetwork.next(context.get(bean: "network")! as! UInt64)
         model.amount.next(context.get(bean: "amount")! as! Double)

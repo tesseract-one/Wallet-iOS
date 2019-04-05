@@ -76,47 +76,31 @@ class SettingWithSwitchVM: ViewModel {
 }
 
 class SettingWithAccountVM: ViewModel {
-    let name: String
+    let name: Property<String>
     let balance = Property<String>("")
-    let emoji: String
+    let emoji: Property<String>
     let accountId: String
     
-    let web3Service: EthereumWeb3Service!
-    let changeRateService: ChangeRateService!
-    let network: Property<UInt64>
-    
-    private var updateTimer: Timer? = nil
-    
-    init (account: Account, web3Service: EthereumWeb3Service, changeRateService: ChangeRateService, network: Property<UInt64>) {
-        self.web3Service = web3Service
-        self.changeRateService = changeRateService
-        self.network = network
-        
-        self.name = account.associatedData[.name]?.string ?? "Account"
-        self.emoji = account.associatedData[.emoji]?.string ?? "\u{1F9B9}"
+    init (account: AccountViewModel, changeRateService: ChangeRateService) {
+        self.name = account.name
+        self.emoji = account.emoji
         self.accountId = account.id
         
         super.init()
-
-        updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] _ in
-            self?.updateBalance()
-        }
-    }
-    
-    deinit {
-        updateTimer?.invalidate()
-    }
-
-    func updateBalance() {
-        web3Service.getBalance(accountId: self.accountId, networkId: network.value)
-            .done(on: .main) { balance in
+        
+        account.balance
+            .with(weak: changeRateService)
+            .map { balance, changeRateService -> String in
+                guard let balance = balance else {
+                    return "unknown"
+                }
+                
                 let ethBalance = "\(balance.rounded(toPlaces: 6)) ETH"
-                let usdBalance = "\((balance * self.changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"
-                self.balance.next("\(ethBalance) · \(usdBalance)")
+                let usdBalance = "\((balance * changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"
+                return "\(ethBalance) · \(usdBalance)"
             }
-            .catch { _ in
-                self.balance.next("unknown")
-        }
+            .bind(to: balance)
+            .dispose(in: bag)
     }
 }
 

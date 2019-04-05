@@ -50,7 +50,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         let activeAccount = context.wallet
             .filter { $0 != nil }
             .mapError { $0 as Error }
-            .map { wallet -> Account in
+            .map { wallet -> AccountViewModel in
                 let activeAccount = wallet!.accounts.collection.first { (try? $0.eth_address() == account) ?? false }
                 guard activeAccount != nil else {
                     throw OpenWalletError.eth_keychainWrongAccount(account.hex(eip55: false))
@@ -60,12 +60,12 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             .suppressAndFeedError(into: context.errors)
         
         activeAccount
-            .map { $0.associatedData[.emoji]?.string }
+            .flatMapLatest { $0.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         
         activeAccount
-            .map { $0.associatedData[.name]?.string }
+            .flatMapLatest { $0.name }
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
 

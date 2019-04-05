@@ -17,54 +17,23 @@ class TransactionInfoService {
     var web3Service: EthereumWeb3Service!
     
     var network: Property<UInt64>!
-    var activeAccount: Property<Account?>!
+    var activeAccount: Property<AccountViewModel?>!
     
-    var balance: Property<Double?>!
     var transactions: Property<Array<EthereumTransactionLog>?>!
-    
-    private var updateTimer: Timer? = nil
-    
-    func bootstrap() {
-        activeAccount
-            .observeIn(.main)
-            .with(weak: self)
-            .observeNext { acc, sself in
-                sself.checkTimer(account: acc)
-            }
-            .dispose(in: bag)
-        
-        combineLatest(network.distinctUntilChanged(), activeAccount)
-            .observeIn(.main)
-            .observeNext { [weak self] _, _ in
-                self?.balance.next(nil)
-                self?.updateBalance()
-            }
-            .dispose(in: bag)
-        
-        combineLatest(balance.distinctUntilChanged(), activeAccount)
+   
+    func bootstrap() {        
+        combineLatest(
+            activeAccount.filter { $0 != nil }.flatMapLatest{ $0!.balance.distinctUntilChanged() },
+            activeAccount
+        )
             .observeIn(.main)
             .observeNext { [weak self] _,  _ in
                 self?.updateTransactions()
-            }
-            .dispose(in: bag)
-    }
-    
-    func updateBalance() {
-        if let account = activeAccount.value {
-            web3Service.getBalance(accountId: account.id, networkId: network.value)
-                .done(on: .main) { [weak self] balance in
-                    self?.balance.next(balance)
-                }
-                .catch { [weak self] _ in
-                    self?.balance.next(nil)
-                }
-        } else {
-            balance.next(nil)
-        }
+            }.dispose(in: bag)
     }
     
     private func updateTransactions() {
-        if let account = activeAccount.value, let _ = balance.value {
+        if let account = activeAccount.value, let _ = account.balance.value {
             web3Service.getTransactions(accountId: account.id, networkId: network.value)
                 .done(on: .main) { [weak self] txs in
                     self?.transactions.next(
@@ -76,19 +45,6 @@ class TransactionInfoService {
                 }
         } else {
             transactions.next(nil)
-        }
-    }
-    
-    private func checkTimer(account: Account?) {
-        if let _ = account {
-            if updateTimer == nil {
-                updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] _ in
-                    self?.updateBalance()
-                }
-            }
-        } else {
-            updateTimer?.invalidate()
-            updateTimer = nil
         }
     }
 }

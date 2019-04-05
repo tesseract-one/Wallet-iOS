@@ -16,7 +16,7 @@ enum ExtensionErrors: Error {
 
 class ExtensionContext {
     let wallet = Property<WalletViewModel?>(nil)
-    let activeAccount = Property<Account?>(nil)
+    let activeAccount = Property<AccountViewModel?>(nil)
     
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
@@ -37,6 +37,8 @@ class ExtensionContext {
         walletService.activeAccount = activeAccount
         walletService.storage = storage
         walletService.settings = settings
+        walletService.network = Property(1)
+        walletService.web3Service = ethereumWeb3Service
         
         ethereumWeb3Service.wallet = wallet
         

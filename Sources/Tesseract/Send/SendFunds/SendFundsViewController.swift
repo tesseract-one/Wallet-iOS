@@ -57,11 +57,11 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         
         let activeAccount = model.activeAccount.filter { $0 != nil }
         activeAccount
-            .map { $0!.associatedData[.emoji]?.string }
+            .flatMapLatest { $0!.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         activeAccount
-            .map { $0!.associatedData[.name]?.string }
+            .flatMapLatest { $0!.name }
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         

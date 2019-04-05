@@ -10,11 +10,7 @@ import Foundation
 import ReactiveKit
 import PromiseKit
 import Wallet
-
-extension Account.AssociatedKeys {
-    static let name = Account.AssociatedKeys(rawValue: "name")
-    static let emoji = Account.AssociatedKeys(rawValue: "emoji")
-}
+import Bond
 
 class WalletService {
     enum Error: Swift.Error {
@@ -28,12 +24,17 @@ class WalletService {
     
     var storage: StorageProtocol!
     
+    var web3Service: EthereumWeb3Service!
+    
+    var network: Property<UInt64>!
     var wallet: Property<WalletViewModel?>!
-    var activeAccount: Property<Account?>!
+    var activeAccount: Property<AccountViewModel?>!
     
     var errorNode: SafePublishSubject<Swift.Error>!
     
     var settings: Settings!
+    
+    private var updateTimer: Timer? = nil
     
     func bootstrap() {
         walletManager = Manager(
@@ -44,7 +45,7 @@ class WalletService {
         let settings = self.settings!
         
         wallet
-            .map { wallet -> Account? in
+            .map { wallet -> AccountViewModel? in
                 guard let wallet = wallet else {
                     return nil
                 }
@@ -62,6 +63,18 @@ class WalletService {
         activeAccount.filter { $0 != nil }
             .observeNext { account in
                 settings.set(account!.id, forKey: .activeAccountId)
+            }.dispose(in: bag)
+        
+        wallet.observeIn(.main)
+            .with(weak: self)
+            .observeNext { wallet, sself in
+                sself.checkTimer(wallet: wallet)
+            }.dispose(in: bag)
+        
+        network.observeIn(.main)
+            .with(weak: self)
+            .observeNext { _, sself in
+                sself.updateBalance()
             }.dispose(in: bag)
     }
     
@@ -104,7 +117,7 @@ class WalletService {
         try wallet.unlock(password: password)
     }
     
-    func newAccount(name: String, emoji: String) -> Promise<Account> {
+    func newAccount(name: String, emoji: String) -> Promise<AccountViewModel> {
         guard let wallet = wallet.value else {
             return Promise(error: Error.walletIsNotInitialized)
         }
@@ -150,5 +163,37 @@ class WalletService {
     
     func setWallet(wallet: WalletViewModel) {
         self.wallet.next(wallet)
+    }
+    
+    public func updateBalance() {
+        wallet.filter { $0 != nil }
+            .flatMapLatest { $0!.accounts }
+            .with(weak: web3Service)
+                .with(latestFrom: network)
+                .observeNext { args in
+                    let ((accounts, web3Service), network) = args
+                    for account in accounts.collection {
+                        web3Service.getBalance(accountId: account.id, networkId: network)
+                            .done(on: .main) { balance in
+                                account.updateBalance(balance: balance)
+                            }.catch { _ in
+                                account.updateBalance(balance: nil)
+                        }
+                    }
+                }.dispose(in: bag)
+    }
+    
+    private func checkTimer(wallet: WalletViewModel?) {
+        if let _ = wallet {
+            if updateTimer == nil {
+                updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] _ in
+                    self?.updateBalance()
+                }
+                updateBalance()
+            }
+        } else {
+            updateTimer?.invalidate()
+            updateTimer = nil
+        }
     }
 }

@@ -24,7 +24,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     
     let goBack = SafePublishSubject<Void>()
     
-    let account = Property<Account?>(nil)
+    let account = Property<AccountViewModel?>(nil)
     let address = Property<String>("")
     let ethereumNetwork = Property<UInt64>(0)
     
@@ -102,6 +102,13 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
             .pourError(into: error)
             .bind(to: goBack)
             .dispose(in: bag)
+        
+        goBack.with(weak: self).observeNext { _, sself in
+                let walletService = sself.walletService
+                DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(5)) {
+                    walletService.updateBalance()
+                }
+            }.dispose(in: bag)
         
         fingerAction
             .with(weak: passwordService)

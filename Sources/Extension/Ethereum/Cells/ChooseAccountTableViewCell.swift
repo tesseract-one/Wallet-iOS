@@ -7,19 +7,19 @@
 //
 
 import UIKit
-import Wallet
+import ReactiveKit
+import Bond
 
-class ChooseAccountTableViewCell: UITableViewCell {
+class ChooseAccountTableViewCell: ViewModelCell<AccountViewModel> {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var emoji: UILabel!
     @IBOutlet weak var selectedIcon: UILabel!
     
-    var index: UInt32 = 0
-    
-    func setModel(model: Account) {
-        name.text = model.associatedData[.name]?.string ?? "Account"
-        emoji.text =  model.associatedData[.emoji]?.string ?? "\u{1F9B9}"
-        index = model.index
+    override func advise() {
+        guard let model = self.model else { return }
+        
+        model.name.bind(to: name.reactive.text).dispose(in: bag)
+        model.emoji.bind(to: emoji.reactive.text).dispose(in: bag)
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

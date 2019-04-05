@@ -9,14 +9,6 @@
 import UIKit
 import ReactiveKit
 
-protocol ViewModelProtocol {
-  var bag: DisposeBag { get }
-}
-
-class ViewModel: ViewModelProtocol {
-  let bag = DisposeBag()
-}
-
 protocol ForwardRoutableViewModelProtocol: ViewModelProtocol {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     

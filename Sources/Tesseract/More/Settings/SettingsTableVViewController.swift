@@ -116,7 +116,7 @@ extension SettingsTableViewController {
 extension SettingsTableViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
-        model = SettingsViewModel(walletService: appCtx.walletService, web3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
+        model = SettingsViewModel(walletService: appCtx.walletService, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
         
         appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
         appCtx.activeAccount.bidirectionalBind(to: model.activeAccount).dispose(in: model.bag)

@@ -16,8 +16,8 @@ import OpenWallet
 class EthereumKeychainAccountsViewController: EthereumKeychainViewController<EthereumAccountKeychainRequest>,
     EthereumKeychainViewControllerBaseControls {
    
-    let activeAccount = Property<Account?>(nil)
-    let accounts = MutableObservableArray<Account>()
+    let activeAccount = Property<AccountViewModel?>(nil)
+    let accounts = MutableObservableArray<AccountViewModel>()
     
     private var topConstraintInitial: CGFloat = 0.0
 
@@ -36,15 +36,11 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
         
         title = "Access Request"
         
-        context.wallet.observeNext { [weak self] wallet in
-            if let wallet = wallet {
-                wallet.accounts.bind(to: self!.accounts).dispose(in: wallet.bag)
-            }
-        }.dispose(in: reactive.bag)
+        context.wallet.filter { $0 != nil }.flatMapLatest { $0!.accounts }
+            .bind(to: accounts).dispose(in: reactive.bag)
         
         accounts.bind(to: chooseAccountTableView, cellType: ChooseAccountTableViewCell.self) { cell, account in
-            cell.setModel(model: account)
-            return
+            cell.model = account
         }.dispose(in: bag)
         
         context.activeAccount.bind(to: activeAccount).dispose(in: reactive.bag)
@@ -59,7 +55,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
             .map { Int($0.row) }
             .with(latestFrom: accounts)
             .map { accountIndex, accounts in
-                accounts.collection.first { $0.index == accountIndex }!
+                accounts.collection[accountIndex]
             }
             .bind(to: activeAccount)
             .dispose(in: reactive.bag)

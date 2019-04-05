@@ -7,17 +7,23 @@
 //
 
 import UIKit
-import Wallet
+import ReactiveKit
+import Bond
 
-class EthereumAddressTableViewCell: UITableViewCell {
+class EthereumAddressTableViewCell: ViewModelCell<AccountViewModel> {
 
     @IBOutlet weak var emojiView: UILabel!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var accountLabel: UILabel!
     
-    func setAccount(account: Account, header: String) {
+    override func advise() {
+        guard let model = self.model else { return }
+        
+        model.name.bind(to: accountLabel.reactive.text).dispose(in: bag)
+        model.emoji.bind(to: emojiView.reactive.text).dispose(in: bag)
+    }
+    
+    func setHeader(header: String) {
         headerLabel.text = header
-        emojiView.text = account.associatedData[.emoji]?.string
-        accountLabel.text = account.associatedData[.name]?.string
     }
 }
