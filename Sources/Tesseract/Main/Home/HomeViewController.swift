@@ -17,7 +17,10 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     
     @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!
-    @IBOutlet weak var balanceLabel: UILabel!
+    @IBOutlet weak var balanceETHLabel: UILabel!
+    @IBOutlet weak var balanceUSDLabel: UILabel!
+    @IBOutlet weak var balanceUpdateLabel: UILabel!
+    @IBOutlet weak var balanceUpdateAsPercentLabel: UILabel!
     
     @IBOutlet weak var cardView: UIImageView!
     @IBOutlet weak var accountView: UIStackView!
@@ -32,7 +35,11 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
             return
         }.dispose(in: bag)
         
-        model.balance.bind(to: balanceLabel.reactive.text).dispose(in: bag)
+        model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)
+        model.balanceETH.bind(to: balanceETHLabel.reactive.text).dispose(in: reactive.bag)
+        
+        model.balanceUpdateUSD.bind(to: balanceUpdateLabel.reactive.text).dispose(in: reactive.bag)
+        model.balanceUpdateInPercent.bind(to: balanceUpdateAsPercentLabel.reactive.text).dispose(in: reactive.bag)
         
         let activeAccount = model.activeAccount.filter { $0 != nil }
         activeAccount
@@ -55,12 +62,12 @@ extension HomeViewController {
                 if isMoreThanOneAccount {
                     sself.cardTopConstraint.constant = 76
                     sself.accountView.isHidden = false
-                    let newHeight: CGFloat = 100.0 + (sself.view.frame.width - 32.0) * 184.0/343.0
+                    let newHeight: CGFloat = 100.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
                     sself.tableView.tableHeaderView!.frame.size.height = newHeight
                 } else {
                     sself.cardTopConstraint.constant = 24
                     sself.accountView.isHidden = true
-                    let newHeight: CGFloat = 48.0 + (sself.view.frame.width - 32.0) * 184.0/343.0
+                    let newHeight: CGFloat = 48.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
                     sself.tableView.tableHeaderView!.frame.size.height = newHeight
                 }
             }
@@ -97,7 +104,7 @@ extension HomeViewController: ContextSubject {
         appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
-        appCtx.balance.bind(to: model.ethBalance).dispose(in: model.bag)
+        appCtx.balance.bind(to: model.balance).dispose(in: model.bag)
         appCtx.transactions.observeNext { [weak model] txs in
             model?.transactions.replace(with: txs ?? [])
         }.dispose(in: model.bag)

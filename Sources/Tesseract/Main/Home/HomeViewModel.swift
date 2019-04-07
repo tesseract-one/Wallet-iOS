@@ -23,9 +23,13 @@ class HomeViewModel: ViewModel {
 
     let transactions = MutableObservableArray<EthereumTransactionLog>()
     
-    let balance = Property<String>("")
-    let ethBalance = Property<Double?>(nil)
+    let balance = Property<Double?>(nil)
+    let balanceETH = Property<String>("")
     let balanceUSD = Property<String>("")
+    
+    let balanceUpdate = Property<Double?>(nil)
+    let balanceUpdateUSD = Property<String>("")
+    let balanceUpdateInPercent = Property<String>("")
     
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
@@ -42,18 +46,74 @@ class HomeViewModel: ViewModel {
     }
         
     func bootstrap() {
-        activeAccount.flatMapLatest{ $0!.balance }.bind(to: ethBalance).dispose(in: bag)
+        activeAccount.flatMapLatest{ $0!.balance }.bind(to: balance).dispose(in: bag)
         
-        ethBalance
-            .map { $0 == nil ? "unknown" : "\($0!.rounded(toPlaces: 6)) ETH" }
-            .bind(to: balance)
+        balance
+            .map { $0 == nil ? "unknown" : "\($0!.rounded(toPlaces: 4)) ETH" }
+            .bind(to: balanceETH)
             .dispose(in: bag)
         
-        combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
+        combineLatest(balance, changeRateService.changeRates[.Ethereum]!)
             .map { balance, rate in
-                balance == nil ? "unknown" : "$ \((balance! * rate).rounded(toPlaces: 2))"
+                balance == nil ? "unknown" : "\((balance! * rate).rounded(toPlaces: 2)) USD"
             }
             .bind(to: balanceUSD)
+            .dispose(in: bag)
+        
+        transactions.with(latestFrom: activeAccount)
+            .filter { $1 != nil }
+            .map { transactions, activeAccount in
+                let calendar = Calendar.current
+                return transactions.collection.reduce(0.0) { sum, tx in
+                    var newSum = sum
+                    
+                    guard calendar.isDateInToday(Date(timeIntervalSince1970: Double(UInt64(tx.timeStamp)!))) else {
+                        return newSum
+                    }
+                    
+                    let address = try! activeAccount!.eth_address().hex(eip55: false)
+                    
+                    // use 2 if like that for additional case, when user send money to himself
+                    if address == tx.from {
+                        newSum -= BigUInt(tx.value, radix: 10)!.ethValue()
+                    }
+                    
+                    if address == tx.to {
+                        newSum += BigUInt(tx.value, radix: 10)!.ethValue()
+                    }
+                    
+                    return newSum
+                }
+            }
+            .bind(to: balanceUpdate)
+            .dispose(in: bag)
+        
+        combineLatest(balanceUpdate, changeRateService.changeRates[.Ethereum]!)
+            .map { balanceUpdate, rate in
+                guard let balanceUpdate = balanceUpdate else {
+                    return "0.0 USD"
+                }
+                
+                let balanceUpdateString = "\((balanceUpdate * rate).rounded(toPlaces: 2)) USD"
+                return balanceUpdate > 0 ? "+" + balanceUpdateString : balanceUpdateString
+            }
+            .bind(to: balanceUpdateUSD)
+            .dispose(in: bag)
+        
+        balanceUpdate.with(latestFrom: balance)
+            .map { balanceUpdate, balance in
+                guard let balance = balance, let balanceUpdate = balanceUpdate, balanceUpdate != 0 else {
+                    return "0.0%"
+                }
+                
+                guard balance - balanceUpdate > 0.0001 else {
+                    return "100.0%"
+                }
+                
+                let balanceUpdateAsPercent = "\((balanceUpdate / (balance - balanceUpdate)).rounded(toPlaces: 2))%"
+                return balanceUpdate > 0 ? "+" + balanceUpdateAsPercent : balanceUpdateAsPercent
+            }
+            .bind(to: balanceUpdateInPercent)
             .dispose(in: bag)
         
         wallet.filter { $0 != nil }
