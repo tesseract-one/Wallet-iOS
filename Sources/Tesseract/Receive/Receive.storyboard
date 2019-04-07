@@ -131,7 +131,7 @@
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.24311044812202454" green="0.24315661191940308" blue="0.24310064315795898" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.10168730467557907" green="0.10961423069238663" blue="0.12209073454141617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="0.5"/>
@@ -184,7 +184,7 @@
                                                 </constraints>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="-2" translatesAutoresizingMaskIntoConstraints="NO" id="PbO-k8-CYk">
-                                                <rect key="frame" x="43" y="5" width="254" height="34"/>
+                                                <rect key="frame" x="43" y="5" width="284" height="34"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethereum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5g-Zb-aow">
                                                         <rect key="frame" x="0.0" y="0.0" width="58.5" height="21"/>
@@ -206,31 +206,19 @@
                                                     </label>
                                                 </subviews>
                                             </stackView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uov-hx-GOW">
-                                                <rect key="frame" x="311" y="10" width="16" height="24"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="16" id="Hb4-Rt-g5K"/>
-                                                    <constraint firstAttribute="height" constant="24" id="on5-4c-QBh"/>
-                                                </constraints>
-                                                <fontDescription key="fontDescription" name="Material-Design-Icons" family="Material Design Icons" pointSize="16"/>
-                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="PbO-k8-CYk" firstAttribute="top" secondItem="2PC-q7-lAO" secondAttribute="top" constant="5" id="C2D-3k-UcL"/>
-                                            <constraint firstAttribute="trailing" secondItem="Uov-hx-GOW" secondAttribute="trailing" constant="16" id="IB0-Li-FLc"/>
                                             <constraint firstAttribute="bottom" secondItem="PbO-k8-CYk" secondAttribute="bottom" constant="5" id="NeF-WA-Zru"/>
                                             <constraint firstItem="9ib-D3-CT7" firstAttribute="leading" secondItem="2PC-q7-lAO" secondAttribute="leading" constant="14" id="WZQ-mY-5Ej"/>
                                             <constraint firstItem="9ib-D3-CT7" firstAttribute="centerY" secondItem="2PC-q7-lAO" secondAttribute="centerY" id="fgO-I8-Lmx"/>
                                             <constraint firstItem="PbO-k8-CYk" firstAttribute="leading" secondItem="9ib-D3-CT7" secondAttribute="trailing" constant="14" id="pkO-Gy-cSA"/>
-                                            <constraint firstItem="Uov-hx-GOW" firstAttribute="centerY" secondItem="2PC-q7-lAO" secondAttribute="centerY" id="tZj-dj-yUF"/>
-                                            <constraint firstItem="Uov-hx-GOW" firstAttribute="leading" secondItem="PbO-k8-CYk" secondAttribute="trailing" constant="14" id="xcK-27-1kb"/>
+                                            <constraint firstAttribute="trailing" secondItem="PbO-k8-CYk" secondAttribute="trailing" constant="16" id="rdc-Z9-gVg"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                                <color key="value" red="0.24311044809999999" green="0.24315661190000001" blue="0.24310064319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="value" red="0.10168730467557907" green="0.10961423069238663" blue="0.12209073454141617" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
                                                 <real key="value" value="0.5"/>
