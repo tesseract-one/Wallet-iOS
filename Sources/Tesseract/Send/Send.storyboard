@@ -10,6 +10,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Medium.otf">
+            <string>SFProDisplay-Medium</string>
+        </array>
         <array key="materialdesignicons-webfont.ttf">
             <string>Material-Design-Icons</string>
         </array>
@@ -564,7 +567,7 @@
                                 </constraints>
                             </view>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-1R-ZTT" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="534" width="343" height="35"/>
+                                <rect key="frame" x="16" y="549" width="343" height="20"/>
                                 <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -693,79 +696,107 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UU3-oK-37Z">
-                                <rect key="frame" x="16" y="64" width="343" height="571"/>
+                                <rect key="frame" x="16" y="36" width="343" height="533"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mkc-Jt-Suc" customClass="QRCodeScannerView" customModule="Tesseract" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="149.5" width="311" height="269"/>
-                                        <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="16" y="111" width="311" height="311"/>
+                                        <color key="backgroundColor" red="0.13331398367881775" green="0.13334444165229797" blue="0.13331207633018494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="Mkc-Jt-Suc" secondAttribute="height" multiplier="311:269" id="Za1-jO-TCf"/>
+                                            <constraint firstAttribute="width" secondItem="Mkc-Jt-Suc" secondAttribute="height" multiplier="1:1" id="Za1-jO-TCf"/>
                                         </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-mg-Paa">
-                                        <rect key="frame" x="16" y="481" width="311" height="50"/>
-                                        <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="MVU-su-qQ2"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                        <state key="normal" title="Cancel">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                 <real key="value" value="4"/>
                                             </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.082338817417621613" green="0.082361035048961639" blue="0.082337401807308197" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
-                                    </button>
+                                    </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3U-Tf-HJH">
-                                        <rect key="frame" x="68.5" y="32" width="206" height="39"/>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="32"/>
+                                        <rect key="frame" x="71" y="32" width="201.5" height="48"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="48" id="TwG-gM-a98"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="32"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will sent our best courier rabbit to deliver your money!" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BVZ-wN-bNp">
-                                        <rect key="frame" x="31.5" y="79" width="280" height="38.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ir-Hn-SFW">
+                                        <rect key="frame" x="61" y="446" width="221" height="42"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="280" id="sp6-8d-tKj"/>
+                                            <constraint firstAttribute="width" constant="221" id="UJM-jb-dAb"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="16"/>
-                                        <color key="textColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Make sure you are scanning QR code with the wallet address">
+                                                <attributes>
+                                                    <color key="NSBackgroundColor" red="0.082338817417621613" green="0.082352941176470587" blue="0.082337401807308197" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <color key="NSColor" red="0.55685502290725708" green="0.55266427993774414" blue="0.56914657354354858" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <font key="NSFont" size="14" name="SFProDisplay-Regular"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.14507749676704407" green="0.1451098620891571" blue="0.14507544040679932" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Mkc-Jt-Suc" secondAttribute="trailing" constant="16" id="1Wt-Xn-mwh"/>
                                     <constraint firstItem="l3U-Tf-HJH" firstAttribute="centerX" secondItem="UU3-oK-37Z" secondAttribute="centerX" id="7zF-KX-SNX"/>
-                                    <constraint firstItem="hIS-mg-Paa" firstAttribute="trailing" secondItem="Mkc-Jt-Suc" secondAttribute="trailing" id="O1j-JJ-wzX"/>
-                                    <constraint firstItem="BVZ-wN-bNp" firstAttribute="centerX" secondItem="UU3-oK-37Z" secondAttribute="centerX" id="Oca-rJ-4Vp"/>
-                                    <constraint firstItem="hIS-mg-Paa" firstAttribute="leading" secondItem="Mkc-Jt-Suc" secondAttribute="leading" id="Wme-Mf-5PO"/>
-                                    <constraint firstItem="Mkc-Jt-Suc" firstAttribute="top" secondItem="BVZ-wN-bNp" secondAttribute="bottom" constant="32" id="bcT-fb-66L"/>
+                                    <constraint firstItem="4ir-Hn-SFW" firstAttribute="top" secondItem="Mkc-Jt-Suc" secondAttribute="bottom" constant="24" id="A0T-Tf-Y08"/>
+                                    <constraint firstItem="4ir-Hn-SFW" firstAttribute="centerX" secondItem="UU3-oK-37Z" secondAttribute="centerX" id="TH4-AS-hhj"/>
+                                    <constraint firstItem="Mkc-Jt-Suc" firstAttribute="centerY" secondItem="UU3-oK-37Z" secondAttribute="centerY" id="XYr-tD-4Au"/>
                                     <constraint firstItem="Mkc-Jt-Suc" firstAttribute="leading" secondItem="UU3-oK-37Z" secondAttribute="leading" constant="16" id="cPv-ic-MYw"/>
-                                    <constraint firstItem="BVZ-wN-bNp" firstAttribute="top" secondItem="l3U-Tf-HJH" secondAttribute="bottom" constant="8" id="eWg-0x-rEm"/>
                                     <constraint firstItem="l3U-Tf-HJH" firstAttribute="top" secondItem="UU3-oK-37Z" secondAttribute="top" constant="32" id="foc-3G-1YR"/>
-                                    <constraint firstAttribute="bottom" secondItem="hIS-mg-Paa" secondAttribute="bottom" constant="40" id="tzt-YL-Qqo"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                         <real key="value" value="4"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                        <color key="value" red="0.24313725490196078" green="0.24313725490196078" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.16"/>
                                     </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                        <real key="value" value="1"/>
+                                    <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                        <size key="value" width="0.0" height="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
+                                        <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="10"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hIS-mg-Paa">
+                                <rect key="frame" x="16" y="593" width="343" height="50"/>
+                                <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="MVU-su-qQ2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="hIS-mg-Paa" firstAttribute="leading" secondItem="PVW-i4-CQ6" secondAttribute="leading" constant="16" id="3gG-Wu-tMg"/>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="trailing" secondItem="hIS-mg-Paa" secondAttribute="trailing" constant="16" id="EvM-xH-t7H"/>
                             <constraint firstItem="UU3-oK-37Z" firstAttribute="leading" secondItem="PVW-i4-CQ6" secondAttribute="leading" constant="16" id="RQD-jk-yBj"/>
-                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="bottom" secondItem="UU3-oK-37Z" secondAttribute="bottom" constant="32" id="TlJ-rz-DCW"/>
-                            <constraint firstItem="UU3-oK-37Z" firstAttribute="top" secondItem="PVW-i4-CQ6" secondAttribute="top" constant="44" id="d2i-ol-eY5"/>
+                            <constraint firstItem="UU3-oK-37Z" firstAttribute="top" secondItem="PVW-i4-CQ6" secondAttribute="top" constant="16" id="d2i-ol-eY5"/>
                             <constraint firstItem="PVW-i4-CQ6" firstAttribute="trailing" secondItem="UU3-oK-37Z" secondAttribute="trailing" constant="16" id="hq8-Xs-f6Z"/>
+                            <constraint firstItem="hIS-mg-Paa" firstAttribute="top" secondItem="UU3-oK-37Z" secondAttribute="bottom" constant="24" id="pkD-Pb-y4E"/>
+                            <constraint firstItem="PVW-i4-CQ6" firstAttribute="bottom" secondItem="hIS-mg-Paa" secondAttribute="bottom" constant="24" id="tCB-Io-MqD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="PVW-i4-CQ6"/>
                     </view>
