@@ -56,10 +56,10 @@ class HomeViewModel: ViewModel {
             .bind(to: balanceUSD)
             .dispose(in: bag)
         
-        wallet.with(weak: self)
-            .observeNext { wallet, sself in
-                wallet!.accounts.map { $0.collection.count > 0 }
-                    .bind(to: sself.isMoreThanOneAccount).dispose(in: wallet!.bag)
-            }.dispose(in: bag)
+        wallet.filter { $0 != nil }
+            .flatMapLatest { $0!.accounts }
+            .map { $0.collection.count > 1 }
+            .bind(to: isMoreThanOneAccount)
+            .dispose(in: bag)
     }
 }
