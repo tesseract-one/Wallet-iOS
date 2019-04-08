@@ -17,12 +17,6 @@ class SettingWithSwitchTableViewCell: ViewModelCell<SettingWithSwitchVM> {
     
     let toggleSwithAction = SafePublishSubject<Bool>()
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        isEnabledSwitch.transform = CGAffineTransform(scaleX: 0.75, y: 0.75).translatedBy(x: 6.275, y: 0) // move to right size transformed switch
-    }
-    
     override func advise() {
         guard let model = self.model else { return }
         

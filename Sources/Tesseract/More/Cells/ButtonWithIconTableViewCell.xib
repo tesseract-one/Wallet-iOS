@@ -25,14 +25,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="plus" translatesAutoresizingMaskIntoConstraints="NO" id="utV-mS-Q7N">
-                        <rect key="frame" x="21" y="15" width="14" height="14"/>
+                        <rect key="frame" x="15" y="10" width="24" height="24"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="e4Q-5H-pMP"/>
-                            <constraint firstAttribute="width" constant="14" id="rtv-ZB-YoL"/>
+                            <constraint firstAttribute="height" constant="24" id="e4Q-5H-pMP"/>
+                            <constraint firstAttribute="width" constant="24" id="rtv-ZB-YoL"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Account" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuk-nG-9k1">
-                        <rect key="frame" x="56" y="10" width="248" height="24"/>
+                        <rect key="frame" x="54" y="10" width="250" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="VtU-dS-Al2"/>
                         </constraints>
@@ -44,13 +44,13 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="iuk-nG-9k1" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="J0M-Wm-LL7"/>
-                    <constraint firstItem="iuk-nG-9k1" firstAttribute="leading" secondItem="utV-mS-Q7N" secondAttribute="trailing" constant="21" id="Oe2-90-uKt"/>
+                    <constraint firstItem="iuk-nG-9k1" firstAttribute="leading" secondItem="utV-mS-Q7N" secondAttribute="trailing" constant="15" id="Oe2-90-uKt"/>
                     <constraint firstAttribute="trailing" secondItem="iuk-nG-9k1" secondAttribute="trailing" constant="16" id="Qk5-8Z-09Q"/>
-                    <constraint firstItem="utV-mS-Q7N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="21" id="U08-P9-cu6"/>
+                    <constraint firstItem="utV-mS-Q7N" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="U08-P9-cu6"/>
                     <constraint firstItem="utV-mS-Q7N" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="di4-xx-oH1"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.13331398367881775" green="0.13334444165229797" blue="0.13331207633018494" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="icon" destination="utV-mS-Q7N" id="HRT-T0-CGY"/>
@@ -59,6 +59,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="plus" width="12" height="11"/>
+        <image name="plus" width="24" height="24"/>
     </resources>
 </document>

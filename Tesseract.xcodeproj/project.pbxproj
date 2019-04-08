@@ -112,6 +112,8 @@
 		D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */; };
 		D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BC5E6224E899F0022622E /* NetworkTableViewCell.swift */; };
 		D15BC5EB224E90670022622E /* ChooseNetworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */; };
+		D165A092225B8BCD00BAFFA3 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */; };
+		D165A093225B8BCD00BAFFA3 /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
 		D168B55A22284A48008DBFB0 /* TermOfServiceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */; };
 		D16F02F9224D262B0001FA57 /* SettingWithWordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D16F02F7224D262B0001FA57 /* SettingWithWordTableViewCell.xib */; };
@@ -310,6 +312,8 @@
 		D15BC5E5224E899F0022622E /* NetworkTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = NetworkTableViewCell.xib; path = ../Cells/NetworkTableViewCell.xib; sourceTree = "<group>"; };
 		D15BC5E6224E899F0022622E /* NetworkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NetworkTableViewCell.swift; path = ../Cells/NetworkTableViewCell.swift; sourceTree = "<group>"; };
 		D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkTableViewController.swift; sourceTree = "<group>"; };
+		D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutTableViewCell.xib; sourceTree = "<group>"; };
+		D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
 		D168B55922284A48008DBFB0 /* TermOfServiceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermOfServiceViewModel.swift; sourceTree = "<group>"; };
 		D16F02F7224D262B0001FA57 /* SettingWithWordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingWithWordTableViewCell.xib; sourceTree = "<group>"; };
@@ -806,6 +810,8 @@
 				D18D9515224A70E30028B3CA /* AccountTableViewCell.xib */,
 				D16F02F7224D262B0001FA57 /* SettingWithWordTableViewCell.xib */,
 				D16F02F8224D262B0001FA57 /* SettingWithWordTableViewCell.swift */,
+				D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */,
+				D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -1071,6 +1077,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1C18AF6224A810A003EEDA7 /* ButtonWithIconTableViewCell.xib in Resources */,
+				D165A092225B8BCD00BAFFA3 /* LogoutTableViewCell.xib in Resources */,
 				92564D3722356BFA00319D8E /* SF-Pro-Display-Semibold.otf in Resources */,
 				92564D3922356BFA00319D8E /* SF-Pro-Display-Regular.otf in Resources */,
 				92FE9741222E334D007DB61C /* TransactionTableViewCell.xib in Resources */,
@@ -1299,6 +1306,7 @@
 				922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */,
 				92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */,
 				D143DCE3225259EC0075BAC9 /* ViewModelCell.swift in Sources */,
+				D165A093225B8BCD00BAFFA3 /* LogoutTableViewCell.swift in Sources */,
 				D133937F224BA8F500E69E57 /* WalletTypeViewController.swift in Sources */,
 				92947DE42242930300055F5A /* TransactionInfoService.swift in Sources */,
 				9230791022302539004E3950 /* Constants.swift in Sources */,

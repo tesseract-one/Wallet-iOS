@@ -14,19 +14,20 @@ class SettingWithWordTableViewCell: ViewModelCell<SettingWithWordVM> {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var settingLabel: UILabel!
+    @IBOutlet weak var chevronIcon: UIImageView!
     
     override func advise() {
         guard let model = self.model else { return }
         
         titleLabel.text = model.title
-        settingLabel.textColor = model.isEnabled ? .white : UIColor(red: 92/255, green: 92/255, blue: 92/255, alpha: 1.0)
+        chevronIcon.isHidden = !model.isEnabled
         
         if let description = model.description {
             descriptionLabel.text = description
         } else {
-            model.activeDescription!.bind(to: descriptionLabel.reactive.text).dispose(in: bag)
+            descriptionLabel.isHidden = true
         }
-
+        
         model.word.bind(to: settingLabel.reactive.text).dispose(in: bag)
         
         if model.isEnabled {

@@ -15,15 +15,13 @@ import Wallet
 class SettingWithWordVM: ViewModel {
     let title: String
     let description: String?
-    let activeDescription: Property<String>?
     let word: Property<String>
     let isEnabled: Bool
     let action: SafePublishSubject<Void>?
     
-    init(title: String, description: String? = nil, activeDescription: Property<String>? = nil, word: Property<String>, isEnabled: Bool, action: SafePublishSubject<Void>? = nil) {
+    init(title: String, description: String? = nil, word: Property<String>, isEnabled: Bool, action: SafePublishSubject<Void>? = nil) {
         self.title = title
         self.description = description
-        self.activeDescription = activeDescription
         self.word = word
         self.isEnabled = isEnabled
         self.action = isEnabled ? action! : nil
@@ -112,6 +110,18 @@ class ButtonWithIconVM: ViewModel {
     init(title: String, icon: UIImage, action: SafePublishSubject<Void>) {
         self.title = title
         self.icon = icon
+        self.action = action
+        
+        super.init()
+    }
+}
+
+class LogoutVM: ViewModel {
+    let title: String
+    let action: SafePublishSubject<Void>
+    
+    init(title: String, action: SafePublishSubject<Void>) {
+        self.title = title
         self.action = action
         
         super.init()

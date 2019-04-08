@@ -31,8 +31,8 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let changePasswordAction = SafePublishSubject<Void>()
     let switchDeveloperModeAction = SafePublishSubject<Bool>()
     let currentNetwork = Property<String>("RKB")
-    let currentNetworkDescription = Property<String>("Rinkeby Network")
     let changeNetworkAction = SafePublishSubject<Void>()
+    let currentVersion = Property<String>("0.0.1")
     let showInfoAboutTesseractAction = SafePublishSubject<Void>()
     let logoutAction = SafePublishSubject<Void>()
     
@@ -69,7 +69,6 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         
         network.map { NETWORKS[Int($0) - 1].abbr }.bind(to: currentNetwork)
-        network.map { NETWORKS[Int($0) - 1].name }.bind(to: currentNetworkDescription)
         
         switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
             let numberOfItemsInDeveloperSection = sself.tableSettings[sectionAt: 2].items.count
@@ -78,7 +77,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
                 sself.tableSettings.removeFromSubrange(section: 2, range: 1... )
             } else if isOn && numberOfItemsInDeveloperSection == 1 {
                 sself.tableSettings.appendItem(
-                    SettingWithWordVM(title: "Choose Network", activeDescription: sself.currentNetworkDescription, word: sself.currentNetwork, isEnabled: true, action: sself.changeNetworkAction),
+                    SettingWithWordVM(title: "Choose Network", word: sself.currentNetwork, isEnabled: true, action: sself.changeNetworkAction),
                     toSectionAt: 2
                 )
             }
@@ -130,19 +129,18 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         )
         if settings.number(forKey: .isDeveloperModeEnabled) as? Bool == true {
             self.tableSettings.appendItem(
-                SettingWithWordVM(title: "Choose Network", activeDescription: self.currentNetworkDescription, word: self.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
+                SettingWithWordVM(title: "Choose Network", word: self.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
                 toSectionAt: 2
             )
         }
         
-        tableSettings.appendSection("Other")
+        tableSettings.appendSection("")
         tableSettings.appendItem(
-            SettingWithIconVM(title: "About Tesseract", description: "Info about current version and company.", icon: UIImage(named: "chevron")!, action: showInfoAboutTesseractAction),
+            SettingWithWordVM(title: "About Tesseract", word: self.currentVersion, isEnabled: true, action: showInfoAboutTesseractAction),
             toSectionAt: 3
         )
-        tableSettings.appendItem(
-            SettingWithIconVM(title: "Logout", description: "You’ll be back 🤖", icon: UIImage(named: "logout")!, action: self.logoutAction),
-            toSectionAt: 3
-        )
+        
+        tableSettings.appendSection("")
+        tableSettings.appendItem( LogoutVM(title: "Log Out", action: self.logoutAction), toSectionAt: 4)
     }
 }
