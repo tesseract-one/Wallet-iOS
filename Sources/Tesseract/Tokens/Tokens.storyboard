@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="pEY-JI-JdL">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tokens-->
+        <scene sceneID="Dt9-40-pqD">
+            <objects>
+                <navigationController storyboardIdentifier="Tokens" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pEY-JI-JdL" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Tokens" image="menu-tokens-passive" selectedImage="menu-tokens-active" id="4Jb-B0-0Ri"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CAJ-mr-vHF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="7QZ-FG-los" kind="relationship" relationship="rootViewController" id="ESN-5b-kJ9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="whM-ah-2pO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-523" y="179"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="8zL-EF-oGY">
+            <objects>
+                <viewController storyboardIdentifier="TokensVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="7QZ-FG-los" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BR2-Xf-DY5">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="67p-Ez-v0S"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8w8-91-A2G"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ttg-NW-kTQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="219" y="179"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="menu-tokens-active" width="16" height="16"/>
+        <image name="menu-tokens-passive" width="20" height="20"/>
+    </resources>
+</document>

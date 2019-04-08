@@ -274,6 +274,10 @@
                         <viewLayoutGuide key="safeArea" id="Wji-Rk-cjI"/>
                     </view>
                     <navigationItem key="navigationItem" title="Receive Funds" id="cTF-2p-hrE">
+                        <barButtonItem key="leftBarButtonItem" image="cancelBtn" style="done" id="MzY-Zi-Mzn">
+                            <inset key="imageInsets" minX="0.0" minY="1" maxX="0.0" maxY="0.0"/>
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="0.75" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" image="actionBtn" style="done" id="gXP-PH-3pW">
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
@@ -282,6 +286,7 @@
                         <outlet property="accountEmojiLabel" destination="xjV-q3-IMH" id="HCh-uO-tgh"/>
                         <outlet property="addressLabel" destination="ves-dx-gdD" id="mRc-jb-H7i"/>
                         <outlet property="balanceLabel" destination="fDJ-LR-L1I" id="Bfo-5u-6gR"/>
+                        <outlet property="cancelButton" destination="MzY-Zi-Mzn" id="IDh-FC-V2R"/>
                         <outlet property="copyButton" destination="k7h-CQ-Es9" id="apd-az-end"/>
                         <outlet property="qrCodeImageView" destination="HJB-sR-Dc0" id="hVW-xI-vIJ"/>
                     </connections>
@@ -290,11 +295,10 @@
             </objects>
             <point key="canvasLocation" x="165.59999999999999" y="22.938530734632685"/>
         </scene>
-        <!--Recieve-->
+        <!--Router Navigation Controller-->
         <scene sceneID="tpf-VG-6g7">
             <objects>
                 <navigationController storyboardIdentifier="Receive" automaticallyAdjustsScrollViewInsets="NO" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0ye-Lo-pff" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Recieve" image="menu-recieve-passive" selectedImage="menu-recieve-active" id="5zW-XG-Hq5"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="jcl-Na-A1N" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
@@ -319,8 +323,7 @@
     </scenes>
     <resources>
         <image name="actionBtn" width="13" height="18"/>
-        <image name="menu-recieve-active" width="20" height="20"/>
-        <image name="menu-recieve-passive" width="20" height="20"/>
+        <image name="cancelBtn" width="12" height="11"/>
         <image name="token-ethereum" width="10" height="16"/>
     </resources>
 </document>

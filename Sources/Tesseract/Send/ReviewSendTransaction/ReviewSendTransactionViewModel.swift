@@ -34,6 +34,8 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let gasAmount = Property<Double>(0.0)
     let amount = Property<Double>(0.0)
     
+    let closeModal = SafePublishSubject<Void>()
+    
     let receiveAmountString = Property<String>("")
     let gasAmountString = Property<String>("")
     let amountString = Property<String>("")
@@ -100,7 +102,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
                 ).signal
             }
             .pourError(into: error)
-            .bind(to: goBack)
+            .bind(to: closeModal)
             .dispose(in: bag)
         
         goBack.with(weak: self).observeNext { _, sself in

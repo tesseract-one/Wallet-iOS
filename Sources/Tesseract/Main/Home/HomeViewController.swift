@@ -21,6 +21,8 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     @IBOutlet weak var balanceUSDLabel: UILabel!
     @IBOutlet weak var balanceUpdateLabel: UILabel!
     @IBOutlet weak var balanceUpdateAsPercentLabel: UILabel!
+    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var receiveButton: UIButton!
     
     @IBOutlet weak var balanceUpdateLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var balanceUpdateAsPercentLeftConstraint: NSLayoutConstraint!
@@ -55,6 +57,31 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         
+        sendButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.sendAction).dispose(in: bag)
+        receiveButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.receiveAction).dispose(in: bag)
+        
+        model.goToSendView.observeNext { [weak self] name, context in
+                let vc = try? UIStoryboard(name: "Send", bundle: nil)
+                    .viewFactory(context: self?.r_context)
+                    .viewController(for: .root, context: context)
+                self?.show(vc!, sender: self!)
+            }.dispose(in: bag)
+        
+        model.goToReceiveView.observeNext { [weak self] name, context in
+                let vc = try? UIStoryboard(name: "Receive", bundle: nil)
+                    .viewFactory(context: self?.r_context)
+                    .viewController(for: .root, context: context)
+                self?.show(vc!, sender: self!)
+            }.dispose(in: bag)
+        
+        model.closePopupView.with(weak: self).observeNext { sself in
+                if sself.presentedViewController != nil {
+                    sself.dismiss(animated: true, completion: nil)
+                }
+            }.dispose(in: bag)
+        
         setupAccountView()
         setupSizes()
     }
@@ -79,12 +106,12 @@ extension HomeViewController {
                 if isMoreThanOneAccount {
                     sself.cardTopConstraint.constant = 76
                     sself.accountView.isHidden = false
-                    let newHeight: CGFloat = 100.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
+                    let newHeight: CGFloat = 182.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
                     sself.tableView.tableHeaderView!.frame.size.height = newHeight
                 } else {
                     sself.cardTopConstraint.constant = 24
                     sself.accountView.isHidden = true
-                    let newHeight: CGFloat = 48.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
+                    let newHeight: CGFloat = 130.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
                     sself.tableView.tableHeaderView!.frame.size.height = newHeight
                 }
             }

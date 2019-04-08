@@ -11,8 +11,10 @@ import ReactiveKit
 import Wallet
 
 
-class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-    let goToView = SafePublishSubject<ToView>()
+class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
+    let walletService: WalletService
+    let ethWeb3Service: EthereumWeb3Service
+    let changeRateService: ChangeRateService
     
     let scanQr = SafePublishSubject<Void>()
     let reviewAction = SafePublishSubject<Void>()
@@ -32,9 +34,8 @@ class SendFundsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let gasAmount = Property<Double>(0.0)
     let receiveAmount = Property<Double>(0.0)
     
-    let walletService: WalletService
-    let ethWeb3Service: EthereumWeb3Service
-    let changeRateService: ChangeRateService
+    let goToView = SafePublishSubject<ToView>()
+    let goBack = SafePublishSubject<Void>()
     
     init(walletService: WalletService, ethWeb3Service: EthereumWeb3Service,
          changeRateService: ChangeRateService) {

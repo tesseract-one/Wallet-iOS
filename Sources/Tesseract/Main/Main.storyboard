@@ -37,20 +37,20 @@
                                 <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                <real key="value" value="0.5"/>
+                                <real key="value" value="0.25"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
-                                <size key="value" width="0.0" height="-0.5"/>
+                                <size key="value" width="0.0" height="-1"/>
                             </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                <real key="value" value="1"/>
+                                <real key="value" value="4"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="oRs-F8-VSe" kind="relationship" relationship="viewControllers" id="6fz-0U-1ec"/>
-                        <segue destination="nnc-TN-IhE" kind="relationship" relationship="viewControllers" id="Q9g-Vc-aHy"/>
                         <segue destination="axF-bi-Fhy" kind="relationship" relationship="viewControllers" id="vtT-mb-Va2"/>
+                        <segue destination="nnc-TN-IhE" kind="relationship" relationship="viewControllers" id="Q9g-Vc-aHy"/>
                         <segue destination="xP5-Fk-PEv" kind="relationship" relationship="viewControllers" id="aga-fV-M1d"/>
                     </connections>
                 </tabBarController>
@@ -58,7 +58,7 @@
             </objects>
             <point key="canvasLocation" x="-1154.4000000000001" y="679.61019490254876"/>
         </scene>
-        <!--Home-->
+        <!--Home View Controller-->
         <scene sceneID="Qrd-m0-OMO">
             <objects>
                 <tableViewController storyboardIdentifier="Home" id="NrD-gD-WuY" customClass="HomeViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
@@ -68,7 +68,7 @@
                         <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="uRB-u7-lZc">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="392"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="477"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="X7t-8g-uXP">
@@ -218,11 +218,72 @@
                                         <constraint firstItem="k7l-v7-5MB" firstAttribute="leading" secondItem="kVC-aU-OVe" secondAttribute="trailing" constant="32" id="s2O-vG-pEi"/>
                                     </constraints>
                                 </view>
+                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="aDH-28-70Q">
+                                    <rect key="frame" x="16" y="377" width="382" height="50"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bFO-DS-rx3">
+                                            <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
+                                            <color key="backgroundColor" red="0.30916038155555725" green="0.32500112056732178" blue="0.36203831434249878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                            <state key="normal" title="Recieve">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDG-J7-ql4" customClass="GradientButton" customModule="Tesseract" customModuleProvider="target">
+                                            <rect key="frame" x="199" y="0.0" width="183" height="50"/>
+                                            <color key="backgroundColor" red="0.52549019610000003" green="0.35686274509999999" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
+                                            <state key="normal" title="Send">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
+                                                    <point key="value" x="0.0" y="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
+                                                    <point key="value" x="1" y="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="toColor">
+                                                    <color key="value" red="0.52549019607843139" green="0.35686274509803922" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
+                                                    <color key="value" red="0.47058823529411764" green="0.42352941176470588" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
+                                                    <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="size" keyPath="shadowOffset">
+                                                    <size key="value" width="0.0" height="1"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                    <real key="value" value="4"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                    <real key="value" value="0.25"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="50" id="Bsw-QL-dA0"/>
+                                    </constraints>
+                                </stackView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="L24-Ym-UdJ" firstAttribute="trailing" secondItem="U4R-dj-f3w" secondAttribute="trailing" constant="16" id="57A-sv-Jmw"/>
+                                <constraint firstItem="aDH-28-70Q" firstAttribute="leading" secondItem="L24-Ym-UdJ" secondAttribute="leading" constant="16" id="Ksk-mv-dP9"/>
+                                <constraint firstItem="aDH-28-70Q" firstAttribute="top" secondItem="U4R-dj-f3w" secondAttribute="bottom" constant="32" id="Lxx-fO-mSk"/>
                                 <constraint firstItem="U4R-dj-f3w" firstAttribute="leading" secondItem="L24-Ym-UdJ" secondAttribute="leading" constant="16" id="Uaq-wI-QRX"/>
+                                <constraint firstItem="L24-Ym-UdJ" firstAttribute="trailing" secondItem="aDH-28-70Q" secondAttribute="trailing" constant="16" id="fiw-wf-6Kg"/>
                                 <constraint firstItem="X7t-8g-uXP" firstAttribute="top" secondItem="L24-Ym-UdJ" secondAttribute="top" constant="24" id="pIk-5u-mdE"/>
                                 <constraint firstItem="X7t-8g-uXP" firstAttribute="leading" secondItem="L24-Ym-UdJ" secondAttribute="leading" constant="16" id="r9u-LM-uax"/>
                                 <constraint firstItem="U4R-dj-f3w" firstAttribute="top" secondItem="L24-Ym-UdJ" secondAttribute="top" constant="76" id="sXo-MR-YCb"/>
@@ -234,9 +295,6 @@
                             <outlet property="delegate" destination="NrD-gD-WuY" id="fZs-7S-a4d"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Home" image="menu-home-passive" selectedImage="menu-home-active" id="Ozc-Rh-NPk">
-                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
-                    </tabBarItem>
                     <navigationItem key="navigationItem" id="q0l-jX-kyo"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
@@ -251,6 +309,8 @@
                         <outlet property="balanceUpdateLeftConstraint" destination="s2O-vG-pEi" id="6ui-Cn-RqK"/>
                         <outlet property="cardTopConstraint" destination="sXo-MR-YCb" id="c5f-eL-sOC"/>
                         <outlet property="cardView" destination="TGV-lJ-6MQ" id="Hi0-dW-Izg"/>
+                        <outlet property="receiveButton" destination="bFO-DS-rx3" id="482-le-7Mg"/>
+                        <outlet property="sendButton" destination="gDG-J7-ql4" id="Q72-ap-5U6"/>
                         <outlet property="separatorView" destination="kdp-NJ-KvV" id="Jgd-df-7Lx"/>
                     </connections>
                 </tableViewController>
@@ -258,11 +318,11 @@
             </objects>
             <point key="canvasLocation" x="201.44927536231884" y="677.67857142857144"/>
         </scene>
-        <!--Item-->
+        <!--Home-->
         <scene sceneID="D0C-22-EEG">
             <objects>
                 <navigationController storyboardIdentifier="MainNC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oRs-F8-VSe" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="pla-9M-rAE"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="menu-home-active" id="pla-9M-rAE"/>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="401-PD-jum">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -275,40 +335,39 @@
             </objects>
             <point key="canvasLocation" x="-474" y="679"/>
         </scene>
-        <!--Send-->
+        <!--Tokens-->
         <scene sceneID="8J3-QU-axv">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Send" storyboardName="Send" id="axF-bi-Fhy" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="IlM-f2-rZR"/>
+                <viewControllerPlaceholder storyboardName="Tokens" id="axF-bi-Fhy" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="IlM-f2-rZR"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ccq-tt-zuf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1429" y="1099"/>
+            <point key="canvasLocation" x="-1396" y="1187"/>
         </scene>
         <!--More-->
         <scene sceneID="CdA-9K-43R">
             <objects>
                 <viewControllerPlaceholder storyboardIdentifier="More" storyboardName="More" id="xP5-Fk-PEv" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="2FD-sa-csS"/>
+                    <tabBarItem key="tabBarItem" title="" id="2FD-sa-csS"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Frt-n9-AVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1154" y="1164"/>
+            <point key="canvasLocation" x="-914" y="1187"/>
         </scene>
-        <!--Receive-->
+        <!--Collectibles-->
         <scene sceneID="TTL-v4-JDG">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Receive" storyboardName="Receive" id="nnc-TN-IhE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="A4E-Fg-ncp"/>
+                <viewControllerPlaceholder storyboardName="Collectibles" id="nnc-TN-IhE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="A4E-Fg-ncp"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KEz-3B-Cfa" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-890" y="1106"/>
+            <point key="canvasLocation" x="-1154" y="1263"/>
         </scene>
     </scenes>
     <resources>
         <image name="TesCard" width="343" height="202"/>
         <image name="menu-home-active" width="20" height="20"/>
-        <image name="menu-home-passive" width="20" height="20"/>
     </resources>
 </document>

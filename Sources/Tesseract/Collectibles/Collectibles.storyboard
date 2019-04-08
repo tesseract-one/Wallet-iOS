@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="0yb-yo-qmO">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Collectibles-->
+        <scene sceneID="38g-cd-2dk">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucQ-lc-y97" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController storyboardIdentifier="Collectibles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0yb-yo-qmO" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Collectibles" image="menu-collectibles-passive" selectedImage="menu-collectibles-active" id="23F-5E-zIw"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RZW-XG-nrG">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="GYn-kT-qyM" kind="relationship" relationship="rootViewController" id="sNq-4k-pHh"/>
+                    </connections>
+                </navigationController>
+            </objects>
+            <point key="canvasLocation" x="-509" y="197"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="u5A-rH-l7A">
+            <objects>
+                <viewController storyboardIdentifier="CollectiblesVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="GYn-kT-qyM" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qfq-aI-pLr">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="dFC-ex-V4k"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1ud-sa-SfX"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YON-tY-eQW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="182" y="200"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="menu-collectibles-active" width="16" height="16"/>
+        <image name="menu-collectibles-passive" width="20" height="20"/>
+    </resources>
+</document>

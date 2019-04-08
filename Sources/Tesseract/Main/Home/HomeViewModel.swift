@@ -15,9 +15,16 @@ import Wallet
 class HomeViewModel: ViewModel {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
+    let ethWeb3Service: EthereumWeb3Service
+    let changeRateService: ChangeRateService
+    let transactionInfoService: TransactionInfoService
+    
     let wallet = Property<WalletViewModel?>(nil)
     let activeAccount = Property<AccountViewModel?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
+    
+    let sendAction = SafePublishSubject<Void>()
+    let receiveAction = SafePublishSubject<Void>()
     
     let isMoreThanOneAccount = Property<Bool>(false)
 
@@ -31,9 +38,9 @@ class HomeViewModel: ViewModel {
     let balanceUpdateUSD = Property<String>("")
     let balanceUpdateInPercent = Property<String>("")
     
-    let ethWeb3Service: EthereumWeb3Service
-    let changeRateService: ChangeRateService
-    let transactionInfoService: TransactionInfoService
+    let goToSendView = SafePublishSubject<ToView>()
+    let goToReceiveView = SafePublishSubject<ToView>()
+    let closePopupView = SafePublishSubject<Void>()
     
     init(ethWeb3Service: EthereumWeb3Service,
          changeRateService: ChangeRateService,
@@ -43,6 +50,17 @@ class HomeViewModel: ViewModel {
         self.transactionInfoService = transactionInfoService
         
         super.init()
+        
+        
+        let sendContext = SendFundsViewControllerContext()
+        sendContext.closeAction.bind(to: closePopupView).dispose(in: bag)
+        sendAction.map { _ in (name: "SendFunds", context: sendContext) }
+            .bind(to: goToSendView).dispose(in: bag)
+        
+        let receiveContext = ReceiveFundsViewControllerContext()
+        receiveContext.closeAction.bind(to: closePopupView).dispose(in: bag)
+        receiveAction.map { _ in (name: "ReceiveFunds", context: receiveContext) }
+            .bind(to: goToReceiveView).dispose(in: bag)
     }
         
     func bootstrap() {

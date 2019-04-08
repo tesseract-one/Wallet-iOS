@@ -11,13 +11,17 @@ import Bond
 import Wallet
 
 
-class ReceiveFundsViewModel: ViewModel {
+class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<AccountViewModel?>(nil)
     
     let address = Property<EthereumBase.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
     let ethereumNetwork = Property<UInt64>(0)
+    
+    let goBack = SafePublishSubject<Void>()
+    
+    let closeButtonAction = SafePublishSubject<Void>()
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
@@ -30,6 +34,8 @@ class ReceiveFundsViewModel: ViewModel {
         self.changeRateService = changeRateService
         
         super.init()
+        
+        closeButtonAction.bind(to: goBack).dispose(in: bag)
     }
     
     func bootstrap() {

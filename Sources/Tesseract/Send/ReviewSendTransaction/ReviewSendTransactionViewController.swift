@@ -122,6 +122,9 @@ extension ReviewSendTransactionViewController: ContextSubject {
         model.gasAmount.next(context.get(bean: "gasAmount")! as! Double)
         model.balance.next(context.get(bean: "balance")! as! Double)
     
+        let sendContext = context.get(context: SendFundsViewControllerContext.self)!
+        model.closeModal.bind(to: sendContext.closeAction).dispose(in: model.bag)
+        
         model.bootstrap()
     }
 }
