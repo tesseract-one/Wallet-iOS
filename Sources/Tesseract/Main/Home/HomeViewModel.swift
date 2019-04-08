@@ -63,11 +63,12 @@ class HomeViewModel: ViewModel {
         transactions.with(latestFrom: activeAccount)
             .filter { $1 != nil }
             .map { transactions, activeAccount in
-                let calendar = Calendar.current
+                let now = Date()
                 return transactions.collection.reduce(0.0) { sum, tx in
                     var newSum = sum
+                    let txDate = Date(timeIntervalSince1970: Double(UInt64(tx.timeStamp)!))
                     
-                    guard calendar.isDateInToday(Date(timeIntervalSince1970: Double(UInt64(tx.timeStamp)!))) else {
+                    guard let diff = Calendar.current.dateComponents([.hour], from: txDate, to: now).hour, diff <= 24  else {
                         return newSum
                     }
                     

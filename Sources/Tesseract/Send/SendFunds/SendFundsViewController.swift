@@ -53,7 +53,13 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             }
         }.dispose(in: reactive.bag)
         
-        model.address.bidirectionalBind(to: addressField.reactive.text).dispose(in: reactive.bag)
+        model.address
+            .bidirectionalMap(
+                to: { $0?.trimmingCharacters(in: .whitespaces) },
+                from: { $0?.trimmingCharacters(in: .whitespaces) }
+            )
+            .bidirectionalBind(to: addressField.reactive.text)
+            .dispose(in: reactive.bag)
         
         let activeAccount = model.activeAccount.filter { $0 != nil }
         activeAccount
