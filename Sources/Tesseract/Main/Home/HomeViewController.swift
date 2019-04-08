@@ -22,6 +22,10 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     @IBOutlet weak var balanceUpdateLabel: UILabel!
     @IBOutlet weak var balanceUpdateAsPercentLabel: UILabel!
     
+    @IBOutlet weak var balanceUpdateLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var balanceUpdateAsPercentLeftConstraint: NSLayoutConstraint!
+    @IBOutlet weak var separatorView: UIView!
+    
     @IBOutlet weak var cardView: UIImageView!
     @IBOutlet weak var accountView: UIStackView!
     @IBOutlet weak var cardTopConstraint: NSLayoutConstraint!
@@ -52,10 +56,23 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
             .dispose(in: reactive.bag)
         
         setupAccountView()
+        setupSizes()
     }
 }
 
 extension HomeViewController {
+    private func setupSizes() {
+        if UIScreen.main.bounds.width > 320 {
+            balanceUpdateLeftConstraint.constant = 32
+            balanceUpdateAsPercentLeftConstraint.constant = 32
+            separatorView.isHidden = false
+        } else {
+            balanceUpdateLeftConstraint.constant = 16
+            balanceUpdateAsPercentLeftConstraint.constant = 16
+            separatorView.isHidden = true
+        }
+    }
+    
     private func setupAccountView() {
         model.isMoreThanOneAccount.with(weak: self)
             .observeNext { isMoreThanOneAccount, sself in

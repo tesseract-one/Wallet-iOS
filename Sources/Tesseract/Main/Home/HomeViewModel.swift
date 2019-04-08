@@ -108,7 +108,7 @@ class HomeViewModel: ViewModel {
                 }
                 
                 guard balance - balanceUpdate > 0.0001 else {
-                    return "100.0%"
+                    return "+100.0%"
                 }
                 
                 let balanceUpdateAsPercent = "\((balanceUpdate / (balance - balanceUpdate)).rounded(toPlaces: 2))%"

@@ -132,42 +132,52 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BalanceETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eve-oZ-tNo">
-                                            <rect key="frame" x="16" y="186" width="76" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="1Gq-id-ZNz"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LastUpdate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quT-M2-jrK">
-                                            <rect key="frame" x="124" y="186" width="72.5" height="21"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="21" id="iYB-a8-gNn"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="14"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxb-hz-VQQ">
-                                            <rect key="frame" x="16" y="167" width="27.5" height="15"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="lwN-Hq-igw"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
-                                            <color key="textColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 24h:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sv-e0-wFs">
-                                            <rect key="frame" x="124" y="167" width="41" height="15"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="15" id="RPZ-bJ-mkW"/>
-                                            </constraints>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
-                                            <color key="textColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="kVC-aU-OVe">
+                                            <rect key="frame" x="16" y="167" width="76" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Coins:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bxb-hz-VQQ">
+                                                    <rect key="frame" x="0.0" y="0.0" width="27.5" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="lwN-Hq-igw"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BalanceETH" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eve-oZ-tNo">
+                                                    <rect key="frame" x="0.0" y="19" width="76" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="1Gq-id-ZNz"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="k7l-v7-5MB">
+                                            <rect key="frame" x="124" y="167" width="72.5" height="40"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 24h:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Sv-e0-wFs">
+                                                    <rect key="frame" x="0.0" y="0.0" width="41" height="15"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="15" id="RPZ-bJ-mkW"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
+                                                    <color key="textColor" white="1" alpha="0.75" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LastUpdate" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="quT-M2-jrK">
+                                                    <rect key="frame" x="0.0" y="19" width="72.5" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="iYB-a8-gNn"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="14"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kdp-NJ-KvV">
                                             <rect key="frame" x="212.5" y="188" width="0.5" height="16"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -177,7 +187,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UpdateAs%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7y4-6i-o11">
-                                            <rect key="frame" x="229" y="186" width="73" height="21"/>
+                                            <rect key="frame" x="228.5" y="186" width="73" height="21"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="21" id="14y-bW-pfh"/>
                                             </constraints>
@@ -188,27 +198,24 @@
                                     </subviews>
                                     <color key="backgroundColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
-                                        <constraint firstItem="Eve-oZ-tNo" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" constant="16" id="0l2-6a-jyz"/>
+                                        <constraint firstItem="kVC-aU-OVe" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" constant="16" id="1VK-3X-tI8"/>
                                         <constraint firstAttribute="width" secondItem="U4R-dj-f3w" secondAttribute="height" multiplier="343:202" id="1cS-ii-YIY"/>
                                         <constraint firstItem="Ezl-E7-9Hw" firstAttribute="top" secondItem="Wxg-Ph-n94" secondAttribute="bottom" id="1xc-Xg-6k1"/>
                                         <constraint firstItem="Wxg-Ph-n94" firstAttribute="top" secondItem="U4R-dj-f3w" secondAttribute="top" constant="32" id="6Xq-wy-0vu"/>
                                         <constraint firstItem="TGV-lJ-6MQ" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" id="875-m3-oY3"/>
+                                        <constraint firstAttribute="bottom" secondItem="k7l-v7-5MB" secondAttribute="bottom" constant="18" id="8Ej-lc-lBh"/>
                                         <constraint firstAttribute="bottom" secondItem="7y4-6i-o11" secondAttribute="bottom" constant="18" id="90L-Ud-EeV"/>
                                         <constraint firstItem="TGV-lJ-6MQ" firstAttribute="top" secondItem="U4R-dj-f3w" secondAttribute="top" id="BDG-gJ-tVI"/>
-                                        <constraint firstItem="2Sv-e0-wFs" firstAttribute="leading" secondItem="quT-M2-jrK" secondAttribute="leading" id="Cex-p0-2P5"/>
-                                        <constraint firstItem="Eve-oZ-tNo" firstAttribute="top" secondItem="bxb-hz-VQQ" secondAttribute="bottom" constant="4" id="G0E-MK-0MA"/>
-                                        <constraint firstItem="quT-M2-jrK" firstAttribute="leading" secondItem="Eve-oZ-tNo" secondAttribute="trailing" constant="32" id="LUY-0e-Bk9"/>
+                                        <constraint firstItem="kdp-NJ-KvV" firstAttribute="leading" secondItem="k7l-v7-5MB" secondAttribute="trailing" constant="16" id="DHQ-eu-dNd"/>
                                         <constraint firstAttribute="bottom" secondItem="kdp-NJ-KvV" secondAttribute="bottom" constant="21" id="NXw-mR-UPL"/>
-                                        <constraint firstItem="quT-M2-jrK" firstAttribute="top" secondItem="2Sv-e0-wFs" secondAttribute="bottom" constant="4" id="RLy-NZ-wTf"/>
-                                        <constraint firstItem="7y4-6i-o11" firstAttribute="leading" secondItem="kdp-NJ-KvV" secondAttribute="trailing" constant="16" id="STm-eX-PPy"/>
-                                        <constraint firstAttribute="bottom" secondItem="Eve-oZ-tNo" secondAttribute="bottom" constant="18" id="TIy-Tk-Hwi"/>
+                                        <constraint firstAttribute="bottom" secondItem="kdp-NJ-KvV" secondAttribute="bottom" constant="21" id="NZV-YX-VJ1"/>
                                         <constraint firstItem="Wxg-Ph-n94" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" constant="16" id="Wvt-br-Z82"/>
-                                        <constraint firstAttribute="bottom" secondItem="quT-M2-jrK" secondAttribute="bottom" constant="18" id="aDz-n1-PE5"/>
+                                        <constraint firstItem="7y4-6i-o11" firstAttribute="leading" secondItem="k7l-v7-5MB" secondAttribute="trailing" constant="32" id="ceS-et-ci5"/>
                                         <constraint firstAttribute="trailing" secondItem="TGV-lJ-6MQ" secondAttribute="trailing" id="gIL-WC-MUw"/>
                                         <constraint firstAttribute="bottom" secondItem="TGV-lJ-6MQ" secondAttribute="bottom" id="huY-rY-cfE"/>
-                                        <constraint firstItem="kdp-NJ-KvV" firstAttribute="leading" secondItem="quT-M2-jrK" secondAttribute="trailing" constant="16" id="ilH-TL-q2t"/>
+                                        <constraint firstAttribute="bottom" secondItem="kVC-aU-OVe" secondAttribute="bottom" constant="18" id="oIE-vK-nDG"/>
                                         <constraint firstItem="Ezl-E7-9Hw" firstAttribute="leading" secondItem="Wxg-Ph-n94" secondAttribute="leading" id="paf-a6-eKh"/>
-                                        <constraint firstItem="bxb-hz-VQQ" firstAttribute="leading" secondItem="U4R-dj-f3w" secondAttribute="leading" constant="16" id="zUx-jl-W4i"/>
+                                        <constraint firstItem="k7l-v7-5MB" firstAttribute="leading" secondItem="kVC-aU-OVe" secondAttribute="trailing" constant="32" id="s2O-vG-pEi"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -239,9 +246,12 @@
                         <outlet property="balanceETHLabel" destination="Eve-oZ-tNo" id="Z6c-DE-C6B"/>
                         <outlet property="balanceUSDLabel" destination="Ezl-E7-9Hw" id="hKi-L9-wE7"/>
                         <outlet property="balanceUpdateAsPercentLabel" destination="7y4-6i-o11" id="mYh-EG-RHf"/>
+                        <outlet property="balanceUpdateAsPercentLeftConstraint" destination="ceS-et-ci5" id="T5G-A4-x3m"/>
                         <outlet property="balanceUpdateLabel" destination="quT-M2-jrK" id="K3Q-fU-xkS"/>
+                        <outlet property="balanceUpdateLeftConstraint" destination="s2O-vG-pEi" id="6ui-Cn-RqK"/>
                         <outlet property="cardTopConstraint" destination="sXo-MR-YCb" id="c5f-eL-sOC"/>
                         <outlet property="cardView" destination="TGV-lJ-6MQ" id="Hi0-dW-Izg"/>
+                        <outlet property="separatorView" destination="kdp-NJ-KvV" id="Jgd-df-7Lx"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kw8-Tk-cY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
