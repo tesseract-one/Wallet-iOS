@@ -32,11 +32,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        copyButton.reactive.tap.throttle(seconds: 0.5)
-            .with(latestFrom: model.address)
-            .observeNext { _, address in
-                UIPasteboard.general.string = address?.hex(eip55: false)
-            }.dispose(in: reactive.bag)
+        copyButton.reactive.tap.throttle(seconds: 0.5).bind(to: model.copyAction).dispose(in: reactive.bag)
         
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
         cancelButton.reactive.tap.bind(to: model.closeButtonAction).dispose(in: reactive.bag)
@@ -63,6 +59,7 @@ extension ReceiveFundsViewController: ContextSubject {
         
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)
         appCtx.ethereumNetwork.bind(to: model.ethereumNetwork).dispose(in: model.bag)
+        model.notificationNode.bind(to: appCtx.notificationNode).dispose(in: model.bag)
         
         closeAction = context.get(context: ReceiveFundsViewControllerContext.self)!.closeAction
         

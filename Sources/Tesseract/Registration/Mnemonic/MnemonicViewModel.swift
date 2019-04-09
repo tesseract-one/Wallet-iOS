@@ -9,17 +9,31 @@
 import ReactiveKit
 
 class MnemonicViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-  let doneMnemonicAction = SafePublishSubject<Void>()
-  let mnemonicProp = Property<String>("")
-  
-  let goToView = SafePublishSubject<ToView>()
-  
-  init (mnemonic: String) {
-    super.init()
+    let doneMnemonicAction = SafePublishSubject<Void>()
+    let mnemonicProp = Property<String>("")
     
-    mnemonicProp.next(mnemonic)
+    let notificationNode = SafePublishSubject<NotificationProtocol>()
     
-    doneMnemonicAction.map { _ in (name: "MnemonicVerification", context: nil) }
-      .bind(to: goToView).dispose(in: bag)
-  }
+    let copyAction = SafePublishSubject<Void>()
+    
+    let goToView = SafePublishSubject<ToView>()
+    
+    init (mnemonic: String) {
+        super.init()
+        
+        mnemonicProp.next(mnemonic)
+        
+        doneMnemonicAction.map { _ in (name: "MnemonicVerification", context: nil) }
+            .bind(to: goToView).dispose(in: bag)
+        
+        copyAction.with(latestFrom: mnemonicProp)
+            .observeNext { _, mnemonic in
+                UIPasteboard.general.string = mnemonic
+            }.dispose(in: bag)
+        
+        copyAction
+            .map { _ in NotificationInfo(title: "Mnemonic copied to clipboard!", type: .message) }
+            .bind(to: notificationNode)
+            .dispose(in: bag)
+    }
 }

@@ -32,6 +32,7 @@ class ApplicationContext: RouterContextProtocol {
     
     // Node to send critical errors
     public let errorNode = SafePublishSubject<Swift.Error>()
+    public let notificationNode = SafePublishSubject<NotificationProtocol>()
     
     // Settings
     let settings: Settings = UserDefaults(suiteName: SHARED_GROUP)!
@@ -43,6 +44,7 @@ class ApplicationContext: RouterContextProtocol {
     let changeRatesService = ChangeRateService()
     let transactionService = TransactionInfoService()
     let passwordService = KeychainPasswordService()
+    let notificationService = NotificationService()
     
     func bootstrap() {
         let storage = try! DatabaseWalletStorage(path: storagePath)
@@ -68,12 +70,16 @@ class ApplicationContext: RouterContextProtocol {
         transactionService.network = ethereumNetwork
         
         applicationService.rootContainer = rootContainer
-        
         applicationService.registrationViewFactory = registrationViewFactory
         applicationService.walletViewFactory = walletViewFactory
+        applicationService.notificationNode = notificationNode
+        
+        notificationService.rootContainer = rootContainer
+        notificationService.notificationNode = notificationNode
         
         try! storage.bootstrap()
         
+        notificationService.bootstrap()
         walletService.bootstrap()
         applicationService.bootstrap()
         ethereumWeb3Service.bootstrap()

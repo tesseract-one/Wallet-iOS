@@ -13,6 +13,7 @@ import Wallet
 
 class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<AccountViewModel?>(nil)
+    let notificationNode = SafePublishSubject<NotificationProtocol>()
     
     let address = Property<EthereumBase.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
@@ -22,6 +23,7 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let goBack = SafePublishSubject<Void>()
     
     let closeButtonAction = SafePublishSubject<Void>()
+    let copyAction = SafePublishSubject<Void>()
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
@@ -60,6 +62,18 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
                 return "\(balanceETH) · \(balanceUsd)"
             }
             .bind(to: balance)
+            .dispose(in: bag)
+        
+        copyAction.with(latestFrom: address)
+            .observeNext { _, address in
+                UIPasteboard.general.string = address?.hex(eip55: false)
+            }.dispose(in: bag)
+        
+        copyAction
+            .map { _ in
+                NotificationInfo(title: "Address copied to clipboard!", type: .message)
+            }
+            .bind(to: notificationNode)
             .dispose(in: bag)
     }
 }

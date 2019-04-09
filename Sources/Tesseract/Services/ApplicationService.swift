@@ -18,6 +18,7 @@ class ApplicationService {
     var walletService: WalletService!
     
     var errorNode: SafePublishSubject<Swift.Error>!
+    var notificationNode: SafePublishSubject<NotificationProtocol>!
     
     weak var rootContainer: ViewControllerContainer!
     
@@ -34,6 +35,12 @@ class ApplicationService {
     let rootViewController = Property<UIViewController>(UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
     
     func bootstrap() {
+        errorNode.map { error in
+                NotificationInfo(title: "Internal Error", description: error.localizedDescription, type: .error)
+            }
+            .bind(to: notificationNode)
+            .dispose(in: bag)
+        
         bindRegistration()
         // Bootstrap Step 2
         setNetwork()

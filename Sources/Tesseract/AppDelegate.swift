@@ -11,7 +11,8 @@ import Fabric
 import Crashlytics
 
 protocol ViewControllerContainer: class {
-    var view:UIViewController? {get}
+    var view: UIViewController? { get }
+    var windowView: UIView? { get }
     
     func setViewController(vc: UIViewController, animated: Bool)
 }
@@ -22,11 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
     let window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
     let context = ApplicationContext()
     
-    var view:UIViewController? {
-        get {
-            return window?.rootViewController
-        }
+    var view: UIViewController? {
+        return window?.rootViewController
     }
+    
+    var windowView: UIView? {
+        return window
+    }
+    
     
     func setViewController(vc: UIViewController, animated: Bool) {
         window?.replaceRootViewControllerWith(vc, animated: animated) { [weak self] in

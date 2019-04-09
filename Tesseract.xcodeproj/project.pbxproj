@@ -112,6 +112,9 @@
 		D15BC5EB224E90670022622E /* ChooseNetworkTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */; };
 		D1618DB4225BB68F00193E35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1618DB3225BB68E00193E35 /* Assets.xcassets */; };
 		D1618DB6225BB7EF00193E35 /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DB5225BB7EF00193E35 /* GradientButton.swift */; };
+		D1618DBC225CB34900193E35 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1618DBA225CB34900193E35 /* NotificationView.xib */; };
+		D1618DBD225CB34900193E35 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DBB225CB34900193E35 /* NotificationView.swift */; };
+		D1618DC5225D075700193E35 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DC4225D075700193E35 /* NotificationService.swift */; };
 		D165A092225B8BCD00BAFFA3 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */; };
 		D165A093225B8BCD00BAFFA3 /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
@@ -314,6 +317,9 @@
 		D15BC5EA224E90670022622E /* ChooseNetworkTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseNetworkTableViewController.swift; sourceTree = "<group>"; };
 		D1618DB3225BB68E00193E35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1618DB5225BB7EF00193E35 /* GradientButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		D1618DBA225CB34900193E35 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
+		D1618DBB225CB34900193E35 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		D1618DC4225D075700193E35 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutTableViewCell.xib; sourceTree = "<group>"; };
 		D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -432,6 +438,7 @@
 		922CA48F21945F1F00FE66F1 /* Tesseract */ = {
 			isa = PBXGroup;
 			children = (
+				D1618DB7225CB24100193E35 /* Notification */,
 				D1CC012A22562BC00056BC44 /* Collectibles */,
 				D1CC012722562B690056BC44 /* Tokens */,
 				D18B012F22495372003EF3AC /* More */,
@@ -624,6 +631,7 @@
 		92CB198822282E9B00407F9A /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				D1618DC4225D075700193E35 /* NotificationService.swift */,
 				92CB198F22283B9200407F9A /* ApplicationService.swift */,
 				92947DE32242930300055F5A /* TransactionInfoService.swift */,
 			);
@@ -763,6 +771,15 @@
 				D1463110224E90F2004D68AD /* ChooseNetworkViewModel.swift */,
 			);
 			path = ChooseNetwork;
+			sourceTree = "<group>";
+		};
+		D1618DB7225CB24100193E35 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				D1618DBA225CB34900193E35 /* NotificationView.xib */,
+				D1618DBB225CB34900193E35 /* NotificationView.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		D168B5552227FAD9008DBFB0 /* SignUp */ = {
@@ -1121,6 +1138,7 @@
 				D16F02F9224D262B0001FA57 /* SettingWithWordTableViewCell.xib in Resources */,
 				D18B013122495383003EF3AC /* More.storyboard in Resources */,
 				D14A50222229B1A40069A262 /* Main.storyboard in Resources */,
+				D1618DBC225CB34900193E35 /* NotificationView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1305,6 +1323,7 @@
 				D143DCED22527C5A0075BAC9 /* CreateAccountCollectionViewCell.swift in Sources */,
 				92CB198C2228312A00407F9A /* Promise+Extensions.swift in Sources */,
 				D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */,
+				D1618DBD225CB34900193E35 /* NotificationView.swift in Sources */,
 				D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */,
 				D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */,
 				D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */,
@@ -1376,6 +1395,7 @@
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
 				D1618DB6225BB7EF00193E35 /* GradientButton.swift in Sources */,
 				D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */,
+				D1618DC5225D075700193E35 /* NotificationService.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
 				D1A2114B2242A1DE00DDF3F3 /* KeychainPasswordItem.swift in Sources */,
