@@ -66,7 +66,7 @@ class NotificationService {
     
     public var notificationNode: SafePublishSubject<NotificationProtocol>!
     
-    public var animationDuration: TimeInterval = 0.5
+    public var animationDuration: TimeInterval = 0.3
     
     func bootstrap() {
         notificationView = NotificationView.create()

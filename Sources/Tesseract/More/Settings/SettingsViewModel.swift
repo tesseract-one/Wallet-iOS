@@ -32,7 +32,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let switchDeveloperModeAction = SafePublishSubject<Bool>()
     let currentNetwork = Property<String>("RKB")
     let changeNetworkAction = SafePublishSubject<Void>()
-    let currentVersion = Property<String>("0.0.1")
+    let currentVersion = Property<String>("0")
     let showInfoAboutTesseractAction = SafePublishSubject<Void>()
     let logoutAction = SafePublishSubject<Void>()
     
@@ -90,6 +90,8 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             tableSettings.removeFromSubrange(section: 0, range: ...)
             tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
         }.dispose(in: bag)
+        
+        currentVersion.next(Bundle.main.fullVersion)
         
         logoutAction
             .with(latestFrom: wallet)

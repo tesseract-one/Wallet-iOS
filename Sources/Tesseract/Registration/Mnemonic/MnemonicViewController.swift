@@ -26,33 +26,22 @@ class MnemonicViewController: UIViewController, ModelVCProtocol {
     model.mnemonicProp.bind(to: mnemonicLabel.reactive.text).dispose(in: bag)
     
     doneButton.reactive.tap.throttle(seconds: 0.5)
-      .bind(to: model.doneMnemonicAction).dispose(in: bag)
-    
-    mnemonicLabel.reactive.tapGesture().throttle(seconds: 0.5)
-        .map { _ in }
-        .bind(to: model.copyAction)
-        .dispose(in: reactive.bag)
+      .bind(to: model.doneMnemonicAction).dispose(in: reactive.bag)
     
     goToViewAction.observeNext { [weak self] name, context in
       let vc = try! self?.viewController(for: .named(name: name), context: context)
       self?.navigationController?.pushViewController(vc!, animated: true)
-    }.dispose(in: bag)
+    }.dispose(in: reactive.bag)
   }
 }
 
 extension MnemonicViewController: ContextSubject {
   func apply(context: RouterContextProtocol) {
-    let appCtx = context.get(context: ApplicationContext.self)!
-    
     guard let newWalletData = context.get(bean: "newWalletData") as? NewWalletData else {
       print("Router context don't contain newWalletData", self)
       return
     }
 
-    let model = MnemonicViewModel(mnemonic: newWalletData.mnemonic)
-    
-    model.notificationNode.bind(to: appCtx.notificationNode).dispose(in: model.bag)
-    
-    self.model = model
+    self.model = MnemonicViewModel(mnemonic: newWalletData.mnemonic)
   }
 }

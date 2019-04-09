@@ -32,7 +32,10 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        copyButton.reactive.tap.throttle(seconds: 0.5).bind(to: model.copyAction).dispose(in: reactive.bag)
+        copyButton.reactive.tap.throttle(seconds: 0.5)
+            .bind(to: model.copyAction).dispose(in: reactive.bag)
+        addressLabel.reactive.tapGesture().throttle(seconds: 0.5).map { _ in }
+            .bind(to: model.copyAction).dispose(in: reactive.bag)
         
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
         cancelButton.reactive.tap.bind(to: model.closeButtonAction).dispose(in: reactive.bag)
@@ -43,7 +46,8 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
             .dispose(in: reactive.bag)
         
         model.qrCodeAddress.bind(to: qrCodeImageView.data).dispose(in: reactive.bag)
-        model.address.map{$0?.hex(eip55: false)}.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
+        model.address.map{$0?.hex(eip55: false)}
+            .bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
     }

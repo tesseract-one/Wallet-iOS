@@ -115,6 +115,7 @@
 		D1618DBC225CB34900193E35 /* NotificationView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D1618DBA225CB34900193E35 /* NotificationView.xib */; };
 		D1618DBD225CB34900193E35 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DBB225CB34900193E35 /* NotificationView.swift */; };
 		D1618DC5225D075700193E35 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DC4225D075700193E35 /* NotificationService.swift */; };
+		D1618DC7225D344800193E35 /* Bundle+Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1618DC6225D344800193E35 /* Bundle+Version.swift */; };
 		D165A092225B8BCD00BAFFA3 /* LogoutTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */; };
 		D165A093225B8BCD00BAFFA3 /* LogoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */; };
 		D168B5572227FBBA008DBFB0 /* SignUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */; };
@@ -320,6 +321,7 @@
 		D1618DBA225CB34900193E35 /* NotificationView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationView.xib; sourceTree = "<group>"; };
 		D1618DBB225CB34900193E35 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
 		D1618DC4225D075700193E35 /* NotificationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		D1618DC6225D344800193E35 /* Bundle+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Version.swift"; sourceTree = "<group>"; };
 		D165A090225B8BCD00BAFFA3 /* LogoutTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogoutTableViewCell.xib; sourceTree = "<group>"; };
 		D165A091225B8BCD00BAFFA3 /* LogoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutTableViewCell.swift; sourceTree = "<group>"; };
 		D168B5562227FBBA008DBFB0 /* SignUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewModel.swift; sourceTree = "<group>"; };
@@ -953,6 +955,7 @@
 				D1A2114A2242A1DE00DDF3F3 /* KeychainPasswordItem.swift */,
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
 				92CB198B2228312A00407F9A /* Promise+Extensions.swift */,
+				D1618DC6225D344800193E35 /* Bundle+Version.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1374,6 +1377,7 @@
 				D11C404922407D080068D883 /* TextView+Bond.swift in Sources */,
 				D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,
+				D1618DC7225D344800193E35 /* Bundle+Version.swift in Sources */,
 				D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */,
 				D18D9518224A70E30028B3CA /* AccountTableViewCell.swift in Sources */,
 				D171DE4E219DAAD4003134DD /* GradientView.swift in Sources */,
