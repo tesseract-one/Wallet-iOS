@@ -71,14 +71,14 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         network.map { NETWORKS[Int($0) - 1].abbr }.bind(to: currentNetwork)
         
         switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
-            let numberOfItemsInDeveloperSection = sself.tableSettings[sectionAt: 2].items.count
+            let numberOfItemsInDeveloperSection = sself.tableSettings[sectionAt: 1].items.count
             
             if !isOn && numberOfItemsInDeveloperSection > 1 {
-                sself.tableSettings.removeFromSubrange(section: 2, range: 1... )
+                sself.tableSettings.removeFromSubrange(section: 1, range: 1... )
             } else if isOn && numberOfItemsInDeveloperSection == 1 {
                 sself.tableSettings.appendItem(
                     SettingWithWordVM(title: "Choose Network", word: sself.currentNetwork, isEnabled: true, action: sself.changeNetworkAction),
-                    toSectionAt: 2
+                    toSectionAt: 1
                 )
             }
         }.dispose(in: bag)
