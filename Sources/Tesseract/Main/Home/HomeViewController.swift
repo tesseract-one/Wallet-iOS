@@ -34,11 +34,12 @@ class HomeViewController: UITableViewController, ModelVCProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let accountProp = self.model.activeAccount
-        
-        model.transactions.bind(to: self.tableView, cellType: TransactionTableViewCell.self) { cell, tx in
-            cell.setModel(model: tx, address: try! accountProp.value!.eth_address().hex(eip55: false))
-            return
+
+        model.transactions.bind(to: self.tableView, cellType: TransactionTableViewCell.self) { [weak self] cell, tx in
+            let address = try! self!.model.activeAccount.value!.eth_address().hex(eip55: false)
+            let rate = self!.model.changeRateService.changeRates[.Ethereum]
+            cell.setValues(address: address, rate: rate!)
+            cell.model = tx
         }.dispose(in: bag)
         
         model.balanceUSD.bind(to: balanceUSDLabel.reactive.text).dispose(in: reactive.bag)

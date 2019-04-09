@@ -14,7 +14,9 @@
         <scene sceneID="Dt9-40-pqD">
             <objects>
                 <navigationController storyboardIdentifier="Tokens" useStoryboardIdentifierAsRestorationIdentifier="YES" id="pEY-JI-JdL" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="Tokens" image="menu-tokens-passive" selectedImage="menu-tokens-active" id="4Jb-B0-0Ri"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Tokens" image="menu-tokens-passive" selectedImage="menu-tokens-active" id="4Jb-B0-0Ri">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="CAJ-mr-vHF">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>

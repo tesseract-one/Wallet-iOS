@@ -25,10 +25,10 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let viewModelAccounts = MutableObservableArray<ViewModel>()
     
     let createAccountAction = SafePublishSubject<Void>()
-    let currentConversion = Property<String>("USD")
-    let primaryCurrency = Property<String>("ETH")
-    let currentLanguage = Property<String>("ENG")
-    let changePasswordAction = SafePublishSubject<Void>()
+//    let currentConversion = Property<String>("USD")
+//    let primaryCurrency = Property<String>("ETH")
+//    let currentLanguage = Property<String>("ENG")
+//    let changePasswordAction = SafePublishSubject<Void>()
     let switchDeveloperModeAction = SafePublishSubject<Bool>()
     let currentNetwork = Property<String>("RKB")
     let changeNetworkAction = SafePublishSubject<Void>()
@@ -104,43 +104,43 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     private func setupTableSettigns() {
         tableSettings.appendSection("Your Accounts")
         
-        tableSettings.appendSection("Settings")
-        tableSettings.appendItem(
-            SettingWithWordVM(title: "Current Conversion", description: "You have no chose right now 🤗", word: self.currentConversion, isEnabled: false),
-            toSectionAt: 1
-        )
-        tableSettings.appendItem(
-            SettingWithWordVM(title: "Primary Currency", description: "You still can play CryptoKitties 🥺", word: self.primaryCurrency, isEnabled: false),
-            toSectionAt: 1
-        )
-        tableSettings.appendItem(
-            SettingWithWordVM(title: "Current Language", description: "English only, deal with it 😎", word: self.currentLanguage, isEnabled: false),
-            toSectionAt: 1
-        )
-        tableSettings.appendItem(
-            SettingWithIconVM(title: "Change Password", description: "Don't use your usual password 🤔", icon: UIImage(named: "chevron")!, action: self.changePasswordAction),
-            toSectionAt: 1
-        )
+//        tableSettings.appendSection("Settings")
+//        tableSettings.appendItem(
+//            SettingWithWordVM(title: "Current Conversion", description: "You have no chose right now 🤗", word: self.currentConversion, isEnabled: false),
+//            toSectionAt: 1
+//        )
+//        tableSettings.appendItem(
+//            SettingWithWordVM(title: "Primary Currency", description: "You still can play CryptoKitties 🥺", word: self.primaryCurrency, isEnabled: false),
+//            toSectionAt: 1
+//        )
+//        tableSettings.appendItem(
+//            SettingWithWordVM(title: "Current Language", description: "English only, deal with it 😎", word: self.currentLanguage, isEnabled: false),
+//            toSectionAt: 1
+//        )
+//        tableSettings.appendItem(
+//            SettingWithIconVM(title: "Change Password", description: "Don't use your usual password 🤔", icon: UIImage(named: "chevron")!, action: self.changePasswordAction),
+//            toSectionAt: 1
+//        )
         
         tableSettings.appendSection("Developer Tools")
         tableSettings.appendItem(
             SettingWithSwitchVM(title: "Developer Mode", description: "For dark magicians only 🦹‍♂️", key: .isDeveloperModeEnabled, settings: self.settings, switchAction: self.switchDeveloperModeAction, defaultValue: false),
-            toSectionAt: 2
+            toSectionAt: 1
         )
         if settings.number(forKey: .isDeveloperModeEnabled) as? Bool == true {
             self.tableSettings.appendItem(
                 SettingWithWordVM(title: "Choose Network", word: self.currentNetwork, isEnabled: true, action: self.changeNetworkAction),
-                toSectionAt: 2
+                toSectionAt: 1
             )
         }
         
         tableSettings.appendSection("")
         tableSettings.appendItem(
             SettingWithWordVM(title: "About Tesseract", word: self.currentVersion, isEnabled: true, action: showInfoAboutTesseractAction),
-            toSectionAt: 3
+            toSectionAt: 2
         )
         
         tableSettings.appendSection("")
-        tableSettings.appendItem( LogoutVM(title: "Log Out", action: self.logoutAction), toSectionAt: 4)
+        tableSettings.appendItem( LogoutVM(title: "Log Out", action: self.logoutAction), toSectionAt: 3)
     }
 }

@@ -13,9 +13,10 @@
         <!--Collectibles-->
         <scene sceneID="38g-cd-2dk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ucQ-lc-y97" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController storyboardIdentifier="Collectibles" useStoryboardIdentifierAsRestorationIdentifier="YES" id="0yb-yo-qmO" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" enabled="NO" title="Collectibles" image="menu-collectibles-passive" selectedImage="menu-collectibles-active" id="23F-5E-zIw"/>
+                    <tabBarItem key="tabBarItem" enabled="NO" title="Collectibles" image="menu-collectibles-passive" selectedImage="menu-collectibles-active" id="23F-5E-zIw">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="RZW-XG-nrG">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -25,6 +26,7 @@
                         <segue destination="GYn-kT-qyM" kind="relationship" relationship="rootViewController" id="sNq-4k-pHh"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ucQ-lc-y97" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-509" y="197"/>
         </scene>

@@ -107,9 +107,9 @@ extension SettingsTableViewController {
         switch section {
         case 0:
             return "Your Accounts"
+//        case 1:
+//            return "Settings"
         case 1:
-            return "Settings"
-        case 2:
             return "Developer Tools"
         default:
             return nil
@@ -121,9 +121,9 @@ extension SettingsTableViewController {
         header.backgroundColor = UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
         
         if let sectionTitle = getSectionTitle(section) {
-            header.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60)
+            header.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: section == 0 ? 60.0 : 52.0)
             
-            let label: UILabel = UILabel(frame: CGRect(x: 16, y: 35, width: tableView.frame.width - 32, height: 21))
+            let label: UILabel = UILabel(frame: CGRect(x: 16, y: 27, width: tableView.frame.width - 32, height: 21))
             label.text = sectionTitle
             label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
             label.sizeToFit()
@@ -131,7 +131,7 @@ extension SettingsTableViewController {
             
             header.addSubview(label)
         } else {
-            header.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 25)
+            header.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 17)
         }
         
         let bottonBorder = CALayer()
@@ -143,12 +143,13 @@ extension SettingsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return getSectionTitle(section) != nil ? 60.0 :25.0
+        if section == 0 { return 60.0 }
+        return getSectionTitle(section) != nil ? 52.0 : 17.0
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-        footer.backgroundColor =  UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
+        let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 8))
+        footer.backgroundColor = UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
         
         let topBorder = CALayer()
         topBorder.frame = CGRect(x: 0, y: 0, width: footer.frame.width, height: 0.5)
@@ -159,7 +160,7 @@ extension SettingsTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section + 1 == tableView.numberOfSections ? 32.0 : 1.0
+        return section + 1 == tableView.numberOfSections ? 32.0 : 8.0
     }
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {

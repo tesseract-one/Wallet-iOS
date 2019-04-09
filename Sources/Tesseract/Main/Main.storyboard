@@ -62,7 +62,7 @@
         <scene sceneID="Qrd-m0-OMO">
             <objects>
                 <tableViewController storyboardIdentifier="Home" id="NrD-gD-WuY" customClass="HomeViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" sectionHeaderHeight="26" sectionFooterHeight="1" id="48e-xM-hGP">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="75" sectionHeaderHeight="26" sectionFooterHeight="1" id="48e-xM-hGP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -225,7 +225,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="183" height="50"/>
                                             <color key="backgroundColor" red="0.30916038155555725" green="0.32500112056732178" blue="0.36203831434249878" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
-                                            <state key="normal" title="Recieve">
+                                            <state key="normal" title="Receive">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </state>
                                             <userDefinedRuntimeAttributes>
@@ -234,9 +234,9 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDG-J7-ql4" customClass="GradientButton" customModule="Tesseract" customModuleProvider="target">
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gDG-J7-ql4">
                                             <rect key="frame" x="199" y="0.0" width="183" height="50"/>
-                                            <color key="backgroundColor" red="0.52549019610000003" green="0.35686274509999999" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="backgroundColor" red="0.29019607843137252" green="0.58039215686274503" blue="0.8901960784313725" alpha="1" colorSpace="calibratedRGB"/>
                                             <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                             <state key="normal" title="Send">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -244,18 +244,6 @@
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                     <real key="value" value="4"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="point" keyPath="startPoint">
-                                                    <point key="value" x="0.0" y="0.0"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="point" keyPath="endPoint">
-                                                    <point key="value" x="1" y="1"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="toColor">
-                                                    <color key="value" red="0.52549019607843139" green="0.35686274509803922" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
-                                                </userDefinedRuntimeAttribute>
-                                                <userDefinedRuntimeAttribute type="color" keyPath="fromColor">
-                                                    <color key="value" red="0.47058823529411764" green="0.42352941176470588" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="color" keyPath="shadowColorIB">
                                                     <color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -322,7 +310,9 @@
         <scene sceneID="D0C-22-EEG">
             <objects>
                 <navigationController storyboardIdentifier="MainNC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="oRs-F8-VSe" customClass="RouterNavigationController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Home" image="menu-home-active" id="pla-9M-rAE"/>
+                    <tabBarItem key="tabBarItem" title="Home" image="menu-home-passive" selectedImage="menu-home-active" id="pla-9M-rAE">
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="401-PD-jum">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -369,5 +359,6 @@
     <resources>
         <image name="TesCard" width="343" height="202"/>
         <image name="menu-home-active" width="20" height="20"/>
+        <image name="menu-home-passive" width="20" height="20"/>
     </resources>
 </document>
