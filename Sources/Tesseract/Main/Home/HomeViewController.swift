@@ -115,6 +115,8 @@ extension HomeViewController {
                     let newHeight: CGFloat = 130.0 + (sself.view.frame.width - 32.0) * 202.0/343.0
                     sself.tableView.tableHeaderView!.frame.size.height = newHeight
                 }
+                
+                sself.tableView.reloadData()
             }
             .dispose(in: reactive.bag)
     }

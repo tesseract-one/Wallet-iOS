@@ -57,9 +57,13 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
             .map { balance, rate in
-                let balanceETH = balance == nil ? "unknown" : "\(String(balance!)) ETH"
-                let balanceUsd = balance == nil ? "unknown" : "\((balance! * rate).rounded(toPlaces: 2)) USD"
-                return "\(balanceETH) · \(balanceUsd)"
+                guard let balance = balance else {
+                    return "unknown"
+                }
+                
+                let balanceETH = NumberFormatter.eth.string(from: balance as NSNumber)!
+                let balanceUSD = NumberFormatter.usd.string(from: (balance * rate) as NSNumber)!
+                return "\(balanceETH) · \(balanceUSD)"
             }
             .bind(to: balance)
             .dispose(in: bag)

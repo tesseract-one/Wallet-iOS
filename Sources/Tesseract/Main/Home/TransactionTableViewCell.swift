@@ -56,11 +56,11 @@ class TransactionTableViewCell: UITableViewCell {
         }
         
         let amount = BigUInt(model!.value, radix: 10)!.ethValue()
-        amountETHLabel.text = "\(amountSymbol)\(amount.rounded(toPlaces: 6)) ETH"
+        amountETHLabel.text = amountSymbol + NumberFormatter.eth.string(from: amount as NSNumber)!
         dateLabel.text = TransactionTableViewCell.dateFormatter.string(from: Date(timeIntervalSince1970: Double(UInt64(model!.timeStamp)!)))
         
         rate.filter { $0 != nil }
-            .map { "\(amountSymbol)\((amount * $0!).rounded(toPlaces: 2)) USD" }
+            .map { amountSymbol + NumberFormatter.usd.string(from: (amount * $0!) as NSNumber)! }
             .bind(to: amountUSDLabel.reactive.text)
             .dispose(in: bag)
     }

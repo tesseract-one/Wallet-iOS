@@ -67,13 +67,13 @@ class HomeViewModel: ViewModel {
         activeAccount.flatMapLatest{ $0!.balance }.bind(to: balance).dispose(in: bag)
         
         balance
-            .map { $0 == nil ? "unknown" : "\($0!.rounded(toPlaces: 4)) ETH" }
+            .map { $0 == nil ? "unknown" : NumberFormatter.eth.string(from: $0! as NSNumber)! }
             .bind(to: balanceETH)
             .dispose(in: bag)
         
         combineLatest(balance, changeRateService.changeRates[.Ethereum]!)
             .map { balance, rate in
-                balance == nil ? "unknown" : "\((balance! * rate).rounded(toPlaces: 2)) USD"
+                balance == nil ? "unknown" : NumberFormatter.usd.string(from: (balance! * rate) as NSNumber)!
             }
             .bind(to: balanceUSD)
             .dispose(in: bag)
@@ -110,10 +110,10 @@ class HomeViewModel: ViewModel {
         combineLatest(balanceUpdate, changeRateService.changeRates[.Ethereum]!)
             .map { balanceUpdate, rate in
                 guard let balanceUpdate = balanceUpdate else {
-                    return "0.0 USD"
+                    return "0,0 USD"
                 }
                 
-                let balanceUpdateString = "\((balanceUpdate * rate).rounded(toPlaces: 2)) USD"
+                let balanceUpdateString = NumberFormatter.usd.string(from: (balanceUpdate * rate) as NSNumber)!
                 return balanceUpdate > 0 ? "+" + balanceUpdateString : balanceUpdateString
             }
             .bind(to: balanceUpdateUSD)

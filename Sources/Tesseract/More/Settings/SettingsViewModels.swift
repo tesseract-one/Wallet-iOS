@@ -86,15 +86,14 @@ class SettingWithAccountVM: ViewModel {
         
         super.init()
         
-        account.balance
-            .with(weak: changeRateService)
-            .map { balance, changeRateService -> String in
+        combineLatest(account.balance, changeRateService.changeRates[.Ethereum]!)
+            .map { balance, rate -> String in
                 guard let balance = balance else {
                     return "unknown"
                 }
                 
-                let ethBalance = "\(balance.rounded(toPlaces: 6)) ETH"
-                let usdBalance = "\((balance * changeRateService.changeRates[.Ethereum]!.value).rounded(toPlaces: 2)) USD"
+                let ethBalance = NumberFormatter.eth.string(from: balance as NSNumber)!
+                let usdBalance = NumberFormatter.usd.string(from: (balance * rate) as NSNumber)!
                 return "\(ethBalance) · \(usdBalance)"
             }
             .bind(to: balance)
