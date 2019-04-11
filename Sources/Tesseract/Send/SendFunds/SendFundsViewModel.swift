@@ -28,11 +28,14 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)
-    let balanceUSD = Property<String>("")
     
     let sendAmount = Property<Double>(0.0)
+    let sendAmountUSD = Property<String>("")
     let gasAmount = Property<Double>(0.0)
+    let gas = Property<String>("")
     let receiveAmount = Property<Double>(0.0)
+    let receiveAmountETH = Property<String>("")
+    let receiveAmountUSD = Property<String>("")
     
     let goToView = SafePublishSubject<ToView>()
     let goBack = SafePublishSubject<Void>()
@@ -60,23 +63,24 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
         qrAddress.bind(to: address).dispose(in: bag)
         qrAddress.map { _ in }.bind(to: closeModal).dispose(in: bag)
         
-        ethBalance
-            .map { $0 == nil ? "unknown" : "\($0!) ETH" }
-            .bind(to: balance)
-            .dispose(in: bag)
-        
-        combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
-            .map { balance, rate in
-                balance == nil ? "unknown" : "$ \((balance! * rate).rounded(toPlaces: 2))"
-            }
-            .bind(to: balanceUSD)
-            .dispose(in: bag)
-        
         setupReview()
     }
     
     func bootstrap() {
         let service = ethWeb3Service
+        
+        combineLatest(ethBalance, changeRateService.changeRates[.Ethereum]!)
+            .map { balance, rate in
+                if let balance = balance {
+                    let balanceETH = NumberFormatter.eth.string(from: balance as NSNumber)!
+                    let balanceUSD = NumberFormatter.usd.string(from: (balance * rate) as NSNumber)!
+                    return "\(balanceETH) · \(balanceUSD)"
+                }
+                return "unknown"
+            }
+            .bind(to: balance)
+            .dispose(in: bag)
+        
         combineLatest(activeAccount.filter { $0 != nil }, ethereumNetwork.distinctUntilChanged())
             .flatMapLatest { account, net in
                 service.getBalance(accountId: account!.id, networkId: net).signal
@@ -90,14 +94,40 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
             activeAccount.filter { $0 != nil },
             address.filter {$0 != nil && $0!.count == 42}.debounce(interval: 0.5),
             ethereumNetwork.distinctUntilChanged()
-        ).flatMapLatest { amount, account, address, network in
-            service.estimateSendTxGas(accountId: account!.id, to: address!, amountEth: amount, networkId: network).signal
-        }
-        .suppressedErrors
-        .bind(to: gasAmount)
-        .dispose(in: bag)
+        )
+            .flatMapLatest { amount, account, address, network in
+                service.estimateSendTxGas(accountId: account!.id, to: address!, amountEth: amount, networkId: network).signal
+            }
+            .suppressedErrors
+            .bind(to: gasAmount)
+            .dispose(in: bag)
+        
+        combineLatest(sendAmount, changeRateService.changeRates[.Ethereum]!)
+            .map { sendAmount, rate in
+               NumberFormatter.usd.string(from: (sendAmount * rate) as NSNumber)!
+            }
+            .bind(to: sendAmountUSD)
+            .dispose(in: bag)
+        
+        combineLatest(gasAmount, changeRateService.changeRates[.Ethereum]!)
+            .map { gasAmount, rate in
+                let gasAmountETH = NumberFormatter.eth.string(from: gasAmount as NSNumber)!
+                let gasAmountUSD = NumberFormatter.usd.string(from: (gasAmount * rate) as NSNumber)!
+                return "\(gasAmountETH) ≈ \(gasAmountUSD)"
+            }
+            .bind(to: gas)
+            .dispose(in: bag)
         
         combineLatest(sendAmount, gasAmount).map {$0 - $1}.bind(to: receiveAmount).dispose(in: bag)
+        
+        receiveAmount.map { NumberFormatter.eth.string(from: $0 as NSNumber)! }.bind(to: receiveAmountETH).dispose(in: bag)
+        
+        combineLatest(receiveAmount, changeRateService.changeRates[.Ethereum]!)
+            .map { receiveAmount, rate in
+                NumberFormatter.usd.string(from: (receiveAmount * rate) as NSNumber)!
+            }
+            .bind(to: receiveAmountUSD)
+            .dispose(in: bag)
     }
     
     func setupReview() {

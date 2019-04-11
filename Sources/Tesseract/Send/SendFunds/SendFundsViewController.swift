@@ -22,13 +22,14 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var balanceLabel: UILabel!
-    @IBOutlet weak var balanceInUSDLabel: UILabel!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     
     @IBOutlet weak var addressField: UITextField!
     @IBOutlet weak var sendAmountField: UITextField!
-    @IBOutlet weak var gasAmountField: UITextField!
-    @IBOutlet weak var recieverGetsAmountField: UITextField!
+    @IBOutlet weak var sendAmountUSDLabel: UILabel!
+    @IBOutlet weak var getsAmountLabel: UILabel!
+    @IBOutlet weak var getsAmountUSDLabel: UILabel!
+    @IBOutlet weak var gasAmountLabel: UILabel!
     
     @IBOutlet weak var scanQrButton: UIBarButtonItem!
     @IBOutlet weak var reviewButton: UIButton!
@@ -38,35 +39,14 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        scanQrButton.reactive.tap
-            .throttle(seconds: 0.3)
-            .bind(to: model.scanQr)
-            .dispose(in: reactive.bag)
-        
-        goToViewAction.observeNext { [weak self] name, context in
-            switch name {
-            case "ScanQR":
-                let vc = try! self?.viewController(for: .named(name: name), context: context)
-                self?.present(vc!, animated: true, completion: nil)
-            default:
-                let vc = try! self?.viewController(for: .named(name: name), context: context)
-                self?.navigationController?.pushViewController(vc!, animated: true)
-            }
-        }.dispose(in: reactive.bag)
+        scanQrButton.reactive.tap.throttle(seconds: 0.3)
+            .bind(to: model.scanQr).dispose(in: reactive.bag)
         
         model.closeModal.observeNext { [weak self] in
             if self?.presentedViewController != nil {
                 self?.dismiss(animated: true, completion: nil)
             }
         }.dispose(in: reactive.bag)
-        
-        model.address
-            .bidirectionalMap(
-                to: { $0?.trimmingCharacters(in: .whitespaces) },
-                from: { $0?.trimmingCharacters(in: .whitespaces) }
-            )
-            .bidirectionalBind(to: addressField.reactive.text)
-            .dispose(in: reactive.bag)
         
         let activeAccount = model.activeAccount.filter { $0 != nil }
         activeAccount
@@ -78,36 +58,56 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         
-        cancelButton.reactive.tap
-            .throttle(seconds: 0.3)
-            .bind(to: closeAction)
+        model.address
+            .bidirectionalMap(
+                to: { $0?.trimmingCharacters(in: .whitespaces) },
+                from: { $0?.trimmingCharacters(in: .whitespaces) }
+            )
+            .bidirectionalBind(to: addressField.reactive.text)
             .dispose(in: reactive.bag)
-        
-        reviewButton.reactive.tap
-            .throttle(seconds: 0.3)
-            .bind(to: model.reviewAction)
-            .dispose(in: reactive.bag)
-        
-        goBack.bind(to: closeAction).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
-        model.balanceUSD.bind(to: balanceInUSDLabel.reactive.text).dispose(in: reactive.bag)
         
         sendAmountField.reactive.text
             .map { $0 == nil || $0 == "" ? 0.0 : Double($0!) ?? 0.0  }
             .bind(to: model.sendAmount)
             .dispose(in: reactive.bag)
+        model.sendAmountUSD.bind(to: sendAmountUSDLabel.reactive.text).dispose(in: reactive.bag)
         
-        model.gasAmount
-            .map{String(format: "%f", $0) + " ETH"}
-            .bind(to: gasAmountField.reactive.text)
-            .dispose(in: reactive.bag)
-        model.receiveAmount
-            .map{"\($0) ETH"}
-            .bind(to: recieverGetsAmountField.reactive.text)
-            .dispose(in: reactive.bag)
+        model.receiveAmountETH.bind(to: getsAmountLabel.reactive.text).dispose(in: reactive.bag)
+        model.receiveAmountUSD.bind(to: getsAmountUSDLabel.reactive.text).dispose(in: reactive.bag)
+        
+        model.gas.bind(to: gasAmountLabel.reactive.text).dispose(in: reactive.bag)
+        
+        goBack.bind(to: closeAction).dispose(in: reactive.bag)
+        
+        cancelButton.reactive.tap.throttle(seconds: 0.3)
+            .bind(to: closeAction).dispose(in: reactive.bag)
+        
+        reviewButton.reactive.tap.throttle(seconds: 0.3)
+            .bind(to: model.reviewAction).dispose(in: reactive.bag)
+        
+        goToViewAction.observeNext { [weak self] name, context in
+            switch name {
+            case "ScanQR":
+                let vc = try! self?.viewController(for: .named(name: name), context: context)
+                self?.present(vc!, animated: true, completion: nil)
+            default:
+                let vc = try! self?.viewController(for: .named(name: name), context: context)
+                self?.navigationController?.pushViewController(vc!, animated: true)
+            }
+            }.dispose(in: reactive.bag)
         
         setupKeyboardDismiss()
+        setupSizes()
+    }
+    
+    private func setupSizes() {
+        if UIScreen.main.bounds.width > 320 {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
 }
 

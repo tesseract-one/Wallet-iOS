@@ -131,6 +131,7 @@
 		D18B013122495383003EF3AC /* More.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D18B013022495383003EF3AC /* More.storyboard */; };
 		D18D9517224A70E30028B3CA /* AccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D18D9515224A70E30028B3CA /* AccountTableViewCell.xib */; };
 		D18D9518224A70E30028B3CA /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18D9516224A70E30028B3CA /* AccountTableViewCell.swift */; };
+		D18EB18C225E79B30010A0A8 /* CurrencyFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18EB18B225E79B30010A0A8 /* CurrencyFormatter+Extension.swift */; };
 		D1958B03219B3AEF00113CAA /* KeyboardScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */; };
 		D1958B05219B417100113CAA /* KeyboardAutoScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1958B04219B417100113CAA /* KeyboardAutoScrollView.swift */; };
 		D19EA619223FD1C200365868 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D19EA618223FD1C200365868 /* TextView.swift */; };
@@ -337,6 +338,7 @@
 		D18B013022495383003EF3AC /* More.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = More.storyboard; sourceTree = "<group>"; };
 		D18D9515224A70E30028B3CA /* AccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountTableViewCell.xib; sourceTree = "<group>"; };
 		D18D9516224A70E30028B3CA /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		D18EB18B225E79B30010A0A8 /* CurrencyFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyFormatter+Extension.swift"; sourceTree = "<group>"; };
 		D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollableView.swift; sourceTree = "<group>"; };
 		D1958B04219B417100113CAA /* KeyboardAutoScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardAutoScrollView.swift; sourceTree = "<group>"; };
 		D19EA618223FD1C200365868 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 				D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */,
 				92CB198B2228312A00407F9A /* Promise+Extensions.swift */,
 				D1618DC6225D344800193E35 /* Bundle+Version.swift */,
+				D18EB18B225E79B30010A0A8 /* CurrencyFormatter+Extension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -1315,6 +1318,7 @@
 				D1D5F84B21B6C8E6007D0433 /* SerachBarTextFieldBackground.swift in Sources */,
 				D14A502B2229B7540069A262 /* HomeViewController.swift in Sources */,
 				D1C5DDAF224ABB860063546D /* SettingsTableVViewController.swift in Sources */,
+				D18EB18C225E79B30010A0A8 /* CurrencyFormatter+Extension.swift in Sources */,
 				D1B13CCC222DC3A8005213F7 /* ReceiveFundsViewModel.swift in Sources */,
 				92FE9733222D8D8E007DB61C /* QRCodeScannerView.swift in Sources */,
 				D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */,

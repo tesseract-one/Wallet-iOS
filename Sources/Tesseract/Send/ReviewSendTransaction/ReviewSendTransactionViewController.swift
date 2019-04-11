@@ -79,6 +79,7 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         
         setupFingerButton()
         setupKeyboardDismiss()
+        setupSizes()
     }
     
     override func moveConstraints(keyboardHeight: CGFloat?) {
@@ -107,6 +108,14 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         
         fingerButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.fingerAction).dispose(in: bag)
+    }
+    
+    private func setupSizes() {
+        if UIScreen.main.bounds.width > 320 {
+            navigationController?.navigationBar.prefersLargeTitles = true
+        } else {
+            navigationController?.navigationBar.prefersLargeTitles = false
+        }
     }
 }
 
