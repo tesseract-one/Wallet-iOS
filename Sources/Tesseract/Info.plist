@@ -22,7 +22,7 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>io.gettes.tesseract.keychain</string>
+			<string>one.openwallet.keychain.ethereum</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>openwallet-keychain-ethereum</string>
@@ -32,10 +32,10 @@
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>CFBundleURLName</key>
-			<string>ios.gettes.tesseract</string>
+			<string>one.tesseract.wallet</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tesseract</string>
+				<string>tesseract-one</string>
 			</array>
 		</dict>
 	</array>

@@ -1632,13 +1632,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DEVELOPMENT_TEAM = 273G6YKLSK;
 				INFOPLIST_FILE = Sources/Tesseract/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
@@ -1657,13 +1657,13 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DEVELOPMENT_TEAM = 273G6YKLSK;
 				INFOPLIST_FILE = Sources/Tesseract/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet;
+				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.wallet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
@@ -1762,14 +1762,14 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DEVELOPMENT_TEAM = 273G6YKLSK;
 				INFOPLIST_FILE = Sources/Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet.extension;
+				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.wallet.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -1786,14 +1786,14 @@
 				CODE_SIGN_ENTITLEMENTS = Sources/Extension/Extension.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = Y92JL37YF3;
+				DEVELOPMENT_TEAM = 273G6YKLSK;
 				INFOPLIST_FILE = Sources/Extension/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.gettes.wallet.extension;
+				PRODUCT_BUNDLE_IDENTIFIER = one.tesseract.wallet.extension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;

@@ -4,11 +4,11 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.io.gettes.wallet.shared</string>
+		<string>group.one.tesseract.wallet.shared</string>
 	</array>
 	<key>keychain-access-groups</key>
 	<array>
-		<string>$(AppIdentifierPrefix)io.gettes.wallet</string>
+		<string>$(AppIdentifierPrefix)one.tesseract.wallet</string>
 	</array>
 </dict>
 </plist>
