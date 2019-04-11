@@ -32,17 +32,16 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let balanceString = Property<String>("")
     
     let gasAmount = Property<Double>(0.0)
-    let amount = Property<Double>(0.0)
+    let gasAmountString = Property<String>("")
+    
+    let sendAmount = Property<Double>(0.0)
+    let sendAmountETH = Property<String>("")
+    let sendAmountUSD = Property<String>("")
+    
+    let receiveAmountETH = Property<String>("")
+    let receiveAmountUSD = Property<String>("")
     
     let closeModal = SafePublishSubject<Void>()
-    
-    let receiveAmountString = Property<String>("")
-    let gasAmountString = Property<String>("")
-    let amountString = Property<String>("")
-    
-    let gasAmountUSD = Property<String>("")
-    let amountUSD = Property<String>("")
-    let receiveAmountUSD = Property<String>("")
     
     let error = SafePublishSubject<Swift.Error>()
     
@@ -61,32 +60,39 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         super.init()
         
-        combineLatest(amount, gasAmount)
+        combineLatest(sendAmount, gasAmount)
             .map{ NumberFormatter.eth.string(from: ($0 - $1) as NSNumber)! }
-            .bind(to: receiveAmountString)
+            .bind(to: receiveAmountETH)
             .dispose(in: bag)
-        combineLatest(amount, gasAmount, changeRateService.changeRates[.Ethereum]!)
+        combineLatest(sendAmount, gasAmount, changeRateService.changeRates[.Ethereum]!)
             .map{ NumberFormatter.usd.string(from: (($0 - $1)*$2) as NSNumber)!}
             .bind(to: receiveAmountUSD)
             .dispose(in: bag)
         
-        combineLatest(amount, changeRateService.changeRates[.Ethereum]!)
+        sendAmount.map{ NumberFormatter.eth.string(from: $0 as NSNumber)! }
+            .bind(to: sendAmountETH).dispose(in: bag)
+        combineLatest(sendAmount, changeRateService.changeRates[.Ethereum]!)
             .map{ NumberFormatter.usd.string(from: ($0 * $1) as NSNumber)! }
-            .bind(to: amountUSD)
+            .bind(to: sendAmountUSD)
             .dispose(in: bag)
-        amount.map{ NumberFormatter.eth.string(from: $0 as NSNumber)! }
-            .bind(to: amountString).dispose(in: bag)
         
         combineLatest(gasAmount, changeRateService.changeRates[.Ethereum]!)
-            .map{ NumberFormatter.usd.string(from: ($0 * $1) as NSNumber)! }
-            .bind(to: gasAmountUSD)
+            .map { gasAmount, rate in
+                let gasAmountETH = NumberFormatter.eth.string(from: gasAmount as NSNumber)!
+                let gasAmountUSD = NumberFormatter.usd.string(from: (gasAmount * rate) as NSNumber)!
+                return "\(gasAmountETH) ≈ \(gasAmountUSD)"
+            }
+            .bind(to: gasAmountString)
             .dispose(in: bag)
         
-        gasAmount.map{ NumberFormatter.eth.string(from: $0 as NSNumber)! }
-            .bind(to: gasAmountString).dispose(in: bag)
-        
-        balance.map{ NumberFormatter.eth.string(from: $0 as NSNumber)! }
-            .bind(to: balanceString).dispose(in: bag)
+        combineLatest(balance, changeRateService.changeRates[.Ethereum]!)
+            .map { balance, rate in
+                let balanceETH = NumberFormatter.eth.string(from: balance as NSNumber)!
+                let balanceUSD = NumberFormatter.usd.string(from: (balance * rate) as NSNumber)!
+                return "\(balanceETH) · \(balanceUSD)"
+            }
+            .bind(to: balanceString)
+            .dispose(in: bag)
         
         if (settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
            (passwordService.getBiometricType() != .none) {
@@ -110,7 +116,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
                 sself.ethWeb3Service.sendEthereum(
                     accountId: sself.account.value!.id,
                     to: sself.address.value,
-                    amountEth: sself.amount.value,
+                    amountEth: sself.sendAmount.value,
                     networkId: sself.ethereumNetwork.value
                 ).signal
             }

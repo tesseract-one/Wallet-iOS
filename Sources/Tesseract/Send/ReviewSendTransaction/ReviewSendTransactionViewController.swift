@@ -19,14 +19,14 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     
     @IBOutlet weak var accountNameLabel: UILabel!
     @IBOutlet weak var accountEmojiLabel: UILabel!
-    @IBOutlet weak var balance: UILabel!
-    @IBOutlet weak var address: UILabel!
-    @IBOutlet weak var sentAmount: UILabel!
-    @IBOutlet weak var sentAmountInUSD: UILabel!
-    @IBOutlet weak var recieveAmount: UILabel!
-    @IBOutlet weak var recieveAmountInUSD: UILabel!
-    @IBOutlet weak var gasAmount: UILabel!
-    @IBOutlet weak var gasAmountInUSD: UILabel!
+    @IBOutlet weak var balanceLabel: UILabel!
+    
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var sendETHLabel: UILabel!
+    @IBOutlet weak var sendUSDLabel: UILabel!
+    @IBOutlet weak var getsETHLabel: UILabel!
+    @IBOutlet weak var getsUSDLabel: UILabel!
+    @IBOutlet weak var gasLabel: UILabel!
     
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmButton: UIButton!
@@ -57,17 +57,16 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
         
-        model.amountString.bind(to: sentAmount.reactive.text).dispose(in: reactive.bag)
-        model.amountUSD.bind(to: sentAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        model.address.bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
+        model.balanceString.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)
         
-        model.receiveAmountString.bind(to: recieveAmount.reactive.text).dispose(in: reactive.bag)
-        model.receiveAmountUSD.bind(to: recieveAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        model.sendAmountETH.bind(to: sendETHLabel.reactive.text).dispose(in: reactive.bag)
+        model.sendAmountUSD.bind(to: sendUSDLabel.reactive.text).dispose(in: reactive.bag)
         
-        model.gasAmountString.bind(to: gasAmount.reactive.text).dispose(in: reactive.bag)
-        model.gasAmountUSD.bind(to: gasAmountInUSD.reactive.text).dispose(in: reactive.bag)
+        model.receiveAmountETH.bind(to: getsETHLabel.reactive.text).dispose(in: reactive.bag)
+        model.receiveAmountUSD.bind(to: getsUSDLabel.reactive.text).dispose(in: reactive.bag)
         
-        model.address.bind(to: address.reactive.text).dispose(in: reactive.bag)
-        model.balanceString.bind(to: balance.reactive.text).dispose(in: reactive.bag)
+        model.gasAmountString.bind(to: gasLabel.reactive.text).dispose(in: reactive.bag)
         
         model.error.observeNext { [weak self] error in
             let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
@@ -84,18 +83,6 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     
     override func moveConstraints(keyboardHeight: CGFloat?) {
         super.moveConstraints(keyboardHeight: keyboardHeight)
-        
-        if UIScreen.main.bounds.height < 600 {
-            if keyboardHeight != nil {
-                navigationController?.navigationBar.prefersLargeTitles = false
-            } else {
-                navigationController?.navigationBar.prefersLargeTitles = true
-
-            }
-            UIView.animate(withDuration: 1.0) {
-                self.navigationController?.navigationBar.layoutIfNeeded()
-            }
-        }
     }
     
     private func setupFingerButton() {
@@ -127,7 +114,7 @@ extension ReviewSendTransactionViewController: ContextSubject {
         model.account.next(context.get(bean: "account")! as? AccountViewModel)
         model.address.next(context.get(bean: "address")! as! String)
         model.ethereumNetwork.next(context.get(bean: "network")! as! UInt64)
-        model.amount.next(context.get(bean: "amount")! as! Double)
+        model.sendAmount.next(context.get(bean: "sendAmount")! as! Double)
         model.gasAmount.next(context.get(bean: "gasAmount")! as! Double)
         model.balance.next(context.get(bean: "balance")! as! Double)
     
