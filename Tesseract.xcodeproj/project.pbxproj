@@ -89,6 +89,7 @@
 		D12CF8C0224811A100D370DE /* UIViewController+KeyboardDismiss.swift in Sources */ = {isa = PBXBuildFile; fileRef = D12CF8BD224804DD00D370DE /* UIViewController+KeyboardDismiss.swift */; };
 		D133937F224BA8F500E69E57 /* WalletTypeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D133937E224BA8F500E69E57 /* WalletTypeViewController.swift */; };
 		D1339381224BA90A00E69E57 /* WalletTypeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */; };
+		D137C20A2260F9110038CECC /* TextField+PlaceholderColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D137C2092260F9110038CECC /* TextField+PlaceholderColor.swift */; };
 		D143DCDD225247C80075BAC9 /* CreateAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */; };
 		D143DCDF225247E60075BAC9 /* CreateAccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */; };
 		D143DCE3225259EC0075BAC9 /* ViewModelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */; };
@@ -299,6 +300,7 @@
 		D12CF8BD224804DD00D370DE /* UIViewController+KeyboardDismiss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+KeyboardDismiss.swift"; sourceTree = "<group>"; };
 		D133937E224BA8F500E69E57 /* WalletTypeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewController.swift; sourceTree = "<group>"; };
 		D1339380224BA90A00E69E57 /* WalletTypeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTypeViewModel.swift; sourceTree = "<group>"; };
+		D137C2092260F9110038CECC /* TextField+PlaceholderColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TextField+PlaceholderColor.swift"; sourceTree = "<group>"; };
 		D143DCDC225247C80075BAC9 /* CreateAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewController.swift; sourceTree = "<group>"; };
 		D143DCDE225247E60075BAC9 /* CreateAccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountViewModel.swift; sourceTree = "<group>"; };
 		D143DCE2225259EC0075BAC9 /* ViewModelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelCell.swift; sourceTree = "<group>"; };
@@ -861,6 +863,7 @@
 				D1E8F8C3222FE0FA006B946D /* VerticallyCenteredTextLayer.swift */,
 				92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */,
 				D19EA618223FD1C200365868 /* TextView.swift */,
+				D137C2092260F9110038CECC /* TextField+PlaceholderColor.swift */,
 			);
 			path = UIHelpers;
 			sourceTree = "<group>";
@@ -1403,6 +1406,7 @@
 				D1E8F8C4222FE0FA006B946D /* VerticallyCenteredTextLayer.swift in Sources */,
 				D1618DB6225BB7EF00193E35 /* GradientButton.swift in Sources */,
 				D15BC5E8224E899F0022622E /* NetworkTableViewCell.swift in Sources */,
+				D137C20A2260F9110038CECC /* TextField+PlaceholderColor.swift in Sources */,
 				D1618DC5225D075700193E35 /* NotificationService.swift in Sources */,
 				92FE9737222DB292007DB61C /* SendFundsViewModel.swift in Sources */,
 				D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */,
