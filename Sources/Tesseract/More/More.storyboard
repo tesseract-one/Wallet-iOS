@@ -98,9 +98,8 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Choose Network" largeTitleDisplayMode="always" id="sSh-j7-shr">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="INq-uj-Kd8"/>
-                        <barButtonItem key="leftBarButtonItem" title="Back" style="done" id="P5E-9v-Li7">
-                            <color key="tintColor" red="0.93333333330000001" green="0.93333333330000001" blue="0.93333333330000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" style="done" id="P5E-9v-Li7">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
@@ -122,7 +121,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Wix-wl-cnt" customClass="MFTextField">
-                                <rect key="frame" x="16" y="88" width="343" height="35"/>
+                                <rect key="frame" x="16" y="152.5" width="343" height="35"/>
                                 <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -147,7 +146,7 @@
                                 </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Account Image" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGs-98-2LT">
-                                <rect key="frame" x="16" y="147" width="343" height="18"/>
+                                <rect key="frame" x="16" y="211.5" width="343" height="18"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="18" id="rfR-Lh-gVB"/>
                                 </constraints>
@@ -156,7 +155,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" delaysContentTouches="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="smP-yG-fMh">
-                                <rect key="frame" x="16" y="181" width="343" height="339"/>
+                                <rect key="frame" x="16" y="245.5" width="343" height="274.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="15" id="DGQ-mb-j4J">
                                     <size key="itemSize" width="55" height="55"/>
@@ -182,9 +181,110 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dfh-TO-bRe">
+                                <rect key="frame" x="16" y="72" width="343" height="56.5"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="You can call it however you want. Only you will see it so use your imagination ">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="0.33300000000000002" green="0.30199999999999999" blue="0.33700000000000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="SFProText-Regular"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                    <fragment content="😉">
+                                        <attributes>
+                                            <color key="NSBackgroundColor" red="0.33300000000000002" green="0.30199999999999999" blue="0.33700000000000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <font key="NSFont" size="16" name="AppleColorEmoji"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0" allowsDefaultTighteningForTruncation="NO">
+                                                <tabStops>
+                                                    <textTab alignment="left" location="28">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="56">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="84">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="112">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="140">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="168">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="196">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="224">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="252">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="280">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="308">
+                                                        <options/>
+                                                    </textTab>
+                                                    <textTab alignment="left" location="336">
+                                                        <options/>
+                                                    </textTab>
+                                                </tabStops>
+                                            </paragraphStyle>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dfh-TO-bRe" secondAttribute="trailing" constant="16" id="0rR-yr-grs"/>
                             <constraint firstItem="Xsb-6N-8PJ" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="5SZ-uD-cX2"/>
                             <constraint firstItem="DGs-98-2LT" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="6CT-p9-JDL"/>
                             <constraint firstItem="DGs-98-2LT" firstAttribute="top" secondItem="Wix-wl-cnt" secondAttribute="bottom" constant="24" id="BX1-Zm-Qq7"/>
@@ -193,22 +293,27 @@
                             <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="Xsb-6N-8PJ" secondAttribute="trailing" constant="16" id="NyD-3n-9Yx"/>
                             <constraint firstItem="Xsb-6N-8PJ" firstAttribute="top" secondItem="smP-yG-fMh" secondAttribute="bottom" constant="24" id="Uem-rL-kkq"/>
                             <constraint firstItem="1Hb-xx-zW0" firstAttribute="trailing" secondItem="smP-yG-fMh" secondAttribute="trailing" constant="16" id="WMk-C3-yp6"/>
+                            <constraint firstItem="dfh-TO-bRe" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="YUf-Ik-48m"/>
                             <constraint firstItem="smP-yG-fMh" firstAttribute="top" secondItem="DGs-98-2LT" secondAttribute="bottom" constant="16" id="aOt-9Y-WvQ"/>
                             <constraint firstItem="1Hb-xx-zW0" firstAttribute="bottom" secondItem="Xsb-6N-8PJ" secondAttribute="bottom" constant="24" id="aet-oL-jFB"/>
                             <constraint firstItem="Wix-wl-cnt" firstAttribute="leading" secondItem="Yi2-6r-OFi" secondAttribute="leading" constant="16" id="i7j-FR-pha"/>
-                            <constraint firstItem="Wix-wl-cnt" firstAttribute="top" secondItem="1Hb-xx-zW0" secondAttribute="top" constant="24" id="xRg-2g-7ii"/>
+                            <constraint firstItem="dfh-TO-bRe" firstAttribute="top" secondItem="1Hb-xx-zW0" secondAttribute="top" constant="8" id="vSF-IE-1zx"/>
+                            <constraint firstItem="Wix-wl-cnt" firstAttribute="top" secondItem="dfh-TO-bRe" secondAttribute="bottom" constant="24" id="xRg-2g-7ii"/>
                             <constraint firstItem="smP-yG-fMh" firstAttribute="leading" secondItem="1Hb-xx-zW0" secondAttribute="leading" constant="16" id="zbF-2T-u03"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="1Hb-xx-zW0"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Account" largeTitleDisplayMode="always" id="Fe2-bE-zBd">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="eTX-yA-N45"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="qNt-Wq-8EG">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics" barStyle="black"/>
                     <connections>
                         <outlet property="accountImagesCV" destination="smP-yG-fMh" id="R54-kD-UFl"/>
                         <outlet property="accountNameTF" destination="Wix-wl-cnt" id="UgN-rv-ZNm"/>
+                        <outlet property="backButton" destination="qNt-Wq-8EG" id="XMA-8z-DSe"/>
                         <outlet property="createAccountButton" destination="Xsb-6N-8PJ" id="5Hf-Pw-hK3"/>
                     </connections>
                 </viewController>
@@ -218,6 +323,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
         <image name="menu-more-active" width="20" height="20"/>
         <image name="menu-more-passive" width="20" height="20"/>
     </resources>

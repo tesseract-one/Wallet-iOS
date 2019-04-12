@@ -21,6 +21,7 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
     
     @IBOutlet weak var doneButton: UIButton!
     @IBOutlet weak var skipButton: UIBarButtonItem!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +48,11 @@ class MnemonicVerificationViewController: KeyboardScrollView, ModelVCProtocol {
         
         skipButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.skipMnemonicVerificationAction).dispose(in: bag)
+        
+        backButton.reactive.tap.throttle(seconds: 0.5)
+            .observeNext { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }.dispose(in: reactive.bag)
         
         mnemonicVerificationTextViewTopInitial = mnemonicVerificationTextViewTop.constant
         

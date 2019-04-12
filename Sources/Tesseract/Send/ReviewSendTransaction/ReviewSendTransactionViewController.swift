@@ -36,6 +36,8 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     
     @IBOutlet weak var txSendingIndicator: UIActivityIndicatorView!
     @IBOutlet weak var txSendingIndicatorCenterX: NSLayoutConstraint!
+    
+    @IBOutlet weak var backButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,6 +84,11 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
             .bind(to: confirmButton.reactive.title).dispose(in: reactive.bag)
         model.isSendingTx.map { !$0 }
             .bind(to: view.reactive.isUserInteractionEnabled).dispose(in: reactive.bag)
+        
+        backButton.reactive.tap.throttle(seconds: 0.5)
+            .observeNext { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }.dispose(in: reactive.bag)
         
         setupFingerButton()
         setupKeyboardDismiss()

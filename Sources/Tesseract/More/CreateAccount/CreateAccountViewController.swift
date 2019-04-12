@@ -19,6 +19,8 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var accountNameTF: MFTextField!
     @IBOutlet weak var accountImagesCV: UICollectionView!
     @IBOutlet weak var createAccountButton: UIButton!
+    
+    @IBOutlet weak var backButton: UIBarButtonItem!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +46,8 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
         
         model.validationError.filter { $0 != nil }
             .bind(to: accountNameTF.reactive.error).dispose(in: reactive.bag)
+        
+        backButton.reactive.tap.throttle(seconds: 0.5).bind(to: goBack).dispose(in: bag)
         
         goBack.observeNext { [weak self] in
             self?.navigationController?.popViewController(animated: true)

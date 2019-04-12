@@ -19,6 +19,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var confirmPasswordField: NextResponderTextField!
     @IBOutlet weak var restoreButton: UIButton!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,6 +71,11 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             .map { $1!.rawValue}
             .bind(to: mnemonicTextView.reactive.error)
             .dispose(in: bag)
+        
+        backButton.reactive.tap.throttle(seconds: 0.5)
+            .observeNext { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }.dispose(in: reactive.bag)
         
         setupSizes()
         setupKeyboardDismiss()

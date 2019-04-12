@@ -28,6 +28,7 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var blurredView: UIView!
     @IBOutlet weak var termsTextView: UITextView!
     @IBOutlet weak var acceptButton: UIButton!
+    @IBOutlet weak var backButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +42,11 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
             let vc = try! self?.viewController(for: .named(name: name), context: context)
             self?.navigationController?.pushViewController(vc!, animated: true)
             }.dispose(in: bag)
+        
+        backButton.reactive.tap.throttle(seconds: 0.5)
+            .observeNext { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            }.dispose(in: reactive.bag)
         
         termsTextView.delegate = self
     }

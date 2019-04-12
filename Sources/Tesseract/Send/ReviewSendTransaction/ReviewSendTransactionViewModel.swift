@@ -183,7 +183,13 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         closeModal.map { _ in false }.merge(with: txError.map { _ in false })
             .bind(to: isSendingTx).dispose(in: bag)
         
-        closeModal.map { _ in NotificationInfo(title: "Transaction sent successfully.", type: .message) }
+        closeModal.map { _ in
+                NotificationInfo (
+                    title: "Transaction sent successfully.",
+                    description: "Our rabbit courier will deliver your funds as soon as possible!",
+                    type: .message
+                )
+            }
             .bind(to: notificationNode).dispose(in: bag)
         txError.map { NotificationInfo(title: "Transaction failed.", description: $0.localizedDescription, type: .error)}
             .bind(to: notificationNode).dispose(in: bag)

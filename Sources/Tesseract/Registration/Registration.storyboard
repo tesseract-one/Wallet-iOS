@@ -247,7 +247,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <mutableString key="content">"When someone does something that they know that they shouldn’t do, did they really have a choice. Maybe what I mean to say is did they really have a chance. You can take two people, present them with the same fork in the road, and one is going to have an easier time than the other choosing the right path.\nIs there such a thing as the right path? You could argue back and forth with God and Evolution and such topics. The side that you take in an arguement like that might lead you to think that you know the meaning to life. How can we really know though. At least up until now there isn’t and 100% proof to either side. If God was a gaurantee – why would he leave so many of us here to die, without the information or say it as proof that we individually would have needed to make that choice?"</mutableString>
+                                        <string key="content">"When someone does something that they know that they shouldn’t do, did they really have a choice. Maybe what I mean to say is did they really have a chance. You can take two people, present them with the same fork in the road, and one is going to have an easier time than the other choosing the right path.\nIs there such a thing as the right path? You could argue back and forth with God and Evolution and such topics. The side that you take in an arguement like that might lead you to think that you know the meaning to life. How can we really know though. At least up until now there isn’t and 100% proof to either side. If God was a gaurantee – why would he leave so many of us here to die, without the information or say it as proof that we individually would have needed to make that choice?"</string>
                                         <attributes>
                                             <color key="NSBackgroundColor" red="1" green="1" blue="1" alpha="0.0" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                             <color key="NSColor" red="0.78431372549019607" green="0.78431372549019607" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -320,11 +320,14 @@
                         <viewLayoutGuide key="safeArea" id="Ra7-XZ-68H"/>
                     </view>
                     <navigationItem key="navigationItem" title="Terms of Service" largeTitleDisplayMode="always" id="BkH-LB-3np">
-                        <barButtonItem key="backBarButtonItem" title="ToS" id="R82-ni-ohn"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="vSf-Bb-cZW">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
                         <outlet property="acceptButton" destination="qMR-5q-8QY" id="1uw-OQ-ZOv"/>
+                        <outlet property="backButton" destination="vSf-Bb-cZW" id="ZVm-UV-JCI"/>
                         <outlet property="blurredView" destination="YfP-G0-scS" id="7Ch-aR-RdL"/>
                         <outlet property="termsTextView" destination="bMK-Pn-epb" id="fwV-7p-bPB"/>
                     </connections>
@@ -409,9 +412,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gwI-Af-fdI"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Mnemonics" largeTitleDisplayMode="always" id="Umb-px-Jzt"/>
+                    <navigationItem key="navigationItem" title="Mnemonics" largeTitleDisplayMode="always" id="Umb-px-Jzt">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="iua-Q6-iIN">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="iua-Q6-iIN" id="Iu2-n3-RJd"/>
                         <outlet property="doneButton" destination="s0j-pk-iE2" id="zlI-0Q-GNb"/>
                         <outlet property="mnemonicLabel" destination="hht-z9-Bkb" id="KFX-s3-y7P"/>
                     </connections>
@@ -524,12 +532,16 @@
                         <viewLayoutGuide key="safeArea" id="usD-ei-tZ3"/>
                     </view>
                     <navigationItem key="navigationItem" title="Verify" largeTitleDisplayMode="always" id="v5E-I8-qbb">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="pri-hR-qll">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Skip" id="iYf-1q-7ln">
                             <color key="tintColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="pri-hR-qll" id="xxl-C9-pKA"/>
                         <outlet property="bottomConstraint" destination="zJ5-iT-xA3" id="UZ6-kP-WRh"/>
                         <outlet property="doneButton" destination="KOX-bF-Du2" id="2Ns-eZ-xB7"/>
                         <outlet property="mnemonicVerificationTextView" destination="61Q-jv-WeK" id="07n-dO-oMX"/>
@@ -715,9 +727,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="K6Y-7p-U9g"/>
                     </view>
-                    <navigationItem key="navigationItem" title="SignIn" largeTitleDisplayMode="always" id="exG-wb-nkA">
-                        <barButtonItem key="backBarButtonItem" title="Cancel" id="AN7-gA-Eux"/>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="SignIn" largeTitleDisplayMode="always" id="exG-wb-nkA"/>
                     <connections>
                         <outlet property="bottomConstraint" destination="vOp-5y-jpp" id="fmX-68-6qz"/>
                         <outlet property="fingerButton" destination="ZVM-9o-nK6" id="Vig-Ur-s0B"/>
@@ -924,9 +934,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Wallet Type" largeTitleDisplayMode="always" id="caT-TU-9EB">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="5Ld-fJ-ggX"/>
+                        <barButtonItem key="leftBarButtonItem" image="back" id="sel-Wj-a3x">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="sel-Wj-a3x" id="Wgx-db-Evf"/>
                         <outlet property="metamaskSeedView" destination="HRl-ih-ToV" id="B3f-YN-4Rc"/>
                         <outlet property="tesseractSeedView" destination="oFd-3M-DY4" id="sEb-z6-8JM"/>
                     </connections>
@@ -1174,9 +1188,14 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="c1q-zl-CsG"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Restore Wallet" largeTitleDisplayMode="always" id="yHB-at-dTG"/>
+                    <navigationItem key="navigationItem" title="Restore Wallet" largeTitleDisplayMode="always" id="yHB-at-dTG">
+                        <barButtonItem key="leftBarButtonItem" image="back" id="61V-zm-9Fe">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
+                    </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <connections>
+                        <outlet property="backButton" destination="61V-zm-9Fe" id="1uc-6p-nJ1"/>
                         <outlet property="confirmPasswordField" destination="IJN-8j-PMi" id="nmp-HN-Fdx"/>
                         <outlet property="mnemonicTextView" destination="sZB-ec-BPk" id="uqR-MW-vZu"/>
                         <outlet property="passwordField" destination="CtV-Xa-DVd" id="bDl-Xp-hQ2"/>
@@ -1220,6 +1239,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="back" width="24" height="24"/>
         <image name="fingerprint" width="18" height="22"/>
         <image name="logo" width="88" height="91"/>
         <image name="metamask-logo" width="46" height="42"/>
