@@ -124,7 +124,7 @@ extension _ResultProtocol {
 }
 
 extension SignalProtocol {
-    func resultMap<U>(_ transform: @escaping (Element) throws -> U) -> Signal<Swift.Result<U, Swift.Error>, Error> {
+    func tryMap<U>(_ transform: @escaping (Element) throws -> U) -> Signal<Swift.Result<U, Swift.Error>, Error> {
         return map { val -> Swift.Result<U, Swift.Error> in
             do {
                 return try .success(transform(val))

@@ -98,7 +98,7 @@ extension RestoreWalletViewModel {
             .map { $0.1 }
             .with(latestFrom: mnemonic)
             .with(weak: walletService)
-            .resultMap { mnemonicAndPwd, walletService -> (WalletService, String, NewWalletData) in
+            .tryMap { mnemonicAndPwd, walletService -> (WalletService, String, NewWalletData) in
                 do {
                     let newWalletData = try walletService.restoreWalletData(mnemonic: mnemonicAndPwd.1, password: mnemonicAndPwd.0)
                      return (walletService, mnemonicAndPwd.0, newWalletData)

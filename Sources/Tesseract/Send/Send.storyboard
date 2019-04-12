@@ -251,7 +251,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="LR2-ky-fCr"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                 <state key="normal" title="Review">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -879,7 +879,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Lts-fn-1oP"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Semibold" family="SF Pro Display" pointSize="16"/>
                                 <state key="normal" title="Confirm">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
@@ -889,6 +889,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="akZ-7X-ae9">
+                                <rect key="frame" x="180" y="600" width="37" height="37"/>
+                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </activityIndicatorView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCh-pJ-YbV">
                                 <rect key="frame" x="309" y="593" width="50" height="50"/>
                                 <color key="backgroundColor" red="0.2901960784" green="0.58039215690000001" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -912,16 +916,18 @@
                             <constraint firstItem="mMp-WG-raq" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" id="947-Sp-Zif"/>
                             <constraint firstItem="UEx-Tz-VTf" firstAttribute="top" secondItem="Qd3-Zl-73M" secondAttribute="bottom" constant="32" id="Cf1-lA-Rr0"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="fCh-pJ-YbV" secondAttribute="trailing" constant="16" id="EWF-xQ-ptA"/>
+                            <constraint firstItem="akZ-7X-ae9" firstAttribute="centerX" secondItem="f7F-gI-ar6" secondAttribute="centerX" id="Ecu-d4-5Iz"/>
                             <constraint firstItem="1pb-56-QEb" firstAttribute="top" secondItem="UEx-Tz-VTf" secondAttribute="bottom" constant="24" id="FiD-Kf-z1n"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="6BN-cC-bfa" secondAttribute="trailing" constant="16" id="G8i-uv-jad"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="1pb-56-QEb" secondAttribute="trailing" id="J7J-A9-MRr"/>
                             <constraint firstItem="Hqp-dG-EDP" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" constant="16" id="LuD-w7-Mk3"/>
-                            <constraint firstItem="hbE-1R-ZTT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hxU-9l-pMG" secondAttribute="bottom" constant="24" id="OFs-bI-Y1c"/>
+                            <constraint firstItem="hbE-1R-ZTT" firstAttribute="top" relation="greaterThanOrEqual" secondItem="hxU-9l-pMG" secondAttribute="bottom" constant="8" id="OFs-bI-Y1c"/>
                             <constraint firstItem="Qd3-Zl-73M" firstAttribute="leading" secondItem="9Hn-Zo-FAP" secondAttribute="leading" id="OYQ-OK-zv1"/>
                             <constraint firstAttribute="trailing" secondItem="mMp-WG-raq" secondAttribute="trailing" id="Sf8-3F-QuI"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="trailing" secondItem="Hqp-dG-EDP" secondAttribute="trailing" constant="74" id="VME-K2-Y0B"/>
                             <constraint firstItem="mMp-WG-raq" firstAttribute="top" secondItem="9Hn-Zo-FAP" secondAttribute="top" constant="24" id="VVZ-fE-ys1"/>
                             <constraint firstItem="9Hn-Zo-FAP" firstAttribute="bottom" secondItem="fCh-pJ-YbV" secondAttribute="bottom" constant="24" id="Wxm-8T-y0j"/>
+                            <constraint firstItem="9Hn-Zo-FAP" firstAttribute="bottom" secondItem="akZ-7X-ae9" secondAttribute="bottom" constant="30.5" id="XJb-NA-zJX"/>
                             <constraint firstItem="1pb-56-QEb" firstAttribute="leading" secondItem="f7F-gI-ar6" secondAttribute="leading" id="XuI-uH-6WI"/>
                             <constraint firstItem="Hqp-dG-EDP" firstAttribute="top" secondItem="hbE-1R-ZTT" secondAttribute="bottom" constant="24" id="bgj-hr-uAn"/>
                             <constraint firstItem="6BN-cC-bfa" firstAttribute="leading" secondItem="f7F-gI-ar6" secondAttribute="leading" constant="16" id="dzE-VN-X1q"/>
@@ -955,6 +961,8 @@
                         <outlet property="sendETHLabel" destination="W2U-U3-2j8" id="5ip-Cw-NUa"/>
                         <outlet property="sendUSDLabel" destination="CS1-Jl-lsc" id="zJi-Mj-ULV"/>
                         <outlet property="topConstraint" destination="VVZ-fE-ys1" id="hMd-nh-hCU"/>
+                        <outlet property="txSendingIndicator" destination="akZ-7X-ae9" id="yni-Jq-f7F"/>
+                        <outlet property="txSendingIndicatorCenterX" destination="Ecu-d4-5Iz" id="nqS-Iu-9C7"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uZG-ee-514" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -991,7 +999,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Scan QR Code" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l3U-Tf-HJH">
-                                        <rect key="frame" x="64" y="32" width="215" height="48"/>
+                                        <rect key="frame" x="71" y="32" width="201.5" height="48"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="TwG-gM-a98"/>
                                         </constraints>
@@ -1000,7 +1008,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ir-Hn-SFW">
-                                        <rect key="frame" x="61" y="446" width="221" height="41"/>
+                                        <rect key="frame" x="61" y="446" width="221" height="42"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="221" id="UJM-jb-dAb"/>
                                         </constraints>

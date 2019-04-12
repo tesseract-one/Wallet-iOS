@@ -10,6 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 import Wallet
+import MaterialTextField
 
 
 class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
@@ -28,10 +29,13 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     @IBOutlet weak var getsUSDLabel: UILabel!
     @IBOutlet weak var gasLabel: UILabel!
     
-    @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var passwordField: MFTextField!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var confirmButtonRight: NSLayoutConstraint!
     @IBOutlet weak var fingerButton: UIButton!
+    
+    @IBOutlet weak var txSendingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var txSendingIndicatorCenterX: NSLayoutConstraint!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -68,13 +72,16 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
         
         model.gasAmountString.bind(to: gasLabel.reactive.text).dispose(in: reactive.bag)
         
-        model.error.observeNext { [weak self] error in
-            let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            self?.present(alert, animated: true, completion: nil)
-        }.dispose(in: reactive.bag)
+        model.passwordErrors.bind(to: passwordField.reactive.error).dispose(in: reactive.bag)
+        passwordField.reactive.controlEvents(.editingDidBegin).map { _ in "" }
+            .bind(to: passwordField.reactive.error ).dispose(in: reactive.bag)
         
-        navigationController?.navigationBar.prefersLargeTitles = true
+        model.isSendingTx.map { !$0 }
+            .bind(to: txSendingIndicator.reactive.isHidden).dispose(in: reactive.bag)
+        model.isSendingTx.map { $0 == true ? "" : "Confirm"}
+            .bind(to: confirmButton.reactive.title).dispose(in: reactive.bag)
+        model.isSendingTx.map { !$0 }
+            .bind(to: view.reactive.isUserInteractionEnabled).dispose(in: reactive.bag)
         
         setupFingerButton()
         setupKeyboardDismiss()
@@ -88,9 +95,10 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     private func setupFingerButton() {
         model.isBiometricEnabled.map { !$0 }.bind(to: fingerButton.reactive.isHidden).dispose(in: bag)
         
-        model.isBiometricEnabled.with(weak: confirmButtonRight)
-            .observeNext { isEnabled, confirmButtonRight in
+        model.isBiometricEnabled.with(weak: confirmButtonRight, txSendingIndicatorCenterX)
+            .observeNext { isEnabled, confirmButtonRight, txSendingIndicatorCenterX in
                 confirmButtonRight.constant = isEnabled ? 74 : 16
+                txSendingIndicatorCenterX.constant = isEnabled ? -29 : 0
             }.dispose(in: bag)
         
         fingerButton.reactive.tap.throttle(seconds: 0.5)
@@ -120,6 +128,7 @@ extension ReviewSendTransactionViewController: ContextSubject {
     
         let sendContext = context.get(context: SendFundsViewControllerContext.self)!
         model.closeModal.bind(to: sendContext.closeAction).dispose(in: model.bag)
+        model.notificationNode.bind(to: appCtx.notificationNode).dispose(in: model.bag)
         
         model.bootstrap()
     }

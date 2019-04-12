@@ -20,7 +20,9 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     let passwordService: KeychainPasswordService
+    
     let settings: Settings
+    let notificationNode = SafePublishSubject<NotificationProtocol>()
     
     let goBack = SafePublishSubject<Void>()
     
@@ -41,12 +43,19 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let receiveAmountETH = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
-    let closeModal = SafePublishSubject<Void>()
-    
-    let error = SafePublishSubject<Swift.Error>()
-    
     let send = SafePublishSubject<String>()
     let fingerAction = SafePublishSubject<Void>()
+    
+    let checkPassword = SafePublishSubject<(String, ReviewSendTransactionViewModel)>()
+    
+    let isSendingTx = Property<Bool>(false)
+    
+    let closeModal = SafePublishSubject<Void>()
+    
+    let pwdError = SafePublishSubject<Swift.Error>()
+    let txError = SafePublishSubject<Swift.Error>()
+    
+    let passwordErrors = SafePublishSubject<String>()
     
     let isBiometricEnabled = Property<Bool>(false)
     let canLoadPassword = Property<Bool?>(nil)
@@ -60,6 +69,11 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
         
         super.init()
         
+        fillInfo()
+        setupFinger()
+    }
+    
+    private func fillInfo() {
         combineLatest(sendAmount, gasAmount)
             .map{ NumberFormatter.eth.string(from: ($0 - $1) as NSNumber)! }
             .bind(to: receiveAmountETH)
@@ -93,43 +107,13 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
             }
             .bind(to: balanceString)
             .dispose(in: bag)
-        
-        if (settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
-           (passwordService.getBiometricType() != .none) {
-            isBiometricEnabled.next(true)
-        }
     }
     
-    func bootstrap() {
-        send.with(weak: self)
-            .resultMap { password, sself -> (String, ReviewSendTransactionViewModel) in
-                guard try sself.walletService.checkPassword(password: password) else {
-                    throw SendError.wrongPassword
-                }
-                return (password, sself)
-            }
-            .tryMapWrapped { password, sself -> ReviewSendTransactionViewModel in
-                try sself.walletService.unlockWallet(password: password)
-                return sself
-            }
-            .flatMapLatest { sself in
-                sself.ethWeb3Service.sendEthereum(
-                    accountId: sself.account.value!.id,
-                    to: sself.address.value,
-                    amountEth: sself.sendAmount.value,
-                    networkId: sself.ethereumNetwork.value
-                ).signal
-            }
-            .pourError(into: error)
-            .bind(to: closeModal)
-            .dispose(in: bag)
-        
-        goBack.with(weak: self).observeNext { _, sself in
-                let walletService = sself.walletService
-                DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(5)) {
-                    walletService.updateBalance()
-                }
-            }.dispose(in: bag)
+    private func setupFinger() {
+        if (settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
+            (passwordService.getBiometricType() != .none) {
+            isBiometricEnabled.next(true)
+        }
         
         fingerAction
             .with(weak: passwordService)
@@ -149,5 +133,54 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
             .suppressedErrors
             .bind(to: send)
             .dispose(in: bag)
+    }
+    
+    func bootstrap() {
+        send.with(weak: self)
+            .tryMap { password, sself -> (String, ReviewSendTransactionViewModel) in
+                guard try sself.walletService.checkPassword(password: password) else {
+                    throw SendError.wrongPassword
+                }
+                
+                return (password, sself)
+            }
+            .pourError(into: pwdError)
+            .bind(to: checkPassword)
+        
+        
+        checkPassword
+            .tryMap { password, sself -> ReviewSendTransactionViewModel in
+                try sself.walletService.unlockWallet(password: password)
+                return sself
+            }
+            .flatMapLatest { sself in
+                sself.ethWeb3Service.sendEthereum(
+                    accountId: sself.account.value!.id,
+                    to: sself.address.value,
+                    amountEth: sself.sendAmount.value,
+                    networkId: sself.ethereumNetwork.value
+                ).signal
+            }
+            .pourError(into: txError)
+            .bind(to: closeModal)
+            .dispose(in: bag)
+        
+        closeModal.with(weak: self)
+            .observeNext { _, sself in
+                let walletService = sself.walletService
+                DispatchQueue.global().asyncAfter(deadline: .now() + .seconds(5)) {
+                    walletService.updateBalance()
+                }
+            }.dispose(in: bag)
+        
+        checkPassword.map { _ in true }.bind(to: isSendingTx).dispose(in: bag)
+        closeModal.map { _ in false }.merge(with: txError.map { _ in false })
+            .bind(to: isSendingTx).dispose(in: bag)
+        
+        closeModal.map { _ in NotificationInfo(title: "Transaction sent successfully.", type: .message) }
+            .bind(to: notificationNode).dispose(in: bag)
+        txError.map { NotificationInfo(title: "Transaction failed.", description: $0.localizedDescription, type: .error)}
+            .bind(to: notificationNode).dispose(in: bag)
+        pwdError.map { _ in SendError.wrongPassword.rawValue }.bind(to: passwordErrors).dispose(in: bag)
     }
 }

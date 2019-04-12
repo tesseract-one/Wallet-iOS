@@ -38,7 +38,7 @@ class TermsOfServiceFromSignInViewModel: TermsOfServiceViewModel {
         
         acceptTermsAction
             .with(weak: walletService)
-            .resultMap { _, walletService in
+            .tryMap { _, walletService in
                 try walletService.createWalletData(password: password)
             }
             .pourError(into: errors)

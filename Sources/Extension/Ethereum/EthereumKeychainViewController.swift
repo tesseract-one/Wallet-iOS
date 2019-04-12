@@ -83,7 +83,7 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: E
         acceptTap.with(latestFrom: _passwordField.reactive.text)
             .map{$0.1 ?? ""}
             .with(weak: context.walletService)
-            .resultMap { password, service in
+            .tryMap { password, service in
                 try service.unlockWallet(password: password)
             }
             .pourError(into: passwordErrorSiganl)
@@ -121,7 +121,7 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: E
             }
             .suppressedErrors
             .with(weak: context.walletService)
-            .resultMap { password, service in
+            .tryMap { password, service in
                 try service.unlockWallet(password: password)
             }
             .pourError(into: passwordErrorSiganl)
