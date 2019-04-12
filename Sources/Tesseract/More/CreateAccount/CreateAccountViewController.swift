@@ -51,6 +51,27 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
         
         setupKeyboardDismiss()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
+        navigationController?.navigationBar.shadowRadius = 0.0
+        navigationController?.navigationBar.shadowOffset = CGSize(width: 0, height: 0)
+        navigationController?.navigationBar.shadowOpacity = 0
+        navigationController?.navigationBar.shadowColorIB = .none
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.navigationBar.barTintColor = UIColor(red: 34/255, green: 34/255, blue: 34/255, alpha: 1.0)
+        navigationController?.navigationBar.shadowRadius = 4.0
+        navigationController?.navigationBar.shadowOffset = CGSize(width: 0, height: 1)
+        navigationController?.navigationBar.shadowOpacity = 0.25
+        navigationController?.navigationBar.shadowColorIB = .black
+    }
+
 }
 
 

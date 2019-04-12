@@ -38,23 +38,64 @@ class ChooseNetworkTableViewController: UITableViewController, ModelVCProtocol {
             .observeNext { [weak self] in
                 self?.navigationController?.popViewController(animated: true)
             }.dispose(in: reactive.bag)
+        
+        tableView.tableFooterView = UIView() // remove separators below last cell
     }
 }
 
 extension ChooseNetworkTableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 53))
+        let header: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 60))
         header.backgroundColor = UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
         
-        let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 27, width: tableView.frame.width - 32, height: 21))
+        let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 35, width: tableView.frame.width - 32, height: 0))
         label.text = "Available Networks"
         label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         label.sizeToFit()
         label.textColor = UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0)
+        label.sizeToFit()
+        label.layoutIfNeeded()
         
         header.addSubview(label)
         
+        let bottomBorder = CALayer()
+        bottomBorder.frame = CGRect(x: 0, y: header.frame.height - 0.5, width: header.frame.width, height: 0.5)
+        bottomBorder.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 0.5).cgColor
+        header.layer.addSublayer(bottomBorder)
+        
         return header
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footer: UIView = UIView.init(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 54))
+        footer.backgroundColor = UIColor(red: 37/255, green: 37/255, blue: 37/255, alpha: 1.0)
+        
+        let label: UILabel = UILabel.init(frame: CGRect(x: 16, y: 9, width: tableView.frame.width - 32, height: 0))
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.25
+        let attrString = NSAttributedString(
+            string: "Every dApp will use the network it demands. So you don't need to change it by yourself.",
+            attributes: [
+                .font: UIFont(name: "SFProDisplay-Regular", size: 12)!,
+                .foregroundColor: UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0),
+                .paragraphStyle: paragraphStyle
+            ]
+        )
+        
+        label.attributedText = attrString
+        label.numberOfLines = 0
+        label.sizeToFit()
+        label.layoutIfNeeded()
+        
+        footer.addSubview(label)
+        
+        let topBorder = CALayer()
+        topBorder.frame = CGRect(x: 0, y: 0, width: footer.frame.width, height: 0.5)
+        topBorder.backgroundColor = UIColor(red: 21/255, green: 21/255, blue: 21/255, alpha: 0.5).cgColor
+        footer.layer.addSublayer(topBorder)
+        
+        return footer
     }
 }
 
