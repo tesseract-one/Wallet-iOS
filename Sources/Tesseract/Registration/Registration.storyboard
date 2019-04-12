@@ -831,7 +831,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRl-ih-ToV">
-                                <rect key="frame" x="16" y="257.33333333333331" width="382" height="89.333333333333314"/>
+                                <rect key="frame" x="16" y="257.33333333333331" width="382" height="85.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metamask-logo" translatesAutoresizingMaskIntoConstraints="NO" id="oqS-Xc-dQc">
                                         <rect key="frame" x="19" y="21" width="49" height="51"/>
@@ -840,8 +840,8 @@
                                             <constraint firstAttribute="width" constant="49" id="nL5-Rk-1j3"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Qpr-NH-TdX">
-                                        <rect key="frame" x="88" y="16.000000000000004" width="278" height="57.333333333333343"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qpr-NH-TdX">
+                                        <rect key="frame" x="88" y="16.000000000000004" width="278" height="53.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MetaMask Seed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXr-lG-tD0">
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
@@ -853,9 +853,9 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jB4-N2-SWU">
-                                                <rect key="frame" x="0.0" y="34" width="278" height="23.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="30" width="278" height="23.333333333333329"/>
                                                 <attributedString key="attributedText">
-                                                    <fragment content="I want to restore wallet from MM Seed">
+                                                    <fragment content="I want to import my MetaMask wallet">
                                                         <attributes>
                                                             <color key="NSBackgroundColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1080,7 +1080,7 @@
                                                                 <color key="value" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                                                                <color key="value" red="1" green="0.23137254901960785" blue="0.19215686274509802" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <color key="value" red="1" green="0.23137254900000001" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                             <userDefinedRuntimeAttribute type="size" keyPath="errorPadding">
                                                                 <size key="value" width="0.0" height="4.5"/>
