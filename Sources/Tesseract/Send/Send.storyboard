@@ -165,6 +165,13 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UM7-9w-RAO">
                                         <rect key="frame" x="16" y="0.0" width="343" height="44"/>
                                         <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="au2-KG-T5G">
+                                                <rect key="frame" x="171" y="10" width="1" height="24"/>
+                                                <color key="backgroundColor" red="0.24313725489999999" green="0.24313725489999999" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="1" id="nEq-6M-O1K"/>
+                                                </constraints>
+                                            </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="DOw-dB-y7L">
                                                 <rect key="frame" x="16" y="12.5" width="311" height="19.5"/>
                                                 <subviews>
@@ -185,9 +192,13 @@
                                         </subviews>
                                         <color key="backgroundColor" red="0.1333333333" green="0.1333333333" blue="0.1333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
+                                            <constraint firstItem="au2-KG-T5G" firstAttribute="centerY" secondItem="UM7-9w-RAO" secondAttribute="centerY" id="11y-T3-u1k"/>
                                             <constraint firstItem="DOw-dB-y7L" firstAttribute="centerY" secondItem="UM7-9w-RAO" secondAttribute="centerY" id="FhY-rU-NhU"/>
                                             <constraint firstItem="DOw-dB-y7L" firstAttribute="leading" secondItem="UM7-9w-RAO" secondAttribute="leading" constant="16" id="dTu-eF-Lty"/>
+                                            <constraint firstAttribute="bottom" secondItem="au2-KG-T5G" secondAttribute="bottom" constant="10" id="fUA-51-K4b"/>
                                             <constraint firstAttribute="trailing" secondItem="DOw-dB-y7L" secondAttribute="trailing" constant="16" id="hex-Qs-byL"/>
+                                            <constraint firstItem="au2-KG-T5G" firstAttribute="top" secondItem="UM7-9w-RAO" secondAttribute="top" constant="10" id="p4S-af-Cgr"/>
+                                            <constraint firstItem="au2-KG-T5G" firstAttribute="centerX" secondItem="UM7-9w-RAO" secondAttribute="centerX" id="vVx-Cm-8BT"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
@@ -852,7 +863,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Account Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hbE-1R-ZTT" customClass="NextResponderTextField" customModule="Tesseract" customModuleProvider="target">
-                                <rect key="frame" x="16" y="534" width="343" height="35"/>
+                                <rect key="frame" x="16" y="549" width="343" height="20"/>
                                 <color key="tintColor" red="0.91372549020000005" green="0.91372549020000005" blue="0.91372549020000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>

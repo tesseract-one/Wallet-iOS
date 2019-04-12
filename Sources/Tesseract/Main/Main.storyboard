@@ -67,7 +67,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="separatorColor" red="0.14508003" green="0.14511102440000001" blue="0.1450734437" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="uRB-u7-lZc">
+                        <view key="tableHeaderView" contentMode="scaleToFill" misplaced="YES" id="uRB-u7-lZc">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="477"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             <subviews>
@@ -314,9 +314,10 @@
                     <tabBarItem key="tabBarItem" title="Home" image="menu-home-passive" selectedImage="menu-home-active" id="pla-9M-rAE">
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="-3"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="401-PD-jum">
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" id="401-PD-jum">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="NrD-gD-WuY" kind="relationship" relationship="rootViewController" id="sOl-3D-naq"/>
