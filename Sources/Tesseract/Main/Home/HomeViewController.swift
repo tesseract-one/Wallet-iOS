@@ -127,15 +127,20 @@ extension HomeViewController {
         let header = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 26))
         header.backgroundColor = .clear
 
-        let label = UILabel(frame: CGRect(x: 16, y: 3, width: tableView.frame.width - 32, height: 26))
+        let label = UILabel(frame: CGRect(x: 16, y: 3, width: tableView.frame.width - 32, height: 0))
         label.text = "Latest Activity"
-        label.font = UIFont(name: "SFProDisplay-Medium", size: 12)
-        label.sizeToFit()
+        label.font = UIFont(name: "SFProDisplay-Semibold", size: 14)
         label.textColor = UIColor.init(red: 146/255, green: 146/255, blue: 146/255, alpha: 1.0)
-
+        label.sizeToFit()
+        label.layoutIfNeeded()
+        
         header.addSubview(label)
 
         return header
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 26
     }
 }
 
