@@ -70,7 +70,7 @@
                                     <constraint firstAttribute="height" constant="18" id="DA8-S6-tZJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -89,7 +89,7 @@
                     <constraint firstItem="0Ra-tg-MRD" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="zHc-hM-uFm"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.1333139837" green="0.13334444170000001" blue="0.1333120763" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="balanceLabel" destination="rgl-r1-FVC" id="BtJ-3U-qq8"/>
