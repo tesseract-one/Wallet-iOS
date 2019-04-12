@@ -78,11 +78,13 @@ class SettingWithAccountVM: ViewModel {
     let balance = Property<String>("")
     let emoji: Property<String>
     let accountId: String
+    let editAction: SafePublishSubject<String>
     
-    init (account: AccountViewModel, changeRateService: ChangeRateService) {
+    init (account: AccountViewModel, changeRateService: ChangeRateService, editAction: SafePublishSubject<String>) {
         self.name = account.name
         self.emoji = account.emoji
         self.accountId = account.id
+        self.editAction = editAction
         
         super.init()
         

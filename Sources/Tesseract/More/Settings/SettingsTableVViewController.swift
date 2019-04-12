@@ -6,6 +6,7 @@
 //  Copyright © 2019 Crossroad Labs s.r.o. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import ReactiveKit
 import Bond
@@ -79,7 +80,9 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
             let vc = try! self?.viewController(for: .named(name: name), context: context)
             self?.navigationController?.pushViewController(vc!, animated: true)
         }.dispose(in: bag)
-    }    
+        
+        setupEditAccount()
+    }
 }
 
 extension SettingsTableViewController {
@@ -145,6 +148,20 @@ extension SettingsTableViewController {
     
     override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
         return indexPath.section == 0 // can select only accounts
+    }
+}
+
+extension SettingsTableViewController {
+    private func setupEditAccount() {
+        let editAccountActionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        editAccountActionSheet.addAction(UIAlertAction(title: "Delete Account", style: .destructive, handler: nil))
+        editAccountActionSheet.addAction(UIAlertAction(title: "Edit Account", style: .default, handler: nil))
+        editAccountActionSheet.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        model.editAccountAction.with(weak: self)
+            .observeNext { accountId, sself in
+                sself.present(editAccountActionSheet, animated: true, completion: nil)
+            }.dispose(in: reactive.bag)
     }
 }
 

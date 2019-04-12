@@ -24,6 +24,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let tableSettings = MutableObservableArray2D<String, ViewModel>(Array2D())
     let viewModelAccounts = MutableObservableArray<ViewModel>()
     
+    let editAccountAction = SafePublishSubject<String>()
     let createAccountAction = SafePublishSubject<Void>()
 //    let currentConversion = Property<String>("USD")
 //    let primaryCurrency = Property<String>("ETH")
@@ -57,7 +58,9 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
         
         accounts.with(weak: self)
             .map{ accounts, sself -> [ViewModel] in
-                var accountsVM: [ViewModel] = accounts.collection.map { SettingWithAccountVM(account: $0, changeRateService: sself.changeRateService) }
+                var accountsVM: [ViewModel] = accounts.collection.map {
+                    SettingWithAccountVM(account: $0, changeRateService: sself.changeRateService, editAction: sself.editAccountAction)
+                }
                 let createAccountVM = ButtonWithIconVM(title: "Create Account", icon:  UIImage(named: "plus")!, action: sself.createAccountAction)
                 
                 accountsVM.append(createAccountVM)
