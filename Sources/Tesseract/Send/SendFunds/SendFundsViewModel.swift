@@ -111,9 +111,15 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
         
         combineLatest(gasAmount, changeRateService.changeRates[.Ethereum]!)
             .map { gasAmount, rate in
-                let gasAmountETH = NumberFormatter.eth.string(from: gasAmount as NSNumber)!
-                let gasAmountUSD = NumberFormatter.usd.string(from: (gasAmount * rate) as NSNumber)!
-                return "\(gasAmountETH) ≈ \(gasAmountUSD)"
+                let gasAmountETHString = NumberFormatter.eth.string(from: gasAmount as NSNumber)!
+                let gasAmountUSD = gasAmount * rate
+                
+                if gasAmount < 0.01 {
+                    return "\(gasAmountETHString) < 0,01 USD"
+                }
+                
+                let gasAmountUSDString = NumberFormatter.usd.string(from: gasAmountUSD as NSNumber)!
+                return "\(gasAmountETHString) ≈ \(gasAmountUSDString)"
             }
             .bind(to: gas)
             .dispose(in: bag)
