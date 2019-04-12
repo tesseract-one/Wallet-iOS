@@ -764,7 +764,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oFd-3M-DY4">
-                                <rect key="frame" x="16" y="152" width="382" height="89.333333333333314"/>
+                                <rect key="frame" x="16" y="152" width="382" height="85.333333333333314"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="TPE-2m-AxO">
                                         <rect key="frame" x="19" y="21" width="49" height="51"/>
@@ -773,8 +773,8 @@
                                             <constraint firstAttribute="width" constant="49" id="ot0-OD-hmm"/>
                                         </constraints>
                                     </imageView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="cZF-gU-o9h">
-                                        <rect key="frame" x="88" y="16.000000000000004" width="278" height="57.333333333333343"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="cZF-gU-o9h">
+                                        <rect key="frame" x="88" y="16.000000000000004" width="278" height="53.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tesseract Seed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xBb-Q8-kRH">
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
@@ -786,7 +786,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJC-TM-o8e">
-                                                <rect key="frame" x="0.0" y="34" width="278" height="23.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="30" width="278" height="23.333333333333329"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="I want to restore wallet from Tess Seed">
                                                         <attributes>
@@ -841,17 +841,17 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HRl-ih-ToV">
-                                <rect key="frame" x="16" y="257.33333333333331" width="382" height="85.333333333333314"/>
+                                <rect key="frame" x="16" y="253.33333333333334" width="382" height="85.333333333333343"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="metamask-logo" translatesAutoresizingMaskIntoConstraints="NO" id="oqS-Xc-dQc">
-                                        <rect key="frame" x="19" y="21" width="49" height="51"/>
+                                        <rect key="frame" x="19" y="20.999999999999972" width="49" height="51"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="51" id="alO-in-TCU"/>
                                             <constraint firstAttribute="width" constant="49" id="nL5-Rk-1j3"/>
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Qpr-NH-TdX">
-                                        <rect key="frame" x="88" y="16.000000000000004" width="278" height="53.333333333333343"/>
+                                        <rect key="frame" x="88" y="15.999999999999975" width="278" height="53.333333333333343"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MetaMask Seed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vXr-lG-tD0">
                                                 <rect key="frame" x="0.0" y="0.0" width="278" height="30"/>
@@ -870,7 +870,7 @@
                                                             <color key="NSBackgroundColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="0.0" colorSpace="calibratedRGB"/>
                                                             <color key="NSColor" red="0.5725490196078431" green="0.5725490196078431" blue="0.5725490196078431" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <font key="NSFont" size="16" name="SFProText-Regular"/>
-                                                            <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
+                                                            <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineHeightMultiple="1.25" tighteningFactorForTruncation="0.0"/>
                                                         </attributes>
                                                     </fragment>
                                                 </attributedString>
