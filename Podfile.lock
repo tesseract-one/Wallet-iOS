@@ -1,25 +1,23 @@
 PODS:
   - BigInt (3.1.0):
     - SipHash (~> 1.2)
-  - Bond (7.4.1):
+  - Bond (7.4.2):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.10)
   - Crashlytics (3.12.0):
     - Fabric (~> 1.9.0)
-  - CryptoSwift (0.14.0)
+  - CryptoSwift (0.15.0)
   - Differ (1.4.1)
   - Fabric (1.9.0)
   - MaterialTextField (1.0.1)
-  - MnemonicKit (1.3.4):
-    - CryptoSwift (~> 0.14.0)
-  - PromiseKit (6.8.3):
-    - PromiseKit/CorePromise (= 6.8.3)
-    - PromiseKit/Foundation (= 6.8.3)
-    - PromiseKit/UIKit (= 6.8.3)
-  - PromiseKit/CorePromise (6.8.3)
-  - PromiseKit/Foundation (6.8.3):
+  - PromiseKit (6.8.4):
+    - PromiseKit/CorePromise (= 6.8.4)
+    - PromiseKit/Foundation (= 6.8.4)
+    - PromiseKit/UIKit (= 6.8.4)
+  - PromiseKit/CorePromise (6.8.4)
+  - PromiseKit/Foundation (6.8.4):
     - PromiseKit/CorePromise
-  - PromiseKit/UIKit (6.8.3):
+  - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
   - ReactiveKit (3.10.0)
   - secp256k1.swift (0.1.4)
@@ -46,11 +44,6 @@ PODS:
   - TesseractEthereumWeb3/PromiseKit (0.0.1):
     - TesseractEthereumWeb3/Core
     - Web3/PromiseKit (~> 0.3.1)
-  - TesseractKeychain (0.0.1):
-    - BigInt (~> 3.1)
-    - CryptoSwift (~> 0.13)
-    - MnemonicKit (~> 1.3.0)
-    - secp256k1.swift (~> 0.1)
   - TesseractOpenWallet/Core (0.0.1)
   - TesseractOpenWallet/EthereumCore (0.0.1):
     - TesseractEthereumBase (~> 0.0.1)
@@ -64,7 +57,6 @@ PODS:
     - SerializableValue (~> 0.0.1)
     - SQLite.swift (~> 0.11.0)
     - SQLiteMigrationManager.swift (~> 0.5.0)
-    - TesseractKeychain (~> 0.0.1)
   - TesseractWallet/Ethereum (0.0.1):
     - TesseractEthereumBase (~> 0.0.1)
     - TesseractWallet/Core
@@ -100,9 +92,8 @@ DEPENDENCIES:
   - SQLite.swift (from `https://github.com/stephencelis/SQLite.swift.git`, branch `master`)
   - TesseractEthereumBase (from `https://github.com/tesseract-one/swift-ethereum-base.git`, branch `master`)
   - TesseractEthereumWeb3/PromiseKit (from `https://github.com/tesseract-one/ios-web3-ethereum.git`, branch `master`)
-  - TesseractKeychain (from `https://github.com/tesseract-one/swift-keychain.git`, branch `master`)
   - TesseractOpenWallet/WalletEthereum (from `https://github.com/tesseract-one/ios-openwallet-sdk.git`, branch `master`)
-  - TesseractWallet/EthereumPromiseKit (from `https://github.com/tesseract-one/swift-wallet-sdk.git`, branch `master`)
+  - TesseractWallet/EthereumPromiseKit (from `https://github.com/tesseract-one/swift-wallet-sdk.git`, branch `rust-keychain`)
   - Web3 (from `https://github.com/tesseract-one/Web3.swift.git`, branch `master`)
 
 SPEC REPOS:
@@ -114,7 +105,6 @@ SPEC REPOS:
     - Differ
     - Fabric
     - MaterialTextField
-    - MnemonicKit
     - PromiseKit
     - ReactiveKit
     - secp256k1.swift
@@ -135,22 +125,20 @@ EXTERNAL SOURCES:
   TesseractEthereumWeb3:
     :branch: master
     :git: https://github.com/tesseract-one/ios-web3-ethereum.git
-  TesseractKeychain:
-    :branch: master
-    :git: https://github.com/tesseract-one/swift-keychain.git
   TesseractOpenWallet:
     :branch: master
     :git: https://github.com/tesseract-one/ios-openwallet-sdk.git
   TesseractWallet:
-    :branch: master
+    :branch: rust-keychain
     :git: https://github.com/tesseract-one/swift-wallet-sdk.git
+    :submodules: true
   Web3:
     :branch: master
     :git: https://github.com/tesseract-one/Web3.swift.git
 
 CHECKOUT OPTIONS:
   SerializableValue:
-    :commit: a77ea4589520eac0406912dca1dc54466ffa82ac
+    :commit: 0e4aa421681921c3144c42f9c4439eba832f81d1
     :git: https://github.com/tesseract-one/swift-serializable.git
   SQLite.swift:
     :commit: 861ff28adec8d175e7f5923340947f0895121416
@@ -161,43 +149,39 @@ CHECKOUT OPTIONS:
   TesseractEthereumWeb3:
     :commit: 56a745b5b8f973e336f0cf91eda37f49ae9e8cb7
     :git: https://github.com/tesseract-one/ios-web3-ethereum.git
-  TesseractKeychain:
-    :commit: e335f23e9e5ba4fc76db98e6c6491a04a12565f0
-    :git: https://github.com/tesseract-one/swift-keychain.git
   TesseractOpenWallet:
     :commit: fae773428d5bb91413921759b2f6f9d20db266c8
     :git: https://github.com/tesseract-one/ios-openwallet-sdk.git
   TesseractWallet:
-    :commit: 6fa1e3d53f1aeaed79e0b1fc3a92ecd5c3bcca3b
+    :commit: 515e9a68afb9031b9e4072c9db846f5f33e579f9
     :git: https://github.com/tesseract-one/swift-wallet-sdk.git
+    :submodules: true
   Web3:
     :commit: 3d416183fade5b9c94b23bdb1c87d0fb865ccb69
     :git: https://github.com/tesseract-one/Web3.swift.git
 
 SPEC CHECKSUMS:
   BigInt: 76b5dfdfa3e2e478d4ffdf161aeede5502e2742f
-  Bond: 6e73608fdd9d44e84f52f9bf9d56098ad80cbbb1
+  Bond: a6daf935daf8a96517e7ff08a185680ada6a9821
   Crashlytics: 07fb167b1694128c1c9a5a5cc319b0e9c3ca0933
-  CryptoSwift: 35a10419f4dbf0619c13f8c1c180037e115323fa
+  CryptoSwift: 769f58a9e89f64e8796c2e59ce5f002dc81a2438
   Differ: ca4350872e32a1aeedf3d9e2d9e47127833bfa9c
   Fabric: f988e33c97f08930a413e08123064d2e5f68d655
   MaterialTextField: f1a0786588e4d3610cb9bb62d2adbe9777cebbf9
-  MnemonicKit: c3517dfad15b7cc21ede6660b433aaae083faaa4
-  PromiseKit: 94c6e781838c5bf4717677d0d882b0e7250c80fc
+  PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
   ReactiveKit: af0d53664c2326a03d2c9f92c92a30bbc7f3a9ee
   secp256k1.swift: a7e7a214f6db6ce5db32cc6b2b45e5c4dd633634
-  SerializableValue: 4dec77eadb50f94f4070f84a8826c51bc481e9cd
+  SerializableValue: 231634d0fa47a27bfbf46337c954107454864c9d
   SipHash: fad90a4683e420c52ef28063063dbbce248ea6d4
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SQLite.swift: 7e42c4b88dc7a5d764fbd431001e6d8dc8c1cfce
   SQLiteMigrationManager.swift: 646cfccb9a446b3134d19dca7a5ec5437f82da76
   TesseractEthereumBase: cc36a0266461f2bceaa18e10942bfc91e31d0fa3
   TesseractEthereumWeb3: 24f316d6cb0d22cf5ea3b53e8fba224f73c8cf25
-  TesseractKeychain: 2cbbc08729398002c839086c8b76d7386654e488
   TesseractOpenWallet: e4e3ac5d6e93e7d644a43d85f8dcdc645bfe9121
-  TesseractWallet: c5a56293d6144bf695194ab0d3fb8476b4d64d30
+  TesseractWallet: e20447d15adbd878e627b36513dbc7d11876a2e7
   Web3: e9be7ef88585e252df50abc28538d6e4691c786e
 
-PODFILE CHECKSUM: 44f78b3a15763bac75b94272528954d397b8a97b
+PODFILE CHECKSUM: 0e8a30d9bd4deb81f9e30b663a74179827d85471
 
 COCOAPODS: 1.6.1

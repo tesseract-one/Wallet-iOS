@@ -37,7 +37,7 @@ class WalletService {
     private var updateTimer: Timer? = nil
     
     func bootstrap() {
-        walletManager = Manager(
+        walletManager = try! Manager(
             networks: [EthereumNetwork()],
             storage: storage
         )
