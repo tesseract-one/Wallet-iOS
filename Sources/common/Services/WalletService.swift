@@ -37,7 +37,7 @@ class WalletService {
     private var updateTimer: Timer? = nil
     
     func bootstrap() {
-        walletManager = Manager(
+        walletManager = try! Manager(
             networks: [EthereumNetwork()],
             storage: storage
         )
@@ -139,10 +139,15 @@ class WalletService {
     func newWallet(data: NewWalletData, password: String, isMetamask: Bool) -> Promise<WalletViewModel> {
         return walletManager.listWalletIds()
             .map { ids -> (Wallet, Array<String>) in
-                let wallet = try self.walletManager.create(from: data, password: password)
-                wallet.accounts[0].associatedData[.name] = "Main Account"
-                wallet.accounts[0].associatedData[.emoji] = "\u{1F9B9}"
+                let wallet = try self.walletManager.create(from: data)
                 wallet.associatedData[.isMetamask] = isMetamask
+                
+                try wallet.unlock(password: password)
+                
+                let account = try wallet.addAccount()
+                account.associatedData[.name] = "Main Account"
+                account.associatedData[.emoji] = "\u{1F9B9}"
+                
                 return (wallet, ids)
             }
             .then { wallet, ids in

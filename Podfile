@@ -10,7 +10,7 @@ target :Tesseract do
 
     pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
     
-    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master'
+    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
 
     pod 'PromiseKit'
     pod 'ReactiveKit'
@@ -22,7 +22,6 @@ target :Tesseract do
     # temporary. Should be removed
     pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
     pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'master'
-    pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
     pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
     pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
 
@@ -31,7 +30,7 @@ target :Tesseract do
 
         pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
 
-        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master'
+        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
 
         pod 'PromiseKit'
         pod 'ReactiveKit'
@@ -43,7 +42,6 @@ target :Tesseract do
         # temporary should be removed
         pod 'SQLite.swift', :git => 'https://github.com/stephencelis/SQLite.swift.git', :branch => 'master'
 	      pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
-        pod 'TesseractKeychain', :git => 'https://github.com/tesseract-one/swift-keychain.git', :branch => 'master'
         pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
     	  pod 'SerializableValue', :git => 'https://github.com/tesseract-one/swift-serializable.git', :branch => 'master'
     end
