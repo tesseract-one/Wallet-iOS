@@ -153,7 +153,7 @@ CHECKOUT OPTIONS:
     :commit: fae773428d5bb91413921759b2f6f9d20db266c8
     :git: https://github.com/tesseract-one/ios-openwallet-sdk.git
   TesseractWallet:
-    :commit: 515e9a68afb9031b9e4072c9db846f5f33e579f9
+    :commit: 624399d03bf029ceaaf00af478187cd7369ed216
     :git: https://github.com/tesseract-one/swift-wallet-sdk.git
     :submodules: true
   Web3:
