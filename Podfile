@@ -10,7 +10,7 @@ target :Tesseract do
 
     pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
     
-    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'rust-keychain', :submodules => true
+    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
 
     pod 'PromiseKit'
     pod 'ReactiveKit'
@@ -30,7 +30,7 @@ target :Tesseract do
 
         pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
 
-        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'rust-keychain', :submodules => true
+        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
 
         pod 'PromiseKit'
         pod 'ReactiveKit'
