@@ -46,7 +46,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
             .dispose(in: reactive.bag)
         
         model.qrCodeAddress.bind(to: qrCodeImageView.data).dispose(in: reactive.bag)
-        model.address.map{$0?.hex(eip55: false)}
+        model.address.map{$0?.hex(eip55: true)}
             .bind(to: addressLabel.reactive.text).dispose(in: reactive.bag)
         
         model.balance.bind(to: balanceLabel.reactive.text).dispose(in: reactive.bag)

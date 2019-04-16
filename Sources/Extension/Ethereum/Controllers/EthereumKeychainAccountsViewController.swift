@@ -63,7 +63,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
         runWalletOperation
             .with(latestFrom: activeAccount)
             .map { _, activeAccount -> String in
-                return try! activeAccount!.eth_address().hex(eip55: false)
+                return try! activeAccount!.eth_address().hex(eip55: true)
             }
             .with(weak: self)
             .observeNext { address, sself in

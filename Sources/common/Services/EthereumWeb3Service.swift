@@ -51,7 +51,7 @@ class EthereumWeb3Service {
         let account = wallet.value!.account(id: accountId)!
         let tx = EthereumTransaction(
             from: try! account.eth_address().web3,
-            to: try! EthereumAddress(hex: to, eip55: false),
+            to: try! EthereumBase.Address(hex: to).web3,
             value: EthereumQuantity(quantity: BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9))
         )
         return web3.eth.sendTransaction(transaction: tx).asVoid()
@@ -64,7 +64,7 @@ class EthereumWeb3Service {
     func isContract(address: String, networkId: UInt64) -> Promise<Bool> {
         let web3 = ethereumAPIs.value!.web3(rpcUrl: endpoints[networkId]!)
         return Promise()
-            .map { try EthereumAddress(hex: address, eip55: false) }
+            .map { try EthereumBase.Address(hex: address).web3 }
             .then { address in
                 web3.eth.getCode(address: address, block: .latest).map { data in
                     data.bytes.count > 0
@@ -78,7 +78,7 @@ class EthereumWeb3Service {
         
         let call = EthereumCall(
             from: try! account.eth_address().web3,
-            to: try! EthereumAddress(hex: to, eip55: false),
+            to: try! EthereumBase.Address(hex: to).web3,
             value: EthereumQuantity(quantity: BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9))
         )
         let gasAmount = _estimateGasWei(call: call, networkId: networkId)

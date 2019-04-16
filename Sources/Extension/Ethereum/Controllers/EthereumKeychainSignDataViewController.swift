@@ -39,7 +39,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         let reqData = request.data
         let account: Address
         do {
-            account = try Address(hex: request.account, eip55: false)
+            account = try Address(hex: request.account)
         } catch {
             context.errors.next(OpenWalletError.eth_keychainWrongAccount(request.account))
             return
