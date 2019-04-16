@@ -41,16 +41,15 @@ class TransactionTableViewCell: UITableViewCell {
     
     func advice() {
         let amountSymbol: String
-        let addressTrunced = "\(address.prefix(7))...\(address.suffix(4))"
-        
-        if model!.from == address {
+
+        if model!.from.lowercased() == address.lowercased() {
             titleLabel.text = "Sent Transaction"
-            descriptionLabel.text = "Sent to \(addressTrunced)."
+            descriptionLabel.text = "Sent to \(truncAddress(model!.to))."
             amountETHLabel.textColor = .white
             amountSymbol = "-"
         } else {
             titleLabel.text = "Received Transaction"
-            descriptionLabel.text = "\(addressTrunced) sent you."
+            descriptionLabel.text = "\(truncAddress(model!.from)) sent you."
             amountETHLabel.textColor = UIColor(red: 0.3, green: 0.85, blue: 0.39, alpha: 1)
             amountSymbol = "+"
         }
@@ -68,6 +67,10 @@ class TransactionTableViewCell: UITableViewCell {
     func setValues(address: String, rate: Property<Double>) {
         self.address = address
         rate.bind(to: self.rate).dispose(in: Bag)
+    }
+    
+    private func truncAddress(_ address: String) -> String {
+        return "\(address.prefix(7))...\(address.suffix(4))"
     }
     
     func unadvise() {
