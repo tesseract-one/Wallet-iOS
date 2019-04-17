@@ -62,6 +62,7 @@
 		92CB1992222840B300407F9A /* RegistrationViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB1991222840B300407F9A /* RegistrationViewFactory.swift */; };
 		92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199322286EBF00407F9A /* RouterViewModel.swift */; };
 		92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
+		92EE4D0622677F800027BCED /* DisabledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE4D0522677F800027BCED /* DisabledButton.swift */; };
 		92FE972A222D4C28007DB61C /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9729222D4C28007DB61C /* RouterTabBarController.swift */; };
 		92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */; };
 		92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9730222D88DE007DB61C /* QRCodeView.swift */; };
@@ -274,6 +275,7 @@
 		92CB1991222840B300407F9A /* RegistrationViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewFactory.swift; sourceTree = "<group>"; };
 		92CB199322286EBF00407F9A /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
 		92CB199522294FA100407F9A /* EthereumWeb3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3Service.swift; sourceTree = "<group>"; };
+		92EE4D0522677F800027BCED /* DisabledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledButton.swift; sourceTree = "<group>"; };
 		92FE9727222CAFD1007DB61C /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
 		92FE9728222CAFE4007DB61C /* Tesseract.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tesseract.entitlements; sourceTree = "<group>"; };
 		92FE9729222D4C28007DB61C /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
@@ -857,6 +859,7 @@
 				D171DE57219F21FD003134DD /* BorderlessBars.swift */,
 				D1958B02219B3AEF00113CAA /* KeyboardScrollableView.swift */,
 				D1618DB5225BB7EF00193E35 /* GradientButton.swift */,
+				92EE4D0522677F800027BCED /* DisabledButton.swift */,
 				D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */,
 				D171DE4D219DAAD4003134DD /* GradientView.swift */,
 				D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */,
@@ -1385,6 +1388,7 @@
 				D1E8F8C9222FEA12006B946D /* RestoreWalletViewModel.swift in Sources */,
 				D1C5DDB3224ABEAF0063546D /* SettingsViewModels.swift in Sources */,
 				D14A5010222964F00069A262 /* MnemonicViewModel.swift in Sources */,
+				92EE4D0622677F800027BCED /* DisabledButton.swift in Sources */,
 				D11C404922407D080068D883 /* TextView+Bond.swift in Sources */,
 				D15223A122399BCC002EC9F1 /* UITextView+Bond.swift in Sources */,
 				92CB198A22282ED000407F9A /* WalletService.swift in Sources */,

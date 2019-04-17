@@ -37,6 +37,8 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     let receiveAmountETH = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
+    let isValidTransaction = Property<Bool>(false)
+    
     let goToView = SafePublishSubject<ToView>()
     let goBack = SafePublishSubject<Void>()
     
@@ -92,11 +94,14 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
         combineLatest(
             sendAmount.debounce(interval: 0.5),
             activeAccount.filter { $0 != nil },
-            address.filter {$0 != nil && $0!.count == 42}.debounce(interval: 0.5),
+            address.filter { $0 != nil }.debounce(interval: 0.5),
             ethereumNetwork.distinctUntilChanged()
         )
             .flatMapLatest { amount, account, address, network in
                 service.estimateSendTxGas(accountId: account!.id, to: address!, amountEth: amount, networkId: network).signal
+            }
+            .map { result -> Result<Double, Error> in
+                result.error != nil ? .success(0.0) : .success(result.value!)
             }
             .suppressedErrors
             .bind(to: gasAmount)
@@ -124,7 +129,20 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
             .bind(to: gas)
             .dispose(in: bag)
         
-        combineLatest(sendAmount, gasAmount).map {$0 - $1}.bind(to: receiveAmount).dispose(in: bag)
+        combineLatest(sendAmount, gasAmount)
+            .map {$0 - $1}
+            .map { $0 > 0 ? $0 : 0 }
+            .bind(to: receiveAmount).dispose(in: bag)
+        
+        gasAmount
+            .map { $0 > 1.0 / pow(10.0, 9) }
+            .bind(to: isValidTransaction)
+            .dispose(in: bag)
+        
+        address.filter { $0 == nil }
+            .map{_ in false}
+            .bind(to: isValidTransaction)
+            .dispose(in: bag)
         
         receiveAmount.map { NumberFormatter.eth.string(from: $0 as NSNumber)! }.bind(to: receiveAmountETH).dispose(in: bag)
         

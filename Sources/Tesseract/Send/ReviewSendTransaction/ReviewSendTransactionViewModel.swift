@@ -40,6 +40,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let sendAmountETH = Property<String>("")
     let sendAmountUSD = Property<String>("")
     
+    let receiveAmount = Property<Double>(0.0)
     let receiveAmountETH = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
@@ -75,11 +76,16 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     
     private func fillInfo() {
         combineLatest(sendAmount, gasAmount)
-            .map{ NumberFormatter.eth.string(from: ($0 - $1) as NSNumber)! }
+            .map { $0 - $1 }
+            .map { $0 > 0 ? $0 : 0.0 }
+            .bind(to: receiveAmount)
+            .dispose(in: bag)
+        receiveAmount
+            .map{ NumberFormatter.eth.string(from: $0 as NSNumber)! }
             .bind(to: receiveAmountETH)
             .dispose(in: bag)
-        combineLatest(sendAmount, gasAmount, changeRateService.changeRates[.Ethereum]!)
-            .map{ NumberFormatter.usd.string(from: (($0 - $1)*$2) as NSNumber)!}
+        combineLatest(receiveAmount, changeRateService.changeRates[.Ethereum]!)
+            .map{ NumberFormatter.usd.string(from: ($0 * $1) as NSNumber)!}
             .bind(to: receiveAmountUSD)
             .dispose(in: bag)
         

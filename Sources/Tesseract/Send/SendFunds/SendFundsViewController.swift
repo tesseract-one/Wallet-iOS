@@ -79,6 +79,9 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
         
         model.gas.bind(to: gasAmountLabel.reactive.text).dispose(in: reactive.bag)
         
+        model.isValidTransaction
+            .bind(to: reviewButton.reactive.isEnabled).dispose(in: reactive.bag)
+        
         goBack.bind(to: closeAction).dispose(in: reactive.bag)
         
         cancelButton.reactive.tap.throttle(seconds: 0.3)

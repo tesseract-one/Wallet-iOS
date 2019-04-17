@@ -71,8 +71,6 @@ extension TermsOfServiceViewController: UITextViewDelegate {
         if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.frame.size.height {
             if !acceptButton.isEnabled {
                 acceptButton.isEnabled = true
-                acceptButton.setTitleColor(.white, for: .normal)
-                acceptButton.backgroundColor = UIColor(red: 74.0 / 255.0, green: 148.0 / 255.0, blue: 227.0 / 255.0, alpha: 1.0)
             }
         }
     }
