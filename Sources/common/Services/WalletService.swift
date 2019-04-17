@@ -66,6 +66,9 @@ class WalletService {
             }.dispose(in: bag)
         
         wallet.observeIn(.main)
+            .flatMapLatest{ wallet in
+                wallet?.accounts.map { _ in wallet } ?? Signal(just: nil)
+            }
             .with(weak: self)
             .observeNext { wallet, sself in
                 sself.checkTimer(wallet: wallet)
@@ -171,21 +174,16 @@ class WalletService {
     }
     
     public func updateBalance() {
-        wallet.filter { $0 != nil }
-            .flatMapLatest { $0!.accounts }
-            .with(weak: web3Service)
-                .with(latestFrom: network)
-                .observeNext { args in
-                    let ((accounts, web3Service), network) = args
-                    for account in accounts.collection {
-                        web3Service.getBalance(accountId: account.id, networkId: network)
-                            .done(on: .main) { balance in
-                                account.updateBalance(balance: balance)
-                            }.catch { _ in
-                                account.updateBalance(balance: nil)
-                        }
-                    }
-                }.dispose(in: bag)
+        guard let accounts = wallet.value?.accounts else { return }
+        let network = self.network.value
+        for account in accounts.collection {
+            web3Service.getBalance(accountId: account.id, networkId: network)
+                .done(on: .main) { balance in
+                    account.updateBalance(balance: balance)
+                }.catch(on: .main) { _ in
+                    account.updateBalance(balance: nil)
+                }
+        }
     }
     
     private func checkTimer(wallet: WalletViewModel?) {
@@ -194,8 +192,8 @@ class WalletService {
                 updateTimer = Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { [weak self] _ in
                     self?.updateBalance()
                 }
-                updateBalance()
             }
+            updateBalance()
         } else {
             updateTimer?.invalidate()
             updateTimer = nil
