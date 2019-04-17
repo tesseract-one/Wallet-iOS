@@ -33,7 +33,14 @@ class TermsOfServiceViewController: UIViewController, ModelVCProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        model.termsOfService.bind(to: termsTextView.reactive.text)
+        let url = Bundle(for: type(of: self)).url(forResource: "ToS", withExtension: "rtf")
+        let terms = try! NSMutableAttributedString(url: url!, options: [:], documentAttributes: nil)
+        
+        let textColor = self.termsTextView.textColor!
+        let range = NSRange(location: 0, length: terms.length)
+        terms.addAttribute(.foregroundColor, value: textColor, range: range)
+        
+        termsTextView.attributedText = terms
         
         acceptButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.acceptTermsAction).dispose(in: bag)

@@ -63,6 +63,7 @@
 		92CB199422286EBF00407F9A /* RouterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199322286EBF00407F9A /* RouterViewModel.swift */; };
 		92CB199622294FA100407F9A /* EthereumWeb3Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92CB199522294FA100407F9A /* EthereumWeb3Service.swift */; };
 		92EE4D0622677F800027BCED /* DisabledButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92EE4D0522677F800027BCED /* DisabledButton.swift */; };
+		92EE4D0C22678DD80027BCED /* ToS.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 92EE4D0B22678DD80027BCED /* ToS.rtf */; };
 		92FE972A222D4C28007DB61C /* RouterTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9729222D4C28007DB61C /* RouterTabBarController.swift */; };
 		92FE972C222D4CB3007DB61C /* RouterNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE972B222D4CB3007DB61C /* RouterNavigationController.swift */; };
 		92FE9731222D88DE007DB61C /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9730222D88DE007DB61C /* QRCodeView.swift */; };
@@ -276,6 +277,7 @@
 		92CB199322286EBF00407F9A /* RouterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterViewModel.swift; sourceTree = "<group>"; };
 		92CB199522294FA100407F9A /* EthereumWeb3Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EthereumWeb3Service.swift; sourceTree = "<group>"; };
 		92EE4D0522677F800027BCED /* DisabledButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledButton.swift; sourceTree = "<group>"; };
+		92EE4D0B22678DD80027BCED /* ToS.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = ToS.rtf; sourceTree = "<group>"; };
 		92FE9727222CAFD1007DB61C /* Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Extension.entitlements; sourceTree = "<group>"; };
 		92FE9728222CAFE4007DB61C /* Tesseract.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Tesseract.entitlements; sourceTree = "<group>"; };
 		92FE9729222D4C28007DB61C /* RouterTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RouterTabBarController.swift; sourceTree = "<group>"; };
@@ -815,6 +817,7 @@
 		D171DE49219DA36A003134DD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				92EE4D0B22678DD80027BCED /* ToS.rtf */,
 				D1618DB3225BB68E00193E35 /* Assets.xcassets */,
 			);
 			path = Resources;
@@ -1144,6 +1147,7 @@
 				D18D9517224A70E30028B3CA /* AccountTableViewCell.xib in Resources */,
 				D1A16BBC219A2077008AEAD4 /* Registration.storyboard in Resources */,
 				D1CC012922562B7E0056BC44 /* Tokens.storyboard in Resources */,
+				92EE4D0C22678DD80027BCED /* ToS.rtf in Resources */,
 				D1CC012C22562BD40056BC44 /* Collectibles.storyboard in Resources */,
 				92564D3D22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */,
 				D1201FEB222DA9E70030C2C2 /* Receive.storyboard in Resources */,
