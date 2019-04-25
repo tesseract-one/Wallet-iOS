@@ -17,7 +17,7 @@ extension UIViewController {
                 return
             }
             .with(weak: view)
-            .observeNext { $0.endEditing(true)}
+            .observeNext { $0.endEditing(true) }
             .dispose(in: reactive.bag)
     }
 }

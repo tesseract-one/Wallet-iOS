@@ -10,7 +10,6 @@ import UIKit
 import ReactiveKit
 import Bond
 import Wallet
-import MaterialTextField
 
 
 class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
@@ -29,7 +28,7 @@ class ReviewSendTransactionViewController: KeyboardScrollView, ModelVCProtocol {
     @IBOutlet weak var getsUSDLabel: UILabel!
     @IBOutlet weak var gasLabel: UILabel!
     
-    @IBOutlet weak var passwordField: MFTextField!
+    @IBOutlet weak var passwordField: MaterialTextField!
     @IBOutlet weak var confirmButton: UIButton!
     @IBOutlet weak var confirmButtonRight: NSLayoutConstraint!
     @IBOutlet weak var fingerButton: UIButton!

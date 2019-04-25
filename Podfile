@@ -16,7 +16,6 @@ target :Tesseract do
     pod 'ReactiveKit'
     pod 'Bond'
     
-    pod 'MaterialTextField', '~> 1.0'
     pod 'SnapKit', '~> 4.2.0'
 
     # temporary. Should be removed
@@ -36,7 +35,6 @@ target :Tesseract do
         pod 'ReactiveKit'
         pod 'Bond'        
 
-        pod 'MaterialTextField', '~> 1.0'
         pod 'SnapKit', '~> 4.2.0'
         
         # temporary should be removed

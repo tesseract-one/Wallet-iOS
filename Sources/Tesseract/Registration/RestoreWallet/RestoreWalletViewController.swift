@@ -17,7 +17,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     
     @IBOutlet weak var mnemonicTextView: TextView!
     @IBOutlet weak var passwordField: UITextField!
-    @IBOutlet weak var confirmPasswordField: NextResponderTextField!
+    @IBOutlet weak var confirmPasswordField: MaterialTextField!
     @IBOutlet weak var restoreButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
     

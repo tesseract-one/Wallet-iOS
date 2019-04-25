@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MaterialTextField
 import ReactiveKit
 import Bond
 
@@ -16,7 +15,7 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
     
     var model: ViewModel!
     
-    @IBOutlet weak var accountNameTF: MFTextField!
+    @IBOutlet weak var accountNameTF: MaterialTextField!
     @IBOutlet weak var accountImagesCV: UICollectionView!
     @IBOutlet weak var createAccountButton: UIButton!
     
@@ -44,7 +43,7 @@ class CreateAccountViewController: UIViewController, ModelVCProtocol {
         accountNameTF.reactive.text.map { $0 ?? "" }
             .bind(to: model.accountName).dispose(in: reactive.bag)
         
-        model.validationError.filter { $0 != nil }
+        model.validationError.filter { $0 != nil }.map{ $0! }
             .bind(to: accountNameTF.reactive.error).dispose(in: reactive.bag)
         
         backButton.reactive.tap.throttle(seconds: 0.5).bind(to: goBack).dispose(in: bag)

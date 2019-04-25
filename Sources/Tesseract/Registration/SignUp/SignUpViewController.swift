@@ -16,7 +16,7 @@ class SignUpViewController: KeyboardScrollView, ModelVCProtocol {
   private(set) var model: ViewModel!
   
   @IBOutlet weak var passwordField: UITextField!
-  @IBOutlet weak var confirmPasswordField: NextResponderTextField!
+  @IBOutlet weak var confirmPasswordField: MaterialTextField!
   @IBOutlet weak var signUpButton: UIButton!
   @IBOutlet weak var restoreKeyButton: UIButton!
   

@@ -8,7 +8,6 @@
 
 import UIKit
 import ReactiveKit
-import MaterialTextField
 import Bond
 import Wallet
 import OpenWallet
@@ -23,7 +22,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
 
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
-    @IBOutlet weak var passwordField: MFTextField!
+    @IBOutlet weak var passwordField: MaterialTextField!
     
     @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!

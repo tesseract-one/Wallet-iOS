@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MaterialTextField
 import ReactiveKit
 import Bond
 import BigInt
@@ -161,7 +160,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
-    @IBOutlet weak var passwordField: MFTextField!
+    @IBOutlet weak var passwordField: MaterialTextField!
     
     @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!

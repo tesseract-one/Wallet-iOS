@@ -8,7 +8,6 @@
 
 import UIKit
 import ReactiveKit
-import MaterialTextField
 import Bond
 import OpenWallet
 import EthereumWeb3
@@ -18,7 +17,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     
     @IBOutlet weak var acceptButton: UIButton!
     @IBOutlet weak var fingerButton: UIButton!
-    @IBOutlet weak var passwordField: MFTextField!
+    @IBOutlet weak var passwordField: MaterialTextField!
     
     @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!

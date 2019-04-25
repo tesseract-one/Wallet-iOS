@@ -15,7 +15,7 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    @IBOutlet weak var passwordField: NextResponderTextField!
+    @IBOutlet weak var passwordField: MaterialTextField!
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var signInButtonRight: NSLayoutConstraint!
     @IBOutlet weak var fingerButton: UIButton!
