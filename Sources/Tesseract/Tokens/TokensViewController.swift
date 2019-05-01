@@ -22,7 +22,7 @@ class TokensViewController: UIViewController {
 
         askButton.reactive.tap.throttle(seconds: 0.1)
             .observeNext { _ in
-                let url = URL(string: "https://twitter.com/tesseract_io")!
+                let url = URL(string: "https://twitter.com/tesseract_one")!
                 if UIApplication.shared.canOpenURL(url) {
                     UIApplication.shared.open(url)
                 }
