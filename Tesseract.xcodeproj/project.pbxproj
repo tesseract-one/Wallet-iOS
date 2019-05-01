@@ -87,6 +87,8 @@
 		D10DC121225677EC00F97A00 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10DC11F2256758F00F97A00 /* Settings.swift */; };
 		D10F9161224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D10F915F224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib */; };
 		D10F9162224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10F9160224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.swift */; };
+		D112402222788BCE002E48A6 /* CurrencyFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D18EB18B225E79B30010A0A8 /* CurrencyFormatter+Extension.swift */; };
+		D11240232279BA3D002E48A6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Assets.xcassets */; };
 		D1170BEF22302CD800ECB398 /* NextResponderTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1170BEE22302CD800ECB398 /* NextResponderTextView.swift */; };
 		D11A41A821A47E0300FF2620 /* KeyboardScrollViewToTop.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11A41A721A47E0300FF2620 /* KeyboardScrollViewToTop.swift */; };
 		D11AEC9D21C4080900270C48 /* BoundleLoadXib.swift in Sources */ = {isa = PBXBuildFile; fileRef = D11AEC9C21C4080900270C48 /* BoundleLoadXib.swift */; };
@@ -160,8 +162,7 @@
 		D1B13CCC222DC3A8005213F7 /* ReceiveFundsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */; };
 		D1B13CD1222DD698005213F7 /* ReviewSendTransactionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */; };
 		D1B13CD3222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */; };
-		D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
-		D1B1E1DE2236B7C1008E4CE8 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */; };
+		D1B1E1DD2236B7A1008E4CE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D1B1E1DC2236B7A1008E4CE8 /* Assets.xcassets */; };
 		D1B1E1E22236CCCC008E4CE8 /* KeyboardScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */; };
 		D1B2D3D921A5A7070095A17F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B2D3D821A5A7070095A17F /* SignInViewController.swift */; };
 		D1B99EFA2194B41200AAA97F /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B99EF92194B41200AAA97F /* SignUpViewController.swift */; };
@@ -373,7 +374,7 @@
 		D1B13CCB222DC3A8005213F7 /* ReceiveFundsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveFundsViewModel.swift; sourceTree = "<group>"; };
 		D1B13CD0222DD698005213F7 /* ReviewSendTransactionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewController.swift; sourceTree = "<group>"; };
 		D1B13CD2222DD6AE005213F7 /* ReviewSendTransactionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewSendTransactionViewModel.swift; sourceTree = "<group>"; };
-		D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		D1B1E1DC2236B7A1008E4CE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D1B1E1E12236CCCC008E4CE8 /* KeyboardScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardScrollView.swift; sourceTree = "<group>"; };
 		D1B2D3D821A5A7070095A17F /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D1B99EF92194B41200AAA97F /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -535,7 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				92564D3222356BFA00319D8E /* Fonts */,
-				D1B1E1DC2236B7A1008E4CE8 /* Images.xcassets */,
+				D1B1E1DC2236B7A1008E4CE8 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1172,7 +1173,7 @@
 				92564D3B22356BFA00319D8E /* materialdesignicons-webfont.ttf in Resources */,
 				D143DCEC22527C5A0075BAC9 /* CreateAccountCollectionViewCell.xib in Resources */,
 				D15BC5E7224E899F0022622E /* NetworkTableViewCell.xib in Resources */,
-				D1B1E1DD2236B7A1008E4CE8 /* Images.xcassets in Resources */,
+				D1B1E1DD2236B7A1008E4CE8 /* Assets.xcassets in Resources */,
 				D10F9161224AA23B00F59DC3 /* SettingWithSwitchTableViewCell.xib in Resources */,
 				D16F02F9224D262B0001FA57 /* SettingWithWordTableViewCell.xib in Resources */,
 				D18B013122495383003EF3AC /* More.storyboard in Resources */,
@@ -1199,7 +1200,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1B1E1DE2236B7C1008E4CE8 /* Images.xcassets in Resources */,
 				92564D3E22356BFA00319D8E /* SF-Pro-Display-Medium.otf in Resources */,
 				D1D82F5622330944003BDFE2 /* ChooseAccountTableViewCell.xib in Resources */,
 				9299323822248422000EAD47 /* MainInterface.storyboard in Resources */,
@@ -1209,6 +1209,7 @@
 				92A1CE1E22410BF7001D429C /* EthereumAddressTableViewCell.xib in Resources */,
 				9268AFC62235679A00D94EA6 /* Images.xcassets in Resources */,
 				926061DB22415B90006B5B50 /* EthereumDataTypeTableViewCell.xib in Resources */,
+				D11240232279BA3D002E48A6 /* Assets.xcassets in Resources */,
 				92564D3A22356BFA00319D8E /* SF-Pro-Display-Regular.otf in Resources */,
 				928A91622232B354005DA7B4 /* EthereumKeychain.storyboard in Resources */,
 			);
@@ -1469,6 +1470,7 @@
 			files = (
 				9299323522248422000EAD47 /* MainViewController.swift in Sources */,
 				928A91602232A019005DA7B4 /* EthereumKeychainViewController.swift in Sources */,
+				D112402222788BCE002E48A6 /* CurrencyFormatter+Extension.swift in Sources */,
 				D1010C8A2271CFD500C9C331 /* UIImage+BlendColor.swift in Sources */,
 				92564D402236EEBF00319D8E /* ChangeRateService.swift in Sources */,
 				923079122230257D004E3950 /* WalletService.swift in Sources */,

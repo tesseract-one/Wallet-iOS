@@ -22,11 +22,15 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
     
     @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var accountNameLabel: UILabel!
+    @IBOutlet weak var accountBalanceLabel: UILabel!
     
     @IBOutlet weak var acceptBtnRightConstraint: NSLayoutConstraint!
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var signData: UILabel!
+    
+    let usdChangeRate = Property<Double>(0.0)
+    let ethBalance = Property<Double?>(nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,6 +40,9 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         signData.text = request.data.toHexString()
 
         let reqData = request.data
+        let networkId = request.networkId
+        let ethereumWeb3Service = context.ethereumWeb3Service
+
         let account: Address
         do {
             account = try Address(hex: request.account)
@@ -43,8 +50,6 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             context.errors.next(OpenWalletError.eth_keychainWrongAccount(request.account))
             return
         }
-        
-        let networkId = request.networkId
         
         let activeAccount = context.wallet
             .filter { $0 != nil }
@@ -67,6 +72,26 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             .flatMapLatest { $0.name }
             .bind(to: accountNameLabel.reactive.text)
             .dispose(in: reactive.bag)
+        
+        activeAccount
+            .flatMapLatest { account in
+                ethereumWeb3Service.getBalance(accountId: account.id, networkId: networkId).signal
+            }
+            .suppressedErrors
+            .bind(to: ethBalance)
+            .dispose(in: bag)
+        
+        combineLatest(ethBalance.filter{$0 != nil}, usdChangeRate)
+            .map { balance, rate in
+                if let balance = balance {
+                    let balanceETH = NumberFormatter.eth.string(from: balance as NSNumber)!
+                    let balanceUSD = NumberFormatter.usd.string(from: (balance * rate) as NSNumber)!
+                    return "\(balanceETH) · \(balanceUSD)"
+                }
+                return "unknown"
+            }
+            .bind(to: accountBalanceLabel.reactive.text)
+            .dispose(in: bag)
 
         runWalletOperation
             .with(latestFrom: context.wallet)
@@ -78,5 +103,9 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             .observeNext { signedData, sself in
                 sself.succeed(response: signedData)
             }.dispose(in: reactive.bag)
+        
+        context.changeRateService.changeRates[.Ethereum]!
+            .bind(to: usdChangeRate)
+            .dispose(in: reactive.bag)
     }
 }
