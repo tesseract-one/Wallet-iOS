@@ -27,15 +27,6 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AO6-U5-Rni">
                         <rect key="frame" x="16" y="11" width="288" height="38"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoD-Rs-0Mz">
-                                <rect key="frame" x="16" y="-7.5" width="47" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="q8g-TG-d4v"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
-                                <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="👨🏼‍💻" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ckL-Iq-UtI">
                                 <rect key="frame" x="16" y="8" width="24" height="22"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
@@ -49,15 +40,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="32X-Dx-jJ8" firstAttribute="centerY" secondItem="AO6-U5-Rni" secondAttribute="centerY" id="4Iz-YO-PZe"/>
                             <constraint firstItem="ckL-Iq-UtI" firstAttribute="leading" secondItem="AO6-U5-Rni" secondAttribute="leading" constant="16" id="TPG-pn-AC2"/>
                             <constraint firstAttribute="trailing" secondItem="32X-Dx-jJ8" secondAttribute="trailing" constant="16" id="Zdw-1n-EGI"/>
                             <constraint firstItem="ckL-Iq-UtI" firstAttribute="centerY" secondItem="AO6-U5-Rni" secondAttribute="centerY" id="eSB-lc-zDp"/>
                             <constraint firstItem="32X-Dx-jJ8" firstAttribute="leading" secondItem="ckL-Iq-UtI" secondAttribute="trailing" constant="16" id="gEm-3l-cMr"/>
-                            <constraint firstItem="ckL-Iq-UtI" firstAttribute="leading" secondItem="qoD-Rs-0Mz" secondAttribute="leading" id="gcA-uv-w5t"/>
-                            <constraint firstItem="qoD-Rs-0Mz" firstAttribute="top" secondItem="AO6-U5-Rni" secondAttribute="top" constant="-7.5" id="iQ2-zp-5pF"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -65,13 +54,24 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Send From" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qoD-Rs-0Mz">
+                        <rect key="frame" x="32" y="3.5" width="47" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="q8g-TG-d4v"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="qoD-Rs-0Mz" firstAttribute="leading" secondItem="ckL-Iq-UtI" secondAttribute="leading" id="3f8-Ms-9vU"/>
                     <constraint firstAttribute="bottomMargin" secondItem="AO6-U5-Rni" secondAttribute="bottom" id="7gW-8b-Sgk"/>
                     <constraint firstAttribute="trailingMargin" secondItem="AO6-U5-Rni" secondAttribute="trailing" id="DS7-uY-GV0"/>
                     <constraint firstItem="AO6-U5-Rni" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="g5a-Zw-oNU"/>
                     <constraint firstItem="AO6-U5-Rni" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="gbm-zB-s9Z"/>
+                    <constraint firstItem="AO6-U5-Rni" firstAttribute="top" secondItem="qoD-Rs-0Mz" secondAttribute="bottom" constant="-7.5" id="j1s-hP-Von"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

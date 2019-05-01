@@ -218,7 +218,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
                 let account = wallet!.accounts.collection.first {
                     ethAcc.lowercased() == (try? $0.eth_address().hex(eip55: false))
                 }
-                
+
                 guard account != nil else {
                     throw OpenWalletError.eth_keychainWrongAccount(ethAcc)
                 }

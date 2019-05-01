@@ -27,28 +27,17 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cow-k9-ud2">
                         <rect key="frame" x="16" y="11" width="288" height="38"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Account" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-ej-zUI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Main Account" lineBreakMode="middleTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSu-ej-zUI">
                                 <rect key="frame" x="16" y="4" width="256" height="30"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpb-H7-pv4">
-                                <rect key="frame" x="16" y="-7.5" width="32" height="15"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="uD5-UF-69q"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
-                                <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Mpb-H7-pv4" firstAttribute="top" secondItem="cow-k9-ud2" secondAttribute="top" constant="-7.5" id="4AG-kq-ZhA"/>
                             <constraint firstItem="rSu-ej-zUI" firstAttribute="leading" secondItem="cow-k9-ud2" secondAttribute="leading" constant="16" id="8xG-RR-Hbh"/>
                             <constraint firstAttribute="trailing" secondItem="rSu-ej-zUI" secondAttribute="trailing" constant="16" id="AFn-PO-1oX"/>
-                            <constraint firstItem="rSu-ej-zUI" firstAttribute="leading" secondItem="Mpb-H7-pv4" secondAttribute="leading" id="AO1-tl-OC3"/>
                             <constraint firstItem="rSu-ej-zUI" firstAttribute="top" secondItem="cow-k9-ud2" secondAttribute="top" constant="4" id="BkH-1h-9lG"/>
                             <constraint firstAttribute="bottom" secondItem="rSu-ej-zUI" secondAttribute="bottom" constant="4" id="j4E-wU-MRD"/>
                         </constraints>
@@ -58,10 +47,21 @@
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Header" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mpb-H7-pv4">
+                        <rect key="frame" x="32" y="3.5" width="32" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="15" id="uD5-UF-69q"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Medium" family="SF Pro Display" pointSize="10"/>
+                        <color key="textColor" red="0.3921568627" green="0.3921568627" blue="0.3921568627" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="cow-k9-ud2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="DQf-H8-jh0"/>
+                    <constraint firstItem="cow-k9-ud2" firstAttribute="top" secondItem="Mpb-H7-pv4" secondAttribute="bottom" constant="-7.5" id="HLw-GO-cud"/>
+                    <constraint firstItem="Mpb-H7-pv4" firstAttribute="leading" secondItem="rSu-ej-zUI" secondAttribute="leading" id="LJa-If-gaq"/>
                     <constraint firstAttribute="trailing" secondItem="cow-k9-ud2" secondAttribute="trailingMargin" constant="24" id="Taw-d3-DEj"/>
                     <constraint firstItem="cow-k9-ud2" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="o5G-sm-8oo"/>
                     <constraint firstItem="cow-k9-ud2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="uLW-6a-zy6"/>
