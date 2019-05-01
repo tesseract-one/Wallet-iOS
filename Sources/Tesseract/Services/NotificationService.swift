@@ -102,10 +102,10 @@ class NotificationService {
             }
             
             rootView.layoutSubviews()
-            self.topConstraint?.updateOffset(amount: -self.notificationView.frame.height)
+            self.topConstraint?.update(offset: -self.notificationView.frame.height)
             rootView.layoutSubviews()
             let topOffset = UIScreen.main.bounds.width > 320 ? 24 : 0
-            self.topConstraint?.updateOffset(amount: topOffset)
+            self.topConstraint?.update(offset: topOffset)
             
             UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
                 self.notificationView.alpha = 1
@@ -123,7 +123,7 @@ class NotificationService {
         
         DispatchQueue.main.async {
             rootView.layoutSubviews()
-            self.topConstraint?.updateOffset(amount: -self.notificationView.frame.height)
+            self.topConstraint?.update(offset: -self.notificationView.frame.height)
             UIView.animate(withDuration: self.animationDuration, delay: 0.0, options: .curveEaseInOut, animations: {
                 self.notificationView.alpha = 0
                 rootView.layoutSubviews()
