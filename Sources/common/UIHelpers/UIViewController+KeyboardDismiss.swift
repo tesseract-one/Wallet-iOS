@@ -13,7 +13,7 @@ extension UIViewController {
     public func setupKeyboardDismiss() {
         view.reactive.tapGesture()
             .map { tap in
-                tap.cancelsTouchesInView = false
+                tap.cancelsTouchesInView = true
                 return
             }
             .with(weak: view)
