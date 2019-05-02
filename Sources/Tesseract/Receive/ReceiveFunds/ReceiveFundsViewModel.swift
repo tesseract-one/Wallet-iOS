@@ -15,7 +15,7 @@ class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<AccountViewModel?>(nil)
     let notificationNode = SafePublishSubject<NotificationProtocol>()
     
-    let address = Property<EthereumBase.Address?>(nil)
+    let address = Property<EthereumTypes.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
     let ethereumNetwork = Property<UInt64>(0)

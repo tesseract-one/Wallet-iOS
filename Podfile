@@ -1,39 +1,27 @@
 use_frameworks!
 platform :ios, "11.0"
 
+def common_pods
+  pod 'Tesseract.OpenWallet/WalletEthereum', '~> 0.1'
+  pod 'Tesseract.Wallet/EthereumPromiseKit', '~> 0.1'
+  
+  pod 'Tesseract.EthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/EthereumWeb3.swift.git', :branch => 'master'
+  
+  pod 'PromiseKit', '~> 6.8'
+  
+  pod 'ReactiveKit'
+  pod 'Bond'
+  
+  pod 'SnapKit', '~> 5.0'
+  
+  # temporary. Should be removed
+  pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
+end
 
 target :Tesseract do
-    pod 'TesseractOpenWallet/WalletEthereum', :git => 'https://github.com/tesseract-one/ios-openwallet-sdk.git', :branch => 'master'
-
-    pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
-    
-    pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
-
-    pod 'PromiseKit'
-    pod 'ReactiveKit'
-    pod 'Bond'
-    
-    pod 'SnapKit', '~> 5.0'
-
-    # temporary. Should be removed
-    pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
-    pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
+    common_pods
 
     target :Extension do
-        pod 'TesseractOpenWallet/WalletEthereum', :git => 'https://github.com/tesseract-one/ios-openwallet-sdk.git', :branch => 'master'
-
-        pod 'TesseractEthereumWeb3/PromiseKit', :git => 'https://github.com/tesseract-one/ios-web3-ethereum.git', :branch => 'master'
-
-        pod 'TesseractWallet/EthereumPromiseKit', :git => 'https://github.com/tesseract-one/swift-wallet-sdk.git', :branch => 'master', :submodules => true
-
-        pod 'PromiseKit'
-        pod 'ReactiveKit'
-        pod 'Bond'        
-
-        pod 'SnapKit', '~> 5.0'
-        
-        # temporary should be removed
-	      pod 'Web3', :git => 'https://github.com/tesseract-one/Web3.swift.git', :branch => 'master'
-        pod 'TesseractEthereumBase', :git => 'https://github.com/tesseract-one/swift-ethereum-base.git', :branch => 'master'
+        common_pods
     end
 end

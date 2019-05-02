@@ -42,7 +42,7 @@ class AccountViewModel: ViewModel, Equatable {
         self.balance.next(balance)
     }
     
-    public func eth_address() throws -> EthereumBase.Address {
+    public func eth_address() throws -> EthereumTypes.Address {
         return try account.eth_address()
     }
     

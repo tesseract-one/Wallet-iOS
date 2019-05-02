@@ -74,7 +74,7 @@ class EthereumWeb3Service {
             .then { web3, account -> Promise<EthereumData> in
                 let tx = EthereumTransaction(
                     from: try account.eth_address().web3,
-                    to: try EthereumBase.Address(hex: to).web3,
+                    to: try EthereumTypes.Address(hex: to).web3,
                     value: EthereumQuantity(quantity: amount)
                 )
                 return web3.eth.sendTransaction(transaction: tx)
@@ -87,7 +87,7 @@ class EthereumWeb3Service {
     
     func isContract(address: String, networkId: UInt64) -> Promise<Bool> {
         return _getWeb3(networkId: networkId)
-            .map { ($0, try EthereumBase.Address(hex: address).web3) }
+            .map { ($0, try EthereumTypes.Address(hex: address).web3) }
             .then { web3, address in
                 web3.eth.getCode(address: address, block: .latest)
             }
@@ -102,7 +102,7 @@ class EthereumWeb3Service {
             .then { account -> Promise<BigUInt> in
                 let call = EthereumCall(
                     from: try account.eth_address().web3,
-                    to: try EthereumBase.Address(hex: to).web3,
+                    to: try EthereumTypes.Address(hex: to).web3,
                     value: EthereumQuantity(quantity: amount)
                 )
                 return self._estimateGasWei(call: call, networkId: networkId)
