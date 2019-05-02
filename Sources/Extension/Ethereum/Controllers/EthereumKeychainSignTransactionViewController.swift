@@ -91,7 +91,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         
         addressLabel.text = request.to
         
-        let sendQuantity = EthereumQuantity.bytes(Bytes(hex: request.value)).quantity
+        let sendQuantity = EthereumQuantity.bytes(Data(quantity: request.value).bytes).quantity
         sendAmountETH.text = NumberFormatter.eth.string(from: sendQuantity.ethValue() as NSNumber)!
         usdChangeRate.map { rate in
                 NumberFormatter.usd.string(from: (sendQuantity.ethValue() * rate) as NSNumber)!
@@ -99,7 +99,9 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
             .bind(to: sendAmountUSD.reactive.text)
             .dispose(in: bag)
         
-        let withFee = sendQuantity + EthereumQuantity.bytes(Bytes(hex: request.gas)).quantity * EthereumQuantity.bytes(Bytes(hex: request.gasPrice)).quantity
+        let withFee = sendQuantity
+            + EthereumQuantity.bytes(Data(quantity: request.gas).bytes).quantity
+            * EthereumQuantity.bytes(Data(quantity: request.gasPrice).bytes).quantity
         usdChangeRate
             .map { rate in
                 let gasAmount = withFee.ethValue()
