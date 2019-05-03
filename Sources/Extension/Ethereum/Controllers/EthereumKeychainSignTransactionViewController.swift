@@ -135,7 +135,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                     return ResultSignal<Data, Swift.Error>.failure(NSError())
                 }
                 
-                return wallet.wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
+                return wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
             }
             .pourError(into: context.errors)
             .with(weak: self)

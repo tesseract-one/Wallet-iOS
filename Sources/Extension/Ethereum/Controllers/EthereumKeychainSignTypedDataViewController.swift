@@ -241,7 +241,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
             .with(latestFrom: account)
             .flatMapLatest { (arg, account) -> ResultSignal<Data, Swift.Error> in
                 let (_, wallet) = arg
-                return wallet!.wallet.eth_signTypedData(
+                return wallet!.eth_signTypedData(
                     account: try! account!.eth_address(),
                     data: TypedData(
                         primaryType: request.primaryType,

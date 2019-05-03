@@ -36,7 +36,7 @@ class EthereumWeb3Service {
     
     func bootstrap() {
         wallet
-            .map { wallet in wallet?.wallet.ethereum }
+            .map { wallet in wallet?.wallet.Ethereum }
             .bind(to: ethereumAPIs)
             .dispose(in: bag)
     }
@@ -55,7 +55,7 @@ class EthereumWeb3Service {
         guard let apis = ethereumAPIs.value else {
             return Promise(error: Error.ethereumAPIsNotInitialized)
         }
-        return Promise.value(apis.web3(rpcUrl: url))
+        return Promise.value(apis.Web3(rpcUrl: url))
     }
     
     func getBalance(accountId: String, networkId: UInt64) -> Promise<Double> {
