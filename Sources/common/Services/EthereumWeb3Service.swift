@@ -22,7 +22,7 @@ class EthereumWeb3Service {
     let bag = DisposeBag()
     
     var wallet: Property<WalletViewModel?>!
-    let ethereumAPIs: Property<APIRegistry?> = Property(nil)
+    let ethereumAPIs: Property<InstanceAPIRegistry?> = Property(nil)
 
     var endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
     
@@ -36,7 +36,7 @@ class EthereumWeb3Service {
     
     func bootstrap() {
         wallet
-            .map { wallet in wallet?.wallet.Ethereum }
+            .map { wallet in wallet?.wallet.ethereum }
             .bind(to: ethereumAPIs)
             .dispose(in: bag)
     }
@@ -55,7 +55,7 @@ class EthereumWeb3Service {
         guard let apis = ethereumAPIs.value else {
             return Promise(error: Error.ethereumAPIsNotInitialized)
         }
-        return Promise.value(apis.Web3(rpcUrl: url))
+        return Promise.value(apis.web3(rpcUrl: url))
     }
     
     func getBalance(accountId: String, networkId: UInt64) -> Promise<Double> {

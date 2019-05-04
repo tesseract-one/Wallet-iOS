@@ -23,7 +23,7 @@ PODS:
   - SQLite.swift/standard (0.12.0)
   - SQLiteMigrationManager.swift (0.7.0):
     - SQLite.swift (~> 0.12.0)
-  - Tesseract.EthereumTypes (0.1.4):
+  - Tesseract.EthereumTypes (0.1.5):
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0)
     - Serializable.swift (~> 0.1)
@@ -34,24 +34,24 @@ PODS:
   - Tesseract.EthereumWeb3/PromiseKit (0.1.0):
     - Tesseract.EthereumWeb3/Core
     - Web3/PromiseKit (~> 0.3.1)
-  - Tesseract.OpenWallet/Core (0.1.2)
-  - Tesseract.OpenWallet/Ethereum.Core (0.1.2):
+  - Tesseract.OpenWallet/Core (0.1.3)
+  - Tesseract.OpenWallet/Ethereum.Core (0.1.3):
     - Serializable.swift (~> 0.1)
     - Tesseract.EthereumTypes (~> 0.1)
     - Tesseract.OpenWallet/Core
-  - Tesseract.OpenWallet/Wallet (0.1.2):
+  - Tesseract.OpenWallet/Wallet (0.1.3):
     - Tesseract.OpenWallet/Core
-  - Tesseract.OpenWallet/Wallet.Ethereum (0.1.2):
+  - Tesseract.OpenWallet/Wallet.Ethereum (0.1.3):
     - Tesseract.OpenWallet/Ethereum.Core
     - Tesseract.OpenWallet/Wallet
-  - Tesseract.Wallet/Core (0.1.1):
+  - Tesseract.Wallet/Core (0.1.2):
     - Serializable.swift (~> 0.1)
     - SQLite.swift (~> 0.12.0)
     - SQLiteMigrationManager.swift (~> 0.7.0)
-  - Tesseract.Wallet/Ethereum (0.1.1):
+  - Tesseract.Wallet/Ethereum (0.1.2):
     - Tesseract.EthereumTypes (~> 0.1)
     - Tesseract.Wallet/Core
-  - Tesseract.Wallet/PromiseKit (0.1.1):
+  - Tesseract.Wallet/PromiseKit (0.1.2):
     - PromiseKit/CorePromise (~> 6.8.0)
     - Tesseract.Wallet/Core
   - Web3 (0.3.1):
@@ -70,9 +70,9 @@ PODS:
     - Web3/Core
 
 DEPENDENCIES:
-  - Bond
+  - Bond (~> 7.5)
   - PromiseKit (~> 6.8)
-  - ReactiveKit
+  - ReactiveKit (~> 3.12)
   - SnapKit (~> 5.0)
   - Tesseract.EthereumWeb3/PromiseKit (from `https://github.com/tesseract-one/EthereumWeb3.swift.git`, branch `master`)
   - Tesseract.OpenWallet/Wallet.Ethereum (~> 0.1)
@@ -107,7 +107,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Tesseract.EthereumWeb3:
-    :commit: 2ab8ef99f87673d9c4ec57b7f903b4c3d953f3c1
+    :commit: 9bdcc50ee449f032840dfab977e163dac14e03f4
     :git: https://github.com/tesseract-one/EthereumWeb3.swift.git
   Web3:
     :commit: 82dde998de4a12ca19cc257cb3b7f860040db705
@@ -125,12 +125,12 @@ SPEC CHECKSUMS:
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SQLite.swift: 7cad9db150a03716336e69469ec9559c85aece5b
   SQLiteMigrationManager.swift: 2dd6f760d6e53f666176346436c689e55a608f7a
-  Tesseract.EthereumTypes: b69c054254a99d318c3101eba5b6912e3aa2eb0a
+  Tesseract.EthereumTypes: 98d0a6341a36ff27874b3445a0ef8d9052f26724
   Tesseract.EthereumWeb3: 6711224fd8880c561a26c8b04e077612bb67d39d
-  Tesseract.OpenWallet: 03222c4dcb994b32ac5d03de15e4aa8808aff9dc
-  Tesseract.Wallet: 1160fdf0f16e11dc3cc4650da74f7d86e7ed3d4c
+  Tesseract.OpenWallet: f267bfb6926a98004888314d15f5df8dc9d297a0
+  Tesseract.Wallet: 19b592797bbfbb73435adec87565745ca5268e13
   Web3: dbfb28278f2c87c8de8e7b87a2e24fd038db0926
 
-PODFILE CHECKSUM: ff6031856d42d4290bfb50cf501d05d91b83f8fd
+PODFILE CHECKSUM: 8bb8e05fe3326ce858f262232ef3079bec1b7c9c
 
 COCOAPODS: 1.6.1

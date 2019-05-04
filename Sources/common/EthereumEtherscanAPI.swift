@@ -58,7 +58,7 @@ public struct EthereumEtherscanAPI {
     }
 }
 
-extension APIRegistry {
+extension InstanceAPIRegistry {
     public func etherscan(apiUrl: String, apiToken: String) -> EthereumEtherscanAPI {
         return EthereumEtherscanAPI(apiUrl: apiUrl, apiToken: apiToken)
     }
