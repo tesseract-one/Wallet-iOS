@@ -10,7 +10,6 @@ import Foundation
 import ReactiveKit
 import PromiseKit
 import EthereumWeb3
-import Ethereum
 import Wallet
 
 class EthereumWeb3Service {
