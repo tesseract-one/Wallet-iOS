@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 import OpenWallet
-import EthereumWeb3
+import Ethereum
 import Wallet
 
 class EthereumKeychainSignTransactionViewController: EthereumKeychainViewController<EthereumSignTxKeychainRequest>, EthereumKeychainViewControllerBaseControls {
@@ -91,7 +91,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         
         addressLabel.text = request.to
         
-        let sendQuantity = EthereumQuantity.bytes(Data(quantity: request.value).bytes).quantity
+        let sendQuantity = try! Quantity(hex: request.value).quantity
         sendAmountETH.text = NumberFormatter.eth.string(from: sendQuantity.ethValue() as NSNumber)!
         usdChangeRate.map { rate in
                 NumberFormatter.usd.string(from: (sendQuantity.ethValue() * rate) as NSNumber)!
@@ -99,9 +99,9 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
             .bind(to: sendAmountUSD.reactive.text)
             .dispose(in: bag)
         
-        let withFee = sendQuantity
-            + EthereumQuantity.bytes(Data(quantity: request.gas).bytes).quantity
-            * EthereumQuantity.bytes(Data(quantity: request.gasPrice).bytes).quantity
+        let withFee = try! sendQuantity
+            + Quantity(hex: request.gas).quantity
+            * Quantity(hex: request.gasPrice).quantity
         usdChangeRate
             .map { rate in
                 let gasAmount = withFee.ethValue()
@@ -134,8 +134,15 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                 guard let wallet = wallet else {
                     return ResultSignal<Data, Swift.Error>.failure(NSError())
                 }
-                
-                return wallet.eth_signTx(tx: req.transaction, networkId: req.networkId, chainId: req.chainIdInt).signal
+                var tx: Transaction
+                var chainId: UInt64
+                do {
+                    tx = try req.transaction()
+                    chainId = try req.chainIdInt()
+                } catch let err {
+                    return ResultSignal<Data, Swift.Error>.failure(err)
+                }
+                return wallet.eth_signTx(tx: tx, networkId: req.networkId, chainId: chainId).signal
             }
             .pourError(into: context.errors)
             .with(weak: self)

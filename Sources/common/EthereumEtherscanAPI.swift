@@ -9,6 +9,7 @@
 import Foundation
 import PromiseKit
 import Wallet
+import Ethereum
 
 private struct ESResponse: Codable {
     let status: String

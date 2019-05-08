@@ -9,6 +9,7 @@
 import ReactiveKit
 import Bond
 import Wallet
+import Ethereum
 
 class AccountViewModel: ViewModel, Equatable {
     private let account: Account
@@ -42,7 +43,7 @@ class AccountViewModel: ViewModel, Equatable {
         self.balance.next(balance)
     }
     
-    public func eth_address() throws -> EthereumTypes.Address {
+    public func eth_address() throws -> Ethereum.Address {
         return try account.eth_address()
     }
     

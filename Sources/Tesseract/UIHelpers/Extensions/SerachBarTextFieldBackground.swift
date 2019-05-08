@@ -24,8 +24,7 @@ extension UISearchBar {
       case .minimal:
         textField.layer.backgroundColor = color.cgColor
         textField.layer.cornerRadius = 6
-        
-      case .prominent, .default:
+      default:
         textField.backgroundColor = color
       }
     }

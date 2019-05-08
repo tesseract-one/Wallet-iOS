@@ -10,6 +10,7 @@ import Foundation
 import ReactiveKit
 import PromiseKit
 import EthereumWeb3
+import Ethereum
 import Wallet
 
 class EthereumWeb3Service {
@@ -62,7 +63,7 @@ class EthereumWeb3Service {
         return _getWeb3(networkId: networkId)
             .then { web3 in self._getAccount(id: accountId).map { (web3, $0) } }
             .then { web3, account in
-                web3.eth.getBalance(address: try account.eth_address().web3, block: .latest)
+                web3.eth.getBalance(address: try account.eth_address())
             }
             .map { $0.quantity.ethValue(precision: 9) }
     }
@@ -71,27 +72,27 @@ class EthereumWeb3Service {
         let amount = BigUInt(amountEth * pow(10.0, 9)) * BigUInt(10).power(9)
         return _getWeb3(networkId: networkId)
             .then { web3 in self._getAccount(id: accountId).map { (web3, $0) } }
-            .then { web3, account -> Promise<EthereumData> in
-                let tx = EthereumTransaction(
-                    from: try account.eth_address().web3,
-                    to: try EthereumTypes.Address(hex: to).web3,
-                    value: EthereumQuantity(quantity: amount)
+            .then { web3, account -> Promise<EthData> in
+                let tx = Transaction(
+                    from: try account.eth_address(),
+                    to: try Ethereum.Address(hex: to),
+                    value: Quantity(amount)
                 )
                 return web3.eth.sendTransaction(transaction: tx)
             }.asVoid()
     }
     
-    func estimateGas(call: EthereumCall, networkId: UInt64) -> Promise<Double> {
+    func estimateGas(call: Call, networkId: UInt64) -> Promise<Double> {
         return _estimateGasWei(call: call, networkId: networkId).map{$0.ethValue(precision: 9)}
     }
     
     func isContract(address: String, networkId: UInt64) -> Promise<Bool> {
         return _getWeb3(networkId: networkId)
-            .map { ($0, try EthereumTypes.Address(hex: address).web3) }
+            .map { ($0, try Ethereum.Address(hex: address)) }
             .then { web3, address in
                 web3.eth.getCode(address: address, block: .latest)
             }
-            .map { $0.bytes.count > 0 }
+            .map { $0.data.count > 0 }
     }
     
     func estimateSendTxGas(accountId: String, to: String, amountEth: Double, networkId: UInt64) -> Promise<Double> {
@@ -100,10 +101,10 @@ class EthereumWeb3Service {
         
         let gasAmount = _getAccount(id: accountId)
             .then { account -> Promise<BigUInt> in
-                let call = EthereumCall(
-                    from: try account.eth_address().web3,
-                    to: try EthereumTypes.Address(hex: to).web3,
-                    value: EthereumQuantity(quantity: amount)
+                let call = Call(
+                    from: try account.eth_address(),
+                    to: try Ethereum.Address(hex: to),
+                    value: Quantity(amount)
                 )
                 return self._estimateGasWei(call: call, networkId: networkId)
             }
@@ -117,7 +118,7 @@ class EthereumWeb3Service {
         return _estimateGasPriceWei(networkId: networkId).map{$0.ethValue(precision: 9)}
     }
     
-    private func _estimateGasWei(call: EthereumCall, networkId: UInt64) -> Promise<BigUInt> {
+    private func _estimateGasWei(call: Call, networkId: UInt64) -> Promise<BigUInt> {
         return _getWeb3(networkId: networkId)
             .then { $0.eth.estimateGas(call: call) }
             .map { $0.quantity }

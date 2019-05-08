@@ -10,6 +10,7 @@ import ReactiveKit
 import Bond
 import PromiseKit
 import Wallet
+import Ethereum
 
 
 class HomeViewModel: ViewModel {

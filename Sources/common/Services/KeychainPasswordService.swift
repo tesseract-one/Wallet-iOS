@@ -22,9 +22,9 @@ class KeychainPasswordService {
         
         init(type: LABiometryType) {
             switch(type) {
-            case .none: self = .none
             case .touchID: self = .touch
             case .faceID: self = .face
+            default: self = .none
             }
         }
     }

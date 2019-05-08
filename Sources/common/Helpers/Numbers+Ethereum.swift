@@ -8,7 +8,7 @@
 
 import Foundation
 import BigInt
-import EthereumWeb3
+import Ethereum
 
 extension BigUInt {
     public func ethValue(precision: UInt = 6) -> Double {
@@ -22,7 +22,7 @@ extension BigInt {
     }
 }
 
-extension EthereumQuantity {
+extension Quantity {
     public func ethValue(precision: UInt = 6) -> Double {
         return quantity.ethValue(precision: precision)
     }

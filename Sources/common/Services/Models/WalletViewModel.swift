@@ -10,6 +10,7 @@ import ReactiveKit
 import Bond
 import Wallet
 import PromiseKit
+import Ethereum
 
 class WalletViewModel: ViewModel, Equatable {
     let wallet: Wallet // don't use directly
@@ -58,7 +59,7 @@ class WalletViewModel: ViewModel, Equatable {
     }
     
     public func eth_signTypedData(
-        account: EthereumTypes.Address, data: TypedData, networkId: UInt64
+        account: Ethereum.Address, data: TypedData, networkId: UInt64
     ) -> Promise<Data> {
         return Promise<Data> { resolver in
             wallet.eth_signTypedData(
@@ -80,7 +81,7 @@ class WalletViewModel: ViewModel, Equatable {
     }
     
     public func eth_signData(
-        account: EthereumTypes.Address, data: Data, networkId: UInt64
+        account: Ethereum.Address, data: Data, networkId: UInt64
     ) -> Promise<Data> {
         return Promise<Data> { resolver in
             wallet.eth_signData(
