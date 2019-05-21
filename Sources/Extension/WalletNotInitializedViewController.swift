@@ -17,7 +17,7 @@ class WalletNotInitializedViewController: ExtensionWalletNotInitializedViewContr
     @IBOutlet weak var desctiptionRightConstraint: NSLayoutConstraint!
     
     override var walletUrlScheme: String {
-        return "tesseract-one://"
+        return "\(TESSERACT_URL_SCHEME)://"
     }
     
     override func viewDidLoad() {

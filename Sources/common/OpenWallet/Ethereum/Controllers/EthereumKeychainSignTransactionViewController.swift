@@ -57,7 +57,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                 }
                 return activeAccount!
             }
-            .suppressAndFeedError(into: context.errors)
+            .suppressAndFeedError(into: context.errorNode)
         
         activeAccount
             .flatMapLatest { $0.emoji }
@@ -144,7 +144,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                 }
                 return wallet.eth_signTx(tx: tx, networkId: req.networkId, chainId: chainId).signal
             }
-            .pourError(into: context.errors)
+            .pourError(into: context.errorNode)
             .with(weak: self)
             .observeNext { signature, sself in
                 sself.succeed(response: signature)

@@ -47,7 +47,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         do {
             account = try Address(hex: request.account)
         } catch {
-            context.errors.next(OpenWalletError.eth_keychainWrongAccount(request.account))
+            context.errorNode.next(OpenWalletError.eth_keychainWrongAccount(request.account))
             return
         }
         
@@ -61,7 +61,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
                 }
                 return activeAccount!
             }
-            .suppressAndFeedError(into: context.errors)
+            .suppressAndFeedError(into: context.errorNode)
         
         activeAccount
             .flatMapLatest { $0.emoji }
@@ -98,7 +98,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             .flatMapLatest { (_, wallet) -> ResultSignal<Data, Swift.Error> in
                 wallet!.eth_signData(account: account, data: reqData, networkId: networkId).signal
             }
-            .pourError(into: context.errors)
+            .pourError(into: context.errorNode)
             .with(weak: self)
             .observeNext { signedData, sself in
                 sself.succeed(response: signedData)

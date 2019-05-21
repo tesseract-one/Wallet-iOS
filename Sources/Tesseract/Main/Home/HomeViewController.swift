@@ -149,7 +149,7 @@ extension HomeViewController: ContextSubject {
         let appCtx = context.get(context: ApplicationContext.self)!
         model = HomeViewModel(
             ethWeb3Service: appCtx.ethereumWeb3Service,
-            changeRateService: appCtx.changeRatesService,
+            changeRateService: appCtx.changeRateService,
             transactionInfoService: appCtx.transactionService
         )
         

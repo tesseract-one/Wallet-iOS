@@ -143,13 +143,13 @@ class WalletService {
         return walletManager.listWalletIds()
             .map { ids -> (Wallet, Array<String>) in
                 let wallet = try self.walletManager.create(from: data)
-                wallet.associatedData[.isMetamask] = isMetamask
+                wallet.associatedData[.isMetamask] = isMetamask.serializable
                 
                 try wallet.unlock(password: password)
                 
                 let account = try wallet.addAccount()
-                account.associatedData[.name] = "Main Account"
-                account.associatedData[.emoji] = "\u{1F9B9}"
+                account.associatedData[.name] = "Main Account".serializable
+                account.associatedData[.emoji] = "\u{1F9B9}".serializable
                 
                 return (wallet, ids)
             }

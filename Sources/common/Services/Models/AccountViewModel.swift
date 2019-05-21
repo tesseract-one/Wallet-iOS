@@ -30,12 +30,12 @@ class AccountViewModel: ViewModel, Equatable {
     }
     
     public func updateName(name: String) {
-        account.associatedData[.name] = name
+        account.associatedData[.name] = name.serializable
         self.name.next(name)
     }
     
     public func updateEmoji(emoji: String) {
-        account.associatedData[.emoji] = emoji
+        account.associatedData[.emoji] = emoji.serializable
         self.emoji.next(emoji)
     }
     

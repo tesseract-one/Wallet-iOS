@@ -46,7 +46,7 @@ class EthereumKeychainAccountsViewController: EthereumKeychainViewController<Eth
         
         combineLatest(accounts.filter{$0.collection.count > 0}, activeAccount.filter{$0 != nil})
             .observeNext { [weak self] accounts, activeAccount in
-                let activeAccountIndex = accounts.collection.firstIndex(of: activeAccount!).int!
+                let activeAccountIndex = accounts.collection.firstIndex(of: activeAccount!)!
                 self?.chooseAccountTableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: true, scrollPosition: .middle)
             }.dispose(in: reactive.bag)
         

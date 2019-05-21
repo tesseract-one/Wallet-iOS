@@ -1,15 +1,17 @@
 //
-//  ExtensionViewController.swift
-//  Extension
+//  OpenWalletViewController.swift
+//  Tesseract
 //
-//  Created by Yehor Popovych on 3/8/19.
+//  Created by Yehor Popovych on 5/21/19.
 //  Copyright © 2019 Crossroad Labs s.r.o. All rights reserved.
 //
 
 import UIKit
 
-class ExtensionViewController: UIViewController {
-    var context: ExtensionContext!
+
+class OpenWalletViewController: UIViewController {
+    
+    var context: CommonContext!
     
     var subTitle: String? = nil
     

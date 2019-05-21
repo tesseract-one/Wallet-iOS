@@ -27,7 +27,8 @@ private let NETWORK_NAMES: Dictionary<UInt64, String> = [
     4: "Rinkeby Test Network"
 ]
 
-class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: ExtensionViewController {
+
+class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: OpenWalletViewController {
     var responseCb: ((Swift.Result<Request.Response, OpenWalletError>) -> Void)!
     var request: Request!
     
@@ -157,6 +158,7 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: E
             self.view.layoutIfNeeded()
         }
     }
+    
     deinit {
         NotificationCenter.default.removeObserver(self)
     }

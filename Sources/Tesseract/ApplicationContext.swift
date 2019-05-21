@@ -11,7 +11,7 @@ import ReactiveKit
 import Wallet
 
 
-class ApplicationContext: RouterContextProtocol {
+class ApplicationContext: RouterContextProtocol, CommonContext {
     // let bag = DisposeBag()
     // Injected //
     weak var rootContainer: ViewControllerContainer!
@@ -19,13 +19,13 @@ class ApplicationContext: RouterContextProtocol {
     // Storyboards
     var registrationViewFactory: RegistrationViewFactory!
     var walletViewFactory: ViewFactoryProtocol!
+    var urlHandlerViewFactory: ViewFactoryProtocol!
 
     // State
     let wallet = Property<WalletViewModel?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     let activeAccount = Property<AccountViewModel?>(nil)
-    
-    let isApplicationStarted = Property<Bool>(false)
+    let isApplicationLoaded = Property<Bool>(false)
     
     let balance = Property<Double?>(nil)
     let transactions = Property<Array<EthereumTransactionLog>?>(nil)
@@ -41,7 +41,7 @@ class ApplicationContext: RouterContextProtocol {
     let applicationService = ApplicationService()
     let walletService = WalletService()
     let ethereumWeb3Service = EthereumWeb3Service()
-    let changeRatesService = ChangeRateService()
+    let changeRateService = ChangeRateService()
     let transactionService = TransactionInfoService()
     let passwordService = KeychainPasswordService()
     let notificationService = NotificationService()
@@ -72,7 +72,9 @@ class ApplicationContext: RouterContextProtocol {
         applicationService.rootContainer = rootContainer
         applicationService.registrationViewFactory = registrationViewFactory
         applicationService.walletViewFactory = walletViewFactory
+        applicationService.urlHandlerViewFactory = urlHandlerViewFactory
         applicationService.notificationNode = notificationNode
+        applicationService.isAppLoaded = isApplicationLoaded
         
         notificationService.rootContainer = rootContainer
         notificationService.notificationNode = notificationNode
@@ -83,7 +85,7 @@ class ApplicationContext: RouterContextProtocol {
         walletService.bootstrap()
         applicationService.bootstrap()
         ethereumWeb3Service.bootstrap()
-        changeRatesService.bootstrap()
+        changeRateService.bootstrap()
         transactionService.bootstrap()
         passwordService.bootstrap()
     }

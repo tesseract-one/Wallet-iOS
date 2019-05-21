@@ -225,7 +225,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
                 
                 return account!
             }
-            .suppressAndFeedError(into: context.errors)
+            .suppressAndFeedError(into: context.errorNode)
             .bind(to: account)
             .dispose(in: reactive.bag)
 
@@ -252,7 +252,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
                     networkId: request.networkId
                 ).signal
             }
-            .pourError(into: context.errors)
+            .pourError(into: context.errorNode)
             .with(weak: self)
             .observeNext { data, sself in
                 sself.succeed(response: data)

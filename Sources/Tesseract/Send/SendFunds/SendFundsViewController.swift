@@ -120,7 +120,7 @@ extension SendFundsViewController: ContextSubject {
         model = SendFundsViewModel(
             walletService: appCtx.walletService,
             ethWeb3Service: appCtx.ethereumWeb3Service,
-            changeRateService: appCtx.changeRatesService
+            changeRateService: appCtx.changeRateService
         )
         
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)

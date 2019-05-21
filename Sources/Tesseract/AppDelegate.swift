@@ -12,7 +12,10 @@ protocol ViewControllerContainer: class {
     var view: UIViewController? { get }
     var windowView: UIView? { get }
     
-    func setViewController(vc: UIViewController, animated: Bool)
+    func setView(vc: UIViewController, animated: Bool)
+    
+    func showModalView(vc: UIViewController, animated: Bool)
+    func hideModalView(animated: Bool)
 }
 
 @UIApplicationMain
@@ -29,8 +32,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
         return window
     }
     
-    
-    func setViewController(vc: UIViewController, animated: Bool) {
+    func setView(vc: UIViewController, animated: Bool) {
         window?.replaceRootViewControllerWith(vc, animated: animated) { [weak self] in
             if self?.window != nil && !self!.window!.isKeyWindow {
                 self!.window!.makeKeyAndVisible()
@@ -38,14 +40,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
         }
     }
     
+    func showModalView(vc: UIViewController, animated: Bool) {
+        view!.present(vc, animated: animated, completion: nil)
+    }
+    
+    func hideModalView(animated: Bool) {
+        view!.dismiss(animated: animated, completion: nil)
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         context.rootContainer = self
         
         context.registrationViewFactory = RegistrationViewFactory(resolver: UIStoryboard(name: "Registration", bundle: nil), context: context)
         context.walletViewFactory = WeakContextViewFactory(resolver: UIStoryboard(name: "Main", bundle: nil), context: context)
+        context.urlHandlerViewFactory = WeakContextViewFactory(resolver: UIStoryboard(name: "URLHandler", bundle: nil), context: context)
 
         context.bootstrap()
         return true
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        return context.applicationService.handle(url: url)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {

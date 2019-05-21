@@ -58,7 +58,7 @@ extension ReceiveFundsViewController: ContextSubject {
         let appCtx = context.get(context: ApplicationContext.self)!
         model = ReceiveFundsViewModel(
             ethWeb3Service: appCtx.ethereumWeb3Service,
-            changeRateService: appCtx.changeRatesService
+            changeRateService: appCtx.changeRateService
         )
         
         appCtx.activeAccount.bind(to: model.activeAccount).dispose(in: model.bag)

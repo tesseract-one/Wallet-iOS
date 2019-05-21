@@ -61,7 +61,7 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
         
         combineLatest(model.accounts, model.activeAccount.filter{ $0 != nil })
             .observeNext { [weak self] accounts, activeAccount in
-                let activeAccountIndex = self!.model.accounts.collection.firstIndex(of: activeAccount!).int!
+                let activeAccountIndex = self!.model.accounts.collection.firstIndex(of: activeAccount!)!
                 self?.tableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: false, scrollPosition: .none)
             }.dispose(in: reactive.bag)
         
@@ -168,7 +168,7 @@ extension SettingsTableViewController {
 extension SettingsTableViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
-        model = SettingsViewModel(walletService: appCtx.walletService, changeRateService: appCtx.changeRatesService, settings: appCtx.settings)
+        model = SettingsViewModel(walletService: appCtx.walletService, changeRateService: appCtx.changeRateService, settings: appCtx.settings)
         
         appCtx.wallet.bind(to: model.wallet).dispose(in: model.bag)
         appCtx.activeAccount.bidirectionalBind(to: model.activeAccount).dispose(in: model.bag)

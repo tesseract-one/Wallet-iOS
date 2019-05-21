@@ -14,7 +14,7 @@ enum ExtensionErrors: Error {
     case walletIsEmpty
 }
 
-class ExtensionContext {
+class ExtensionContext: CommonContext {
     let wallet = Property<WalletViewModel?>(nil)
     let activeAccount = Property<AccountViewModel?>(nil)
     
@@ -23,16 +23,16 @@ class ExtensionContext {
     let changeRateService = ChangeRateService()
     let passwordService = KeychainPasswordService()
     
-    let errors = SafePublishSubject<Swift.Error>()
+    let errorNode = SafePublishSubject<Swift.Error>()
     
     let settings: Settings = UserDefaults(suiteName: SHARED_GROUP)!
     
-    let walletIsLoaded = SafePublishSubject<Bool>()
+    let isApplicationLoaded = Property<Bool>(false)
     
     func bootstrap() {
         let storage = try! DatabaseWalletStorage(path: storagePath)
         
-        walletService.errorNode = errors
+        walletService.errorNode = errorNode
         walletService.wallet = wallet
         walletService.activeAccount = activeAccount
         walletService.storage = storage
@@ -51,10 +51,10 @@ class ExtensionContext {
         walletService
             .loadWallet()
             .done { wallet in
-                self.walletIsLoaded.next(wallet != nil)
+                self.isApplicationLoaded.next(true)
             }
             .catch {
-                self.errors.next($0)
+                self.errorNode.next($0)
             }
     }
     

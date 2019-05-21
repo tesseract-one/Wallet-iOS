@@ -18,3 +18,5 @@ public let TESSERACT_ETHEREUM_ENDPOINTS: Dictionary<UInt64, String> = [
 public let SHARED_GROUP: String = "group.one.tesseract.wallet.shared"
 
 public let DATABASE_NAME: String = "walletdb.sqlite"
+
+public let TESSERACT_URL_SCHEME: String = "tesseract-one"
