@@ -85,7 +85,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Tesseract.OpenWallet:
-    :commit: ac9dc8e9c6529f0e154d1f0abf0b24e4cc4fe0da
+    :commit: b27bec3334508aaad2c0a13088fbe3fc3c86739f
     :git: https://github.com/tesseract-one/OpenWallet.swift
 
 SPEC CHECKSUMS:

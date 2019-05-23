@@ -14,8 +14,8 @@ protocol ViewControllerContainer: class {
     
     func setView(vc: UIViewController, animated: Bool)
     
-    func showModalView(vc: UIViewController, animated: Bool)
-    func hideModalView(animated: Bool)
+    func showModalView(vc: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func hideModalView(animated: Bool, completion: (() -> Void)?)
 }
 
 @UIApplicationMain
@@ -40,12 +40,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
         }
     }
     
-    func showModalView(vc: UIViewController, animated: Bool) {
-        view!.present(vc, animated: animated, completion: nil)
+    func showModalView(vc: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        view!.present(vc, animated: animated, completion: completion)
     }
     
-    func hideModalView(animated: Bool) {
-        view!.dismiss(animated: animated, completion: nil)
+    func hideModalView(animated: Bool, completion: (() -> Void)?) {
+        view!.dismiss(animated: animated, completion: completion)
     }
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {

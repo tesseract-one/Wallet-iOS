@@ -34,12 +34,13 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     
     let isWalletLocked = Property<Bool?>(nil)
     
-    let urlRequest = SafePublishSubject<ExtensionViewControllerURLChannel>()
+    let urlRequestVC = Property<ExtensionViewController?>(nil)
     
     let rootViewController = Property<UIViewController>(UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
     
-    private var presentingUrlRequest: Bool = false
-    private var urlRequestQueue = Array<ExtensionViewControllerURLChannel>()
+    private let presentingUrlRequest = Property<Bool>(false)
+    
+    private var urlRequestArrivedTime: TimeInterval = 0
     
     func bootstrap() {
         errorNode.map { error in
@@ -66,7 +67,20 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             return false
         }
         do {
-            urlRequest.next(try ExtensionViewControllerURLChannel(request: url))
+            let prevRequestVC = urlRequestVC.value
+            urlRequestArrivedTime = Date().timeIntervalSince1970
+            
+            var channel = try ExtensionViewControllerURLChannel(request: url)
+            let vc = try! self.urlHandlerViewFactory.viewController() as! URLHandlerMainViewController
+            
+            channel.delegate = self
+            vc.dataChannel = channel
+            
+            urlRequestVC.next(vc)
+            
+            if let reqVC = prevRequestVC {
+                reqVC.cancelRequest()
+            }
         } catch let err {
             errorNode.next(err)
             return false
@@ -122,7 +136,10 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             .bind(to: rootViewController)
             .dispose(in: bag)
         
-        rootViewController
+        combineLatest(rootViewController, presentingUrlRequest.distinctUntilChanged())
+            .filter { !$1 }
+            .map { $0.0 }
+            .distinctUntilChanged()
             .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { view, sself in
@@ -144,47 +161,37 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         }
     }
     
-    private func runUrlRequest() {
-        guard !urlRequestQueue.isEmpty && !presentingUrlRequest else {
-            return
+    private func runUrlRequest(vc: ExtensionViewController) {
+        
+        let handleRequest = {
+            let timeSpent = Date().timeIntervalSince1970 - self.urlRequestArrivedTime
+            self.rootContainer.showModalView(vc: vc, animated: timeSpent > 0.5, completion: nil)
         }
         
-        var request = urlRequestQueue.removeFirst()
-        let view = try! urlHandlerViewFactory.viewController() as! URLHandlerMainViewController
-        
-        request.delegate = self
-        view.dataChannel = request
-        
-        presentingUrlRequest = true
-        rootContainer.showModalView(vc: view, animated: true)
+        if presentingUrlRequest.value {
+            rootContainer.hideModalView(animated: false, completion: handleRequest)
+        } else {
+            presentingUrlRequest.next(true)
+            handleRequest()
+        }
     }
     
-    func extensionViewControllerFinished(
-        vc: ExtensionViewController, channel: ExtensionViewControllerURLChannel, opened: Bool
-    ) {
-        rootContainer.hideModalView(animated: true)
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            self.presentingUrlRequest = false
-            self.runUrlRequest()
+    func urlChannelGotResponse(channel: ExtensionViewControllerURLChannel, response: Data) {
+        self.urlRequestVC.next(nil)
+        rootContainer.hideModalView(animated: true) {
+            self.presentingUrlRequest.next(false)
+            DispatchQueue.main.async {
+                let _ = channel.sendResponse(provider: self.rootContainer.view!, data: response)
+            }
         }
     }
     
     private func bindUrlHandling() {
-        urlRequest
-            .with(latestFrom: isAppLoaded)
-            .observeIn(.immediateOnMain)
-            .observeNext { [weak self] request, loaded in
-                self?.urlRequestQueue.append(request)
-                if loaded {
-                    self?.runUrlRequest()
-                }
-            }.dispose(in: bag)
-        
-        isAppLoaded
-            .filter{$0}
-            .observeIn(.immediateOnMain)
-            .observeNext { [weak self] _ in
-                self?.runUrlRequest()
+        combineLatest(urlRequestVC, isAppLoaded)
+            .observeIn(.main)
+            .observeNext { [weak self] vc, loaded in
+                guard let vc = vc, loaded else { return }
+                self?.runUrlRequest(vc: vc)
             }.dispose(in: bag)
     }
 }
