@@ -12,9 +12,10 @@ import OpenWallet
 
 class MainViewController: OpenWalletMainViewController {
     
-    override func viewDidLoad() {
+    override func initialize() {
+        super.initialize()
+        dataChannel = ExtensionViewContollerShareChannel()
         context = ExtensionContext()
-        super.viewDidLoad()
     }
     
     override func walletIsNotInitialized() {

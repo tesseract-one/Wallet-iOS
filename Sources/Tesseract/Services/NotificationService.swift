@@ -88,7 +88,7 @@ class NotificationService {
     }
     
     private func showUI(notification: NotificationProtocol) {
-        guard let rootView = rootContainer.windowView else { return }
+        let rootView = rootContainer.windowView
         
         DispatchQueue.main.async {
             self.notificationView.setNotification(notification)
@@ -119,7 +119,7 @@ class NotificationService {
     }
     
     private func hideUI(endCb: @escaping () -> Void) {
-        guard let rootView = rootContainer.windowView else { return }
+        let rootView = rootContainer.windowView
         
         DispatchQueue.main.async {
             rootView.layoutSubviews()

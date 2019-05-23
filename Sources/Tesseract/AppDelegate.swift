@@ -10,7 +10,7 @@ import UIKit
 
 protocol ViewControllerContainer: class {
     var view: UIViewController? { get }
-    var windowView: UIView? { get }
+    var windowView: UIView { get }
     
     func setView(vc: UIViewController, animated: Bool)
     
@@ -21,23 +21,19 @@ protocol ViewControllerContainer: class {
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
     
-    let window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    let window: UIWindow = UIWindow(frame: UIScreen.main.bounds)
     let context = ApplicationContext()
     
     var view: UIViewController? {
-        return window?.rootViewController
+        return window.rootViewController
     }
     
-    var windowView: UIView? {
+    var windowView: UIView {
         return window
     }
     
     func setView(vc: UIViewController, animated: Bool) {
-        window?.replaceRootViewControllerWith(vc, animated: animated) { [weak self] in
-            if self?.window != nil && !self!.window!.isKeyWindow {
-                self!.window!.makeKeyAndVisible()
-            }
-        }
+        window.replaceRootViewControllerWith(vc, animated: animated, completion: nil)
     }
     
     func showModalView(vc: UIViewController, animated: Bool, completion: (() -> Void)?) {
@@ -56,6 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
         context.urlHandlerViewFactory = WeakContextViewFactory(resolver: UIStoryboard(name: "URLHandler", bundle: nil), context: context)
 
         context.bootstrap()
+        
+        window.makeKeyAndVisible()
         return true
     }
     

@@ -21,8 +21,9 @@ class OpenWalletMainViewController: ExtensionViewController {
     
     public var context: CommonContext!
     
-    override var handlers: Array<RequestHandler> {
-        return [
+    override func initialize() {
+        super.initialize()
+        handlers = [
             EthereumKeychainRequestHandler(viewProvider: EthereumKeychainViewProvider())
         ]
     }

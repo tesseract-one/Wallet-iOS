@@ -70,7 +70,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             let prevRequestVC = urlRequestVC.value
             urlRequestArrivedTime = Date().timeIntervalSince1970
             
-            var channel = try ExtensionViewControllerURLChannel(request: url)
+            let channel = try ExtensionViewControllerURLChannel(request: url)
             let vc = try! self.urlHandlerViewFactory.viewController() as! URLHandlerMainViewController
             
             channel.delegate = self
@@ -80,9 +80,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             
             if let reqVC = prevRequestVC {
                 DispatchQueue.main.async {
-                    var dc = reqVC.dataChannel as! ExtensionViewControllerURLChannel
-                    dc.delegate = nil
-                    reqVC.dataChannel = dc
+                    (reqVC.dataChannel as! ExtensionViewControllerURLChannel).delegate = nil
                     reqVC.cancelRequest()
                 }
             }
