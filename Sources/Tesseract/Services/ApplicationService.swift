@@ -79,7 +79,12 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             urlRequestVC.next(vc)
             
             if let reqVC = prevRequestVC {
-                reqVC.cancelRequest()
+                DispatchQueue.main.async {
+                    var dc = reqVC.dataChannel as! ExtensionViewControllerURLChannel
+                    dc.delegate = nil
+                    reqVC.dataChannel = dc
+                    reqVC.cancelRequest()
+                }
             }
         } catch let err {
             errorNode.next(err)
