@@ -72,7 +72,7 @@ class EthereumWeb3Service {
         return _getWeb3(networkId: networkId)
             .then { web3 in self._getAccount(id: accountId).map { (web3, $0) } }
             .then { web3, account -> Promise<EthData> in
-                let tx = Transaction(
+                let tx = try Transaction(
                     from: try account.eth_address(),
                     to: try Ethereum.Address(hex: to),
                     value: Quantity(amount)
