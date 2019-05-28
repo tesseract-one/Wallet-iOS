@@ -2,7 +2,7 @@ use_frameworks!
 platform :ios, "11.0"
 
 def common_pods
-  pod 'Tesseract.OpenWallet/Wallet.Ethereum', :git => 'https://github.com/tesseract-one/OpenWallet.swift', :branch => 'master'
+  pod 'Tesseract.OpenWallet/Wallet.Ethereum', '~> 0.1'
   pod 'Tesseract.Wallet/PromiseKit', '~> 0.1'
   pod 'Tesseract.Wallet/Ethereum', '~> 0.1'
   
