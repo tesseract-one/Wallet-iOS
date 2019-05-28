@@ -36,8 +36,6 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         super.viewDidLoad()
         
         title = "Sign Data"
-        
-        signData.text = request.data.toHexString()
 
         let reqData = request.data
         let networkId = request.networkId
@@ -49,6 +47,12 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         } catch {
             context.errorNode.next(OpenWalletError.eth_keychainWrongAccount(request.account))
             return
+        }
+        
+        if let text = String(data: reqData, encoding: .utf8) {
+            signData.text = text
+        } else {
+            signData.text = reqData.toHexString()
         }
         
         let activeAccount = context.wallet
