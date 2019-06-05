@@ -47,20 +47,6 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         let req = self.request!
         let ethereumWeb3Service = context.ethereumWeb3Service
         
-        context.wallet
-            .filter { $0 != nil }
-            .tryMap { wallet -> AccountViewModel in
-                let activeAccount = wallet!.accounts.collection
-                    .first { (try? $0.eth_address().hex(eip55: false) == req.from.lowercased()) ?? false }
-                guard activeAccount != nil else {
-                    throw OpenWalletError.eth_keychainWrongAccount(req.from)
-                }
-                return activeAccount!
-            }
-            .pourError(into: context.errorNode)
-            .bind(to: activeAccount)
-            .dispose(in: reactive.bag)
-        
         activeAccount
             .flatMapLatest { $0.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
@@ -78,6 +64,20 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
             .suppressedErrors
             .bind(to: ethBalance)
             .dispose(in: bag)
+        
+        context.wallet
+            .filter { $0 != nil }
+            .tryMap { wallet -> AccountViewModel in
+                let activeAccount = wallet!.accounts.collection
+                    .first { (try? $0.eth_address().hex(eip55: false) == req.from.lowercased()) ?? false }
+                guard activeAccount != nil else {
+                    throw OpenWalletError.eth_keychainWrongAccount(req.from)
+                }
+                return activeAccount!
+            }
+            .pourError(into: context.errorNode)
+            .bind(to: activeAccount)
+            .dispose(in: reactive.bag)
         
         combineLatest(ethBalance.filter{$0 != nil}, usdChangeRate)
             .map { balance, rate in

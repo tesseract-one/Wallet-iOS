@@ -56,21 +56,11 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             signData.text = reqData.toHexString()
         }
         
-        context.wallet
-            .filter { $0 != nil }
-            .tryMap { wallet -> AccountViewModel in
-                let activeAccount = wallet!.accounts.collection.first { (try? $0.eth_address() == account) ?? false }
-                guard activeAccount != nil else {
-                    throw OpenWalletError.eth_keychainWrongAccount(account.hex(eip55: false))
-                }
-                return activeAccount!
-            }
-            .pourError(into: context.errorNode)
-            .bind(to: activeAccount)
-            .dispose(in: reactive.bag)
-        
         activeAccount
-            .flatMapLatest { $0.emoji }
+            .flatMapLatest { account -> Property<String> in
+                let emoji = account.emoji
+                return emoji
+            }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         
@@ -86,6 +76,19 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             .suppressedErrors
             .bind(to: ethBalance)
             .dispose(in: bag)
+        
+        context.wallet
+            .filter { $0 != nil }
+            .tryMap { wallet -> AccountViewModel in
+                let activeAccount = wallet!.accounts.collection.first { (try? $0.eth_address() == account) ?? false }
+                guard activeAccount != nil else {
+                    throw OpenWalletError.eth_keychainWrongAccount(account.hex(eip55: false))
+                }
+                return activeAccount!
+            }
+            .pourError(into: context.errorNode)
+            .bind(to: activeAccount)
+            .dispose(in: reactive.bag)
         
         combineLatest(ethBalance.filter{$0 != nil}, usdChangeRate)
             .map { balance, rate in
