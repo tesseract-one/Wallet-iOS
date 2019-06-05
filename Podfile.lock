@@ -14,7 +14,7 @@ PODS:
     - PromiseKit/CorePromise
   - PromiseKit/UIKit (6.8.4):
     - PromiseKit/CorePromise
-  - ReactiveKit (3.12.0)
+  - ReactiveKit (3.12.2)
   - Serializable.swift (0.1.5)
   - SnapKit (5.0.0)
   - SQLite.swift (0.12.0):
@@ -85,7 +85,7 @@ SPEC CHECKSUMS:
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   PromiseKit: 51794a832647e7b819336dc2279039ce9f1cc49b
-  ReactiveKit: 7634cc10d9fb8791f9a87bf60c283fb420db3184
+  ReactiveKit: 33adc5550145e8200daa3eb210841f2a0be642c6
   Serializable.swift: 0e607d290da30d36e4cebb41e12c9923806331e1
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SQLite.swift: 7cad9db150a03716336e69469ec9559c85aece5b
