@@ -37,6 +37,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     let isContract = Property<Bool>(false)
     let usdChangeRate = Property<Double>(0.0)
     let ethBalance = Property<Double?>(nil)
+    let activeAccount = SafePublishSubject<AccountViewModel>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,10 +47,9 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
         let req = self.request!
         let ethereumWeb3Service = context.ethereumWeb3Service
         
-        let activeAccount = context.wallet
+        context.wallet
             .filter { $0 != nil }
-            .mapError { $0 as Error }
-            .map { wallet -> AccountViewModel in
+            .tryMap { wallet -> AccountViewModel in
                 let activeAccount = wallet!.accounts.collection
                     .first { (try? $0.eth_address().hex(eip55: false) == req.from.lowercased()) ?? false }
                 guard activeAccount != nil else {
@@ -57,7 +57,9 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
                 }
                 return activeAccount!
             }
-            .suppressAndFeedError(into: context.errorNode)
+            .pourError(into: context.errorNode)
+            .bind(to: activeAccount)
+            .dispose(in: reactive.bag)
         
         activeAccount
             .flatMapLatest { $0.emoji }

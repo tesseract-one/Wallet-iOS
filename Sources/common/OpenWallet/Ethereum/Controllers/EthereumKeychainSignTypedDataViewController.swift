@@ -213,8 +213,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         let ethAcc = request.account
         context.wallet
             .filter { $0 != nil }
-            .mapError { $0 as Error }
-            .map { wallet -> AccountViewModel in
+            .tryMap { wallet -> AccountViewModel in
                 let account = wallet!.accounts.collection.first {
                     ethAcc.lowercased() == (try? $0.eth_address().hex(eip55: false))
                 }
@@ -225,7 +224,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
                 
                 return account!
             }
-            .suppressAndFeedError(into: context.errorNode)
+            .pourError(into: context.errorNode)
             .bind(to: account)
             .dispose(in: reactive.bag)
 

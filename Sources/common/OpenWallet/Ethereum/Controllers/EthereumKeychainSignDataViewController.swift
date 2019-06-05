@@ -31,6 +31,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
     
     let usdChangeRate = Property<Double>(0.0)
     let ethBalance = Property<Double?>(nil)
+    let activeAccount = SafePublishSubject<AccountViewModel>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,17 +56,18 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
             signData.text = reqData.toHexString()
         }
         
-        let activeAccount = context.wallet
+        context.wallet
             .filter { $0 != nil }
-            .mapError { $0 as Error }
-            .map { wallet -> AccountViewModel in
+            .tryMap { wallet -> AccountViewModel in
                 let activeAccount = wallet!.accounts.collection.first { (try? $0.eth_address() == account) ?? false }
                 guard activeAccount != nil else {
                     throw OpenWalletError.eth_keychainWrongAccount(account.hex(eip55: false))
                 }
                 return activeAccount!
             }
-            .suppressAndFeedError(into: context.errorNode)
+            .pourError(into: context.errorNode)
+            .bind(to: activeAccount)
+            .dispose(in: reactive.bag)
         
         activeAccount
             .flatMapLatest { $0.emoji }

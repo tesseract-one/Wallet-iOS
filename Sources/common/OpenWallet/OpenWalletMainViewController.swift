@@ -35,14 +35,20 @@ class OpenWalletMainViewController: ExtensionViewController {
     override func onLoaded(handler: RequestHandler, json: String, uti: String) {
         context!
             .errorNode
+            .delay(interval: 0.5)
             .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { err, sself in
-                sself.error(.unknownError(err))
+                if let error = err as? OpenWalletError {
+                    sself.error(error)
+                } else {
+                    sself.error(.unknownError(err))
+                }
             }.dispose(in: reactive.bag)
         
         context!
             .isApplicationLoaded
+            .filter { $0 }
             .with(latestFrom: context.wallet)
             .map { $1 != nil }
             .observeIn(.immediateOnMain)
