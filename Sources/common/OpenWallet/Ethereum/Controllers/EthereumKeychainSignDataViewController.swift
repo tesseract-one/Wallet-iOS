@@ -57,10 +57,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         }
         
         activeAccount
-            .flatMapLatest { account -> Property<String> in
-                let emoji = account.emoji
-                return emoji
-            }
+            .flatMapLatest { $0.emoji }
             .bind(to: accountEmojiLabel.reactive.text)
             .dispose(in: reactive.bag)
         
