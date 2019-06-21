@@ -49,9 +49,9 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             .bind(to: notificationNode)
             .dispose(in: bag)
         
+        bindUrlHandling()
         bindRegistration()
         setNetwork()
-        bindUrlHandling()
         // Bootstrap Step 2
         exec()
     }
@@ -129,6 +129,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         
         combineLatest(isWalletLocked.distinctUntilChanged(), isAppLoaded)
             .filter { $0 != nil && $1 }
+            .observeIn(.main)
             .map { $0.0! }
             .with(weak: self)
             .map { isLocked, sself in
