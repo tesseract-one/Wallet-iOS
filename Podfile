@@ -1,4 +1,4 @@
-use_frameworks!
+use_modular_headers!
 platform :ios, "11.0"
 
 def common_pods

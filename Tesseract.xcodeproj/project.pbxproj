@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4B21B47FFDC9B4394DD0D00D /* Pods_Tesseract_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5234901E5B38E9DB09B132CF /* Pods_Tesseract_Extension.framework */; };
+		3A9AEC5C03DAA492A7327B52 /* libPods-Tesseract-Extension.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9FD6615060B045C6FBFA764C /* libPods-Tesseract-Extension.a */; };
 		922CA49121945F1F00FE66F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA49021945F1F00FE66F1 /* AppDelegate.swift */; };
 		922CA49D21945F2100FE66F1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 922CA49B21945F2100FE66F1 /* LaunchScreen.storyboard */; };
 		922CA4A821945F2100FE66F1 /* TesseractTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922CA4A721945F2100FE66F1 /* TesseractTests.swift */; };
@@ -96,6 +96,7 @@
 		92FE9741222E334D007DB61C /* TransactionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92FE973F222E334D007DB61C /* TransactionTableViewCell.xib */; };
 		92FE9742222E334D007DB61C /* TransactionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9740222E334D007DB61C /* TransactionTableViewCell.swift */; };
 		92FE9744222ED68B007DB61C /* UIWindow+Replace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */; };
+		A8A14CACA170652D75D5A7D0 /* libPods-Tesseract.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A44238C370471F46B25F7A9D /* libPods-Tesseract.a */; };
 		D1010C85226F362200C9C331 /* NSTextAlignment+Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1010C84226F362200C9C331 /* NSTextAlignment+Convert.swift */; };
 		D1010C872270CD6700C9C331 /* UIImage+BlendColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1010C862270CD6700C9C331 /* UIImage+BlendColor.swift */; };
 		D1010C882271CFD500C9C331 /* MaterialTextField+Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1B106DE2265F21100F6F0F3 /* MaterialTextField+Bond.swift */; };
@@ -215,7 +216,6 @@
 		D1F76C9B222589A300BFBB6B /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76C9A222589A300BFBB6B /* SignInViewModel.swift */; };
 		D1F76CA12226A50F00BFBB6B /* Signal+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F76CA02226A50F00BFBB6B /* Signal+Extensions.swift */; };
 		D1F891F322663C19000FEFA5 /* CATextLayer+Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1F891F222663C19000FEFA5 /* CATextLayer+Size.swift */; };
-		DF24AB378ED2A6F9A8F742A2 /* Pods_Tesseract.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 26E507A9D48F0A930BD855FA /* Pods_Tesseract.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -257,8 +257,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		26E507A9D48F0A930BD855FA /* Pods_Tesseract.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tesseract.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		5234901E5B38E9DB09B132CF /* Pods_Tesseract_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Tesseract_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F2F80671DCA7BD136DF3DA7 /* Pods-Tesseract-Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract-Extension.debug.xcconfig"; path = "Target Support Files/Pods-Tesseract-Extension/Pods-Tesseract-Extension.debug.xcconfig"; sourceTree = "<group>"; };
 		7B3692C429ADD5FB5DB2BF56 /* Pods_TesSDK.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TesSDK.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		922CA48D21945F1F00FE66F1 /* Tesseract.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tesseract.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -326,6 +324,8 @@
 		92FE973F222E334D007DB61C /* TransactionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TransactionTableViewCell.xib; sourceTree = "<group>"; };
 		92FE9740222E334D007DB61C /* TransactionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionTableViewCell.swift; sourceTree = "<group>"; };
 		92FE9743222ED68B007DB61C /* UIWindow+Replace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Replace.swift"; sourceTree = "<group>"; };
+		9FD6615060B045C6FBFA764C /* libPods-Tesseract-Extension.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tesseract-Extension.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A44238C370471F46B25F7A9D /* libPods-Tesseract.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Tesseract.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B34475B14182EE9EA1935060 /* Pods-Tesseract.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract.debug.xcconfig"; path = "Target Support Files/Pods-Tesseract/Pods-Tesseract.debug.xcconfig"; sourceTree = "<group>"; };
 		CB6DCCCD72733AFD84049AB4 /* Pods-Tesseract-Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Tesseract-Extension.release.xcconfig"; path = "Target Support Files/Pods-Tesseract-Extension/Pods-Tesseract-Extension.release.xcconfig"; sourceTree = "<group>"; };
 		D1010C84226F362200C9C331 /* NSTextAlignment+Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "NSTextAlignment+Convert.swift"; path = "../../Tesseract/UIHelpers/NSTextAlignment+Convert.swift"; sourceTree = "<group>"; };
@@ -437,7 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				92B54EF8224A2BA1007197EF /* LocalAuthentication.framework in Frameworks */,
-				DF24AB378ED2A6F9A8F742A2 /* Pods_Tesseract.framework in Frameworks */,
+				A8A14CACA170652D75D5A7D0 /* libPods-Tesseract.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -460,7 +460,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D1A211482242983F00DDF3F3 /* LocalAuthentication.framework in Frameworks */,
-				4B21B47FFDC9B4394DD0D00D /* Pods_Tesseract_Extension.framework in Frameworks */,
+				3A9AEC5C03DAA492A7327B52 /* libPods-Tesseract-Extension.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -655,8 +655,8 @@
 			children = (
 				D1A211472242983F00DDF3F3 /* LocalAuthentication.framework */,
 				7B3692C429ADD5FB5DB2BF56 /* Pods_TesSDK.framework */,
-				26E507A9D48F0A930BD855FA /* Pods_Tesseract.framework */,
-				5234901E5B38E9DB09B132CF /* Pods_Tesseract_Extension.framework */,
+				A44238C370471F46B25F7A9D /* libPods-Tesseract.a */,
+				9FD6615060B045C6FBFA764C /* libPods-Tesseract-Extension.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1065,7 +1065,6 @@
 				922CA48A21945F1F00FE66F1 /* Frameworks */,
 				922CA48B21945F1F00FE66F1 /* Resources */,
 				9299322D2224828F000EAD47 /* Embed App Extensions */,
-				9A076CA6C1A6362840D465CC /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1311,23 +1310,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		9A076CA6C1A6362840D465CC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tesseract/Pods-Tesseract-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Tesseract/Pods-Tesseract-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Tesseract/Pods-Tesseract-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1830,7 +1812,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG EXTENSION";
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -1854,7 +1836,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = EXTENSION;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
