@@ -14,7 +14,7 @@ class QRCodeScannerView: UIView {
     private let captureSession: AVCaptureSession = AVCaptureSession()
     private var subLayer: CALayer?
     
-    let qrCodeValue: SafePublishSubject<String> = SafePublishSubject()
+    let qrCodeValue: PassthroughSubject<String, Never> = PassthroughSubject()
     let isWorking: Property<Bool> = Property(false)
     
     override init(frame: CGRect) {
@@ -98,7 +98,7 @@ extension QRCodeScannerView: AVCaptureMetadataOutputObjectsDelegate {
             guard let readableObject = metadataObject as? AVMetadataMachineReadableCodeObject else { return }
             guard let stringValue = readableObject.stringValue else { return }
             AudioServicesPlaySystemSound(SystemSoundID(kSystemSoundID_Vibrate))
-            qrCodeValue.next(stringValue)
+            qrCodeValue.send(stringValue)
         }
     }
 }

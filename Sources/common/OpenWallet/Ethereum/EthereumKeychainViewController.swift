@@ -32,8 +32,8 @@ class EthereumKeychainViewController<Request: EthereumRequestMessageProtocol>: O
     var responseCb: ((Swift.Result<Request.Response, OpenWalletError>) -> Void)!
     var request: Request!
     
-    let runWalletOperation = SafePublishSubject<Void>()
-    let passwordErrorSiganl = SafePublishSubject<Swift.Error>()
+    let runWalletOperation = PassthroughSubject<Void, Never>()
+    let passwordErrorSiganl = PassthroughSubject<Swift.Error, Never>()
     
     private var _passwordField: MaterialTextField {
         return (self as! EthereumKeychainViewControllerBaseControls).passwordField

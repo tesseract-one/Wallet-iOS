@@ -24,20 +24,20 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     let tableSettings = MutableObservableArray2D<String, ViewModel>(Array2D())
     let viewModelAccounts = MutableObservableArray<ViewModel>()
     
-    let editAccountAction = SafePublishSubject<String>()
-    let createAccountAction = SafePublishSubject<Void>()
+    let editAccountAction = PassthroughSubject<String, Never>()
+    let createAccountAction = PassthroughSubject<Void, Never>()
 //    let currentConversion = Property<String>("USD")
 //    let primaryCurrency = Property<String>("ETH")
 //    let currentLanguage = Property<String>("ENG")
 //    let changePasswordAction = SafePublishSubject<Void>()
-    let switchDeveloperModeAction = SafePublishSubject<Bool>()
+    let switchDeveloperModeAction = PassthroughSubject<Bool, Never>()
     let currentNetwork = Property<String>("RKB")
-    let changeNetworkAction = SafePublishSubject<Void>()
+    let changeNetworkAction = PassthroughSubject<Void, Never>()
     let currentVersion = Property<String>("0")
-    let showInfoAboutTesseractAction = SafePublishSubject<Void>()
-    let logoutAction = SafePublishSubject<Void>()
+    let showInfoAboutTesseractAction = PassthroughSubject<Void, Never>()
+    let logoutAction = PassthroughSubject<Void, Never>()
     
-    let goToView = SafePublishSubject<ToView>()
+    let goToView = PassthroughSubject<ToView, Never>()
     
     init(walletService: WalletService, changeRateService: ChangeRateService, settings: Settings) {
         self.walletService = walletService
@@ -94,7 +94,7 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             tableSettings.insert(contentsOf: accounts.collection, at: IndexPath(row: 0, section: 0))
         }.dispose(in: bag)
         
-        currentVersion.next(Bundle.main.fullVersion)
+        currentVersion.send(Bundle.main.fullVersion)
         
         logoutAction
             .with(latestFrom: wallet)

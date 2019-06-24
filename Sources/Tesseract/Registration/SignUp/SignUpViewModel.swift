@@ -16,14 +16,14 @@ enum SignUpPasswordErrors: String {
 }
 
 class SignUpViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-  let signUpAction = SafePublishSubject<Void>()
-  let restoreKeyAction = SafePublishSubject<Void>()
+  let signUpAction = PassthroughSubject<Void, Never>()
+  let restoreKeyAction = PassthroughSubject<Void, Never>()
   let password = Property<String>("")
   let confirmPassword = Property<String>("")
   let passwordError = Property<SignUpPasswordErrors?>(nil)
   let signUpSuccessfully = Property<Bool?>(nil)
   
-  let goToView = SafePublishSubject<ToView>()
+  let goToView = PassthroughSubject<ToView, Never>()
   
   override init () {
     super.init()

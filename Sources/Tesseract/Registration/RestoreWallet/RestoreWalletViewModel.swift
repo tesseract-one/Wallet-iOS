@@ -26,14 +26,14 @@ class RestoreWalletViewModel: ViewModel {
     private let settings: Settings
     private let wasCreatedByMetamask: Bool
     
-    let restoreAction = SafePublishSubject<Void>()
+    let restoreAction = PassthroughSubject<Void, Never>()
     
     let mnemonic = Property<String>("")
     let password = Property<String>("")
     let confirmPassword = Property<String>("")
     let restoreWalletSuccessfully = Property<Bool?>(nil)
     
-    let errors = SafePublishSubject<Swift.Error>()
+    let errors = PassthroughSubject<Swift.Error, Never>()
     let mnemonicError = Property<MnemonicErrors?>(nil)
     let passwordError = Property<PasswordErrors?>(nil)
     

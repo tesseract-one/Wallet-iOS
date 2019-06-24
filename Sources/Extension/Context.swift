@@ -23,7 +23,7 @@ class ExtensionContext: CommonContext {
     let changeRateService = ChangeRateService()
     let passwordService = KeychainPasswordService()
     
-    let errorNode = SafePublishSubject<Swift.Error>()
+    let errorNode = PassthroughSubject<Swift.Error, Never>()
     
     let settings: Settings = UserDefaults(suiteName: SHARED_GROUP)!
     
@@ -51,10 +51,10 @@ class ExtensionContext: CommonContext {
         walletService
             .loadWallet()
             .done { wallet in
-                self.isApplicationLoaded.next(true)
+                self.isApplicationLoaded.send(true)
             }
             .catch {
-                self.errorNode.next($0)
+                self.errorNode.send($0)
             }
     }
     

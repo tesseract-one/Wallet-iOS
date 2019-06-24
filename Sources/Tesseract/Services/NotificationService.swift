@@ -64,7 +64,7 @@ class NotificationService {
     
     public var rootContainer: ViewControllerContainer!
     
-    public var notificationNode: SafePublishSubject<NotificationProtocol>!
+    public var notificationNode: PassthroughSubject<NotificationProtocol, Never>!
     
     public var animationDuration: TimeInterval = 0.3
     

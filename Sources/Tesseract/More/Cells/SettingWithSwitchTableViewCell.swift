@@ -15,7 +15,7 @@ class SettingWithSwitchTableViewCell: ViewModelCell<SettingWithSwitchVM> {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var isEnabledSwitch: UISwitch!
     
-    let toggleSwithAction = SafePublishSubject<Bool>()
+    let toggleSwithAction = PassthroughSubject<Bool, Never>()
     
     override func advise() {
         guard let model = self.model else { return }

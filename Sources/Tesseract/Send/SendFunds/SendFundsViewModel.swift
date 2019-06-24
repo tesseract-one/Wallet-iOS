@@ -16,10 +16,10 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     let ethWeb3Service: EthereumWeb3Service
     let changeRateService: ChangeRateService
     
-    let scanQr = SafePublishSubject<Void>()
-    let reviewAction = SafePublishSubject<Void>()
+    let scanQr = PassthroughSubject<Void, Never>()
+    let reviewAction = PassthroughSubject<Void, Never>()
     
-    let closeModal = SafePublishSubject<Void>()
+    let closeModal = PassthroughSubject<Void, Never>()
     
     let activeAccount = Property<AccountViewModel?>(nil)
     
@@ -39,8 +39,8 @@ class SendFundsViewModel: ViewModel, RoutableViewModelProtocol {
     
     let isValidTransaction = Property<Bool>(false)
     
-    let goToView = SafePublishSubject<ToView>()
-    let goBack = SafePublishSubject<Void>()
+    let goToView = PassthroughSubject<ToView, Never>()
+    let goBack = PassthroughSubject<Void, Never>()
     
     init(walletService: WalletService, ethWeb3Service: EthereumWeb3Service,
          changeRateService: ChangeRateService) {

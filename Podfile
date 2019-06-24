@@ -10,7 +10,7 @@ def common_pods
   
   pod 'PromiseKit', '~> 6.8'
   
-  pod 'ReactiveKit', '~> 3.12'
+  pod 'ReactiveKit', '~> 3.13'
   pod 'Bond', '~> 7.5'
   
   pod 'SnapKit', '~> 5.0'

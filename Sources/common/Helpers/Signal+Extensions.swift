@@ -16,12 +16,12 @@ extension SignalProtocol {
                 switch event {
                 case .next(let element):
                     if let w = w {
-                        observer.next((element, w))
+                        observer.receive((element, w))
                     }
                 case .completed:
-                    observer.completed()
+                    observer.receive(completion: .finished)
                 case .failed(let err):
-                    observer.failed(err)
+                    observer.receive(completion: .failure(err))
                 }
             }
         }
@@ -35,12 +35,12 @@ extension SignalProtocol {
                 switch event {
                 case .next(let element):
                     if let t1 = wt1, let t2 = wt2 {
-                        observer.next((element, t1, t2))
+                        observer.receive((element, t1, t2))
                     }
                 case .completed:
-                    observer.completed()
+                    observer.receive(completion: .finished)
                 case .failed(let err):
-                    observer.failed(err)
+                    observer.receive(completion: .failure(err))
                 }
             }
         }
@@ -56,12 +56,12 @@ extension SignalProtocol {
                 switch event {
                 case .next(let element):
                     if let t1 = wt1, let t2 = wt2, let t3 = wt3 {
-                        observer.next((element, t1, t2, t3))
+                        observer.receive((element, t1, t2, t3))
                     }
                 case .completed:
-                    observer.completed()
+                    observer.receive(completion: .finished)
                 case .failed(let err):
-                    observer.failed(err)
+                    observer.receive(completion: .failure(err))
                 }
             }
         }
@@ -76,12 +76,12 @@ extension SignalProtocol where Element == Void {
                 switch event {
                 case .next(_):
                     if let w = w {
-                        observer.next(w)
+                        observer.receive(w)
                     }
                 case .completed:
-                    observer.completed()
+                    observer.receive(completion: .finished)
                 case .failed(let err):
-                    observer.failed(err)
+                    observer.receive(completion: .failure(err))
                 }
             }
         }
@@ -95,12 +95,12 @@ extension SignalProtocol where Element == Void {
                 switch event {
                 case .next(_):
                     if let t1 = wt1, let t2 = wt2 {
-                        observer.next((t1, t2))
+                        observer.receive((t1, t2))
                     }
                 case .completed:
-                    observer.completed()
+                    observer.receive(completion: .finished)
                 case .failed(let err):
-                    observer.failed(err)
+                    observer.receive(completion: .failure(err))
                 }
             }
         }
@@ -145,7 +145,7 @@ extension SignalProtocol where Self.Element: _ResultProtocol {
     }
     
     func pourError<S>(into listener: S) -> Signal<Element.Value, Error> where S: SubjectProtocol, S.Element == Element.Error {
-        return doOn(next: { e in if e.error != nil { listener.next(e.error!) } }).suppressedErrors
+        return doOn(next: { e in if e.error != nil { listener.send(e.error!) } }).suppressedErrors
     }
     
     func tryMapWrapped<U>(_ transform: @escaping (Element.Value) throws -> U) -> Signal<Swift.Result<U, Element.Error>, Error> {

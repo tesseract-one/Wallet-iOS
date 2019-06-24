@@ -26,12 +26,12 @@ class WalletViewModel: ViewModel, Equatable {
     
     public func lock() {
         wallet.lock()
-        isLocked.next(true)
+        isLocked.send(true)
     }
     
     public func unlock(password: String) throws {
         try wallet.unlock(password: password)
-        isLocked.next(false)
+        isLocked.send(false)
     }
     
     public func checkPassword(password: String) -> Bool {

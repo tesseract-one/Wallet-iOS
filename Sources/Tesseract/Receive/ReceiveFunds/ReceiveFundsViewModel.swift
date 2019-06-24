@@ -14,17 +14,17 @@ import Ethereum
 
 class ReceiveFundsViewModel: ViewModel, BackRoutableViewModelProtocol {
     let activeAccount = Property<AccountViewModel?>(nil)
-    let notificationNode = SafePublishSubject<NotificationProtocol>()
+    let notificationNode = PassthroughSubject<NotificationProtocol, Never>()
     
     let address = Property<Ethereum.Address?>(nil)
     let qrCodeAddress = Property<String>("ethereum:")
     
     let ethereumNetwork = Property<UInt64>(0)
     
-    let goBack = SafePublishSubject<Void>()
+    let goBack = PassthroughSubject<Void, Never>()
     
-    let closeButtonAction = SafePublishSubject<Void>()
-    let copyAction = SafePublishSubject<Void>()
+    let closeButtonAction = PassthroughSubject<Void, Never>()
+    let copyAction = PassthroughSubject<Void, Never>()
     
     let balance = Property<String>("")
     let ethBalance = Property<Double?>(nil)

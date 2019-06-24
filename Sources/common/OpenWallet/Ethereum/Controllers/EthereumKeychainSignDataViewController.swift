@@ -31,7 +31,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
     
     let usdChangeRate = Property<Double>(0.0)
     let ethBalance = Property<Double?>(nil)
-    let activeAccount = SafePublishSubject<AccountViewModel>()
+    let activeAccount = PassthroughSubject<AccountViewModel, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +46,7 @@ class EthereumKeychainSignDataViewController: EthereumKeychainViewController<Eth
         do {
             account = try Address(hex: request.account)
         } catch {
-            context.errorNode.next(OpenWalletError.eth_keychainWrongAccount(request.account))
+            context.errorNode.send(OpenWalletError.eth_keychainWrongAccount(request.account))
             return
         }
         

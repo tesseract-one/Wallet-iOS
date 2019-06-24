@@ -14,7 +14,7 @@ class QRCodeView: RoundedImage {
     private let ciFilter = CIFilter(name: "CIQRCodeGenerator")
     
     func setData(data: String) {
-        self.data.next(data)
+        self.data.send(data)
     }
     
     override init(frame: CGRect) {

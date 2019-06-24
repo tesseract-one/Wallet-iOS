@@ -22,9 +22,9 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let passwordService: KeychainPasswordService
     
     let settings: Settings
-    let notificationNode = SafePublishSubject<NotificationProtocol>()
+    let notificationNode = PassthroughSubject<NotificationProtocol, Never>()
     
-    let goBack = SafePublishSubject<Void>()
+    let goBack = PassthroughSubject<Void, Never>()
     
     let account = Property<AccountViewModel?>(nil)
     let address = Property<String>("")
@@ -44,19 +44,19 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     let receiveAmountETH = Property<String>("")
     let receiveAmountUSD = Property<String>("")
     
-    let send = SafePublishSubject<String>()
-    let fingerAction = SafePublishSubject<Void>()
+    let send = PassthroughSubject<String, Never>()
+    let fingerAction = PassthroughSubject<Void, Never>()
     
-    let checkPassword = SafePublishSubject<(String, ReviewSendTransactionViewModel)>()
+    let checkPassword = PassthroughSubject<(String, ReviewSendTransactionViewModel), Never>()
     
     let isSendingTx = Property<Bool>(false)
     
-    let closeModal = SafePublishSubject<Void>()
+    let closeModal = PassthroughSubject<Void, Never>()
     
-    let pwdError = SafePublishSubject<Swift.Error>()
-    let txError = SafePublishSubject<Swift.Error>()
+    let pwdError = PassthroughSubject<Swift.Error, Never>()
+    let txError = PassthroughSubject<Swift.Error, Never>()
     
-    let passwordErrors = SafePublishSubject<String>()
+    let passwordErrors = PassthroughSubject<String, Never>()
     
     let isBiometricEnabled = Property<Bool>(false)
     let canLoadPassword = Property<Bool?>(nil)
@@ -124,7 +124,7 @@ class ReviewSendTransactionViewModel: ViewModel, BackRoutableViewModelProtocol {
     private func setupFinger() {
         if (settings.number(forKey: .isBiometricEnabled) as? Bool == true) &&
             (passwordService.getBiometricType() != .none) {
-            isBiometricEnabled.next(true)
+            isBiometricEnabled.send(true)
         }
         
         fingerAction

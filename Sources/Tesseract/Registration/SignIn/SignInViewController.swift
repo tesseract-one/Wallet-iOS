@@ -86,10 +86,10 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
     private func showTouchIdPopup() {
         let alert = UIAlertController(title: "Do you wan't \u{22}\(Bundle.main.object(forInfoDictionaryKey: kCFBundleNameKey as String) as! String)\u{22} to use Touch ID", message: "as password", preferredStyle: UIAlertController.Style.alert)
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: { [weak self] _ in
-            self?.model.touchIdPopupAnswer.next(true)
+            self?.model.touchIdPopupAnswer.send(true)
         }))
         alert.addAction(UIAlertAction(title: "Don't Allow", style: UIAlertAction.Style.cancel, handler: { [weak self] _ in
-            self?.model.touchIdPopupAnswer.next(false)
+            self?.model.touchIdPopupAnswer.send(false)
         }))
         self.present(alert, animated: true, completion: nil)
     }
@@ -105,7 +105,7 @@ class SignInViewController: KeyboardScrollView, ModelVCProtocol {
         fingerButton.reactive.tap.throttle(seconds: 0.5)
             .bind(to: model.fingerAction).dispose(in: bag)
         
-        model.fingerAction.next()
+        model.fingerAction.send()
     }
 }
 

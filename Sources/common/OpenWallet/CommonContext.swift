@@ -18,7 +18,7 @@ protocol CommonContext: class {
     var changeRateService: ChangeRateService { get }
     var passwordService: KeychainPasswordService { get }
     
-    var errorNode: SafePublishSubject<Swift.Error> { get }
+    var errorNode: PassthroughSubject<Swift.Error, Never> { get }
     
     var settings: Settings { get }
     

@@ -16,7 +16,7 @@ class ChooseNetworkViewModel: ViewModel {
     
     let networks = MutableObservableArray<NetworkType>()
     
-    let changeNetworkAction = SafePublishSubject<UInt64>()
+    let changeNetworkAction = PassthroughSubject<UInt64, Never>()
     
     init(settings: Settings) {
         self.settings = settings

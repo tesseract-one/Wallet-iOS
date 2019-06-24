@@ -18,8 +18,8 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     
     var walletService: WalletService!
     
-    var errorNode: SafePublishSubject<Swift.Error>!
-    var notificationNode: SafePublishSubject<NotificationProtocol>!
+    var errorNode: PassthroughSubject<Swift.Error, Never>!
+    var notificationNode: PassthroughSubject<NotificationProtocol, Never>!
     var isAppLoaded: Property<Bool>!
     
     weak var rootContainer: ViewControllerContainer!
@@ -76,7 +76,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             channel.delegate = self
             vc.dataChannel = channel
             
-            urlRequestVC.next(vc)
+            urlRequestVC.send(vc)
             
             if let reqVC = prevRequestVC {
                 DispatchQueue.main.async {
@@ -85,7 +85,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
                 }
             }
         } catch let err {
-            errorNode.next(err)
+            errorNode.send(err)
             return false
         }
         return true
@@ -94,9 +94,9 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     private func exec() {
         walletService.loadWallet()
             .done { _ in
-                self.isAppLoaded.next(true)
+                self.isAppLoaded.send(true)
             }.catch {
-                self.errorNode.next($0)
+                self.errorNode.send($0)
             }
     }
     
@@ -106,7 +106,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             .distinctUntilChanged()
             .with(weak: self)
             .observeNext { wallet, sself in
-                sself.isWalletLocked.next(nil)
+                sself.isWalletLocked.send(nil)
                 wallet!.isLocked.bind(to: sself.isWalletLocked).dispose(in: wallet!.bag)
             }.dispose(in: bag)
         
@@ -158,9 +158,9 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     
     private func setNetwork() {
         if let network = settings.number(forKey: .ethereumNetwork) as? UInt64 {
-            ethereumNetwork.next(network)
+            ethereumNetwork.send(network)
         } else {
-            ethereumNetwork.next(1) // Main Network
+            ethereumNetwork.send(1) // Main Network
             settings.set(UInt64(1), forKey: .ethereumNetwork)
         }
     }
@@ -175,15 +175,15 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         if presentingUrlRequest.value {
             rootContainer.hideModalView(animated: false, completion: handleRequest)
         } else {
-            presentingUrlRequest.next(true)
+            presentingUrlRequest.send(true)
             handleRequest()
         }
     }
     
     func urlChannelGotResponse(channel: ExtensionViewControllerURLChannel, response: Data) {
-        self.urlRequestVC.next(nil)
+        self.urlRequestVC.send(nil)
         rootContainer.hideModalView(animated: true) {
-            self.presentingUrlRequest.next(false)
+            self.presentingUrlRequest.send(false)
             DispatchQueue.main.async {
                 let _ = channel.sendResponse(provider: self.rootContainer.view!, data: response)
             }

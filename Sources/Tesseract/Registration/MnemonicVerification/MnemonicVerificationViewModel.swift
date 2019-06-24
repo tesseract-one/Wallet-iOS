@@ -20,13 +20,13 @@ class MnemonicVerificationViewModel: ViewModel {
     private let walletService: WalletService
     private let settings: Settings
     
-    let doneMnemonicVerificationAction = SafePublishSubject<Void>()
-    let skipMnemonicVerificationAction = SafePublishSubject<Void>()
+    let doneMnemonicVerificationAction = PassthroughSubject<Void, Never>()
+    let skipMnemonicVerificationAction = PassthroughSubject<Void, Never>()
     let mnemonicText = Property<String>("")
     let mnemonicError = Property<MnemonicVerificationError?>(nil)
     let mnemonicVerifiedSuccessfully = Property<Bool?>(nil)
     
-    let errors = SafePublishSubject<Swift.Error>()
+    let errors = PassthroughSubject<Swift.Error, Never>()
     
     init (password: String, newWalletData: NewWalletData, walletService: WalletService, settings: Settings) {
         self.password = password

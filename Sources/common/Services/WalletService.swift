@@ -30,7 +30,7 @@ class WalletService {
     var wallet: Property<WalletViewModel?>!
     var activeAccount: Property<AccountViewModel?>!
     
-    var errorNode: SafePublishSubject<Swift.Error>!
+    var errorNode: PassthroughSubject<Swift.Error, Never>!
     
     var settings: Settings!
     
@@ -170,7 +170,7 @@ class WalletService {
     }
     
     func setWallet(wallet: WalletViewModel) {
-        self.wallet.next(wallet)
+        self.wallet.send(wallet)
     }
     
     public func updateBalance() {

@@ -17,9 +17,9 @@ class SettingWithWordVM: ViewModel {
     let description: String?
     let word: Property<String>
     let isEnabled: Bool
-    let action: SafePublishSubject<Void>?
+    let action: PassthroughSubject<Void, Never>?
     
-    init(title: String, description: String? = nil, word: Property<String>, isEnabled: Bool, action: SafePublishSubject<Void>? = nil) {
+    init(title: String, description: String? = nil, word: Property<String>, isEnabled: Bool, action: PassthroughSubject<Void, Never>? = nil) {
         self.title = title
         self.description = description
         self.word = word
@@ -34,9 +34,9 @@ class SettingWithIconVM: ViewModel {
     let title: String
     let description: String
     let icon: UIImage
-    let action: SafePublishSubject<Void>
+    let action: PassthroughSubject<Void, Never>
     
-    init(title: String, description: String, icon: UIImage, action: SafePublishSubject<Void>) {
+    init(title: String, description: String, icon: UIImage, action: PassthroughSubject<Void, Never>) {
         self.title = title
         self.description = description
         self.icon = icon
@@ -50,9 +50,9 @@ class SettingWithSwitchVM: ViewModel {
     let title: String
     let description: String
     var isEnabled: Bool
-    let switchAction: SafePublishSubject<Bool>
+    let switchAction: PassthroughSubject<Bool, Never>
     
-    init(title: String, description: String, key: SettingKeys, settings: Settings, switchAction: SafePublishSubject<Bool>, defaultValue: Bool) {
+    init(title: String, description: String, key: SettingKeys, settings: Settings, switchAction: PassthroughSubject<Bool, Never>, defaultValue: Bool) {
         self.title = title
         self.description = description
         self.switchAction = switchAction
@@ -78,9 +78,9 @@ class SettingWithAccountVM: ViewModel {
     let balance = Property<String>("")
     let emoji: Property<String>
     let accountId: String
-    let editAction: SafePublishSubject<String>
+    let editAction: PassthroughSubject<String, Never>
     
-    init (account: AccountViewModel, changeRateService: ChangeRateService, editAction: SafePublishSubject<String>) {
+    init (account: AccountViewModel, changeRateService: ChangeRateService, editAction: PassthroughSubject<String, Never>) {
         self.name = account.name
         self.emoji = account.emoji
         self.accountId = account.id
@@ -106,9 +106,9 @@ class SettingWithAccountVM: ViewModel {
 class ButtonWithIconVM: ViewModel {
     let title: String
     let icon: UIImage
-    let action: SafePublishSubject<Void>
+    let action: PassthroughSubject<Void, Never>
     
-    init(title: String, icon: UIImage, action: SafePublishSubject<Void>) {
+    init(title: String, icon: UIImage, action: PassthroughSubject<Void, Never>) {
         self.title = title
         self.icon = icon
         self.action = action
@@ -119,9 +119,9 @@ class ButtonWithIconVM: ViewModel {
 
 class LogoutVM: ViewModel {
     let title: String
-    let action: SafePublishSubject<Void>
+    let action: PassthroughSubject<Void, Never>
     
-    init(title: String, action: SafePublishSubject<Void>) {
+    init(title: String, action: PassthroughSubject<Void, Never>) {
         self.title = title
         self.action = action
         

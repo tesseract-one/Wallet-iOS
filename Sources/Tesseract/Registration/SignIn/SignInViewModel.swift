@@ -33,17 +33,17 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     private let passwordService: KeychainPasswordService
     private let settings: Settings
     
-    let signInAction = SafePublishSubject<Void>()
-    let fingerAction = SafePublishSubject<Void>()
-    let restoreKeyAction = SafePublishSubject<Void>()
+    let signInAction = PassthroughSubject<Void, Never>()
+    let fingerAction = PassthroughSubject<Void, Never>()
+    let restoreKeyAction = PassthroughSubject<Void, Never>()
     
     let password = Property<String>("")
     let passwordError = Property<SignInPasswordErrors?>(nil)
     let signInSuccessfully = Property<Bool?>(nil)
     
-    let goToView = SafePublishSubject<ToView>()
+    let goToView = PassthroughSubject<ToView, Never>()
     
-    let showTouchIdPopup = SafePublishSubject<Void>()
+    let showTouchIdPopup = PassthroughSubject<Void, Never>()
     let touchIdPopupAnswer = Property<Bool?>(nil)
     
     let isBiometricEnabled = Property<Bool>(false)
@@ -51,16 +51,16 @@ class SignInViewModel: ViewModel, ForwardRoutableViewModelProtocol {
     
     let canLoadPassword = Property<Bool?>(nil)
     
-    let checkPassword = SafePublishSubject<Bool>()
-    let correctPassword = SafePublishSubject<Void>()
-    let unlockWallet = SafePublishSubject<Void>()
-    let faceBiometric = SafePublishSubject<Void>()
-    let touchIdBiometric = SafePublishSubject<Void>()
+    let checkPassword = PassthroughSubject<Bool, Never>()
+    let correctPassword = PassthroughSubject<Void, Never>()
+    let unlockWallet = PassthroughSubject<Void, Never>()
+    let faceBiometric = PassthroughSubject<Void, Never>()
+    let touchIdBiometric = PassthroughSubject<Void, Never>()
     
     let biometricFlow = Property<BiometricFlow?>(nil)
     
-    let textFieldErrors = SafePublishSubject<Swift.Error>()
-    let biometricErrors = SafePublishSubject<Swift.Error>()
+    let textFieldErrors = PassthroughSubject<Swift.Error, Never>()
+    let biometricErrors = PassthroughSubject<Swift.Error, Never>()
     
     init (walletService: WalletService, passwordService: KeychainPasswordService, settings: Settings) {
         self.walletService = walletService
@@ -137,7 +137,7 @@ extension SignInViewModel {
         if biometricType == .none || settings.number(forKey: .isBiometricEnabled) as? Bool == false {
             correctPassword.bind(to: unlockWallet).dispose(in: bag)
         } else if settings.number(forKey: .isBiometricEnabled) as? Bool == true {
-            isBiometricEnabled.next(true)
+            isBiometricEnabled.send(true)
             
             fingerAction
                 .with(weak: passwordService)

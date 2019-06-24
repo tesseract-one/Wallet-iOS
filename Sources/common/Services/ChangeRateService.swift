@@ -58,7 +58,7 @@ class ChangeRateService {
                     for coin in response.data {
                         if let net = ChangeRateService.bindings[coin.name],
                            let price = coin.quote["USD"]?.price  {
-                            sself.changeRates[net]?.next(price)
+                            sself.changeRates[net]?.send(price)
                         }
                     }
                 }

@@ -13,8 +13,8 @@ public extension Promise {
     var signal : ResultSignal<T, Swift.Error> {
         return ResultSignal<T, Swift.Error> { observer in
             self
-                .done { observer.completed(with: .success($0)) }
-                .catch { observer.completed(with: .failure($0)) }
+                .done { observer.receive(lastElement: .success($0)) }
+                .catch { observer.receive(lastElement: .failure($0)) }
             return observer.disposable
         }
     }

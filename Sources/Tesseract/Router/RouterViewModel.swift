@@ -12,11 +12,11 @@ import ReactiveKit
 protocol ForwardRoutableViewModelProtocol: ViewModelProtocol {
     typealias ToView = (name: String, context: RouterContextProtocol?)
     
-    var goToView: SafePublishSubject<ToView> { get }
+    var goToView: PassthroughSubject<ToView, Never> { get }
 }
 
 protocol BackRoutableViewModelProtocol: ViewModelProtocol {
-    var goBack: SafePublishSubject<Void> { get }
+    var goBack: PassthroughSubject<Void, Never> { get }
 }
 
 typealias RoutableViewModelProtocol = BackRoutableViewModelProtocol & ForwardRoutableViewModelProtocol
@@ -28,13 +28,13 @@ protocol ModelVCProtocol: RouterViewProtocol {
 }
 
 extension ModelVCProtocol where Self: UIViewController, Self.ViewModel: ForwardRoutableViewModelProtocol {
-    var goToViewAction: SafePublishSubject<ViewModel.ToView> {
+    var goToViewAction: PassthroughSubject<ViewModel.ToView, Never> {
         return model.goToView
     }
 }
 
 extension ModelVCProtocol where Self: UIViewController, Self.ViewModel: BackRoutableViewModelProtocol {
-    var goBack: SafePublishSubject<Void> {
+    var goBack: PassthroughSubject<Void, Never> {
         return model.goBack
     }
 }

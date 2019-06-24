@@ -37,7 +37,7 @@ class EthereumKeychainSignTransactionViewController: EthereumKeychainViewControl
     let isContract = Property<Bool>(false)
     let usdChangeRate = Property<Double>(0.0)
     let ethBalance = Property<Double?>(nil)
-    let activeAccount = SafePublishSubject<AccountViewModel>()
+    let activeAccount = PassthroughSubject<AccountViewModel, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()

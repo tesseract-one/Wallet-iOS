@@ -9,17 +9,17 @@
 import ReactiveKit
 
 class MnemonicViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-    let doneMnemonicAction = SafePublishSubject<Void>()
+    let doneMnemonicAction = PassthroughSubject<Void, Never>()
     let mnemonicProp = Property<String>("")
     
-    let notificationNode = SafePublishSubject<NotificationProtocol>()
+    let notificationNode = PassthroughSubject<NotificationProtocol, Never>()
     
-    let goToView = SafePublishSubject<ToView>()
+    let goToView = PassthroughSubject<ToView, Never>()
     
     init (mnemonic: String) {
         super.init()
         
-        mnemonicProp.next(mnemonic)
+        mnemonicProp.send(mnemonic)
         
         doneMnemonicAction.map { _ in (name: "MnemonicVerification", context: nil) }
             .bind(to: goToView).dispose(in: bag)

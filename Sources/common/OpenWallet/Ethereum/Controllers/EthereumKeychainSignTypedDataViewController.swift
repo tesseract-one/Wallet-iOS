@@ -205,10 +205,10 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
         topDataItem = parseTypedData()
         
         ensureDataSectionHeader().onClick = { [weak self] item in
-            self?.selectedItem.next(item)
+            self?.selectedItem.send(item)
         }
         
-        selectedItem.next(topDataItem)
+        selectedItem.send(topDataItem)
         
         let ethAcc = request.account
         context.wallet
@@ -300,7 +300,7 @@ class EthereumKeychainSignTypedDataViewController: EthereumKeychainViewControlle
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == dataSection,
             let item = tableCachedData[dataSection]?[indexPath.row].item as? DataType {
-            selectedItem.next(item)
+            selectedItem.send(item)
         }
     }
     

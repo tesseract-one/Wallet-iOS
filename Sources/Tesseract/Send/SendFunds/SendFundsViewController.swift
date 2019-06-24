@@ -11,7 +11,7 @@ import ReactiveKit
 import Bond
 
 class SendFundsViewControllerContext: RouterContextProtocol {
-    let closeAction = SafePublishSubject<Void>()
+    let closeAction = PassthroughSubject<Void, Never>()
 }
 
 class SendFundsViewController: UIViewController, ModelVCProtocol {
@@ -34,7 +34,7 @@ class SendFundsViewController: UIViewController, ModelVCProtocol {
     @IBOutlet weak var scanQrButton: UIBarButtonItem!
     @IBOutlet weak var reviewButton: UIButton!
     
-    let closeAction = SafePublishSubject<Void>()
+    let closeAction = PassthroughSubject<Void, Never>()
     
     override func viewDidLoad() {
         super.viewDidLoad()

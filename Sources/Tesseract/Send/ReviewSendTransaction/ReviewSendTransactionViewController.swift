@@ -125,12 +125,12 @@ extension ReviewSendTransactionViewController: ContextSubject {
     func apply(context: RouterContextProtocol) {
         let appCtx = context.get(context: ApplicationContext.self)!
         model = ReviewSendTransactionViewModel(walletService: appCtx.walletService, ethWeb3Service: appCtx.ethereumWeb3Service, changeRateService: appCtx.changeRateService, passwordService: appCtx.passwordService, settings: appCtx.settings)
-        model.account.next(context.get(bean: "account")! as? AccountViewModel)
-        model.address.next(context.get(bean: "address")! as! String)
-        model.ethereumNetwork.next(context.get(bean: "network")! as! UInt64)
-        model.sendAmount.next(context.get(bean: "sendAmount")! as! Double)
-        model.gasAmount.next(context.get(bean: "gasAmount")! as! Double)
-        model.balance.next(context.get(bean: "balance")! as! Double)
+        model.account.send(context.get(bean: "account")! as? AccountViewModel)
+        model.address.send(context.get(bean: "address")! as! String)
+        model.ethereumNetwork.send(context.get(bean: "network")! as! UInt64)
+        model.sendAmount.send(context.get(bean: "sendAmount")! as! Double)
+        model.gasAmount.send(context.get(bean: "gasAmount")! as! Double)
+        model.balance.send(context.get(bean: "balance")! as! Double)
     
         let sendContext = context.get(context: SendFundsViewControllerContext.self)!
         model.closeModal.bind(to: sendContext.closeAction).dispose(in: model.bag)

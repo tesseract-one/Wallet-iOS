@@ -33,11 +33,11 @@ public extension ReactiveExtensions where Base: UITextView {
         let base = self.base
         return Signal { [weak base] observer in
             guard let base = base else {
-                observer.completed()
+                observer.receive(completion: .finished)
                 return NonDisposable.instance
             }
             let target = BNDTextViewTarget(view: base, notification: type) {
-                observer.next($0)
+                observer.receive($0)
             }
             return BlockDisposable {
                 target.unregister()

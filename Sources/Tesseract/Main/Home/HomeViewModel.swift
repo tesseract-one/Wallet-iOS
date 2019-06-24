@@ -24,8 +24,8 @@ class HomeViewModel: ViewModel {
     let activeAccount = Property<AccountViewModel?>(nil)
     let ethereumNetwork = Property<UInt64>(0)
     
-    let sendAction = SafePublishSubject<Void>()
-    let receiveAction = SafePublishSubject<Void>()
+    let sendAction = PassthroughSubject<Void, Never>()
+    let receiveAction = PassthroughSubject<Void, Never>()
     
     let isMoreThanOneAccount = Property<Bool>(false)
 
@@ -39,9 +39,9 @@ class HomeViewModel: ViewModel {
     let balanceUpdateUSD = Property<String>("")
     let balanceUpdateInPercent = Property<String>("")
     
-    let goToSendView = SafePublishSubject<ToView>()
-    let goToReceiveView = SafePublishSubject<ToView>()
-    let closePopupView = SafePublishSubject<Void>()
+    let goToSendView = PassthroughSubject<ToView, Never>()
+    let goToReceiveView = PassthroughSubject<ToView, Never>()
+    let closePopupView = PassthroughSubject<Void, Never>()
     
     init(ethWeb3Service: EthereumWeb3Service,
          changeRateService: ChangeRateService,

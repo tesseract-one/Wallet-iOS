@@ -19,10 +19,10 @@ class CreateAccountViewModel: ViewModel, BackRoutableViewModelProtocol {
     let accountEmojiIndex = Property<Int>(0)
     let accountImages = MutableObservableArray<String>()
     
-    let createAccountAction = SafePublishSubject<Void>()
-    let validationError = SafePublishSubject<String?>()
+    let createAccountAction = PassthroughSubject<Void, Never>()
+    let validationError = PassthroughSubject<String?, Never>()
     
-    let goBack = SafePublishSubject<Void>()
+    let goBack = PassthroughSubject<Void, Never>()
     
     init(walletService: WalletService) {
         self.walletService = walletService

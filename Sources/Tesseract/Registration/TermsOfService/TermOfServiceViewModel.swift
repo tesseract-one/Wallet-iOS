@@ -10,11 +10,11 @@ import ReactiveKit
 
 
 class TermsOfServiceViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-    let acceptTermsAction = SafePublishSubject<Void>()
+    let acceptTermsAction = PassthroughSubject<Void, Never>()
   
-    let goToView = SafePublishSubject<ToView>()
+    let goToView = PassthroughSubject<ToView, Never>()
     
-    let errors = SafePublishSubject<Swift.Error>()
+    let errors = PassthroughSubject<Swift.Error, Never>()
 }
 
 

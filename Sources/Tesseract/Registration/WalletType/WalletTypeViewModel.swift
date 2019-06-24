@@ -15,9 +15,9 @@ enum SeedType: String, Equatable {
 }
 
 class WalletTypeViewModel: ViewModel, ForwardRoutableViewModelProtocol {
-    let chooseSeedAction = SafePublishSubject<SeedType?>()
+    let chooseSeedAction = PassthroughSubject<SeedType?, Never>()
     
-    let goToView = SafePublishSubject<ToView>()
+    let goToView = PassthroughSubject<ToView, Never>()
 
     override init () {
         super.init()

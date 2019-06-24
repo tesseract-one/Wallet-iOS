@@ -36,15 +36,15 @@ class TransactionInfoService {
         if let account = activeAccount.value, let _ = account.balance.value {
             web3Service.getTransactions(accountId: account.id, networkId: network.value)
                 .done(on: .main) { [weak self] txs in
-                    self?.transactions.next(
+                    self?.transactions.send(
                         txs.sorted(by: { UInt64($0.timeStamp)! > UInt64($1.timeStamp)! })
                     )
                 }
                 .catch { [weak self] _ in
-                    self?.transactions.next(nil)
+                    self?.transactions.send(nil)
                 }
         } else {
-            transactions.next(nil)
+            transactions.send(nil)
         }
     }
 }

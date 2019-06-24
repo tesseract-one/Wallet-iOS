@@ -31,16 +31,16 @@ class AccountViewModel: ViewModel, Equatable {
     
     public func updateName(name: String) {
         account.associatedData[.name] = name.serializable
-        self.name.next(name)
+        self.name.send(name)
     }
     
     public func updateEmoji(emoji: String) {
         account.associatedData[.emoji] = emoji.serializable
-        self.emoji.next(emoji)
+        self.emoji.send(emoji)
     }
     
     public func updateBalance(balance: Double?) {
-        self.balance.next(balance)
+        self.balance.send(balance)
     }
     
     public func eth_address() throws -> Ethereum.Address {

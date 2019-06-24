@@ -11,16 +11,16 @@ import ReactiveKit
 import Bond
 
 class ScanQRViewControllerContext: RouterContextProtocol {
-    let qrCode = SafePublishSubject<String>()
-    let cancel = SafePublishSubject<Void>()
+    let qrCode = PassthroughSubject<String, Never>()
+    let cancel = PassthroughSubject<Void, Never>()
 }
 
 class ScanQRViewController: UIViewController, RouterViewProtocol {
     @IBOutlet weak var qrCodeScannerView: QRCodeScannerView!
     @IBOutlet weak var cancelButton: UIButton!
     
-    var qrCode: SafePublishSubject<String>!
-    var cancel: SafePublishSubject<Void>!
+    var qrCode: PassthroughSubject<String, Never>!
+    var cancel: PassthroughSubject<Void, Never>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,12 +37,12 @@ class ScanQRViewController: UIViewController, RouterViewProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        qrCodeScannerView.isWorking.next(true)
+        qrCodeScannerView.isWorking.send(true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        qrCodeScannerView.isWorking.next(false)
+        qrCodeScannerView.isWorking.send(false)
     }
 }
 

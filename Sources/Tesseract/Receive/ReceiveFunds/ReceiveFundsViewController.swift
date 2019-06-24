@@ -11,7 +11,7 @@ import ReactiveKit
 import Bond
 
 class ReceiveFundsViewControllerContext: RouterContextProtocol {
-    let closeAction = SafePublishSubject<Void>()
+    let closeAction = PassthroughSubject<Void, Never>()
 }
 
 class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
@@ -19,7 +19,7 @@ class ReceiveFundsViewController: UIViewController, ModelVCProtocol {
     
     private(set) var model: ViewModel!
     
-    var closeAction: SafePublishSubject<Void>!
+    var closeAction: PassthroughSubject<Void, Never>!
     
     @IBOutlet weak var accountEmojiLabel: UILabel!
     @IBOutlet weak var qrCodeImageView: QRCodeView!
