@@ -1,6 +1,6 @@
 PODS:
   - BigInt (4.0.0)
-  - Bond (7.5.0):
+  - Bond (7.6.0):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.10)
   - CryptoSwift (1.0.0)
@@ -26,19 +26,19 @@ PODS:
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0)
     - Serializable.swift (~> 0.1)
-  - Tesseract.EthereumWeb3/Core (0.1.4):
+  - Tesseract.EthereumWeb3/Core (0.1.5):
     - Tesseract.EthereumTypes (~> 0.1)
-  - Tesseract.EthereumWeb3/PromiseKit (0.1.4):
+  - Tesseract.EthereumWeb3/PromiseKit (0.1.5):
     - PromiseKit/CorePromise (~> 6.8)
     - Tesseract.EthereumWeb3/Core
-  - Tesseract.OpenWallet/Core (0.1.6)
-  - Tesseract.OpenWallet/Ethereum.Core (0.1.6):
+  - Tesseract.OpenWallet/Core (0.1.7)
+  - Tesseract.OpenWallet/Ethereum.Core (0.1.7):
     - Serializable.swift (~> 0.1)
     - Tesseract.EthereumTypes (~> 0.1)
     - Tesseract.OpenWallet/Core
-  - Tesseract.OpenWallet/Wallet (0.1.6):
+  - Tesseract.OpenWallet/Wallet (0.1.7):
     - Tesseract.OpenWallet/Core
-  - Tesseract.OpenWallet/Wallet.Ethereum (0.1.6):
+  - Tesseract.OpenWallet/Wallet.Ethereum (0.1.7):
     - Tesseract.OpenWallet/Ethereum.Core
     - Tesseract.OpenWallet/Wallet
   - Tesseract.Wallet/Core (0.1.5):
@@ -53,7 +53,7 @@ PODS:
     - Tesseract.Wallet/Core
 
 DEPENDENCIES:
-  - Bond (~> 7.5)
+  - Bond (~> 7.6)
   - PromiseKit (~> 6.8)
   - ReactiveKit (~> 3.13)
   - SnapKit (~> 5.0)
@@ -81,7 +81,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   BigInt: 2aad1a9942dc932ec8b84290d2c564a3d76f97ab
-  Bond: 6abbc33a4cf88e65a0f8b1ba8276ac34584ad897
+  Bond: 5d626bfbbfc60b213ec35badb8f4fd81beff6a5f
   CryptoSwift: d81eeaa59dc5a8d03720fe919a6fd07b51f7439f
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   PromiseKit: 9616b0afef31eae56ab9ce044c8ec2b8612a15cd
@@ -91,10 +91,10 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SQLiteMigrationManager.swift: 2dd6f760d6e53f666176346436c689e55a608f7a
   Tesseract.EthereumTypes: 3835ac8935fe817f9048512d44e31d3ea3fcc9ef
-  Tesseract.EthereumWeb3: 31cdbeffe12a1c0f1c25ab6a4c2ac1f0ffa6c81b
-  Tesseract.OpenWallet: b2b16e90cf7798b8335c8914314b866a1658f76a
+  Tesseract.EthereumWeb3: 122ba649977678f8e38d2b7c8645a4961186814e
+  Tesseract.OpenWallet: 63c6b6d51d6d2c877a39437dfec374886e590583
   Tesseract.Wallet: 8aacfe5169367b8ea25ae08868fbefbd64cf91b0
 
-PODFILE CHECKSUM: c788c38617b4973f0d79b32c4717e2ef3af12304
+PODFILE CHECKSUM: cdf824ec8d1e1a7c580722dbcf64a520dbdb61b2
 
-COCOAPODS: 1.7.2
+COCOAPODS: 1.7.3
