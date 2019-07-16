@@ -26,7 +26,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignUp" useStoryboardIdentifierAsRestorationIdentifier="YES" id="CkB-v8-7KG" customClass="SignUpViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="KZV-fz-cSu">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="khx-6M-fzw">
@@ -448,6 +448,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="xRp-Bx-Fzs" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.14509803921568626" green="0.14509803921568626" blue="0.14509803921568626" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -571,7 +572,7 @@
             <objects>
                 <viewController storyboardIdentifier="SignIn" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DMU-LD-TUJ" customClass="SignInViewController" customModule="Tesseract" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lpN-zK-av5">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="756"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ENg-2k-pAp">
@@ -1187,12 +1188,17 @@
                                                     <constraint firstItem="cJa-Wn-mU5" firstAttribute="top" secondItem="4V9-LC-FdN" secondAttribute="top" id="eM7-7F-Fri"/>
                                                 </constraints>
                                             </view>
+                                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="Ott-z4-PfG">
+                                                <rect key="frame" x="188" y="368" width="37" height="37"/>
+                                                <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="M4z-Jb-td5" firstAttribute="top" secondItem="KDg-JE-zLB" secondAttribute="bottom" constant="24" id="1cm-DZ-Svz"/>
                                             <constraint firstItem="M4z-Jb-td5" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="8KM-OC-oHZ"/>
                                             <constraint firstAttribute="trailing" secondItem="4V9-LC-FdN" secondAttribute="trailing" id="AYX-wK-Llf"/>
                                             <constraint firstAttribute="trailing" secondItem="M4z-Jb-td5" secondAttribute="trailing" id="FxT-y6-cdy"/>
+                                            <constraint firstItem="Ott-z4-PfG" firstAttribute="centerX" secondItem="Vgt-ad-ZUq" secondAttribute="centerX" id="K5K-DC-F7s"/>
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="LZA-xA-crk"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="top" secondItem="Vgt-ad-ZUq" secondAttribute="top" constant="8" id="M4D-AU-Ixz"/>
                                             <constraint firstAttribute="bottom" secondItem="4V9-LC-FdN" secondAttribute="bottom" id="PhW-2I-xmV"/>
@@ -1203,6 +1209,7 @@
                                             <constraint firstAttribute="trailing" secondItem="nOd-qH-Ff2" secondAttribute="trailing" constant="16" id="i4n-9E-k3x"/>
                                             <constraint firstItem="4V9-LC-FdN" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M4z-Jb-td5" secondAttribute="bottom" constant="24" id="lxJ-eb-vKR"/>
                                             <constraint firstItem="YcG-LT-ZFb" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" id="nwu-aZ-cgd"/>
+                                            <constraint firstAttribute="bottom" secondItem="Ott-z4-PfG" secondAttribute="bottom" constant="30.5" id="vMY-pj-FhW"/>
                                             <constraint firstAttribute="trailing" secondItem="KDg-JE-zLB" secondAttribute="trailing" id="wq4-VW-4E4"/>
                                             <constraint firstItem="nOd-qH-Ff2" firstAttribute="leading" secondItem="Vgt-ad-ZUq" secondAttribute="leading" constant="16" id="yDX-Hj-AUP"/>
                                         </constraints>
@@ -1239,6 +1246,7 @@
                         <outlet property="mnemonicTextView" destination="sZB-ec-BPk" id="uqR-MW-vZu"/>
                         <outlet property="passwordField" destination="CtV-Xa-DVd" id="bDl-Xp-hQ2"/>
                         <outlet property="restoreButton" destination="cJa-Wn-mU5" id="6eb-kd-ztl"/>
+                        <outlet property="restoreIndicator" destination="Ott-z4-PfG" id="yeZ-dG-0pd"/>
                         <outlet property="scrollView" destination="b9F-je-7Og" id="er8-h3-MMz"/>
                     </connections>
                 </viewController>
@@ -1253,6 +1261,7 @@
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" barStyle="black" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" largeTitles="YES" id="SC7-mf-IfW" customClass="BorderlessNavigationBar" customModule="Tesseract" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="barTintColor" red="0.1450980392" green="0.1450980392" blue="0.1450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

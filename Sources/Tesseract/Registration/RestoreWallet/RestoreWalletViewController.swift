@@ -20,6 +20,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
     @IBOutlet weak var confirmPasswordField: MaterialTextField!
     @IBOutlet weak var restoreButton: UIButton!
     @IBOutlet weak var backButton: UIBarButtonItem!
+    @IBOutlet weak var restoreIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +48,7 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
             view.endEditing(true)
         }.dispose(in: bag)
         
-        let restoreWalletUnsuccessfull = model.restoreWalletSuccessfully.filter { $0 != nil }
+        let restoreWalletUnsuccessfull = model.restoreWalletSuccessfully.filter { $0 == false }
         
         let passwordErrors = restoreWalletUnsuccessfull
             .with(latestFrom: model.passwordError)
@@ -77,6 +78,13 @@ class RestoreWalletViewController: KeyboardAutoScrollViewController, ModelVCProt
                 self?.navigationController?.popViewController(animated: true)
             }.dispose(in: reactive.bag)
         
+        model.isRestoring.map { !$0 }
+            .bind(to: restoreIndicator.reactive.isHidden).dispose(in: reactive.bag)
+        model.isRestoring.map { $0 == true ? "" : "Restore"}
+            .bind(to: restoreButton.reactive.title).dispose(in: reactive.bag)
+        model.isRestoring.map { !$0 }
+            .bind(to: view.reactive.isUserInteractionEnabled).dispose(in: reactive.bag)
+
         setupSizes()
         setupKeyboardDismiss()
     }

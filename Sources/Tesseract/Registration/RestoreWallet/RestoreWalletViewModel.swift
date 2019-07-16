@@ -37,6 +37,9 @@ class RestoreWalletViewModel: ViewModel {
     let mnemonicError = Property<MnemonicErrors?>(nil)
     let passwordError = Property<PasswordErrors?>(nil)
     
+    let restoreWalletResult = PassthroughSubject<Result<WalletViewModel, Error>, Never>()
+    let isRestoring = Property<Bool>(false)
+    
     init (walletService: WalletService, settings: Settings, wasCreatedByMetamask: Bool) {
         self.walletService = walletService
         self.settings = settings
@@ -90,9 +93,15 @@ extension RestoreWalletViewModel {
             .bind(to: restoreWalletSuccessfully)
             .dispose(in: bag)
         
+        restoreActionCheckPass.filter { $0.0.1 == nil && $0.1 == nil }
+            .map { _ in true }
+            .bind(to: restoreWalletSuccessfully)
+            .dispose(in: bag)
+        
+        
         let settings = self.settings
         
-        restoreActionCheckPass.filter { $0.0.1 == nil && $0.1 == nil }
+        restoreWalletSuccessfully.filter { $0 == true }
             .map { _ in }
             .with(latestFrom: password)
             .map { $0.1 }
@@ -111,6 +120,10 @@ extension RestoreWalletViewModel {
                 walletService.newWallet(data: newWalletData, password: password, isMetamask: wasCreatedByMetamask).signal
             }
             .observeIn(.immediateOnMain)
+            .bind(to: restoreWalletResult)
+            .dispose(in: bag)
+            
+        restoreWalletResult
             .pourError(into: errors)
             .with(weak: walletService)
             .observeNext { wallet, walletService in
@@ -118,6 +131,17 @@ extension RestoreWalletViewModel {
                 wallet.lock() // We will go to login for touch id setup
                 walletService.setWallet(wallet: wallet)
             }.dispose(in: bag)
+        
+        restoreWalletSuccessfully
+            .filter { $0 == true }
+            .map { _ in true }
+            .bind(to: isRestoring)
+            .dispose(in: bag)
+        
+        restoreWalletResult
+            .map { _ in false }
+            .bind(to: isRestoring)
+            .dispose(in: bag)
         
         
         errors.map { _ in MnemonicErrors.wrong }.bind(to: mnemonicError).dispose(in: bag)
