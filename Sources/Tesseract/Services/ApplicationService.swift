@@ -105,7 +105,6 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     private func bindRegistration() {
         walletService.wallet
             .filter { $0 != nil }
-            .distinctUntilChanged()
             .with(weak: self)
             .observeNext { wallet, sself in
                 sself.isWalletLocked.send(nil)
@@ -114,7 +113,6 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         
         walletService.wallet
             .filter { $0 == nil }
-            .distinctUntilChanged()
             .map { _ in nil }
             .bind(to: isWalletLocked)
             .dispose(in: bag)
