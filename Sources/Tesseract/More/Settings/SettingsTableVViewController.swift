@@ -61,9 +61,7 @@ class SettingsTableViewController: UITableViewController, ModelVCProtocol {
         
         combineLatest(model.accounts, model.activeAccount.filter{ $0 != nil })
             .observeNext { [weak self] accounts, activeAccount in
-                let ai = self!.model.accounts.collection.firstIndex(of: activeAccount!)
-                // when restore account, model accounts can be changed earlier than active account
-                guard let activeAccountIndex = ai else { return }
+                let activeAccountIndex = self!.model.accounts.collection.firstIndex(of: activeAccount!)!
                 self?.tableView.selectRow(at: IndexPath(row: activeAccountIndex, section: 0), animated: false, scrollPosition: .none)
             }.dispose(in: reactive.bag)
         
