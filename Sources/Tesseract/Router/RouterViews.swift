@@ -126,23 +126,20 @@ class SingleViewResolver<Controller : UIViewController> : ViewResolverProtocol {
     }
 }
 
-class ViewFactory : ViewFactoryProtocol {
-    private let _resolver:ViewResolverProtocol
-    private let _context:RouterContextProtocol?
-    
-    init(resolver:ViewResolverProtocol, context:RouterContextProtocol? = nil) {
-        _resolver = resolver
-        _context = context
-    }
-    
+protocol ResolverViewFactory: ViewFactoryProtocol {
+    func resolver() -> ViewResolverProtocol
+    func context() -> RouterContextProtocol?
+}
+
+extension ResolverViewFactory {
     func viewController(for view: ViewId, context:RouterContextProtocol?) throws -> UIViewController {
-        guard let controller = _resolver.instantiate(for: view) else {
+        guard let controller = self.resolver().instantiate(for: view) else {
             throw ViewError.notFound(view: view)
         }
         
         let ctx = CombinedRouterContext()
         
-        if let co = _context {
+        if let co = self.context() {
             ctx.push(context: co)
         }
         
@@ -151,7 +148,7 @@ class ViewFactory : ViewFactoryProtocol {
         }
         
         if let rvw = controller as? RouterViewProtocol {
-            rvw.r_inject(context: ctx, resolver: _resolver)
+            rvw.r_inject(context: ctx, resolver: self.resolver())
         }
         
         if let cs = controller as? ContextSubject {
@@ -162,8 +159,46 @@ class ViewFactory : ViewFactoryProtocol {
     }
 }
 
-class WeakContextViewFactory: ViewFactory {
+class ViewFactory: ResolverViewFactory {
+    private let _resolver:ViewResolverProtocol
+    private let _context:RouterContextProtocol?
+    
+    init(resolver:ViewResolverProtocol, context:RouterContextProtocol? = nil) {
+        self._resolver = resolver
+        self._context = context
+//        LeakAnalyzer.instance.addObject(self)
+    }
+    
+    func resolver() -> ViewResolverProtocol {
+        return _resolver
+    }
+    
+    func context() -> RouterContextProtocol? {
+        return _context
+    }
+    
+    deinit {
+//        LeakAnalyzer.instance.removeObject(self)
+    }
+}
+
+class WeakContextViewFactory: ResolverViewFactory {
+    private let _resolver:ViewResolverProtocol
     private weak var _context: (RouterContextProtocol & AnyObject)?
+    
+    init(resolver:ViewResolverProtocol, context:(RouterContextProtocol & AnyObject)? = nil) {
+        self._resolver = resolver
+        self._context = context
+        //        LeakAnalyzer.instance.addObject(self)
+    }
+    
+    func resolver() -> ViewResolverProtocol {
+        return _resolver
+    }
+    
+    func context() -> RouterContextProtocol? {
+        return _context
+    }
 }
 
 extension ViewFactoryProtocol {
@@ -178,7 +213,7 @@ extension UIStoryboard {
         return ViewFactory(resolver: self, context: context)
     }
     
-    func weakContextViewFactory(context: RouterContextProtocol? = nil) -> ViewFactoryProtocol {
+    func weakContextViewFactory(context: (RouterContextProtocol & AnyObject)? = nil) -> ViewFactoryProtocol {
         return WeakContextViewFactory(resolver: self, context: context)
     }
 }

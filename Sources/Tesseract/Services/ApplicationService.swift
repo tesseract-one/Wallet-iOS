@@ -36,7 +36,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     
     let urlRequestVC = Property<ExtensionViewController?>(nil)
     
-    let rootViewController = Property<UIViewController>(UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!)
+    let rootViewController = PassthroughSubject<UIViewController, Never>()
     
     private let presentingUrlRequest = Property<Bool>(false)
     
@@ -92,11 +92,13 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
     }
     
     private func exec() {
+        let loadingController = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()!
+        rootViewController.send(loadingController)
         walletService.loadWallet()
-            .done { _ in
-                self.isAppLoaded.send(true)
-            }.catch {
-                self.errorNode.send($0)
+            .done { [weak self] _ in
+                self?.isAppLoaded.send(true)
+            }.catch { [weak self] err in
+                self?.errorNode.send(err)
             }
     }
     
@@ -143,7 +145,6 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         combineLatest(rootViewController, presentingUrlRequest.distinctUntilChanged())
             .filter { !$1 }
             .map { $0.0 }
-            .distinctUntilChanged()
             .observeIn(.immediateOnMain)
             .with(weak: self)
             .observeNext { view, sself in

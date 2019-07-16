@@ -98,12 +98,9 @@ class WalletService {
                 throw err
             }
         
-        promise.signal
-            .executeIn(.immediateOnMain)
-            .suppressedErrors
-            .bind(to: wallet)
-        
-        return promise
+        return promise.get(on: .main) { [weak self] wallet in
+            self?.wallet.send(wallet)
+        }
     }
     
     func checkPassword(password: String) throws -> Bool {
