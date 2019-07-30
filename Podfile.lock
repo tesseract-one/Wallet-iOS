@@ -26,9 +26,9 @@ PODS:
     - BigInt (~> 4.0)
     - CryptoSwift (~> 1.0)
     - Serializable.swift (~> 0.1)
-  - Tesseract.EthereumWeb3/Core (0.1.5):
+  - Tesseract.EthereumWeb3/Core (0.1.6):
     - Tesseract.EthereumTypes (~> 0.1)
-  - Tesseract.EthereumWeb3/PromiseKit (0.1.5):
+  - Tesseract.EthereumWeb3/PromiseKit (0.1.6):
     - PromiseKit/CorePromise (~> 6.8)
     - Tesseract.EthereumWeb3/Core
   - Tesseract.OpenWallet/Core (0.1.7)
@@ -91,7 +91,7 @@ SPEC CHECKSUMS:
   SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
   SQLiteMigrationManager.swift: 2dd6f760d6e53f666176346436c689e55a608f7a
   Tesseract.EthereumTypes: 3835ac8935fe817f9048512d44e31d3ea3fcc9ef
-  Tesseract.EthereumWeb3: 122ba649977678f8e38d2b7c8645a4961186814e
+  Tesseract.EthereumWeb3: 94bd4649d35d8669a84d4b4806765027679874c8
   Tesseract.OpenWallet: 63c6b6d51d6d2c877a39437dfec374886e590583
   Tesseract.Wallet: aab8c396649e8f00703d8548f626c5f872e25ad2
 

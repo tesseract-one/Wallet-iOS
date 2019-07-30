@@ -13,7 +13,7 @@ public typealias NetworkType = (name: String, abbr: String, type: String, index:
 public let NETWORKS: [NetworkType] = [
     ("Ethereum Network", "ETH", "Main Network", index: 1),
     ("Ropsten Network", "RPN", "Test Network", index: 2),
-    ("Kovan Network", "KVN", "Test Network", index: 3),
+    ("Kovan Network", "KVN", "Test Network", index: 42),
     ("Rinkeby Network", "RKB", "Test Network", index: 4)
 ]
 

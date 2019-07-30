@@ -21,18 +21,26 @@ class EthereumWeb3Service {
     
     let bag = DisposeBag()
     
+    private var web3Instances: Dictionary<UInt64, Web3> = [:]
+    private let authHeader: String
+    
     var wallet: Property<WalletViewModel?>!
     let ethereumAPIs: Property<InstanceAPIRegistry?> = Property(nil)
 
-    var endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
+    let endpoints: Dictionary<UInt64, String> = TESSERACT_ETHEREUM_ENDPOINTS
     
     var etherscanApiToken = "B7F32GXMBH169BF1SKBYPG4K8SKGSJGDGV"
     var etherscanEndpoints: Dictionary<UInt64, String> = [
         1: "https://api.etherscan.io",
         2: "https://api-ropsten.etherscan.io",
-        3: "https://api-kovan.etherscan.io",
-        4: "https://api-rinkeby.etherscan.io"
+        4: "https://api-rinkeby.etherscan.io",
+        42: "https://api-kovan.etherscan.io"
     ]
+    
+    init(apiSecret: String) {
+        let base64 = ":\(apiSecret)".data(using: .utf8)!.base64EncodedString()
+        self.authHeader = "Basic \(base64)"
+    }
     
     func bootstrap() {
         wallet
@@ -55,16 +63,24 @@ class EthereumWeb3Service {
         guard let apis = ethereumAPIs.value else {
             return Promise(error: Error.ethereumAPIsNotInitialized)
         }
-        return Promise.value(apis.web3(rpcUrl: url))
+        if let web3 = web3Instances[networkId] {
+            return Promise.value(web3)
+        }
+        let web3 = apis.web3(rpcUrl: url, headers: ["Authorization": authHeader])
+        web3Instances[networkId] = web3
+        return Promise.value(web3)
     }
     
     func getBalance(accountId: String, networkId: UInt64) -> Promise<Double> {
-        return _getWeb3(networkId: networkId)
+        let balance = _getWeb3(networkId: networkId)
             .then { web3 in self._getAccount(id: accountId).map { (web3, $0) } }
             .then { web3, account in
                 web3.eth.getBalance(address: try account.eth_address())
             }
             .map { $0.quantity.ethValue(precision: 9) }
+        balance
+            .catch({ print("ERROR: ", $0) })
+        return balance
     }
     
     func sendEthereum(accountId: String, to: String, amountEth: Double, networkId: UInt64) -> Promise<Void> {

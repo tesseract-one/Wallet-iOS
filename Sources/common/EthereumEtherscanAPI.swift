@@ -48,8 +48,7 @@ public struct EthereumEtherscanAPI {
     }
     
     public func getTransactions(address: String) -> Promise<Array<EthereumTransactionLog>> {
-        let url = apiUrl +
-            "/api?module=account&action=txlist&address=\(address)&startblock=0&endblock=99999999&sort=asc&apikey=\(apiToken)"
+        let url = apiUrl + "/api?module=account&action=txlist&address=\(address)&startblock=0&endblock=99999999&sort=asc&apikey=\(apiToken)"
         return URLSession.shared.dataTask(.promise, with: URL(string: url)!)
             .validate()
             .map {

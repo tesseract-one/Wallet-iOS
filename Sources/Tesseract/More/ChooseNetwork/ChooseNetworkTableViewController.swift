@@ -24,15 +24,26 @@ class ChooseNetworkTableViewController: UITableViewController, ModelVCProtocol {
             cell.setModel(model: network)
         }.dispose(in: reactive.bag)
         
-        model.network.map{ Int($0) - 1 }
-            .with(weak: tableView)
+        model.network
+            .with(weak: self)
             .delay(interval: 0.01, on: .main) // should be after table creates
-            .observeNext { networkIndex, tableView in
-                tableView.selectRow(at: IndexPath(row: networkIndex, section: 0), animated: true, scrollPosition: .middle)
+            .observeNext { networkIndex, sself in
+                let index = sself.model.networks.collection.firstIndex { $0.index == networkIndex }
+                if let index = index {
+                    sself.tableView.selectRow(
+                        at: IndexPath(row: index, section: 0), animated: true, scrollPosition: .middle
+                    )
+                }
+                
             }.dispose(in: reactive.bag)
         
-        tableView.reactive.selectedRowIndexPath.distinctUntilChanged().throttle(seconds: 0.1).map{ UInt64($0.item) + 1 }
-            .bind(to: model.changeNetworkAction).dispose(in: reactive.bag)
+        tableView.reactive.selectedRowIndexPath
+            .distinctUntilChanged()
+            .throttle(seconds: 0.1)
+            .with(weak: self)
+            .map { path, sself in sself.model.networks.collection[path.item].index }
+            .bind(to: model.changeNetworkAction)
+            .dispose(in: reactive.bag)
         
         backButton.reactive.tap.throttle(seconds: 0.5)
             .observeNext { [weak self] in

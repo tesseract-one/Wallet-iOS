@@ -40,7 +40,9 @@ class ApplicationContext: RouterContextProtocol, CommonContext {
     // Services
     let applicationService = ApplicationService()
     let walletService = WalletService()
-    let ethereumWeb3Service = EthereumWeb3Service()
+    let ethereumWeb3Service = EthereumWeb3Service(
+        apiSecret: TESSERACT_ETHEREUM_ENDPOINTS_SECRET
+    )
     let changeRateService = ChangeRateService()
     let transactionService = TransactionInfoService()
     let passwordService = KeychainPasswordService()

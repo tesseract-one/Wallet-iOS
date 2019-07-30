@@ -23,8 +23,8 @@ protocol EthereumKeychainViewControllerBaseControls  {
 private let NETWORK_NAMES: Dictionary<UInt64, String> = [
     1: "Main Ethereum Network",
     2: "Ropsten Test Network",
-    3: "Kovan Test Network",
-    4: "Rinkeby Test Network"
+    4: "Rinkeby Test Network",
+    42: "Kovan Test Network"
 ]
 
 

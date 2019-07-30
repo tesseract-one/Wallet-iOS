@@ -71,7 +71,10 @@ class SettingsViewModel: ViewModel, ForwardRoutableViewModelProtocol {
             .dispose(in: bag)
         
         
-        network.map { NETWORKS[Int($0) - 1].abbr }.bind(to: currentNetwork)
+        network
+            .map { index in NETWORKS.first { $0.index == index }!.abbr }
+            .bind(to: currentNetwork)
+            .dispose(in: bag)
         
         switchDeveloperModeAction.with(weak: self).observeNext { isOn, sself in
             let numberOfItemsInDeveloperSection = sself.tableSettings[sectionAt: 1].items.count
