@@ -56,7 +56,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
         exec()
     }
     
-    func handle(url: URL) -> Bool {
+    func handle(url: URL, appId: String?) -> Bool {
         guard let scheme = url.scheme else {
             return false
         }
@@ -70,7 +70,7 @@ class ApplicationService: ExtensionViewControllerURLChannelDelegate {
             let prevRequestVC = urlRequestVC.value
             urlRequestArrivedTime = Date().timeIntervalSince1970
             
-            let channel = try ExtensionViewControllerURLChannel(request: url)
+            let channel = try ExtensionViewControllerURLChannel(request: url, appId: appId)
             let vc = try! self.urlHandlerViewFactory.viewController() as! URLHandlerMainViewController
             
             channel.delegate = self

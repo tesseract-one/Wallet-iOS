@@ -58,7 +58,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, ViewControllerContainer {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        return context.applicationService.handle(url: url)
+        let appId = options[.sourceApplication] as! String?
+        return context.applicationService.handle(url: url, appId: appId)
     }
     
     func applicationWillResignActive(_ application: UIApplication) {
